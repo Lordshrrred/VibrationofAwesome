@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Vibration of Awesome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Rajdhani:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f0a;
+    --surface: #111811;
+    --green: #1a3a1a;
+    --cyan: #00e5ff;
+    --amber: #ffb300;
+    --text: #e8f5e9;
+    --muted: #546e5a;
+    --gold: #00e5cc;
+    --deep: #020a0a;
+    --cream: #d0fff8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--cyan);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+    display: none;
+  }
+  .cursor-ring {
+    width: 30px; height: 30px;
+    border: 1px solid rgba(0,229,255,0.4);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+    display: none;
+  }
+  .stars {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .star {
+    position: absolute; background: white; border-radius: 50%;
+    animation: twinkle var(--dur, 3s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s); opacity: 0;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: var(--brightness, 0.8); transform: scale(1); }
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100; padding: 1.5rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(10,15,10,0.97), transparent);
+    border-bottom: 1px solid rgba(0,229,204,0.1);
+  }
+  .nav-logo {
+    font-family: 'Cinzel Decorative', serif; font-size: 1.1rem;
+    color: var(--gold); letter-spacing: 0.15em; text-decoration: none;
+    text-shadow: 0 0 20px rgba(0,229,204,0.4);
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Rajdhani', sans-serif; font-size: 0.8rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: var(--gold); }
+  .nav-links a.active::after { width: 100%; }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px; background: none; border: none;
+  }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; transition: all 0.3s; }
+
+  /* HERO */
+  .blog-hero {
+    min-height: 50vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; position: relative; overflow: hidden;
+    padding: 8rem 2rem 4rem;
+  }
+  .blog-hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,40,20,0.95) 0%, transparent 70%),
+      linear-gradient(160deg, #020a0a 0%, #0a0f0a 100%);
+  }
+  .blog-hero-content { position: relative; z-index: 2; max-width: 700px; }
+  .eyebrow {
+    font-family: 'Rajdhani', sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); opacity: 0.8; margin-bottom: 1.5rem;
+  }
+  .page-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--cream); line-height: 1.2; margin-bottom: 1.5rem;
+  }
+  .page-subtitle {
+    font-size: 1.2rem; font-style: italic;
+    color: rgba(208,255,248,0.6); line-height: 1.8;
+  }
+
+  /* LANES */
+  .lanes-section {
+    position: relative; z-index: 1; padding: 5rem 4rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .lanes-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem;
+  }
+  .lane-card {
+    border: 1px solid rgba(0,229,204,0.1);
+    background: rgba(255,255,255,0.015);
+    padding: 3rem; position: relative; overflow: hidden;
+    transition: all 0.4s; text-decoration: none; display: block;
+  }
+  .lane-card:hover { transform: translateY(-6px); }
+
+  .lane-card.matt {
+    border-color: rgba(255,179,0,0.15);
+    background: rgba(26,58,26,0.2);
+  }
+  .lane-card.matt:hover {
+    border-color: rgba(255,179,0,0.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(255,179,0,0.07);
+  }
+  .lane-card.boombot {
+    border-color: rgba(0,229,255,0.15);
+    background: rgba(0,20,30,0.3);
+  }
+  .lane-card.boombot:hover {
+    border-color: rgba(0,229,255,0.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(0,229,255,0.07);
+  }
+  .lane-tag {
+    font-family: 'Rajdhani', sans-serif; font-size: 0.65rem;
+    letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 1.5rem; display: block;
+  }
+  .lane-card.matt .lane-tag { color: var(--amber); }
+  .lane-card.boombot .lane-tag { color: var(--cyan); }
+  .lane-title {
+    font-family: 'Cinzel Decorative', serif; font-size: 1.6rem;
+    line-height: 1.2; margin-bottom: 1.2rem;
+  }
+  .lane-card.matt .lane-title { color: #fff8e7; }
+  .lane-card.boombot .lane-title { color: #e0f8ff; }
+  .lane-desc {
+    font-size: 1rem; line-height: 1.8; margin-bottom: 2rem; font-style: italic;
+  }
+  .lane-card.matt .lane-desc { color: rgba(255,230,160,0.5); }
+  .lane-card.boombot .lane-desc { color: rgba(160,230,255,0.5); }
+  .lane-cta {
+    font-family: 'Rajdhani', sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.25em; text-transform: uppercase;
+  }
+  .lane-card.matt .lane-cta { color: var(--amber); }
+  .lane-card.boombot .lane-cta { color: var(--cyan); }
+  .lane-deco {
+    font-family: 'Cinzel Decorative', serif; font-size: 6rem;
+    position: absolute; bottom: -0.5rem; right: 1.5rem;
+    line-height: 1; pointer-events: none; opacity: 0.04;
+  }
+  .lane-card.matt .lane-deco { color: var(--amber); }
+  .lane-card.boombot .lane-deco { color: var(--cyan); }
+
+  footer {
+    padding: 3rem 4rem; border-top: 1px solid rgba(0,229,204,0.1);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 2rem; position: relative; z-index: 1;
+  }
+  .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem; color: var(--gold); }
+  footer p { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; color: rgba(84,110,90,0.5); text-transform: uppercase; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; position: relative; flex-wrap: wrap; }
+    .hamburger { display: flex; }
+    .nav-links {
+      display: none; flex-direction: column; width: 100%; gap: 0;
+      background: rgba(10,15,10,0.98); border: 1px solid rgba(0,229,204,0.12);
+      border-top: none; position: absolute; top: 100%; left: 0; right: 0;
+      z-index: 200; padding: 0.5rem 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(0,229,204,0.05); font-size: 0.85rem; }
+    .lanes-section { padding: 3rem 1.5rem; }
+    .lanes-grid { grid-template-columns: 1fr; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+
+<nav>
+  <a href="/" class="nav-logo">VOA</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/" class="active">Blog</a></li>
+    <li><a href="/blog/matt/">Forest Temple</a></li>
+    <li><a href="/blog/boombot/">Boom Frequency</a></li>
+    <li><a href="/art-store/">Wieldable Art</a></li>
+    <li><a href="/aura/">AURA ✦</a></li>
+  </ul>
+</nav>
+
+<div class="blog-hero">
+  <div class="blog-hero-bg"></div>
+  <div class="blog-hero-content">
+    <p class="eyebrow">✦ Two Voices · One Signal ✦</p>
+    <h1 class="page-title">Transmissions</h1>
+    <p class="page-subtitle">Raw journals from the wilderness. Frequency-tuned intelligence from the signal stream.<br>Choose your lane.</p>
+  </div>
+</div>
+
+<div class="lanes-section">
+  <div class="lanes-grid">
+
+    <a href="/blog/matt/" class="lane-card matt">
+      <span class="lane-tag">✦ Personal · Human · Raw</span>
+      <h2 class="lane-title">From the Forest Temple</h2>
+      <p class="lane-desc">Matt EarthStar's unfiltered voice. Real stories, real lessons, real frustration when warranted. No SEO agenda. Just honest writing from 20 years in the wilderness of internet marketing and independent creation.</p>
+      <span class="lane-cta">Enter the Temple →</span>
+      <div class="lane-deco">🌲</div>
+    </a>
+
+    <a href="/blog/boombot/" class="lane-card boombot">
+      <span class="lane-tag">◈ AI · SEO · Signal</span>
+      <h2 class="lane-title">Boom Frequency</h2>
+      <p class="lane-desc">Matty BoomBoom transmits. SEO-optimized intelligence for spiritual seekers, neurodivergent creators, and abundance-minded entrepreneurs waking up to AI. Helpful. Eccentric. Real.</p>
+      <span class="lane-cta">Tune In →</span>
+      <div class="lane-deco">⚡</div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo">Vibration of Awesome</div>
+  </div>
+  <p>© 2026 Vibration of Awesome</p>
+</footer>
+
+<script>
+  // Stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2 + 0.5;
+    star.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--delay:${Math.random()*5}s;--brightness:${Math.random()*0.6+0.2};`;
+    starsEl.appendChild(star);
+  }
+
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouchDevice) {
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    cursor.style.display = 'block'; ring.style.display = 'block';
+    let rx = 0, ry = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; });
+    function animateRing() { rx += (cx - rx) * 0.12; ry += (cy - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animateRing); }
+    animateRing();
+  }
+</script>
+</body>
+</html>

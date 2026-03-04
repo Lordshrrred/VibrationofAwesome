@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From the Forest Temple — Matt EarthStar</title>
+<meta name="description" content="Matt EarthStar's personal blog. Raw, unfiltered writing on music, internet marketing, creativity, and building a life on your own terms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080e08;
+    --surface: #0f1a0f;
+    --green: #1a3a1a;
+    --amber: #ffb300;
+    --amber-dim: rgba(255,179,0,0.15);
+    --amber-glow: rgba(255,179,0,0.06);
+    --text: #f0ead6;
+    --muted: #6b7c5a;
+    --gold: #00e5cc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; cursor: none; }
+  .cursor { width: 8px; height: 8px; background: var(--amber); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); display: none; }
+  .cursor-ring { width: 30px; height: 30px; border: 1px solid rgba(255,179,0,0.4); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: all 0.15s ease; display: none; }
+  .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+  .star { position: absolute; background: #ffd580; border-radius: 50%; animation: twinkle var(--dur, 3s) ease-in-out infinite; animation-delay: var(--delay, 0s); opacity: 0; }
+  @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: var(--brightness, 0.6); transform: scale(1); } }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.5rem 3rem; display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(8,14,8,0.97), transparent);
+    border-bottom: 1px solid rgba(255,179,0,0.08);
+  }
+  .nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--amber); letter-spacing: 0.15em; text-decoration: none; text-shadow: 0 0 20px rgba(255,179,0,0.3); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--amber); transition: width 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--amber); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--amber); border-radius: 2px; transition: all 0.3s; }
+
+  /* HERO */
+  .hero {
+    min-height: 60vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; position: relative; overflow: hidden; padding: 9rem 2rem 5rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(30,60,10,0.8) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(255,179,0,0.04) 0%, transparent 60%),
+      linear-gradient(160deg, #04080a 0%, #080e08 100%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 700px; animation: fadeUp 1.2s ease forwards; opacity: 0; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .lane-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--amber); opacity: 0.7; margin-bottom: 1.5rem; }
+  .hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 5vw, 3.5rem); color: #fff8e7; line-height: 1.15; margin-bottom: 1.2rem; text-shadow: 0 0 60px rgba(255,179,0,0.15); }
+  .hero-byline { font-size: 1.2rem; font-style: italic; color: rgba(255,230,180,0.5); margin-bottom: 0.5rem; }
+
+  /* POSTS */
+  .posts-section { position: relative; z-index: 1; padding: 5rem 4rem; max-width: 900px; margin: 0 auto; }
+  .section-label { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--amber); opacity: 0.6; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::before { content: ''; display: block; width: 30px; height: 1px; background: var(--amber); opacity: 0.4; }
+
+  .post-list { display: flex; flex-direction: column; gap: 0; }
+  .post-entry {
+    border-bottom: 1px solid rgba(255,179,0,0.07);
+    padding: 2.5rem 0; display: flex; gap: 3rem; align-items: flex-start;
+    text-decoration: none; transition: background 0.3s;
+    position: relative;
+  }
+  .post-entry::before { content: ''; position: absolute; left: -2rem; top: 0; bottom: 0; width: 2px; background: var(--amber); transform: scaleY(0); transform-origin: top; transition: transform 0.3s; opacity: 0.5; }
+  .post-entry:hover::before { transform: scaleY(1); }
+  .post-date { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; min-width: 90px; padding-top: 0.4rem; }
+  .post-body { flex: 1; }
+  .post-title { font-family: 'Cinzel Decorative', serif; font-size: 1.2rem; color: #fff8e7; line-height: 1.3; margin-bottom: 0.8rem; transition: color 0.3s; }
+  .post-entry:hover .post-title { color: var(--amber); }
+  .post-excerpt { font-size: 0.95rem; line-height: 1.8; color: rgba(240,234,214,0.5); font-style: italic; }
+  .post-read-more { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--amber); margin-top: 1rem; display: inline-block; opacity: 0.7; transition: opacity 0.3s; }
+  .post-entry:hover .post-read-more { opacity: 1; }
+
+  .empty-state { text-align: center; padding: 4rem 0; color: var(--muted); font-style: italic; font-size: 1.1rem; }
+
+  footer { padding: 3rem 4rem; border-top: 1px solid rgba(255,179,0,0.08); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; position: relative; z-index: 1; }
+  .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--amber); }
+  footer p { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; color: rgba(107,124,90,0.4); text-transform: uppercase; }
+
+  .reveal { opacity: 0; transform: translateY(15px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; position: relative; flex-wrap: wrap; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; flex-direction: column; width: 100%; gap: 0; background: rgba(8,14,8,0.98); border: 1px solid rgba(255,179,0,0.1); border-top: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 200; padding: 0.5rem 0; }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(255,179,0,0.05); font-size: 0.85rem; }
+    .posts-section { padding: 3rem 1.5rem; }
+    .post-entry { flex-direction: column; gap: 0.5rem; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+
+<nav>
+  <a href="/" class="nav-logo">VOA</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/blog/matt/" class="active">Forest Temple</a></li>
+    <li><a href="/blog/boombot/">Boom Frequency</a></li>
+    <li><a href="/art-store/">Wieldable Art</a></li>
+    <li><a href="/aura/">AURA ✦</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="lane-eyebrow">✦ Personal Journal ✦</p>
+    <h1 class="hero-title">From the Forest Temple</h1>
+    <p class="hero-byline">by Matt EarthStar</p>
+  </div>
+</div>
+
+<div class="posts-section">
+  <p class="section-label">All Posts</p>
+  <div class="post-list" id="postList">
+    <div class="empty-state">Loading transmissions...</div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo">From the Forest Temple</div>
+  </div>
+  <p>© 2026 Vibration of Awesome</p>
+</footer>
+
+<script>
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2 + 0.5;
+    star.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--delay:${Math.random()*5}s;--brightness:${Math.random()*0.4+0.1};`;
+    starsEl.appendChild(star);
+  }
+
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouchDevice) {
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    cursor.style.display = 'block'; ring.style.display = 'block';
+    let rx = 0, ry = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; });
+    function animateRing() { rx += (cx - rx) * 0.12; ry += (cy - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animateRing); }
+    animateRing();
+  }
+
+  function formatDate(d) {
+    return new Date(d + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  fetch('/_data/matt-posts.json')
+    .then(r => r.json())
+    .then(posts => {
+      const list = document.getElementById('postList');
+      if (!posts.length) { list.innerHTML = '<div class="empty-state">No posts yet. Check back soon.</div>'; return; }
+      const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+      list.innerHTML = sorted.map(p => `
+        <a href="${p.url}" class="post-entry reveal">
+          <span class="post-date">${formatDate(p.date)}</span>
+          <div class="post-body">
+            <h2 class="post-title">${p.title}</h2>
+            <p class="post-excerpt">${p.excerpt}</p>
+            <span class="post-read-more">Read More →</span>
+          </div>
+        </a>
+      `).join('');
+      document.querySelectorAll('.reveal').forEach(el => {
+        const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        obs.observe(el);
+      });
+    })
+    .catch(() => {
+      document.getElementById('postList').innerHTML = '<div class="empty-state">Could not load posts. Run locally with a static server.</div>';
+    });
+</script>
+</body>
+</html>

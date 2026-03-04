@@ -627,10 +627,155 @@
     line-height: 1.8;
   }
 
-  /* BLOG */
+  /* BLOG / TRANSMISSIONS */
   #blog {
     background: linear-gradient(to bottom, transparent, rgba(0,40,35,0.15));
     border-top: 1px solid rgba(201,168,76,0.08);
+  }
+
+  /* LATEST TRANSMISSIONS */
+  #latest-transmissions {
+    border-top: 1px solid rgba(0,229,204,0.08);
+    background: linear-gradient(to bottom, rgba(0,20,15,0.4), transparent);
+  }
+
+  .transmissions-intro {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .view-all-blogs {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  .view-all-blogs:hover { opacity: 1; }
+
+  .transmissions-lanes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .tx-lane {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .tx-lane-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0,229,204,0.08);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tx-lane-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .tx-lane.matt .tx-lane-title { color: #ffb300; }
+  .tx-lane.boombot .tx-lane-title { color: #00e5ff; }
+
+  .tx-lane-link {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+  .tx-lane.matt .tx-lane-link { color: #ffb300; }
+  .tx-lane.boombot .tx-lane-link { color: #00e5ff; }
+  .tx-lane-link:hover { opacity: 1; }
+
+  .tx-card {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(0,229,204,0.05);
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s;
+    position: relative;
+  }
+  .tx-card::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 0; bottom: 0;
+    width: 2px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s;
+  }
+  .tx-lane.matt .tx-card::before { background: #ffb300; }
+  .tx-lane.boombot .tx-card::before { background: #00e5ff; }
+  .tx-card:hover::before { transform: scaleY(1); }
+
+  .tx-card-date {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+
+  .tx-card-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+  }
+  .tx-lane.matt .tx-card-title { color: #fff8e7; }
+  .tx-lane.boombot .tx-card-title { color: #e0f8ff; }
+  .tx-lane.matt .tx-card:hover .tx-card-title { color: #ffb300; }
+  .tx-lane.boombot .tx-card:hover .tx-card-title { color: #00e5ff; }
+
+  .tx-card-excerpt {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    font-style: italic;
+    color: rgba(208,255,248,0.35);
+    margin-bottom: 0.5rem;
+  }
+
+  .tx-read-more {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .tx-lane.matt .tx-read-more { color: #ffb300; }
+  .tx-lane.boombot .tx-read-more { color: #00e5ff; }
+  .tx-card:hover .tx-read-more { opacity: 1; }
+
+  .tx-loading {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    padding: 2rem 0;
+    text-align: center;
   }
 
   .blog-grid {
@@ -692,6 +837,10 @@
     line-height: 1.7;
     color: rgba(240,230,204,0.55);
     font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .transmissions-lanes { grid-template-columns: 1fr; gap: 2rem; }
   }
 
   /* FOOTER */
@@ -825,7 +974,7 @@
     <li><a href="/art-store/">Wieldable Art</a></li>
     <li><a href="#wearable-art">Wearable Art</a></li>
     <li><a href="/aura/" class="aura-link">AURA ✦</a></li>
-    <li><a href="#blog">Blog</a></li>
+    <li><a href="/blog/">Blog</a></li>
   </ul>
 </nav>
 
@@ -1029,6 +1178,45 @@
   </div>
 </section>
 
+<!-- LATEST TRANSMISSIONS -->
+<section id="latest-transmissions">
+  <div class="section-inner reveal">
+    <div class="transmissions-intro">
+      <div>
+        <p class="section-label">Latest Transmissions</p>
+        <h2 class="section-title">Two Voices. One Signal.</h2>
+      </div>
+      <a href="/blog/" class="view-all-blogs">View All Posts →</a>
+    </div>
+
+    <div class="transmissions-lanes">
+
+      <!-- Matt Lane -->
+      <div class="tx-lane matt">
+        <div class="tx-lane-header">
+          <span class="tx-lane-title">✦ From the Forest Temple</span>
+          <a href="/blog/matt/" class="tx-lane-link">All Posts →</a>
+        </div>
+        <div id="matt-posts" class="tx-cards">
+          <div class="tx-loading">Loading...</div>
+        </div>
+      </div>
+
+      <!-- BoomBot Lane -->
+      <div class="tx-lane boombot">
+        <div class="tx-lane-header">
+          <span class="tx-lane-title">◈ Boom Frequency</span>
+          <a href="/blog/boombot/" class="tx-lane-link">All Posts →</a>
+        </div>
+        <div id="boombot-posts" class="tx-cards">
+          <div class="tx-loading">Loading...</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- BLOG -->
 <section id="blog">
   <div class="section-inner reveal">
@@ -1163,6 +1351,35 @@
       nav.style.borderBottomColor = 'rgba(201,168,76,0.1)';
     }
   });
+
+  // Latest Transmissions feed
+  function formatTxDate(d) {
+    return new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function renderPosts(containerId, posts, lane) {
+    const el = document.getElementById(containerId);
+    if (!posts || !posts.length) { el.innerHTML = '<div class="tx-loading">No posts yet.</div>'; return; }
+    const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
+    el.innerHTML = sorted.map(p => `
+      <a href="${p.url}" class="tx-card">
+        <span class="tx-card-date">${formatTxDate(p.date)}</span>
+        <h3 class="tx-card-title">${p.title}</h3>
+        <p class="tx-card-excerpt">${p.excerpt.substring(0, 150)}${p.excerpt.length > 150 ? '...' : ''}</p>
+        <span class="tx-read-more">Read More →</span>
+      </a>
+    `).join('');
+  }
+
+  fetch('/_data/matt-posts.json')
+    .then(r => r.json())
+    .then(posts => renderPosts('matt-posts', posts, 'matt'))
+    .catch(() => { document.getElementById('matt-posts').innerHTML = '<div class="tx-loading">Could not load posts.</div>'; });
+
+  fetch('/_data/boombot-posts.json')
+    .then(r => r.json())
+    .then(posts => renderPosts('boombot-posts', posts, 'boombot'))
+    .catch(() => { document.getElementById('boombot-posts').innerHTML = '<div class="tx-loading">Could not load posts.</div>'; });
 </script>
 </body>
 </html>

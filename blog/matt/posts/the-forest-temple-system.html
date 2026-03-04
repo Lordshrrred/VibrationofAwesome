@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Forest Temple System — Matt EarthStar</title>
+<meta name="description" content="Everyone's selling you a productivity system. I built my own. Here's how it works and why I had to.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #080e08; --amber: #ffb300; --text: #f0ead6; --muted: #6b7c5a; --gold: #00e5cc; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; cursor: none; }
+  .cursor { width: 8px; height: 8px; background: var(--amber); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); display: none; }
+  .cursor-ring { width: 30px; height: 30px; border: 1px solid rgba(255,179,0,0.35); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: all 0.15s ease; display: none; }
+  .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+  .star { position: absolute; background: #ffd580; border-radius: 50%; animation: twinkle var(--dur, 3s) ease-in-out infinite; animation-delay: var(--delay, 0s); opacity: 0; }
+  @keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: var(--brightness, 0.4); } }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 3rem; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, rgba(8,14,8,0.97), transparent); border-bottom: 1px solid rgba(255,179,0,0.07); }
+  .nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--amber); letter-spacing: 0.15em; text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--amber); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--amber); border-radius: 2px; }
+  .post-hero { padding: 9rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; border-bottom: 1px solid rgba(255,179,0,0.06); }
+  .post-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(30,55,10,0.7) 0%, transparent 70%), linear-gradient(to bottom, #040a04, #080e08); }
+  .post-meta-top { position: relative; z-index: 2; margin-bottom: 2rem; }
+  .breadcrumb { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  .breadcrumb a { color: var(--amber); text-decoration: none; opacity: 0.7; }
+  .breadcrumb a:hover { opacity: 1; }
+  .breadcrumb span { margin: 0 0.5rem; opacity: 0.4; }
+  .post-title-hero { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.6rem, 4vw, 2.8rem); color: #fff8e7; line-height: 1.2; max-width: 750px; margin: 1.5rem auto; position: relative; z-index: 2; }
+  .post-meta { display: flex; align-items: center; justify-content: center; gap: 2rem; position: relative; z-index: 2; flex-wrap: wrap; }
+  .post-byline { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); opacity: 0.8; }
+  .post-date-display { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; color: var(--muted); }
+  .post-container { max-width: 720px; margin: 0 auto; padding: 5rem 2rem 6rem; position: relative; z-index: 1; }
+  .post-body { font-size: 1.15rem; line-height: 1.95; color: rgba(240,234,214,0.82); }
+  .post-body p { margin-bottom: 1.8rem; }
+  .post-body h2 { font-family: 'Cinzel Decorative', serif; font-size: 1.4rem; color: #fff8e7; margin: 3rem 0 1.2rem; line-height: 1.3; }
+  .post-body h3 { font-family: 'Rajdhani', sans-serif; font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin: 2.5rem 0 1rem; }
+  .post-body blockquote { border-left: 2px solid var(--amber); padding-left: 2rem; margin: 2.5rem 0; color: rgba(255,230,160,0.6); font-style: italic; font-size: 1.25rem; line-height: 1.7; }
+  .post-body strong { color: #fff8e7; font-weight: 600; }
+  .post-body ul { margin: 1.5rem 0 1.5rem 2rem; }
+  .post-body li { margin-bottom: 0.7rem; line-height: 1.8; }
+  .post-body a { color: var(--amber); text-decoration: none; border-bottom: 1px solid rgba(255,179,0,0.3); transition: border-color 0.3s; }
+  .post-body a:hover { border-color: var(--amber); }
+  .divider { width: 50px; height: 1px; background: linear-gradient(to right, var(--amber), transparent); margin: 3rem 0; }
+  .post-footer { border-top: 1px solid rgba(255,179,0,0.08); padding-top: 3rem; margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+  .back-link { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); text-decoration: none; opacity: 0.7; transition: opacity 0.3s; }
+  .back-link:hover { opacity: 1; }
+  .lane-badge { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); border: 1px solid rgba(255,179,0,0.3); padding: 0.4rem 0.8rem; }
+  footer { padding: 3rem 4rem; border-top: 1px solid rgba(255,179,0,0.07); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; position: relative; z-index: 1; }
+  .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--amber); }
+  footer p { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; color: rgba(107,124,90,0.4); text-transform: uppercase; }
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; position: relative; flex-wrap: wrap; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; flex-direction: column; width: 100%; gap: 0; background: rgba(8,14,8,0.98); border: 1px solid rgba(255,179,0,0.1); border-top: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 200; padding: 0.5rem 0; }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(255,179,0,0.05); font-size: 0.85rem; }
+    .post-container { padding: 3rem 1.5rem 4rem; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+<nav>
+  <a href="/" class="nav-logo">VOA</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/blog/matt/">Forest Temple</a></li>
+    <li><a href="/blog/boombot/">Boom Frequency</a></li>
+    <li><a href="/aura/">AURA ✦</a></li>
+  </ul>
+</nav>
+<div class="post-hero">
+  <div class="post-hero-bg"></div>
+  <div class="post-meta-top">
+    <p class="breadcrumb"><a href="/blog/">Blog</a><span>›</span><a href="/blog/matt/">From the Forest Temple</a><span>›</span>This Post</p>
+  </div>
+  <h1 class="post-title-hero">The Forest Temple System: How I Organize My Life and Why It Works</h1>
+  <div class="post-meta">
+    <span class="post-byline">by Matt EarthStar</span>
+    <span class="post-date-display">February 14, 2026</span>
+  </div>
+</div>
+<div class="post-container">
+  <article class="post-body">
+    <p>Everyone's selling you a productivity system. GTD, Notion templates, the second brain, the one thing. I tried most of them. Here's what I actually built for myself — and why none of the off-the-shelf stuff fit.</p>
+
+    <p>I have a lot going on. Music production under two projects (EarthStar and Ruzindla). Digital content work. Apple tech. A blog. A whole inner life that doesn't neatly slot into project categories. The standard systems weren't built for people like me. They were built for corporate workers who need to manage tasks. I'm not managing tasks. I'm managing a creative life.</p>
+
+    <div class="divider"></div>
+
+    <h2>Why Existing Systems Failed Me</h2>
+
+    <p>GTD is great if your work is mostly reactive — processing inboxes, capturing tasks, clearing your head. But I'm not reactive. I'm generative. The problem isn't remembering what to do. The problem is choosing what to actually build from the infinite things I could build.</p>
+
+    <p>The "second brain" idea — building a knowledge base in Notion or Obsidian — is useful in theory. In practice, I kept building the system instead of using it. The system became the project. That's a trap I've fallen into too many times.</p>
+
+    <blockquote>"A system that requires more maintenance than it saves you is a hobby, not a tool."</blockquote>
+
+    <p>The "one thing" methodology works for people with one thing. I have many things, and they're not in conflict — they're in conversation with each other. My music informs how I write. My marketing knowledge informs how I present the music. My spiritual practice informs everything. Forcing singular focus was costing me the integration that makes my work interesting.</p>
+
+    <h2>The Forest Temple Concept</h2>
+
+    <p>The name came before the system. I live in a place that feels like a forest temple to me — not literally, but spiritually. It's a place of practice, of depth, of things that grow slowly. That feeling is what I wanted the system to carry.</p>
+
+    <p>The Forest Temple system has three core zones:</p>
+
+    <h3>The Grove — Active Projects</h3>
+    <p>Things I'm actively building right now. Not a to-do list. A small collection of living projects (never more than five) that are getting real attention. The Grove changes slowly and intentionally. Projects don't get added because I had an idea. They get added when the old thing is done or when something clearly has to move forward now.</p>
+
+    <h3>The Archive — Completed and Dormant Work</h3>
+    <p>Everything that's done or waiting. No judgment. No "I should be working on this." Just storage. The Archive doesn't call to me. It's just there. This was a huge mental health upgrade — I stopped feeling guilty about things I wasn't actively doing once they had a home that wasn't "the list."</p>
+
+    <h3>The Temple — Practice and Ritual</h3>
+    <p>The non-project stuff. Daily creative practice. Musical improvisation. Journaling. Meditation. Things that aren't "productive" in the task-completion sense but that make everything else work. The Temple is protected. It doesn't get sacrificed for the Grove. Ever.</p>
+
+    <h2>What Makes It Work</h2>
+
+    <p>It works because it matches how I actually think. I'm not fighting the system. I'm not trying to be a different kind of person. The Forest Temple is built around the fact that I'm a creative person with a spiritual practice who also needs to run a business — not a business person who also does creative stuff on the side.</p>
+
+    <p>The other thing that makes it work: it's mostly analog. I use a physical notebook. Minimal apps. The system lives in me, not in software I have to maintain.</p>
+
+    <p>I'll write more about the specifics — the weekly review, how the Temple sessions work, what the Grove selection criteria look like — in future posts. This is the overview. The thing I want you to take away is:</p>
+
+    <p>If the systems you've tried haven't worked, it might not be a discipline problem. It might be that the systems weren't built for the kind of person you are. Build the system that fits you. It takes time. It's worth it.</p>
+  </article>
+  <div class="post-footer">
+    <a href="/blog/matt/" class="back-link">← Back to Forest Temple</a>
+    <span class="lane-badge">From the Forest Temple</span>
+  </div>
+</div>
+<footer>
+  <div><div class="footer-logo">Vibration of Awesome</div></div>
+  <p>© 2026 Vibration of Awesome</p>
+</footer>
+<script>
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) { const star = document.createElement('div'); star.className = 'star'; const size = Math.random() * 2 + 0.5; star.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--delay:${Math.random()*5}s;--brightness:${Math.random()*0.35+0.1};`; starsEl.appendChild(star); }
+  function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouchDevice) { const cursor = document.getElementById('cursor'); const ring = document.getElementById('cursorRing'); cursor.style.display = 'block'; ring.style.display = 'block'; let rx = 0, ry = 0, cx = 0, cy = 0; document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; }); function animateRing() { rx += (cx - rx) * 0.12; ry += (cy - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animateRing); } animateRing(); }
+  const nav = document.querySelector('nav'); window.addEventListener('scroll', () => { nav.style.background = window.scrollY > 50 ? 'rgba(8,14,8,0.97)' : 'linear-gradient(to bottom, rgba(8,14,8,0.97), transparent)'; });
+</script>
+</body>
+</html>

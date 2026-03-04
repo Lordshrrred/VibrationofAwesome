@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boom Frequency — Matty BoomBoom</title>
+<meta name="description" content="Boom Frequency: AI-powered long-form content for spiritual seekers, neurodivergent creators, and abundance-minded entrepreneurs. Written by Matty BoomBoom.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Rajdhani:wght@300;400;500;600&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #020a0e;
+    --surface: #061418;
+    --cyan: #00e5ff;
+    --cyan-dim: rgba(0,229,255,0.12);
+    --cyan-glow: rgba(0,229,255,0.05);
+    --text: #e0f4ff;
+    --muted: #3a6a7a;
+    --amber: #ffb300;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; cursor: none; }
+  .cursor { width: 8px; height: 8px; background: var(--cyan); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); display: none; }
+  .cursor-ring { width: 30px; height: 30px; border: 1px solid rgba(0,229,255,0.4); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: all 0.15s ease; display: none; }
+  .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+  .star { position: absolute; background: #00e5ff; border-radius: 50%; animation: twinkle var(--dur, 3s) ease-in-out infinite; animation-delay: var(--delay, 0s); opacity: 0; }
+  @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: var(--brightness, 0.5); transform: scale(1); } }
+
+  /* Scanline effect */
+  body::after {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,229,255,0.008) 2px, rgba(0,229,255,0.008) 4px);
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.5rem 3rem; display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(2,10,14,0.97), transparent);
+    border-bottom: 1px solid rgba(0,229,255,0.08);
+  }
+  .nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--cyan); letter-spacing: 0.15em; text-decoration: none; text-shadow: 0 0 20px rgba(0,229,255,0.4); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--cyan); transition: width 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--cyan); text-shadow: 0 0 10px rgba(0,229,255,0.4); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--cyan); border-radius: 2px; transition: all 0.3s; }
+
+  /* HERO */
+  .hero {
+    min-height: 60vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; position: relative; overflow: hidden; padding: 9rem 2rem 5rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,30,50,0.9) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 30% at 80% 70%, rgba(0,229,255,0.04) 0%, transparent 60%),
+      linear-gradient(160deg, #010608 0%, #020a0e 100%);
+  }
+  /* Frequency wave decoration */
+  .wave-deco {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 80px; opacity: 0.08;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80'%3E%3Cpath d='M0 40 Q150 0 300 40 Q450 80 600 40 Q750 0 900 40 Q1050 80 1200 40' fill='none' stroke='%2300e5ff' stroke-width='2'/%3E%3C/svg%3E") repeat-x center;
+    background-size: 1200px 80px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 700px; animation: fadeUp 1.2s ease forwards; opacity: 0; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .lane-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cyan); opacity: 0.7; margin-bottom: 1.5rem; }
+  .hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 5vw, 3.5rem); color: #e0f8ff; line-height: 1.15; margin-bottom: 1.2rem; text-shadow: 0 0 60px rgba(0,229,255,0.2), 0 0 120px rgba(0,229,255,0.08); }
+  .hero-byline { font-size: 1rem; font-family: 'Space Mono', monospace; color: rgba(0,229,255,0.4); letter-spacing: 0.1em; }
+
+  /* POSTS */
+  .posts-section { position: relative; z-index: 2; padding: 5rem 4rem; max-width: 900px; margin: 0 auto; }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cyan); opacity: 0.5; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::before { content: '◈'; color: var(--cyan); opacity: 0.5; }
+
+  .post-list { display: flex; flex-direction: column; gap: 0; }
+  .post-entry {
+    border: 1px solid rgba(0,229,255,0.06); border-left: 2px solid transparent;
+    padding: 2rem 2rem 2rem 2.5rem; margin-bottom: 1rem;
+    display: flex; gap: 3rem; align-items: flex-start;
+    text-decoration: none; transition: all 0.3s;
+    background: rgba(0,229,255,0.015);
+    position: relative; overflow: hidden;
+  }
+  .post-entry::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--cyan); transform: scaleY(0); transform-origin: top; transition: transform 0.3s; }
+  .post-entry:hover { border-color: rgba(0,229,255,0.15); background: rgba(0,229,255,0.03); }
+  .post-entry:hover::before { transform: scaleY(1); }
+  .post-date { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); min-width: 90px; padding-top: 0.4rem; }
+  .post-body { flex: 1; }
+  .post-title { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem; color: #e0f8ff; line-height: 1.3; margin-bottom: 0.8rem; transition: color 0.3s, text-shadow 0.3s; }
+  .post-entry:hover .post-title { color: var(--cyan); text-shadow: 0 0 20px rgba(0,229,255,0.3); }
+  .post-excerpt { font-size: 0.9rem; line-height: 1.8; color: rgba(160,220,240,0.45); font-style: italic; }
+  .post-read-more { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--cyan); margin-top: 1rem; display: inline-block; opacity: 0.5; transition: opacity 0.3s; }
+  .post-entry:hover .post-read-more { opacity: 1; }
+
+  .empty-state { text-align: center; padding: 4rem 0; color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em; }
+
+  footer { padding: 3rem 4rem; border-top: 1px solid rgba(0,229,255,0.07); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; position: relative; z-index: 2; }
+  .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--cyan); text-shadow: 0 0 10px rgba(0,229,255,0.3); }
+  footer p { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(58,106,122,0.5); text-transform: uppercase; }
+
+  .reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; position: relative; flex-wrap: wrap; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; flex-direction: column; width: 100%; gap: 0; background: rgba(2,10,14,0.98); border: 1px solid rgba(0,229,255,0.1); border-top: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 200; padding: 0.5rem 0; }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(0,229,255,0.05); font-size: 0.85rem; }
+    .posts-section { padding: 3rem 1.5rem; }
+    .post-entry { flex-direction: column; gap: 0.5rem; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+
+<nav>
+  <a href="/" class="nav-logo">VOA</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/blog/matt/">Forest Temple</a></li>
+    <li><a href="/blog/boombot/" class="active">Boom Frequency</a></li>
+    <li><a href="/art-store/">Wieldable Art</a></li>
+    <li><a href="/aura/">AURA ✦</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="wave-deco"></div>
+  <div class="hero-content">
+    <p class="lane-eyebrow">◈ SIGNAL INCOMING ◈</p>
+    <h1 class="hero-title">Boom Frequency</h1>
+    <p class="hero-byline">// transmissions by Matty BoomBoom</p>
+  </div>
+</div>
+
+<div class="posts-section">
+  <p class="section-label">All Transmissions</p>
+  <div class="post-list" id="postList">
+    <div class="empty-state">// loading signal...</div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo">Boom Frequency</div>
+  </div>
+  <p>© 2026 Vibration of Awesome</p>
+</footer>
+
+<script>
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 1.5 + 0.5;
+    star.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*3+2}s;--delay:${Math.random()*5}s;--brightness:${Math.random()*0.3+0.1};`;
+    starsEl.appendChild(star);
+  }
+
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouchDevice) {
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    cursor.style.display = 'block'; ring.style.display = 'block';
+    let rx = 0, ry = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; });
+    function animateRing() { rx += (cx - rx) * 0.12; ry += (cy - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animateRing); }
+    animateRing();
+  }
+
+  function formatDate(d) {
+    return new Date(d + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  fetch('/_data/boombot-posts.json')
+    .then(r => r.json())
+    .then(posts => {
+      const list = document.getElementById('postList');
+      if (!posts.length) { list.innerHTML = '<div class="empty-state">// no transmissions yet</div>'; return; }
+      const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+      list.innerHTML = sorted.map(p => `
+        <a href="${p.url}" class="post-entry reveal">
+          <span class="post-date">${formatDate(p.date)}</span>
+          <div class="post-body">
+            <h2 class="post-title">${p.title}</h2>
+            <p class="post-excerpt">${p.excerpt}</p>
+            <span class="post-read-more">// read_more →</span>
+          </div>
+        </a>
+      `).join('');
+      document.querySelectorAll('.reveal').forEach(el => {
+        const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        obs.observe(el);
+      });
+    })
+    .catch(() => {
+      document.getElementById('postList').innerHTML = '<div class="empty-state">// signal lost. run with a static server.</div>';
+    });
+</script>
+</body>
+</html>
