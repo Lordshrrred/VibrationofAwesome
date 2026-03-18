@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURA -- No Worries</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #04080f;
+    --surface: #080d18;
+    --cyan: #00d4ff;
+    --gold: #f0c060;
+    --text: #e8f4f8;
+    --muted: #5a7a8a;
+    --border: rgba(0,212,255,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { min-height: 100vh; background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
+
+  .ambient {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 20%, rgba(0,212,255,0.04) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 80% 80%, rgba(100,50,255,0.03) 0%, transparent 70%);
+  }
+
+  .page {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--cyan);
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 20px rgba(0,212,255,0.4);
+    margin-bottom: 3rem;
+  }
+
+  .aura-orb {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(0,212,255,0.12) 0%, transparent 70%);
+    border: 1px solid rgba(0,212,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.8rem;
+    margin: 0 auto 2.5rem;
+    animation: breathe 4s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { opacity: 0.7; transform: scale(0.97); }
+    50% { opacity: 1; transform: scale(1.02); }
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+
+  .sub {
+    font-size: 1rem;
+    color: rgba(232,244,248,0.6);
+    line-height: 1.75;
+    max-width: 430px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.1em;
+    color: var(--bg);
+    background: var(--cyan);
+    border: none;
+    padding: 0.85rem 2.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { box-shadow: 0 0 20px rgba(0,212,255,0.35); }
+
+  .btn-ghost {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.08em;
+    color: var(--cyan);
+    background: transparent;
+    border: 1px solid rgba(0,212,255,0.25);
+    padding: 0.75rem 1.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-ghost:hover { border-color: var(--cyan); background: rgba(0,212,255,0.04); }
+
+  .home-link {
+    margin-top: 1.25rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .home-link:hover { color: var(--cyan); }
+
+  .free-reminder {
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    max-width: 360px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .free-reminder strong { color: var(--cyan); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="page">
+  <div class="logo">AURA</div>
+
+  <div class="aura-orb">✦</div>
+
+  <h1>No worries.<br>AURA Free is always here for you.</h1>
+
+  <p class="sub">
+    The journey is yours to take at whatever pace feels right.
+    AURA will be here -- free, present, and without judgment --
+    whenever you're ready to go deeper.
+  </p>
+
+  <div class="actions">
+    <a href="/aura/" class="btn-primary">Return to AURA</a>
+    <a href="/aura/#pricing" class="btn-ghost">View Plans Again</a>
+  </div>
+
+  <div class="free-reminder">
+    <strong>Still with you.</strong> Free access includes 3 conversations per session.
+    Upgrade anytime from inside AURA when you're ready to go unlimited.
+  </div>
+
+  <a href="/" class="home-link">Back to Vibration of Awesome</a>
+</div>
+</body>
+</html>

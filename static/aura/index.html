@@ -716,6 +716,41 @@
 
   .footer-bottom p { font-size: 0.78rem; color: var(--muted); opacity: 0.5; }
 
+  /* PREMIUM NUDGE BANNER */
+  .premium-nudge {
+    display: none;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, rgba(240,192,96,0.06) 0%, rgba(0,212,255,0.04) 100%);
+    border-top: 1px solid rgba(240,192,96,0.18);
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .premium-nudge.visible { display: flex; }
+  .premium-nudge p {
+    font-size: 0.88rem;
+    color: var(--gold);
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+  .premium-nudge .btn-nudge {
+    font-size: 0.78rem;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.1em;
+    color: var(--bg);
+    background: var(--gold);
+    border: none;
+    padding: 0.55rem 1.4rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+  .premium-nudge .btn-nudge:hover { opacity: 0.88; box-shadow: 0 0 16px rgba(240,192,96,0.3); }
+  .chat-input-area.locked .chat-input { opacity: 0.35; pointer-events: none; }
+  .chat-input-area.locked .send-btn { opacity: 0.35; pointer-events: none; }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     .nav { padding: 1rem 1.5rem; }
@@ -843,7 +878,7 @@
           <li>Memory across sessions</li>
           <li>Priority responses</li>
         </ul>
-        <button class="btn-primary" style="width:100%" onclick="openChat()">Elevate Now</button>
+        <button class="btn-primary" style="width:100%" id="premiumBtn" onclick="unlockPremium()">Elevate Now</button>
       </div>
     </div>
   </section>
@@ -904,7 +939,12 @@
     </div>
   </div>
 
-  <div class="chat-input-area">
+  <div class="premium-nudge" id="premiumNudge">
+    <p>Want to go deeper? AURA Premium removes all limits.</p>
+    <button class="btn-nudge" onclick="unlockPremium()">Unlock Premium - $12/month</button>
+  </div>
+
+  <div class="chat-input-area" id="chatInputArea">
     <div class="suggested-prompts" id="suggestedPrompts">
       <button class="prompt-chip" onclick="sendPrompt(this)">I feel stuck and I don't know why</button>
       <button class="prompt-chip" onclick="sendPrompt(this)">Help me stop shrinking</button>
@@ -927,14 +967,154 @@
 </div>
 
 <script>
+  // ── Config ────────────────────────────────────────────────────────────────
+  const FUNCTIONS_BASE = 'https://vibrationofawesome.netlify.app/.netlify/functions';
+  // STRIPE_PUBLIC_KEY is only needed for publishable-key operations; checkout redirect uses the function.
+  const FREE_MESSAGE_LIMIT = 3;
+
+  // ── State ─────────────────────────────────────────────────────────────────
   let conversationHistory = [];
   let isTyping = false;
+  let isPremium = false;
+  let userMessageCount = 0;  // counts only user-sent messages this session
 
+  // ── Premium token storage ─────────────────────────────────────────────────
+  function savePremiumLocal(token, subscriptionId) {
+    localStorage.setItem('aura_token', token);
+    localStorage.setItem('aura_sub', subscriptionId);
+    localStorage.setItem('aura_verified_at', Date.now().toString());
+  }
+
+  function clearPremiumLocal() {
+    localStorage.removeItem('aura_token');
+    localStorage.removeItem('aura_sub');
+    localStorage.removeItem('aura_verified_at');
+  }
+
+  function getPremiumLocal() {
+    return {
+      token: localStorage.getItem('aura_token'),
+      subscriptionId: localStorage.getItem('aura_sub'),
+      verifiedAt: parseInt(localStorage.getItem('aura_verified_at') || '0', 10),
+    };
+  }
+
+  // ── Verify premium with Netlify function ──────────────────────────────────
+  async function checkPremiumStatus() {
+    // 1. Check for session_id in URL (first visit after Stripe checkout)
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+    if (sessionId) {
+      try {
+        const res = await fetch(FUNCTIONS_BASE + '/verify-subscription', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId }),
+        });
+        const data = await res.json();
+        if (data.valid && data.tier === 'premium') {
+          savePremiumLocal(data.token, data.subscriptionId);
+          isPremium = true;
+          // Clean URL without reloading
+          window.history.replaceState({}, '', window.location.pathname);
+          return;
+        }
+      } catch {}
+    }
+
+    // 2. Re-verify stored token (once per day to avoid hammering the API)
+    const local = getPremiumLocal();
+    if (local.token && local.subscriptionId) {
+      const oneDayMs = 24 * 60 * 60 * 1000;
+      const needsRecheck = (Date.now() - local.verifiedAt) > oneDayMs;
+
+      if (!needsRecheck) {
+        // Trust cached result within 24 hours
+        isPremium = true;
+        return;
+      }
+
+      try {
+        const res = await fetch(FUNCTIONS_BASE + '/verify-subscription', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: local.token, subscriptionId: local.subscriptionId }),
+        });
+        const data = await res.json();
+        if (data.valid) {
+          isPremium = true;
+          localStorage.setItem('aura_verified_at', Date.now().toString());
+        } else {
+          clearPremiumLocal();
+          isPremium = false;
+        }
+      } catch {
+        // On network error, trust the stored token for now
+        isPremium = true;
+      }
+    }
+  }
+
+  // ── Unlock premium: redirect to Stripe checkout ───────────────────────────
+  async function unlockPremium() {
+    const btn = document.getElementById('premiumBtn');
+    if (btn) { btn.textContent = 'Opening checkout...'; btn.disabled = true; }
+
+    const nudgeBtn = document.querySelector('.btn-nudge');
+    if (nudgeBtn) { nudgeBtn.textContent = 'Opening checkout...'; nudgeBtn.disabled = true; }
+
+    try {
+      const priceId = 'STRIPE_PRICE_ID_PLACEHOLDER'; // replaced at deploy by env var injection or setup-stripe output
+      const res = await fetch(FUNCTIONS_BASE + '/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          priceId,
+          successUrl: window.location.origin + '/aura/success/?session_id={CHECKOUT_SESSION_ID}',
+          cancelUrl: window.location.origin + '/aura/cancel/',
+        }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'No checkout URL returned');
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+      if (btn) { btn.textContent = 'Elevate Now'; btn.disabled = false; }
+      if (nudgeBtn) { nudgeBtn.textContent = 'Unlock Premium - $12/month'; nudgeBtn.disabled = false; }
+      alert('Could not start checkout. Please try again.');
+    }
+  }
+
+  // ── Free tier gate ────────────────────────────────────────────────────────
+  function showPremiumNudge() {
+    const nudge = document.getElementById('premiumNudge');
+    const inputArea = document.getElementById('chatInputArea');
+    if (nudge) nudge.classList.add('visible');
+    if (inputArea) inputArea.classList.add('locked');
+  }
+
+  function hidePremiumNudge() {
+    const nudge = document.getElementById('premiumNudge');
+    const inputArea = document.getElementById('chatInputArea');
+    if (nudge) nudge.classList.remove('visible');
+    if (inputArea) inputArea.classList.remove('locked');
+  }
+
+  // ── Chat UI ───────────────────────────────────────────────────────────────
   function openChat() {
     document.getElementById('chat-app').classList.add('active');
     document.body.style.overflow = 'hidden';
     if (conversationHistory.length === 0) {
       setTimeout(() => addWelcomeMessage(), 400);
+    }
+    // Update gate state in case premium was just verified
+    if (isPremium) {
+      hidePremiumNudge();
+    } else if (userMessageCount >= FREE_MESSAGE_LIMIT) {
+      showPremiumNudge();
     }
   }
 
@@ -987,18 +1167,25 @@ So, what's alive for you right now? What brought you here today?`;
     const text = input.value.trim();
     if (!text || isTyping) return;
 
+    // Free tier gate: block after 3 user messages
+    if (!isPremium && userMessageCount >= FREE_MESSAGE_LIMIT) {
+      showPremiumNudge();
+      return;
+    }
+
     document.getElementById('suggestedPrompts').style.display = 'none';
     input.value = '';
     input.style.height = 'auto';
     addMessage('user', text);
     conversationHistory.push({ role: 'user', content: text });
+    userMessageCount++;
 
     isTyping = true;
     document.getElementById('sendBtn').disabled = true;
     showTyping();
 
     try {
-      const response = await fetch('https://vibrationofawesome.netlify.app/.netlify/functions/chat', {
+      const response = await fetch(FUNCTIONS_BASE + '/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: conversationHistory })
@@ -1019,6 +1206,11 @@ So, what's alive for you right now? What brought you here today?`;
     isTyping = false;
     document.getElementById('sendBtn').disabled = false;
     document.getElementById('chatInput').focus();
+
+    // Show nudge after the last free message (post-send, not pre-send)
+    if (!isPremium && userMessageCount >= FREE_MESSAGE_LIMIT) {
+      setTimeout(() => showPremiumNudge(), 800);
+    }
   }
 
   function sendPrompt(btn) {
@@ -1038,6 +1230,10 @@ So, what's alive for you right now? What brought you here today?`;
     el.style.height = 'auto';
     el.style.height = Math.min(el.scrollHeight, 120) + 'px';
   }
+
+  // ── Init ──────────────────────────────────────────────────────────────────
+  // Check premium status on load (handles post-checkout redirect and returning users)
+  checkPremiumStatus();
 </script>
 </body>
 </html>
