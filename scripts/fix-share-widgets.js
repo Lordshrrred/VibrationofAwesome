@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // fix-share-widgets.js
 // Removes ALL Google+/sharedaddy share widget remnants from every HTML file
-// in static/blog/matt/posts/ and static/blog/boombot/posts/
+// in static/blog/matt/posts/ and static/blog/boom/posts/
 
 import fs from "fs";
 import path from "path";
@@ -12,7 +12,7 @@ const ROOT = path.resolve(__dirname, "..");
 
 const DIRS = [
   path.join(ROOT, "static", "blog", "matt", "posts"),
-  path.join(ROOT, "static", "blog", "boombot", "posts"),
+  path.join(ROOT, "static", "blog", "boom", "posts"),
 ];
 
 function gatherHtmlFiles(dir) {

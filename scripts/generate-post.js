@@ -4,7 +4,7 @@
  *
  * Usage:
  *   node scripts/generate-post.js --lane matt --title "My Post Title"
- *   node scripts/generate-post.js --lane boombot --keyword "ai tools for musicians" --topic "AI music creation"
+ *   node scripts/generate-post.js --lane boom --keyword "ai tools for musicians" --topic "AI music creation"
  */
 import Anthropic from "@anthropic-ai/sdk";
 import { marked } from "marked";
@@ -30,13 +30,13 @@ const argv = minimist(process.argv.slice(2), {
   alias:   { l: "lane", t: "title", k: "keyword", p: "topic" },
 });
 const lane = argv.lane;
-if (!lane || !["matt", "boombot"].includes(lane)) {
-  console.error('Error: --lane must be "matt" or "boombot"'); process.exit(1);
+if (!lane || !["matt", "boom"].includes(lane)) {
+  console.error('Error: --lane must be "matt" or "boom"'); process.exit(1);
 }
 if (lane === "matt" && !argv.title) {
   console.error('Error: Matt lane requires --title "Post Title"'); process.exit(1);
 }
-if (lane === "boombot" && (!argv.keyword || !argv.topic)) {
+if (lane === "boom" && (!argv.keyword || !argv.topic)) {
   console.error('Error: BoomBot lane requires --keyword "..." and --topic "..."'); process.exit(1);
 }
 if (!process.env.ANTHROPIC_API_KEY) {
@@ -78,7 +78,7 @@ const BOOMBOT_SYSTEM = [
 function buildExistingPostsList() {
   const BASE = "https://vibrationofawesome.com";
   const lines = [];
-  for (const l of ["boombot", "matt"]) {
+  for (const l of ["boom", "matt"]) {
     const f = path.join(ROOT, "static", "_data", l + "-posts.json");
     if (!fs.existsSync(f)) continue;
     try {
@@ -345,7 +345,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription) {
 function buildExistingPostsList() {
   const BASE = "https://vibrationofawesome.com";
   const lines = [];
-  for (const l of ["boombot", "matt"]) {
+  for (const l of ["boom", "matt"]) {
     const f = path.join(ROOT, "static", "_data", l + "-posts.json");
     if (!fs.existsSync(f)) continue;
     try {
@@ -458,7 +458,7 @@ async function main() {
   // Strip META line for BoomBot
   let metaDescription = "";
   let cleanMarkdown   = markdown;
-  if (lane === "boombot") {
+  if (lane === "boom") {
     const result    = stripMeta(markdown);
     metaDescription = result.metaDescription;
     cleanMarkdown   = result.cleanMarkdown;
@@ -525,9 +525,9 @@ async function main() {
   updateSitemap();
 
   // ── Syndication ──
-  // Boom Frequency (boombot): auto-syndicate immediately after generation.
+  // Boom Frequency (boom): auto-syndicate immediately after generation.
   // Forest Temple (matt): manual only — run the command printed below when ready.
-  if (lane === "boombot" && !argv["no-syndicate"]) {
+  if (lane === "boom" && !argv["no-syndicate"]) {
     console.log("\nStarting auto-syndication...");
     const syndicateArgs = [
       "scripts/syndicate.js",
@@ -539,7 +539,7 @@ async function main() {
     const result = spawnSync("node", syndicateArgs, { stdio: "inherit", cwd: ROOT });
     if (result.error) console.error("Syndication spawn error:", result.error.message);
     else if (result.status !== 0) console.warn(`Syndication exited with code ${result.status}`);
-  } else if (lane === "boombot" && argv["no-syndicate"]) {
+  } else if (lane === "boom" && argv["no-syndicate"]) {
     console.log("\n[syndication skipped — --no-syndicate flag set]");
     console.log("  Syndicate manually when ready:");
     console.log("  node scripts/syndicate.js --lane " + lane + " --slug " + slug);

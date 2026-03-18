@@ -5,7 +5,7 @@
  * Lane routing:
  *   lane "matt"    → random image from static/personal-photos/forest/
  *                    fallback: static/personal-photos/
- *   lane "boombot" → NASA APOD API
+ *   lane "boom" → NASA APOD API
  *                    fallback: static/personal-photos/
  *   (default)      → NASA APOD API
  *
@@ -168,10 +168,10 @@ export async function fetchNasaImages(count) {
  * Select one image for a post's hero.
  *
  * @param {string} _query  - search hint (unused for both sources)
- * @param {string} lane    - "matt" | "boombot" | undefined
+ * @param {string} lane    - "matt" | "boom" | undefined
  *
  * lane "matt"    → forest photo first, personal-photos fallback
- * lane "boombot" → NASA APOD first, personal-photos fallback
+ * lane "boom" → NASA APOD first, personal-photos fallback
  * (default)      → NASA APOD first, personal-photos fallback
  */
 export async function selectImage(_query, lane) {
@@ -212,7 +212,7 @@ export async function selectImage(_query, lane) {
 
 const isCli = process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename);
 if (isCli) {
-  const lane = process.argv[2] || "boombot";
+  const lane = process.argv[2] || "boom";
   console.log("Testing image selection for lane:", lane, "\n");
   const image = await selectImage("", lane);
   console.log(image ? JSON.stringify(image, null, 2) : "No image found.");

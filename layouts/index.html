@@ -379,79 +379,6 @@
   }
   .es-card:hover .es-number { color: rgba(0,229,204,0.07); }
 
-  /* WEARABLE ART STORE */
-  #wearable-art {
-    border-top: 1px solid rgba(201,168,76,0.08);
-  }
-
-  .store-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-
-  .merch-preview {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .merch-card {
-    position: relative;
-    aspect-ratio: 1;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(201,168,76,0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .merch-card:hover {
-    border-color: rgba(201,168,76,0.4);
-    background: rgba(201,168,76,0.02);
-  }
-
-  .merch-icon {
-    font-size: 2.5rem;
-    opacity: 0.3;
-    line-height: 1;
-  }
-
-  .merch-card-label {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: center;
-  }
-
-  .merch-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    padding: 3rem;
-    border: 1px solid rgba(201,168,76,0.1);
-    background: rgba(0,0,0,0.2);
-    text-align: center;
-    flex-direction: column;
-  }
-
-  .merch-cta p {
-    font-size: 1rem;
-    color: rgba(240,230,204,0.6);
-    max-width: 500px;
-    line-height: 1.8;
-  }
-
   /* DUAL BLOG FEED */
   #blog {
     background: linear-gradient(to bottom, transparent, rgba(0,40,35,0.15));
@@ -488,7 +415,7 @@
     background: rgba(255,179,0,0.01);
   }
 
-  .feed-boombot {
+  .feed-boom {
     border-color: rgba(0,229,204,0.15);
     background: rgba(0,229,204,0.01);
   }
@@ -522,7 +449,7 @@
     background: rgba(255,179,0,0.05);
   }
 
-  .lane-badge--boombot {
+  .lane-badge--boom {
     color: var(--gold);
     border: 1px solid rgba(0,229,204,0.3);
     background: rgba(0,229,204,0.05);
@@ -768,7 +695,7 @@
     </p>
     <div class="hero-cta">
       <a href="#blog" class="btn-primary">Explore Blog</a>
-      <a href="/art-store/" class="btn-secondary">Wieldable Art Store</a>
+      <a href="/art-store/" class="btn-secondary">Art Store</a>
     </div>
   </div>
 
@@ -1018,37 +945,6 @@
   </div>
 </section>
 
-<!-- WEARABLE ART STORE -->
-<section id="wearable-art">
-  <div class="section-inner reveal">
-    <div class="store-header">
-      <div>
-        <p class="section-label">Wearable Art Store</p>
-        <h2 class="section-title">Wear the Frequency</h2>
-      </div>
-      <a href="https://earthstar.creator-spring.com/" target="_blank" rel="noopener" class="btn-secondary" style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.2em">Shop Merch →</a>
-    </div>
-    <div class="merch-preview">
-      <div class="merch-card">
-        <div class="merch-icon">👕</div>
-        <span class="merch-card-label">Apparel</span>
-      </div>
-      <div class="merch-card">
-        <div class="merch-icon">🧢</div>
-        <span class="merch-card-label">Headwear</span>
-      </div>
-      <div class="merch-card">
-        <div class="merch-icon">🖼️</div>
-        <span class="merch-card-label">Prints</span>
-      </div>
-    </div>
-    <div class="merch-cta">
-      <p>Wearable art carrying the Vibration of Awesome into the world. Print-on-demand apparel, accessories, and more, powered by Creator Spring.</p>
-      <a href="https://earthstar.creator-spring.com/" target="_blank" rel="noopener" class="btn-primary" style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.25em">Visit Wearable Art Store →</a>
-    </div>
-  </div>
-</section>
-
 <!-- LATEST TRANSMISSIONS (Dual Blog Feed) -->
 <section id="blog">
   <div class="section-inner">
@@ -1075,15 +971,15 @@
       </div>
 
       <!-- Boom Frequency Lane -->
-      <div class="feed-lane feed-boombot">
+      <div class="feed-lane feed-boom">
         <div class="lane-header">
-          <a href="/blog/boombot/" class="lane-badge lane-badge--boombot">⚡ Boom Frequency</a>
+          <a href="/blog/boom/" class="lane-badge lane-badge--boom">⚡ Boom Frequency</a>
           <p class="lane-byline">by Matty BoomBoom, Bringing that boom boom</p>
         </div>
-        <div class="lane-posts" id="boombot-feed">
+        <div class="lane-posts" id="boom-feed">
           <div class="feed-loading">Loading transmissions...</div>
         </div>
-        <a href="/blog/boombot/" class="lane-link">All Boom Frequency Posts →</a>
+        <a href="/blog/boom/" class="lane-link">All Boom Frequency Posts →</a>
       </div>
 
     </div>
@@ -1097,7 +993,7 @@
 (async function loadBlogFeeds() {
   const lanes = [
     { id: 'matt-feed', url: '/_data/matt-posts.json' },
-    { id: 'boombot-feed', url: '/_data/boombot-posts.json' }
+    { id: 'boom-feed', url: '/_data/boom-posts.json' }
   ];
   for (const lane of lanes) {
     const el = document.getElementById(lane.id);

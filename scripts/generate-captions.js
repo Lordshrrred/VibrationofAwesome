@@ -5,7 +5,7 @@
  * Generates unique captions for 9 social platforms using Claude.
  *
  * Exports: generateCaptions(post, client?)
- * CLI:     node scripts/generate-captions.js --lane [matt|boombot] --slug <slug>
+ * CLI:     node scripts/generate-captions.js --lane [matt|boom] --slug <slug>
  */
 
 import Anthropic from "@anthropic-ai/sdk";
@@ -139,8 +139,8 @@ if (isCli) {
   }
 
   const argv = minimist(process.argv.slice(2), { string: ["lane", "slug"] });
-  if (!argv.lane || !["matt", "boombot"].includes(argv.lane) || !argv.slug) {
-    console.error("Usage: node scripts/generate-captions.js --lane [matt|boombot] --slug <post-slug>");
+  if (!argv.lane || !["matt", "boom"].includes(argv.lane) || !argv.slug) {
+    console.error("Usage: node scripts/generate-captions.js --lane [matt|boom] --slug <post-slug>");
     process.exit(1);
   }
 

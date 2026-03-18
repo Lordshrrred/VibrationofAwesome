@@ -5,7 +5,7 @@
  * Platforms: Bluesky · Mastodon · Facebook (VOA + EarthStar) · Pinterest
  *            Dev.to · Hashnode · Tumblr · Instagram (Publer) · Threads (Publer)
  *
- * CLI:  node scripts/syndicate.js --lane [matt|boombot] --slug <post-slug> [--keyword "search term"]
+ * CLI:  node scripts/syndicate.js --lane [matt|boom] --slug <post-slug> [--keyword "search term"]
  * API:  import { syndicatePost } from "./syndicate.js"
  */
 
@@ -506,7 +506,7 @@ function writeDashboardConfig() {
 /**
  * Syndicate a published post to all configured platforms.
  *
- * @param {string} lane    - "matt" or "boombot"
+ * @param {string} lane    - "matt" or "boom"
  * @param {string} slug    - Post slug
  * @param {object} options - { keyword?: string, anthropic?: Anthropic }
  * @returns {Promise<object>} Log entry with per-platform results
@@ -654,8 +654,8 @@ if (isCli) {
     alias:   { l: "lane", s: "slug", k: "keyword" },
   });
 
-  if (!argv.lane || !["matt", "boombot"].includes(argv.lane)) {
-    console.error('Error: --lane must be "matt" or "boombot"'); process.exit(1);
+  if (!argv.lane || !["matt", "boom"].includes(argv.lane)) {
+    console.error('Error: --lane must be "matt" or "boom"'); process.exit(1);
   }
   if (!argv.slug) {
     console.error("Error: --slug is required"); process.exit(1);
