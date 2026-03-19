@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wieldable Art | Portfolio | Vibration of Awesome</title>
+<meta name="description" content="Wieldable Art by Matt EarthStar — handcrafted instruments of resonance. Guitars, crystals, talismans, and wearable pieces made to be held, played, and felt.">
+<link rel="canonical" href="https://vibrationofawesome.com/portfolio/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffb300">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vibration of Awesome">
+<meta property="og:title" content="Wieldable Art | Vibration of Awesome">
+<meta property="og:description" content="Wieldable Art by Matt EarthStar — handcrafted instruments of resonance. Guitars, crystals, talismans, and wearable pieces made to be held, played, and felt.">
+<meta property="og:url" content="https://vibrationofawesome.com/portfolio/">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G5HF0WKZT9');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber: #ffb300;
+    --deep: #020a0a;
+    --cream: #f5ead8;
+    --muted: #7a8c6e;
+    --body-text: rgba(245,234,216,0.85);
+    --surface: rgba(255,179,0,0.03);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--deep); color: var(--cream); font-family: 'Lora', serif; overflow-x: hidden; }
+
+  /* ── Stars ── */
+  .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+  .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--dur,3s) ease-in-out infinite; animation-delay: var(--delay,0s); opacity: 0; }
+  @keyframes twinkle { 0%,100%{opacity:0;transform:scale(0.5)} 50%{opacity:var(--brightness,0.6);transform:scale(1)} }
+
+  /* ── Nav ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, rgba(2,10,8,0.97), transparent); border-bottom: 1px solid rgba(255,179,0,0.08); }
+  .nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--amber); text-decoration: none; letter-spacing: 0.15em; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; }
+  .nav-links a { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--amber); }
+
+  /* ── Hero ── */
+  .hero { position: relative; z-index: 1; padding: 9rem 4rem 5rem; text-align: center; border-bottom: 1px solid rgba(255,179,0,0.08); }
+  .hero-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--amber); opacity: 0.7; margin-bottom: 1.25rem; }
+  .hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 5vw, 4rem); color: var(--cream); line-height: 1.15; letter-spacing: 0.02em; margin-bottom: 1.5rem; }
+  .hero-sub { font-family: 'Lora', serif; font-size: 1.1rem; line-height: 1.85; color: var(--body-text); max-width: 600px; margin: 0 auto 2rem; }
+  .hero-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--amber), transparent); margin: 0 auto; }
+
+  /* ── Gallery grid ── */
+  .gallery-section { position: relative; z-index: 1; padding: 5rem 4rem 7rem; max-width: 1300px; margin: 0 auto; }
+  .gallery-label { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); margin-bottom: 3rem; opacity: 0.7; }
+
+  /*
+   * ── GALLERY GRID ──────────────────────────────────────────────
+   * Each .gallery-item can hold:
+   *   - An <img> for a static photo
+   *   - A <video> with poster="" for video-on-hover
+   *   - Both (video is shown on hover via JS, img is the default)
+   *
+   * TO ADD MEDIA to a card:
+   *   Replace the placeholder <div class="media-placeholder"> with:
+   *
+   *   Static image:
+   *     <img src="/path/to/image.jpg" alt="Piece name" loading="lazy">
+   *
+   *   Video (plays on hover, pauses on leave):
+   *     <video src="/path/to/clip.mp4" poster="/path/to/poster.jpg"
+   *            muted playsinline loop preload="none"></video>
+   *
+   *   Both (poster shows until hover):
+   *     <video src="/path/to/clip.mp4" poster="/path/to/poster.jpg"
+   *            muted playsinline loop preload="none"></video>
+   *
+   * Grid layout uses CSS Grid with auto-placement.
+   * Cards can span multiple columns by adding class "span-2" or "span-tall".
+   * ─────────────────────────────────────────────────────────────
+   */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .gallery-item {
+    position: relative;
+    background: rgba(255,179,0,0.02);
+    border: 1px solid rgba(255,179,0,0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.3s, transform 0.3s;
+    aspect-ratio: 4/3;
+  }
+  .gallery-item.span-2 { grid-column: span 2; aspect-ratio: 16/9; }
+  .gallery-item.span-tall { aspect-ratio: 3/4; }
+  .gallery-item:hover { border-color: rgba(255,179,0,0.35); transform: translateY(-3px); }
+
+  /* shimmer on hover */
+  .gallery-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,179,0,0.07) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.55s ease;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .gallery-item:hover::before { transform: translateX(100%); }
+
+  /* media inside card */
+  .gallery-item img,
+  .gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img,
+  .gallery-item:hover video { transform: scale(1.04); }
+
+  /* placeholder when no media yet */
+  .media-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, rgba(255,179,0,0.03) 0%, rgba(2,10,8,0.6) 100%);
+  }
+  .media-placeholder .placeholder-icon { font-size: 2rem; opacity: 0.25; }
+  .media-placeholder .placeholder-text { font-family: 'Rajdhani', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); opacity: 0.5; }
+
+  /* caption overlay */
+  .gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.5rem 1.25rem;
+    background: linear-gradient(to top, rgba(2,10,8,0.92) 0%, transparent 100%);
+    z-index: 3;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+  .caption-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.9rem;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+  .caption-sub {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    opacity: 0.65;
+  }
+
+  /* amber dot tag */
+  .caption-tag {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid rgba(255,179,0,0.15);
+    padding: 0.15rem 0.5rem;
+  }
+
+  /* ── CTA section ── */
+  .cta-section { position: relative; z-index: 1; text-align: center; padding: 3rem 4rem 6rem; border-top: 1px solid rgba(255,179,0,0.08); }
+  .cta-section p { font-family: 'Lora', serif; font-size: 1rem; line-height: 1.85; color: var(--body-text); max-width: 520px; margin: 0 auto 2rem; }
+  .btn-amber { display: inline-block; font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--deep); background: var(--amber); padding: 0.85rem 2.2rem; text-decoration: none; transition: box-shadow 0.2s; }
+  .btn-amber:hover { box-shadow: 0 0 25px rgba(255,179,0,0.35); }
+  .btn-ghost { display: inline-block; margin-left: 1rem; font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); border: 1px solid rgba(255,179,0,0.3); padding: 0.8rem 1.8rem; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+  .btn-ghost:hover { border-color: var(--amber); background: rgba(255,179,0,0.04); }
+
+  /* ── Footer ── */
+  footer { padding: 3rem 4rem; border-top: 1px solid rgba(255,179,0,0.08); text-align: center; position: relative; z-index: 1; }
+  footer p { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); opacity: 0.6; }
+  footer a { color: var(--amber); text-decoration: none; }
+
+  /* ── Responsive ── */
+  @media(max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { padding: 7rem 1.5rem 3.5rem; }
+    .gallery-section { padding: 3rem 1.5rem 5rem; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .gallery-item.span-2 { grid-column: span 1; aspect-ratio: 4/3; }
+    .cta-section { padding: 2.5rem 1.5rem 4rem; }
+    footer { padding: 2rem 1.5rem; }
+    .btn-ghost { margin-left: 0; margin-top: 0.75rem; }
+  }
+  @media(max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+
+<nav>
+  <a href="/" class="nav-logo">VOA</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+    <a href="/art-store/">Art Store</a>
+    <a href="/portfolio/" class="active">Portfolio</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Matt EarthStar &middot; Vibration of Awesome</div>
+  <h1 class="hero-title">Wieldable Art</h1>
+  <p class="hero-sub">Instruments of resonance, made by hand and made to be felt. Each piece carries an intention, a frequency, and a story that began long before you found it.</p>
+  <div class="hero-divider"></div>
+</div>
+
+<div class="gallery-section">
+  <div class="gallery-label">Selected Works</div>
+
+  <div class="gallery-grid">
+
+    <!--
+      ABSTRATOCASTER SERIES
+      TO ADD MEDIA: Replace <div class="media-placeholder"> with
+        <img src="/portfolio-media/abstratocaster-series.jpg" alt="Abstratocaster Series">
+      or a <video> element for hover-play video.
+    -->
+    <div class="gallery-item span-2" id="item-abstratocaster">
+      <div class="media-placeholder">
+        <div class="placeholder-icon">🎸</div>
+        <div class="placeholder-text">Media coming soon</div>
+      </div>
+      <div class="gallery-caption">
+        <div class="caption-title">Abstratocaster Series</div>
+        <div class="caption-sub">Custom Guitar Work</div>
+        <span class="caption-tag">Wieldable</span>
+      </div>
+    </div>
+
+    <!--
+      CRYSTAL WRAPPED PENDANT
+      TO ADD MEDIA: Replace <div class="media-placeholder"> with
+        <img src="/portfolio-media/crystal-pendant.jpg" alt="Crystal Wrapped Pendant">
+    -->
+    <div class="gallery-item span-tall" id="item-crystal-pendant">
+      <div class="media-placeholder">
+        <div class="placeholder-icon">💎</div>
+        <div class="placeholder-text">Media coming soon</div>
+      </div>
+      <div class="gallery-caption">
+        <div class="caption-title">Crystal Wrapped Pendant</div>
+        <div class="caption-sub">Wire Wrap &middot; Crystal</div>
+        <span class="caption-tag">Wearable</span>
+      </div>
+    </div>
+
+    <!--
+      EARTHSTAR TALISMAN
+      TO ADD MEDIA: Replace <div class="media-placeholder"> with
+        <img src="/portfolio-media/earthstar-talisman.jpg" alt="EarthStar Talisman">
+    -->
+    <div class="gallery-item" id="item-earthstar">
+      <div class="media-placeholder">
+        <div class="placeholder-icon">✦</div>
+        <div class="placeholder-text">Media coming soon</div>
+      </div>
+      <div class="gallery-caption">
+        <div class="caption-title">EarthStar Talisman</div>
+        <div class="caption-sub">Sacred Geometry &middot; Metal</div>
+        <span class="caption-tag">Talisman</span>
+      </div>
+    </div>
+
+    <!--
+      FOREST TEMPLE COLLECTION
+      TO ADD MEDIA: Replace <div class="media-placeholder"> with
+        <img src="/portfolio-media/forest-temple-collection.jpg" alt="Forest Temple Collection">
+      or use a video for hover-play:
+        <video src="/portfolio-media/forest-temple-collection.mp4"
+               poster="/portfolio-media/forest-temple-collection-poster.jpg"
+               muted playsinline loop preload="none"></video>
+    -->
+    <div class="gallery-item" id="item-forest-temple">
+      <div class="media-placeholder">
+        <div class="placeholder-icon">🌿</div>
+        <div class="placeholder-text">Media coming soon</div>
+      </div>
+      <div class="gallery-caption">
+        <div class="caption-title">Forest Temple Collection</div>
+        <div class="caption-sub">Mixed Media &middot; Nature</div>
+        <span class="caption-tag">Collection</span>
+      </div>
+    </div>
+
+    <!--
+      COSMIC SPIRAL RING
+      TO ADD MEDIA: Replace <div class="media-placeholder"> with
+        <img src="/portfolio-media/cosmic-spiral-ring.jpg" alt="Cosmic Spiral Ring">
+    -->
+    <div class="gallery-item span-tall" id="item-cosmic-ring">
+      <div class="media-placeholder">
+        <div class="placeholder-icon">🌀</div>
+        <div class="placeholder-text">Media coming soon</div>
+      </div>
+      <div class="gallery-caption">
+        <div class="caption-title">Cosmic Spiral Ring</div>
+        <div class="caption-sub">Wire Wrap &middot; Sterling</div>
+        <span class="caption-tag">Wearable</span>
+      </div>
+    </div>
+
+    <!--
+      THE AWAKENING PIECE
+      TO ADD MEDIA: Replace <div class="media-placeholder"> with
+        <img src="/portfolio-media/the-awakening-piece.jpg" alt="The Awakening Piece">
+      or video for hover-play.
+    -->
+    <div class="gallery-item span-2" id="item-awakening">
+      <div class="media-placeholder">
+        <div class="placeholder-icon">☀</div>
+        <div class="placeholder-text">Media coming soon</div>
+      </div>
+      <div class="gallery-caption">
+        <div class="caption-title">The Awakening Piece</div>
+        <div class="caption-sub">Signature Work &middot; Mixed Media</div>
+        <span class="caption-tag">Signature</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="cta-section">
+  <p>Each piece is one-of-a-kind and made with intention. If something here speaks to you, reach out — commissions, collaborations, and inquiries are always welcome.</p>
+  <a href="/art-store/" class="btn-amber">Visit the Art Store</a>
+  <a href="/" class="btn-ghost">Back to VOA</a>
+</div>
+
+<footer>
+  <p>&copy; 2026 <a href="/">Vibration of Awesome</a> &mdash; <a href="/portfolio/">Portfolio</a> &mdash; <a href="/art-store/">Art Store</a> &mdash; <a href="/blog/">Blog</a></p>
+</footer>
+
+<script>
+  // ── Stars ──
+  const s = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const el = document.createElement('div'); el.className = 'star';
+    const sz = Math.random() * 2 + 0.5;
+    el.style.cssText = 'width:'+sz+'px;height:'+sz+'px;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;--dur:'+(Math.random()*4+2)+'s;--delay:'+(Math.random()*5)+'s;--brightness:'+(Math.random()*0.5+0.2)+';';
+    s.appendChild(el);
+  }
+
+  // ── Video hover-play ──
+  // Automatically handles any <video> elements inside .gallery-item
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    const video = item.querySelector('video');
+    if (!video) return;
+    item.addEventListener('mouseenter', () => {
+      video.play().catch(() => {});
+    });
+    item.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>
