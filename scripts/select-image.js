@@ -3,14 +3,15 @@
  * select-image.js — Image selector for blog posts
  *
  * Lane routing:
- *   lane "matt"    → random image from static/personal-photos/forest/
+ *   lane "matt"    → alternates forest/ and matt/ personal photos
  *                    fallback: static/personal-photos/
- *   lane "boom" → NASA APOD API
+ *   lane "boom"    → NASA APOD API
  *                    fallback: static/personal-photos/
  *   (default)      → NASA APOD API
+ *   tag specified  → filter personal photos by tag (any lane)
  *
  * Exports:
- *   selectImage(query, lane)  — picks one image for a post's hero
+ *   selectImage(query, lane, tag?) — picks one image for a post's hero
  *   fetchNasaImages(count)    — returns array of NASA APOD image objects
  *   fetchForestImages(count)  — returns array of forest image objects
  */
@@ -164,25 +165,89 @@ export async function fetchNasaImages(count) {
 
 // ── Main export ───────────────────────────────────────────────────────────────
 
+// ── Tag-filtered personal photo picker ───────────────────────────────────────
+
+/**
+ * Pick a random photo from any personal-photos subfolder, optionally filtered
+ * by tag using photo-metadata.json.
+ *
+ * @param {string} tag  - tag string to filter by (e.g. "outdoors")
+ */
+function pickPhotoByTag(tag) {
+  const metaPath = path.join(PHOTOS_DIR, "photo-metadata.json");
+  if (!fs.existsSync(metaPath)) return null;
+  let meta;
+  try { meta = JSON.parse(fs.readFileSync(metaPath, "utf8")); } catch { return null; }
+
+  const matches = [];
+  for (const [folder, entries] of Object.entries(meta)) {
+    for (const [filename, data] of Object.entries(entries)) {
+      if (!data.tags || !data.tags.includes(tag)) continue;
+      const subdir = folder === "forest" ? "forest" : folder;
+      const filePath = path.join(PHOTOS_DIR, subdir, filename);
+      if (!fs.existsSync(filePath)) continue;
+      matches.push({
+        url:          "https://vibrationofawesome.com/personal-photos/" + subdir + "/" + filename,
+        thumbUrl:     "https://vibrationofawesome.com/personal-photos/" + subdir + "/" + filename,
+        localPath:    filePath,
+        source:       "personal",
+        caption:      data.caption || "",
+        attribution:  null,
+        photographer: null,
+      });
+    }
+  }
+  if (matches.length === 0) return null;
+  return matches[Math.floor(Math.random() * matches.length)];
+}
+
 /**
  * Select one image for a post's hero.
  *
  * @param {string} _query  - search hint (unused for both sources)
  * @param {string} lane    - "matt" | "boom" | undefined
+ * @param {string} [tag]   - optional tag to filter personal photos
  *
- * lane "matt"    → forest photo first, personal-photos fallback
- * lane "boom" → NASA APOD first, personal-photos fallback
+ * lane "matt"    → alternates forest / matt personal photos; fallback CSS gradient
+ * lane "boom"    → NASA APOD first, personal-photos fallback
  * (default)      → NASA APOD first, personal-photos fallback
+ * tag specified  → filter personal photos by tag (any lane)
  */
-export async function selectImage(_query, lane) {
-  if (lane === "matt") {
-    // Forest Temple: use local forest images
-    const forest = pickForestPhoto();
-    if (forest) {
-      console.log("[select-image] Forest photo: " + path.basename(forest.localPath));
-      return forest;
+export async function selectImage(_query, lane, tag) {
+  // Tag-filtered override for any lane
+  if (tag) {
+    const tagged = pickPhotoByTag(tag);
+    if (tagged) {
+      console.log("[select-image] Tag-filtered photo (" + tag + "): " + path.basename(tagged.localPath));
+      return tagged;
     }
-    // Fallback to personal photos
+  }
+
+  if (lane === "matt") {
+    // Alternate between forest/ and matt/ personal folder on each call
+    const useMatt = Math.random() < 0.5 && fs.existsSync(path.join(PHOTOS_DIR, "matt"));
+    const dir = useMatt ? path.join(PHOTOS_DIR, "matt") : FOREST_DIR;
+    const subpath = useMatt ? "personal-photos/matt/" : "personal-photos/forest/";
+
+    const files = fs.existsSync(dir)
+      ? fs.readdirSync(dir).filter(f => IMAGE_EXTS.has(path.extname(f).toLowerCase()) && !f.startsWith("."))
+      : [];
+
+    if (files.length > 0) {
+      const file = files[Math.floor(Math.random() * files.length)];
+      const photo = {
+        url:          "https://vibrationofawesome.com/" + subpath + file,
+        thumbUrl:     "https://vibrationofawesome.com/" + subpath + file,
+        localPath:    path.join(dir, file),
+        source:       useMatt ? "matt" : "forest",
+        attribution:  null,
+        photographer: null,
+      };
+      console.log("[select-image] " + photo.source + " photo: " + file);
+      return photo;
+    }
+
+    // Fallback: personal-photos root
     const personal = pickPersonalPhoto();
     if (personal) {
       console.log("[select-image] Personal photo fallback: " + path.basename(personal.localPath));
