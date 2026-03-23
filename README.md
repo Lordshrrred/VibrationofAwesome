@@ -13,7 +13,7 @@ Roots in the Earth, Crown in the Stars. The Future is Ours.
 /posts/                 → Hugo blog (content/posts/)
 /blog/                  → Dual-blog hub (static/blog/index.html)
 /blog/matt/             → From the Forest Temple — Matt EarthStar's personal lane
-/blog/boombot/          → Boom Frequency — Matty BoomBoom AI SEO lane
+/blog/boom/          → Boom Frequency — Matty BoomBoom AI SEO lane
 /art-store/             → Wieldable Art Store (static/art-store/index.html)
 /aura/                  → Aura experience (static/aura/index.html)
 ```
@@ -39,7 +39,7 @@ cp .env.example .env
 node scripts/generate-post.js --lane matt --title "Why I Spent 20 Years Doing Internet Marketing Wrong"
 
 # BoomBot lane — SEO-optimized, Matty BoomBoom voice
-node scripts/generate-post.js --lane boombot --keyword "how to use claude api for musicians" --topic "AI tools for independent artists"
+node scripts/generate-post.js --lane boom --keyword "how to use claude api for musicians" --topic "AI tools for independent artists"
 ```
 
 **What it does:**
@@ -52,7 +52,7 @@ node scripts/generate-post.js --lane boombot --keyword "how to use claude api fo
 ### Syndicate a Post to Social Media
 
 ```bash
-node scripts/syndicate.js --lane boombot --slug "how-to-use-claude-api-for-musicians"
+node scripts/syndicate.js --lane boom --slug "how-to-use-claude-api-for-musicians"
 ```
 
 **What it does:**
@@ -81,7 +81,7 @@ node scripts/seo-research.js --topic "AI tools for musicians"
 - **Aesthetic:** Forest green + deep amber
 - **When to use:** Sharing personal stories, lessons from the trenches, Forest Temple system reflections
 
-### ⚡ Boom Frequency (`/blog/boombot/`)
+### ⚡ Boom Frequency (`/blog/boom/`)
 - **Author:** Matty BoomBoom (AI persona)
 - **Voice:** Helpful, eccentric, transmission-style. Spiritual seekers + neurodivergent creators + AI-curious musicians.
 - **Aesthetic:** Electric cyan on deep black, frequency/wave motifs
@@ -134,7 +134,7 @@ See `.env.example` for the full template.
 
 ## Post Index Format
 
-`static/_data/matt-posts.json` and `static/_data/boombot-posts.json`:
+`static/_data/matt-posts.json` and `static/_data/boom-posts.json`:
 
 ```json
 [

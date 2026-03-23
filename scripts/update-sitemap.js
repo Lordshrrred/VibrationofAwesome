@@ -20,7 +20,7 @@ const STATIC_PAGES = [
   { loc: "/",                          lastmod: "2026-03-04", changefreq: "weekly",  priority: "1.0" },
   { loc: "/blog/",                     lastmod: "2026-03-04", changefreq: "weekly",  priority: "0.9" },
   { loc: "/blog/matt/",                lastmod: "2026-03-04", changefreq: "weekly",  priority: "0.8" },
-  { loc: "/blog/boombot/",             lastmod: "2026-03-04", changefreq: "weekly",  priority: "0.8" },
+  { loc: "/blog/boom/",             lastmod: "2026-03-04", changefreq: "weekly",  priority: "0.8" },
   { loc: "/aura/",                     lastmod: "2026-03-03", changefreq: "monthly", priority: "0.6" },
   { loc: "/art-store/",                lastmod: "2026-03-03", changefreq: "monthly", priority: "0.6" },
   { loc: "/posts/",                    lastmod: "2026-03-03", changefreq: "monthly", priority: "0.5" },
@@ -53,10 +53,10 @@ function urlBlock({ loc, lastmod, changefreq, priority }) {
 
 export function updateSitemap() {
   const mattPosts    = readPosts(path.join(ROOT, "static/_data/matt-posts.json"));
-  const boombotPosts = readPosts(path.join(ROOT, "static/_data/boombot-posts.json"));
+  const boomPosts = readPosts(path.join(ROOT, "static/_data/boom-posts.json"));
 
   const staticBlocks = STATIC_PAGES.map(urlBlock);
-  const postBlocks   = [...mattPosts, ...boombotPosts].map((p) =>
+  const postBlocks   = [...mattPosts, ...boomPosts].map((p) =>
     urlBlock({ loc: p.url, lastmod: p.date, changefreq: "monthly", priority: "0.7" })
   );
 
@@ -77,7 +77,7 @@ export function updateSitemap() {
   const outFile = path.join(ROOT, "static/sitemap.xml");
   fs.writeFileSync(outFile, xml, "utf8");
   console.log(
-    `Sitemap updated: static/sitemap.xml (${mattPosts.length + boombotPosts.length} posts indexed)`
+    `Sitemap updated: static/sitemap.xml (${mattPosts.length + boomPosts.length} posts indexed)`
   );
 }
 

@@ -239,7 +239,7 @@
       <div class="gate-error" id="pw-error">Incorrect password. Try again.</div>
       <div class="gate-setup" id="setup-note" style="display:none">
         <strong>Setup required:</strong> Run syndication once to generate the password config:<br>
-        <code>DASHBOARD_PASSWORD=yourpass node scripts/syndicate.js --lane boombot --slug your-post</code>
+        <code>DASHBOARD_PASSWORD=yourpass node scripts/syndicate.js --lane boom --slug your-post</code>
       </div>
     </div>
   </div>
@@ -313,7 +313,7 @@
             <div class="trigger-field">
               <label class="trigger-label">Lane</label>
               <select class="trigger-select" id="trig-lane">
-                <option value="boombot">Boom Frequency (BoomBot)</option>
+                <option value="boom">Boom Frequency (BoomBot)</option>
                 <option value="matt">Forest Temple (Matt)</option>
               </select>
             </div>
@@ -412,7 +412,7 @@ const PLATFORM_NAMES = {
 const SESSION_KEY   = "voa_dash_authed";
 const CONFIG_URL    = "/_data/dashboard-config.json";
 const LOG_URL       = "/_data/syndication-log.json";
-const BOOMBOT_URL   = "/_data/boombot-posts.json";
+const BOOM_URL   = "/_data/boom-posts.json";
 const MATT_URL      = "/_data/matt-posts.json";
 
 // ── Password hashing (SubtleCrypto) ──────────────────────────────────────────
@@ -480,15 +480,15 @@ document.getElementById("lock-btn").addEventListener("click", () => {
 
 // ── Data loading ──────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const [logData, boombotPosts, mattPosts] = await Promise.all([
+  const [logData, boomPosts, mattPosts] = await Promise.all([
     fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
-    fetch(BOOMBOT_URL).then(r => r.ok ? r.json() : []).catch(() => []),
+    fetch(BOOM_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(MATT_URL).then(r => r.ok ? r.json() : []).catch(() => []),
   ]);
 
   const entries = Array.isArray(logData.entries) ? logData.entries : [];
   const allPosts = [
-    ...boombotPosts.map(p => ({ ...p, lane: "boombot" })),
+    ...boomPosts.map(p => ({ ...p, lane: "boom" })),
     ...mattPosts.map(p => ({ ...p, lane: "matt" })),
   ].sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -529,7 +529,7 @@ function renderRecentPosts(entries) {
   document.getElementById("entry-count").textContent = entries.length + " entries";
 
   if (entries.length === 0) {
-    wrap.innerHTML = `<div class="empty-state">No syndications yet.<br>Run: <code>node scripts/syndicate.js --lane boombot --slug your-slug</code></div>`;
+    wrap.innerHTML = `<div class="empty-state">No syndications yet.<br>Run: <code>node scripts/syndicate.js --lane boom --slug your-slug</code></div>`;
     return;
   }
 
