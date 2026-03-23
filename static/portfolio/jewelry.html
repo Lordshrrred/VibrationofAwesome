@@ -157,7 +157,6 @@
     <a href="/blog/">Blog</a>
     <a href="/art-store/">Art Store</a>
     <a href="/portfolio/">Portfolio</a>
-    <a href="/portfolio/jewelry.html" class="active">Handcrafted</a>
   </div>
 </nav>
 
@@ -198,59 +197,81 @@
     s.appendChild(el);
   }
 
-  // ── Load jewelry photos from photo-metadata.json ──
-  // metadata.jewelry is an object: { "filename.jpg": { caption, tags }, ... }
-  fetch('/personal-photos/photo-metadata.json')
-    .then(r => r.json())
-    .then(data => {
-      const section = data.jewelry || {};
-      const filenames = Object.keys(section);
-      const grid = document.getElementById('jewelryGrid');
+  // ══════════════════════════════════════════════════════════════════════
+  // JEWELRY MANIFEST — hardcoded list of actual files in
+  // static/personal-photos/jewelry/
+  //
+  // GitHub Pages cannot enumerate directories, so this list IS the source
+  // of truth for which photos exist.
+  //
+  // TO ADD A PHOTO:
+  //   1. Drop the .jpg file into static/personal-photos/jewelry/
+  //   2. Add its filename to the array below
+  //   3. Optionally add a caption in photo-metadata.json under "jewelry"
+  //   4. Commit and push — the photo will appear automatically
+  // ══════════════════════════════════════════════════════════════════════
+  const JEWELRY_FILES = [
+    // 'your-photo.jpg',
+    // 'another-piece.jpg',
+  ];
 
-      if (filenames.length === 0) {
-        grid.innerHTML =
-          '<div class="empty-state" style="grid-column:1/-1">' +
-            '<div class="empty-state-icon">💎</div>' +
-            '<p>Photos coming soon</p>' +
-          '</div>';
-        return;
-      }
+  // ── Load captions from photo-metadata.json (best-effort, non-blocking) ──
+  // metadata.jewelry shape: { "filename.jpg": { caption, tags }, ... }
+  function buildGrid(captions) {
+    const grid = document.getElementById('jewelryGrid');
 
-      filenames.forEach(filename => {
-        const entry = section[filename];
-        const card = document.createElement('div');
-        card.className = 'jewelry-card';
+    // Merge: start with the hardcoded manifest, then fold in any extra
+    // filenames found in the metadata that aren't already listed.
+    const seen = new Set(JEWELRY_FILES);
+    const metaFiles = Object.keys(captions);
+    metaFiles.forEach(f => { if (!seen.has(f)) { seen.add(f); JEWELRY_FILES.push(f); } });
 
-        const wrap = document.createElement('div');
-        wrap.className = 'card-img-wrap';
-
-        const img = document.createElement('img');
-        img.src = '/personal-photos/jewelry/' + filename;
-        img.alt = entry.caption || filename;
-        img.loading = 'lazy';
-        wrap.appendChild(img);
-        card.appendChild(wrap);
-
-        // Caption only if text exists
-        if (entry.caption && entry.caption.trim() !== '') {
-          const cap = document.createElement('div');
-          cap.className = 'card-caption';
-          cap.textContent = entry.caption;
-          card.appendChild(cap);
-        }
-
-        grid.appendChild(card);
-      });
-    })
-    .catch(err => {
-      console.warn('[jewelry grid] Failed to load photo-metadata.json:', err.message);
-      const grid = document.getElementById('jewelryGrid');
+    if (JEWELRY_FILES.length === 0) {
       grid.innerHTML =
         '<div class="empty-state" style="grid-column:1/-1">' +
           '<div class="empty-state-icon">💎</div>' +
           '<p>Photos coming soon</p>' +
         '</div>';
+      return;
+    }
+
+    JEWELRY_FILES.forEach(filename => {
+      const entry   = captions[filename] || {};
+      const caption = (entry.caption || '').trim();
+
+      const card = document.createElement('div');
+      card.className = 'jewelry-card';
+
+      const wrap = document.createElement('div');
+      wrap.className = 'card-img-wrap';
+
+      const img = document.createElement('img');
+      img.src     = '/personal-photos/jewelry/' + filename;
+      img.alt     = caption || filename;
+      img.loading = 'lazy';
+
+      // If the file doesn't actually exist, hide the whole card cleanly
+      img.onerror = () => { card.style.display = 'none'; };
+
+      wrap.appendChild(img);
+      card.appendChild(wrap);
+
+      if (caption) {
+        const cap = document.createElement('div');
+        cap.className   = 'card-caption';
+        cap.textContent = caption;
+        card.appendChild(cap);
+      }
+
+      grid.appendChild(card);
     });
+  }
+
+  // Try to load captions; fall back to empty captions if fetch fails
+  fetch('/personal-photos/photo-metadata.json')
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(data => buildGrid(data.jewelry || {}))
+    .catch(() => buildGrid({}));
 </script>
 </body>
 </html>
