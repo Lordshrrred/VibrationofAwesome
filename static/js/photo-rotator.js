@@ -182,12 +182,26 @@
       "text-align:right"
     ].join(";");
 
+    var loadAttempts = 0;
+
     function render(photo) {
       img.alt = photo.caption || "";
       img.src = photo.url;
       cap.textContent = photo.caption || "";
       cap.style.display = photo.caption ? "" : "none";
     }
+
+    // If an image 404s, silently cycle to the next one.
+    // If every image in the deck fails, hide the block entirely.
+    img.onerror = function () {
+      loadAttempts++;
+      if (loadAttempts >= deck.length) {
+        wrapper.style.display = "none"; // all failed — render nothing
+        return;
+      }
+      idx = (idx + 1) % deck.length;
+      render(deck[idx]);
+    };
 
     render(deck[idx]);
     wrapper.appendChild(img);
@@ -196,6 +210,7 @@
     wrapper.addEventListener("click", function () {
       img.style.opacity = "0";
       setTimeout(function () {
+        loadAttempts = 0; // reset error counter on intentional advance
         idx = (idx + 1) % deck.length;
         render(deck[idx]);
         img.style.opacity = "1";

@@ -344,6 +344,23 @@
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════════════════════
+     JEWELRY SECTION
+     Images load from the JEWELRY_PHOTOS manifest in the <script> below.
+
+     TO ADD A JEWELRY PHOTO:
+       1. Drop the .jpg into static/personal-photos/jewelry/
+       2. Add its filename to the JEWELRY_PHOTOS array in the <script>
+       3. Optionally add a caption to photo-metadata.json under "jewelry"
+       4. Commit and push — it appears here automatically
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="gallery-section" id="jewelry-section" style="border-top:1px solid rgba(255,179,0,0.08);padding-top:4rem;">
+  <div class="gallery-label">Jewelry &amp; Wearable Art</div>
+  <div class="gallery-grid" id="jewelryGrid">
+    <!-- populated by JS below -->
+  </div>
+</div>
+
 <div class="cta-section">
   <p>Each piece is one-of-a-kind and made with intention. If something here speaks to you, reach out — commissions, collaborations, and inquiries are always welcome.</p>
   <a href="/art-store/" class="btn-amber">Visit the Art Store</a>
@@ -377,6 +394,69 @@
       video.currentTime = 0;
     });
   });
+
+  // ══════════════════════════════════════════════════════════════════════
+  // JEWELRY PHOTOS — hardcoded manifest of files in
+  // static/personal-photos/jewelry/
+  //
+  // GitHub Pages cannot enumerate directories, so this array IS the
+  // source of truth for which photos are shown.
+  //
+  // TO ADD A PHOTO:
+  //   1. Drop the .jpg into static/personal-photos/jewelry/
+  //   2. Add its exact filename (case-sensitive) to the array below
+  //   3. Optionally add a caption in photo-metadata.json → "jewelry" key
+  //   4. Commit and push — done
+  // ══════════════════════════════════════════════════════════════════════
+  const JEWELRY_PHOTOS = [
+    // 'your-piece.jpg',
+    // 'another-piece.jpg',
+  ];
+
+  (function buildJewelryGrid() {
+    const grid = document.getElementById('jewelryGrid');
+    const section = document.getElementById('jewelry-section');
+
+    if (JEWELRY_PHOTOS.length === 0) {
+      // Hide the entire section until photos are added
+      if (section) section.style.display = 'none';
+      return;
+    }
+
+    // Try to pull captions from photo-metadata.json; show images either way
+    fetch('/personal-photos/photo-metadata.json')
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(data => render(data.jewelry || {}))
+      .catch(() => render({}));
+
+    function render(captions) {
+      JEWELRY_PHOTOS.forEach(filename => {
+        const meta    = captions[filename] || {};
+        const caption = (meta.caption || '').trim();
+
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+
+        const img = document.createElement('img');
+        img.src     = '/personal-photos/jewelry/' + filename;
+        img.alt     = caption || filename;
+        img.loading = 'lazy';
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;';
+        img.onerror = () => { item.style.display = 'none'; }; // hide card if file missing
+
+        item.appendChild(img);
+
+        if (caption) {
+          const cap = document.createElement('div');
+          cap.className = 'gallery-caption';
+          cap.innerHTML = '<div class="caption-title">' + caption + '</div>';
+          item.appendChild(cap);
+        }
+
+        grid.appendChild(item);
+      });
+    }
+  })();
 </script>
 </body>
 </html>
