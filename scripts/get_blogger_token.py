@@ -42,7 +42,7 @@ load_dotenv()
 # ── Config ───────────────────────────────────────────────────────────────
 CLIENT_ID      = os.environ.get('BLOGGER_CLIENT_ID', '')
 CLIENT_SECRET  = os.environ.get('BLOGGER_CLIENT_SECRET', '')
-REDIRECT_URI   = 'http://localhost:8080'
+REDIRECT_URI   = 'http://localhost:8080/'
 SCOPE          = 'https://www.googleapis.com/auth/blogger'
 AUTH_ENDPOINT  = 'https://accounts.google.com/o/oauth2/v2/auth'
 TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token'
