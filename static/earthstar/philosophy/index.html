@@ -21,25 +21,46 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G5HF0WKZT9');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;600&family=Rajdhani:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;600&family=Rajdhani:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   /* ── RESET AND ROOT ── */
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --blue:       #1a3a8f;
-    --blue-glow:  rgba(26,58,143,0.55);
-    --blue-dim:   rgba(26,58,143,0.14);
-    --gold:       #c9a84c;
-    --gold-light: #e8c96a;
-    --gold-glow:  rgba(201,168,76,0.45);
-    --gold-dim:   rgba(201,168,76,0.10);
-    --deep:       #0a0f2e;
-    --midnight:   #080d2a;
-    --surface:    #0d1238;
-    --text:       #f0f0ff;
-    --text-muted: #8898cc;
-    --border:     rgba(26,58,143,0.22);
-    --cream:      #ffffff;
+    /* Core depth ~ deep ocean blue-black (matches earthstar/index.html) */
+    --deep:        #050d1a;
+    --midnight:    #030810;
+    --surface:     #071220;
+    --surface2:    #0a1828;
+    /* Teal-blue signal */
+    --teal:        #1a6b8a;
+    --teal-glow:   rgba(26,107,138,0.40);
+    --teal-dim:    rgba(26,107,138,0.12);
+    /* Forest green */
+    --forest:      #1a5c3a;
+    --forest-glow: rgba(26,92,58,0.35);
+    --forest-dim:  rgba(26,92,58,0.12);
+    /* Electric cyan highlight */
+    --cyan:        #00b4d8;
+    --cyan-glow:   rgba(0,180,216,0.35);
+    --cyan-dim:    rgba(0,180,216,0.08);
+    /* Electric green signal */
+    --green:       #00c864;
+    --green-glow:  rgba(0,200,100,0.30);
+    --green-dim:   rgba(0,200,100,0.07);
+    /* Sacred gold */
+    --gold:        #c9a84c;
+    --gold-light:  #e8c96a;
+    --gold-warm:   #d4a848;
+    --gold-glow:   rgba(201,168,76,0.38);
+    --gold-dim:    rgba(201,168,76,0.08);
+    /* Moonlight text ~ cool blue-white */
+    --text:        #e8f0f8;
+    --text-dim:    rgba(232,240,248,0.62);
+    --text-muted:  #5a8aaa;
+    /* Borders */
+    --border:      rgba(0,180,216,0.18);
+    --border-gold: rgba(201,168,76,0.12);
+    --cream:       #f0f8ff;
   }
   html { scroll-behavior: smooth; }
   body {
@@ -49,6 +70,42 @@
     font-weight: 400;
     overflow-x: hidden;
     line-height: 1.85;
+    cursor: none;
+  }
+
+  /* ── GRAIN TEXTURE OVERLAY ── */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 300px 300px;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor {
+    width: 7px; height: 7px;
+    background: var(--cyan);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+    display: none;
+    box-shadow: 0 0 10px var(--cyan-glow);
+  }
+  .cursor-ring {
+    width: 26px; height: 26px;
+    border: 1px solid rgba(0,180,216,0.45);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+    display: none;
   }
 
   /* ── STARS ── */
@@ -62,8 +119,10 @@
     animation: twinkle var(--dur,3s) ease-in-out infinite;
     animation-delay: var(--delay,0s); opacity: 0;
   }
-  .star.gold { background: var(--gold); }
-  .star.blue { background: #3a5fc8; }
+  .star.gold  { background: var(--gold); }
+  .star.blue  { background: #2a6ab8; }
+  .star.teal  { background: var(--cyan); }
+  .star.green { background: var(--green); }
   @keyframes twinkle {
     0%,100% { opacity:0; transform:scale(0.5); }
     50%      { opacity:var(--brightness,0.7); transform:scale(1); }
@@ -74,36 +133,36 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 1.4rem 3rem;
     display: flex; align-items: center; justify-content: space-between;
-    background: linear-gradient(to bottom, rgba(10,15,46,0.97), transparent);
-    border-bottom: 1px solid var(--border);
+    background: linear-gradient(to bottom, rgba(5,13,26,0.97) 60%, transparent);
+    border-bottom: 1px solid rgba(0,180,216,0.10);
     transition: background 0.3s, border-color 0.3s;
   }
   .nav-logo {
-    font-family: 'Cinzel', serif;
-    font-size: 0.95rem; letter-spacing: 0.14em; font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem; letter-spacing: 0.1em; font-weight: 700;
     color: var(--gold);
     text-decoration: none;
-    text-shadow: 0 0 20px var(--gold-glow);
+    text-shadow: 0 0 24px var(--gold-glow);
   }
   .nav-right {
-    display: flex; align-items: center; gap: 1.8rem;
+    display: flex; align-items: center; gap: 2rem;
   }
   .nav-right a {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--text-muted); text-decoration: none;
-    transition: color 0.2s;
+    transition: color 0.25s;
   }
-  .nav-right a:hover { color: var(--gold); }
+  .nav-right a:hover { color: var(--cyan); }
   .nav-back {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--text-muted); text-decoration: none;
-    border: 1px solid rgba(26,58,143,0.3);
+    border: 1px solid rgba(0,180,216,0.2);
     padding: 0.4rem 0.9rem;
-    transition: color 0.2s, border-color 0.2s;
+    transition: color 0.25s, border-color 0.25s;
   }
-  .nav-back:hover { color: var(--gold); border-color: var(--gold); }
+  .nav-back:hover { color: var(--cyan); border-color: rgba(0,180,216,0.55); }
 
   /* ── LAYOUT ── */
   .page-wrap {
@@ -126,12 +185,12 @@
     display: block; margin-bottom: 1.4rem;
   }
   .phil-hero-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 6vw, 4rem);
     font-weight: 900;
-    line-height: 1.1; letter-spacing: 0.04em;
+    line-height: 1.1; letter-spacing: 0.06em;
     color: var(--cream);
-    text-shadow: 0 0 60px var(--gold-glow), 0 0 120px rgba(26,58,143,0.3);
+    text-shadow: 0 0 60px var(--gold-glow), 0 0 120px rgba(0,180,216,0.2);
     margin-bottom: 1.5rem;
   }
   .phil-hero-sub {
@@ -149,12 +208,12 @@
   .section-divider-line {
     flex: 1;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(201,168,76,0.35), transparent);
+    background: linear-gradient(to right, transparent, rgba(0,180,216,0.35), transparent);
   }
   .section-divider-glyph {
-    color: var(--gold); opacity: 0.5;
+    color: var(--cyan); opacity: 0.6;
     font-size: 0.6rem; letter-spacing: 0.2em;
-    font-family: 'Cinzel', serif;
+    font-family: 'Orbitron', sans-serif;
   }
 
   /* ── SECTION ── */
@@ -170,17 +229,18 @@
     display: block; margin-bottom: 0.6rem;
   }
   .section-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.3rem, 3vw, 2rem);
-    font-weight: 600; letter-spacing: 0.06em;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    font-weight: 700; letter-spacing: 0.08em;
     color: var(--gold);
     text-shadow: 0 0 30px var(--gold-glow);
     margin-bottom: 1.8rem; line-height: 1.25;
   }
   .section-title-rule {
     width: 48px; height: 1px;
-    background: linear-gradient(to right, var(--gold), transparent);
+    background: linear-gradient(to right, var(--cyan), rgba(0,200,100,0.4), transparent);
     margin-bottom: 2rem;
+    box-shadow: 0 0 8px rgba(0,180,216,0.15);
   }
   .phil-body {
     font-family: 'Raleway', sans-serif;
@@ -213,11 +273,11 @@
     line-height: 1;
   }
   .callout-text {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.3rem, 3.5vw, 2rem);
-    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1rem, 3.5vw, 1.7rem);
+    font-weight: 700;
     color: var(--gold);
-    line-height: 1.5; letter-spacing: 0.04em;
+    line-height: 1.5; letter-spacing: 0.06em;
     text-shadow: 0 0 40px var(--gold-glow);
   }
 
@@ -278,7 +338,7 @@
     position: relative; z-index: 1;
   }
   .footer-left .footer-logo {
-    font-family: 'Cinzel', serif;
+    font-family: 'Orbitron', sans-serif;
     font-size: 1rem; letter-spacing: 0.12em; font-weight: 600;
     color: var(--gold); margin-bottom: 0.5rem;
   }
@@ -326,6 +386,8 @@
 </head>
 <body>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
 
 <!-- ── NAV ── -->
@@ -550,29 +612,66 @@
 </footer>
 
 <script>
-  // ── Stars ──
+  // ── Stars: gold, blue, teal, green, white ──
   const starsEl = document.getElementById('stars');
-  for (let i = 0; i < 140; i++) {
+  for (let i = 0; i < 210; i++) {
     const star = document.createElement('div');
-    star.className = 'star' + (i < 10 ? ' gold' : i < 22 ? ' blue' : '');
-    const sz = Math.random() * 1.8 + 0.3;
+    const r = Math.random();
+    star.className = 'star' +
+      (r < 0.07 ? ' gold' : r < 0.18 ? ' blue' : r < 0.27 ? ' teal' : r < 0.33 ? ' green' : '');
+    const sz = Math.random() * 2.0 + 0.3;
     star.style.cssText =
       'width:'+sz+'px;height:'+sz+'px;' +
       'left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;' +
-      '--dur:'+(Math.random()*4+2)+'s;--delay:'+(Math.random()*6)+'s;' +
-      '--brightness:'+(Math.random()*0.4+0.15)+';';
+      '--dur:'+(Math.random()*4+2.5)+'s;--delay:'+(Math.random()*7)+'s;' +
+      '--brightness:'+(Math.random()*0.45+0.15)+';';
     starsEl.appendChild(star);
+  }
+
+  // ── Custom cursor (desktop only) ──
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouchDevice) {
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    cursor.style.display = 'block';
+    ring.style.display   = 'block';
+    let rx = 0, ry = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', e => {
+      cx = e.clientX; cy = e.clientY;
+      cursor.style.left = cx + 'px';
+      cursor.style.top  = cy + 'px';
+    });
+    function animateRing() {
+      rx += (cx - rx) * 0.12;
+      ry += (cy - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+        ring.style.transform   = 'translate(-50%,-50%) scale(1.5)';
+        ring.style.borderColor = 'rgba(0,200,100,0.85)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.transform   = 'translate(-50%,-50%) scale(1)';
+        ring.style.borderColor = 'rgba(0,180,216,0.45)';
+      });
+    });
   }
 
   // ── Nav scroll effect ──
   const navEl = document.getElementById('nav');
   window.addEventListener('scroll', function() {
     if (window.scrollY > 60) {
-      navEl.style.background = 'rgba(10,15,46,0.98)';
-      navEl.style.borderBottomColor = 'rgba(26,58,143,0.35)';
+      navEl.style.background = 'rgba(5,13,26,0.98)';
+      navEl.style.borderBottomColor = 'rgba(0,180,216,0.18)';
     } else {
-      navEl.style.background = 'linear-gradient(to bottom, rgba(10,15,46,0.97), transparent)';
-      navEl.style.borderBottomColor = 'rgba(26,58,143,0.22)';
+      navEl.style.background = 'linear-gradient(to bottom, rgba(5,13,26,0.97) 60%, transparent)';
+      navEl.style.borderBottomColor = 'rgba(0,180,216,0.10)';
     }
   });
 

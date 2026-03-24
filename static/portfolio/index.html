@@ -47,6 +47,7 @@
   .hero-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-bottom: 1.25rem; }
   .hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem,5vw,4rem); color: var(--cream); line-height: 1.15; margin-bottom: 1.5rem; }
   .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.85; color: rgba(208,255,248,0.75); max-width: 580px; margin: 0 auto 2rem; }
+  .hero-sub p + p { margin-top: 0.6em; }
   .hero-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 0 auto; }
 
   /* ── Section label ── */
@@ -93,21 +94,20 @@
   .featured-medium { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.65; margin-bottom: 0.5rem; min-height: 1.2em; }
   .featured-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: rgba(208,255,248,0.55); line-height: 1.7; min-height: 1.4em; }
 
-  /* ── Masonry gallery ── */
-  .masonry-section { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 7rem; border-top: 1px solid rgba(0,229,204,0.08); }
-  .masonry-grid { columns: 3; column-gap: 14px; }
+  /* ── Gallery grid ── */
+  .gallery-section { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 7rem; border-top: 1px solid rgba(0,229,204,0.08); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 
-  .masonry-item {
-    break-inside: avoid;
-    margin-bottom: 14px;
+  .gallery-item {
+    height: 280px;
     overflow: hidden;
     cursor: pointer;
     position: relative;
     border: 1px solid rgba(0,229,204,0.07);
     transition: border-color 0.3s;
   }
-  .masonry-item:hover { border-color: rgba(0,229,204,0.45); }
-  .masonry-item::after {
+  .gallery-item:hover { border-color: rgba(0,229,204,0.45); }
+  .gallery-item::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -115,15 +115,9 @@
     transition: box-shadow 0.3s;
     pointer-events: none;
   }
-  .masonry-item:hover::after { box-shadow: inset 0 0 24px rgba(0,229,204,0.07); }
-
-  .masonry-item img { width: 100%; display: block; transition: transform 0.45s ease; }
-  .masonry-item:hover img { transform: scale(1.04); }
-
-  /* Size classes ~ randomly assigned by JS each page load */
-  .masonry-item.size-small  img { max-height: 200px; object-fit: cover; }
-  .masonry-item.size-medium img { max-height: 340px; object-fit: cover; }
-  .masonry-item.size-large  img { max-height: 500px; object-fit: cover; }
+  .gallery-item:hover::after { box-shadow: inset 0 0 24px rgba(0,229,204,0.07); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease; }
+  .gallery-item:hover img { transform: scale(1.04); }
 
   /* ── Lightbox overlay ── */
   .lightbox {
@@ -134,17 +128,56 @@
     background: rgba(2,10,8,0.96);
     align-items: center;
     justify-content: center;
-    cursor: pointer;
   }
   .lightbox.open { display: flex; }
-  .lightbox-inner { pointer-events: none; }
+
+  .lightbox-inner {
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .lightbox-inner img {
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 80vw;
+    max-height: 85vh;
     object-fit: contain;
     box-shadow: 0 0 80px rgba(0,229,204,0.1);
     display: block;
+    transition: opacity 0.18s ease;
   }
+
+  .lb-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(208,255,248,0.5);
+    font-size: 4.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.5rem 1.2rem;
+    z-index: 1001;
+    transition: color 0.2s;
+    pointer-events: all;
+    user-select: none;
+  }
+  .lb-arrow:hover { color: var(--gold); }
+  .lb-prev { left: 1rem; }
+  .lb-next { right: 1rem; }
+
+  .lb-counter {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    color: rgba(208,255,248,0.45);
+    pointer-events: none;
+  }
+
   .lightbox-close {
     position: absolute;
     top: 1.5rem; right: 2rem;
@@ -152,7 +185,7 @@
     font-size: 0.7rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(208,255,248,0.4);
+    color: rgba(208,255,248,0.35);
     pointer-events: none;
   }
 
@@ -163,19 +196,24 @@
 
   /* ── Responsive ── */
   @media(max-width: 900px) {
-    .masonry-grid { columns: 2; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item { height: 220px; }
     .featured-main { height: 380px; }
+    .lb-arrow { font-size: 3rem; padding: 0.5rem 0.8rem; }
   }
   @media(max-width: 600px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.2rem; }
     .hero { padding: 7rem 1.5rem 3.5rem; }
     .featured-section { padding: 2.5rem 1rem 2rem; }
-    .masonry-section { padding: 2rem 1rem 4rem; }
-    .masonry-grid { columns: 1; }
+    .gallery-section { padding: 2rem 1rem 4rem; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item { height: 240px; }
     .featured-main { height: 260px; }
     .featured-thumb { width: 58px; height: 58px; }
     footer { padding: 2rem 1.5rem; }
+    .lb-arrow { font-size: 2.5rem; padding: 0.5rem 0.6rem; }
+    .lightbox-close { font-size: 0.6rem; right: 1rem; }
   }
 </style>
 </head>
@@ -195,7 +233,10 @@
 <div class="hero">
   <div class="hero-eyebrow">Matt EarthStar &middot; Vibration of Awesome</div>
   <h1 class="hero-title">Portfolio</h1>
-  <p class="hero-sub">Original wire works over the years from Matt EarthStar. These past works have found homes and are not currently available.</p>
+  <div class="hero-sub">
+    <p>Original wire works over the years from Matt EarthStar.</p>
+    <p>These past works have found homes and are not currently available.</p>
+  </div>
   <div class="hero-divider"></div>
 </div>
 
@@ -217,18 +258,21 @@
   </div>
 </div>
 
-<!-- Masonry gallery -->
-<div class="masonry-section">
+<!-- Gallery grid -->
+<div class="gallery-section">
   <div class="section-label">All Works</div>
-  <div class="masonry-grid" id="masonryGrid"></div>
+  <div class="gallery-grid" id="galleryGrid"></div>
 </div>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
+  <button class="lb-arrow lb-prev" id="lbPrev">&#8249;</button>
   <div class="lightbox-inner">
     <img id="lightboxImg" src="" alt="">
   </div>
-  <div class="lightbox-close">click anywhere to close</div>
+  <button class="lb-arrow lb-next" id="lbNext">&#8250;</button>
+  <div class="lb-counter" id="lbCounter"></div>
+  <div class="lightbox-close">esc or click outside to close</div>
 </div>
 
 <footer>
@@ -414,19 +458,24 @@
     descEl.textContent   = FEATURED_PIECES[0].desc   || '';
   })();
 
-  // ── Masonry gallery ───────────────────────────────────────────────────
+  // ── Gallery + Lightbox ────────────────────────────────────────────────
   (function() {
     if (!JEWELRY_IMAGES.length) return;
-    var grid      = document.getElementById('masonryGrid');
+
+    var grid      = document.getElementById('galleryGrid');
     var lightbox  = document.getElementById('lightbox');
     var lbImg     = document.getElementById('lightboxImg');
-    var sizes     = ['size-small', 'size-medium', 'size-large'];
-    var shuffled  = shuffle(JEWELRY_IMAGES);
+    var lbCounter = document.getElementById('lbCounter');
+    var lbPrev    = document.getElementById('lbPrev');
+    var lbNext    = document.getElementById('lbNext');
 
-    shuffled.forEach(function(filename) {
-      var size = sizes[Math.floor(Math.random() * sizes.length)];
+    var shuffled     = shuffle(JEWELRY_IMAGES);
+    var currentIndex = 0;
+
+    // ── Build grid ──
+    shuffled.forEach(function(filename, idx) {
       var item = document.createElement('div');
-      item.className = 'masonry-item ' + size;
+      item.className = 'gallery-item';
 
       var img = document.createElement('img');
       img.src     = BASE + filename;
@@ -435,23 +484,53 @@
       img.onerror = function() { item.style.display = 'none'; };
 
       item.appendChild(img);
-      item.addEventListener('click', function() {
-        lbImg.src = BASE + filename;
-        lightbox.classList.add('open');
-      });
+      item.addEventListener('click', function() { openLightbox(idx); });
       grid.appendChild(item);
     });
 
-    // close lightbox: click anywhere, or press Escape
-    lightbox.addEventListener('click', function() {
+    // ── Lightbox helpers ──
+    function openLightbox(idx) {
+      currentIndex = idx;
+      lbImg.style.opacity = '0';
+      lbImg.src = BASE + shuffled[currentIndex];
+      lbCounter.textContent = (currentIndex + 1) + ' / ' + shuffled.length;
+      lightbox.classList.add('open');
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          lbImg.style.opacity = '1';
+        });
+      });
+    }
+
+    function navigate(delta) {
+      currentIndex = (currentIndex + delta + shuffled.length) % shuffled.length;
+      lbImg.style.opacity = '0';
+      setTimeout(function() {
+        lbImg.src = BASE + shuffled[currentIndex];
+        lbCounter.textContent = (currentIndex + 1) + ' / ' + shuffled.length;
+        lbImg.style.opacity = '1';
+      }, 190);
+    }
+
+    function closeLightbox() {
       lightbox.classList.remove('open');
       lbImg.src = '';
+    }
+
+    // ── Lightbox events ──
+    lbPrev.addEventListener('click', function(e) { e.stopPropagation(); navigate(-1); });
+    lbNext.addEventListener('click', function(e) { e.stopPropagation(); navigate(1); });
+
+    // click backdrop to close (not arrows or image)
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
     });
+
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('open');
-        lbImg.src = '';
-      }
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft')  navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
     });
   })();
 </script>
