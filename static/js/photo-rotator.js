@@ -161,10 +161,15 @@
       ".voa-sig-img-glow{position:absolute;inset:0;border-radius:8px;border:1px solid rgba(57,255,20,0.22);box-shadow:inset 0 0 14px rgba(57,255,20,0.15);pointer-events:none;z-index:2;}",
       // SVG: covers full frame including 24px padding gap zone; drop-shadow set inline on SVG element
       ".voa-sig-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}",
-      // Text elements ~ electric green tone
+      // Text elements ~ electric green tone (matt theme default)
       ".voa-sig-name{font-family:'Lora',Georgia,serif;font-variant:small-caps;font-size:0.95rem;letter-spacing:0.14em;color:rgba(57,255,20,0.7);margin:0.9rem 0 0.35rem;}",
       ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.97rem;line-height:1.7;color:rgba(57,255,20,0.55);max-width:480px;margin:0 auto 0.6rem;min-height:1.4em;}",
-      ".voa-sig-hint{font-size:0.58rem;letter-spacing:0.13em;color:#7EB8B0;opacity:0.65;}"
+      ".voa-sig-hint{font-size:0.58rem;letter-spacing:0.13em;color:#7EB8B0;opacity:0.65;}",
+      // Boom theme overrides ~ electric cyan (#00FFFF) palette
+      ".voa-photo-rotator[data-theme='boom'] .voa-sig-rule{border-top-color:rgba(0,255,255,0.12);}",
+      ".voa-photo-rotator[data-theme='boom'] .voa-sig-img-glow{border:1px solid rgba(0,255,255,0.2);box-shadow:inset 0 0 12px rgba(0,255,255,0.15);}",
+      ".voa-photo-rotator[data-theme='boom'] .voa-sig-name{color:rgba(0,223,223,0.7);}",
+      ".voa-photo-rotator[data-theme='boom'] .voa-sig-caption{color:rgba(0,223,223,0.55);}"
     ].join("\n");
     document.head.appendChild(el);
   }
@@ -423,10 +428,30 @@
     '</svg>'
   );
 
+  // Returns the correct SVG string for the given orientation and theme color.
+  // Replaces all #39FF14 occurrences with the supplied color so both portrait
+  // and landscape variants can be tinted for any theme (green, cyan, etc.).
+  function getSigSVG(landscape, color) {
+    var s = landscape ? SIG_SVG_LANDSCAPE : SIG_SVG_FRAME;
+    if (color && color !== "#39FF14") {
+      s = s.replace(/#39FF14/g, color);
+    }
+    return s;
+  }
+
   function initSignature(container, metadata) {
-    var folder = (container.getAttribute("data-folder") || "matt").trim();
-    var name   = (container.getAttribute("data-name")   || (folder === "matt" ? "Matt EarthStar" : "")).trim();
-    var photos = buildPhotoList(metadata, folder, "");
+    var folder      = (container.getAttribute("data-folder") || "matt").trim();
+    // boom uses matt photos (no dedicated boom photo folder yet)
+    var photoFolder = (folder === "boom") ? "matt" : folder;
+    // theme determines color palette; any non-matt folder gets cyan boom theme
+    var theme       = (folder === "matt") ? "matt" : "boom";
+    var sigColor    = (theme === "matt")  ? "#39FF14" : "#00FFFF";
+    var name        = (container.getAttribute("data-name") ||
+                       (folder === "matt" ? "Matt EarthStar" :
+                        folder === "boom" ? "Matty BoomBoom" : "")).trim();
+    var photos = buildPhotoList(metadata, photoFolder, "");
+    // stamp theme on container so CSS overrides can target it
+    container.setAttribute("data-theme", theme);
     if (photos.length === 0) return;
 
     injectSignatureStyles();
@@ -492,7 +517,7 @@
       var orient = isLandscape ? "L" : "P";
       if (orient !== currentOrientation) {
         currentOrientation = orient;
-        svgContainer.innerHTML = isLandscape ? SIG_SVG_LANDSCAPE : SIG_SVG_FRAME;
+        svgContainer.innerHTML = getSigSVG(isLandscape, sigColor);
       }
       img.alt = photo.caption || name || "";
       img.src = photo.url;
