@@ -537,7 +537,7 @@ TITLE: [your article title here]
 
 Requirements:
 - 500-700 words
-- Naturally link back to vibrationofawesome.com once in the body using: <a href="https://vibrationofawesome.com">vibrationofawesome.com</a>
+- Include one natural in-body link back to the original article that inspired this piece: <a href="${sourceUrl}">${sourceTitle}</a>
 - No <html>/<head>/<body> wrappers
 - No inline styles or class attributes
 - No title tag in the HTML body`,
@@ -552,14 +552,14 @@ Requirements:
   return { title, html };
 }
 
-/** Post a draft to Blogger using the v3 API */
-async function postToBloggerDraft(title, htmlContent) {
+/** Publish a post immediately to Blogger using the v3 API */
+async function postToBlogger(title, htmlContent) {
   const blogId = process.env.BLOGGER_BLOG_ID;
   if (!blogId) throw new Error("BLOGGER_BLOG_ID not set");
 
   const accessToken = await getBloggerAccessToken();
   const resp = await fetch(
-    `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts/?isDraft=true`,
+    `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts/`,
     {
       method:  "POST",
       headers: {
@@ -572,10 +572,7 @@ async function postToBloggerDraft(title, htmlContent) {
   const data = await resp.json();
   if (!resp.ok) throw new Error(`Blogger: ${data.error?.message || resp.status}`);
 
-  // Blogger returns the live URL even for drafts; fall back to the edit URL
-  const draftUrl = data.url ||
-    `https://draft.blogger.com/blog/${blogId}/post/edit/${data.id}`;
-  return { postId: data.id, postUrl: draftUrl };
+  return { postId: data.id, postUrl: data.url || null };
 }
 
 // ── Syndication log ───────────────────────────────────────────────────────────
@@ -737,12 +734,12 @@ export async function syndicatePost(lane, slug, options = {}) {
   await attempt("threads", () =>
     postViaPubler("threads", captions.threads, null));
 
-  // Blogger (DRAFT ~ AI-generated related article inspired by source)
+  // Blogger (auto-publish ~ AI-generated related article inspired by source)
   await attempt("blogger", async () => {
     const { title: blogTitle, html: blogHtml } = await generateBloggerArticle(
       post.title, sourceText, postUrl, anthropic
     );
-    return postToBloggerDraft(blogTitle, blogHtml);
+    return postToBlogger(blogTitle, blogHtml);
   });
 
   // ── 7. Build log entry ──
