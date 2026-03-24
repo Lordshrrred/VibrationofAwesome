@@ -9,8 +9,8 @@ Requirements:
     pip install google-auth-oauthlib
 
 Expects in .env (or as environment variables):
-    GOOGLE_CLIENT_ID
-    GOOGLE_CLIENT_SECRET
+    BLOGGER_CLIENT_ID
+    BLOGGER_CLIENT_SECRET
 
 Writes to .env (appends/updates):
     BLOGGER_REFRESH_TOKEN
@@ -37,8 +37,8 @@ def load_dotenv(path='.env'):
 load_dotenv()
 
 # ── Config ───────────────────────────────────────────────────────────────
-CLIENT_ID     = os.environ.get('GOOGLE_CLIENT_ID', '')
-CLIENT_SECRET = os.environ.get('GOOGLE_CLIENT_SECRET', '')
+CLIENT_ID     = os.environ.get('BLOGGER_CLIENT_ID', '')
+CLIENT_SECRET = os.environ.get('BLOGGER_CLIENT_SECRET', '')
 REDIRECT_URI  = 'urn:ietf:wg:oauth:2.0:oob'   # manual copy/paste flow
 SCOPE         = 'https://www.googleapis.com/auth/blogger'
 AUTH_ENDPOINT = 'https://accounts.google.com/o/oauth2/v2/auth'
@@ -86,7 +86,7 @@ def save_token_to_env(refresh_token, env_path='.env'):
 
 def main():
     if not CLIENT_ID or not CLIENT_SECRET:
-        print('ERROR: GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET must be set in .env')
+        print('ERROR: BLOGGER_CLIENT_ID and BLOGGER_CLIENT_SECRET must be set in .env')
         sys.exit(1)
 
     auth_url = build_auth_url()
