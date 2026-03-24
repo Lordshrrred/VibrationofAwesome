@@ -5,9 +5,29 @@
  * Platforms: Bluesky · Mastodon · Facebook (VOA + EarthStar) · Pinterest
  *            Dev.to · Hashnode · Tumblr · Instagram (Publer) · Threads (Publer)
  *
- * CLI:  node scripts/syndicate.js --lane [matt|boom] --slug <post-slug> [--keyword "search term"]
+ * CLI:  node scripts/syndicate.js --lane [matt|boom] --slug <post-slug> [--keyword "search term"] [--blogger-only]
  * API:  import { syndicatePost } from "./syndicate.js"
  */
+
+/*
+  SYNDICATION CONTENT RULE
+
+  When syndicating to ANY platform ~ Blogger,
+  Bluesky, Mastodon, Pinterest, Dev.to, Hashnode,
+  Tumblr or any future platform ~ we NEVER copy
+  and paste the original article.
+
+  We always use the Claude API to generate fresh,
+  related content inspired by the source material.
+  Think of it like a human writer who read the
+  original and wrote something new from their own
+  perspective ~ same themes, different expression.
+
+  Source article = context and inspiration only.
+  Every syndicated post is original content.
+  Every syndicated post links back to VOA.
+  Every syndicated post is posted as DRAFT first.
+*/
 
 import Anthropic from "@anthropic-ai/sdk";
 import crypto    from "crypto";
@@ -463,6 +483,101 @@ async function postViaPubler(platform, caption, imageUrl) {
   return { postId: String(postId || "queued"), postUrl: null };
 }
 
+// ── Blogger (OAuth2 + Drafts API) ─────────────────────────────────────────────
+
+/** Exchange Blogger refresh token for a fresh access token */
+async function getBloggerAccessToken() {
+  const clientId     = process.env.BLOGGER_CLIENT_ID;
+  const clientSecret = process.env.BLOGGER_CLIENT_SECRET;
+  const refreshToken = process.env.BLOGGER_REFRESH_TOKEN;
+  if (!clientId || !clientSecret || !refreshToken) {
+    throw new Error("BLOGGER_CLIENT_ID, BLOGGER_CLIENT_SECRET, or BLOGGER_REFRESH_TOKEN not set");
+  }
+  const resp = await fetch("https://oauth2.googleapis.com/token", {
+    method:  "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body:    new URLSearchParams({
+      client_id:     clientId,
+      client_secret: clientSecret,
+      refresh_token: refreshToken,
+      grant_type:    "refresh_token",
+    }),
+  });
+  const data = await resp.json();
+  if (!resp.ok) throw new Error(`Blogger token refresh failed (${data.error}): ${data.error_description || "run 'python scripts/get_blogger_token.py' to regenerate"}`);
+  return data.access_token;
+}
+
+/**
+ * Use Claude to write a fresh related article inspired by the source post.
+ * Returns { title, html } — clean HTML body content only, no wrappers.
+ */
+async function generateBloggerArticle(sourceTitle, sourceText, sourceUrl, anthropic) {
+  const msg = await anthropic.messages.create({
+    model:      "claude-opus-4-6",
+    max_tokens: 2000,
+    system: `You are Matt EarthStar, the voice behind Vibration of Awesome (vibrationofawesome.com). Write in Matt's authentic personal voice: reflective, honest, spiritual but grounded — the voice of someone who has lived through real struggles and found genuine insight. Not corporate motivation or new-age fluff. Raw, direct, human.`,
+    messages: [
+      {
+        role:    "user",
+        content: `Here is one of your earlier posts from vibrationofawesome.com:
+
+TITLE: ${sourceTitle}
+SOURCE URL: ${sourceUrl}
+
+BODY TEXT:
+${sourceText}
+
+Write a NEW original article inspired by these themes but from a completely fresh angle. NOT a rewrite — a new piece. Think: a different metaphor, a more recent realization, or a personal story that connects to the same ideas.
+
+Format your response EXACTLY like this:
+TITLE: [your article title here]
+
+[article body as clean HTML using only <p>, <h2>, <blockquote>, <strong>, <em> tags]
+
+Requirements:
+- 500-700 words
+- Naturally link back to vibrationofawesome.com once in the body using: <a href="https://vibrationofawesome.com">vibrationofawesome.com</a>
+- No <html>/<head>/<body> wrappers
+- No inline styles or class attributes
+- No title tag in the HTML body`,
+      },
+    ],
+  });
+
+  const raw        = msg.content[0].text;
+  const titleMatch = raw.match(/^TITLE:\s*(.+)/m);
+  const title      = titleMatch ? titleMatch[1].trim() : `Reflections on ${sourceTitle}`;
+  const html       = raw.replace(/^TITLE:\s*.+\n*/m, "").trim();
+  return { title, html };
+}
+
+/** Post a draft to Blogger using the v3 API */
+async function postToBloggerDraft(title, htmlContent) {
+  const blogId = process.env.BLOGGER_BLOG_ID;
+  if (!blogId) throw new Error("BLOGGER_BLOG_ID not set");
+
+  const accessToken = await getBloggerAccessToken();
+  const resp = await fetch(
+    `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts/?isDraft=true`,
+    {
+      method:  "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:  `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify({ title, content: htmlContent }),
+    }
+  );
+  const data = await resp.json();
+  if (!resp.ok) throw new Error(`Blogger: ${data.error?.message || resp.status}`);
+
+  // Blogger returns the live URL even for drafts; fall back to the edit URL
+  const draftUrl = data.url ||
+    `https://draft.blogger.com/blog/${blogId}/post/edit/${data.id}`;
+  return { postId: data.id, postUrl: draftUrl };
+}
+
 // ── Syndication log ───────────────────────────────────────────────────────────
 
 function loadLog() {
@@ -523,12 +638,20 @@ export async function syndicatePost(lane, slug, options = {}) {
   const postUrl = `https://vibrationofawesome.com${post.url}`;
 
   // ── 2. Extract plain-text body excerpt ──
-  const htmlFile  = path.join(ROOT, "static", "blog", lane, "posts", `${slug}.html`);
-  let bodyText    = post.excerpt || "";
+  // Try both conventions: slug.html and slug/index.html
+  let htmlFile = path.join(ROOT, "static", "blog", lane, "posts", `${slug}.html`);
+  if (!fs.existsSync(htmlFile)) {
+    htmlFile = path.join(ROOT, "static", "blog", lane, "posts", slug, "index.html");
+  }
+
+  let bodyText   = post.excerpt || "";
+  let sourceText = post.excerpt || "";
   if (fs.existsSync(htmlFile)) {
     const raw      = fs.readFileSync(htmlFile, "utf8");
     const artMatch = raw.match(/<article[^>]*>([\s\S]*?)<\/article>/i);
-    bodyText       = artMatch ? firstWords(stripHtml(artMatch[1]), 200) : firstWords(stripHtml(raw), 200);
+    const fullText = artMatch ? stripHtml(artMatch[1]) : stripHtml(raw);
+    bodyText   = firstWords(fullText, 200);
+    sourceText = firstWords(fullText, 600);
   }
 
   console.log(`\nSyndicating: ${post.title}`);
@@ -553,6 +676,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   const results = {};
 
   async function attempt(platform, fn) {
+    if (options.bloggerOnly && platform !== "blogger") return;
     try {
       const r = await fn();
       console.log(`  ✓ ${platform}${r.postUrl ? ` → ${r.postUrl}` : ""}`);
@@ -613,6 +737,14 @@ export async function syndicatePost(lane, slug, options = {}) {
   await attempt("threads", () =>
     postViaPubler("threads", captions.threads, null));
 
+  // Blogger (DRAFT ~ AI-generated related article inspired by source)
+  await attempt("blogger", async () => {
+    const { title: blogTitle, html: blogHtml } = await generateBloggerArticle(
+      post.title, sourceText, postUrl, anthropic
+    );
+    return postToBloggerDraft(blogTitle, blogHtml);
+  });
+
   // ── 7. Build log entry ──
   const entry = {
     id:          String(Date.now()),
@@ -651,6 +783,7 @@ if (isCli) {
 
   const argv = minimist(process.argv.slice(2), {
     string:  ["lane", "slug", "keyword"],
+    boolean: ["blogger-only"],
     alias:   { l: "lane", s: "slug", k: "keyword" },
   });
 
@@ -662,7 +795,7 @@ if (isCli) {
   }
 
   try {
-    await syndicatePost(argv.lane, argv.slug, { keyword: argv.keyword });
+    await syndicatePost(argv.lane, argv.slug, { keyword: argv.keyword, bloggerOnly: argv["blogger-only"] });
   } catch (err) {
     console.error("Fatal:", err.message);
     process.exit(1);
