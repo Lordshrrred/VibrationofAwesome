@@ -138,23 +138,94 @@
   }
 
   // ── Signature mode ───────────────────────────────────────────────────────
-  // Full-width centered author block with circular photo, name in small caps,
-  // italic caption, and a subtle click-to-cycle hint. Sits below a thin hr.
-  // Click cycles through photos. Renders nothing if folder is empty.
+  // Full-width centered author block. Rectangular portrait photo (3:4, max
+  // 280px) with an SVG vine-root-circuitry ornamental frame, golden glow
+  // box-shadow, Lora italic caption in gold, name in small-caps, and a teal
+  // ✦ click to cycle ✦ hint. Sits below a thin hr rule.
   function injectSignatureStyles() {
     if (document.getElementById("voa-sig-css")) return;
     var el = document.createElement("style");
     el.id = "voa-sig-css";
     el.textContent = [
-      ".voa-sig-rule{border:none;border-top:1px solid rgba(212,175,55,0.2);margin:2.5rem 0 1.75rem;}",
+      "@keyframes voa-sig-pulse{0%,100%{opacity:0.6}50%{opacity:1}}",
+      ".voa-sig-rule{border:none;border-top:1px solid rgba(212,175,55,0.18);margin:2.5rem 0 1.75rem;}",
       ".voa-sig-block{display:block;width:100%;text-align:center;cursor:pointer;user-select:none;padding-bottom:1rem;}",
-      ".voa-sig-photo{display:block;width:160px;height:160px;object-fit:cover;border-radius:50%;border:2px solid rgba(212,175,55,0.4);margin:0 auto 0.75rem;transition:opacity 0.3s ease;}",
-      ".voa-sig-name{font-family:'Lora',Georgia,serif;font-variant:small-caps;font-size:1rem;letter-spacing:0.12em;color:rgba(208,255,248,0.65);margin-bottom:0.45rem;}",
-      ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.88rem;line-height:1.65;color:rgba(208,255,248,0.42);max-width:480px;margin:0 auto 0.6rem;min-height:1.3em;}",
-      ".voa-sig-hint{font-size:0.62rem;letter-spacing:0.1em;color:rgba(208,255,248,0.18);}"
+      ".voa-sig-frame{position:relative;display:inline-block;max-width:280px;width:100%;}",
+      ".voa-sig-photo{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;box-shadow:0 0 28px rgba(212,175,55,0.2),0 0 6px rgba(212,175,55,0.1);transition:opacity 0.3s ease;}",
+      ".voa-sig-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}",
+      ".voa-sig-svg g{animation:voa-sig-pulse 5s ease-in-out infinite;}",
+      ".voa-sig-name{font-family:'Lora',Georgia,serif;font-variant:small-caps;font-size:0.95rem;letter-spacing:0.14em;color:rgba(212,175,55,0.65);margin:0.9rem 0 0.35rem;}",
+      ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.97rem;line-height:1.7;color:rgba(212,175,55,0.75);max-width:480px;margin:0 auto 0.6rem;min-height:1.4em;}",
+      ".voa-sig-hint{font-size:0.58rem;letter-spacing:0.13em;color:#7EB8B0;opacity:0.65;}"
     ].join("\n");
     document.head.appendChild(el);
   }
+
+  // SVG ornamental frame: vine-root-circuitry corner + mid-edge ornaments.
+  // viewBox 0 0 100 133 matches the 3:4 portrait aspect ratio.
+  // overflow="visible" lets corner nodes bleed slightly outside the image.
+  var SIG_SVG_FRAME = '<svg class="voa-sig-svg" viewBox="0 0 100 133" xmlns="http://www.w3.org/2000/svg" overflow="visible" aria-hidden="true">' +
+    '<g fill="none" stroke="#D4AF37" stroke-linecap="round" stroke-linejoin="round">' +
+
+    // ── TOP-LEFT ──
+    '<path stroke-width="0.9" stroke-opacity="0.62" d="M 0,27 L 0,6 Q 0,0 6,0 L 27,0"/>' +
+    '<circle cx="0" cy="0" r="2.8" fill="#D4AF37" fill-opacity="0.55" stroke="none"/>' +
+    '<circle cx="0" cy="13" r="1.4" fill="#D4AF37" fill-opacity="0.5" stroke="none"/>' +
+    '<circle cx="13" cy="0" r="1.4" fill="#D4AF37" fill-opacity="0.5" stroke="none"/>' +
+    '<path stroke-width="0.65" stroke-opacity="0.42" d="M 0,13 Q 5,10 8,15 Q 11,20 6,23"/>' +
+    '<path stroke-width="0.65" stroke-opacity="0.42" d="M 13,0 Q 10,5 15,8 Q 20,11 23,6"/>' +
+    '<circle cx="6" cy="23" r="1" fill="#D4AF37" fill-opacity="0.38" stroke="none"/>' +
+    '<circle cx="23" cy="6" r="1" fill="#D4AF37" fill-opacity="0.38" stroke="none"/>' +
+
+    // ── TOP-RIGHT ──
+    '<path stroke-width="0.9" stroke-opacity="0.62" d="M 100,27 L 100,6 Q 100,0 94,0 L 73,0"/>' +
+    '<circle cx="100" cy="0" r="2.8" fill="#D4AF37" fill-opacity="0.55" stroke="none"/>' +
+    '<circle cx="100" cy="13" r="1.4" fill="#D4AF37" fill-opacity="0.5" stroke="none"/>' +
+    '<circle cx="87" cy="0" r="1.4" fill="#D4AF37" fill-opacity="0.5" stroke="none"/>' +
+    '<path stroke-width="0.65" stroke-opacity="0.42" d="M 100,13 Q 95,10 92,15 Q 89,20 94,23"/>' +
+    '<path stroke-width="0.65" stroke-opacity="0.42" d="M 87,0 Q 90,5 85,8 Q 80,11 77,6"/>' +
+    '<circle cx="94" cy="23" r="1" fill="#D4AF37" fill-opacity="0.38" stroke="none"/>' +
+    '<circle cx="77" cy="6" r="1" fill="#D4AF37" fill-opacity="0.38" stroke="none"/>' +
+
+    // ── BOTTOM-LEFT ──
+    '<path stroke-width="0.9" stroke-opacity="0.62" d="M 0,106 L 0,127 Q 0,133 6,133 L 27,133"/>' +
+    '<circle cx="0" cy="133" r="2.8" fill="#D4AF37" fill-opacity="0.55" stroke="none"/>' +
+    '<circle cx="0" cy="120" r="1.4" fill="#D4AF37" fill-opacity="0.5" stroke="none"/>' +
+    '<circle cx="13" cy="133" r="1.4" fill="#D4AF37" fill-opacity="0.5" stroke="none"/>' +
+    '<path stroke-width="0.65" stroke-opacity="0.42" d="M 0,120 Q 5,123 8,118 Q 11,113 6,110"/>' +
+    '<path stroke-width="0.65" stroke-opacity="0.42" d="M 13,133 Q 10,128 15,125 Q 20,122 23,127"/>' +
+    '<circle cx="6" cy="110" r="1" fill="#D4AF37" fill-opacity="0.38" stroke="none"/>' +
+    '<circle cx="23" cy="127" r="1" fill="#D4AF37" fill-opacity="0.38" stroke="none"/>' +
+
+    // ── BOTTOM-RIGHT ──
+    '<path stroke-width="0.9" stroke-opacity="0.62" d="M 100,106 L 100,127 Q 100,133 94,133 L 73,133"/>' +
+    '<circle cx="100" cy="133" r="2.8" fill="#D4AF37" fill-opacity="0.55" stroke="none"/>' +
+    '<circle cx="100" cy="120" r="1.4" fill="#D4AF37" fill-opacity="0.5" stroke="none"/>' +
+    '<circle cx="87" cy="133" r="1.4" fill="#D4AF37" fill-opacity="0.5" stroke="none"/>' +
+    '<path stroke-width="0.65" stroke-opacity="0.42" d="M 100,120 Q 95,123 92,118 Q 89,113 94,110"/>' +
+    '<path stroke-width="0.65" stroke-opacity="0.42" d="M 87,133 Q 90,128 85,125 Q 80,122 77,127"/>' +
+    '<circle cx="94" cy="110" r="1" fill="#D4AF37" fill-opacity="0.38" stroke="none"/>' +
+    '<circle cx="77" cy="127" r="1" fill="#D4AF37" fill-opacity="0.38" stroke="none"/>' +
+
+    // ── MID-EDGE ORNAMENTS ──
+    // Top center: dashes + diamond
+    '<path stroke-width="0.7" stroke-opacity="0.38" d="M 40,0 L 46,0"/>' +
+    '<path d="M 50,-2.5 L 52.5,0 L 50,2.5 L 47.5,0 Z" fill="#D4AF37" fill-opacity="0.32" stroke="none"/>' +
+    '<path stroke-width="0.7" stroke-opacity="0.38" d="M 54,0 L 60,0"/>' +
+    // Bottom center
+    '<path stroke-width="0.7" stroke-opacity="0.38" d="M 40,133 L 46,133"/>' +
+    '<path d="M 50,130.5 L 52.5,133 L 50,135.5 L 47.5,133 Z" fill="#D4AF37" fill-opacity="0.32" stroke="none"/>' +
+    '<path stroke-width="0.7" stroke-opacity="0.38" d="M 54,133 L 60,133"/>' +
+    // Left center
+    '<path stroke-width="0.7" stroke-opacity="0.38" d="M 0,56 L 0,63"/>' +
+    '<path d="M -2.5,66.5 L 0,69 L 2.5,66.5 L 0,64 Z" fill="#D4AF37" fill-opacity="0.32" stroke="none"/>' +
+    '<path stroke-width="0.7" stroke-opacity="0.38" d="M 0,70 L 0,77"/>' +
+    // Right center
+    '<path stroke-width="0.7" stroke-opacity="0.38" d="M 100,56 L 100,63"/>' +
+    '<path d="M 97.5,66.5 L 100,69 L 102.5,66.5 L 100,64 Z" fill="#D4AF37" fill-opacity="0.32" stroke="none"/>' +
+    '<path stroke-width="0.7" stroke-opacity="0.38" d="M 100,70 L 100,77"/>' +
+
+    '</g></svg>';
 
   function initSignature(container, metadata) {
     var folder = (container.getAttribute("data-folder") || "matt").trim();
@@ -175,9 +246,19 @@
     block.className = "voa-sig-block";
     block.title = "Click to cycle photos";
 
+    // Frame wraps image + SVG ornament overlay
+    var frame = document.createElement("div");
+    frame.className = "voa-sig-frame";
+
     var img = document.createElement("img");
     img.className = "voa-sig-photo";
     img.loading = "lazy";
+
+    // Inject SVG frame via innerHTML on a temp wrapper
+    var svgWrap = document.createElement("div");
+    svgWrap.innerHTML = SIG_SVG_FRAME;
+    frame.appendChild(img);
+    frame.appendChild(svgWrap.firstChild);
 
     var nameEl = document.createElement("p");
     nameEl.className = "voa-sig-name";
@@ -189,7 +270,7 @@
 
     var hint = document.createElement("p");
     hint.className = "voa-sig-hint";
-    hint.textContent = "\u2014 click to cycle \u2014";
+    hint.textContent = "\u2736 click to cycle \u2736";
 
     function render(photo) {
       img.alt = photo.caption || name || "";
@@ -211,7 +292,7 @@
     };
 
     render(deck[idx]);
-    block.appendChild(img);
+    block.appendChild(frame);
     block.appendChild(nameEl);
     block.appendChild(cap);
     block.appendChild(hint);
