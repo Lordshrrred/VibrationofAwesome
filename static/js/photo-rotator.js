@@ -130,117 +130,129 @@
   // ══════════════════════════════════════════════════════════════════════════
   // ── FOREST TEMPLE signature mode (matt lane) ─────────────────────────────
   // ══════════════════════════════════════════════════════════════════════════
-  // 4:3 landscape rectangle, fixed via padding-bottom:75% container trick so
-  // portrait/square source images never distort the frame shape.
-  // Sacred geometry SVG floats OUTSIDE the image border, forest green (#2D5A3D),
-  // subtly orbiting / pulsing. Lora italic caption. Teal hint text.
+  // 3:4 portrait default (133.33% padding-bottom), switches to 4:3 landscape
+  // for treeyoga/fulllotus. Image always fills container, shape never changes.
+  // .voa-sig-frame has 24px padding → creates gap zone between image and SVG.
+  // SVG (inset:0 on frame) draws ONLY in that 24px gap — never over the image.
+  // Electric neon green (#39FF14) energy field: brackets, nodes, triangles,
+  // dashed traveling lines, chevrons, organic vines. drop-shadow glow on SVG.
 
   function injectSignatureStyles() {
     if (document.getElementById("voa-sig-css")) return;
     var el = document.createElement("style");
     el.id = "voa-sig-css";
     el.textContent = [
-      // Keyframes
+      // Keyframes — neon green energy field
+      "@keyframes voa-geo-glow{0%,100%{opacity:0.5}50%{opacity:0.95}}",
       "@keyframes voa-geo-pulse{0%,100%{opacity:0.45}50%{opacity:0.9}}",
-      "@keyframes voa-geo-floatN{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}",
-      "@keyframes voa-geo-floatS{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}",
-      "@keyframes voa-geo-floatW{0%,100%{transform:translateX(0)}50%{transform:translateX(-4px)}}",
-      "@keyframes voa-geo-floatE{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}",
-      "@keyframes voa-geo-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}",
-      "@keyframes voa-geo-travel{from{stroke-dashoffset:0}to{stroke-dashoffset:-382}}",
+      "@keyframes voa-geo-tri{0%,100%{opacity:0.4}50%{opacity:0.85}}",
+      "@keyframes voa-geo-travel{from{stroke-dashoffset:0}to{stroke-dashoffset:-8}}",
       // Layout
-      ".voa-sig-rule{border:none;border-top:1px solid rgba(45,90,61,0.25);margin:2.5rem 0 1.75rem;}",
+      ".voa-sig-rule{border:none;border-top:1px solid rgba(57,255,20,0.12);margin:2.5rem 0 1.75rem;}",
       ".voa-sig-block{display:block;width:100%;text-align:center;cursor:pointer;user-select:none;padding-bottom:1rem;}",
-      // Frame wrapper: max-width, inline-block, relative for SVG overlay
-      ".voa-sig-frame{position:relative;display:inline-block;max-width:220px;width:100%;}",
-      // Image wrapper: padding-bottom 133.33% = 3:4 portrait default
-      ".voa-sig-img-wrap{position:relative;width:100%;padding-bottom:133.33%;overflow:hidden;border-radius:8px;box-shadow:0 0 32px rgba(45,90,61,0.35),0 0 8px rgba(45,90,61,0.2);}",
+      // Frame: 24px padding creates the gap zone; SVG covers this full area (inset:0 on frame)
+      ".voa-sig-frame{position:relative;display:inline-block;max-width:268px;width:100%;padding:24px;box-sizing:border-box;}",
+      // Image wrapper: fills frame content area (268-48=220px); no box-shadow here
+      ".voa-sig-img-wrap{position:relative;width:100%;padding-bottom:133.33%;overflow:hidden;border-radius:8px;}",
       ".voa-sig-photo{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:8px;transition:opacity 0.3s ease;}",
-      // SVG overlay (inset on img-wrap, overflow:visible for outside elements)
+      // Glow overlay: sits above image, provides neon border + inner glow
+      ".voa-sig-img-glow{position:absolute;inset:0;border-radius:8px;border:1px solid rgba(57,255,20,0.22);box-shadow:inset 0 0 14px rgba(57,255,20,0.15);pointer-events:none;z-index:2;}",
+      // SVG: covers full frame including 24px padding gap zone; drop-shadow set inline on SVG element
       ".voa-sig-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}",
-      // Text elements
-      ".voa-sig-name{font-family:'Lora',Georgia,serif;font-variant:small-caps;font-size:0.95rem;letter-spacing:0.14em;color:rgba(45,90,61,0.85);margin:0.9rem 0 0.35rem;}",
-      ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.97rem;line-height:1.7;color:rgba(45,90,61,0.9);max-width:480px;margin:0 auto 0.6rem;min-height:1.4em;}",
+      // Text elements — electric green tone
+      ".voa-sig-name{font-family:'Lora',Georgia,serif;font-variant:small-caps;font-size:0.95rem;letter-spacing:0.14em;color:rgba(57,255,20,0.7);margin:0.9rem 0 0.35rem;}",
+      ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.97rem;line-height:1.7;color:rgba(57,255,20,0.55);max-width:480px;margin:0 auto 0.6rem;min-height:1.4em;}",
       ".voa-sig-hint{font-size:0.58rem;letter-spacing:0.13em;color:#7EB8B0;opacity:0.65;}"
     ].join("\n");
     document.head.appendChild(el);
   }
 
-  // Sacred geometry SVG frame for Forest Temple.
-  // viewBox="0 0 100 75" (4:3). All ornaments are placed OUTSIDE 0,0–100,75
-  // using overflow:visible. Four layers:
-  //   1. Outer perimeter dashed line with traveling-light animation
-  //   2. Corner bracket marks + circle nodes at extreme corners
-  //   3. Mid-edge diamonds that float away from the image
-  //   4. Slow-spinning ring of sacred-geometry micro-nodes (6 outer satellites)
+  // Sacred geometry energy field SVG for Forest Temple.
+  // viewBox="0 0 268 341" matches the padded frame at max-width (portrait).
+  // Image zone: x:24-244, y:24-317. All ornaments drawn in the 24px margin gap
+  // zone OUTSIDE that rectangle — the image itself is never covered.
+  // SVG is positioned inset:0 on .voa-sig-frame (which has padding:24px),
+  // so the SVG coordinate space exactly maps to the full padded frame.
+  // For landscape images, render() updates viewBox to "0 0 268 213".
   var SIG_SVG_FRAME = (
-    '<svg class="voa-sig-svg" viewBox="0 0 100 75" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" overflow="visible" aria-hidden="true">' +
+    '<svg class="voa-sig-svg" viewBox="0 0 268 341" preserveAspectRatio="none" ' +
+    'xmlns="http://www.w3.org/2000/svg" overflow="visible" aria-hidden="true" ' +
+    'style="filter:drop-shadow(0 0 6px #39FF14);">' +
 
-    // ── Layer 1: Traveling perimeter line ───────────────────────────────────
-    // Rect slightly outside image: -5,-5 to 105,80 (perimeter ~380 units)
-    '<rect x="-5" y="-5" width="110" height="85" rx="2" ry="2"' +
-    '  fill="none" stroke="#2D5A3D" stroke-width="0.6" stroke-opacity="0.5"' +
-    '  stroke-dasharray="6 10"' +
-    '  style="animation:voa-geo-travel 18s linear infinite;"/>' +
-
-    // ── Layer 2: Corner brackets + corner circle nodes ───────────────────────
-    // Top-left bracket
-    '<path d="M0,16 L0,0 L16,0" fill="none" stroke="#2D5A3D" stroke-width="1.1" stroke-opacity="0.7" stroke-linecap="round"/>' +
-    '<circle cx="0" cy="0" r="2.5" fill="#2D5A3D" fill-opacity="0.7" style="animation:voa-geo-pulse 4s ease-in-out infinite;"/>' +
-    // Top-right bracket
-    '<path d="M100,16 L100,0 L84,0" fill="none" stroke="#2D5A3D" stroke-width="1.1" stroke-opacity="0.7" stroke-linecap="round"/>' +
-    '<circle cx="100" cy="0" r="2.5" fill="#2D5A3D" fill-opacity="0.7" style="animation:voa-geo-pulse 4s ease-in-out infinite 0.5s;"/>' +
-    // Bottom-left bracket
-    '<path d="M0,59 L0,75 L16,75" fill="none" stroke="#2D5A3D" stroke-width="1.1" stroke-opacity="0.7" stroke-linecap="round"/>' +
-    '<circle cx="0" cy="75" r="2.5" fill="#2D5A3D" fill-opacity="0.7" style="animation:voa-geo-pulse 4s ease-in-out infinite 1s;"/>' +
-    // Bottom-right bracket
-    '<path d="M100,59 L100,75 L84,75" fill="none" stroke="#2D5A3D" stroke-width="1.1" stroke-opacity="0.7" stroke-linecap="round"/>' +
-    '<circle cx="100" cy="75" r="2.5" fill="#2D5A3D" fill-opacity="0.7" style="animation:voa-geo-pulse 4s ease-in-out infinite 1.5s;"/>' +
-
-    // ── Layer 3: Mid-edge diamond markers, floating outward ──────────────────
-    // Top center diamond — floats up
-    '<g style="animation:voa-geo-floatN 5s ease-in-out infinite;">' +
-    '<path d="M50,-9 L53,-6 L50,-3 L47,-6 Z" fill="#2D5A3D" fill-opacity="0.55" stroke="#2D5A3D" stroke-width="0.4" stroke-opacity="0.6"/>' +
-    '<line x1="50" y1="-3" x2="50" y2="0" stroke="#2D5A3D" stroke-width="0.5" stroke-opacity="0.4"/>' +
-    '</g>' +
-    // Bottom center diamond — floats down
-    '<g style="animation:voa-geo-floatS 5s ease-in-out infinite 0.8s;">' +
-    '<path d="M50,84 L53,81 L50,78 L47,81 Z" fill="#2D5A3D" fill-opacity="0.55" stroke="#2D5A3D" stroke-width="0.4" stroke-opacity="0.6"/>' +
-    '<line x1="50" y1="75" x2="50" y2="78" stroke="#2D5A3D" stroke-width="0.5" stroke-opacity="0.4"/>' +
-    '</g>' +
-    // Left center diamond — floats left
-    '<g style="animation:voa-geo-floatW 5.5s ease-in-out infinite 0.3s;">' +
-    '<path d="M-10,37.5 L-7,34.5 L-4,37.5 L-7,40.5 Z" fill="#2D5A3D" fill-opacity="0.55" stroke="#2D5A3D" stroke-width="0.4" stroke-opacity="0.6"/>' +
-    '<line x1="-4" y1="37.5" x2="0" y2="37.5" stroke="#2D5A3D" stroke-width="0.5" stroke-opacity="0.4"/>' +
-    '</g>' +
-    // Right center diamond — floats right
-    '<g style="animation:voa-geo-floatE 5.5s ease-in-out infinite 1.1s;">' +
-    '<path d="M110,37.5 L107,34.5 L104,37.5 L107,40.5 Z" fill="#2D5A3D" fill-opacity="0.55" stroke="#2D5A3D" stroke-width="0.4" stroke-opacity="0.6"/>' +
-    '<line x1="100" y1="37.5" x2="104" y2="37.5" stroke="#2D5A3D" stroke-width="0.5" stroke-opacity="0.4"/>' +
+    // ── Layer 1: Corner L-brackets (photo corner mount style) ────────────────
+    // Arms: 18px, inset 4px from corner edge. stroke-linecap:square for crisp ends.
+    '<g fill="none" stroke="#39FF14" stroke-width="1.8" stroke-linecap="square" ' +
+    'style="animation:voa-geo-glow 9s ease-in-out infinite;">' +
+    '<path d="M4,22 L4,4 L22,4" stroke-opacity="0.72"/>' +
+    '<path d="M264,22 L264,4 L246,4" stroke-opacity="0.72"/>' +
+    '<path d="M4,319 L4,337 L22,337" stroke-opacity="0.72"/>' +
+    '<path d="M264,319 L264,337 L246,337" stroke-opacity="0.72"/>' +
     '</g>' +
 
-    // ── Layer 4: Slow-spinning sacred ring of 6 micro-nodes ─────────────────
-    // These rotate around the image center (50,37.5) — placed at radius 60
-    // from center, equally spaced (60° apart).  The <g> rotates with CSS.
-    '<g style="transform-origin:50px 37.5px;animation:voa-geo-spin 60s linear infinite;opacity:0.5;">' +
-    // Node 0° (top): center + r*sin(0), center - r*cos(0) → (50, -22.5)
-    '<circle cx="50" cy="-22.5" r="1.4" fill="#2D5A3D"/>' +
-    '<circle cx="50" cy="-22.5" r="3" fill="none" stroke="#2D5A3D" stroke-width="0.4"/>' +
-    // Node 60°: (50 + 60*sin60, 37.5 - 60*cos60) = (50+51.96, 37.5-30) = (101.96, 7.5)
-    '<circle cx="102" cy="7.5" r="1.1" fill="#2D5A3D"/>' +
-    // Node 120°: (50 + 60*sin120, 37.5 - 60*cos120) = (50+51.96, 37.5+30) = (101.96, 67.5)
-    '<circle cx="102" cy="67.5" r="1.1" fill="#2D5A3D"/>' +
-    // Node 180° (bottom): (50, 97.5)
-    '<circle cx="50" cy="97.5" r="1.4" fill="#2D5A3D"/>' +
-    '<circle cx="50" cy="97.5" r="3" fill="none" stroke="#2D5A3D" stroke-width="0.4"/>' +
-    // Node 240°: (50-51.96, 67.5) = (-1.96, 67.5)
-    '<circle cx="-2" cy="67.5" r="1.1" fill="#2D5A3D"/>' +
-    // Node 300°: (50-51.96, 7.5) = (-1.96, 7.5)
-    '<circle cx="-2" cy="7.5" r="1.1" fill="#2D5A3D"/>' +
-    // Thin lines connecting opposite nodes (hexagram)
-    '<line x1="50" y1="-22.5" x2="50" y2="97.5" stroke="#2D5A3D" stroke-width="0.3" stroke-opacity="0.35"/>' +
-    '<line x1="102" y1="7.5" x2="-2" y2="67.5" stroke="#2D5A3D" stroke-width="0.3" stroke-opacity="0.35"/>' +
-    '<line x1="102" y1="67.5" x2="-2" y2="7.5" stroke="#2D5A3D" stroke-width="0.3" stroke-opacity="0.35"/>' +
+    // ── Layer 2: Circle nodes at bracket corners and arm endpoints ────────────
+    '<g fill="#39FF14" stroke="none" style="animation:voa-geo-pulse 8s ease-in-out infinite;">' +
+    '<circle cx="4"   cy="4"   r="2.5" fill-opacity="0.75"/>' +
+    '<circle cx="264" cy="4"   r="2.5" fill-opacity="0.75" style="animation-delay:0.5s"/>' +
+    '<circle cx="4"   cy="337" r="2.5" fill-opacity="0.75" style="animation-delay:1s"/>' +
+    '<circle cx="264" cy="337" r="2.5" fill-opacity="0.75" style="animation-delay:1.5s"/>' +
+    '<circle cx="22"  cy="4"   r="1.3" fill-opacity="0.55"/>' +
+    '<circle cx="4"   cy="22"  r="1.3" fill-opacity="0.55"/>' +
+    '<circle cx="246" cy="4"   r="1.3" fill-opacity="0.55"/>' +
+    '<circle cx="264" cy="22"  r="1.3" fill-opacity="0.55"/>' +
+    '<circle cx="22"  cy="337" r="1.3" fill-opacity="0.55"/>' +
+    '<circle cx="4"   cy="319" r="1.3" fill-opacity="0.55"/>' +
+    '<circle cx="246" cy="337" r="1.3" fill-opacity="0.55"/>' +
+    '<circle cx="264" cy="319" r="1.3" fill-opacity="0.55"/>' +
+    '</g>' +
+
+    // ── Layer 3: Small triangles near corners pointing outward ────────────────
+    // Top strip (y<24): triangles pointing downward from top edge
+    // Left/right strips: triangles pointing inward from side edges
+    // Bottom strip (y>317): triangles pointing upward from bottom edge
+    '<g fill="#39FF14" style="animation:voa-geo-tri 11s ease-in-out infinite;">' +
+    '<polygon points="28,4  36,4  32,12"  fill-opacity="0.55"/>' +
+    '<polygon points="4,28  4,36  12,32"  fill-opacity="0.55"/>' +
+    '<polygon points="32,4  38,4  35,9"   fill-opacity="0.30"/>' +
+    '<polygon points="240,4  232,4  236,12"  fill-opacity="0.55"/>' +
+    '<polygon points="264,28 264,36 256,32"  fill-opacity="0.55"/>' +
+    '<polygon points="228,4  234,4  231,9"   fill-opacity="0.30"/>' +
+    '<polygon points="28,337  36,337  32,329"  fill-opacity="0.55"/>' +
+    '<polygon points="4,305   4,313  12,309"   fill-opacity="0.55"/>' +
+    '<polygon points="32,337  38,337  35,332"  fill-opacity="0.30"/>' +
+    '<polygon points="240,337 232,337 236,329"  fill-opacity="0.55"/>' +
+    '<polygon points="264,313 264,305 256,309"  fill-opacity="0.55"/>' +
+    '<polygon points="228,337 234,337 231,332"  fill-opacity="0.30"/>' +
+    '</g>' +
+
+    // ── Layer 4: Dashed edge lines — corner to midpoint, traveling light ──────
+    // Run along center of each 24px margin strip (y=12, y=329, x=12, x=256).
+    // Lines stop before midpoint creating a fade-out-at-center effect.
+    '<g fill="none" stroke="#39FF14" stroke-width="0.9" stroke-dasharray="3 5" stroke-linecap="round">' +
+    '<line x1="22"  y1="12"  x2="108" y2="12"  stroke-opacity="0.5" style="animation:voa-geo-travel 10s linear infinite;"/>' +
+    '<line x1="246" y1="12"  x2="160" y2="12"  stroke-opacity="0.5" style="animation:voa-geo-travel 10s linear infinite;"/>' +
+    '<line x1="22"  y1="329" x2="108" y2="329" stroke-opacity="0.5" style="animation:voa-geo-travel 10s linear infinite 2.5s;"/>' +
+    '<line x1="246" y1="329" x2="160" y2="329" stroke-opacity="0.5" style="animation:voa-geo-travel 10s linear infinite 2.5s;"/>' +
+    '<line x1="12"  y1="22"  x2="12"  y2="138" stroke-opacity="0.5" style="animation:voa-geo-travel 10s linear infinite 5s;"/>' +
+    '<line x1="12"  y1="319" x2="12"  y2="203" stroke-opacity="0.5" style="animation:voa-geo-travel 10s linear infinite 5s;"/>' +
+    '<line x1="256" y1="22"  x2="256" y2="138" stroke-opacity="0.5" style="animation:voa-geo-travel 10s linear infinite 7.5s;"/>' +
+    '<line x1="256" y1="319" x2="256" y2="203" stroke-opacity="0.5" style="animation:voa-geo-travel 10s linear infinite 7.5s;"/>' +
+    '</g>' +
+
+    // ── Layer 5: Arrow/chevron marks at corner tips, pointing outward ─────────
+    '<g fill="none" stroke="#39FF14" stroke-width="1.1" stroke-linecap="round" stroke-opacity="0.45">' +
+    '<path d="M7,11  L2,2   L11,7"/>' +
+    '<path d="M261,11 L266,2  L257,7"/>' +
+    '<path d="M7,330  L2,339  L11,334"/>' +
+    '<path d="M261,330 L266,339 L257,334"/>' +
+    '</g>' +
+
+    // ── Layer 6: Organic vine strokes at TR and BL corners ────────────────────
+    // Contrast the angular geometry — one organic tendril at each of two corners.
+    '<g fill="none" stroke="#39FF14" stroke-width="0.9" stroke-linecap="round" stroke-opacity="0.38">' +
+    '<path d="M246,4 C250,1 258,2 262,6 C265,10 262,16 258,18 C254,20 250,18 249,22"/>' +
+    '<circle cx="262" cy="6" r="1.5" fill="#39FF14" fill-opacity="0.35" stroke="none"/>' +
+    '<path d="M22,337 C18,340 10,340 6,336 C2,332 2,325 6,322 C10,319 16,322 18,318"/>' +
+    '<circle cx="6" cy="336" r="1.5" fill="#39FF14" fill-opacity="0.35" stroke="none"/>' +
     '</g>' +
 
     '</svg>'
@@ -269,7 +281,7 @@
     var frame = document.createElement("div");
     frame.className = "voa-sig-frame";
 
-    // .voa-sig-img-wrap: the 4:3 padding-bottom container (shape is always 4:3)
+    // .voa-sig-img-wrap: portrait padding-bottom container (shape locked via CSS)
     var imgWrap = document.createElement("div");
     imgWrap.className = "voa-sig-img-wrap";
 
@@ -277,13 +289,20 @@
     img.className = "voa-sig-photo";
     img.loading = "lazy";
 
-    // Inject SVG frame via innerHTML on a temp wrapper
+    // Glow overlay: sits above the image, provides neon border + inner glow
+    var glow = document.createElement("div");
+    glow.className = "voa-sig-img-glow";
+
+    // SVG energy field: injected onto .voa-sig-frame (not imgWrap) so it covers
+    // the full 24px padding gap zone around the image, never over the image itself.
     var svgWrap = document.createElement("div");
     svgWrap.innerHTML = SIG_SVG_FRAME;
+    var svgEl = svgWrap.firstChild;
 
     imgWrap.appendChild(img);
-    imgWrap.appendChild(svgWrap.firstChild);
+    imgWrap.appendChild(glow);
     frame.appendChild(imgWrap);
+    frame.appendChild(svgEl);
 
     var nameEl = document.createElement("p");
     nameEl.className = "voa-sig-name";
@@ -303,6 +322,9 @@
     function render(photo) {
       var isLandscape = LANDSCAPE_FILES.indexOf(photo.filename) !== -1;
       imgWrap.style.paddingBottom = isLandscape ? "75%" : "133.33%";
+      // Keep SVG viewBox in sync: portrait 268×341, landscape 268×213
+      // (frame = 268px wide, padding 24px each side; 220×ratio + 48 = height)
+      svgEl.setAttribute("viewBox", "0 0 268 " + (isLandscape ? "213" : "341"));
       img.alt = photo.caption || name || "";
       img.src = photo.url;
       cap.textContent = photo.caption || "";
