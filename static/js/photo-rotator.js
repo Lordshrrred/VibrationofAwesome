@@ -147,6 +147,8 @@
       "@keyframes voa-geo-pulse{0%,100%{opacity:0.45}50%{opacity:0.9}}",
       "@keyframes voa-geo-tri{0%,100%{opacity:0.4}50%{opacity:0.85}}",
       "@keyframes voa-geo-travel{from{stroke-dashoffset:0}to{stroke-dashoffset:-8}}",
+      "@keyframes voa-tri-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}",
+      "@keyframes voa-tri-breathe{0%,100%{opacity:0.4}50%{opacity:0.9}}",
       // Layout
       ".voa-sig-rule{border:none;border-top:1px solid rgba(57,255,20,0.12);margin:2.5rem 0 1.75rem;}",
       ".voa-sig-block{display:block;width:100%;text-align:center;cursor:pointer;user-select:none;padding-bottom:1rem;}",
@@ -254,6 +256,60 @@
     '<path d="M22,337 C18,340 10,340 6,336 C2,332 2,325 6,322 C10,319 16,322 18,318"/>' +
     '<circle cx="6" cy="336" r="1.5" fill="#39FF14" fill-opacity="0.35" stroke="none"/>' +
     '</g>' +
+
+    // ── Layer 7: Triforces — three rotating sacred triangle formations ────────
+    // Classic Zelda triforce: two equilateral triangles on bottom, one on top.
+    // Stroke only (no fill) so they feel ethereal. Each group rotates around its
+    // own center via transform-box:fill-box + transform-origin:center.
+    // Three different speeds (15s, 22s, 30s) so they never sync.
+
+    // Large triforce at TR corner (side s=10, bx=248, by=2, h=8.66)
+    '<g fill="none" stroke="#39FF14" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.75" ' +
+    'style="transform-box:fill-box;transform-origin:center;animation:voa-tri-spin 15s linear infinite,voa-tri-breathe 7s ease-in-out infinite;">' +
+    '<polygon points="248,19.3 258,19.3 253,10.7"/>' +
+    '<polygon points="258,19.3 268,19.3 263,10.7"/>' +
+    '<polygon points="253,10.7 263,10.7 258,2"/>' +
+    '</g>' +
+
+    // Small triforce at BL corner (side s=7, bx=4, by=324, h=6.06)
+    '<g fill="none" stroke="#39FF14" stroke-width="0.8" stroke-linejoin="round" stroke-opacity="0.65" ' +
+    'style="transform-box:fill-box;transform-origin:center;animation:voa-tri-spin 22s linear infinite 3s,voa-tri-breathe 8s ease-in-out infinite 1s;">' +
+    '<polygon points="4,336.1 11,336.1 7.5,330.1"/>' +
+    '<polygon points="11,336.1 18,336.1 14.5,330.1"/>' +
+    '<polygon points="7.5,330.1 14.5,330.1 11,324"/>' +
+    '</g>' +
+
+    // Tiny triforce at TL corner (side s=5, bx=6, by=4, h=4.33) — more faded
+    '<g fill="none" stroke="#39FF14" stroke-width="0.65" stroke-linejoin="round" stroke-opacity="0.45" ' +
+    'style="transform-box:fill-box;transform-origin:center;animation:voa-tri-spin 30s linear infinite 1.5s,voa-tri-breathe 10s ease-in-out infinite 4s;">' +
+    '<polygon points="6,12.7 11,12.7 8.5,8.3"/>' +
+    '<polygon points="11,12.7 16,12.7 13.5,8.3"/>' +
+    '<polygon points="8.5,8.3 13.5,8.3 11,4"/>' +
+    '</g>' +
+
+    // ── Layer 8: Fragment triangles — single drifting broken triforce pieces ───
+    // Four standalone equilateral triangles scattered at other corners/edges.
+    // Each rotates independently on its own axis at a different speed + phase.
+
+    // BR corner fragment (side s=6, pointing up)
+    '<polygon fill="none" stroke="#39FF14" stroke-width="0.75" stroke-linejoin="round" stroke-opacity="0.6" ' +
+    'points="258,325 255,330.2 261,330.2" ' +
+    'style="transform-box:fill-box;transform-origin:center;animation:voa-tri-spin 25s linear infinite 6s,voa-tri-breathe 9s ease-in-out infinite 2s;"/>' +
+
+    // Right edge mid-height fragment (side s=5, pointing up)
+    '<polygon fill="none" stroke="#39FF14" stroke-width="0.65" stroke-linejoin="round" stroke-opacity="0.5" ' +
+    'points="259,168 256.5,172.3 261.5,172.3" ' +
+    'style="transform-box:fill-box;transform-origin:center;animation:voa-tri-spin 35s linear infinite 2s,voa-tri-breathe 6s ease-in-out infinite 5s;"/>' +
+
+    // Bottom center edge fragment (side s=4)
+    '<polygon fill="none" stroke="#39FF14" stroke-width="0.6" stroke-linejoin="round" stroke-opacity="0.45" ' +
+    'points="134,320 132,323.5 136,323.5" ' +
+    'style="transform-box:fill-box;transform-origin:center;animation:voa-tri-spin 20s linear infinite 8s,voa-tri-breathe 11s ease-in-out infinite 3s;"/>' +
+
+    // Left edge mid-height fragment (side s=4)
+    '<polygon fill="none" stroke="#39FF14" stroke-width="0.6" stroke-linejoin="round" stroke-opacity="0.45" ' +
+    'points="7,198 5,201.5 9,201.5" ' +
+    'style="transform-box:fill-box;transform-origin:center;animation:voa-tri-spin 28s linear infinite 4s,voa-tri-breathe 8s ease-in-out infinite 7s;"/>' +
 
     '</svg>'
   );
