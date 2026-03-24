@@ -6,7 +6,7 @@ Usage:
     python scripts/get_blogger_token.py
 
 Requirements:
-    pip install google-auth-oauthlib
+    No third-party packages — stdlib only.
 
 Expects in .env (or as environment variables):
     BLOGGER_CLIENT_ID
@@ -19,8 +19,11 @@ Writes to .env (appends/updates):
 import os
 import sys
 import json
+import webbrowser
 import urllib.parse
 import urllib.request
+import http.server
+import threading
 
 # ── Load .env manually (no dotenv dependency required) ──────────────────
 def load_dotenv(path='.env'):
@@ -37,12 +40,56 @@ def load_dotenv(path='.env'):
 load_dotenv()
 
 # ── Config ───────────────────────────────────────────────────────────────
-CLIENT_ID     = os.environ.get('BLOGGER_CLIENT_ID', '')
-CLIENT_SECRET = os.environ.get('BLOGGER_CLIENT_SECRET', '')
-REDIRECT_URI  = 'urn:ietf:wg:oauth:2.0:oob'   # manual copy/paste flow
-SCOPE         = 'https://www.googleapis.com/auth/blogger'
-AUTH_ENDPOINT = 'https://accounts.google.com/o/oauth2/v2/auth'
+CLIENT_ID      = os.environ.get('BLOGGER_CLIENT_ID', '')
+CLIENT_SECRET  = os.environ.get('BLOGGER_CLIENT_SECRET', '')
+REDIRECT_URI   = 'http://localhost:8080'
+SCOPE          = 'https://www.googleapis.com/auth/blogger'
+AUTH_ENDPOINT  = 'https://accounts.google.com/o/oauth2/v2/auth'
 TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token'
+
+# ── Localhost callback server ─────────────────────────────────────────────
+
+_captured_code  = None
+_captured_error = None
+
+class _CallbackHandler(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        global _captured_code, _captured_error
+        parsed = urllib.parse.urlparse(self.path)
+        params = urllib.parse.parse_qs(parsed.query)
+
+        if 'code' in params:
+            _captured_code = params['code'][0]
+            body = b'<h1>Authorization successful!</h1><p>You can close this tab and return to the terminal.</p>'
+            self.send_response(200)
+        elif 'error' in params:
+            _captured_error = params.get('error', ['unknown'])[0]
+            msg = f'Authorization failed: {_captured_error}'.encode()
+            body = b'<h1>' + msg + b'</h1><p>You can close this tab.</p>'
+            self.send_response(400)
+        else:
+            # Ignore favicon / other noise
+            self.send_response(204)
+            self.end_headers()
+            return
+
+        self.send_header('Content-Type', 'text/html; charset=utf-8')
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def log_message(self, fmt, *args):
+        pass  # suppress server output
+
+def _wait_for_callback():
+    """Block until the browser hits localhost:8080 with a code or error."""
+    server = http.server.HTTPServer(('localhost', 8080), _CallbackHandler)
+    # Keep handling requests until we get the code (ignores favicon etc.)
+    while _captured_code is None and _captured_error is None:
+        server.handle_request()
+    server.server_close()
+
+# ── OAuth helpers ─────────────────────────────────────────────────────────
 
 def build_auth_url():
     params = {
@@ -84,6 +131,8 @@ def save_token_to_env(refresh_token, env_path='.env'):
     with open(env_path, 'w') as f:
         f.writelines(lines)
 
+# ── Main ──────────────────────────────────────────────────────────────────
+
 def main():
     if not CLIENT_ID or not CLIENT_SECRET:
         print('ERROR: BLOGGER_CLIENT_ID and BLOGGER_CLIENT_SECRET must be set in .env')
@@ -93,25 +142,30 @@ def main():
 
     print()
     print('=' * 70)
-    print('  BLOGGER OAUTH — manual authorization')
+    print('  BLOGGER OAUTH — localhost redirect flow')
     print('=' * 70)
     print()
-    print('Open this URL in Microsoft Edge:')
+    print('Opening authorization URL in your browser...')
+    print('If it does not open automatically, paste this URL into Edge:')
     print()
     print(f'  {auth_url}')
     print()
-    print('Sign in with the Google account that owns the Blogger blog.')
-    print('After approving, Google will show you an authorization code.')
-    print()
+    print('Waiting for callback on http://localhost:8080 ...')
 
-    auth_code = input('Paste the authorization code here and press Enter: ').strip()
+    # Try to open the browser; don't fail if it can't
+    try:
+        webbrowser.open(auth_url)
+    except Exception:
+        pass
 
-    if not auth_code:
-        print('ERROR: No code entered.')
+    _wait_for_callback()
+
+    if _captured_error:
+        print(f'\nERROR: Authorization denied — {_captured_error}')
         sys.exit(1)
 
-    print()
-    print('Exchanging code for tokens...')
+    auth_code = _captured_code
+    print('Authorization code received. Exchanging for tokens...')
 
     try:
         token_data = exchange_code(auth_code)
