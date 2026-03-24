@@ -138,65 +138,72 @@
   }
 
   // ── Signature mode ───────────────────────────────────────────────────────
-  // Small 130px-wide image floated right with italic caption.
+  // Full-width centered author block with circular photo, name in small caps,
+  // italic caption, and a subtle click-to-cycle hint. Sits below a thin hr.
   // Click cycles through photos. Renders nothing if folder is empty.
+  function injectSignatureStyles() {
+    if (document.getElementById("voa-sig-css")) return;
+    var el = document.createElement("style");
+    el.id = "voa-sig-css";
+    el.textContent = [
+      ".voa-sig-rule{border:none;border-top:1px solid rgba(212,175,55,0.2);margin:2.5rem 0 1.75rem;}",
+      ".voa-sig-block{display:block;width:100%;text-align:center;cursor:pointer;user-select:none;padding-bottom:1rem;}",
+      ".voa-sig-photo{display:block;width:160px;height:160px;object-fit:cover;border-radius:50%;border:2px solid rgba(212,175,55,0.4);margin:0 auto 0.75rem;transition:opacity 0.3s ease;}",
+      ".voa-sig-name{font-family:'Lora',Georgia,serif;font-variant:small-caps;font-size:1rem;letter-spacing:0.12em;color:rgba(208,255,248,0.65);margin-bottom:0.45rem;}",
+      ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.88rem;line-height:1.65;color:rgba(208,255,248,0.42);max-width:480px;margin:0 auto 0.6rem;min-height:1.3em;}",
+      ".voa-sig-hint{font-size:0.62rem;letter-spacing:0.1em;color:rgba(208,255,248,0.18);}"
+    ].join("\n");
+    document.head.appendChild(el);
+  }
+
   function initSignature(container, metadata) {
     var folder = (container.getAttribute("data-folder") || "matt").trim();
+    var name   = (container.getAttribute("data-name")   || (folder === "matt" ? "Matt EarthStar" : "")).trim();
     var photos = buildPhotoList(metadata, folder, "");
     if (photos.length === 0) return;
 
+    injectSignatureStyles();
+
     var deck = shuffle(photos);
     var idx  = 0;
-
-    var wrapper = document.createElement("div");
-    wrapper.className = "voa-sig-block";
-    wrapper.title = "Click to see another photo";
-    wrapper.style.cssText = [
-      "display:inline-block",
-      "float:right",
-      "clear:right",
-      "margin:0 0 1rem 1.5rem",
-      "width:130px",
-      "cursor:pointer",
-      "user-select:none"
-    ].join(";");
-
-    var img = document.createElement("img");
-    img.style.cssText = [
-      "display:block",
-      "width:130px",
-      "height:auto",
-      "border-radius:6px",
-      "border:1px solid rgba(255,179,0,0.18)",
-      "transition:opacity 0.25s ease"
-    ].join(";");
-
-    var cap = document.createElement("p");
-    cap.style.cssText = [
-      "margin:0.45rem 0 0",
-      "font-family:'Lora',serif",
-      "font-size:0.72rem",
-      "font-style:italic",
-      "line-height:1.5",
-      "color:rgba(245,234,216,0.55)",
-      "text-align:right"
-    ].join(";");
-
     var loadAttempts = 0;
 
+    var rule = document.createElement("hr");
+    rule.className = "voa-sig-rule";
+
+    var block = document.createElement("div");
+    block.className = "voa-sig-block";
+    block.title = "Click to cycle photos";
+
+    var img = document.createElement("img");
+    img.className = "voa-sig-photo";
+    img.loading = "lazy";
+
+    var nameEl = document.createElement("p");
+    nameEl.className = "voa-sig-name";
+    nameEl.textContent = name;
+    nameEl.style.display = name ? "" : "none";
+
+    var cap = document.createElement("p");
+    cap.className = "voa-sig-caption";
+
+    var hint = document.createElement("p");
+    hint.className = "voa-sig-hint";
+    hint.textContent = "\u2014 click to cycle \u2014";
+
     function render(photo) {
-      img.alt = photo.caption || "";
+      img.alt = photo.caption || name || "";
       img.src = photo.url;
       cap.textContent = photo.caption || "";
       cap.style.display = photo.caption ? "" : "none";
     }
 
-    // If an image 404s, silently cycle to the next one.
-    // If every image in the deck fails, hide the block entirely.
+    // If an image 404s, silently cycle. If all fail, hide entirely.
     img.onerror = function () {
       loadAttempts++;
       if (loadAttempts >= deck.length) {
-        wrapper.style.display = "none"; // all failed — render nothing
+        rule.style.display = "none";
+        block.style.display = "none";
         return;
       }
       idx = (idx + 1) % deck.length;
@@ -204,20 +211,23 @@
     };
 
     render(deck[idx]);
-    wrapper.appendChild(img);
-    wrapper.appendChild(cap);
+    block.appendChild(img);
+    block.appendChild(nameEl);
+    block.appendChild(cap);
+    block.appendChild(hint);
 
-    wrapper.addEventListener("click", function () {
+    block.addEventListener("click", function () {
       img.style.opacity = "0";
       setTimeout(function () {
-        loadAttempts = 0; // reset error counter on intentional advance
+        loadAttempts = 0;
         idx = (idx + 1) % deck.length;
         render(deck[idx]);
         img.style.opacity = "1";
-      }, 200);
+      }, 280);
     });
 
-    container.appendChild(wrapper);
+    container.appendChild(rule);
+    container.appendChild(block);
   }
 
   // ── Init ──────────────────────────────────────────────────────────────────

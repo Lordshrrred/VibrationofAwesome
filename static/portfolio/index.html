@@ -126,15 +126,9 @@
   .media-placeholder {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    background: linear-gradient(135deg, rgba(255,179,0,0.03) 0%, rgba(2,10,8,0.6) 100%);
+    background: linear-gradient(135deg, rgba(10,18,12,0.9) 0%, rgba(2,10,8,0.98) 100%);
+    border: 1px solid rgba(255,179,0,0.06);
   }
-  .media-placeholder .placeholder-icon { font-size: 2rem; opacity: 0.25; }
-  .media-placeholder .placeholder-text { font-family: 'Rajdhani', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); opacity: 0.5; }
 
   /* caption overlay */
   .gallery-caption {
@@ -240,10 +234,7 @@
       or a <video> element for hover-play video.
     -->
     <div class="gallery-item span-2" id="item-abstratocaster">
-      <div class="media-placeholder">
-        <div class="placeholder-icon">🎸</div>
-        <div class="placeholder-text">Media coming soon</div>
-      </div>
+      <div class="media-placeholder"></div>
       <div class="gallery-caption">
         <div class="caption-title">Abstratocaster Series</div>
         <div class="caption-sub">Custom Guitar Work</div>
@@ -257,10 +248,7 @@
         <img src="/portfolio-media/crystal-pendant.jpg" alt="Crystal Wrapped Pendant">
     -->
     <div class="gallery-item span-tall" id="item-crystal-pendant">
-      <div class="media-placeholder">
-        <div class="placeholder-icon">💎</div>
-        <div class="placeholder-text">Media coming soon</div>
-      </div>
+      <div class="media-placeholder"></div>
       <div class="gallery-caption">
         <div class="caption-title">Crystal Wrapped Pendant</div>
         <div class="caption-sub">Wire Wrap &middot; Crystal</div>
@@ -274,10 +262,7 @@
         <img src="/portfolio-media/earthstar-talisman.jpg" alt="EarthStar Talisman">
     -->
     <div class="gallery-item" id="item-earthstar">
-      <div class="media-placeholder">
-        <div class="placeholder-icon">✦</div>
-        <div class="placeholder-text">Media coming soon</div>
-      </div>
+      <div class="media-placeholder"></div>
       <div class="gallery-caption">
         <div class="caption-title">EarthStar Talisman</div>
         <div class="caption-sub">Sacred Geometry &middot; Metal</div>
@@ -295,10 +280,7 @@
                muted playsinline loop preload="none"></video>
     -->
     <div class="gallery-item" id="item-forest-temple">
-      <div class="media-placeholder">
-        <div class="placeholder-icon">🌿</div>
-        <div class="placeholder-text">Media coming soon</div>
-      </div>
+      <div class="media-placeholder"></div>
       <div class="gallery-caption">
         <div class="caption-title">Forest Temple Collection</div>
         <div class="caption-sub">Mixed Media &middot; Nature</div>
@@ -312,10 +294,7 @@
         <img src="/portfolio-media/cosmic-spiral-ring.jpg" alt="Cosmic Spiral Ring">
     -->
     <div class="gallery-item span-tall" id="item-cosmic-ring">
-      <div class="media-placeholder">
-        <div class="placeholder-icon">🌀</div>
-        <div class="placeholder-text">Media coming soon</div>
-      </div>
+      <div class="media-placeholder"></div>
       <div class="gallery-caption">
         <div class="caption-title">Cosmic Spiral Ring</div>
         <div class="caption-sub">Wire Wrap &middot; Sterling</div>
@@ -330,10 +309,7 @@
       or video for hover-play.
     -->
     <div class="gallery-item span-2" id="item-awakening">
-      <div class="media-placeholder">
-        <div class="placeholder-icon">☀</div>
-        <div class="placeholder-text">Media coming soon</div>
-      </div>
+      <div class="media-placeholder"></div>
       <div class="gallery-caption">
         <div class="caption-title">The Awakening Piece</div>
         <div class="caption-sub">Signature Work &middot; Mixed Media</div>
@@ -395,19 +371,7 @@
     });
   });
 
-  // ══════════════════════════════════════════════════════════════════════
-  // JEWELRY PHOTOS — hardcoded manifest of files in
-  // static/personal-photos/jewelry/
-  //
-  // GitHub Pages cannot enumerate directories, so this array IS the
-  // source of truth for which photos are shown.
-  //
-  // TO ADD A PHOTO:
-  //   1. Drop the .jpg into static/personal-photos/jewelry/
-  //   2. Add its exact filename (case-sensitive) to the array below
-  //   3. Optionally add a caption in photo-metadata.json → "jewelry" key
-  //   4. Commit and push — done
-  // ══════════════════════════════════════════════════════════════════════
+  // Add jewelry filenames here when ready e.g. piece-01.jpg — they live in /personal-photos/jewelry/
   const JEWELRY_PHOTOS = [
     '16EA37EB-0C44-4AD9-AE29-CEA447C7D03B_1_105_c.jpeg',
     '177DCF26-EF16-47B4-B7DD-DD54178F1E4F_1_105_c.jpeg',
