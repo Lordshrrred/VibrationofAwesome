@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * syndicate.js — Full content syndication engine for vibrationofawesome.com
+ * syndicate.js ~ Full content syndication engine for vibrationofawesome.com
  *
  * Platforms: Bluesky · Mastodon · Facebook (VOA + EarthStar) · Pinterest
  *            Dev.to · Hashnode · Tumblr · Instagram (Publer) · Threads (Publer)
@@ -122,7 +122,7 @@ async function getLongLivedToken(label, shortToken) {
     console.log(`  [fb-tokens] Exchanged long-lived token for ${label} (expires ${expiresAt})`);
     return data.access_token;
   } catch (err) {
-    console.warn(`  [fb-tokens] Token exchange failed for ${label}: ${err.message} — using original`);
+    console.warn(`  [fb-tokens] Token exchange failed for ${label}: ${err.message} ~ using original`);
     return shortToken;
   }
 }
@@ -184,7 +184,7 @@ async function postToMastodon(caption) {
   let instance = (process.env.MASTODON_INSTANCE || "").replace(/\/+$/, "");
   const token  = process.env.MASTODON_ACCESS_TOKEN;
   if (!instance || !token) throw new Error("MASTODON_INSTANCE or MASTODON_ACCESS_TOKEN not set");
-  // Ensure https:// scheme — users often store just "mastodon.social"
+  // Ensure https:// scheme ~ users often store just "mastodon.social"
   if (!instance.startsWith("http")) instance = `https://${instance}`;
 
   const resp = await fetch(`${instance}/api/v1/statuses`, {
@@ -338,7 +338,7 @@ async function postToTumblr(caption, tags) {
   }
   if (!blogName) throw new Error("TUMBLR_BLOG_NAME not set");
 
-  // Legacy /post endpoint (form-encoded) — the NPF /posts endpoint returns 8001
+  // Legacy /post endpoint (form-encoded) ~ the NPF /posts endpoint returns 8001
   const url        = `https://api.tumblr.com/v2/blog/${blogName}/post`;
   const bodyParams = {
     type: "text",
@@ -392,7 +392,7 @@ async function postViaPubler(platform, caption, imageUrl) {
     "Publer-Workspace-Id": wsId,
   };
 
-  // ── Step 1: upload image from URL (async — must poll job_status) ──────────
+  // ── Step 1: upload image from URL (async ~ must poll job_status) ──────────
   let mediaId = null;
   if (imageUrl) {
     const upResp = await fetch(`${BASE}/media/from-url`, {
@@ -445,7 +445,7 @@ async function postViaPubler(platform, caption, imageUrl) {
   const postData = await postResp.json().catch(() => ({}));
   if (!postResp.ok) throw new Error(`Publer (${platform}): ${postData.message || postData.error || postData.errors?.[0] || postResp.status}`);
 
-  // Response may be async (job_id) — extract post ID if available
+  // Response may be async (job_id) ~ extract post ID if available
   let postId = postData.post?.id || postData.id;
   const jobId2 = postData.job_id;
   if (jobId2 && !postId) {
@@ -471,7 +471,7 @@ function loadLog() {
       const raw = JSON.parse(fs.readFileSync(LOG_FILE, "utf8"));
       return Array.isArray(raw.entries) ? raw : { entries: [] };
     }
-  } catch (_) { /* corrupt file — start fresh */ }
+  } catch (_) { /* corrupt file ~ start fresh */ }
   return { entries: [] };
 }
 
@@ -576,7 +576,7 @@ export async function syndicatePost(lane, slug, options = {}) {
     await attempt("facebook_voa", () =>
       postToFacebookPage(process.env.META_PAGE_ID_VOA, process.env.META_PAGE_TOKEN_VOA, captions.facebook, postUrl));
   } else {
-    console.warn("  — facebook_voa: META_PAGE_ID_VOA or META_PAGE_TOKEN_VOA not set");
+    console.warn("  ~ facebook_voa: META_PAGE_ID_VOA or META_PAGE_TOKEN_VOA not set");
     results.facebook_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 
@@ -585,7 +585,7 @@ export async function syndicatePost(lane, slug, options = {}) {
     await attempt("facebook_earthstar", () =>
       postToFacebookPage(process.env.META_PAGE_ID_EARTHSTAR, process.env.META_PAGE_TOKEN_EARTHSTAR, captions.facebook, postUrl));
   } else {
-    console.warn("  — facebook_earthstar: META_PAGE_ID_EARTHSTAR or META_PAGE_TOKEN_EARTHSTAR not set");
+    console.warn("  ~ facebook_earthstar: META_PAGE_ID_EARTHSTAR or META_PAGE_TOKEN_EARTHSTAR not set");
     results.facebook_earthstar = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 

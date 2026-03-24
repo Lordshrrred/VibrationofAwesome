@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * generate-captions.js — Platform-specific caption generator for vibrationofawesome.com
+ * generate-captions.js ~ Platform-specific caption generator for vibrationofawesome.com
  *
  * Generates unique captions for 9 social platforms using Claude.
  *
@@ -21,7 +21,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 const ROOT       = path.resolve(__dirname, "..");
 
-// Ordered list of platform labels — order matters for the section parser
+// Ordered list of platform labels ~ order matters for the section parser
 const LABELS = [
   "FACEBOOK", "BLUESKY", "MASTODON", "PINTEREST",
   "DEVTO", "HASHNODE", "TUMBLR", "INSTAGRAM", "THREADS",
@@ -30,7 +30,7 @@ const LABELS = [
 const SYSTEM_PROMPT = `You are a social media copywriter for vibrationofawesome.com.
 
 The site serves spiritually awakening creators, neurodivergent entrepreneurs, musicians
-learning AI, and abundance-minded outliers. Matt EarthStar is the creator — musician (EarthStar
+learning AI, and abundance-minded outliers. Matt EarthStar is the creator ~ musician (EarthStar
 rock/metal/electronic, Ruzindla EDM/psytrance), digital creator, 20-year internet marketing
 veteran who runs a personal operating system called Forest Temple.
 
@@ -61,7 +61,7 @@ function parseCaptions(text) {
     const label = LABELS[i];
     const next  = LABELS[i + 1];
 
-    // Use exec() so we get startM.index — reliable even if the string appears elsewhere
+    // Use exec() so we get startM.index ~ reliable even if the string appears elsewhere
     const startM = labelRe(label).exec(text);
     if (!startM) { result[label.toLowerCase()] = ""; continue; }
 

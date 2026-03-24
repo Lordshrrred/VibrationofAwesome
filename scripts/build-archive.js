@@ -257,11 +257,11 @@ function cleanContent(raw) {
       return text ? `<blockquote>${text}</blockquote>` : "";
     });
 
-  // Replace em dashes with hyphens
+  // Replace em dashes with tilde
   c = c
-    .replace(/\u2014/g, " - ")
-    .replace(/&mdash;/g, " - ")
-    .replace(/&#8212;/g, " - ");
+    .replace(/\u2014/g, "~")
+    .replace(/&mdash;/g, "~")
+    .replace(/&#8212;/g, "~");
 
   // Clean up empty tags and excessive whitespace
   c = c

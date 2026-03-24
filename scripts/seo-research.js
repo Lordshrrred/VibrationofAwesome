@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * seo-research.js — SEO keyword research tool for vibrationofawesome.com
+ * seo-research.js ~ SEO keyword research tool for vibrationofawesome.com
  *
  * Generates 20 long-tail keyword variations for a given topic using Claude,
  * outputs a formatted terminal table, and appends results to topic-queue.json.
@@ -89,7 +89,7 @@ async function main() {
         "You are an SEO strategist for vibrationofawesome.com.",
         "The site targets: spiritually awakening creators, neurodivergent entrepreneurs,",
         "musicians learning AI, abundance-minded outliers.",
-        "Return only valid JSON — no markdown fences, no commentary.",
+        "Return only valid JSON ~ no markdown fences, no commentary.",
       ].join(" "),
       messages: [{
         role: "user",
@@ -99,7 +99,7 @@ async function main() {
           "For each keyword return a JSON object with these exact fields:",
           "  keyword         (string)",
           "  search_intent   (one of: informational, navigational, transactional)",
-          "  suggested_title (string — compelling blog post title)",
+          "  suggested_title (string ~ compelling blog post title)",
           "  h2_outline      (array of 4-5 H2 heading strings)",
           "",
           "Return a JSON array only. No other text, no code fences.",

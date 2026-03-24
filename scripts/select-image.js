@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * select-image.js — Image selector for blog posts
+ * select-image.js ~ Image selector for blog posts
  *
  * Lane routing:
  *   lane "matt"    → alternates forest/ and matt/ personal photos
@@ -11,9 +11,9 @@
  *   tag specified  → filter personal photos by tag (any lane)
  *
  * Exports:
- *   selectImage(query, lane, tag?) — picks one image for a post's hero
- *   fetchNasaImages(count)    — returns array of NASA APOD image objects
- *   fetchForestImages(count)  — returns array of forest image objects
+ *   selectImage(query, lane, tag?) ~ picks one image for a post's hero
+ *   fetchNasaImages(count)    ~ returns array of NASA APOD image objects
+ *   fetchForestImages(count)  ~ returns array of forest image objects
  */
 
 import dotenv from "dotenv";

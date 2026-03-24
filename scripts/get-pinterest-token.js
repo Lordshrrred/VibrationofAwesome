@@ -1,9 +1,9 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * get-pinterest-token.js — Fresh Pinterest OAuth with correct scopes
+ * get-pinterest-token.js ~ Fresh Pinterest OAuth with correct scopes
  *
  * Pinterest requires explicit OAuth authorization for boards:write and pins:write.
- * The existing token in .env is missing these scopes and cannot be upgraded —
+ * The existing token in .env is missing these scopes and cannot be upgraded ~
  * you must go through a fresh authorization flow.
  *
  * Flow:
@@ -95,8 +95,8 @@ const server = http.createServer(async (req, res) => {
   if (!code) { res.end("No code received."); return; }
 
   if (retState !== STATE) {
-    res.end("State mismatch — possible CSRF. You can close this tab.");
-    console.error("\nState mismatch — aborting.");
+    res.end("State mismatch ~ possible CSRF. You can close this tab.");
+    console.error("\nState mismatch ~ aborting.");
     server.close();
     return;
   }
@@ -143,7 +143,7 @@ const server = http.createServer(async (req, res) => {
     const boardsData = await boardsResp.json();
     const boards     = boardsData.items || [];
     console.log(`\n✓ Found ${boards.length} board(s):`);
-    boards.forEach(b => console.log(`  ${b.id}  —  ${b.name}`));
+    boards.forEach(b => console.log(`  ${b.id}  ~  ${b.name}`));
 
     console.log("\n═══════════════════════════════════════════════");
     console.log("  PASTE THESE INTO YOUR .env FILE:");

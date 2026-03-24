@@ -1,7 +1,7 @@
-/**
+﻿/**
  * build-blog-index.js
  * Reads static/_data/matt-posts.json and bakes the posts list directly
- * into static/blog/matt/index.html — no runtime fetch needed.
+ * into static/blog/matt/index.html ~ no runtime fetch needed.
  * Run this whenever matt-posts.json changes.
  */
 import fs from 'fs';

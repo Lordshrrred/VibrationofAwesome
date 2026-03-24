@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * update-sitemap.js — Regenerates static/sitemap.xml from post JSON indexes.
+ * update-sitemap.js ~ Regenerates static/sitemap.xml from post JSON indexes.
  *
  * Called automatically by generate-post.js after every new post.
  * Run manually any time:  node scripts/update-sitemap.js

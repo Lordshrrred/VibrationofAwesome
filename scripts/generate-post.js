@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * generate-post.js — Dual-lane blog post generator for vibrationofawesome.com
+ * generate-post.js ~ Dual-lane blog post generator for vibrationofawesome.com
  *
  * Usage:
  *   node scripts/generate-post.js --lane matt --title "My Post Title"
@@ -60,12 +60,12 @@ const MATT_SYSTEM = [
 
 const BOOMBOT_SYSTEM = [
   "You are Matty BoomBoom, an AI writer for the blog \"Boom Frequency\" at",
-  "vibrationofawesome.com. You are inspired by the spirit of Matt EarthStar — a musician,",
+  "vibrationofawesome.com. You are inspired by the spirit of Matt EarthStar ~ a musician,",
   "digital creator, and 20-year internet marketing veteran who has gone deep on AI tools.",
   "Your job is to write SEO-optimized, genuinely helpful long-form posts targeting",
   "specific long-tail keywords. Your audience: spiritually awakening creators,",
   "neurodivergent entrepreneurs, musicians learning AI, and abundance-minded outliers.",
-  "Write in a voice that is helpful, slightly eccentric, and real — never corporate,",
+  "Write in a voice that is helpful, slightly eccentric, and real ~ never corporate,",
   "never generic. Include H2 and H3 subheadings, a meta description on the first line",
   "(format: META: your description here), and a CTA at the end pointing readers to",
   "vibrationofawesome.com. Return raw markdown only.",
@@ -152,7 +152,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription) {
 
   const metaContent = metaDescription
     ? metaDescription.replace(/"/g, "&quot;")
-    : title + " — " + laneName + " at Vibration of Awesome";
+    : title + " ~ " + laneName + " at Vibration of Awesome";
   const yearNow = new Date().getFullYear();
 
   // Build HTML as array of strings, joined at the end
@@ -373,7 +373,7 @@ function injectNasaImages(html, images) {
   // Split into paragraph chunks at </p> boundaries
   const chunks = html.split("</p>").filter(function(c) { return c.trim() !== ""; });
   const total  = chunks.length;
-  if (total < 4) return html; // Too short — skip injection
+  if (total < 4) return html; // Too short ~ skip injection
 
   // Target positions: after ~25%, 50%, 75% of paragraphs
   const positions = [
@@ -413,7 +413,7 @@ async function main() {
         "INTERNAL LINKING: The following posts already exist on vibrationofawesome.com.",
         "Where 2–3 of them are genuinely relevant to what you're writing, naturally weave",
         "in a contextual hyperlink using Markdown: [anchor text](full URL).",
-        "Only link where it truly fits the flow — never force it, never link the same post twice.",
+        "Only link where it truly fits the flow ~ never force it, never link the same post twice.",
         existingPosts,
         "---",
       ].join("\n")
@@ -480,7 +480,7 @@ async function main() {
       bodyHtml = injectNasaImages(bodyHtml, inlineImages);
       console.log("Forest images injected: " + inlineImages.map(function(i) { return i.title || path.basename(i.url); }).join(", "));
     } else {
-      console.warn("No forest images found — post will have no inline images.");
+      console.warn("No forest images found ~ post will have no inline images.");
     }
   } else {
     console.log("Fetching 3 NASA APOD images for inline art...");
@@ -489,7 +489,7 @@ async function main() {
       bodyHtml = injectNasaImages(bodyHtml, inlineImages);
       console.log("NASA images injected: " + inlineImages.map(function(i) { return i.title; }).join(", "));
     } else {
-      console.warn("No NASA images returned — post will have no inline images.");
+      console.warn("No NASA images returned ~ post will have no inline images.");
     }
   }
   const slug = slugify(postTitle);
@@ -526,7 +526,7 @@ async function main() {
 
   // ── Syndication ──
   // Boom Frequency (boom): auto-syndicate immediately after generation.
-  // Forest Temple (matt): manual only — run the command printed below when ready.
+  // Forest Temple (matt): manual only ~ run the command printed below when ready.
   if (lane === "boom" && !argv["no-syndicate"]) {
     console.log("\nStarting auto-syndication...");
     const syndicateArgs = [
@@ -540,11 +540,11 @@ async function main() {
     if (result.error) console.error("Syndication spawn error:", result.error.message);
     else if (result.status !== 0) console.warn(`Syndication exited with code ${result.status}`);
   } else if (lane === "boom" && argv["no-syndicate"]) {
-    console.log("\n[syndication skipped — --no-syndicate flag set]");
+    console.log("\n[syndication skipped ~ --no-syndicate flag set]");
     console.log("  Syndicate manually when ready:");
     console.log("  node scripts/syndicate.js --lane " + lane + " --slug " + slug);
   } else {
-    // Matt / Forest Temple — never auto-syndicate
+    // Matt / Forest Temple ~ never auto-syndicate
     console.log("\nForest Temple post ready. Syndicate manually when you're ready:");
     console.log("  node scripts/syndicate.js --lane matt --slug " + slug);
   }

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
  * get-facebook-token.js
  * ─────────────────────────────────────────────────────────────────────────────
@@ -8,10 +8,10 @@
  *
  * Tokens saved:
  *   META_USER_TOKEN              (long-lived user token, valid ~60 days)
- *   META_PAGE_TOKEN_VOA          (page token — matched by name/ID)
- *   META_PAGE_TOKEN_EARTHSTAR    (page token — matched by name/ID)
- *   META_PAGE_TOKEN_RUZINDLA     (page token — matched by name/ID)
- *   META_PAGE_ID_VOA             (page ID — saved if not already set)
+ *   META_PAGE_TOKEN_VOA          (page token ~ matched by name/ID)
+ *   META_PAGE_TOKEN_EARTHSTAR    (page token ~ matched by name/ID)
+ *   META_PAGE_TOKEN_RUZINDLA     (page token ~ matched by name/ID)
+ *   META_PAGE_ID_VOA             (page ID ~ saved if not already set)
  *   META_PAGE_ID_EARTHSTAR
  *   META_PAGE_ID_RUZINDLA
  *
@@ -244,8 +244,8 @@ app.get("/callback", async (req, res) => {
         <ul>
           <li><code>META_USER_TOKEN</code></li>
           ${matched.map(m => `
-            <li><code>META_PAGE_TOKEN_${m.suffix}</code> — ${m.name}</li>
-            <li><code>META_PAGE_ID_${m.suffix}</code> — ${m.id}</li>
+            <li><code>META_PAGE_TOKEN_${m.suffix}</code> ~ ${m.name}</li>
+            <li><code>META_PAGE_ID_${m.suffix}</code> ~ ${m.id}</li>
           `).join("")}
         </ul>
         ${unmatched.length ? `
@@ -271,7 +271,7 @@ const server = app.listen(PORT, () => {
   console.log("\n╔══════════════════════════════════════════════════════════╗");
   console.log("  Facebook Token Refresh");
   console.log("╚══════════════════════════════════════════════════════════╝\n");
-  console.log("  IMPORTANT — before proceeding, make sure this redirect URI");
+  console.log("  IMPORTANT ~ before proceeding, make sure this redirect URI");
   console.log("  is registered in your Meta app:");
   console.log(`    http://localhost:${PORT}/callback`);
   console.log("  → developers.facebook.com/apps → your app →");

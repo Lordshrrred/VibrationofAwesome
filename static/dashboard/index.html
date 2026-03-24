@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -263,15 +263,15 @@
       <div class="stats-strip" id="stats-strip">
         <div class="stat-card">
           <div class="stat-label">Total Posts Syndicated</div>
-          <div class="stat-value" id="stat-total">—</div>
+          <div class="stat-value" id="stat-total">~</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">This Week</div>
-          <div class="stat-value" id="stat-week">—</div>
+          <div class="stat-value" id="stat-week">~</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Success Rate</div>
-          <div class="stat-value" id="stat-rate">—</div>
+          <div class="stat-value" id="stat-rate">~</div>
           <div class="stat-sub">across all platforms</div>
         </div>
         <div class="stat-card">
@@ -320,7 +320,7 @@
             <div class="trigger-field">
               <label class="trigger-label">Post</label>
               <select class="trigger-select" id="trig-slug">
-                <option value="">— select post —</option>
+                <option value="">~ select post ~</option>
               </select>
             </div>
             <button class="trigger-btn" id="trig-btn" disabled>Generate Command</button>
@@ -445,7 +445,7 @@ async function initAuth() {
     const val = input.value.trim();
     if (!val) return;
     if (!configHash) {
-      // No config — allow any non-empty password in dev mode
+      // No config ~ allow any non-empty password in dev mode
       sessionStorage.setItem(SESSION_KEY, "1");
       showApp(); return;
     }
@@ -519,7 +519,7 @@ function renderStats(entries) {
       }
     }
     document.getElementById("stat-rate").textContent =
-      total > 0 ? Math.round((ok / total) * 100) + "%" : "—";
+      total > 0 ? Math.round((ok / total) * 100) + "%" : "~";
   }
 }
 
@@ -540,7 +540,7 @@ function renderRecentPosts(entries) {
       if (!r) return `<span class="badge badge-skip" title="${PLATFORM_NAMES[key]}: no data">${abbr}</span>`;
       const cls   = r.success ? "badge-ok" : "badge-fail";
       const tip   = r.success
-        ? `${PLATFORM_NAMES[key]}: ✓${r.postUrl ? " — " + r.postUrl : ""}`
+        ? `${PLATFORM_NAMES[key]}: ✓${r.postUrl ? " ~ " + r.postUrl : ""}`
         : `${PLATFORM_NAMES[key]}: ✗ ${r.error || "failed"}`;
       const url   = r.postUrl
         ? `onclick="window.open('${r.postUrl}','_blank')" style="cursor:pointer"`
@@ -626,7 +626,7 @@ async function renderTrigger(allPosts) {
   function refreshSlugs() {
     const lane = laneEl.value;
     const opts = allPostsCache.filter(p => p.lane === lane);
-    slugEl.innerHTML = `<option value="">— select post —</option>` +
+    slugEl.innerHTML = `<option value="">~ select post ~</option>` +
       opts.map(p => `<option value="${p.slug}">${esc(p.title)}</option>`).join("");
     btn.disabled = true;
     cmdBox.style.display = "none";

@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * add-archive-links.js — injects internal links into archive post HTML files
+ * add-archive-links.js ~ injects internal links into archive post HTML files
  * Run: node scripts/add-archive-links.js
  */
 import fs   from "fs";
