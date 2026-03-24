@@ -545,48 +545,60 @@
     transform: translateY(-6px);
     box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0,229,204,0.07);
   }
-  .product-image-wrap {
-    aspect-ratio: 1 / 1;
+  /* ── Product carousel ── */
+  .product-carousel {
     position: relative;
-    display: flex; align-items: center; justify-content: center;
+    height: 280px;
+    background: #020a08;
     overflow: hidden;
   }
-  .product-image-wrap.loaf {
-    background: linear-gradient(135deg, #010d10 0%, #001f1a 40%, #00120e 70%, #001a16 100%);
+  .carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.35s ease;
+    will-change: transform;
   }
-  .product-image-wrap.abstratocaster-black {
-    background: linear-gradient(135deg, #020608 0%, #040f14 40%, #010808 70%, #000d0c 100%);
+  .carousel-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1.2rem;
+    box-sizing: border-box;
   }
-  .product-image-wrap.abstratocaster-white {
-    background: linear-gradient(135deg, #001a18 0%, #003d36 40%, #001e1c 70%, #004040 100%);
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(212,175,55,0.28);
+    color: rgba(212,175,55,0.85);
+    font-size: 1.5rem;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 3;
+    transition: background 0.2s, border-color 0.2s;
+    line-height: 1;
+    padding: 0;
   }
-  .product-image-wrap::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 40%, rgba(0,229,204,0.08) 0%, transparent 65%);
+  .carousel-btn:hover { background: rgba(212,175,55,0.18); border-color: rgba(212,175,55,0.65); }
+  .carousel-prev { left: 8px; }
+  .carousel-next { right: 8px; }
+  .carousel-dots {
+    position: absolute;
+    bottom: 9px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 7px;
+    z-index: 3;
   }
-  .product-icon {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1rem; letter-spacing: 0.2em;
-    color: rgba(0,229,204,0.5);
-    text-align: center; position: relative; z-index: 1;
-    padding: 1rem;
-    text-transform: uppercase;
+  .carousel-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(212,175,55,0.22);
+    cursor: pointer;
+    transition: background 0.2s;
   }
-  .product-icon .product-icon-symbol {
-    display: block;
-    font-size: 3rem; margin-bottom: 0.75rem;
-    color: rgba(0,229,204,0.25);
-  }
-  .product-name-overlay {
-    position: absolute; bottom: 1rem; left: 1rem; right: 1rem;
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 0.7rem; letter-spacing: 0.12em;
-    color: rgba(0,229,204,0.7);
-    text-align: center;
-    text-transform: uppercase;
-    z-index: 1;
-  }
+  .carousel-dot.active { background: rgba(212,175,55,0.88); }
   .product-info {
     padding: 1.4rem 1.5rem 1.5rem;
     border-top: 1px solid rgba(0,229,204,0.06);
@@ -604,7 +616,7 @@
     color: var(--muted); opacity: 0.7; margin-bottom: 1.2rem;
   }
   .product-get-btn {
-    display: block; width: 100%;
+    display: block; width: 100%; box-sizing: border-box;
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
     color: var(--deep);
@@ -612,7 +624,7 @@
     padding: 0.75rem; text-align: center; text-decoration: none;
     clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
     transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
-    font-weight: 700;
+    font-weight: 700; border: none; cursor: pointer;
   }
   .product-get-btn:hover {
     background: var(--gold-light);
@@ -993,54 +1005,72 @@
 
     <div class="products-grid reveal">
 
-      <!-- LOAF LIFE MUG -->
-      <div class="product-card">
-        <div class="product-image-wrap loaf">
-          <div class="product-icon">
-            <span class="product-icon-symbol">☕</span>
-            <span>Loaf Life</span>
-          </div>
-          <div class="product-name-overlay">Loaf Life Mug</div>
-        </div>
-        <div class="product-info">
-          <div class="product-title">Loaf Life Mug</div>
-          <div class="product-type">Print-on-Demand Mug</div>
-          <a href="https://earthstar.creator-spring.com/listing/loaf-life-mug?product=1637&variation=105025"
-             target="_blank" rel="noopener" class="product-get-btn">Get It &rarr;</a>
-        </div>
-      </div>
-
       <!-- ABSTRATOCASTER BLACK MUG -->
       <div class="product-card">
-        <div class="product-image-wrap abstratocaster-black">
-          <div class="product-icon">
-            <span class="product-icon-symbol">&#9836;</span>
-            <span>Abstratocaster</span>
+        <div class="product-carousel">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/Abstrblk1.jpg" class="carousel-slide" alt="Abstratocaster Black Mug" loading="lazy">
+            <img src="/personal-photos/merch/Abstrblk2.jpg" class="carousel-slide" alt="Abstratocaster Black Mug" loading="lazy">
+            <img src="/personal-photos/merch/Abstrblk3.jpg" class="carousel-slide" alt="Abstratocaster Black Mug" loading="lazy">
           </div>
-          <div class="product-name-overlay">Abstratocaster Black Mug</div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-dot"></span>
+          </div>
         </div>
         <div class="product-info">
           <div class="product-title">Abstratocaster Black Mug</div>
-          <div class="product-type">Print-on-Demand Mug</div>
-          <a href="https://earthstar.creator-spring.com/listing/abstratocaster-black-mug?product=1637&variation=105025"
-             target="_blank" rel="noopener" class="product-get-btn">Get It &rarr;</a>
+          <div class="product-type">Print-on-Demand &middot; Ships Worldwide</div>
+          <button class="product-get-btn" onclick="window.open('https://earthstar.creator-spring.com/listing/abstratocaster-black-mug?product=1637&variation=105025','_blank','width=820,height=720,left=200,top=100')">Get It ✦</button>
         </div>
       </div>
 
       <!-- ABSTRATOCASTER WHITE MUG -->
       <div class="product-card">
-        <div class="product-image-wrap abstratocaster-white">
-          <div class="product-icon">
-            <span class="product-icon-symbol">&#9835;</span>
-            <span>Abstratocaster</span>
+        <div class="product-carousel">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/Abstrwht1.jpg" class="carousel-slide" alt="Abstratocaster White Mug" loading="lazy">
+            <img src="/personal-photos/merch/Abstrwht2.jpg" class="carousel-slide" alt="Abstratocaster White Mug" loading="lazy">
+            <img src="/personal-photos/merch/Abstrwht3.jpg" class="carousel-slide" alt="Abstratocaster White Mug" loading="lazy">
           </div>
-          <div class="product-name-overlay">Abstratocaster White Mug</div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-dot"></span>
+          </div>
         </div>
         <div class="product-info">
           <div class="product-title">Abstratocaster White Mug</div>
-          <div class="product-type">Print-on-Demand Mug</div>
-          <a href="https://earthstar.creator-spring.com/listing/abstratocaster-mug?product=1565&variation=104920"
-             target="_blank" rel="noopener" class="product-get-btn">Get It &rarr;</a>
+          <div class="product-type">Print-on-Demand &middot; Ships Worldwide</div>
+          <button class="product-get-btn" onclick="window.open('https://earthstar.creator-spring.com/listing/abstratocaster-mug?product=1565&variation=104920','_blank','width=820,height=720,left=200,top=100')">Get It ✦</button>
+        </div>
+      </div>
+
+      <!-- LOAF LIFE MUG -->
+      <div class="product-card">
+        <div class="product-carousel">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/Loaf1.jpg" class="carousel-slide" alt="Loaf Life Mug" loading="lazy">
+            <img src="/personal-photos/merch/Loaf2.jpg" class="carousel-slide" alt="Loaf Life Mug" loading="lazy">
+            <img src="/personal-photos/merch/Loaf3.jpg" class="carousel-slide" alt="Loaf Life Mug" loading="lazy">
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-dot"></span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Loaf Life Mug</div>
+          <div class="product-type">Print-on-Demand &middot; Ships Worldwide</div>
+          <button class="product-get-btn" onclick="window.open('https://earthstar.creator-spring.com/listing/loaf-life-mug?product=1637&variation=105025','_blank','width=820,height=720,left=200,top=100')">Get It ✦</button>
         </div>
       </div>
 
@@ -1158,6 +1188,24 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+
+  // ── Product carousels ──
+  document.querySelectorAll('.product-carousel').forEach(function(carousel) {
+    var track  = carousel.querySelector('.carousel-track');
+    var slides = carousel.querySelectorAll('.carousel-slide');
+    var dots   = carousel.querySelectorAll('.carousel-dot');
+    var prev   = carousel.querySelector('.carousel-prev');
+    var next   = carousel.querySelector('.carousel-next');
+    var cur = 0, total = slides.length;
+    function goTo(n) {
+      cur = (n + total) % total;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
+    }
+    prev.addEventListener('click', function(e) { e.stopPropagation(); goTo(cur - 1); });
+    next.addEventListener('click', function(e) { e.stopPropagation(); goTo(cur + 1); });
+    dots.forEach(function(d, i) { d.addEventListener('click', function(e) { e.stopPropagation(); goTo(i); }); });
+  });
 
   // Nav scroll effect
   const nav = document.getElementById('mainNav');
