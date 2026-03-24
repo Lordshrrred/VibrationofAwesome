@@ -152,9 +152,9 @@
       ".voa-sig-rule{border:none;border-top:1px solid rgba(45,90,61,0.25);margin:2.5rem 0 1.75rem;}",
       ".voa-sig-block{display:block;width:100%;text-align:center;cursor:pointer;user-select:none;padding-bottom:1rem;}",
       // Frame wrapper: max-width, inline-block, relative for SVG overlay
-      ".voa-sig-frame{position:relative;display:inline-block;max-width:280px;width:100%;}",
-      // Image wrapper: padding-bottom 75% = 4:3 landscape, ALWAYS
-      ".voa-sig-img-wrap{position:relative;width:100%;padding-bottom:75%;overflow:hidden;border-radius:8px;box-shadow:0 0 32px rgba(45,90,61,0.35),0 0 8px rgba(45,90,61,0.2);}",
+      ".voa-sig-frame{position:relative;display:inline-block;max-width:220px;width:100%;}",
+      // Image wrapper: padding-bottom 133.33% = 3:4 portrait default
+      ".voa-sig-img-wrap{position:relative;width:100%;padding-bottom:133.33%;overflow:hidden;border-radius:8px;box-shadow:0 0 32px rgba(45,90,61,0.35),0 0 8px rgba(45,90,61,0.2);}",
       ".voa-sig-photo{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:8px;transition:opacity 0.3s ease;}",
       // SVG overlay (inset on img-wrap, overflow:visible for outside elements)
       ".voa-sig-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}",
@@ -174,7 +174,7 @@
   //   3. Mid-edge diamonds that float away from the image
   //   4. Slow-spinning ring of sacred-geometry micro-nodes (6 outer satellites)
   var SIG_SVG_FRAME = (
-    '<svg class="voa-sig-svg" viewBox="0 0 100 75" xmlns="http://www.w3.org/2000/svg" overflow="visible" aria-hidden="true">' +
+    '<svg class="voa-sig-svg" viewBox="0 0 100 75" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" overflow="visible" aria-hidden="true">' +
 
     // ── Layer 1: Traveling perimeter line ───────────────────────────────────
     // Rect slightly outside image: -5,-5 to 105,80 (perimeter ~380 units)
@@ -297,7 +297,12 @@
     hint.className = "voa-sig-hint";
     hint.textContent = "\u2736 click to cycle \u2736";
 
+    // These two images are landscape — switch container to 4:3 for them
+    var LANDSCAPE_FILES = ["treeyoga.jpeg", "treeyoga.jpg", "fulllotus.jpeg", "fulllotus.jpg"];
+
     function render(photo) {
+      var isLandscape = LANDSCAPE_FILES.indexOf(photo.filename) !== -1;
+      imgWrap.style.paddingBottom = isLandscape ? "75%" : "133.33%";
       img.alt = photo.caption || name || "";
       img.src = photo.url;
       cap.textContent = photo.caption || "";
