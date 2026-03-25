@@ -26,7 +26,7 @@ const ROOT = path.resolve(__dirname, "..");
 // ── CLI ARGS ──
 const argv = minimist(process.argv.slice(2), {
   string:  ["lane", "title", "keyword", "topic"],
-  boolean: ["no-syndicate"],
+  boolean: ["skip-syndicate"],
   alias:   { l: "lane", t: "title", k: "keyword", p: "topic" },
 });
 const lane = argv.lane;
@@ -297,7 +297,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription) {
   H.push("    .nasa-img-wrap { margin: 2.8rem -1rem; overflow: hidden; border-radius: 3px; }");
   H.push("    .nasa-img-wrap img { display: block; width: 100%; height: 300px; object-fit: cover; filter: brightness(0.82) saturate(1.15); box-shadow: 0 0 50px rgba(" + accentR + "," + accentG + "," + accentB + ",0.18), 0 6px 30px rgba(0,0,0,0.6); transition: filter 0.4s; }");
   H.push("    .nasa-img-wrap img:hover { filter: brightness(0.92) saturate(1.2); }");
-  H.push("    @media (max-width: 600px) { .nasa-img-wrap { margin: 2rem -0.5rem; } .nasa-img-wrap img { height: 200px; } }");");
+  H.push("    @media (max-width: 600px) { .nasa-img-wrap { margin: 2rem -0.5rem; } .nasa-img-wrap img { height: 200px; } }");
   H.push("    .post-body strong { color: var(--accent-light); font-weight: 600; }");
   H.push("    .post-body em { font-style: italic; }");
   H.push("    .post-cta { background: var(--surface2); border: 1px solid var(--accent-dark); border-radius: 8px; padding: 2rem; margin: 2rem 0; text-align: center; }");
@@ -395,23 +395,6 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription) {
   H.push("</body>");
   H.push("</html>");
   return H.join("\n");
-}
-
-/** Load existing posts from both JSON indexes and return a formatted string for Claude */
-function buildExistingPostsList() {
-  const BASE = "https://vibrationofawesome.com";
-  const lines = [];
-  for (const l of ["boom", "matt"]) {
-    const f = path.join(ROOT, "static", "_data", l + "-posts.json");
-    if (!fs.existsSync(f)) continue;
-    try {
-      const posts = JSON.parse(fs.readFileSync(f, "utf8"));
-      for (const p of (Array.isArray(posts) ? posts : [])) {
-        if (p.title && p.url) lines.push("- " + p.title + " → " + BASE + p.url);
-      }
-    } catch (_) {}
-  }
-  return lines.join("\n");
 }
 
 // ── INLINE IMAGE INJECTION ────────────────────────────────────────────────────
@@ -583,7 +566,7 @@ async function main() {
   // ── Syndication ──
   // Boom Frequency (boom): auto-syndicate immediately after generation.
   // Forest Temple (matt): manual only ~ run the command printed below when ready.
-  if (lane === "boom" && !argv["no-syndicate"]) {
+  if (lane === "boom" && !argv["skip-syndicate"]) {
     console.log("\nStarting auto-syndication...");
     const syndicateArgs = [
       "scripts/syndicate.js",
@@ -595,8 +578,8 @@ async function main() {
     const result = spawnSync("node", syndicateArgs, { stdio: "inherit", cwd: ROOT });
     if (result.error) console.error("Syndication spawn error:", result.error.message);
     else if (result.status !== 0) console.warn(`Syndication exited with code ${result.status}`);
-  } else if (lane === "boom" && argv["no-syndicate"]) {
-    console.log("\n[syndication skipped ~ --no-syndicate flag set]");
+  } else if (lane === "boom" && argv["skip-syndicate"]) {
+    console.log("\n[syndication skipped ~ --skip-syndicate flag set]");
     console.log("  Syndicate manually when ready:");
     console.log("  node scripts/syndicate.js --lane " + lane + " --slug " + slug);
   } else {
