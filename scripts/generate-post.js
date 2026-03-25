@@ -26,7 +26,7 @@ const ROOT = path.resolve(__dirname, "..");
 // ── CLI ARGS ──
 const argv = minimist(process.argv.slice(2), {
   string:  ["lane", "title", "keyword", "topic"],
-  boolean: ["skip-syndicate"],
+  boolean: ["skip-syndicate", "test-feeder-only", "draft"],
   alias:   { l: "lane", t: "title", k: "keyword", p: "topic" },
 });
 const lane = argv.lane;
@@ -484,6 +484,23 @@ async function triggerFeeder(postUrl, postTitle, keyword) {
 
 // ── MAIN ──
 async function main() {
+  // ── TEST FEEDER ONLY ──────────────────────────────────────────────────────
+  // When --test-feeder-only is set: skip ALL content generation, file writes,
+  // JSON index updates, and syndication. Only fire the feeder trigger with a
+  // dummy payload so we can confirm the GitHub repository_dispatch is wired up.
+  // No files are created or modified. Safe to run anytime.
+  if (argv["test-feeder-only"]) {
+    console.log("\n[--test-feeder-only] Skipping all content generation.");
+    console.log("[--test-feeder-only] Firing feeder trigger with dummy payload...\n");
+    await triggerFeeder(
+      "https://vibrationofawesome.com/blog/boom/posts/test-post",
+      "TEST ~ Do Not Publish",
+      "test keyword do not publish"
+    );
+    console.log("\n[--test-feeder-only] Done. No files written, no posts created.");
+    return;
+  }
+
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   let postTitle, userMessage, systemPrompt;
 
@@ -509,10 +526,13 @@ async function main() {
   } else {
     postTitle    = argv.keyword;
     systemPrompt = BOOMBOT_SYSTEM;
+    const titleLine = argv.title
+      ? "Use this exact H1 title: \"" + argv.title + "\""
+      : "Make the H1 title compelling and include the keyword naturally.";
     userMessage  = [
       "Write a long-form SEO blog post targeting the long-tail keyword: \"" + argv.keyword + "\"",
       "Broader topic context: \"" + argv.topic + "\"",
-      "Make the H1 title compelling and include the keyword naturally.",
+      titleLine,
       internalLinkingInstruction,
     ].join("\n");
   }
@@ -577,65 +597,74 @@ async function main() {
   }
   const slug = slugify(postTitle);
 
-  const outputDir  = path.join(ROOT, "static", "blog", lane, "posts");
+  // In --draft mode: save to drafts/, skip JSON index, sitemap, syndication, feeder
+  const isDraft   = !!argv.draft && lane === "boom";
+  const outputSub = isDraft ? "drafts" : "posts";
+  const outputDir = path.join(ROOT, "static", "blog", lane, outputSub);
   const outputFile = path.join(outputDir, slug + ".html");
-  const dataDir    = path.join(ROOT, "static", "_data");
-  const dataFile   = path.join(dataDir, lane + "-posts.json");
+  const dataDir   = path.join(ROOT, "static", "_data");
+  const dataFile  = path.join(dataDir, lane + "-posts.json");
 
   fs.mkdirSync(outputDir, { recursive: true });
-  fs.mkdirSync(dataDir,   { recursive: true });
 
   const dateStr = new Date().toISOString();
   fs.writeFileSync(outputFile, buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription), "utf8");
-  console.log("Post created: /blog/" + lane + "/posts/" + slug + ".html");
+  console.log((isDraft ? "[DRAFT] " : "") + "Post saved: /blog/" + lane + "/" + outputSub + "/" + slug + ".html");
 
-  // Update the JSON post index
-  let posts = [];
-  if (fs.existsSync(dataFile)) {
-    try { posts = JSON.parse(fs.readFileSync(dataFile, "utf8")); if (!Array.isArray(posts)) posts = []; }
-    catch (_) { posts = []; }
-  }
-  posts.unshift({
-    title: postTitle, slug, date: dateStr,
-    excerpt: extractExcerpt(bodyMarkdown),
-    url: "/blog/" + lane + "/posts/" + slug + ".html",
-    tags: [],
-  });
-  fs.writeFileSync(dataFile, JSON.stringify(posts, null, 2), "utf8");
-  console.log("JSON index updated: static/_data/" + lane + "-posts.json");
+  if (!isDraft) {
+    // Update the JSON post index
+    fs.mkdirSync(dataDir, { recursive: true });
+    let posts = [];
+    if (fs.existsSync(dataFile)) {
+      try { posts = JSON.parse(fs.readFileSync(dataFile, "utf8")); if (!Array.isArray(posts)) posts = []; }
+      catch (_) { posts = []; }
+    }
+    posts.unshift({
+      title: postTitle, slug, date: dateStr,
+      excerpt: extractExcerpt(bodyMarkdown),
+      url: "/blog/" + lane + "/posts/" + slug + ".html",
+      tags: [],
+    });
+    fs.writeFileSync(dataFile, JSON.stringify(posts, null, 2), "utf8");
+    console.log("JSON index updated: static/_data/" + lane + "-posts.json");
 
-  // Always regenerate sitemap after adding a post
-  updateSitemap();
+    // Always regenerate sitemap after adding a post
+    updateSitemap();
 
-  // ── Syndication ──
-  // Boom Frequency (boom): auto-syndicate immediately after generation.
-  // Forest Temple (matt): manual only ~ run the command printed below when ready.
-  if (lane === "boom" && !argv["skip-syndicate"]) {
-    console.log("\nStarting auto-syndication...");
-    const syndicateArgs = [
-      "scripts/syndicate.js",
-      "--lane",  lane,
-      "--slug",  slug,
-    ];
-    if (argv.keyword) syndicateArgs.push("--keyword", argv.keyword);
+    // ── Syndication ──
+    // Boom Frequency (boom): auto-syndicate immediately after generation.
+    // Forest Temple (matt): manual only ~ run the command printed below when ready.
+    if (lane === "boom" && !argv["skip-syndicate"]) {
+      console.log("\nStarting auto-syndication...");
+      const syndicateArgs = [
+        "scripts/syndicate.js",
+        "--lane",  lane,
+        "--slug",  slug,
+      ];
+      if (argv.keyword) syndicateArgs.push("--keyword", argv.keyword);
 
-    const result = spawnSync("node", syndicateArgs, { stdio: "inherit", cwd: ROOT });
-    if (result.error) console.error("Syndication spawn error:", result.error.message);
-    else if (result.status !== 0) console.warn(`Syndication exited with code ${result.status}`);
-  } else if (lane === "boom" && argv["skip-syndicate"]) {
-    console.log("\n[syndication skipped ~ --skip-syndicate flag set]");
-    console.log("  Syndicate manually when ready:");
-    console.log("  node scripts/syndicate.js --lane " + lane + " --slug " + slug);
+      const result = spawnSync("node", syndicateArgs, { stdio: "inherit", cwd: ROOT });
+      if (result.error) console.error("Syndication spawn error:", result.error.message);
+      else if (result.status !== 0) console.warn(`Syndication exited with code ${result.status}`);
+    } else if (lane === "boom" && argv["skip-syndicate"]) {
+      console.log("\n[syndication skipped ~ --skip-syndicate flag set]");
+      console.log("  Syndicate manually when ready:");
+      console.log("  node scripts/syndicate.js --lane " + lane + " --slug " + slug);
+    } else {
+      // Matt / Forest Temple ~ never auto-syndicate
+      console.log("\nForest Temple post ready. Syndicate manually when you're ready:");
+      console.log("  node scripts/syndicate.js --lane matt --slug " + slug);
+    }
+
+    // Fire feeder trigger for every successfully published Boom post
+    if (lane === "boom") {
+      const fullPostUrl = "https://vibrationofawesome.com/blog/boom/posts/" + slug + ".html";
+      await triggerFeeder(fullPostUrl, postTitle, argv.keyword);
+    }
   } else {
-    // Matt / Forest Temple ~ never auto-syndicate
-    console.log("\nForest Temple post ready. Syndicate manually when you're ready:");
-    console.log("  node scripts/syndicate.js --lane matt --slug " + slug);
-  }
-
-  // Fire feeder trigger for every successfully generated Boom post
-  if (lane === "boom") {
-    const fullPostUrl = "https://vibrationofawesome.com/blog/boom/posts/" + slug + ".html";
-    await triggerFeeder(fullPostUrl, postTitle, argv.keyword);
+    console.log("\n[DRAFT] Not indexed, not syndicated, feeder not triggered.");
+    console.log("  Publish via drip: node scripts/activate-drip.js");
+    console.log("  Publish single:   node scripts/drip-publish.js --slug " + slug);
   }
 }
 

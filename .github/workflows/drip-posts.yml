@@ -1,0 +1,124 @@
+name: Drip Publish ~ Boom Frequency
+
+on:
+  schedule:
+    - cron: '0 10 * * *'   # Daily at 10:00 UTC
+  workflow_dispatch:         # Manual trigger (for testing / emergency publish)
+
+permissions:
+  contents: write
+
+jobs:
+  drip:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      # ── 2. Setup Node ────────────────────────────────────────────────────
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # ── 3. Install dependencies ──────────────────────────────────────────
+      - name: Install dependencies
+        run: npm ci
+
+      # ── 4. Check drip queue status ───────────────────────────────────────
+      - name: Check drip queue status
+        id: queue_status
+        run: |
+          if [ ! -f "static/_data/drip-queue.json" ]; then
+            echo "status=missing" >> $GITHUB_OUTPUT
+            echo "drip-queue.json not found ~ skipping."
+          else
+            STATUS=$(node -e "const q=JSON.parse(require('fs').readFileSync('static/_data/drip-queue.json','utf8')); console.log(q.status);")
+            REMAINING=$(node -e "const q=JSON.parse(require('fs').readFileSync('static/_data/drip-queue.json','utf8')); console.log(q.queue.length);")
+            echo "status=$STATUS" >> $GITHUB_OUTPUT
+            echo "remaining=$REMAINING" >> $GITHUB_OUTPUT
+            echo "Drip queue status: $STATUS | Posts remaining: $REMAINING"
+          fi
+
+      # ── 5. Exit early if paused or empty ─────────────────────────────────
+      - name: Exit if paused or empty
+        if: steps.queue_status.outputs.status == 'paused' || steps.queue_status.outputs.status == 'missing' || steps.queue_status.outputs.remaining == '0'
+        run: |
+          STATUS="${{ steps.queue_status.outputs.status }}"
+          REMAINING="${{ steps.queue_status.outputs.remaining }}"
+          if [ "$STATUS" = "paused" ]; then
+            echo "Drip queue is paused ~ exiting. Run activate-drip.js to start publishing."
+          elif [ "$STATUS" = "missing" ]; then
+            echo "drip-queue.json not found ~ exiting."
+          elif [ "$REMAINING" = "0" ]; then
+            echo "Queue is empty ~ all 30 posts published!"
+          fi
+          exit 0
+
+      # ── 6. Publish next posts ─────────────────────────────────────────────
+      - name: Publish next drip posts
+        if: steps.queue_status.outputs.status == 'active' && steps.queue_status.outputs.remaining != '0'
+        env:
+          ANTHROPIC_API_KEY:           ${{ secrets.ANTHROPIC_API_KEY }}
+          VOA_FEEDER_TRIGGER_TOKEN:    ${{ secrets.VOA_FEEDER_TRIGGER_TOKEN }}
+          NASA_API_KEY:                ${{ secrets.NASA_API_KEY }}
+          PEXELS_API_KEY:              ${{ secrets.PEXELS_API_KEY }}
+          BLUESKY_HANDLE:              ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD:        ${{ secrets.BLUESKY_APP_PASSWORD }}
+          MASTODON_INSTANCE:           ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCESS_TOKEN:       ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          META_APP_ID:                 ${{ secrets.META_APP_ID }}
+          META_APP_SECRET:             ${{ secrets.META_APP_SECRET }}
+          META_USER_TOKEN:             ${{ secrets.META_USER_TOKEN }}
+          META_PAGE_ID_VOA:            ${{ secrets.META_PAGE_ID_VOA }}
+          META_PAGE_TOKEN_VOA:         ${{ secrets.META_PAGE_TOKEN_VOA }}
+          META_PAGE_ID_EARTHSTAR:      ${{ secrets.META_PAGE_ID_EARTHSTAR }}
+          META_PAGE_TOKEN_EARTHSTAR:   ${{ secrets.META_PAGE_TOKEN_EARTHSTAR }}
+          META_PAGE_ID_RUZINDLA:       ${{ secrets.META_PAGE_ID_RUZINDLA }}
+          META_PAGE_TOKEN_RUZINDLA:    ${{ secrets.META_PAGE_TOKEN_RUZINDLA }}
+          PINTEREST_APP_ID:            ${{ secrets.PINTEREST_APP_ID }}
+          PINTEREST_APP_SECRET:        ${{ secrets.PINTEREST_APP_SECRET }}
+          PINTEREST_ACCESS_TOKEN:      ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+          PINTEREST_REFRESH_TOKEN:     ${{ secrets.PINTEREST_REFRESH_TOKEN }}
+          PINTEREST_BOARD_ID:          ${{ secrets.PINTEREST_BOARD_ID }}
+          DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
+          HASHNODE_API_KEY:            ${{ secrets.HASHNODE_API_KEY }}
+          HASHNODE_PUBLICATION_ID:     ${{ secrets.HASHNODE_PUBLICATION_ID }}
+          TUMBLR_CONSUMER_KEY:         ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET:      ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_TOKEN:                ${{ secrets.TUMBLR_TOKEN }}
+          TUMBLR_TOKEN_SECRET:         ${{ secrets.TUMBLR_TOKEN_SECRET }}
+          TUMBLR_BLOG_NAME:            ${{ secrets.TUMBLR_BLOG_NAME }}
+          PUBLER_API_KEY:              ${{ secrets.PUBLER_API_KEY }}
+          PUBLER_WORKSPACE_ID:         ${{ secrets.PUBLER_WORKSPACE_ID }}
+          PUBLER_INSTAGRAM_ACCOUNT_ID: ${{ secrets.PUBLER_INSTAGRAM_ACCOUNT_ID }}
+          PUBLER_THREADS_ACCOUNT_ID:   ${{ secrets.PUBLER_THREADS_ACCOUNT_ID }}
+          BLOGGER_CLIENT_ID:           ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET:       ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN:       ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID:             ${{ secrets.BLOGGER_BLOG_ID }}
+          DASHBOARD_PASSWORD:          ${{ secrets.DASHBOARD_PASSWORD }}
+        run: node scripts/drip-publish.js
+
+      # ── 7. Commit published posts back to repo ────────────────────────────
+      - name: Commit published posts
+        if: steps.queue_status.outputs.status == 'active' && steps.queue_status.outputs.remaining != '0'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add \
+            static/blog/boom/posts/ \
+            static/_data/boom-posts.json \
+            static/_data/drip-queue.json \
+            static/_data/syndication-log.json \
+            static/sitemap.xml \
+            || true
+          git diff --staged --quiet \
+            || git commit -m "Drip publish: $(date -u '+%Y-%m-%d') [automated]"
+          git push
