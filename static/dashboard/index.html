@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,7 +13,8 @@
     :root {
       --bg: #020a0a; --surface: #060f10; --surface2: #0b1a1c; --surface3: #0f2224;
       --accent: #00e5cc; --accent2: #00b4d8; --accent-dim: rgba(0,229,204,0.15);
-      --success: #00e676; --danger: #ff5252; --warn: #ffb300;
+      --success: #39FF14; --danger: #FF4444; --warn: #ffb300; --info: #00FFFF;
+      --purple: #cc44ff;
       --text: #d0fff8; --text-muted: #4a9e96; --border: rgba(0,229,204,0.12);
     }
     html { scroll-behavior: smooth; }
@@ -26,10 +27,7 @@
     .wrap { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
 
     /* ── Auth Gate ── */
-    #gate {
-      display: flex; align-items: center; justify-content: center;
-      min-height: 100vh; padding: 2rem;
-    }
+    #gate { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
     .gate-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
       padding: 2.5rem 3rem; max-width: 380px; width: 100%; text-align: center;
@@ -40,8 +38,7 @@
     .gate-input {
       width: 100%; background: var(--surface2); border: 1px solid var(--border);
       border-radius: 6px; color: var(--text); font-family: inherit; font-size: 1rem;
-      padding: 0.75rem 1rem; margin-bottom: 1rem; outline: none;
-      transition: border-color 0.2s;
+      padding: 0.75rem 1rem; margin-bottom: 1rem; outline: none; transition: border-color 0.2s;
     }
     .gate-input:focus { border-color: var(--accent); }
     .gate-btn {
@@ -58,7 +55,7 @@
     }
     .gate-setup code { color: var(--accent); font-size: 0.8em; }
 
-    /* ── Main Dashboard (hidden until auth) ── */
+    /* ── Main Dashboard ── */
     #app { display: none; flex-direction: column; min-height: 100vh; }
 
     /* ── Header ── */
@@ -79,17 +76,24 @@
     .dash-lock-btn:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ── Main content ── */
-    .dash-main { padding: 2rem; max-width: 1400px; margin: 0 auto; width: 100%; flex: 1; }
+    .dash-main { padding: 2rem; max-width: 1500px; margin: 0 auto; width: 100%; flex: 1; }
 
     /* ── Stats strip ── */
     .stats-strip { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
     .stat-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1rem 1.5rem; flex: 1; min-width: 140px;
+      padding: 1rem 1.5rem; flex: 1; min-width: 130px;
     }
     .stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
     .stat-value { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
     .stat-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.1rem; }
+    .stat-badge {
+      display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      padding: 0.15em 0.5em; border-radius: 3px; text-transform: uppercase; margin-top: 0.25rem;
+    }
+    .stat-badge.gold  { background: rgba(255,179,0,0.15); color: var(--warn); border: 1px solid rgba(255,179,0,0.3); }
+    .stat-badge.green { background: rgba(57,255,20,0.1);  color: var(--success); border: 1px solid rgba(57,255,20,0.25); }
+    .stat-badge.red   { background: rgba(255,68,68,0.1);  color: var(--danger); border: 1px solid rgba(255,68,68,0.25); }
 
     /* ── Section headers ── */
     .section { margin-bottom: 2.5rem; }
@@ -99,59 +103,146 @@
     }
     .section-title { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
 
-    /* ── Platform status table ── */
+    /* ── Platform badges (LARGE) ── */
+    .platform-badges { display: flex; gap: 5px; flex-wrap: nowrap; align-items: center; }
+    .badge {
+      display: inline-flex; align-items: center; justify-content: center; gap: 3px;
+      min-width: 46px; height: 30px; border-radius: 4px; font-size: 0.68rem;
+      font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase;
+      cursor: default; transition: transform 0.15s; white-space: nowrap; padding: 0 6px;
+    }
+    .badge:hover { transform: scale(1.08); }
+    .badge-ok   { background: rgba(57,255,20,0.12);  color: var(--success); border: 1px solid rgba(57,255,20,0.35); cursor: pointer; }
+    .badge-fail { background: rgba(255,68,68,0.12);  color: var(--danger);  border: 1px solid rgba(255,68,68,0.3); }
+    .badge-skip { background: rgba(255,255,255,0.04); color: #555;           border: 1px solid #1e1e1e; }
+    .badge-pend { background: rgba(0,255,255,0.08);  color: var(--info);    border: 1px solid rgba(0,255,255,0.25); }
+
+    /* ── Post table ── */
     .post-table { width: 100%; border-collapse: collapse; }
     .post-table th {
       text-align: left; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--text-muted); padding: 0.5rem 0.75rem;
       border-bottom: 1px solid var(--border);
     }
-    .post-table td {
-      padding: 0.75rem; border-bottom: 1px solid rgba(0,229,204,0.05);
-      vertical-align: middle;
-    }
+    .post-table td { padding: 0.75rem; border-bottom: 1px solid rgba(0,229,204,0.05); vertical-align: middle; }
     .post-table tr:hover td { background: rgba(0,229,204,0.03); }
-    .post-title-cell { max-width: 260px; }
+    .post-title-cell { max-width: 280px; }
     .post-title-link { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
     .post-title-link:hover { color: var(--accent); }
     .post-lane { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
     .post-date { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; }
 
-    /* Platform icons/badges */
-    .platform-badges { display: flex; gap: 4px; flex-wrap: nowrap; }
-    .badge {
+    /* ── Backlink score badge ── */
+    .score-badge {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 28px; height: 22px; border-radius: 3px; font-size: 0.6rem;
-      font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      min-width: 52px; height: 30px; border-radius: 4px; font-size: 0.75rem;
+      font-weight: 700; cursor: pointer; transition: transform 0.15s;
+    }
+    .score-badge:hover { transform: scale(1.05); }
+    .score-green { background: rgba(57,255,20,0.12);  color: var(--success); border: 1px solid rgba(57,255,20,0.35); }
+    .score-yellow{ background: rgba(255,179,0,0.12); color: var(--warn);    border: 1px solid rgba(255,179,0,0.3); }
+    .score-red   { background: rgba(255,68,68,0.12);  color: var(--danger);  border: 1px solid rgba(255,68,68,0.3); }
+
+    /* ── Matrix table ── */
+    .matrix-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+    .matrix-table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    .matrix-table th {
+      text-align: center; font-size: 0.67rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); padding: 0.55rem 0.5rem;
+      border-bottom: 1px solid var(--border); background: var(--surface2);
+      white-space: nowrap;
+    }
+    .matrix-table th.col-title { text-align: left; min-width: 200px; padding-left: 0.75rem; }
+    .matrix-table th.col-date  { min-width: 80px; }
+    .matrix-table td { padding: 0.55rem 0.4rem; border-bottom: 1px solid rgba(0,229,204,0.04); text-align: center; vertical-align: middle; }
+    .matrix-table td.col-title { text-align: left; padding-left: 0.75rem; }
+    .matrix-table tr:hover td { background: rgba(0,229,204,0.025); }
+    .mat-cell {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 4px; font-size: 0.85rem;
       cursor: default; transition: transform 0.15s;
     }
-    .badge:hover { transform: scale(1.1); }
-    .badge-ok   { background: rgba(0,230,118,0.15); color: var(--success); border: 1px solid rgba(0,230,118,0.3); }
-    .badge-fail { background: rgba(255,82,82,0.12); color: var(--danger); border: 1px solid rgba(255,82,82,0.25); }
-    .badge-skip { background: rgba(255,255,255,0.04); color: #555; border: 1px solid #222; }
+    .mat-cell:hover { transform: scale(1.2); }
+    .mat-ok   { background: rgba(57,255,20,0.12);  color: var(--success); cursor: pointer; }
+    .mat-fail { background: rgba(255,68,68,0.1);   color: var(--danger); }
+    .mat-skip { background: rgba(255,255,255,0.03); color: #444; }
+    .mat-pend { background: rgba(0,255,255,0.06);  color: var(--info); animation: pulse 1.5s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .mat-title-link { color: var(--text); text-decoration: none; font-size: 0.82rem; font-weight: 500; }
+    .mat-title-link:hover { color: var(--accent); }
+
+    /* ── Drip Queue section ── */
+    .drip-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+    .drip-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+    .drip-status-badge {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.35em 0.9em; border-radius: 4px;
+    }
+    .drip-paused { background: rgba(255,179,0,0.15); color: var(--warn); border: 1px solid rgba(255,179,0,0.35); }
+    .drip-active { background: rgba(57,255,20,0.12);  color: var(--success); border: 1px solid rgba(57,255,20,0.3); }
+    .drip-meta { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .drip-meta-item { display: flex; flex-direction: column; gap: 0.15rem; }
+    .drip-meta-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    .drip-meta-value { font-size: 1.1rem; font-weight: 600; color: var(--text); }
+    .drip-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .drip-btn {
+      font-family: inherit; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; border-radius: 5px; padding: 0.45rem 1rem;
+      cursor: pointer; transition: opacity 0.2s; border: none;
+    }
+    .drip-btn-green  { background: rgba(57,255,20,0.15); color: var(--success); border: 1px solid rgba(57,255,20,0.3); }
+    .drip-btn-gold   { background: rgba(255,179,0,0.12); color: var(--warn);    border: 1px solid rgba(255,179,0,0.3); }
+    .drip-btn-cyan   { background: rgba(0,229,204,0.12); color: var(--accent);  border: 1px solid rgba(0,229,204,0.25); }
+    .drip-btn:hover  { opacity: 0.75; }
+    .drip-cmd-box {
+      display: none; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem;
+    }
+    .drip-cmd-label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+    .drip-cmd-text  { font-family: "JetBrains Mono","Fira Code",monospace; font-size: 0.85rem; color: var(--accent); word-break: break-all; }
+    .drip-cmd-copy  {
+      margin-top: 0.5rem; background: none; border: 1px solid var(--border);
+      color: var(--text-muted); font-family: inherit; font-size: 0.75rem; padding: 0.25rem 0.65rem;
+      border-radius: 4px; cursor: pointer; transition: border-color 0.2s, color 0.2s;
+    }
+    .drip-cmd-copy:hover { border-color: var(--accent); color: var(--accent); }
+    /* Queue list inside drip panel */
+    .drip-queue-list { max-height: 420px; overflow-y: auto; border: 1px solid var(--border); border-radius: 6px; }
+    .drip-queue-item {
+      display: flex; align-items: center; gap: 0.75rem; padding: 0.55rem 0.9rem;
+      border-bottom: 1px solid rgba(0,229,204,0.05);
+    }
+    .drip-queue-item:last-child { border-bottom: none; }
+    .drip-q-num { font-size: 0.7rem; color: var(--text-muted); min-width: 22px; text-align: right; }
+    .drip-q-title { font-size: 0.85rem; font-weight: 500; flex: 1; }
+    .drip-q-pillar { font-size: 0.68rem; color: var(--text-muted); white-space: nowrap; }
+    .drip-q-badge {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 0.15em 0.5em; border-radius: 3px; white-space: nowrap;
+    }
+    .badge-draft     { background: rgba(204,68,255,0.1);  color: var(--purple); border: 1px solid rgba(204,68,255,0.25); }
+    .badge-queued    { background: rgba(255,179,0,0.1);   color: var(--warn);   border: 1px solid rgba(255,179,0,0.25); }
+    .badge-published { background: rgba(57,255,20,0.1);   color: var(--success);border: 1px solid rgba(57,255,20,0.25); }
 
     /* ── Queue section ── */
-    .queue-grid { display: grid; gap: 0.75rem; }
+    .queue-grid { display: grid; gap: 0.65rem; }
     .queue-item {
       background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 0.9rem 1.2rem; display: flex; align-items: center; gap: 1rem;
+      padding: 0.8rem 1.1rem; display: flex; align-items: center; gap: 1rem;
     }
-    .queue-lane-dot {
-      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-    }
-    .queue-item-title { font-size: 0.9rem; font-weight: 500; flex: 1; }
+    .queue-lane-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .queue-item-title { font-size: 0.88rem; font-weight: 500; flex: 1; }
     .queue-item-date  { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
-    .queue-synced { opacity: 0.4; }
-    .queue-pending-badge {
-      font-size: 0.65rem; letter-spacing: 0.08em; padding: 0.2em 0.5em;
-      border-radius: 2px; background: rgba(0,229,204,0.1); color: var(--accent);
-      border: 1px solid rgba(0,229,204,0.2); text-transform: uppercase; font-weight: 700;
+    .queue-synced { opacity: 0.35; }
+    .queue-status-badge {
+      font-size: 0.62rem; letter-spacing: 0.07em; padding: 0.18em 0.5em;
+      border-radius: 2px; text-transform: uppercase; font-weight: 700;
     }
+    .badge-pending  { background: rgba(0,229,204,0.08);  color: var(--accent); border: 1px solid rgba(0,229,204,0.2); }
+    .badge-synced   { background: rgba(57,255,20,0.08);  color: var(--success);border: 1px solid rgba(57,255,20,0.2); font-size: 0.62rem; }
 
     /* ── Manual trigger ── */
-    .trigger-panel {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem;
-    }
+    .trigger-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
     .trigger-row { display: flex; gap: 0.75rem; align-items: flex-end; flex-wrap: wrap; margin-bottom: 1rem; }
     .trigger-field { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; min-width: 180px; }
     .trigger-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
@@ -173,36 +264,42 @@
       padding: 0.9rem 1rem; margin-top: 0.5rem;
     }
     .cmd-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.4rem; }
-    .cmd-text { font-family: "JetBrains Mono", "Fira Code", monospace; font-size: 0.85rem; color: var(--accent); word-break: break-all; }
-    .cmd-copy {
+    .cmd-text  { font-family: "JetBrains Mono","Fira Code",monospace; font-size: 0.85rem; color: var(--accent); word-break: break-all; }
+    .cmd-copy  {
       margin-top: 0.6rem; background: none; border: 1px solid var(--border); color: var(--text-muted);
       font-family: inherit; font-size: 0.78rem; padding: 0.3rem 0.7rem; border-radius: 4px; cursor: pointer;
       transition: border-color 0.2s, color 0.2s;
     }
     .cmd-copy:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ── Caption preview panel ── */
-    .caption-modal {
-      display: none; position: fixed; inset: 0; background: rgba(2,10,10,0.9);
+    /* ── Modal ── */
+    .modal {
+      display: none; position: fixed; inset: 0; background: rgba(2,10,10,0.92);
       z-index: 200; align-items: center; justify-content: center; padding: 2rem;
     }
-    .caption-modal.open { display: flex; }
-    .caption-inner {
+    .modal.open { display: flex; }
+    .modal-inner {
       background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
       max-width: 720px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 2rem;
     }
-    .caption-inner h2 { font-size: 1rem; color: var(--accent); margin-bottom: 1.5rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-    .caption-platform { margin-bottom: 1.2rem; }
-    .cap-name { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
-    .cap-text { background: var(--surface2); border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.85rem; white-space: pre-wrap; word-break: break-word; }
-    .caption-close {
+    .modal-inner h2 { font-size: 1rem; color: var(--accent); margin-bottom: 1.5rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .modal-close {
       display: block; width: 100%; margin-top: 1.5rem; background: none; border: 1px solid var(--border);
       color: var(--text-muted); font-family: inherit; font-size: 0.85rem; padding: 0.6rem;
       border-radius: 6px; cursor: pointer; transition: border-color 0.2s;
     }
-    .caption-close:hover { border-color: var(--accent); color: var(--accent); }
+    .modal-close:hover { border-color: var(--accent); color: var(--accent); }
+    .caption-platform { margin-bottom: 1.2rem; }
+    .cap-name { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
+    .cap-text { background: var(--surface2); border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.85rem; white-space: pre-wrap; word-break: break-word; }
+    .url-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .url-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; }
+    .url-platform { min-width: 80px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); }
+    .url-link { color: var(--accent); text-decoration: none; word-break: break-all; font-size: 0.82rem; }
+    .url-link:hover { text-decoration: underline; }
+    .url-fail { color: var(--danger); font-size: 0.82rem; font-style: italic; }
 
-    /* ── Empty states ── */
+    /* ── Empty state ── */
     .empty-state { text-align: center; padding: 3rem 1rem; color: var(--text-muted); }
     .empty-state code { color: var(--accent); font-size: 0.9em; }
 
@@ -212,7 +309,10 @@
     /* ── Loading ── */
     .loading { color: var(--text-muted); font-size: 0.88rem; padding: 1rem; }
     .dot-pulse::after { content: "..."; animation: dots 1.2s steps(4,end) infinite; }
-    @keyframes dots { 0%,20% { content: "."; } 40% { content: ".."; } 60%,100% { content: "..."; } }
+    @keyframes dots { 0%,20%{content:"."} 40%{content:".."} 60%,100%{content:"..."} }
+
+    /* ── Tooltip ── */
+    [title] { position: relative; }
 
     @media (max-width: 768px) {
       .dash-main { padding: 1rem; }
@@ -220,6 +320,7 @@
       .stats-strip { gap: 0.5rem; }
       .platform-badges { flex-wrap: wrap; }
       .post-table { font-size: 0.82rem; }
+      .drip-meta { gap: 1rem; }
     }
   </style>
 </head>
@@ -259,11 +360,12 @@
 
     <main class="dash-main">
 
-      <!-- Stats -->
+      <!-- ── Stats Strip ── -->
       <div class="stats-strip" id="stats-strip">
         <div class="stat-card">
-          <div class="stat-label">Total Posts Syndicated</div>
+          <div class="stat-label">Posts Syndicated</div>
           <div class="stat-value" id="stat-total">~</div>
+          <div class="stat-sub">unique posts</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">This Week</div>
@@ -276,12 +378,33 @@
         </div>
         <div class="stat-card">
           <div class="stat-label">Platforms Active</div>
-          <div class="stat-value" id="stat-platforms">10</div>
-          <div class="stat-sub">BS · MS · FB×2 · PT · DV · HN · TU · IG · TH</div>
+          <div class="stat-value" id="stat-platforms">11</div>
+          <div class="stat-sub" style="font-size:0.7rem">Bsky·Mast·FB-V·FB-E·Dev·Hash·Tumblr·Blog·Pins·Insta·Thrd</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Drip Queue</div>
+          <div class="stat-value" id="stat-drip">~</div>
+          <div id="stat-drip-badge"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Backlink Health</div>
+          <div class="stat-value" id="stat-backlink">~</div>
+          <div id="stat-backlink-badge"></div>
         </div>
       </div>
 
-      <!-- Recent posts table -->
+      <!-- ── Drip Queue ── -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-title">Drip Queue</span>
+          <span style="font-size:0.75rem;color:var(--text-muted)" id="drip-count-label"></span>
+        </div>
+        <div id="drip-wrap">
+          <div class="loading dot-pulse">Loading</div>
+        </div>
+      </div>
+
+      <!-- ── Recent Syndications ── -->
       <div class="section">
         <div class="section-header">
           <span class="section-title">Recent Syndications</span>
@@ -292,7 +415,18 @@
         </div>
       </div>
 
-      <!-- Upcoming queue -->
+      <!-- ── Syndication Status Matrix ── -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-title">Syndication Status Matrix</span>
+          <span style="font-size:0.75rem;color:var(--text-muted)">All syndicated posts · click ✓ to open URL · click score badge for full list</span>
+        </div>
+        <div id="matrix-wrap">
+          <div class="loading dot-pulse">Loading</div>
+        </div>
+      </div>
+
+      <!-- ── Post Queue ── -->
       <div class="section">
         <div class="section-header">
           <span class="section-title">Post Queue</span>
@@ -303,7 +437,7 @@
         </div>
       </div>
 
-      <!-- Manual trigger -->
+      <!-- ── Manual Syndication ── -->
       <div class="section">
         <div class="section-header">
           <span class="section-title">Manual Syndication</span>
@@ -343,22 +477,31 @@
 
 </div>
 
-<!-- Caption preview modal -->
-<div class="caption-modal" id="caption-modal" role="dialog" aria-modal="true" aria-label="Captions">
-  <div class="caption-inner" id="caption-inner">
+<!-- ── Caption Modal ── -->
+<div class="modal" id="caption-modal" role="dialog" aria-modal="true" aria-label="Captions">
+  <div class="modal-inner" id="caption-inner">
     <h2>Captions Used</h2>
     <div id="caption-body"></div>
-    <button class="caption-close" id="caption-close">Close</button>
+    <button class="modal-close" id="caption-close">Close</button>
+  </div>
+</div>
+
+<!-- ── URL Modal ── -->
+<div class="modal" id="url-modal" role="dialog" aria-modal="true" aria-label="Syndicated URLs">
+  <div class="modal-inner" id="url-inner">
+    <h2 id="url-modal-title">Syndicated URLs</h2>
+    <div id="url-modal-body"></div>
+    <button class="modal-close" id="url-close">Close</button>
   </div>
 </div>
 
 <script>
-// ── Stars canvas ─────────────────────────────────────────────────────────────
-(function () {
+// ── Stars ─────────────────────────────────────────────────────────────────────
+(function() {
   const canvas = document.getElementById("stars-canvas");
-  const ctx    = canvas.getContext("2d");
-  let stars    = [];
-  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  const ctx = canvas.getContext("2d");
+  let stars = [];
+  function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
   function init() {
     stars = Array.from({ length: 140 }, () => ({
       x: Math.random() * canvas.width, y: Math.random() * canvas.height,
@@ -385,86 +528,70 @@
 })();
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-const PLATFORM_LABELS = {
-  bluesky:            "BS",
-  mastodon:           "MS",
-  facebook_voa:       "FV",
-  facebook_earthstar: "FE",
-  pinterest:          "PT",
-  devto:              "DV",
-  hashnode:           "HN",
-  tumblr:             "TU",
-  instagram:          "IG",
-  threads:            "TH",
-};
-const PLATFORM_NAMES = {
-  bluesky:            "Bluesky",
-  mastodon:           "Mastodon",
-  facebook_voa:       "Facebook VOA",
-  facebook_earthstar: "Facebook EarthStar",
-  pinterest:          "Pinterest",
-  devto:              "Dev.to",
-  hashnode:           "Hashnode",
-  tumblr:             "Tumblr",
-  instagram:          "Instagram",
-  threads:            "Threads",
-};
+// FV = facebook_voa (Facebook VOA page), FE = facebook_earthstar (Facebook EarthStar page)
+const PLATFORMS = [
+  { key: "bluesky",            label: "Bsky",   name: "Bluesky" },
+  { key: "mastodon",           label: "Mast",   name: "Mastodon" },
+  { key: "facebook_voa",       label: "FB-V",   name: "Facebook (VOA Page)" },
+  { key: "facebook_earthstar", label: "FB-E",   name: "Facebook (EarthStar Page)" },
+  { key: "devto",              label: "Dev",    name: "Dev.to" },
+  { key: "hashnode",           label: "Hash",   name: "Hashnode" },
+  { key: "tumblr",             label: "Tumblr", name: "Tumblr" },
+  { key: "blogger",            label: "Blog",   name: "Blogger" },
+  { key: "pinterest",          label: "Pins",   name: "Pinterest" },
+  { key: "instagram",          label: "Insta",  name: "Instagram ⓘ", tooltip: "No clickable links in Instagram posts ~ visual reach only" },
+  { key: "threads",            label: "Thrd",   name: "Threads" },
+];
+const PLATFORM_MAP = Object.fromEntries(PLATFORMS.map(p => [p.key, p]));
+
 const SESSION_KEY   = "voa_dash_authed";
 const CONFIG_URL    = "/_data/dashboard-config.json";
 const LOG_URL       = "/_data/syndication-log.json";
-const BOOM_URL   = "/_data/boom-posts.json";
+const RESULTS_URL   = "/_data/syndication-results.json";
+const DRIP_URL      = "/_data/drip-queue.json";
+const BOOM_URL      = "/_data/boom-posts.json";
 const MATT_URL      = "/_data/matt-posts.json";
+const VERIFY_CACHE  = "voa_url_verify_cache";
+const CACHE_TTL     = 60 * 60 * 1000; // 1 hour
 
-// ── Password hashing (SubtleCrypto) ──────────────────────────────────────────
+// ── Auth ──────────────────────────────────────────────────────────────────────
 async function sha256hex(str) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
 }
 
-// ── Auth gate ─────────────────────────────────────────────────────────────────
 async function initAuth() {
-  // Already authed this session?
   if (sessionStorage.getItem(SESSION_KEY) === "1") { showApp(); return; }
-
-  // Fetch config for password hash
   let configHash = null;
   try {
     const cfg = await fetch(CONFIG_URL).then(r => r.ok ? r.json() : null);
     configHash = cfg?.passwordHash || null;
-  } catch (_) { /* fetch may fail in dev */ }
+  } catch (_) {}
 
-  if (!configHash) {
-    document.getElementById("setup-note").style.display = "block";
-  }
+  if (!configHash) document.getElementById("setup-note").style.display = "block";
 
-  const input  = document.getElementById("pw-input");
-  const errEl  = document.getElementById("pw-error");
+  const input = document.getElementById("pw-input");
+  const errEl = document.getElementById("pw-error");
   const submit = document.getElementById("pw-submit");
 
   async function tryLogin() {
     const val = input.value.trim();
     if (!val) return;
-    if (!configHash) {
-      // No config ~ allow any non-empty password in dev mode
-      sessionStorage.setItem(SESSION_KEY, "1");
-      showApp(); return;
-    }
+    if (!configHash) { sessionStorage.setItem(SESSION_KEY,"1"); showApp(); return; }
     const hash = await sha256hex(val);
     if (hash === configHash) {
       errEl.style.display = "none";
-      sessionStorage.setItem(SESSION_KEY, "1");
+      sessionStorage.setItem(SESSION_KEY,"1");
       showApp();
     } else {
       errEl.style.display = "block";
       input.value = "";
     }
   }
-
   submit.addEventListener("click", tryLogin);
   input.addEventListener("keydown", e => { if (e.key === "Enter") tryLogin(); });
 }
 
-// ── Show main app ─────────────────────────────────────────────────────────────
 function showApp() {
   document.getElementById("gate").style.display = "none";
   const app = document.getElementById("app");
@@ -478,55 +605,222 @@ document.getElementById("lock-btn").addEventListener("click", () => {
   location.reload();
 });
 
-// ── Data loading ──────────────────────────────────────────────────────────────
+// ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const [logData, boomPosts, mattPosts] = await Promise.all([
+  const [logData, resultsData, dripData, boomPosts, mattPosts] = await Promise.all([
     fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
+    fetch(RESULTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
+    fetch(DRIP_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(BOOM_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(MATT_URL).then(r => r.ok ? r.json() : []).catch(() => []),
   ]);
 
-  const entries = Array.isArray(logData.entries) ? logData.entries : [];
+  // Deduplicate log entries by slug (keep most recent per slug)
+  const rawEntries = Array.isArray(logData.entries) ? logData.entries : [];
+  const bySlug = new Map();
+  for (const e of rawEntries) {
+    if (!bySlug.has(e.postSlug) || new Date(e.timestamp) > new Date(bySlug.get(e.postSlug).timestamp)) {
+      bySlug.set(e.postSlug, e);
+    }
+  }
+  const entries = [...bySlug.values()].sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+
   const allPosts = [
     ...boomPosts.map(p => ({ ...p, lane: "boom" })),
     ...mattPosts.map(p => ({ ...p, lane: "matt" })),
-  ].sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  renderStats(entries);
-  renderRecentPosts(entries);
-  renderQueue(entries, allPosts);
-  renderTrigger(allPosts);
+  ].sort((a,b) => new Date(b.date) - new Date(a.date));
 
   if (logData.lastUpdated) {
     document.getElementById("last-updated").textContent =
       "Updated " + new Date(logData.lastUpdated).toLocaleString();
   }
+
+  renderStats(entries, resultsData, dripData);
+  renderDripQueue(dripData);
+  renderRecentPosts(entries);
+  renderMatrix(resultsData);
+  renderQueue(entries, allPosts, dripData);
+  renderTrigger(allPosts);
 }
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
-function renderStats(entries) {
+function renderStats(entries, results, drip) {
   document.getElementById("stat-total").textContent = entries.length;
 
-  const weekAgo   = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-  const thisWeek  = entries.filter(e => new Date(e.timestamp) > weekAgo).length;
-  document.getElementById("stat-week").textContent = thisWeek;
+  const weekAgo = new Date(Date.now() - 7 * 86400000);
+  document.getElementById("stat-week").textContent =
+    entries.filter(e => new Date(e.timestamp) > weekAgo).length;
 
   if (entries.length > 0) {
     let total = 0, ok = 0;
     for (const e of entries) {
-      for (const r of Object.values(e.platforms || {})) {
-        total++; if (r.success) ok++;
-      }
+      for (const r of Object.values(e.platforms || {})) { total++; if (r.success) ok++; }
     }
     document.getElementById("stat-rate").textContent =
       total > 0 ? Math.round((ok / total) * 100) + "%" : "~";
   }
+
+  // Drip queue card
+  if (drip) {
+    const remaining = drip.queue?.length ?? 0;
+    const published = drip.published?.length ?? 0;
+    document.getElementById("stat-drip").textContent = remaining;
+    const badge = drip.status === "active"
+      ? `<span class="stat-badge green">Active</span>`
+      : `<span class="stat-badge gold">Paused</span>`;
+    document.getElementById("stat-drip-badge").innerHTML =
+      `${badge} <span style="font-size:0.75rem;color:var(--text-muted)">${published} published</span>`;
+  }
+
+  // Backlink health card
+  if (results.length > 0) {
+    let total = 0, ok = 0;
+    for (const r of results) {
+      for (const s of Object.values(r.syndication || {})) {
+        total++;
+        if (s.status === "success") ok++;
+      }
+    }
+    const pct = total > 0 ? Math.round((ok / total) * 100) : 0;
+    document.getElementById("stat-backlink").textContent = pct + "%";
+    const cls = pct >= 64 ? "green" : pct >= 36 ? "gold" : "red";
+    const avg = results.length > 0
+      ? (results.reduce((s,r) => s + Object.values(r.syndication||{}).filter(x=>x.status==="success").length, 0) / results.length).toFixed(1)
+      : "~";
+    document.getElementById("stat-backlink-badge").innerHTML =
+      `<span class="stat-badge ${cls}">avg ${avg}/11</span>`;
+  }
 }
 
-// ── Recent posts table ────────────────────────────────────────────────────────
+// ── Drip Queue Section ────────────────────────────────────────────────────────
+function renderDripQueue(drip) {
+  const wrap = document.getElementById("drip-wrap");
+  if (!drip) {
+    wrap.innerHTML = `<div class="empty-state">drip-queue.json not found. Run: <code>node scripts/generate-all-drafts.js</code></div>`;
+    return;
+  }
+
+  const q          = drip.queue || [];
+  const published  = drip.published || [];
+  const total      = q.length + published.length;
+  const isActive   = drip.status === "active";
+  const statusBadge = isActive
+    ? `<span class="drip-status-badge drip-active">● Active</span>`
+    : `<span class="drip-status-badge drip-paused">⏸ Paused</span>`;
+
+  // Compute "next scheduled" date
+  let nextScheduled = "—";
+  if (isActive && q.length > 0) {
+    const now = new Date();
+    const next = new Date(now);
+    next.setUTCHours(10, 0, 0, 0);
+    if (next <= now) next.setUTCDate(next.getUTCDate() + 1);
+    nextScheduled = next.toLocaleDateString("en-US", { month: "short", day: "numeric" }) + " at 10:00 UTC";
+  }
+
+  document.getElementById("drip-count-label").textContent =
+    `${published.length} published · ${q.length} remaining of ${total}`;
+
+  const publishedSlugs = new Set(published.map(p => p.slug));
+  const nextSlug = q.length > 0 ? q[0].slug : null;
+
+  wrap.innerHTML = `
+    <div class="drip-panel">
+      <div class="drip-header">
+        ${statusBadge}
+        <span style="color:var(--text-muted);font-size:0.85rem">
+          ${published.length} / ${total} published · ${drip.drip_rate ?? 2} posts/day
+        </span>
+      </div>
+      <div class="drip-meta">
+        <div class="drip-meta-item">
+          <span class="drip-meta-label">Posts Published</span>
+          <span class="drip-meta-value">${published.length} / ${total}</span>
+        </div>
+        <div class="drip-meta-item">
+          <span class="drip-meta-label">Remaining</span>
+          <span class="drip-meta-value">${q.length}</span>
+        </div>
+        <div class="drip-meta-item">
+          <span class="drip-meta-label">Drip Rate</span>
+          <span class="drip-meta-value">${drip.drip_rate ?? 2}/day</span>
+        </div>
+        <div class="drip-meta-item">
+          <span class="drip-meta-label">Schedule</span>
+          <span class="drip-meta-value">${drip.drip_time ?? "10:00 UTC"}</span>
+        </div>
+        <div class="drip-meta-item">
+          <span class="drip-meta-label">Next Publish</span>
+          <span class="drip-meta-value" style="font-size:0.9rem">${nextScheduled}</span>
+        </div>
+        <div class="drip-meta-item">
+          <span class="drip-meta-label">Syndicate</span>
+          <span class="drip-meta-value" style="font-size:0.9rem">${drip.syndicate_on_publish ? "✓ On" : "✗ Off"}</span>
+        </div>
+        <div class="drip-meta-item">
+          <span class="drip-meta-label">Feeder</span>
+          <span class="drip-meta-value" style="font-size:0.9rem">${drip.trigger_feeder_on_publish ? "✓ On" : "✗ Off"}</span>
+        </div>
+      </div>
+      <div class="drip-actions">
+        <button class="drip-btn drip-btn-green" onclick="showDripCmd('activate','node scripts/activate-drip.js --syndicate --feeder')">▶ Activate Drip</button>
+        <button class="drip-btn drip-btn-gold"  onclick="showDripCmd('pause','node scripts/activate-drip.js --pause')">⏸ Pause Drip</button>
+        ${nextSlug ? `<button class="drip-btn drip-btn-cyan" onclick="showDripCmd('next','node scripts/drip-publish.js --slug ${nextSlug}')">⚡ Publish Next Now</button>` : ""}
+      </div>
+      <div class="drip-cmd-box" id="drip-cmd-box">
+        <div class="drip-cmd-label" id="drip-cmd-label">Command</div>
+        <div class="drip-cmd-text" id="drip-cmd-text"></div>
+        <button class="drip-cmd-copy" onclick="copyDripCmd()">Copy to clipboard</button>
+      </div>
+      <div class="drip-queue-list">
+        ${renderDripList(q, published, publishedSlugs)}
+      </div>
+    </div>`;
+}
+
+function renderDripList(queue, published, publishedSlugs) {
+  if (queue.length === 0 && published.length === 0) {
+    return `<div class="drip-queue-item"><span style="color:var(--text-muted);font-size:0.85rem">Queue is empty.</span></div>`;
+  }
+  const all = [
+    ...queue.map((p,i) => ({ ...p, qPos: i + 1, statusKey: "queued" })),
+    ...published.map(p => ({ ...p, qPos: null, statusKey: "published" })),
+  ];
+  return all.map(p => {
+    const badgeCls = p.statusKey === "published" ? "badge-published" : "badge-queued";
+    const badgeLabel = p.statusKey === "published" ? "Published" : "Queued";
+    const num = p.qPos ? `<span class="drip-q-num">${p.qPos}</span>` : `<span class="drip-q-num">✓</span>`;
+    return `<div class="drip-queue-item">
+      ${num}
+      <span class="drip-q-title">${esc(p.title)}</span>
+      <span class="drip-q-pillar">${esc(p.pillar || "")}</span>
+      <span class="drip-q-badge ${badgeCls}">${badgeLabel}</span>
+    </div>`;
+  }).join("");
+}
+
+function showDripCmd(type, cmd) {
+  const box   = document.getElementById("drip-cmd-box");
+  const label = document.getElementById("drip-cmd-label");
+  const text  = document.getElementById("drip-cmd-text");
+  const labels = { activate:"Activate command", pause:"Pause command", next:"Publish next command" };
+  label.textContent = labels[type] || "Command";
+  text.textContent  = cmd;
+  box.style.display = "block";
+}
+function copyDripCmd() {
+  const text = document.getElementById("drip-cmd-text").textContent;
+  navigator.clipboard?.writeText(text).then(() => {
+    const btn = document.querySelector(".drip-cmd-copy");
+    btn.textContent = "Copied!";
+    setTimeout(() => { btn.textContent = "Copy to clipboard"; }, 2000);
+  });
+}
+
+// ── Recent Syndications ───────────────────────────────────────────────────────
 function renderRecentPosts(entries) {
   const wrap = document.getElementById("recent-posts-wrap");
-  document.getElementById("entry-count").textContent = entries.length + " entries";
+  document.getElementById("entry-count").textContent = entries.length + " entries (deduplicated)";
 
   if (entries.length === 0) {
     wrap.innerHTML = `<div class="empty-state">No syndications yet.<br>Run: <code>node scripts/syndicate.js --lane boom --slug your-slug</code></div>`;
@@ -535,17 +829,16 @@ function renderRecentPosts(entries) {
 
   const rows = entries.slice(0, 25).map(entry => {
     const platforms = entry.platforms || {};
-    const badges = Object.entries(PLATFORM_LABELS).map(([key, abbr]) => {
+    const badges = PLATFORMS.map(({ key, label, name, tooltip }) => {
       const r = platforms[key];
-      if (!r) return `<span class="badge badge-skip" title="${PLATFORM_NAMES[key]}: no data">${abbr}</span>`;
-      const cls   = r.success ? "badge-ok" : "badge-fail";
-      const tip   = r.success
-        ? `${PLATFORM_NAMES[key]}: ✓${r.postUrl ? " ~ " + r.postUrl : ""}`
-        : `${PLATFORM_NAMES[key]}: ✗ ${r.error || "failed"}`;
-      const url   = r.postUrl
-        ? `onclick="window.open('${r.postUrl}','_blank')" style="cursor:pointer"`
-        : "";
-      return `<span class="badge ${cls}" title="${tip}" ${url}>${abbr}</span>`;
+      if (!r) return `<span class="badge badge-skip" title="${name}: not attempted">~ ${label}</span>`;
+      if (r.success) {
+        const tip = tooltip || `${name}: ✓${r.postUrl ? " → " + r.postUrl : ""}`;
+        const onclick = r.postUrl ? `onclick="window.open('${esc(r.postUrl)}','_blank')"` : "";
+        return `<span class="badge badge-ok" title="${esc(tip)}" ${onclick}>✓ ${label}</span>`;
+      } else {
+        return `<span class="badge badge-fail" title="${esc(name + ": ✗ " + (r.error || "failed"))}">✗ ${label}</span>`;
+      }
     }).join("");
 
     const hasCaptions = entry.captions && Object.keys(entry.captions).length > 0;
@@ -553,13 +846,13 @@ function renderRecentPosts(entries) {
       ? `<button onclick="showCaptions(${JSON.stringify(JSON.stringify(entry.captions))})" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.75rem;padding:0.2rem 0.4rem;border-radius:3px;border:1px solid var(--border)">captions</button>`
       : "";
 
-    const date    = new Date(entry.timestamp).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    const date   = new Date(entry.timestamp).toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" });
     const laneClr = entry.lane === "matt" ? "#ffb300" : "#00e5ff";
     const laneNm  = entry.lane === "matt" ? "Forest Temple" : "Boom Frequency";
 
     return `<tr>
       <td class="post-title-cell">
-        <a href="${entry.postUrl}" target="_blank" class="post-title-link">${esc(entry.postTitle)}</a>
+        <a href="${esc(entry.postUrl)}" target="_blank" class="post-title-link">${esc(entry.postTitle)}</a>
         <div class="post-lane" style="color:${laneClr}">${laneNm}</div>
       </td>
       <td class="post-date">${date}</td>
@@ -570,38 +863,203 @@ function renderRecentPosts(entries) {
 
   wrap.innerHTML = `<table class="post-table">
     <thead><tr>
-      <th>Post</th>
-      <th>Date</th>
-      <th>Platforms</th>
-      <th></th>
+      <th>Post</th><th>Date</th><th>Platforms (11)</th><th></th>
     </tr></thead>
     <tbody>${rows}</tbody>
   </table>`;
 }
 
-// ── Queue ─────────────────────────────────────────────────────────────────────
-function renderQueue(entries, allPosts) {
-  const wrap    = document.getElementById("queue-wrap");
-  const synced  = new Set(entries.map(e => e.postSlug));
-
-  if (allPosts.length === 0) {
-    wrap.innerHTML = `<div class="empty-state">No posts found in JSON indexes.</div>`;
+// ── Syndication Status Matrix ─────────────────────────────────────────────────
+function renderMatrix(results) {
+  const wrap = document.getElementById("matrix-wrap");
+  if (!results || results.length === 0) {
+    wrap.innerHTML = `<div class="empty-state">No syndication results yet.<br>Run syndicate.js to populate.</div>`;
     return;
   }
 
-  const items = allPosts.map(post => {
-    const isSynced  = synced.has(post.slug);
-    const laneClr   = post.lane === "matt" ? "#ffb300" : "#00e5ff";
-    const laneNm    = post.lane === "matt" ? "Forest Temple" : "Boom Frequency";
-    const date      = new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-    const badge     = isSynced
-      ? `<span style="font-size:0.68rem;color:var(--text-muted)">synced</span>`
-      : `<span class="queue-pending-badge">Pending</span>`;
+  // Build header
+  const platHeaders = PLATFORMS.map(p =>
+    `<th title="${p.name}${p.tooltip ? " · " + p.tooltip : ""}">${p.label}${p.tooltip ? " ⓘ" : ""}</th>`
+  ).join("");
 
-    return `<div class="queue-item${isSynced ? " queue-synced" : ""}">
+  // Build rows
+  const rows = results.map(entry => {
+    const syn = entry.syndication || {};
+    let successCount = 0;
+    const cells = PLATFORMS.map(({ key, name, tooltip }) => {
+      const s = syn[key];
+      if (!s) return `<td><div class="mat-cell mat-skip" title="${name}: not attempted">~</div></td>`;
+      if (s.status === "success") {
+        successCount++;
+        const tip = tooltip ? `${name}: ✓ · ${tooltip}` : `${name}: ✓${s.url ? " → " + s.url : ""}`;
+        const onclick = s.url ? `onclick="window.open('${esc(s.url)}','_blank')"` : "";
+        return `<td><div class="mat-cell mat-ok" title="${esc(tip)}" ${onclick} data-verify="${esc(s.url||"")}" data-key="${key}">✓</div></td>`;
+      } else {
+        return `<td><div class="mat-cell mat-fail" title="${esc(name + ": ✗ " + (s.error || "failed"))}">✗</div></td>`;
+      }
+    }).join("");
+
+    const total = PLATFORMS.length;
+    const scoreCls = successCount >= 7 ? "score-green" : successCount >= 4 ? "score-yellow" : "score-red";
+    const scoreBtn = `<span class="score-badge ${scoreCls}" onclick="showUrlModal(${JSON.stringify(JSON.stringify(entry))})" title="Click to see all URLs">${successCount}/${total}</span>`;
+
+    const date = new Date(entry.date).toLocaleDateString("en-US", { month:"short", day:"numeric" });
+    return `<tr>
+      <td class="col-title"><a href="${esc(entry.voa_url)}" target="_blank" class="mat-title-link">${esc(entry.title)}</a></td>
+      <td class="col-date" style="font-size:0.75rem;color:var(--text-muted);white-space:nowrap">${date}</td>
+      ${cells}
+      <td>${scoreBtn}</td>
+    </tr>`;
+  }).join("");
+
+  wrap.innerHTML = `<div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead><tr>
+        <th class="col-title">Post</th>
+        <th class="col-date">Date</th>
+        ${platHeaders}
+        <th title="Platforms confirmed / total">Score</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
+
+  // Kick off live URL verification
+  verifyMatrixUrls();
+}
+
+// ── Live URL Verification ─────────────────────────────────────────────────────
+// Uses no-cors fetch: opaque response = likely live, network error = dead
+// Results cached in localStorage for 1 hour
+function getVerifyCache() {
+  try {
+    const raw = localStorage.getItem(VERIFY_CACHE);
+    if (!raw) return {};
+    const cache = JSON.parse(raw);
+    const now = Date.now();
+    // Prune expired entries
+    const clean = {};
+    for (const [url, entry] of Object.entries(cache)) {
+      if (now - entry.ts < CACHE_TTL) clean[url] = entry;
+    }
+    return clean;
+  } catch (_) { return {}; }
+}
+function setVerifyCache(cache) {
+  try { localStorage.setItem(VERIFY_CACHE, JSON.stringify(cache)); } catch (_) {}
+}
+
+async function verifyMatrixUrls() {
+  const cache = getVerifyCache();
+  const cells = document.querySelectorAll("[data-verify]");
+  const toCheck = [];
+
+  for (const cell of cells) {
+    const url = cell.getAttribute("data-verify");
+    if (!url) continue;
+    if (cache[url] !== undefined) {
+      updateMatrixCell(cell, cache[url].live);
+    } else {
+      cell.innerHTML = "⏳";
+      cell.classList.replace("mat-ok", "mat-pend");
+      toCheck.push({ cell, url });
+    }
+  }
+
+  for (const { cell, url } of toCheck) {
+    try {
+      await fetch(url, { method: "HEAD", mode: "no-cors", cache: "no-store" });
+      // Opaque response means the server responded ~ treat as live
+      cache[url] = { live: true, ts: Date.now() };
+      updateMatrixCell(cell, true);
+    } catch (_) {
+      cache[url] = { live: false, ts: Date.now() };
+      updateMatrixCell(cell, false);
+    }
+  }
+
+  if (toCheck.length > 0) setVerifyCache(cache);
+}
+
+function updateMatrixCell(cell, live) {
+  cell.innerHTML = live ? "✓" : "✗";
+  cell.classList.remove("mat-pend");
+  if (live) {
+    cell.classList.add("mat-ok");
+    cell.classList.remove("mat-fail");
+  } else {
+    cell.classList.add("mat-fail");
+    cell.classList.remove("mat-ok");
+    cell.onclick = null;
+    cell.style.cursor = "default";
+  }
+}
+
+// ── Post Queue ────────────────────────────────────────────────────────────────
+function renderQueue(entries, allPosts, drip) {
+  const wrap    = document.getElementById("queue-wrap");
+  const syncedSlugs = new Set(entries.map(e => e.postSlug));
+
+  // Build drip status map: slug → "draft" | "queued" | "published"
+  const dripStatusMap = {};
+  if (drip) {
+    for (const p of (drip.queue || []))     dripStatusMap[p.slug] = "queued";
+    for (const p of (drip.published || [])) dripStatusMap[p.slug] = "published";
+  }
+
+  // Merge: published posts + drip queued/draft posts
+  const dripSlugsInQueue = new Set([
+    ...(drip?.queue || []).map(p => p.slug),
+    ...(drip?.published || []).map(p => p.slug),
+  ]);
+  const dripOnlyPosts = drip
+    ? [...(drip.queue || []), ...(drip.published || [])].filter(p => !allPosts.some(ap => ap.slug === p.slug))
+    : [];
+
+  const combined = [
+    ...allPosts,
+    ...dripOnlyPosts.map(p => ({
+      title: p.title, slug: p.slug, date: null,
+      url: "/blog/boom/drafts/" + p.slug + ".html", lane: "boom",
+    })),
+  ];
+
+  if (combined.length === 0) {
+    wrap.innerHTML = `<div class="empty-state">No posts found.</div>`;
+    return;
+  }
+
+  const items = combined.map(post => {
+    const isSynced    = syncedSlugs.has(post.slug);
+    const dripStatus  = dripStatusMap[post.slug];
+    const laneClr     = post.lane === "matt" ? "#ffb300" : "#00e5ff";
+    const laneNm      = post.lane === "matt" ? "Forest Temple" : "Boom Frequency";
+    const date        = post.date
+      ? new Date(post.date).toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" })
+      : "—";
+
+    let badge;
+    if (isSynced) {
+      badge = `<span class="queue-status-badge badge-synced">✓ Synced</span>`;
+    } else if (dripStatus === "published") {
+      badge = `<span class="queue-status-badge badge-published">Published</span>`;
+    } else if (dripStatus === "queued") {
+      badge = `<span class="queue-status-badge badge-queued">Queued</span>`;
+    } else if (!post.date) {
+      badge = `<span class="queue-status-badge badge-draft">Draft</span>`;
+    } else {
+      badge = `<span class="queue-status-badge badge-pending">Pending</span>`;
+    }
+
+    const url = post.date
+      ? "https://vibrationofawesome.com" + post.url
+      : "#";
+    const opacity = isSynced ? " queue-synced" : "";
+
+    return `<div class="queue-item${opacity}">
       <div class="queue-lane-dot" style="background:${laneClr}" title="${laneNm}"></div>
       <div class="queue-item-title">
-        <a href="https://vibrationofawesome.com${post.url}" target="_blank" style="color:inherit;text-decoration:none">${esc(post.title)}</a>
+        <a href="${url}" target="_blank" style="color:inherit;text-decoration:none">${esc(post.title)}</a>
       </div>
       <div class="queue-item-date">${date}</div>
       ${badge}
@@ -611,9 +1069,8 @@ function renderQueue(entries, allPosts) {
   wrap.innerHTML = `<div class="queue-grid">${items}</div>`;
 }
 
-// ── Manual trigger ────────────────────────────────────────────────────────────
+// ── Manual Trigger ────────────────────────────────────────────────────────────
 let allPostsCache = [];
-
 async function renderTrigger(allPosts) {
   allPostsCache = allPosts;
   const laneEl = document.getElementById("trig-lane");
@@ -631,62 +1088,73 @@ async function renderTrigger(allPosts) {
     btn.disabled = true;
     cmdBox.style.display = "none";
   }
-
   laneEl.addEventListener("change", refreshSlugs);
-  slugEl.addEventListener("change", () => {
-    btn.disabled = !slugEl.value;
-    cmdBox.style.display = "none";
-  });
-
+  slugEl.addEventListener("change", () => { btn.disabled = !slugEl.value; cmdBox.style.display = "none"; });
   btn.addEventListener("click", () => {
-    const lane = laneEl.value;
-    const slug = slugEl.value;
+    const lane = laneEl.value, slug = slugEl.value;
     if (!slug) return;
-    const cmd = `node scripts/syndicate.js --lane ${lane} --slug ${slug}`;
-    cmdTxt.textContent = cmd;
+    cmdTxt.textContent = `node scripts/syndicate.js --lane ${lane} --slug ${slug}`;
     cmdBox.style.display = "block";
   });
-
   cpyBtn.addEventListener("click", () => {
     navigator.clipboard?.writeText(cmdTxt.textContent).then(() => {
       cpyBtn.textContent = "Copied!";
       setTimeout(() => { cpyBtn.textContent = "Copy to clipboard"; }, 2000);
     });
   });
-
   refreshSlugs();
 }
 
-// ── Caption modal ─────────────────────────────────────────────────────────────
+// ── Caption Modal ─────────────────────────────────────────────────────────────
 const CAPTION_ORDER = ["facebook","bluesky","mastodon","pinterest","devto","hashnode","tumblr","instagram","threads"];
-
 function showCaptions(captionsJson) {
   const captions = JSON.parse(captionsJson);
-  const body = document.getElementById("caption-body");
-  body.innerHTML = CAPTION_ORDER.map(key => {
+  document.getElementById("caption-body").innerHTML = CAPTION_ORDER.map(key => {
     const val = captions[key] || "";
     if (!val) return "";
-    const name = PLATFORM_NAMES[key] || key.charAt(0).toUpperCase() + key.slice(1);
-    return `<div class="caption-platform">
-      <div class="cap-name">${name}</div>
-      <div class="cap-text">${esc(val)}</div>
-    </div>`;
+    const p = PLATFORM_MAP[key] || {};
+    const name = p.name || key.charAt(0).toUpperCase() + key.slice(1);
+    return `<div class="caption-platform"><div class="cap-name">${name}</div><div class="cap-text">${esc(val)}</div></div>`;
   }).join("");
   document.getElementById("caption-modal").classList.add("open");
 }
 
+// ── URL Modal ─────────────────────────────────────────────────────────────────
+function showUrlModal(entryJson) {
+  const entry = JSON.parse(entryJson);
+  document.getElementById("url-modal-title").textContent = "Syndicated URLs: " + entry.title;
+  const syn = entry.syndication || {};
+  const items = PLATFORMS.map(({ key, name }) => {
+    const s = syn[key];
+    if (!s) return `<div class="url-item"><span class="url-platform">${name}</span><span style="color:#444">~ not attempted</span></div>`;
+    if (s.status === "success") {
+      return `<div class="url-item"><span class="url-platform">${name}</span>${s.url ? `<a href="${esc(s.url)}" target="_blank" class="url-link">${esc(s.url)}</a>` : `<span style="color:var(--text-muted)">posted (no URL returned)</span>`}</div>`;
+    }
+    return `<div class="url-item"><span class="url-platform">${name}</span><span class="url-fail">✗ ${esc(s.error || "failed")}</span></div>`;
+  }).join("");
+  document.getElementById("url-modal-body").innerHTML = `<div class="url-list">${items}</div>`;
+  document.getElementById("url-modal").classList.add("open");
+}
+
+// ── Modal close ───────────────────────────────────────────────────────────────
 document.getElementById("caption-close").addEventListener("click", () => {
   document.getElementById("caption-modal").classList.remove("open");
 });
 document.getElementById("caption-modal").addEventListener("click", e => {
-  if (e.target === document.getElementById("caption-modal")) {
+  if (e.target === document.getElementById("caption-modal"))
     document.getElementById("caption-modal").classList.remove("open");
-  }
+});
+document.getElementById("url-close").addEventListener("click", () => {
+  document.getElementById("url-modal").classList.remove("open");
+});
+document.getElementById("url-modal").addEventListener("click", e => {
+  if (e.target === document.getElementById("url-modal"))
+    document.getElementById("url-modal").classList.remove("open");
 });
 
 // ── Utils ─────────────────────────────────────────────────────────────────────
 function esc(s) {
-  return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────────

@@ -45,8 +45,9 @@ dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 const ROOT       = path.resolve(__dirname, "..");
-const LOG_FILE   = path.join(ROOT, "static", "_data", "syndication-log.json");
-const CACHE_DIR  = path.join(ROOT, ".cache");
+const LOG_FILE     = path.join(ROOT, "static", "_data", "syndication-log.json");
+const RESULTS_FILE = path.join(ROOT, "static", "_data", "syndication-results.json");
+const CACHE_DIR    = path.join(ROOT, ".cache");
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -596,6 +597,52 @@ function saveLog(log, entry) {
   fs.writeFileSync(LOG_FILE, JSON.stringify(log, null, 2), "utf8");
 }
 
+/**
+ * Upsert structured per-platform results to syndication-results.json.
+ * One entry per slug (most recent run) in the format the dashboard matrix reads.
+ */
+function saveResults(slug, title, lane, voaUrl, platforms) {
+  let results = [];
+  try {
+    if (fs.existsSync(RESULTS_FILE)) {
+      results = JSON.parse(fs.readFileSync(RESULTS_FILE, "utf8"));
+      if (!Array.isArray(results)) results = [];
+    }
+  } catch (_) { results = []; }
+
+  // Build syndication map: { platformKey: { status, url, timestamp, error? } }
+  const timestamp = new Date().toISOString();
+  const syndication = {};
+  for (const [key, r] of Object.entries(platforms)) {
+    syndication[key] = {
+      status:    r.success ? "success" : "failed",
+      url:       r.postUrl || null,
+      timestamp,
+      ...(r.error ? { error: r.error } : {}),
+    };
+  }
+
+  const newEntry = {
+    slug,
+    title,
+    lane,
+    date:  timestamp.slice(0, 10),
+    voa_url: voaUrl,
+    syndication,
+  };
+
+  // Upsert: replace existing entry for this slug, or prepend
+  const idx = results.findIndex(e => e.slug === slug);
+  if (idx >= 0) {
+    results[idx] = newEntry;
+  } else {
+    results.unshift(newEntry);
+  }
+
+  fs.mkdirSync(path.dirname(RESULTS_FILE), { recursive: true });
+  fs.writeFileSync(RESULTS_FILE, JSON.stringify(results, null, 2), "utf8");
+}
+
 /** Write dashboard password hash config from DASHBOARD_PASSWORD env var */
 function writeDashboardConfig() {
   const password = process.env.DASHBOARD_PASSWORD;
@@ -760,12 +807,14 @@ export async function syndicatePost(lane, slug, options = {}) {
   const log = loadLog();
   saveLog(log, entry);
   writeDashboardConfig();
+  saveResults(slug, post.title, lane, postUrl, results);
 
   // ── 9. Summary ──
   const succeeded = Object.values(results).filter(r => r.success).length;
   const total     = Object.keys(results).length;
   console.log(`\nSyndication complete: ${succeeded}/${total} platforms succeeded.`);
-  console.log(`Log saved → static/_data/syndication-log.json\n`);
+  console.log(`Log saved → static/_data/syndication-log.json`);
+  console.log(`Results saved → static/_data/syndication-results.json\n`);
 
   return entry;
 }
