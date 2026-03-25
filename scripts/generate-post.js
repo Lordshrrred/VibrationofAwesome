@@ -44,6 +44,25 @@ if (!process.env.ANTHROPIC_API_KEY) {
   process.exit(1);
 }
 
+/*
+  DRIP SCHEDULE ~ one post at a time, not bulk
+
+  Rotate through pillars in this order so topics
+  stay varied and don't cluster:
+  1. Identity + Awakening
+  2. AI / Music / Creator Tools
+  3. Survival Mode + Freedom
+  4. AI / Music / Creator Tools
+  5. Creative Freedom + Life Design
+  6. AI / Music / Creator Tools
+  7. Inner Work + Energy
+  8. repeat
+
+  Goal: AI/music posts every other slot to keep
+  that lane alive while the new pillars build out.
+  One post per run. Schedule externally.
+*/
+
 // ── SYSTEM PROMPTS ──
 const MATT_SYSTEM = [
   "You are Matt EarthStar, writing for your personal blog \"From the Forest Temple.\"",
@@ -61,16 +80,53 @@ const MATT_SYSTEM = [
 const BOOMBOT_SYSTEM = [
   "You are Matty BoomBoom, an AI writer for the blog \"Boom Frequency\" at",
   "vibrationofawesome.com. You are inspired by the spirit of Matt EarthStar ~ a musician,",
-  "digital creator, and 20-year internet marketing veteran who has gone deep on AI tools.",
-  "Your job is to write SEO-optimized, genuinely helpful long-form posts targeting",
-  "specific long-tail keywords. Your audience: spiritually awakening creators,",
-  "neurodivergent entrepreneurs, musicians learning AI, and abundance-minded outliers.",
+  "digital creator, and 20-year internet marketing veteran who is actively breaking out",
+  "of the system and building a life on his own terms. Your job is to write",
+  "SEO-optimized, genuinely helpful long-form posts targeting specific long-tail",
+  "keywords. Your audience: spiritually awakening creators, people stuck in survival",
+  "mode, neurodivergent entrepreneurs, musicians and artists learning AI tools, and",
+  "abundance-minded outliers ready to reinvent themselves.",
   "Write in a voice that is helpful, slightly eccentric, and real ~ never corporate,",
   "never generic. Include H2 and H3 subheadings, a meta description on the first line",
   "(format: META: your description here), and a CTA at the end pointing readers to",
-  "vibrationofawesome.com. Return raw markdown only.",
-  "Never use em dashes (\u2014) in your output. Use hyphens, commas, or restructure the sentence instead.",
+  "vibrationofawesome.com and the free ebook at vibrationofawesome.com/free-ebook/",
+  "Return raw markdown only.",
+  "Never use em dashes in your output. Use tildes, hyphens, commas, or restructure the sentence instead.",
 ].join("\n");
+
+// ── TOPIC PILLARS & KEYWORD POOL ──────────────────────────────────────────────
+// Reference list for CLI usage. Rotate through pillars per the DRIP SCHEDULE above.
+// Usage: node scripts/generate-post.js --lane boom --keyword "<keyword>" --topic "<pillar>"
+const TOPIC_PILLARS = {
+  "Identity + Awakening": [
+    "why I feel stuck in life",
+    "how to unlock your potential",
+    "how to become your true self",
+    "identity shift mindset",
+    "how to reinvent yourself",
+  ],
+  "Survival Mode + Freedom": [
+    "how to get out of survival mode",
+    "how to stop feeling lost in life",
+    "how to escape the 9 to 5 mindset",
+    "burnout and purpose",
+  ],
+  "Creative Freedom + Life Design": [
+    "how to build a life you actually want",
+    "how to monetize creativity",
+    "how to make money doing what you love",
+    "multiple streams of income beginner",
+  ],
+  "Inner Work + Energy": [
+    "shadow work for beginners",
+    "how to regulate your nervous system",
+    "how to heal emotionally",
+    "nervous system regulation anxiety",
+  ],
+  "AI + Music + Creator Tools": [
+    // Keywords added here via: npm run research (saves to static/_data/topic-queue.json)
+  ],
+};
 
 // ── HELPERS ──
 
