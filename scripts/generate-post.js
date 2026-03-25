@@ -438,6 +438,50 @@ function injectNasaImages(html, images) {
   return chunks.join("</p>") + "</p>";
 }
 
+// ── FEEDER TRIGGER ────────────────────────────────────────────────────────────
+/**
+ * Ping the VOA_GithubPages feeder repo via GitHub repository_dispatch.
+ * Fires when VOA_FEEDER_TRIGGER_TOKEN is set in the environment.
+ * In CI (GitHub Actions) the token is injected via secrets; locally via .env.
+ * Wrapped in try/catch — a feeder failure never breaks the main publish.
+ */
+async function triggerFeeder(postUrl, postTitle, keyword) {
+  const token = process.env.VOA_FEEDER_TRIGGER_TOKEN;
+  if (!token) {
+    console.log("  [feeder] VOA_FEEDER_TRIGGER_TOKEN not set — skipping feeder trigger");
+    return;
+  }
+  try {
+    const resp = await fetch(
+      "https://api.github.com/repos/Lordshrrred/VOA_GithubPages/dispatches",
+      {
+        method:  "POST",
+        headers: {
+          Authorization:  `token ${token}`,
+          Accept:         "application/vnd.github.v3+json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event_type:     "voa-post-published",
+          client_payload: {
+            voa_post_url:     postUrl,
+            voa_post_title:   postTitle,
+            voa_post_keyword: keyword || "",
+          },
+        }),
+      }
+    );
+    if (resp.status === 204) {
+      console.log("  [feeder] ✓ Feeder repo triggered (voa-post-published)");
+    } else {
+      const body = await resp.text();
+      console.warn(`  [feeder] ✗ Feeder trigger returned HTTP ${resp.status}: ${body}`);
+    }
+  } catch (err) {
+    console.warn(`  [feeder] ✗ Feeder trigger failed: ${err.message}`);
+  }
+}
+
 // ── MAIN ──
 async function main() {
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -586,6 +630,12 @@ async function main() {
     // Matt / Forest Temple ~ never auto-syndicate
     console.log("\nForest Temple post ready. Syndicate manually when you're ready:");
     console.log("  node scripts/syndicate.js --lane matt --slug " + slug);
+  }
+
+  // Fire feeder trigger for every successfully generated Boom post
+  if (lane === "boom") {
+    const fullPostUrl = "https://vibrationofawesome.com/blog/boom/posts/" + slug + ".html";
+    await triggerFeeder(fullPostUrl, postTitle, argv.keyword);
   }
 }
 

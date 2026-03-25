@@ -1,0 +1,129 @@
+name: Generate Boom Frequency Post
+
+on:
+  workflow_dispatch:
+    inputs:
+      keyword:
+        description: 'Target long-tail keyword (e.g. "how to reinvent yourself")'
+        required: true
+      topic:
+        description: 'Pillar category (e.g. "Identity + Awakening")'
+        required: true
+      category:
+        description: 'Optional tag / extra context'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      # ── 2. Setup Node ──────────────────────────────────────────────────────
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # ── 3. Install dependencies ────────────────────────────────────────────
+      - name: Install dependencies
+        run: npm ci
+
+      # ── 4. Generate post (auto-syndicates + fires feeder trigger) ──────────
+      - name: Generate Boom post
+        env:
+          ANTHROPIC_API_KEY:              ${{ secrets.ANTHROPIC_API_KEY }}
+          NASA_API_KEY:                   ${{ secrets.NASA_API_KEY }}
+          PEXELS_API_KEY:                 ${{ secrets.PEXELS_API_KEY }}
+          BLUESKY_HANDLE:                 ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD:           ${{ secrets.BLUESKY_APP_PASSWORD }}
+          MASTODON_INSTANCE:              ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCESS_TOKEN:          ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          META_APP_ID:                    ${{ secrets.META_APP_ID }}
+          META_APP_SECRET:                ${{ secrets.META_APP_SECRET }}
+          META_USER_TOKEN:                ${{ secrets.META_USER_TOKEN }}
+          META_PAGE_ID_VOA:               ${{ secrets.META_PAGE_ID_VOA }}
+          META_PAGE_TOKEN_VOA:            ${{ secrets.META_PAGE_TOKEN_VOA }}
+          META_PAGE_ID_EARTHSTAR:         ${{ secrets.META_PAGE_ID_EARTHSTAR }}
+          META_PAGE_TOKEN_EARTHSTAR:      ${{ secrets.META_PAGE_TOKEN_EARTHSTAR }}
+          META_PAGE_ID_RUZINDLA:          ${{ secrets.META_PAGE_ID_RUZINDLA }}
+          META_PAGE_TOKEN_RUZINDLA:       ${{ secrets.META_PAGE_TOKEN_RUZINDLA }}
+          PINTEREST_APP_ID:               ${{ secrets.PINTEREST_APP_ID }}
+          PINTEREST_APP_SECRET:           ${{ secrets.PINTEREST_APP_SECRET }}
+          PINTEREST_ACCESS_TOKEN:         ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+          PINTEREST_REFRESH_TOKEN:        ${{ secrets.PINTEREST_REFRESH_TOKEN }}
+          PINTEREST_BOARD_ID:             ${{ secrets.PINTEREST_BOARD_ID }}
+          DEVTO_API_KEY:                  ${{ secrets.DEVTO_API_KEY }}
+          HASHNODE_API_KEY:               ${{ secrets.HASHNODE_API_KEY }}
+          HASHNODE_PUBLICATION_ID:        ${{ secrets.HASHNODE_PUBLICATION_ID }}
+          TUMBLR_CONSUMER_KEY:            ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET:         ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_TOKEN:                   ${{ secrets.TUMBLR_TOKEN }}
+          TUMBLR_TOKEN_SECRET:            ${{ secrets.TUMBLR_TOKEN_SECRET }}
+          TUMBLR_BLOG_NAME:               ${{ secrets.TUMBLR_BLOG_NAME }}
+          PUBLER_API_KEY:                 ${{ secrets.PUBLER_API_KEY }}
+          PUBLER_WORKSPACE_ID:            ${{ secrets.PUBLER_WORKSPACE_ID }}
+          PUBLER_INSTAGRAM_ACCOUNT_ID:    ${{ secrets.PUBLER_INSTAGRAM_ACCOUNT_ID }}
+          PUBLER_THREADS_ACCOUNT_ID:      ${{ secrets.PUBLER_THREADS_ACCOUNT_ID }}
+          BLOGGER_CLIENT_ID:              ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET:          ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN:          ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID:                ${{ secrets.BLOGGER_BLOG_ID }}
+          DASHBOARD_PASSWORD:             ${{ secrets.DASHBOARD_PASSWORD }}
+          VOA_FEEDER_TRIGGER_TOKEN:       ${{ secrets.VOA_FEEDER_TRIGGER_TOKEN }}
+        run: |
+          node scripts/generate-post.js \
+            --lane boom \
+            --keyword "${{ inputs.keyword }}" \
+            --topic "${{ inputs.topic }}"
+
+      # ── 5. Fire feeder trigger (explicit workflow step) ────────────────────
+      # The generate script fires this too — this step gives visible confirmation
+      # in the Actions log and acts as a fallback if the script-level call failed.
+      - name: Fire feeder trigger
+        env:
+          VOA_FEEDER_TRIGGER_TOKEN: ${{ secrets.VOA_FEEDER_TRIGGER_TOKEN }}
+        run: |
+          STATUS=$(curl -s -o /tmp/feeder_resp.txt -w "%{http_code}" \
+            -X POST \
+            -H "Authorization: token $VOA_FEEDER_TRIGGER_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"event_type\": \"voa-post-published\",
+              \"client_payload\": {
+                \"voa_post_url\":     \"https://vibrationofawesome.com/blog/boom/posts/\",
+                \"voa_post_title\":   \"${{ inputs.keyword }}\",
+                \"voa_post_keyword\": \"${{ inputs.keyword }}\"
+              }
+            }" \
+            https://api.github.com/repos/Lordshrrred/VOA_GithubPages/dispatches)
+          echo "Feeder trigger HTTP status: $STATUS"
+          cat /tmp/feeder_resp.txt
+          [ "$STATUS" = "204" ] && echo "✓ Feeder triggered successfully" || echo "✗ Feeder trigger returned $STATUS"
+
+      # ── 6. Commit generated post back to repo ─────────────────────────────
+      - name: Commit generated post
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add \
+            static/blog/boom/ \
+            static/_data/boom-posts.json \
+            static/_data/syndication-log.json \
+            static/sitemap.xml \
+            || true
+          git diff --staged --quiet \
+            || git commit -m "Boom post: ${{ inputs.keyword }} [automated]"
+          git push
