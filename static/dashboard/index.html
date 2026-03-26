@@ -74,6 +74,15 @@
       cursor: pointer; transition: border-color 0.2s, color 0.2s; letter-spacing: 0.05em;
     }
     .dash-lock-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .dash-tabs { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .dash-tab {
+      padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      color: var(--text-muted); background: transparent; transition: all 0.2s;
+    }
+    .dash-tab:hover { color: var(--accent); background: var(--accent-dim); }
+    .dash-tab.active { color: var(--accent); background: var(--accent-dim); border-left: 1px solid var(--border); }
+    .dash-tab:first-child { border-left: none; }
 
     /* ── Main content ── */
     .dash-main { padding: 2rem; max-width: 1500px; margin: 0 auto; width: 100%; flex: 1; }
@@ -350,8 +359,12 @@
     <header class="dash-header">
       <div>
         <div class="dash-logo">Vibration<span>of</span>Awesome</div>
-        <div class="dash-subtitle">Syndication Dashboard</div>
+        <div class="dash-subtitle">Admin Dashboard</div>
       </div>
+      <nav class="dash-tabs">
+        <a href="./index.html" class="dash-tab active">Syndication</a>
+        <a href="./analytics.html" class="dash-tab">Analytics</a>
+      </nav>
       <div style="display:flex;align-items:center;gap:1rem">
         <span id="last-updated" style="font-size:0.75rem;color:var(--text-muted)"></span>
         <button class="dash-lock-btn" id="lock-btn">Lock</button>
