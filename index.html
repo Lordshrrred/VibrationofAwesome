@@ -137,6 +137,18 @@
     text-shadow: none !important;
   }
   .nav-links a.aura-link::after { display: none !important; }
+  .nav-links a.guide-link {
+    color: #D4AF37 !important;
+    border: 1px solid rgba(212,175,55,0.35);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+  }
+  .nav-links a.guide-link:hover {
+    background: rgba(212,175,55,0.1) !important;
+    box-shadow: 0 0 12px rgba(212,175,55,0.2);
+    text-shadow: none !important;
+  }
+  .nav-links a.guide-link::after { display: none !important; }
 
   /* HERO */
   #home {
@@ -848,6 +860,7 @@
     <li><a href="#earthstar">EarthStar</a></li>
     <li><a href="/art-store/">Art Store</a></li>
     <li><a href="#wearable-art">Wearable Art</a></li>
+    <li><a href="/field-guide/" class="guide-link">Free Guide ✦</a></li>
     <li><a href="/aura/" class="aura-link">AURA ✦</a></li>
     <li><a href="#blog">Blog</a></li>
   </ul>
@@ -1091,6 +1104,7 @@
     <div class="footer-tagline">Empower Thyself. Empower the Earth.</div>
   </div>
   <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="/field-guide/">Free Field Guide</a>
     <a href="/privacy/">Privacy Policy</a>
     <a href="/contact/">Contact</a>
   </nav>
@@ -1194,5 +1208,6 @@
     }
   });
 </script>
+<script src="/js/announcement-bar.js"></script>
 </body>
 </html>

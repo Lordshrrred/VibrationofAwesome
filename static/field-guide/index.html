@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Field Guide to Vibration of Awesome | vibrationofawesome.com</title>
+<meta name="description" content="A free field guide to living in flow, expected unexpectedness, grounded power, and the state where life starts opening back up.">
+<meta property="og:title" content="Enter the Vibration of Awesome — Free Field Guide">
+<meta property="og:description" content="The philosophical entry point. Download free.">
+<meta property="og:url" content="https://vibrationofawesome.com/field-guide/">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G5HF0WKZT9');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #020a0a; --surface: #060f10; --surface2: #0b1a1c;
+    --gold: #D4AF37; --gold-dim: rgba(212,175,55,0.15); --gold-border: rgba(212,175,55,0.25);
+    --cyan: #00e5cc; --cyan-dim: rgba(0,229,204,0.1);
+    --text: #e8f4f0; --muted: #5a8a80; --body: rgba(232,244,240,0.85);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Lora', serif; font-size: 17px; line-height: 1.8; overflow-x: hidden; }
+  #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  .wrap { position: relative; z-index: 1; }
+
+  /* ── Nav ── */
+  .top-nav {
+    padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(212,175,55,0.08);
+  }
+  .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+  .nav-back { font-family: 'Poppins', sans-serif; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--gold); }
+
+  /* ── Hero ── */
+  .hero { padding: 6rem 2rem 5rem; text-align: center; max-width: 780px; margin: 0 auto; }
+  .hero-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .hero-headline { font-family: 'Poppins', sans-serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; color: var(--text); margin-bottom: 1.5rem; }
+  .hero-headline span { color: var(--gold); }
+  .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.8; color: var(--body); max-width: 600px; margin: 0 auto 3rem; }
+
+  /* ── Book mockup ── */
+  .book-mock {
+    width: 200px; height: 280px; margin: 0 auto 3rem;
+    background: linear-gradient(135deg, #1a2f2a 0%, #0d1e1a 100%);
+    border: 1px solid var(--gold-border); border-radius: 4px 10px 10px 4px;
+    box-shadow: -6px 6px 0 0 rgba(212,175,55,0.15), 0 20px 60px rgba(0,0,0,0.6);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1.5rem; position: relative;
+  }
+  .book-mock::before { content: ''; position: absolute; left: 0; top: 4%; bottom: 4%; width: 6px; background: rgba(212,175,55,0.3); border-radius: 2px 0 0 2px; }
+  .book-mock-title { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 0.75rem; }
+  .book-mock-subtitle { font-family: 'Lora', serif; font-size: 0.7rem; color: rgba(232,244,240,0.5); text-align: center; font-style: italic; }
+  .book-mock-star { font-size: 1.4rem; color: var(--gold); margin: 0.75rem 0; opacity: 0.7; }
+
+  /* ── Email form ── */
+  .form-wrap { max-width: 480px; margin: 0 auto; }
+  .form-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .form-input {
+    flex: 1; min-width: 220px; background: var(--surface2); border: 1px solid var(--gold-border);
+    border-radius: 6px; color: var(--text); font-family: 'Lora', serif; font-size: 1rem;
+    padding: 0.85rem 1rem; outline: none; transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: var(--gold); }
+  .form-btn {
+    background: var(--gold); color: #020a0a; font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    border: none; border-radius: 6px; padding: 0.85rem 1.5rem; cursor: pointer;
+    transition: opacity 0.2s; white-space: nowrap;
+  }
+  .form-btn:hover { opacity: 0.85; }
+  .form-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .form-note { font-family: 'Poppins', sans-serif; font-size: 0.78rem; color: var(--muted); margin-top: 0.75rem; text-align: center; }
+  .form-success { display: none; text-align: center; }
+  .form-success h3 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--gold); margin-bottom: 0.5rem; }
+  .form-success p { font-size: 0.9rem; color: var(--body); margin-bottom: 1rem; }
+  .download-btn {
+    display: inline-block; background: var(--gold); color: #020a0a;
+    font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+    border-radius: 6px; padding: 0.85rem 2rem; transition: opacity 0.2s;
+  }
+  .download-btn:hover { opacity: 0.85; }
+  .form-error { font-family: 'Poppins', sans-serif; font-size: 0.82rem; color: #ff6b6b; margin-top: 0.5rem; display: none; text-align: center; }
+
+  /* ── Divider ── */
+  .divider { max-width: 780px; margin: 0 auto; height: 1px; background: linear-gradient(to right, transparent, var(--gold-border), transparent); }
+
+  /* ── Sections ── */
+  .section { max-width: 780px; margin: 0 auto; padding: 5rem 2rem; }
+  .section-label { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .section h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--text); margin-bottom: 1.5rem; line-height: 1.2; }
+  .section p { color: var(--body); margin-bottom: 1.4rem; }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* ── Learn grid ── */
+  .learn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+  @media (max-width: 600px) { .learn-grid { grid-template-columns: 1fr; } }
+  .learn-item {
+    background: var(--surface); border: 1px solid var(--gold-border); border-radius: 10px;
+    padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .learn-icon { font-size: 1.4rem; flex-shrink: 0; line-height: 1; }
+  .learn-text { font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+  .learn-sub { font-family: 'Lora', serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; font-weight: 400; }
+
+  /* ── Pull quote ── */
+  .pull-quote {
+    border-left: 3px solid var(--gold); padding: 1.2rem 2rem; margin: 3rem 0;
+    background: var(--gold-dim); border-radius: 0 8px 8px 0;
+    font-size: 1.15rem; line-height: 1.7; color: var(--body); font-style: italic;
+  }
+
+  /* ── FAQ ── */
+  .faq-item { border-bottom: 1px solid rgba(212,175,55,0.1); padding: 1.5rem 0; }
+  .faq-q { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 0.75rem; }
+  .faq-a { color: var(--body); font-size: 0.95rem; }
+
+  /* ── Footer ── */
+  .page-footer {
+    max-width: 780px; margin: 0 auto; padding: 3rem 2rem 5rem; text-align: center;
+    border-top: 1px solid var(--gold-border);
+  }
+  .footer-tagline { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 1rem; }
+  .footer-tagline span { color: var(--gold); }
+  .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+  .footer-links a { font-family: 'Poppins', sans-serif; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+<canvas id="stars-canvas" aria-hidden="true"></canvas>
+<div class="wrap">
+
+  <nav class="top-nav">
+    <a href="/" class="nav-logo">Vibration of Awesome</a>
+    <a href="/" class="nav-back">← Back to VOA</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-eyebrow">Free Download</div>
+    <h1 class="hero-headline">Enter the <span>Vibration<br>of Awesome</span></h1>
+    <p class="hero-sub">A free field guide to living in flow, expected unexpectedness, grounded power, and the state where life starts opening back up.</p>
+
+    <!-- Book mockup -->
+    <div class="book-mock">
+      <div class="book-mock-title">A Field Guide to<br>Vibration of<br>Awesome</div>
+      <div class="book-mock-star">✦</div>
+      <div class="book-mock-subtitle">Matt EarthStar<br>vibrationofawesome.com</div>
+    </div>
+
+    <!-- Form -->
+    <div class="form-wrap" id="hero-form-wrap">
+      <div id="hero-form">
+        <div class="form-row">
+          <input type="email" class="form-input" id="hero-email" placeholder="Your email address" autocomplete="email">
+          <button class="form-btn" id="hero-btn" onclick="submitForm('hero')">Download the Free Guide</button>
+        </div>
+        <div class="form-error" id="hero-error"></div>
+        <p class="form-note">No spam. Just signal. Unsubscribe anytime.</p>
+      </div>
+      <div class="form-success" id="hero-success">
+        <h3>You're in. ✦</h3>
+        <p>Your Field Guide is ready.</p>
+        <a href="#" class="download-btn" id="hero-download-btn">Download the Field Guide →</a>
+        <p style="margin-top:1rem;font-family:'Poppins',sans-serif;font-size:0.78rem;color:var(--muted)">Want the tactical manual too? <a href="/user-manual/" style="color:var(--gold)">See Volume Two →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── WHAT THIS IS ── -->
+  <section class="section">
+    <div class="section-label">What this is</div>
+    <h2>The philosophical entry point.</h2>
+    <p>Most self-help books tell you what to do. This one tells you what state to be in. There's a difference — and once you feel it, you can't unfeel it.</p>
+    <p>The Vibration of Awesome is a state of consciousness — not a mood, not a productivity hack, not a morning routine. It's the condition where synchronicities stack, resistance drops, and your actions start landing with unusual precision. This Field Guide is the map to that state.</p>
+    <p>It was originally developed as a personal operating system by Matt EarthStar — musician, creator, 20-year internet marketing veteran — distilled from thousands of hours of practice, failure, flow, and everything in between.</p>
+    <div class="pull-quote">"This is the Field Guide — the philosophical entry point to the Vibration of Awesome. It explains what the state is and why it works before it asks you to do anything."</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── WHAT YOU'LL LEARN ── -->
+  <section class="section">
+    <div class="section-label">What you'll learn</div>
+    <h2>Six frequencies. One operating system.</h2>
+    <div class="learn-grid">
+      <div class="learn-item">
+        <div class="learn-icon">🎵</div>
+        <div>
+          <div class="learn-text">The Six Frequencies</div>
+          <div class="learn-sub">The specific states that build the Vibration of Awesome and how they stack.</div>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">🌊</div>
+        <div>
+          <div class="learn-text">Flow State + Expected Unexpectedness</div>
+          <div class="learn-sub">What it feels like when the universe starts cooperating — and how to recognize it.</div>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">🔓</div>
+        <div>
+          <div class="learn-text">The Scarcity Trap</div>
+          <div class="learn-sub">Why lack-thinking blocks everything, and the internal shift that dissolves it.</div>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">⚡</div>
+        <div>
+          <div class="learn-text">Empower Thyself</div>
+          <div class="learn-sub">The inner work that creates the outer results. No bypasses, no shortcuts.</div>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">✦</div>
+        <div>
+          <div class="learn-text">The EarthStar Vision</div>
+          <div class="learn-sub">The broader context — what all this inner work is actually building toward.</div>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">🗓</div>
+        <div>
+          <div class="learn-text">Daily Practices That Actually Work</div>
+          <div class="learn-sub">Not habits for productivity. Practices for staying in the state.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── WHO IT'S FOR ── -->
+  <section class="section">
+    <div class="section-label">Who it's for</div>
+    <h2>This is for people who are done drifting.</h2>
+    <p>Who feel something bigger pulling at them. Who want a framework that matches how they actually experience life — not a productivity hack, not a morning routine checklist.</p>
+    <p>If you've ever felt the state — that rare window where everything clicks, decisions come easy, and you feel genuinely aligned with your own life — and then lost it without knowing how you got there in the first place: this is for you.</p>
+    <p>This is for neurodivergent entrepreneurs, artists, creators, musicians, builders, and seekers who are tired of systems that weren't designed for minds like theirs.</p>
+    <div class="pull-quote">"Not a productivity hack. Not a morning routine checklist. A framework that matches how you actually experience life."</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── SECOND FORM ── -->
+  <section class="section" style="text-align:center">
+    <div class="section-label">Download free</div>
+    <h2 style="margin-bottom:0.75rem">Get the Field Guide now.</h2>
+    <p style="max-width:480px;margin:0 auto 2.5rem">Enter your email and get immediate access. No waitlist, no delay.</p>
+    <div class="form-wrap" id="mid-form-wrap">
+      <div id="mid-form">
+        <div class="form-row" style="justify-content:center">
+          <input type="email" class="form-input" id="mid-email" placeholder="Your email address" autocomplete="email">
+          <button class="form-btn" id="mid-btn" onclick="submitForm('mid')">Download Free Guide</button>
+        </div>
+        <div class="form-error" id="mid-error"></div>
+        <p class="form-note">No spam. Just signal. Unsubscribe anytime.</p>
+      </div>
+      <div class="form-success" id="mid-success">
+        <h3>Done. ✦</h3>
+        <p>Your Field Guide is ready to download.</p>
+        <a href="#" class="download-btn" id="mid-download-btn">Download the Field Guide →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FAQ ── -->
+  <section class="section">
+    <div class="section-label">FAQ</div>
+    <h2>Straightforward answers.</h2>
+    <div class="faq-item">
+      <div class="faq-q">Is this really free?</div>
+      <div class="faq-a">Yes. No upsell to unlock the download, no credit card, no trial. You give your email, you get the guide. That's it.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What happens after I sign up?</div>
+      <div class="faq-a">You get an immediate download link on the next page. No waiting for a confirmation email, no clicking through three screens. The guide is in your hands in under 60 seconds.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is there a catch?</div>
+      <div class="faq-a">No catch. There is a paid Volume Two — the tactical manual — if you want the operational system after you've read the philosophy. But you'll only see it after the free guide is already in your hands, and there's zero pressure.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is the "Vibration of Awesome" actually?</div>
+      <div class="faq-a">It's a state — a specific quality of consciousness where resistance drops, synchronicities stack, and your life starts feeling like it's working with you instead of against you. The Field Guide is the entry point to understanding and cultivating it.</div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="page-footer">
+    <div class="footer-tagline">Read the philosophy for free.<br><span>Buy the manual when you're ready to live it on purpose.</span></div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/user-manual/">Volume Two →</a>
+      <a href="/aura/">AURA ✦</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// ── Stars ──────────────────────────────────────────────────────────────────
+(function() {
+  const c = document.getElementById('stars-canvas');
+  const ctx = c.getContext('2d');
+  let stars = [];
+  function resize() { c.width = innerWidth; c.height = innerHeight; }
+  function init() {
+    stars = Array.from({ length: 120 }, () => ({
+      x: Math.random() * c.width, y: Math.random() * c.height,
+      r: Math.random() * 1.0 + 0.2, speed: Math.random() * 0.08 + 0.02,
+      op: Math.random() * 0.45 + 0.1, pulse: Math.random() * Math.PI * 2,
+      ps: Math.random() * 0.005 + 0.002, gold: Math.random() < 0.06,
+    }));
+  }
+  function draw() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    for (const s of stars) {
+      s.pulse += s.ps;
+      const op = s.op * (0.7 + 0.3 * Math.sin(s.pulse));
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.gold ? `rgba(212,175,55,${op})` : `rgba(255,255,255,${op})`;
+      ctx.fill();
+      s.y += s.speed;
+      if (s.y > c.height + 2) { s.y = -2; s.x = Math.random() * c.width; }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { resize(); init(); });
+  resize(); init(); draw();
+})();
+
+// ── Track CTA view ─────────────────────────────────────────────────────────
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({ event: 'ebook_cta_view', placement: 'field-guide-page' });
+
+// ── Form submission ────────────────────────────────────────────────────────
+async function submitForm(id) {
+  const emailEl = document.getElementById(id + '-email');
+  const btnEl   = document.getElementById(id + '-btn');
+  const errEl   = document.getElementById(id + '-error');
+  const email   = emailEl.value.trim();
+
+  errEl.style.display = 'none';
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  btnEl.disabled = true;
+  btnEl.textContent = 'One moment…';
+
+  window.dataLayer.push({ event: 'ebook_optin_submit', placement: id });
+
+  try {
+    const resp = await fetch('/.netlify/functions/capture-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        source_page: '/field-guide/',
+        cta_placement: id,
+        blog_slug: '',
+      }),
+    });
+    const data = await resp.json();
+    if (!data.success) throw new Error(data.error || 'Server error');
+
+    window.dataLayer.push({ event: 'ebook_optin_success', placement: id });
+
+    // Show success state + set download URL
+    document.getElementById(id + '-form').style.display = 'none';
+    const successEl = document.getElementById(id + '-success');
+    successEl.style.display = 'block';
+    const dlBtn = document.getElementById(id + '-download-btn');
+    if (dlBtn) dlBtn.href = data.download_url;
+
+  } catch (err) {
+    btnEl.disabled = false;
+    btnEl.textContent = id === 'hero' ? 'Download the Free Guide' : 'Download Free Guide';
+    errEl.textContent = 'Something went wrong. Please try again.';
+    errEl.style.display = 'block';
+  }
+}
+
+// Enter key submits
+['hero-email','mid-email'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') submitForm(id.replace('-email','')); });
+});
+</script>
+</body>
+</html>

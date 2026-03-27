@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A User Manual for Reality — Volume Two | Vibration of Awesome</title>
+<meta name="description" content="You've read the philosophy. Now get the system for entering the state, resetting fast, and making alignment your baseline.">
+<meta property="og:title" content="The Tactical Manual for Living It on Purpose — $17">
+<meta property="og:description" content="Volume Two of the Vibration of Awesome. The how, the mechanics, the daily operating system.">
+<meta property="og:url" content="https://vibrationofawesome.com/user-manual/">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G5HF0WKZT9');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #020a0a; --surface: #060f10; --surface2: #0b1a1c;
+    --gold: #D4AF37; --gold-dim: rgba(212,175,55,0.12); --gold-border: rgba(212,175,55,0.25);
+    --cyan: #00e5cc;
+    --text: #e8f4f0; --muted: #5a8a80; --body: rgba(232,244,240,0.85);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Lora', serif; font-size: 17px; line-height: 1.8; overflow-x: hidden; }
+  #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  .wrap { position: relative; z-index: 1; }
+
+  .top-nav { padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(212,175,55,0.08); }
+  .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+  .nav-link { font-family: 'Poppins', sans-serif; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-link:hover { color: var(--gold); }
+
+  .section { max-width: 780px; margin: 0 auto; padding: 5rem 2rem; }
+  .section-label { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .section h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1.5rem, 3.5vw, 2.4rem); font-weight: 700; color: var(--text); margin-bottom: 1.2rem; line-height: 1.2; }
+  .section p { color: var(--body); margin-bottom: 1.4rem; }
+  .divider { max-width: 780px; margin: 0 auto; height: 1px; background: linear-gradient(to right, transparent, var(--gold-border), transparent); }
+
+  /* ── Hero ── */
+  .hero { padding: 6rem 2rem 5rem; text-align: center; max-width: 780px; margin: 0 auto; }
+  .hero-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Poppins', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; color: var(--text); margin-bottom: 1.5rem; }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--body); max-width: 560px; margin: 0 auto 3rem; }
+
+  .price-block { display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .big-price { font-family: 'Poppins', sans-serif; font-size: 4rem; font-weight: 800; color: var(--gold); }
+  .price-meta { text-align: left; }
+  .price-meta p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+  .buy-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--gold); color: #020a0a;
+    font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
+    border-radius: 8px; padding: 1rem 2.5rem; transition: opacity 0.2s;
+    border: none; cursor: pointer; box-shadow: 0 4px 24px rgba(212,175,55,0.25);
+  }
+  .buy-btn:hover { opacity: 0.85; }
+  .buy-btn.coming-soon { background: var(--surface2); color: var(--muted); border: 1px solid rgba(212,175,55,0.2); cursor: not-allowed; opacity: 0.7; box-shadow: none; }
+  .btn-note { font-family: 'Poppins', sans-serif; font-size: 0.78rem; color: var(--muted); margin-top: 0.75rem; }
+
+  /* ── What's different ── */
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+  @media (max-width: 580px) { .vs-grid { grid-template-columns: 1fr; } }
+  .vs-card { background: var(--surface); border: 1px solid rgba(212,175,55,0.12); border-radius: 10px; padding: 1.75rem; }
+  .vs-card.highlight { border-color: var(--gold-border); background: var(--gold-dim); }
+  .vs-label { font-family: 'Poppins', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .vs-card h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.5rem; }
+  .vs-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── What's inside ── */
+  .inside-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+  .inside-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: var(--surface); border: 1px solid rgba(212,175,55,0.08); border-radius: 8px; padding: 1.1rem 1.25rem;
+  }
+  .inside-icon { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; line-height: 1.6; }
+  .inside-text { font-family: 'Poppins', sans-serif; font-size: 0.92rem; font-weight: 600; color: var(--text); line-height: 1.5; }
+  .inside-sub { font-family: 'Lora', serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; font-weight: 400; }
+
+  /* ── Pull quote ── */
+  .pull-quote { border-left: 3px solid var(--gold); padding: 1.2rem 2rem; margin: 3rem 0; background: var(--gold-dim); border-radius: 0 8px 8px 0; font-size: 1.1rem; line-height: 1.7; color: var(--body); font-style: italic; }
+
+  /* ── Buy section ── */
+  .buy-section { text-align: center; padding: 5rem 2rem; max-width: 780px; margin: 0 auto; }
+  .guarantee { margin-top: 1.5rem; font-family: 'Poppins', sans-serif; font-size: 0.82rem; color: var(--muted); }
+  .guarantee span { color: var(--gold); }
+
+  /* ── FAQ ── */
+  .faq-item { border-bottom: 1px solid rgba(212,175,55,0.1); padding: 1.5rem 0; }
+  .faq-q { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 0.75rem; }
+  .faq-a { color: var(--body); font-size: 0.95rem; }
+
+  /* ── Footer ── */
+  .page-footer { max-width: 780px; margin: 0 auto; padding: 3rem 2rem 5rem; text-align: center; border-top: 1px solid var(--gold-border); }
+  .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+  .footer-links a { font-family: 'Poppins', sans-serif; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── Waitlist ── */
+  .waitlist { max-width: 480px; margin: 2rem auto 0; padding: 1.75rem; background: var(--surface); border: 1px solid var(--gold-border); border-radius: 10px; text-align: left; }
+  .waitlist h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--text); margin-bottom: 0.4rem; }
+  .waitlist p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+  .wl-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .wl-input { flex: 1; min-width: 200px; background: var(--surface2); border: 1px solid var(--gold-border); border-radius: 6px; color: var(--text); font-family: 'Lora', serif; font-size: 0.9rem; padding: 0.7rem 0.9rem; outline: none; transition: border-color 0.2s; }
+  .wl-input:focus { border-color: var(--gold); }
+  .wl-btn { background: rgba(212,175,55,0.15); color: var(--gold); font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--gold-border); border-radius: 6px; padding: 0.7rem 1rem; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+  .wl-btn:hover { background: rgba(212,175,55,0.25); }
+  .wl-success { display: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; color: var(--gold); margin-top: 0.5rem; }
+</style>
+</head>
+<body>
+<canvas id="stars-canvas" aria-hidden="true"></canvas>
+<div class="wrap">
+
+  <nav class="top-nav">
+    <a href="/" class="nav-logo">Vibration of Awesome</a>
+    <a href="/field-guide/" class="nav-link">← Get Volume One Free</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-eyebrow">Volume Two · The Tactical Manual</div>
+    <h1>The System for<br><span>Living It on Purpose</span></h1>
+    <p class="hero-sub">You've read the philosophy. Now get the system for entering the state, resetting fast, and making alignment your baseline — not something you stumble into.</p>
+    <div class="price-block">
+      <div class="big-price">$17</div>
+      <div class="price-meta">
+        <p>One-time purchase</p>
+        <p>Instant download</p>
+        <p>30-day guarantee</p>
+      </div>
+    </div>
+    <button class="buy-btn coming-soon" id="hero-buy-btn" onclick="handleBuy()">Get the User Manual — $17</button>
+    <p class="btn-note" id="hero-btn-note">Stripe checkout coming soon. <a href="#waitlist" style="color:var(--gold)">Join the early list →</a></p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── WHAT MAKES THIS DIFFERENT ── -->
+  <section class="section">
+    <div class="section-label">What makes this different</div>
+    <h2>Volume One was the map.<br>Volume Two is the territory.</h2>
+    <p>The Field Guide tells you what the Vibration of Awesome is. It explains the frequencies, the philosophy, the why. That's necessary — you can't navigate without a map.</p>
+    <p>But knowing the map is not the same as knowing how to move through the landscape. Volume Two is the operational guide: state entry protocols, reset sequences, the daily system for staying in alignment rather than just visiting it occasionally.</p>
+    <div class="vs-grid">
+      <div class="vs-card">
+        <div class="vs-label">Volume One (Free)</div>
+        <h3>A Field Guide to Vibration of Awesome</h3>
+        <p>The philosophy, the framework, the frequencies. What the state is and why it works. The map.</p>
+      </div>
+      <div class="vs-card highlight">
+        <div class="vs-label">Volume Two · $17</div>
+        <h3>A User Manual for Reality</h3>
+        <p>State entry protocols. The reset sequence. The daily operating system. How to live there on purpose. The territory.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── WHAT'S INSIDE ── -->
+  <section class="section">
+    <div class="section-label">What's inside</div>
+    <h2>The operational toolkit.</h2>
+    <ul class="inside-list">
+      <li>
+        <div class="inside-icon">⚡</div>
+        <div>
+          <div class="inside-text">State Entry Protocols</div>
+          <div class="inside-sub">Specific sequences for reliably entering the Vibration of Awesome — even from a baseline of friction.</div>
+        </div>
+      </li>
+      <li>
+        <div class="inside-icon">🔄</div>
+        <div>
+          <div class="inside-text">The Reset Sequence</div>
+          <div class="inside-sub">What to do when you've lost the state and need to return fast. A step-by-step recovery protocol.</div>
+        </div>
+      </li>
+      <li>
+        <div class="inside-icon">🎯</div>
+        <div>
+          <div class="inside-text">Alignment Diagnostics</div>
+          <div class="inside-sub">Specific signs that tell you whether you're in or out — no guessing, no ambiguity.</div>
+        </div>
+      </li>
+      <li>
+        <div class="inside-icon">🚨</div>
+        <div>
+          <div class="inside-text">Emergency State Reset Protocol</div>
+          <div class="inside-sub">The high-friction version for when things are genuinely off and you need to reset hard and fast.</div>
+        </div>
+      </li>
+      <li>
+        <div class="inside-icon">🗓</div>
+        <div>
+          <div class="inside-text">The Daily Operating System</div>
+          <div class="inside-sub">The full structure for making alignment your baseline — not something you visit once in a while.</div>
+        </div>
+      </li>
+      <li>
+        <div class="inside-icon">🌊</div>
+        <div>
+          <div class="inside-text">Expected Unexpectedness in Practice</div>
+          <div class="inside-sub">How to actually recognize and work with synchronicities when they stack — without forcing or chasing them.</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── WHO IT'S FOR ── -->
+  <section class="section">
+    <div class="section-label">Who it's for</div>
+    <h2>You've already had the experience.</h2>
+    <p>You know what it feels like when everything is clicking — when decisions come easy, when the right things keep appearing, when you feel genuinely aligned with your own life.</p>
+    <p>Volume Two is for people who have had that experience and want to stop treating it as something that happens to them occasionally and start treating it as something they can enter on purpose.</p>
+    <div class="pull-quote">"You've already had the experience of the Vibration of Awesome. Volume Two teaches you how to get there on command."</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── WHY VOLUME TWO ── -->
+  <section class="section">
+    <div class="section-label">Why Volume Two</div>
+    <h2>Understanding something and living it are different problems.</h2>
+    <p>The Field Guide explains what the state is. Most people can read it and recognize the truth of it — maybe even remember times they were in it. That recognition is real and it matters.</p>
+    <p>But recognition doesn't create reliability. Volume Two is the bridge between understanding and practice. Between knowing what the Vibration of Awesome is and being able to consistently show up there.</p>
+    <p>That's the gap this book closes. Not with affirmations or theory — with protocols, sequences, and a system you can actually run.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── BUY SECTION ── -->
+  <section class="buy-section" id="buy">
+    <div class="section-label">Get it now</div>
+    <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;color:var(--text);margin-bottom:1rem;">Ready to live it on purpose?</h2>
+    <p style="color:var(--body);max-width:480px;margin:0 auto 2rem;">Volume Two. $17. One-time. Immediate download. 30-day no-questions guarantee.</p>
+    <div class="price-block">
+      <div class="big-price">$17</div>
+    </div>
+    <button class="buy-btn coming-soon" id="main-buy-btn" onclick="handleBuy()">Get the User Manual — $17</button>
+    <div class="guarantee"><span>30-day no-questions guarantee.</span> If it doesn't deliver, you get your money back.</div>
+
+    <div class="waitlist" id="waitlist">
+      <h3>Stripe checkout coming soon.</h3>
+      <p>Join the early list and get it at the launch price before it increases.</p>
+      <div class="wl-row">
+        <input type="email" class="wl-input" id="wl-email" placeholder="Your email">
+        <button class="wl-btn" onclick="submitWaitlist()">Join Early List</button>
+      </div>
+      <div class="wl-success" id="wl-success">You're on the list. ✦</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FAQ ── -->
+  <section class="section">
+    <div class="section-label">FAQ</div>
+    <h2>Questions answered.</h2>
+    <div class="faq-item">
+      <div class="faq-q">Do I need to read Volume One first?</div>
+      <div class="faq-a">Yes — Volume Two assumes you understand the framework from the Field Guide. Get Volume One free at <a href="/field-guide/" style="color:var(--gold)">vibrationofawesome.com/field-guide/</a>. It takes about an hour to read.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this really just $17?</div>
+      <div class="faq-a">Yes. $17 one-time, instant download. No subscription, no upsell on the download page. The goal is to get this into the hands of the people it's for, not to maximize the price point.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's the guarantee?</div>
+      <div class="faq-a">30 days, no questions. If you read it and it doesn't deliver real value, email us and you get a full refund. That's it.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this a PDF?</div>
+      <div class="faq-a">Yes. Downloadable PDF, optimized for reading on screen or print. Works on any device.</div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/field-guide/">Free Field Guide</a>
+      <a href="/blog/">Blog</a>
+      <a href="/aura/">AURA ✦</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  const c = document.getElementById('stars-canvas');
+  const ctx = c.getContext('2d');
+  let stars = [];
+  function resize() { c.width = innerWidth; c.height = innerHeight; }
+  function init() {
+    stars = Array.from({ length: 120 }, () => ({
+      x: Math.random() * c.width, y: Math.random() * c.height,
+      r: Math.random() * 1.0 + 0.2, speed: Math.random() * 0.08 + 0.02,
+      op: Math.random() * 0.45 + 0.1, pulse: Math.random() * Math.PI * 2,
+      ps: Math.random() * 0.005 + 0.002, gold: Math.random() < 0.06,
+    }));
+  }
+  function draw() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    for (const s of stars) {
+      s.pulse += s.ps;
+      const op = s.op * (0.7 + 0.3 * Math.sin(s.pulse));
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.gold ? `rgba(212,175,55,${op})` : `rgba(255,255,255,${op})`;
+      ctx.fill();
+      s.y += s.speed;
+      if (s.y > c.height + 2) { s.y = -2; s.x = Math.random() * c.width; }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { resize(); init(); });
+  resize(); init(); draw();
+})();
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({ event: 'user_manual_page_view' });
+
+function handleBuy() {
+  // Scroll to waitlist until Stripe is live
+  document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
+}
+
+async function submitWaitlist() {
+  const email = document.getElementById('wl-email').value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+  const btn = document.querySelector('.wl-btn');
+  btn.disabled = true; btn.textContent = '…';
+  try {
+    await fetch('/.netlify/functions/capture-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, source_page: '/user-manual/', cta_placement: 'waitlist', blog_slug: '' }),
+    });
+  } catch (_) {}
+  document.getElementById('wl-success').style.display = 'block';
+  document.querySelector('.wl-row').style.display = 'none';
+  window.dataLayer.push({ event: 'paid_waitlist_signup', source: 'user-manual' });
+}
+document.getElementById('wl-email').addEventListener('keydown', e => { if (e.key === 'Enter') submitWaitlist(); });
+</script>
+</body>
+</html>

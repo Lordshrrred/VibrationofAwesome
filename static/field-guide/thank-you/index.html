@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're In — Download Your Field Guide | Vibration of Awesome</title>
+<meta name="robots" content="noindex, nofollow">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G5HF0WKZT9');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #020a0a; --surface: #060f10; --surface2: #0b1a1c;
+    --gold: #D4AF37; --gold-dim: rgba(212,175,55,0.12); --gold-border: rgba(212,175,55,0.25);
+    --cyan: #00e5cc;
+    --text: #e8f4f0; --muted: #5a8a80; --body: rgba(232,244,240,0.85);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Lora', serif; font-size: 17px; line-height: 1.8; overflow-x: hidden; }
+  #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  .wrap { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 2rem; }
+
+  .top-nav { padding: 1.2rem 0; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(212,175,55,0.08); margin-bottom: 0; }
+  .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+
+  /* ── Confirm section ── */
+  .confirm { padding: 5rem 0 4rem; text-align: center; }
+  .confirm-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+  .confirm h1 { font-family: 'Poppins', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--text); margin-bottom: 0.75rem; }
+  .confirm h1 span { color: var(--gold); }
+  .confirm p { color: var(--body); max-width: 480px; margin: 0 auto 2.5rem; }
+
+  .dl-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--gold); color: #020a0a;
+    font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
+    border-radius: 8px; padding: 1rem 2.5rem; transition: opacity 0.2s;
+    box-shadow: 0 4px 24px rgba(212,175,55,0.2);
+  }
+  .dl-btn:hover { opacity: 0.85; }
+  .dl-loading { display: none; font-family: 'Poppins', sans-serif; font-size: 0.9rem; color: var(--muted); margin-top: 1rem; }
+
+  .divider { height: 1px; background: linear-gradient(to right, transparent, var(--gold-border), transparent); margin: 0; }
+
+  /* ── Upsell ── */
+  .upsell { padding: 5rem 0; }
+  .upsell-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .upsell h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; color: var(--text); margin-bottom: 1rem; line-height: 1.2; }
+  .upsell .sub { color: var(--body); margin-bottom: 2.5rem; font-size: 1.05rem; }
+
+  .vol-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 3rem; }
+  @media (max-width: 500px) { .vol-compare { grid-template-columns: 1fr; } }
+  .vol-card {
+    background: var(--surface); border: 1px solid rgba(212,175,55,0.12); border-radius: 10px; padding: 1.5rem;
+  }
+  .vol-card.highlight { border-color: var(--gold-border); background: var(--gold-dim); }
+  .vol-label { font-family: 'Poppins', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .vol-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--text); margin-bottom: 0.5rem; }
+  .vol-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  .price-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .price { font-family: 'Poppins', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--gold); }
+  .price-note { font-size: 0.85rem; color: var(--muted); }
+
+  .buy-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--gold); color: #020a0a;
+    font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
+    border-radius: 8px; padding: 1rem 2rem; transition: opacity 0.2s;
+    border: none; cursor: pointer;
+  }
+  .buy-btn:hover { opacity: 0.85; }
+  .buy-btn.coming-soon { opacity: 0.5; cursor: not-allowed; background: var(--surface2); color: var(--muted); border: 1px solid rgba(212,175,55,0.2); }
+  .coming-soon-note { font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: var(--muted); margin-top: 0.75rem; }
+
+  /* ── Waitlist form ── */
+  .waitlist { margin-top: 3rem; padding: 2rem; background: var(--surface); border: 1px solid var(--gold-border); border-radius: 10px; }
+  .waitlist h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.5rem; }
+  .waitlist p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.25rem; }
+  .waitlist-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .wl-input {
+    flex: 1; min-width: 200px; background: var(--surface2); border: 1px solid var(--gold-border);
+    border-radius: 6px; color: var(--text); font-family: 'Lora', serif; font-size: 0.9rem;
+    padding: 0.7rem 0.9rem; outline: none; transition: border-color 0.2s;
+  }
+  .wl-input:focus { border-color: var(--gold); }
+  .wl-btn {
+    background: rgba(212,175,55,0.15); color: var(--gold);
+    font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--gold-border);
+    border-radius: 6px; padding: 0.7rem 1.2rem; cursor: pointer; transition: background 0.2s; white-space: nowrap;
+  }
+  .wl-btn:hover { background: rgba(212,175,55,0.25); }
+  .wl-success { display: none; font-family: 'Poppins', sans-serif; font-size: 0.88rem; color: var(--gold); margin-top: 0.5rem; }
+
+  .page-footer { padding: 3rem 0 5rem; text-align: center; border-top: 1px solid var(--gold-border); }
+  .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+  .footer-links a { font-family: 'Poppins', sans-serif; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+<canvas id="stars-canvas" aria-hidden="true"></canvas>
+<div class="wrap">
+
+  <nav class="top-nav">
+    <a href="/" class="nav-logo">Vibration of Awesome</a>
+  </nav>
+
+  <!-- ── CONFIRM + DOWNLOAD ── -->
+  <section class="confirm">
+    <div class="confirm-icon">✦</div>
+    <h1>You're in. Your <span>Field Guide</span> is ready.</h1>
+    <p>Click below for your immediate download. No waiting, no extra steps.</p>
+    <a href="#" class="dl-btn" id="dl-btn">⬇ Download the Field Guide</a>
+    <div class="dl-loading" id="dl-loading">Building your download link…</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── UPSELL ── -->
+  <section class="upsell">
+    <div class="upsell-eyebrow">Volume Two</div>
+    <h2>You've got the philosophy.<br>Want the tactical manual?</h2>
+    <p class="sub">Volume Two is the system for entering the state, resetting fast, and making alignment your baseline — not just understanding it.</p>
+
+    <div class="vol-compare">
+      <div class="vol-card">
+        <div class="vol-label">Volume One (You Have This)</div>
+        <div class="vol-title">A Field Guide to Vibration of Awesome</div>
+        <div class="vol-desc">The why and the framework. What the state is, how it works, and what it means to live at full frequency.</div>
+      </div>
+      <div class="vol-card highlight">
+        <div class="vol-label">Volume Two</div>
+        <div class="vol-title">A User Manual for Reality</div>
+        <div class="vol-desc">The how, the mechanics, the daily operating system. State entry protocols, reset sequences, and the full tactical toolkit.</div>
+      </div>
+    </div>
+
+    <div class="price-row">
+      <div class="price">$17</div>
+      <div class="price-note">One-time · instant download<br>30-day no-questions guarantee</div>
+    </div>
+
+    <a href="/user-manual/" class="buy-btn coming-soon" id="buy-btn">
+      Get the User Manual — $17
+    </a>
+    <div class="coming-soon-note" id="coming-soon-note">Stripe checkout coming soon. Get on the early list below.</div>
+
+    <!-- Paid waitlist -->
+    <div class="waitlist">
+      <h3>Get notified when Volume Two launches.</h3>
+      <p>Early list gets it at the launch price before it increases.</p>
+      <div class="waitlist-row">
+        <input type="email" class="wl-input" id="wl-email" placeholder="Your email address">
+        <button class="wl-btn" id="wl-btn" onclick="submitWaitlist()">Join Early List</button>
+      </div>
+      <div class="wl-success" id="wl-success">You're on the list. ✦ We'll reach out at launch.</div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/field-guide/">← Back to Field Guide</a>
+      <a href="/user-manual/">Volume Two</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// ── Stars ──────────────────────────────────────────────────────────────────
+(function() {
+  const c = document.getElementById('stars-canvas');
+  const ctx = c.getContext('2d');
+  let stars = [];
+  function resize() { c.width = innerWidth; c.height = innerHeight; }
+  function init() {
+    stars = Array.from({ length: 120 }, () => ({
+      x: Math.random() * c.width, y: Math.random() * c.height,
+      r: Math.random() * 1.0 + 0.2, speed: Math.random() * 0.08 + 0.02,
+      op: Math.random() * 0.45 + 0.1, pulse: Math.random() * Math.PI * 2,
+      ps: Math.random() * 0.005 + 0.002, gold: Math.random() < 0.06,
+    }));
+  }
+  function draw() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    for (const s of stars) {
+      s.pulse += s.ps;
+      const op = s.op * (0.7 + 0.3 * Math.sin(s.pulse));
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.gold ? `rgba(212,175,55,${op})` : `rgba(255,255,255,${op})`;
+      ctx.fill();
+      s.y += s.speed;
+      if (s.y > c.height + 2) { s.y = -2; s.x = Math.random() * c.width; }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { resize(); init(); });
+  resize(); init(); draw();
+})();
+
+// ── Set download URL from token in URL params ──────────────────────────────
+window.dataLayer = window.dataLayer || [];
+
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const token  = params.get('token');
+  const dlBtn  = document.getElementById('dl-btn');
+
+  if (token) {
+    dlBtn.href = `/.netlify/functions/deliver-ebook?token=${encodeURIComponent(token)}&product=free`;
+    window.dataLayer.push({ event: 'ebook_download_page_view', token_present: true });
+  } else {
+    // No token — show general link to field-guide page
+    dlBtn.href = '/field-guide/';
+    dlBtn.textContent = '← Back to sign up';
+    window.dataLayer.push({ event: 'ebook_download_page_view', token_present: false });
+  }
+})();
+
+// ── Waitlist signup ────────────────────────────────────────────────────────
+async function submitWaitlist() {
+  const email = document.getElementById('wl-email').value.trim();
+  const btn   = document.getElementById('wl-btn');
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+  btn.disabled = true;
+  btn.textContent = '…';
+  try {
+    await fetch('/.netlify/functions/capture-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, source_page: '/field-guide/thank-you/', cta_placement: 'waitlist', blog_slug: '' }),
+    });
+  } catch (_) {}
+  document.getElementById('wl-success').style.display = 'block';
+  document.querySelector('.waitlist-row').style.display = 'none';
+  window.dataLayer.push({ event: 'paid_waitlist_signup' });
+}
+document.getElementById('wl-email').addEventListener('keydown', e => { if (e.key === 'Enter') submitWaitlist(); });
+</script>
+</body>
+</html>

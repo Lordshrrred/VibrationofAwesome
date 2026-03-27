@@ -118,6 +118,9 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem;
   border-radius: 2px; }
 .site-nav-links a.nav-aura-link::after { display: none !important; }
 .site-nav-links a.nav-aura-link:hover { background: rgba(0,229,255,0.08); }
+.site-nav-links a.nav-guide-link { color: #D4AF37 !important; border: 1px solid rgba(212,175,55,0.35); padding: 0.3rem 0.8rem; border-radius: 2px; }
+.site-nav-links a.nav-guide-link::after { display: none !important; }
+.site-nav-links a.nav-guide-link:hover { background: rgba(212,175,55,0.1); box-shadow: 0 0 12px rgba(212,175,55,0.2); }
 .site-nav-breadcrumb { display: flex; align-items: center; gap: 0.55rem;
   padding: 0.32rem 2.5rem; }
 .site-nav-breadcrumb a { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem;
@@ -166,6 +169,7 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem;
       <li><a href="/blog/boom/" class="active">Boom Frequency ⚡</a></li>
       <li><a href="/earthstar/">EarthStar ✦</a></li>
       <li><a href="/art-store/">Art Store</a></li>
+      <li><a href="/field-guide/" class="nav-guide-link">Free Guide &#10022;</a></li>
       <li><a href="/aura/" class="nav-aura-link">AURA ✦</a></li>
       <li><a href="/portfolio/">Portfolio</a></li>
     </ul>
@@ -371,5 +375,10 @@ function toggleSiteNav() {
   document.getElementById('siteNavHamburger').classList.toggle('open');
 }
 </script>
+
+<div data-ebook-cta data-placement="end-of-post"></div>
+<script src="/js/ebook-cta.js"></script>
+
+<script src="/js/announcement-bar.js"></script>
 </body>
 </html>

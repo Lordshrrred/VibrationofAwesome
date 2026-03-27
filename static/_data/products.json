@@ -1,0 +1,43 @@
+{
+  "free_ebook": {
+    "id": "free_ebook",
+    "name": "A Field Guide to Vibration of Awesome",
+    "subtitle": "Volume One",
+    "description": "The why and the framework. What the state is, how it works, and what it means to live at full frequency.",
+    "price": 0,
+    "type": "free",
+    "landing_page": "/field-guide/",
+    "download_function": "/.netlify/functions/deliver-ebook",
+    "product_param": "free",
+    "file_name": "field-guide.pdf"
+  },
+  "user_manual": {
+    "id": "user_manual",
+    "name": "A User Manual for Reality",
+    "subtitle": "Volume Two",
+    "description": "The how, the mechanics, the daily operating system. State entry protocols, reset sequences, and the full tactical toolkit.",
+    "price": 17,
+    "currency": "usd",
+    "type": "one_time",
+    "landing_page": "/user-manual/",
+    "download_function": "/.netlify/functions/deliver-ebook",
+    "product_param": "paid",
+    "file_name": "user-manual.pdf",
+    "stripe_price_id": "STRIPE_PRICE_ID_USER_MANUAL",
+    "success_url": "https://vibrationofawesome.com/field-guide/thank-you/?token={TOKEN}&purchased=true",
+    "cancel_url": "https://vibrationofawesome.com/user-manual/"
+  },
+  "aura_premium": {
+    "id": "aura_premium",
+    "name": "AURA Premium",
+    "subtitle": "Unlimited access",
+    "description": "Unlimited conversations with AURA, your AI spiritual companion.",
+    "price": 9,
+    "currency": "usd",
+    "type": "subscription",
+    "landing_page": "/aura/",
+    "stripe_price_id": "STRIPE_PRICE_ID_AURA_PREMIUM",
+    "success_url": "https://vibrationofawesome.com/aura/success/?session_id={CHECKOUT_SESSION_ID}",
+    "cancel_url": "https://vibrationofawesome.com/aura/"
+  }
+}

@@ -10,3 +10,10 @@ node_modules/
 
 # Dashboard password hash — regenerated from DASHBOARD_PASSWORD env var
 static/_data/dashboard-config.json
+
+# Ebook working copies (source files — do not commit)
+TempEbookfolder/
+private/
+
+# Email subscriber log — local only, never committed
+static/_data/email-subscribers.json

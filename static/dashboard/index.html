@@ -1016,17 +1016,26 @@ function renderMatrix(results) {
 }
 
 // ── Live URL Verification ─────────────────────────────────────────────────────
-// Routes ALL checks through the Netlify function (server-side HEAD request).
-// Avoids CORS blocks from Dev.to, Hashnode, and any platform that may start
-// blocking browser requests. Results cached in localStorage for 1 hour.
+// Hybrid approach to minimize Netlify function calls:
+//   DIRECT (browser fetch, no-cors): bluesky, tumblr, blogger
+//   NETLIFY (server-side HEAD via check-url fn): devto, hashnode, facebook, mastodon
+//   STORED  (show status from syndication-results, no live check): instagram, threads
+// Results cached in localStorage for 1 hour.
 const CHECK_URL_FN = "https://vibrationofawesome.netlify.app/.netlify/functions/check-url";
+
+// Platforms verified via direct browser fetch (no-cors, success = opaque 200-range)
+const DIRECT_VERIFY_KEYS = new Set(["bluesky", "tumblr", "blogger"]);
+// Platforms verified via Netlify proxy (CORS-blocked or auth-walled)
+const NETLIFY_VERIFY_KEYS = new Set(["devto", "hashnode", "facebook_voa", "facebook_earthstar", "mastodon"]);
+// Platforms that show stored status only — no live check
+const STORED_STATUS_KEYS  = new Set(["instagram", "threads"]);
+
 function getVerifyCache() {
   try {
     const raw = localStorage.getItem(VERIFY_CACHE);
     if (!raw) return {};
     const cache = JSON.parse(raw);
     const now = Date.now();
-    // Prune expired entries
     const clean = {};
     for (const [url, entry] of Object.entries(cache)) {
       if (now - entry.ts < CACHE_TTL) clean[url] = entry;
@@ -1041,21 +1050,47 @@ function setVerifyCache(cache) {
 async function verifyMatrixUrls() {
   const cache = getVerifyCache();
   const cells = document.querySelectorAll("[data-verify]");
-  const toCheck = [];
+  const direct  = [];
+  const netlify = [];
 
   for (const cell of cells) {
     const url = cell.getAttribute("data-verify");
+    const key = cell.getAttribute("data-key") || "";
     if (!url) continue;
+
+    // Stored-status platforms: keep the current ✓ or ✗, no live check
+    if (STORED_STATUS_KEYS.has(key)) continue;
+
     if (cache[url] !== undefined) {
       updateMatrixCell(cell, cache[url].live);
-    } else {
-      cell.innerHTML = "⏳";
-      cell.classList.replace("mat-ok", "mat-pend");
-      toCheck.push({ cell, url });
+      continue;
+    }
+
+    cell.innerHTML = "⏳";
+    cell.classList.replace("mat-ok", "mat-pend");
+
+    if (DIRECT_VERIFY_KEYS.has(key)) {
+      direct.push({ cell, url });
+    } else if (NETLIFY_VERIFY_KEYS.has(key)) {
+      netlify.push({ cell, url });
     }
   }
 
-  for (const { cell, url } of toCheck) {
+  // Direct browser fetches (no-cors) — sequential to avoid flooding
+  for (const { cell, url } of direct) {
+    try {
+      await fetch(url, { mode: "no-cors", cache: "no-store" });
+      // no-cors returns opaque response (status 0) on success, throws on network failure
+      cache[url] = { live: true, ts: Date.now() };
+      updateMatrixCell(cell, true);
+    } catch (_) {
+      cache[url] = { live: false, ts: Date.now() };
+      updateMatrixCell(cell, false);
+    }
+  }
+
+  // Netlify proxy fetches
+  for (const { cell, url } of netlify) {
     try {
       const resp = await fetch(
         `${CHECK_URL_FN}?url=${encodeURIComponent(url)}`,
@@ -1070,7 +1105,7 @@ async function verifyMatrixUrls() {
     }
   }
 
-  if (toCheck.length > 0) setVerifyCache(cache);
+  if (direct.length + netlify.length > 0) setVerifyCache(cache);
 }
 
 function updateMatrixCell(cell, live) {
