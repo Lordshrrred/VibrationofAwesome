@@ -942,8 +942,10 @@ function renderMatrix(results) {
 }
 
 // ── Live URL Verification ─────────────────────────────────────────────────────
-// Uses no-cors fetch: opaque response = likely live, network error = dead
-// Results cached in localStorage for 1 hour
+// Routes ALL checks through the Netlify function (server-side HEAD request).
+// Avoids CORS blocks from Dev.to, Hashnode, and any platform that may start
+// blocking browser requests. Results cached in localStorage for 1 hour.
+const CHECK_URL_FN = "https://vibrationofawesome.netlify.app/.netlify/functions/check-url";
 function getVerifyCache() {
   try {
     const raw = localStorage.getItem(VERIFY_CACHE);
@@ -981,10 +983,13 @@ async function verifyMatrixUrls() {
 
   for (const { cell, url } of toCheck) {
     try {
-      await fetch(url, { method: "HEAD", mode: "no-cors", cache: "no-store" });
-      // Opaque response means the server responded ~ treat as live
-      cache[url] = { live: true, ts: Date.now() };
-      updateMatrixCell(cell, true);
+      const resp = await fetch(
+        `${CHECK_URL_FN}?url=${encodeURIComponent(url)}`,
+        { cache: "no-store" }
+      );
+      const data = resp.ok ? await resp.json() : { live: false };
+      cache[url] = { live: !!data.live, ts: Date.now() };
+      updateMatrixCell(cell, !!data.live);
     } catch (_) {
       cache[url] = { live: false, ts: Date.now() };
       updateMatrixCell(cell, false);
