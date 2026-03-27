@@ -315,7 +315,7 @@ async function postToHashnode(postTitle, caption, postUrl, tags, imageUrl) {
     caption,
     "",
     `---`,
-    `*Originally published at [vibrationofawesome.com](${postUrl})*`,
+    `*This post was originally written for [Vibration of Awesome](${postUrl}) ~ a philosophy for living deliberately.*`,
   ].join("\n");
 
   const tagInput = (tags || []).slice(0, 5).map(t => ({
@@ -878,8 +878,18 @@ if (isCli) {
   }
 
   try {
+    // Expand short aliases to internal platform names
+    const PLATFORM_ALIASES = {
+      fbv:  "facebook_voa",
+      fbe:  "facebook_earthstar",
+      fb:   "facebook_voa",
+      dev:  "devto",
+    };
     const platformFilter = argv.platforms
-      ? argv.platforms.split(",").map(s => s.trim().toLowerCase())
+      ? argv.platforms.split(",").map(s => {
+          const key = s.trim().toLowerCase();
+          return PLATFORM_ALIASES[key] || key;
+        })
       : null;
     await syndicatePost(argv.lane, argv.slug, {
       keyword:     argv.keyword,
