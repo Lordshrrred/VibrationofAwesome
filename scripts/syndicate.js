@@ -703,8 +703,14 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   // ── 3. Generate captions ──
   const anthropic = options.anthropic || new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-  console.log("Generating captions...");
-  const captions = await generateCaptions({ ...post, lane }, anthropic);
+  let captions;
+  if (options.captions) {
+    console.log("Using pre-supplied captions (API bypass)...");
+    captions = options.captions;
+  } else {
+    console.log("Generating captions...");
+    captions = await generateCaptions({ ...post, lane }, anthropic);
+  }
 
   // ── 4. Select image ──
   const keyword = options.keyword || (post.tags || [])[0] || post.title;
@@ -783,10 +789,9 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   // Blogger (auto-publish ~ AI-generated related article inspired by source)
   await attempt("blogger", async () => {
-    const { title: blogTitle, html: blogHtml } = await generateBloggerArticle(
-      post.title, sourceText, postUrl, anthropic
-    );
-    return postToBlogger(blogTitle, blogHtml);
+    const bloggerArticle = options.bloggerArticle
+      || await generateBloggerArticle(post.title, sourceText, postUrl, anthropic);
+    return postToBlogger(bloggerArticle.title, bloggerArticle.html);
   });
 
   // ── 7. Build log entry ──
