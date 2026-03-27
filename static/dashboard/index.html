@@ -331,6 +331,26 @@
       .post-table { font-size: 0.82rem; }
       .drip-meta { gap: 1rem; }
     }
+
+    /* ── Site & Feeder Stats ── */
+    .site-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 900px) { .site-cards { grid-template-columns: 1fr; } }
+    .site-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem;
+    }
+    .site-card-title {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+    }
+    .site-stat-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.45rem 0; border-bottom: 1px solid rgba(0,229,204,0.05);
+    }
+    .site-stat-row:last-child { border-bottom: none; }
+    .site-stat-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    .site-stat-value { font-size: 0.9rem; font-weight: 600; color: var(--text); text-align: right; }
+    .site-link { color: var(--warn); text-decoration: none; }
+    .site-link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -391,8 +411,8 @@
         </div>
         <div class="stat-card">
           <div class="stat-label">Platforms Active</div>
-          <div class="stat-value" id="stat-platforms">11</div>
-          <div class="stat-sub" style="font-size:0.7rem">Bsky·Mast·FB-V·FB-E·Dev·Hash·Tumblr·Blog·Pins·Insta·Thrd</div>
+          <div class="stat-value" id="stat-platforms">~</div>
+          <div class="stat-sub" id="stat-platforms-sub" style="font-size:0.7rem">Bsky·Mast·FB-V·FB-E·Dev·Hash·Tumblr·Blog·Pins·Insta·Thrd</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Drip Queue</div>
@@ -447,6 +467,28 @@
         </div>
         <div id="queue-wrap">
           <div class="loading dot-pulse">Loading</div>
+        </div>
+      </div>
+
+      <!-- ── Site & Feeder Stats ── -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-title">Frequency Rising Feeder</span>
+          <span style="font-size:0.75rem;color:var(--text-muted)">VOA main site · GitHub Pages feeder</span>
+        </div>
+        <div class="site-cards">
+          <div class="site-card" id="voa-site-card">
+            <div class="site-card-title">vibrationofawesome.com</div>
+            <div class="loading dot-pulse">Loading</div>
+          </div>
+          <div class="site-card" id="feeder-site-card">
+            <div class="site-card-title">
+              <a href="https://lordshrrred.github.io/VOA_GithubPages" target="_blank" class="site-link">
+                Frequency Rising Feeder ↗
+              </a>
+            </div>
+            <div class="loading dot-pulse">Loading</div>
+          </div>
         </div>
       </div>
 
@@ -554,6 +596,7 @@ const PLATFORMS = [
   { key: "pinterest",          label: "Pins",   name: "Pinterest" },
   { key: "instagram",          label: "Insta",  name: "Instagram ⓘ", tooltip: "No clickable links in Instagram posts ~ visual reach only" },
   { key: "threads",            label: "Thrd",   name: "Threads" },
+  { key: "feeder",             label: "Feeder", name: "Frequency Rising Feeder" },
 ];
 const PLATFORM_MAP = Object.fromEntries(PLATFORMS.map(p => [p.key, p]));
 
@@ -650,10 +693,11 @@ async function loadDashboard() {
 
   renderStats(entries, resultsData, dripData);
   renderDripQueue(dripData);
-  renderRecentPosts(entries);
+  renderRecentPosts(entries, resultsData);
   renderMatrix(resultsData);
   renderQueue(entries, allPosts, dripData);
   renderTrigger(allPosts);
+  renderFeederSection(resultsData, dripData, boomPosts, mattPosts);
 }
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
@@ -685,6 +729,15 @@ function renderStats(entries, results, drip) {
       `${badge} <span style="font-size:0.75rem;color:var(--text-muted)">${published} published</span>`;
   }
 
+  // Platforms Active — add feeder once it has at least one success
+  const feederHasSuccess = results.some(r => r.syndication?.feeder?.status === "success");
+  const baseCount = PLATFORMS.length - 1; // all except feeder
+  const activeCount = feederHasSuccess ? PLATFORMS.length : baseCount;
+  document.getElementById("stat-platforms").textContent = activeCount;
+  document.getElementById("stat-platforms-sub").textContent = feederHasSuccess
+    ? "Bsky·Mast·FB-V·FB-E·Dev·Hash·Tumblr·Blog·Pins·Insta·Thrd·Feeder"
+    : "Bsky·Mast·FB-V·FB-E·Dev·Hash·Tumblr·Blog·Pins·Insta·Thrd";
+
   // Backlink health card
   if (results.length > 0) {
     let total = 0, ok = 0;
@@ -701,7 +754,7 @@ function renderStats(entries, results, drip) {
       ? (results.reduce((s,r) => s + Object.values(r.syndication||{}).filter(x=>x.status==="success").length, 0) / results.length).toFixed(1)
       : "~";
     document.getElementById("stat-backlink-badge").innerHTML =
-      `<span class="stat-badge ${cls}">avg ${avg}/11</span>`;
+      `<span class="stat-badge ${cls}">avg ${avg}/${activeCount}</span>`;
   }
 }
 
@@ -831,7 +884,7 @@ function copyDripCmd() {
 }
 
 // ── Recent Syndications ───────────────────────────────────────────────────────
-function renderRecentPosts(entries) {
+function renderRecentPosts(entries, resultsData) {
   const wrap = document.getElementById("recent-posts-wrap");
   document.getElementById("entry-count").textContent = entries.length + " entries (deduplicated)";
 
@@ -840,9 +893,28 @@ function renderRecentPosts(entries) {
     return;
   }
 
+  // Build feeder status map from syndication-results.json (feeder isn't in the log)
+  const feederBySlug = {};
+  for (const r of (resultsData || [])) {
+    if (r.syndication?.feeder) feederBySlug[r.slug] = r.syndication.feeder;
+  }
+
   const rows = entries.slice(0, 25).map(entry => {
     const platforms = entry.platforms || {};
     const badges = PLATFORMS.map(({ key, label, name, tooltip }) => {
+      // Feeder data lives in results, not the log — handle separately
+      if (key === "feeder") {
+        const f = feederBySlug[entry.postSlug];
+        if (!f) return `<span class="badge badge-skip" title="Frequency Rising Feeder: not yet triggered">~ ${label}</span>`;
+        if (f.status === "success") {
+          const onclick = f.url ? `onclick="window.open('${esc(f.url)}','_blank')"` : "";
+          return `<span class="badge badge-ok" title="Feeder: ✓${f.url ? ' → ' + f.url : ''}" ${onclick}>✓ ${label}</span>`;
+        }
+        if (f.status === "pending") {
+          return `<span class="badge badge-pend" title="Feeder: trigger fired, waiting for post">⏳ ${label}</span>`;
+        }
+        return `<span class="badge badge-fail" title="Feeder: ✗ ${esc(f.error||'no post found')}">✗ ${label}</span>`;
+      }
       const r = platforms[key];
       if (!r) return `<span class="badge badge-skip" title="${name}: not attempted">~ ${label}</span>`;
       if (r.success) {
@@ -876,7 +948,7 @@ function renderRecentPosts(entries) {
 
   wrap.innerHTML = `<table class="post-table">
     <thead><tr>
-      <th>Post</th><th>Date</th><th>Platforms (11)</th><th></th>
+      <th>Post</th><th>Date</th><th>Platforms (${PLATFORMS.length})</th><th></th>
     </tr></thead>
     <tbody>${rows}</tbody>
   </table>`;
@@ -907,6 +979,8 @@ function renderMatrix(results) {
         const tip = tooltip ? `${name}: ✓ · ${tooltip}` : `${name}: ✓${s.url ? " → " + s.url : ""}`;
         const onclick = s.url ? `onclick="window.open('${esc(s.url)}','_blank')"` : "";
         return `<td><div class="mat-cell mat-ok" title="${esc(tip)}" ${onclick} data-verify="${esc(s.url||"")}" data-key="${key}">✓</div></td>`;
+      } else if (s.status === "pending") {
+        return `<td><div class="mat-cell mat-pend" title="${esc(name + ": trigger fired, waiting for post")}">⏳</div></td>`;
       } else {
         return `<td><div class="mat-cell mat-fail" title="${esc(name + ": ✗ " + (s.error || "failed"))}">✗</div></td>`;
       }
@@ -1085,6 +1159,96 @@ function renderQueue(entries, allPosts, drip) {
   }).join("");
 
   wrap.innerHTML = `<div class="queue-grid">${items}</div>`;
+}
+
+// ── Feeder Section ────────────────────────────────────────────────────────────
+function renderFeederSection(results, drip, boomPosts, mattPosts) {
+  const totalPosts  = boomPosts.length + mattPosts.length;
+  const queueCount  = drip?.queue?.length ?? 0;
+  const isActive    = drip?.status === "active";
+  const dripBadge   = isActive
+    ? `<span class="stat-badge green">Active</span>`
+    : `<span class="stat-badge gold">Paused</span>`;
+
+  // Next scheduled post title
+  const nextTitle = drip?.queue?.length > 0
+    ? esc((drip.queue[0].title || "—").slice(0, 45)) + (drip.queue[0].title?.length > 45 ? "…" : "")
+    : "—";
+
+  // Last deploy proxy: most recent syndication log timestamp
+  const lastDeploy = drip?.lastUpdated
+    ? new Date(drip.lastUpdated).toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" })
+    : "—";
+
+  document.getElementById("voa-site-card").innerHTML = `
+    <div class="site-card-title">vibrationofawesome.com</div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Total Posts Published</span>
+      <span class="site-stat-value">${totalPosts}</span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Drafts Queued</span>
+      <span class="site-stat-value">${queueCount}</span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Drip Status</span>
+      <span class="site-stat-value">${dripBadge}</span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Next Scheduled</span>
+      <span class="site-stat-value" style="font-size:0.78rem;max-width:55%;text-align:right">${nextTitle}</span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Last Deploy</span>
+      <span class="site-stat-value">${lastDeploy}</span>
+    </div>`;
+
+  // ── Right card: Frequency Rising Feeder ──
+  const syndicated     = results.length;
+  const feederSuccess  = results.filter(r => r.syndication?.feeder?.status === "success");
+  const feederCount    = feederSuccess.length;
+
+  // Most recent feeder trigger timestamp across all results
+  const allTimes = results
+    .map(r => r.syndication?.feeder?.timestamp)
+    .filter(Boolean)
+    .map(t => new Date(t))
+    .sort((a, b) => b - a);
+  const lastTriggered = allTimes.length > 0
+    ? allTimes[0].toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" })
+    : "Never";
+
+  const feederLive  = feederCount > 0;
+  const statusBadge = feederLive
+    ? `<span class="stat-badge green">Live</span>`
+    : `<span class="stat-badge gold">Pending</span>`;
+
+  document.getElementById("feeder-site-card").innerHTML = `
+    <div class="site-card-title">
+      <a href="https://lordshrrred.github.io/VOA_GithubPages" target="_blank" class="site-link">
+        Frequency Rising Feeder ↗
+      </a>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Total Feeder Posts</span>
+      <span class="site-stat-value">${feederCount}</span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Backlink Coverage</span>
+      <span class="site-stat-value">${feederCount} / ${syndicated} posts covered</span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Platform</span>
+      <span class="site-stat-value">GitHub Pages</span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Last Triggered</span>
+      <span class="site-stat-value">${lastTriggered}</span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Status</span>
+      <span class="site-stat-value">${statusBadge}</span>
+    </div>`;
 }
 
 // ── Manual Trigger ────────────────────────────────────────────────────────────
