@@ -302,12 +302,14 @@ async function postToDevTo(postTitle, caption, postUrl, tags) {
   return { postId: String(data.id), postUrl: data.url };
 }
 
-/** Publish a teaser on Hashnode (GraphQL) */
+/** Publish a teaser on Hashnode via two-step draft → publish flow */
 async function postToHashnode(postTitle, caption, postUrl, tags, imageUrl) {
   const key           = process.env.HASHNODE_API_KEY;
   const publicationId = process.env.HASHNODE_PUBLICATION_ID;
   if (!key)           throw new Error("HASHNODE_API_KEY not set");
   if (!publicationId) throw new Error("HASHNODE_PUBLICATION_ID not set (set in .env)");
+
+  const gqlHeaders = { "Content-Type": "application/json", Authorization: key };
 
   const contentMarkdown = [
     caption,
@@ -316,33 +318,62 @@ async function postToHashnode(postTitle, caption, postUrl, tags, imageUrl) {
     `*Originally published at [vibrationofawesome.com](${postUrl})*`,
   ].join("\n");
 
-  const mutation = `
-    mutation PublishPost($input: PublishPostInput!) {
-      publishPost(input: $input) {
+  const tagInput = (tags || []).slice(0, 5).map(t => ({
+    slug: t.toLowerCase().replace(/\s+/g, "-"),
+    name: t,
+  }));
+
+  // ── Step 1: Create draft ──────────────────────────────────────────────────
+  const draftMutation = `
+    mutation CreateDraft($input: CreateDraftInput!) {
+      createDraft(input: $input) {
+        draft { id }
+      }
+    }
+  `;
+
+  const draftVariables = {
+    input: {
+      title:              postTitle,
+      contentMarkdown,
+      publicationId,
+      originalArticleURL: postUrl,
+      tags:               tagInput,
+      ...(imageUrl ? { coverImageOptions: { coverImageURL: imageUrl } } : {}),
+    },
+  };
+
+  const draftResp = await fetch("https://gql.hashnode.com", {
+    method:  "POST",
+    headers: gqlHeaders,
+    body:    JSON.stringify({ query: draftMutation, variables: draftVariables }),
+  });
+  const draftData = await draftResp.json();
+  if (draftData.errors) {
+    throw new Error(`Hashnode createDraft: ${draftData.errors[0]?.message || JSON.stringify(draftData.errors)}`);
+  }
+  const draftId = draftData.data?.createDraft?.draft?.id;
+  if (!draftId) throw new Error("Hashnode createDraft: no draft ID returned");
+
+  // ── Step 2: Publish draft ─────────────────────────────────────────────────
+  const publishMutation = `
+    mutation PublishDraft($input: PublishDraftInput!) {
+      publishDraft(input: $input) {
         post { id url }
       }
     }
   `;
 
-  const variables = {
-    input: {
-      title:               postTitle,
-      contentMarkdown,
-      publicationId,
-      originalArticleURL:  postUrl,
-      tags:                (tags || []).slice(0, 5).map(t => ({ slug: t.toLowerCase().replace(/\s+/g, "-"), name: t })),
-      ...(imageUrl ? { coverImageOptions: { coverImageURL: imageUrl } } : {}),
-    },
-  };
-
-  const resp = await fetch("https://gql.hashnode.com", {
+  const publishResp = await fetch("https://gql.hashnode.com", {
     method:  "POST",
-    headers: { "Content-Type": "application/json", Authorization: key },
-    body:    JSON.stringify({ query: mutation, variables }),
+    headers: gqlHeaders,
+    body:    JSON.stringify({ query: publishMutation, variables: { input: { draftId } } }),
   });
-  const data = await resp.json();
-  if (data.errors) throw new Error(`Hashnode: ${data.errors[0]?.message || JSON.stringify(data.errors)}`);
-  const post = data.data?.publishPost?.post;
+  const publishData = await publishResp.json();
+  if (publishData.errors) {
+    throw new Error(`Hashnode publishDraft: ${publishData.errors[0]?.message || JSON.stringify(publishData.errors)}`);
+  }
+  const post = publishData.data?.publishDraft?.post;
   return { postId: post?.id, postUrl: post?.url };
 }
 
@@ -727,6 +758,7 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   async function attempt(platform, fn) {
     if (options.bloggerOnly && platform !== "blogger") return;
+    if (options.platforms && !options.platforms.includes(platform)) return;
     try {
       const r = await fn();
       console.log(`  ✓ ${platform}${r.postUrl ? ` → ${r.postUrl}` : ""}`);
@@ -833,9 +865,9 @@ if (isCli) {
   }
 
   const argv = minimist(process.argv.slice(2), {
-    string:  ["lane", "slug", "keyword"],
-    boolean: ["blogger-only"],
-    alias:   { l: "lane", s: "slug", k: "keyword" },
+    string:  ["lane", "slug", "keyword", "platforms"],
+    boolean: ["blogger-only", "force", "verbose"],
+    alias:   { l: "lane", s: "slug", k: "keyword", p: "platforms" },
   });
 
   if (!argv.lane || !["matt", "boom"].includes(argv.lane)) {
@@ -846,7 +878,14 @@ if (isCli) {
   }
 
   try {
-    await syndicatePost(argv.lane, argv.slug, { keyword: argv.keyword, bloggerOnly: argv["blogger-only"] });
+    const platformFilter = argv.platforms
+      ? argv.platforms.split(",").map(s => s.trim().toLowerCase())
+      : null;
+    await syndicatePost(argv.lane, argv.slug, {
+      keyword:     argv.keyword,
+      bloggerOnly: argv["blogger-only"],
+      platforms:   platformFilter,
+    });
   } catch (err) {
     console.error("Fatal:", err.message);
     process.exit(1);
