@@ -607,8 +607,8 @@ const RESULTS_URL   = "/_data/syndication-results.json";
 const DRIP_URL      = "/_data/drip-queue.json";
 const BOOM_URL      = "/_data/boom-posts.json";
 const MATT_URL      = "/_data/matt-posts.json";
-const VERIFY_CACHE  = "voa_url_verify_cache";
-const CACHE_TTL     = 60 * 60 * 1000; // 1 hour
+const VERIFY_CACHE  = "voa_url_verify_cache_v2"; // v2: busts old bad cache from netlify usage_exceeded errors
+const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours — these are stable post URLs
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 async function sha256hex(str) {
@@ -1016,19 +1016,29 @@ function renderMatrix(results) {
 }
 
 // ── Live URL Verification ─────────────────────────────────────────────────────
-// Hybrid approach to minimize Netlify function calls:
-//   DIRECT (browser fetch, no-cors): bluesky, tumblr, blogger
-//   NETLIFY (server-side HEAD via check-url fn): devto, hashnode, facebook, mastodon
-//   STORED  (show status from syndication-results, no live check): instagram, threads
-// Results cached in localStorage for 1 hour.
-const CHECK_URL_FN = "https://vibrationofawesome.netlify.app/.netlify/functions/check-url";
+// ALL platforms use direct browser fetch (no-cors) — zero Netlify function calls.
+//
+// WHY: The Netlify check-url function was returning usage_exceeded (free tier limit
+// hit by other functions like AURA chat), causing all proxied platforms to show red.
+// no-cors fetch: throws on network failure → red; returns opaque response → green.
+// Trade-off: can't distinguish 404 from 200, but post URLs are stable after syndication.
+//
+//   DIRECT (browser fetch, no-cors): all platforms with a URL
+//   STORED (show syndication status, no live check): instagram, threads (never have URLs)
+// Results cached in localStorage for 24 hours.
 
-// Platforms verified via direct browser fetch (no-cors, success = opaque 200-range)
-const DIRECT_VERIFY_KEYS = new Set(["bluesky", "tumblr", "blogger"]);
-// Platforms verified via Netlify proxy (CORS-blocked or auth-walled)
-const NETLIFY_VERIFY_KEYS = new Set(["devto", "hashnode", "facebook_voa", "facebook_earthstar", "mastodon"]);
-// Platforms that show stored status only — no live check
-const STORED_STATUS_KEYS  = new Set(["instagram", "threads"]);
+// Platforms that show stored status only — no live check (they don't return post URLs)
+const STORED_STATUS_KEYS = new Set(["instagram", "threads"]);
+
+// Purge old v1 cache and any legacy url-check-* keys that may have bad false entries
+(function bustOldCache() {
+  try {
+    localStorage.removeItem("voa_url_verify_cache");
+    Object.keys(localStorage).forEach(function(k) {
+      if (k.startsWith("url-check-")) localStorage.removeItem(k);
+    });
+  } catch (_) {}
+})();
 
 function getVerifyCache() {
   try {
@@ -1050,15 +1060,14 @@ function setVerifyCache(cache) {
 async function verifyMatrixUrls() {
   const cache = getVerifyCache();
   const cells = document.querySelectorAll("[data-verify]");
-  const direct  = [];
-  const netlify = [];
+  const toCheck = [];
 
   for (const cell of cells) {
     const url = cell.getAttribute("data-verify");
     const key = cell.getAttribute("data-key") || "";
     if (!url) continue;
 
-    // Stored-status platforms: keep the current ✓ or ✗, no live check
+    // Stored-status platforms: keep the rendered ✓, no live check
     if (STORED_STATUS_KEYS.has(key)) continue;
 
     if (cache[url] !== undefined) {
@@ -1068,19 +1077,14 @@ async function verifyMatrixUrls() {
 
     cell.innerHTML = "⏳";
     cell.classList.replace("mat-ok", "mat-pend");
-
-    if (DIRECT_VERIFY_KEYS.has(key)) {
-      direct.push({ cell, url });
-    } else if (NETLIFY_VERIFY_KEYS.has(key)) {
-      netlify.push({ cell, url });
-    }
+    toCheck.push({ cell, url });
   }
 
-  // Direct browser fetches (no-cors) — sequential to avoid flooding
-  for (const { cell, url } of direct) {
+  // Direct no-cors browser fetches — sequential to avoid flooding
+  // no-cors: opaque response = server responded (treat as live); throws = network dead
+  for (const { cell, url } of toCheck) {
     try {
       await fetch(url, { mode: "no-cors", cache: "no-store" });
-      // no-cors returns opaque response (status 0) on success, throws on network failure
       cache[url] = { live: true, ts: Date.now() };
       updateMatrixCell(cell, true);
     } catch (_) {
@@ -1089,23 +1093,7 @@ async function verifyMatrixUrls() {
     }
   }
 
-  // Netlify proxy fetches
-  for (const { cell, url } of netlify) {
-    try {
-      const resp = await fetch(
-        `${CHECK_URL_FN}?url=${encodeURIComponent(url)}`,
-        { cache: "no-store" }
-      );
-      const data = resp.ok ? await resp.json() : { live: false };
-      cache[url] = { live: !!data.live, ts: Date.now() };
-      updateMatrixCell(cell, !!data.live);
-    } catch (_) {
-      cache[url] = { live: false, ts: Date.now() };
-      updateMatrixCell(cell, false);
-    }
-  }
-
-  if (direct.length + netlify.length > 0) setVerifyCache(cache);
+  if (toCheck.length > 0) setVerifyCache(cache);
 }
 
 function updateMatrixCell(cell, live) {
