@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EarthStar SVG Gallery | Vibration of Awesome</title>
+<meta name="description" content="48 sacred-tech vector tiles — 10 geometric patterns × 6 EarthStar color palettes. Copyable and downloadable SVG database.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+/* ── Base ── */
+body {
+  background: radial-gradient(circle at top, rgba(6,18,30,0.95), rgba(2,6,12,1) 60%),
+              linear-gradient(180deg, #02070e 0%, #050e18 100%);
+  color: #d0f4ff;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Animation keyframes ── */
+@keyframes floaty {
+  0%   { transform: translateY(0px) scale(1); opacity: 0.96; }
+  50%  { transform: translateY(-8px) scale(1.01); opacity: 1; }
+  100% { transform: translateY(0px) scale(1); opacity: 0.96; }
+}
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes pulse-ring {
+  0%,100% { opacity:0.4; }
+  50%      { opacity:0.7; }
+}
+
+/* ── Nav ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:1.1rem 3rem;
+  display:flex; align-items:center; justify-content:space-between;
+  background:linear-gradient(to bottom, rgba(2,6,12,0.97), transparent);
+  border-bottom:1px solid rgba(0,229,204,0.08);
+}
+.nav-logo {
+  font-family:'Cinzel Decorative', serif; font-size:0.95rem;
+  color:#00e5cc; text-decoration:none; letter-spacing:0.15em;
+  text-shadow:0 0 18px rgba(0,229,204,0.4);
+}
+.nav-breadcrumb {
+  font-family:'Rajdhani', sans-serif; font-size:0.72rem;
+  letter-spacing:0.2em; text-transform:uppercase;
+  color:rgba(208,244,255,0.5);
+}
+.nav-breadcrumb a { color:rgba(208,244,255,0.5); text-decoration:none; transition:color 0.2s; }
+.nav-breadcrumb a:hover { color:#00e5cc; }
+.nav-breadcrumb .sep { margin:0 0.5rem; opacity:0.35; }
+
+/* ── Hero ── */
+.hero {
+  padding: 9rem 3rem 3.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  animation: fadeIn 0.7s ease both;
+}
+.eyebrow {
+  font-family:'Rajdhani', sans-serif;
+  font-size:0.65rem; font-weight:700; letter-spacing:0.3em;
+  text-transform:uppercase; color:#00e5cc;
+  margin-bottom:1rem;
+}
+h1 {
+  font-family:'Cinzel Decorative', serif;
+  font-size:clamp(1.6rem, 4vw, 2.8rem);
+  font-weight:700; color:#e4fbff;
+  line-height:1.15; margin-bottom:1rem;
+}
+h1 span { color:#00e5cc; }
+.hero-sub {
+  font-size:1rem; color:rgba(208,244,255,0.68);
+  line-height:1.7; max-width:680px; margin-bottom:2rem;
+}
+
+/* ── Filters/Controls ── */
+.controls {
+  display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;
+  padding:0 3rem 2.5rem;
+  max-width:1000px; margin:0 auto;
+}
+.filter-btn {
+  background:rgba(0,229,204,0.07); border:1px solid rgba(0,229,204,0.22);
+  color:rgba(208,244,255,0.7); border-radius:999px;
+  font-family:'Rajdhani',sans-serif; font-size:0.72rem; font-weight:600;
+  letter-spacing:0.12em; text-transform:uppercase;
+  padding:0.4rem 0.95rem; cursor:pointer; transition:all 0.18s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background:rgba(0,229,204,0.15); border-color:#00e5cc;
+  color:#00e5cc;
+}
+.filter-label {
+  font-family:'Rajdhani',sans-serif; font-size:0.68rem;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:rgba(208,244,255,0.35); margin-right:0.25rem;
+}
+.count-badge {
+  font-family:'Rajdhani',sans-serif; font-size:0.68rem;
+  color:rgba(208,244,255,0.35); letter-spacing:0.1em; margin-left:auto;
+}
+
+/* ── Grid ── */
+.gallery-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap:18px;
+  max-width:1480px; margin:0 auto;
+  padding:0 1.5rem 4rem;
+}
+
+/* ── Tile ── */
+.tile {
+  border-radius:20px;
+  border:1px solid rgba(0,180,200,0.18);
+  background:linear-gradient(175deg, rgba(5,14,24,0.96), rgba(3,8,15,0.99));
+  box-shadow:0 16px 40px rgba(0,0,0,0.35);
+  overflow:hidden;
+  transition:transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+  animation: fadeIn 0.5s ease both;
+}
+.tile:hover {
+  transform:translateY(-4px);
+  box-shadow:0 26px 52px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,229,204,0.2);
+  border-color:rgba(0,229,204,0.28);
+}
+
+.tile-header {
+  padding:13px 13px 9px;
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+}
+.tile-title {
+  font-size:13px; font-weight:600; color:#e8fbff; letter-spacing:0.02em;
+}
+.tile-palette {
+  font-size:11px; color:rgba(180,238,255,0.6); margin-top:3px;
+  font-family:'Rajdhani',sans-serif; letter-spacing:0.06em;
+}
+.tile-variant {
+  font-size:10px; color:rgba(180,238,255,0.3);
+  font-family:'Rajdhani',sans-serif;
+}
+.tile-actions {
+  display:flex; gap:5px; flex-shrink:0;
+}
+.btn-icon {
+  border:1px solid rgba(0,229,204,0.22); background:rgba(3,12,20,0.88);
+  color:#88e8ff; border-radius:8px; padding:6px 10px;
+  font-size:11px; cursor:pointer; transition:all 0.18s;
+  font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:0.08em;
+  white-space:nowrap;
+}
+.btn-icon:hover { background:rgba(0,229,204,0.12); border-color:#00e5cc; color:#00e5cc; }
+.btn-icon.copied { border-color:#6affb4; color:#6affb4; }
+
+.tile-art {
+  aspect-ratio:1/1; padding:10px; position:relative;
+}
+.tile-art svg {
+  width:100%; height:100%; display:block;
+}
+/* floating animation applied inline per-tile with varying duration */
+
+/* ── Copy toast ── */
+#toast {
+  position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px);
+  background:rgba(0,229,204,0.15); border:1px solid rgba(0,229,204,0.4);
+  color:#00e5cc; font-family:'Rajdhani',sans-serif; font-size:0.82rem;
+  letter-spacing:0.1em; padding:0.6rem 1.5rem; border-radius:999px;
+  transition:transform 0.3s, opacity 0.3s; opacity:0; pointer-events:none;
+  z-index:9999;
+}
+#toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+
+/* ── Footer ── */
+footer {
+  text-align:center; padding:2rem;
+  font-family:'Rajdhani',sans-serif; font-size:0.75rem;
+  color:rgba(208,244,255,0.25); letter-spacing:0.08em;
+  border-top:1px solid rgba(0,229,204,0.06);
+}
+footer a { color:rgba(208,244,255,0.4); text-decoration:none; }
+footer a:hover { color:#00e5cc; }
+
+@media(max-width:768px) {
+  nav { padding:1rem 1.5rem; }
+  .hero { padding:7rem 1.5rem 2.5rem; }
+  .controls { padding:0 1.5rem 2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">VOA</a>
+  <div class="nav-breadcrumb">
+    <a href="/earthstar/">EarthStar</a>
+    <span class="sep">›</span>
+    SVG Gallery
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">EarthStar · Internal SVG Database</div>
+  <h1>Sacred-Tech <span>Vector Library</span></h1>
+  <p class="hero-sub">
+    48 geometric vector tiles — 10 patterns across 6 EarthStar palettes.
+    Click <strong>Copy</strong> on any tile to grab the SVG markup, or <strong>↓</strong> to download the file.
+    Filter by pattern family below.
+  </p>
+</div>
+
+<div class="controls" id="controls">
+  <span class="filter-label">Pattern:</span>
+  <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">All</button>
+  <button class="filter-btn" data-filter="compass"  onclick="setFilter('compass',this)">Compass</button>
+  <button class="filter-btn" data-filter="flower"   onclick="setFilter('flower',this)">Flower</button>
+  <button class="filter-btn" data-filter="triforce" onclick="setFilter('triforce',this)">Triforce</button>
+  <button class="filter-btn" data-filter="orbital"  onclick="setFilter('orbital',this)">Orbital</button>
+  <button class="filter-btn" data-filter="portal"   onclick="setFilter('portal',this)">Portal</button>
+  <button class="filter-btn" data-filter="diamond"  onclick="setFilter('diamond',this)">Diamond</button>
+  <button class="filter-btn" data-filter="waves"    onclick="setFilter('waves',this)">Signal</button>
+  <button class="filter-btn" data-filter="hex"      onclick="setFilter('hex',this)">Hex</button>
+  <button class="filter-btn" data-filter="mandala"  onclick="setFilter('mandala',this)">Mandala</button>
+  <button class="filter-btn" data-filter="grid"     onclick="setFilter('grid',this)">Grid</button>
+  <span class="count-badge" id="count-badge">48 tiles</span>
+</div>
+
+<div class="gallery-grid" id="gallery"></div>
+
+<div id="toast">SVG copied to clipboard</div>
+
+<footer>
+  <p>EarthStar SVG Database · <a href="/earthstar/">vibrationofawesome.com/earthstar/</a></p>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// Core geometry helpers
+// ─────────────────────────────────────────────────────────────
+const CX = 300, CY = 300;
+
+function polar(r, angle) {
+  const a = ((angle - 90) * Math.PI) / 180;
+  return { x: CX + r * Math.cos(a), y: CY + r * Math.sin(a) };
+}
+function pts(points) {
+  return points.map(p => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ');
+}
+
+// ─────────────────────────────────────────────────────────────
+// Reusable SVG component helpers (return SVG markup strings)
+// ─────────────────────────────────────────────────────────────
+function rings(p, radii, opacity = 0.28) {
+  return radii.map((r, i) => {
+    const stroke = i % 3 === 0 ? p.primary : i % 3 === 1 ? p.secondary : p.tertiary;
+    const sw = i === 0 ? 1.5 : 1.05;
+    return `<circle cx="${CX}" cy="${CY}" r="${r}" fill="none" stroke="${stroke}" stroke-width="${sw}" opacity="${opacity}"/>`;
+  }).join('');
+}
+
+function radials(p, count, r1, r2, rotation = 0, opacity = 0.4, sw = 1.15) {
+  return Array.from({ length: count }, (_, i) => {
+    const a = rotation + (360 / count) * i;
+    const p1 = polar(r1, a), p2 = polar(r2, a);
+    return `<line x1="${p1.x.toFixed(2)}" y1="${p1.y.toFixed(2)}" x2="${p2.x.toFixed(2)}" y2="${p2.y.toFixed(2)}"
+              stroke="${i % 2 === 0 ? p.primary : p.secondary}" stroke-width="${sw}"
+              stroke-linecap="round" opacity="${opacity}"/>`;
+  }).join('');
+}
+
+function flower(p, petals = 6, r = 82, orbit = 82, rotation = 0) {
+  const petal = Array.from({ length: petals }, (_, i) => {
+    const c = polar(orbit, rotation + (360 / petals) * i);
+    return `<circle cx="${c.x.toFixed(2)}" cy="${c.y.toFixed(2)}" r="${r}"
+               fill="none" stroke="${i % 2 === 0 ? p.secondary : p.tertiary}"
+               stroke-width="1.05" opacity="0.45"/>`;
+  }).join('');
+  return `<circle cx="${CX}" cy="${CY}" r="${r}" fill="none" stroke="${p.primary}" stroke-width="1.4" opacity="0.75"/>
+          ${petal}
+          <circle cx="${CX}" cy="${CY}" r="10" fill="${p.secondary}" opacity="0.92"/>`;
+}
+
+function triforceSet(p, size = 150, rotation = 0, opacity = 0.9) {
+  const h = size;
+  const top   = [{ x:CX, y:CY-h*0.62 }, { x:CX-h*0.36, y:CY }, { x:CX+h*0.36, y:CY }];
+  const left  = [{ x:CX-h*0.39, y:CY+h*0.03 }, { x:CX-h*0.75, y:CY+h*0.64 }, { x:CX-h*0.03, y:CY+h*0.64 }];
+  const right = [{ x:CX+h*0.39, y:CY+h*0.03 }, { x:CX+h*0.75, y:CY+h*0.64 }, { x:CX+h*0.03, y:CY+h*0.64 }];
+  const outer = [polar(size*0.82, rotation), polar(size*0.82, rotation+120), polar(size*0.82, rotation+240)];
+  return `<g transform="rotate(${rotation} ${CX} ${CY})" opacity="${opacity}">
+    <polygon points="${pts(top)}"   fill="none" stroke="${p.primary}"   stroke-width="1.45"/>
+    <polygon points="${pts(left)}"  fill="none" stroke="${p.secondary}" stroke-width="1.3"/>
+    <polygon points="${pts(right)}" fill="none" stroke="${p.tertiary}"  stroke-width="1.3"/>
+    <polygon points="${pts(outer)}" fill="none" stroke="${p.gold}"      stroke-width="1.1" opacity="0.7"/>
+  </g>`;
+}
+
+function starField() {
+  return Array.from({ length: 24 }, (_, i) => {
+    const x = 30 + (i * 83) % 540;
+    const y = 28 + (i * 61) % 544;
+    const r = i % 6 === 0 ? 1.5 : i % 3 === 0 ? 1.0 : 0.7;
+    const o = i % 4 === 0 ? 0.3 : 0.15;
+    return `<circle cx="${x}" cy="${y}" r="${r}" fill="white" opacity="${o}"/>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────────────────────────
+// Color palettes
+// ─────────────────────────────────────────────────────────────
+const palettes = [
+  { name:'EarthStar Emerald', primary:'#1FE4B5', secondary:'#19B8FF', tertiary:'#8B6CFF', gold:'#D2AF64', glow:'rgba(31,228,181,0.34)' },
+  { name:'Forest Plasma',     primary:'#00FF9C', secondary:'#00E2FF', tertiary:'#6F63FF', gold:'#C9A24D', glow:'rgba(0,255,156,0.34)' },
+  { name:'Blue Temple',       primary:'#2DDCFF', secondary:'#45F1C7', tertiary:'#7D85FF', gold:'#D4B26C', glow:'rgba(45,220,255,0.34)' },
+  { name:'Aurora Violet',     primary:'#00E5FF', secondary:'#7C68FF', tertiary:'#38FFCF', gold:'#CBB06A', glow:'rgba(124,104,255,0.30)' },
+  { name:'Deep Green Gold',   primary:'#15E0B2', secondary:'#0FA8FF', tertiary:'#7A61FF', gold:'#D8B55B', glow:'rgba(21,224,178,0.34)' },
+  { name:'Cosmic Cyan',       primary:'#00D1C7', secondary:'#7BF4FF', tertiary:'#5A7BFF', gold:'#CFA656', glow:'rgba(0,209,199,0.34)' },
+];
+
+// ─────────────────────────────────────────────────────────────
+// Pattern definitions — each returns an SVG markup string
+// ─────────────────────────────────────────────────────────────
+const patterns = [
+  {
+    id:'earthstar-compass', title:'EarthStar Compass', family:'compass',
+    draw(p, v) {
+      const main = [0,90,180,270].map((a,i) => {
+        const a1=polar(50,a), a2=polar(194,a), tip=polar(228,a), L=polar(198,a-5), R=polar(198,a+5);
+        return `<line x1="${a1.x.toFixed(2)}" y1="${a1.y.toFixed(2)}" x2="${a2.x.toFixed(2)}" y2="${a2.y.toFixed(2)}"
+                  stroke="${p.gold}" stroke-width="1.8" opacity="0.88"/>
+                <polygon points="${pts([tip,L,R])}" fill="${p.gold}" opacity="0.84"/>`;
+      }).join('');
+      const diag = [45,135,225,315].map((a,i) => {
+        const a1=polar(42,a), a2=polar(148,a), tip=polar(190,a), L=polar(150,a-8), R=polar(150,a+8);
+        return `<line x1="${a1.x.toFixed(2)}" y1="${a1.y.toFixed(2)}" x2="${a2.x.toFixed(2)}" y2="${a2.y.toFixed(2)}"
+                  stroke="${p.gold}" stroke-width="1.2" opacity="0.65"/>
+                <polygon points="${pts([tip,L,R])}" fill="${i%2===0?p.primary:p.secondary}" opacity="0.8"/>`;
+      }).join('');
+      return `${rings(p,[44,92,156,228])}${main}${diag}
+              <circle cx="${CX}" cy="${CY}" r="25" fill="none" stroke="${p.secondary}" stroke-width="1.35" opacity="0.8"/>
+              <circle cx="${CX}" cy="${CY}" r="11" fill="${p.gold}" opacity="0.94"/>`;
+    }
+  },
+  {
+    id:'flower-engine', title:'Flower Engine', family:'flower',
+    draw(p, v) {
+      const r = 82 + (v%2)*6;
+      return `${flower(p,6,r,r,30)}${rings(p,[166,224],0.14)}`;
+    }
+  },
+  {
+    id:'triforce-array', title:'Triforce Array', family:'triforce',
+    draw(p, v) {
+      return `${rings(p,[54,116,178,238],0.2)}
+              ${triforceSet(p,150,(v*12)%360,0.9)}
+              ${triforceSet(p,104,180+((v*12)%360),0.42)}
+              <circle cx="${CX}" cy="${CY}" r="14" fill="${p.secondary}" opacity="0.92"/>`;
+    }
+  },
+  {
+    id:'orbital-bloom', title:'Orbital Bloom', family:'orbital',
+    draw(p, v) {
+      const orbs = Array.from({length:5}, (_,i) => {
+        const c = polar(106, i*72+18);
+        return `<circle cx="${c.x.toFixed(2)}" cy="${c.y.toFixed(2)}" r="72"
+                  fill="none" stroke="${i%2===0?p.primary:p.secondary}" stroke-width="1.1" opacity="0.48"/>`;
+      }).join('');
+      return `${rings(p,[72,132,194,250],0.22)}${orbs}
+              <circle cx="${CX}" cy="${CY}" r="10" fill="${p.primary}" opacity="0.9"/>`;
+    }
+  },
+  {
+    id:'portal-gate', title:'Portal Gate', family:'portal',
+    draw(p, v) {
+      return `<ellipse cx="${CX}" cy="${CY}" rx="160" ry="220" fill="none" stroke="${p.primary}" stroke-width="1.35" opacity="0.32"/>
+              <ellipse cx="${CX}" cy="${CY}" rx="110" ry="158" fill="none" stroke="${p.secondary}" stroke-width="1.45" opacity="0.58"/>
+              <ellipse cx="${CX}" cy="${CY}" rx="52"  ry="82"  fill="none" stroke="${p.tertiary}" stroke-width="1.2"  opacity="0.54"/>
+              <rect x="148" y="82" width="304" height="436" rx="152"
+                    fill="none" stroke="${p.gold}" stroke-width="1.0" opacity="0.14"/>
+              ${radials(p,4,0,220,45,0.12)}
+              <circle cx="${CX}" cy="${CY}" r="11" fill="${p.secondary}" opacity="0.92"/>`;
+    }
+  },
+  {
+    id:'diamond-pulse', title:'Diamond Pulse', family:'diamond',
+    draw(p, v) {
+      const diam = [92,162,232].map((r,i) => {
+        const stroke = i===0?p.primary:i===1?p.secondary:p.tertiary;
+        const op = 0.72 - i*0.17;
+        return `<polygon points="${pts([{x:CX,y:CY-r},{x:CX+r,y:CY},{x:CX,y:CY+r},{x:CX-r,y:CY}])}"
+                  fill="none" stroke="${stroke}" stroke-width="${i===0?1.45:1.1}" opacity="${op}"/>`;
+      }).join('');
+      return `${diam}
+              <line x1="${CX}" y1="54"  x2="${CX}" y2="546" stroke="${p.gold}" stroke-width="1.0" opacity="0.24"/>
+              <line x1="54"  y1="${CY}" x2="546" y2="${CY}" stroke="${p.gold}" stroke-width="1.0" opacity="0.24"/>
+              <circle cx="${CX}" cy="${CY}" r="14" fill="${p.gold}" opacity="0.92"/>`;
+    }
+  },
+  {
+    id:'signal-web', title:'Signal Web', family:'waves',
+    draw(p, v) {
+      const waves = [0,1,2,3,4].map(i => {
+        const d=`M 86 ${196+i*32} C 160 ${150+(i%2===0?-20:20)} 230 ${268+(i%2===0?28:-28)} 300 ${222+i*3}
+                 C 365 ${182+(i%2===0?-12:12)} 438 ${314+(i%2===0?16:-16)} 514 ${248+i*18}`;
+        return `<path d="${d}" fill="none" stroke="${i%2===0?p.primary:p.secondary}"
+                  stroke-width="1.4" opacity="${(0.18+i*0.1).toFixed(2)}" stroke-linecap="round"/>`;
+      }).join('');
+      return `${waves}<circle cx="${CX}" cy="${CY}" r="26" fill="none" stroke="${p.tertiary}" stroke-width="1.2" opacity="0.62"/>`;
+    }
+  },
+  {
+    id:'hex-flower', title:'Hex Flower', family:'hex',
+    draw(p, v) {
+      const hexes = [88,152,220].map((r,i) => {
+        const stroke = i===0?p.primary:i===1?p.secondary:p.tertiary;
+        const hexPts = pts(Array.from({length:6}, (_,n) => polar(r, n*60+30)));
+        return `<polygon points="${hexPts}" fill="none" stroke="${stroke}"
+                  stroke-width="${i===0?1.45:1.1}" opacity="${(0.65-i*0.14).toFixed(2)}"/>`;
+      }).join('');
+      return `${hexes}${flower(p,6,64,64,0)}`;
+    }
+  },
+  {
+    id:'solar-mandala', title:'Solar Mandala', family:'mandala',
+    draw(p, v) {
+      const rays = Array.from({length:16}, (_,i) => {
+        const a = i*22.5;
+        const c1=polar(126,a), c2=polar(166,a+9.5), tip=polar(208,a);
+        return `<polyline points="${pts([c1,tip,c2])}" fill="none"
+                  stroke="${i%2===0?p.primary:p.secondary}" stroke-width="1.15"
+                  opacity="0.54" stroke-linecap="round" stroke-linejoin="round"/>`;
+      }).join('');
+      return `${rings(p,[58,104,156,214],0.18)}${rays}
+              <circle cx="${CX}" cy="${CY}" r="22" fill="${p.gold}" opacity="0.9"/>`;
+    }
+  },
+  {
+    id:'sacred-grid', title:'Sacred Grid', family:'grid',
+    draw(p, v) {
+      const vl = [-160,-80,0,80,160].map((x,i) =>
+        `<line x1="${CX+x}" y1="88" x2="${CX+x}" y2="512"
+           stroke="${i%2===0?p.primary:p.secondary}" stroke-width="1.0" opacity="0.14"/>`).join('');
+      const hl = [-160,-80,0,80,160].map((y,i) =>
+        `<line x1="88" y1="${CY+y}" x2="512" y2="${CY+y}"
+           stroke="${i%2===0?p.secondary:p.primary}" stroke-width="1.0" opacity="0.14"/>`).join('');
+      const cs = [80,160,240].map((r,i) => {
+        const stroke = i===0?p.primary:i===1?p.secondary:p.tertiary;
+        return `<circle cx="${CX}" cy="${CY}" r="${r}" fill="none" stroke="${stroke}" stroke-width="1.0" opacity="0.2"/>`;
+      }).join('');
+      return `${vl}${hl}${cs}<circle cx="${CX}" cy="${CY}" r="11" fill="${p.primary}" opacity="0.92"/>`;
+    }
+  },
+];
+
+// ─────────────────────────────────────────────────────────────
+// Build SVG string for a tile (used for copy/download AND render)
+// ─────────────────────────────────────────────────────────────
+function buildSvgString(pattern, palette, variant) {
+  const id = `${pattern.id}-${palette.name.toLowerCase().replace(/\s+/g,'-')}-${variant}`;
+  const inner = pattern.draw(palette, variant);
+  const rot = (variant * 13) % 360;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <filter id="glow-${id}" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="3.2"
+        flood-color="${palette.primary}" flood-opacity="0.34"/>
+    </filter>
+  </defs>
+  <g filter="url(#glow-${id})">
+    ${starField()}
+    <g transform="rotate(${rot} 300 300)">
+      ${inner}
+    </g>
+  </g>
+</svg>`;
+}
+
+// ─────────────────────────────────────────────────────────────
+// Toast notification
+// ─────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ─────────────────────────────────────────────────────────────
+// Copy SVG to clipboard
+// ─────────────────────────────────────────────────────────────
+async function copySvg(btn, pattern, palette, variant) {
+  const svg = buildSvgString(pattern, palette, variant);
+  try {
+    await navigator.clipboard.writeText(svg);
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    showToast('SVG copied to clipboard');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+  } catch (e) {
+    showToast('Copy failed — try right-click → Copy SVG source');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Download SVG as file
+// ─────────────────────────────────────────────────────────────
+function downloadSvg(pattern, palette, variant) {
+  const svg = buildSvgString(pattern, palette, variant);
+  const id  = `${pattern.id}-${palette.name.toLowerCase().replace(/\s+/g,'-')}-${variant}`;
+  const blob = new Blob([svg], { type:'image/svg+xml' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = `earthstar-${id}.svg`; a.click();
+  URL.revokeObjectURL(url);
+  showToast(`Downloading ${id}.svg`);
+}
+
+// ─────────────────────────────────────────────────────────────
+// Filter state
+// ─────────────────────────────────────────────────────────────
+let currentFilter = 'all';
+
+function setFilter(family, btn) {
+  currentFilter = family;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGallery();
+}
+
+// ─────────────────────────────────────────────────────────────
+// Render all 48 tiles
+// ─────────────────────────────────────────────────────────────
+function renderGallery() {
+  const grid = document.getElementById('gallery');
+  const badge = document.getElementById('count-badge');
+
+  const totalTiles = 48;
+  const tiles = Array.from({ length: totalTiles }, (_, i) => ({
+    pattern: patterns[i % patterns.length],
+    palette: palettes[i % palettes.length],
+    variant: i + 1,
+  })).filter(t => currentFilter === 'all' || t.pattern.family === currentFilter);
+
+  badge.textContent = `${tiles.length} tile${tiles.length !== 1 ? 's' : ''}`;
+
+  grid.innerHTML = '';
+  tiles.forEach(({ pattern, palette, variant }, idx) => {
+    const svgMarkup = buildSvgString(pattern, palette, variant);
+    const dur = 7 + (variant % 5);
+    const animStyle = `style="transform-origin:300px 300px; animation:floaty ${dur}s ease-in-out infinite"`;
+
+    // For rendered tiles, inject the animation into the inner group
+    const animatedSvg = svgMarkup.replace(
+      `<g transform="rotate(${(variant*13)%360} 300 300)">`,
+      `<g ${animStyle} transform="rotate(${(variant*13)%360} 300 300)">`
+    );
+
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.dataset.family = pattern.family;
+    tile.style.animationDelay = `${(idx * 0.04).toFixed(2)}s`;
+    tile.innerHTML = `
+      <div class="tile-header">
+        <div>
+          <div class="tile-title">${pattern.title}</div>
+          <div class="tile-palette">${palette.name} <span class="tile-variant">· v${variant}</span></div>
+        </div>
+        <div class="tile-actions">
+          <button class="btn-icon copy-btn" title="Copy SVG markup">Copy</button>
+          <button class="btn-icon dl-btn" title="Download .svg file">↓</button>
+        </div>
+      </div>
+      <div class="tile-art">${animatedSvg}</div>`;
+
+    tile.querySelector('.copy-btn').addEventListener('click', function() {
+      copySvg(this, pattern, palette, variant);
+    });
+    tile.querySelector('.dl-btn').addEventListener('click', () => {
+      downloadSvg(pattern, palette, variant);
+    });
+
+    grid.appendChild(tile);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────
+// Init
+// ─────────────────────────────────────────────────────────────
+renderGallery();
+</script>
+</body>
+</html>
