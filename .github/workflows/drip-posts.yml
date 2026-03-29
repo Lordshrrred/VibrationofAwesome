@@ -1,9 +1,7 @@
 name: Drip Publish ~ Boom Frequency
 
 on:
-  schedule:
-    - cron: '0 10 * * *'   # Daily at 10:00 UTC
-  workflow_dispatch:         # Manual trigger (for testing / emergency publish)
+  workflow_dispatch:         # Manual trigger only — auto-schedule DISABLED
 
 permissions:
   contents: write
