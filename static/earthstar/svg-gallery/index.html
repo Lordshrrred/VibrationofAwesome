@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EarthStar SVG Gallery | Vibration of Awesome</title>
-<meta name="description" content="48 sacred-tech vector tiles — 10 geometric patterns × 6 EarthStar color palettes. Copyable and downloadable SVG database.">
+<meta name="description" content="132 sacred-tech vector tiles — 22 geometric patterns × 12 EarthStar color palettes. Copyable and downloadable SVG database.">
 <meta name="robots" content="noindex, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
@@ -171,7 +171,6 @@ h1 span { color:#00e5cc; }
 .tile-art svg {
   width:100%; height:100%; display:block;
 }
-/* floating animation applied inline per-tile with varying duration */
 
 /* ── Copy toast ── */
 #toast {
@@ -216,18 +215,18 @@ footer a:hover { color:#00e5cc; }
   <div class="eyebrow">EarthStar · Internal SVG Database</div>
   <h1>Sacred-Tech <span>Vector Library</span></h1>
   <p class="hero-sub">
-    48 geometric vector tiles — 10 patterns across 6 EarthStar palettes.
-    Click <strong>Copy</strong> on any tile to grab the SVG markup, or <strong>↓</strong> to download the file.
+    132 geometric vector tiles — 22 patterns across 12 EarthStar palettes.
+    Triforce-heavy sacred-tech geometry. Click <strong>Copy</strong> to grab SVG markup or <strong>↓</strong> to download.
     Filter by pattern family below.
   </p>
 </div>
 
 <div class="controls" id="controls">
   <span class="filter-label">Pattern:</span>
-  <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">All</button>
+  <button class="filter-btn active" data-filter="all"      onclick="setFilter('all',this)">All</button>
+  <button class="filter-btn" data-filter="triforce" onclick="setFilter('triforce',this)">Triforce</button>
   <button class="filter-btn" data-filter="compass"  onclick="setFilter('compass',this)">Compass</button>
   <button class="filter-btn" data-filter="flower"   onclick="setFilter('flower',this)">Flower</button>
-  <button class="filter-btn" data-filter="triforce" onclick="setFilter('triforce',this)">Triforce</button>
   <button class="filter-btn" data-filter="orbital"  onclick="setFilter('orbital',this)">Orbital</button>
   <button class="filter-btn" data-filter="portal"   onclick="setFilter('portal',this)">Portal</button>
   <button class="filter-btn" data-filter="diamond"  onclick="setFilter('diamond',this)">Diamond</button>
@@ -235,7 +234,7 @@ footer a:hover { color:#00e5cc; }
   <button class="filter-btn" data-filter="hex"      onclick="setFilter('hex',this)">Hex</button>
   <button class="filter-btn" data-filter="mandala"  onclick="setFilter('mandala',this)">Mandala</button>
   <button class="filter-btn" data-filter="grid"     onclick="setFilter('grid',this)">Grid</button>
-  <span class="count-badge" id="count-badge">48 tiles</span>
+  <span class="count-badge" id="count-badge">132 tiles</span>
 </div>
 
 <div class="gallery-grid" id="gallery"></div>
@@ -261,7 +260,7 @@ function pts(points) {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Reusable SVG component helpers (return SVG markup strings)
+// Reusable SVG component helpers
 // ─────────────────────────────────────────────────────────────
 function rings(p, radii, opacity = 0.28) {
   return radii.map((r, i) => {
@@ -307,6 +306,23 @@ function triforceSet(p, size = 150, rotation = 0, opacity = 0.9) {
   </g>`;
 }
 
+// Off-center triforce — single color, at any canvas position, with optional rotation
+function triMonoAt(color, cx0, cy0, size, rotDeg = 0, opacity = 0.72) {
+  const h = size;
+  const r = rotDeg * Math.PI / 180;
+  const rot = (dx, dy) => ({
+    x: cx0 + dx * Math.cos(r) - dy * Math.sin(r),
+    y: cy0 + dx * Math.sin(r) + dy * Math.cos(r)
+  });
+  const top   = [rot(0, -h*0.62), rot(-h*0.36, 0),      rot(h*0.36, 0)];
+  const left  = [rot(-h*0.39, h*0.03), rot(-h*0.75, h*0.64), rot(-h*0.03, h*0.64)];
+  const right = [rot(h*0.39,  h*0.03), rot(h*0.75,  h*0.64), rot(h*0.03,  h*0.64)];
+  const op2   = (opacity * 0.82).toFixed(2);
+  return `<polygon points="${pts(top)}"   fill="none" stroke="${color}" stroke-width="1.15" opacity="${opacity}"/>
+          <polygon points="${pts(left)}"  fill="none" stroke="${color}" stroke-width="1.05" opacity="${op2}"/>
+          <polygon points="${pts(right)}" fill="none" stroke="${color}" stroke-width="1.05" opacity="${op2}"/>`;
+}
+
 function starField() {
   return Array.from({ length: 24 }, (_, i) => {
     const x = 30 + (i * 83) % 540;
@@ -318,25 +334,36 @@ function starField() {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Color palettes
+// Color palettes  (12 total — 6 original + 6 new)
 // ─────────────────────────────────────────────────────────────
 const palettes = [
+  // ── Original 6 ──
   { name:'EarthStar Emerald', primary:'#1FE4B5', secondary:'#19B8FF', tertiary:'#8B6CFF', gold:'#D2AF64', glow:'rgba(31,228,181,0.34)' },
   { name:'Forest Plasma',     primary:'#00FF9C', secondary:'#00E2FF', tertiary:'#6F63FF', gold:'#C9A24D', glow:'rgba(0,255,156,0.34)' },
   { name:'Blue Temple',       primary:'#2DDCFF', secondary:'#45F1C7', tertiary:'#7D85FF', gold:'#D4B26C', glow:'rgba(45,220,255,0.34)' },
   { name:'Aurora Violet',     primary:'#00E5FF', secondary:'#7C68FF', tertiary:'#38FFCF', gold:'#CBB06A', glow:'rgba(124,104,255,0.30)' },
   { name:'Deep Green Gold',   primary:'#15E0B2', secondary:'#0FA8FF', tertiary:'#7A61FF', gold:'#D8B55B', glow:'rgba(21,224,178,0.34)' },
   { name:'Cosmic Cyan',       primary:'#00D1C7', secondary:'#7BF4FF', tertiary:'#5A7BFF', gold:'#CFA656', glow:'rgba(0,209,199,0.34)' },
+  // ── New 6 ──
+  { name:'Void Amethyst',     primary:'#B44FFF', secondary:'#00CCFF', tertiary:'#50FFC8', gold:'#D2AF64', glow:'rgba(180,79,255,0.34)' },
+  { name:'Starfire Indigo',   primary:'#5B8DEF', secondary:'#C084FC', tertiary:'#67E8F9', gold:'#CBB06A', glow:'rgba(91,141,239,0.34)' },
+  { name:'Tidal Emerald',     primary:'#11EABB', secondary:'#0070FF', tertiary:'#9B6FFF', gold:'#D8B55B', glow:'rgba(17,234,187,0.34)' },
+  { name:'Phantom Teal',      primary:'#00B4D8', secondary:'#90E0EF', tertiary:'#7B5EA7', gold:'#C9A24D', glow:'rgba(0,180,216,0.34)' },
+  { name:'Celestial Mint',    primary:'#52FFD0', secondary:'#4FB4FF', tertiary:'#A78BFA', gold:'#CFA656', glow:'rgba(82,255,208,0.34)' },
+  { name:'Neural Blue',       primary:'#0EA5E9', secondary:'#38BDF8', tertiary:'#818CF8', gold:'#D4B26C', glow:'rgba(14,165,233,0.34)' },
 ];
 
 // ─────────────────────────────────────────────────────────────
-// Pattern definitions — each returns an SVG markup string
+// Pattern definitions  (22 total — 10 original + 12 new)
 // ─────────────────────────────────────────────────────────────
 const patterns = [
+
+  // ── Original 10 ─────────────────────────────────────────────
+
   {
     id:'earthstar-compass', title:'EarthStar Compass', family:'compass',
     draw(p, v) {
-      const main = [0,90,180,270].map((a,i) => {
+      const main = [0,90,180,270].map((a) => {
         const a1=polar(50,a), a2=polar(194,a), tip=polar(228,a), L=polar(198,a-5), R=polar(198,a+5);
         return `<line x1="${a1.x.toFixed(2)}" y1="${a1.y.toFixed(2)}" x2="${a2.x.toFixed(2)}" y2="${a2.y.toFixed(2)}"
                   stroke="${p.gold}" stroke-width="1.8" opacity="0.88"/>
@@ -353,6 +380,7 @@ const patterns = [
               <circle cx="${CX}" cy="${CY}" r="11" fill="${p.gold}" opacity="0.94"/>`;
     }
   },
+
   {
     id:'flower-engine', title:'Flower Engine', family:'flower',
     draw(p, v) {
@@ -360,6 +388,7 @@ const patterns = [
       return `${flower(p,6,r,r,30)}${rings(p,[166,224],0.14)}`;
     }
   },
+
   {
     id:'triforce-array', title:'Triforce Array', family:'triforce',
     draw(p, v) {
@@ -369,6 +398,7 @@ const patterns = [
               <circle cx="${CX}" cy="${CY}" r="14" fill="${p.secondary}" opacity="0.92"/>`;
     }
   },
+
   {
     id:'orbital-bloom', title:'Orbital Bloom', family:'orbital',
     draw(p, v) {
@@ -381,6 +411,7 @@ const patterns = [
               <circle cx="${CX}" cy="${CY}" r="10" fill="${p.primary}" opacity="0.9"/>`;
     }
   },
+
   {
     id:'portal-gate', title:'Portal Gate', family:'portal',
     draw(p, v) {
@@ -393,6 +424,7 @@ const patterns = [
               <circle cx="${CX}" cy="${CY}" r="11" fill="${p.secondary}" opacity="0.92"/>`;
     }
   },
+
   {
     id:'diamond-pulse', title:'Diamond Pulse', family:'diamond',
     draw(p, v) {
@@ -408,6 +440,7 @@ const patterns = [
               <circle cx="${CX}" cy="${CY}" r="14" fill="${p.gold}" opacity="0.92"/>`;
     }
   },
+
   {
     id:'signal-web', title:'Signal Web', family:'waves',
     draw(p, v) {
@@ -420,6 +453,7 @@ const patterns = [
       return `${waves}<circle cx="${CX}" cy="${CY}" r="26" fill="none" stroke="${p.tertiary}" stroke-width="1.2" opacity="0.62"/>`;
     }
   },
+
   {
     id:'hex-flower', title:'Hex Flower', family:'hex',
     draw(p, v) {
@@ -432,6 +466,7 @@ const patterns = [
       return `${hexes}${flower(p,6,64,64,0)}`;
     }
   },
+
   {
     id:'solar-mandala', title:'Solar Mandala', family:'mandala',
     draw(p, v) {
@@ -446,6 +481,7 @@ const patterns = [
               <circle cx="${CX}" cy="${CY}" r="22" fill="${p.gold}" opacity="0.9"/>`;
     }
   },
+
   {
     id:'sacred-grid', title:'Sacred Grid', family:'grid',
     draw(p, v) {
@@ -462,10 +498,289 @@ const patterns = [
       return `${vl}${hl}${cs}<circle cx="${CX}" cy="${CY}" r="11" fill="${p.primary}" opacity="0.92"/>`;
     }
   },
+
+  // ── New 12 (triforce-heavy + 2 non-triforce) ──────────────────
+
+  {
+    id:'triforce-orbit', title:'Triforce Orbit', family:'triforce',
+    draw(p, v) {
+      const orbitR = 178;
+      const connectors = [0,120,240].map(a => {
+        const c = polar(orbitR, a);
+        return `<line x1="${CX}" y1="${CY}" x2="${c.x.toFixed(2)}" y2="${c.y.toFixed(2)}"
+                  stroke="${p.gold}" stroke-width="0.8" opacity="0.24" stroke-dasharray="4,7"/>`;
+      }).join('');
+      const orbitCircle = `<circle cx="${CX}" cy="${CY}" r="${orbitR}" fill="none" stroke="${p.primary}" stroke-width="0.65" opacity="0.16"/>`;
+      const satelliteTris = [0,120,240].map((a, i) => {
+        const c = polar(orbitR, a);
+        const col = i===0 ? p.primary : i===1 ? p.secondary : p.tertiary;
+        return triMonoAt(col, c.x, c.y, 42, a, 0.72);
+      }).join('');
+      return `${rings(p,[46,92,138],0.2)}${orbitCircle}${connectors}
+              ${triforceSet(p,108,0,0.88)}${satelliteTris}
+              <circle cx="${CX}" cy="${CY}" r="12" fill="${p.secondary}" opacity="0.9"/>`;
+    }
+  },
+
+  {
+    id:'triforce-mandala', title:'Triforce Mandala', family:'triforce',
+    draw(p, v) {
+      const outerR = 158;
+      const spokes = Array.from({length:6}, (_,i) => {
+        const c = polar(outerR, i*60);
+        return `<line x1="${CX}" y1="${CY}" x2="${c.x.toFixed(2)}" y2="${c.y.toFixed(2)}"
+                  stroke="${p.primary}" stroke-width="0.6" opacity="0.16"/>`;
+      }).join('');
+      const outerTris = Array.from({length:6}, (_,i) => {
+        const c = polar(outerR, i*60);
+        const col = i%3===0 ? p.primary : i%3===1 ? p.secondary : p.tertiary;
+        return triMonoAt(col, c.x, c.y, 44, i*60, 0.66);
+      }).join('');
+      return `${rings(p,[52,106,158,210],0.18)}${spokes}${outerTris}
+              ${triforceSet(p,72,0,0.82)}
+              <circle cx="${CX}" cy="${CY}" r="13" fill="${p.gold}" opacity="0.88"/>`;
+    }
+  },
+
+  {
+    id:'triforce-lattice', title:'Triforce Lattice', family:'triforce',
+    draw(p, v) {
+      const spacing = 164;
+      const tris = [];
+      const gridLines = [];
+      for (let row = 0; row < 3; row++) {
+        for (let col = 0; col < 3; col++) {
+          const cx0 = CX + (col - 1) * spacing;
+          const cy0 = CY + (row - 1) * spacing;
+          const isCenter = (row === 1 && col === 1);
+          const ci = (row + col) % 3;
+          const color = isCenter ? p.primary : ci===0 ? p.secondary : ci===1 ? p.tertiary : p.primary;
+          const sz  = isCenter ? 58 : 40;
+          const op  = isCenter ? 0.88 : 0.52;
+          tris.push(triMonoAt(color, cx0, cy0, sz, 0, op));
+        }
+      }
+      [-164,0,164].forEach(offset => {
+        gridLines.push(`<line x1="${CX+offset}" y1="68" x2="${CX+offset}" y2="532" stroke="${p.primary}" stroke-width="0.45" opacity="0.09"/>`);
+        gridLines.push(`<line x1="68" y1="${CY+offset}" x2="532" y2="${CY+offset}" stroke="${p.secondary}" stroke-width="0.45" opacity="0.09"/>`);
+      });
+      return `${gridLines.join('')}${tris.join('')}
+              <circle cx="${CX}" cy="${CY}" r="8" fill="${p.gold}" opacity="0.88"/>`;
+    }
+  },
+
+  {
+    id:'triforce-compass', title:'Triforce Compass', family:'triforce',
+    draw(p, v) {
+      const cardTris = [0,90,180,270].map((a, i) => {
+        const c = polar(182, a);
+        const col = i%2===0 ? p.primary : p.secondary;
+        return triMonoAt(col, c.x, c.y, 44, a, 0.72);
+      }).join('');
+      const diagTris = [45,135,225,315].map((a) => {
+        const c = polar(148, a);
+        return triMonoAt(p.tertiary, c.x, c.y, 28, a, 0.46);
+      }).join('');
+      const cardLines = [0,90,180,270].map(a => {
+        const inner = polar(58, a), outer = polar(130, a);
+        return `<line x1="${inner.x.toFixed(2)}" y1="${inner.y.toFixed(2)}" x2="${outer.x.toFixed(2)}" y2="${outer.y.toFixed(2)}"
+                  stroke="${p.gold}" stroke-width="1.1" opacity="0.5"/>`;
+      }).join('');
+      return `${rings(p,[48,94,144,196],0.2)}${cardLines}${diagTris}
+              ${triforceSet(p,86,0,0.86)}${cardTris}
+              <circle cx="${CX}" cy="${CY}" r="13" fill="${p.gold}" opacity="0.92"/>`;
+    }
+  },
+
+  {
+    id:'triforce-halo', title:'Triforce Halo', family:'triforce',
+    draw(p, v) {
+      const haloRings = [40,62,84,106,128,150,172,196,222].map((r, i) => {
+        const stroke = i%3===0 ? p.primary : i%3===1 ? p.secondary : p.tertiary;
+        const op = Math.max(0.06, 0.38 - i*0.028).toFixed(2);
+        const sw = i % 3 === 0 ? 0.9 : 0.65;
+        return `<circle cx="${CX}" cy="${CY}" r="${r}" fill="none" stroke="${stroke}" stroke-width="${sw}" opacity="${op}"/>`;
+      }).join('');
+      const microLines = Array.from({length:24}, (_,i) => {
+        const a = i * 15;
+        const p1 = polar(42, a), p2 = polar(88, a);
+        return `<line x1="${p1.x.toFixed(2)}" y1="${p1.y.toFixed(2)}" x2="${p2.x.toFixed(2)}" y2="${p2.y.toFixed(2)}"
+                  stroke="${i%2===0?p.primary:p.secondary}" stroke-width="0.55" opacity="0.2"/>`;
+      }).join('');
+      return `${haloRings}${microLines}
+              ${triforceSet(p,130,0,0.86)}
+              <circle cx="${CX}" cy="${CY}" r="15" fill="${p.gold}" opacity="0.9"/>`;
+    }
+  },
+
+  {
+    id:'triforce-bloom', title:'Triforce Bloom', family:'triforce',
+    draw(p, v) {
+      const bloomFlower = flower(p, 6, 94, 94, 0);
+      const bloomTris = [60,180,300].map((a, i) => {
+        const c = polar(138, a);
+        const col = i===0 ? p.primary : i===1 ? p.secondary : p.tertiary;
+        return triMonoAt(col, c.x, c.y, 42, a, 0.65);
+      }).join('');
+      return `${rings(p,[52,106,162],0.15)}${bloomFlower}${bloomTris}
+              ${triforceSet(p,66,0,0.78)}
+              <circle cx="${CX}" cy="${CY}" r="11" fill="${p.secondary}" opacity="0.9"/>`;
+    }
+  },
+
+  {
+    id:'split-triforce', title:'Split Triforce', family:'triforce',
+    draw(p, v) {
+      const positions = [0,120,240].map((a, i) => {
+        const c = polar(164, a);
+        const col = i===0 ? p.primary : i===1 ? p.secondary : p.tertiary;
+        return { c, col, a };
+      });
+      const tris = positions.map(({ c, col, a }) =>
+        triMonoAt(col, c.x, c.y, 76, a, 0.82)
+      ).join('');
+      const centers = positions.map(({ c }) => c);
+      const connector = `<polygon points="${pts(centers)}" fill="none" stroke="${p.gold}" stroke-width="0.75" opacity="0.28" stroke-dasharray="6,9"/>`;
+      return `${rings(p,[40,82],0.18)}${connector}${tris}
+              <circle cx="${CX}" cy="${CY}" r="10" fill="${p.gold}" opacity="0.88"/>`;
+    }
+  },
+
+  {
+    id:'nested-tri-portal', title:'Nested Triangle Portal', family:'triforce',
+    draw(p, v) {
+      const layers = [218,174,130,88,50].map((r, i) => {
+        const up = pts([polar(r,0),   polar(r,120), polar(r,240)]);
+        const dn = pts([polar(r,180), polar(r,300), polar(r,60)]);
+        const col = i%3===0 ? p.primary : i%3===1 ? p.secondary : p.tertiary;
+        const op  = (0.72 - i * 0.1).toFixed(2);
+        const sw  = i===0 ? 1.35 : i===1 ? 1.15 : 0.95;
+        const goldOp = (parseFloat(op) * 0.55).toFixed(2);
+        return `<polygon points="${up}" fill="none" stroke="${col}"   stroke-width="${sw}"    opacity="${op}"/>
+                <polygon points="${dn}" fill="none" stroke="${p.gold}" stroke-width="${sw*0.7}" opacity="${goldOp}"/>`;
+      }).join('');
+      return `${layers}${rings(p,[58,110],0.12)}
+              <circle cx="${CX}" cy="${CY}" r="13" fill="${p.primary}" opacity="0.9"/>`;
+    }
+  },
+
+  {
+    id:'triadic-signal', title:'Triadic Signal Engine', family:'triforce',
+    draw(p, v) {
+      const arms = [0,120,240].map((angle, i) => {
+        const col = i===0 ? p.primary : i===1 ? p.secondary : p.tertiary;
+        const armRad = (angle - 90) * Math.PI / 180;
+        const dxPerp = -Math.sin(armRad);
+        const dyPerp =  Math.cos(armRad);
+        const innerPt = polar(74, angle);
+        const outerPt = polar(228, angle);
+        const armLine = `<line x1="${innerPt.x.toFixed(2)}" y1="${innerPt.y.toFixed(2)}" x2="${outerPt.x.toFixed(2)}" y2="${outerPt.y.toFixed(2)}"
+                           stroke="${col}" stroke-width="1.05" opacity="0.55"/>`;
+        const bars = [114,154,194].map((r, j) => {
+          const c = polar(r, angle);
+          const blen = 13 - j*2;
+          return `<line x1="${(c.x - dxPerp*blen).toFixed(2)}" y1="${(c.y - dyPerp*blen).toFixed(2)}" x2="${(c.x + dxPerp*blen).toFixed(2)}" y2="${(c.y + dyPerp*blen).toFixed(2)}"
+                    stroke="${col}" stroke-width="0.85" opacity="${(0.46 - j*0.1).toFixed(2)}"/>`;
+        }).join('');
+        const nodePt = polar(238, angle);
+        const node = `<circle cx="${nodePt.x.toFixed(2)}" cy="${nodePt.y.toFixed(2)}" r="7.5" fill="none" stroke="${col}" stroke-width="1.05" opacity="0.65"/>`;
+        return armLine + bars + node;
+      }).join('');
+      return `${rings(p,[50,96,148],0.2)}${arms}
+              ${triforceSet(p,82,0,0.86)}
+              <circle cx="${CX}" cy="${CY}" r="12" fill="${p.secondary}" opacity="0.9"/>`;
+    }
+  },
+
+  {
+    id:'triforce-constellation', title:'Triforce Constellation', family:'triforce',
+    draw(p, v) {
+      const nodes = [
+        { cx:CX,      cy:CY,      size:52, col:p.primary,   op:0.9  },
+        { cx:CX-105,  cy:CY-128,  size:28, col:p.secondary, op:0.68 },
+        { cx:CX+112,  cy:CY-108,  size:30, col:p.secondary, op:0.66 },
+        { cx:CX-158,  cy:CY+42,   size:22, col:p.tertiary,  op:0.52 },
+        { cx:CX+152,  cy:CY+58,   size:24, col:p.tertiary,  op:0.52 },
+        { cx:CX+18,   cy:CY+162,  size:26, col:p.primary,   op:0.6  },
+        { cx:CX-58,   cy:CY+192,  size:18, col:p.secondary, op:0.44 },
+        { cx:CX+78,   cy:CY-202,  size:16, col:p.primary,   op:0.38 },
+      ];
+      const tris = nodes.map(({ cx: cx0, cy: cy0, size, col, op }) =>
+        triMonoAt(col, cx0, cy0, size, 0, op)
+      ).join('');
+      const edges = [[0,1],[0,2],[0,3],[0,4],[0,5],[1,3],[2,4],[5,6],[0,7]];
+      const connections = edges.map(([a,b]) => {
+        const na = nodes[a], nb = nodes[b];
+        return `<line x1="${na.cx.toFixed(1)}" y1="${na.cy.toFixed(1)}" x2="${nb.cx.toFixed(1)}" y2="${nb.cy.toFixed(1)}"
+                  stroke="${p.gold}" stroke-width="0.65" opacity="0.22"/>`;
+      }).join('');
+      return `${rings(p,[50,100],0.12)}${connections}${tris}
+              <circle cx="${CX}" cy="${CY}" r="8" fill="${p.gold}" opacity="0.88"/>`;
+    }
+  },
+
+  // ── 2 non-triforce additions ─────────────────────────────────
+
+  {
+    id:'crown-vortex', title:'Crown Vortex', family:'mandala',
+    draw(p, v) {
+      const arms = Array.from({length:12}, (_,i) => {
+        const a = i * 30;
+        const isMajor = i % 3 === 0;
+        const r1   = isMajor ? 88 : 76;
+        const tipR = isMajor ? 234 : 206;
+        const inner = polar(r1, a);
+        const tip   = polar(tipR, a);
+        const L     = polar(tipR-20, a-7);
+        const R     = polar(tipR-20, a+7);
+        const col   = isMajor ? (i%6===0 ? p.primary : p.secondary) : p.tertiary;
+        const sw    = isMajor ? 1.1 : 0.72;
+        const op    = isMajor ? 0.65 : 0.36;
+        return `<line x1="${inner.x.toFixed(2)}" y1="${inner.y.toFixed(2)}" x2="${tip.x.toFixed(2)}" y2="${tip.y.toFixed(2)}"
+                  stroke="${col}" stroke-width="${sw}" opacity="${op}"/>
+                <polygon points="${pts([tip,L,R])}" fill="none" stroke="${col}" stroke-width="1.0" opacity="${(op+0.06).toFixed(2)}"/>`;
+      }).join('');
+      return `${rings(p,[44,86,130,178,224],0.22)}${arms}
+              <circle cx="${CX}" cy="${CY}" r="36" fill="none" stroke="${p.secondary}" stroke-width="1.2" opacity="0.52"/>
+              <circle cx="${CX}" cy="${CY}" r="20" fill="none" stroke="${p.primary}"   stroke-width="1.35" opacity="0.7"/>
+              <circle cx="${CX}" cy="${CY}" r="9"  fill="${p.gold}" opacity="0.92"/>`;
+    }
+  },
+
+  {
+    id:'meridian-cross', title:'Meridian Cross', family:'compass',
+    draw(p, v) {
+      const frames = [46,92,144,200].map((r,i) => {
+        const col = i%2===0 ? p.primary : p.secondary;
+        const sw  = i===0 ? 1.3 : 0.75;
+        const op  = (0.35 - i*0.05).toFixed(2);
+        return `<rect x="${(CX-r).toFixed(1)}" y="${(CY-r).toFixed(1)}" width="${r*2}" height="${r*2}"
+                  rx="2" fill="none" stroke="${col}" stroke-width="${sw}" opacity="${op}"/>`;
+      }).join('');
+      const diags = [45,135,225,315].map(a => {
+        const p1 = polar(58, a), p2 = polar(188, a);
+        return `<line x1="${p1.x.toFixed(2)}" y1="${p1.y.toFixed(2)}" x2="${p2.x.toFixed(2)}" y2="${p2.y.toFixed(2)}"
+                  stroke="${p.tertiary}" stroke-width="0.75" opacity="0.3"/>`;
+      }).join('');
+      const crossArms = [0,90,180,270].map((a,i) => {
+        const col = i%2===0 ? p.primary : p.secondary;
+        const inner = polar(44, a), outer = polar(238, a);
+        const nodes = [88,128,168,208].map(r => {
+          const c = polar(r, a);
+          return `<circle cx="${c.x.toFixed(2)}" cy="${c.y.toFixed(2)}" r="4" fill="none" stroke="${col}" stroke-width="0.85" opacity="0.42"/>`;
+        }).join('');
+        return `<line x1="${inner.x.toFixed(2)}" y1="${inner.y.toFixed(2)}" x2="${outer.x.toFixed(2)}" y2="${outer.y.toFixed(2)}"
+                  stroke="${col}" stroke-width="1.4" opacity="0.7"/>${nodes}`;
+      }).join('');
+      return `${frames}${diags}${crossArms}${rings(p,[38,72],0.25)}
+              <circle cx="${CX}" cy="${CY}" r="12" fill="${p.gold}" opacity="0.94"/>`;
+    }
+  },
+
 ];
 
 // ─────────────────────────────────────────────────────────────
-// Build SVG string for a tile (used for copy/download AND render)
+// Build SVG string for a tile
 // ─────────────────────────────────────────────────────────────
 function buildSvgString(pattern, palette, variant) {
   const id = `${pattern.id}-${palette.name.toLowerCase().replace(/\s+/g,'-')}-${variant}`;
@@ -542,13 +857,13 @@ function setFilter(family, btn) {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Render all 48 tiles
+// Render gallery  (LCM(22,12) = 132 unique tiles)
 // ─────────────────────────────────────────────────────────────
 function renderGallery() {
-  const grid = document.getElementById('gallery');
+  const grid  = document.getElementById('gallery');
   const badge = document.getElementById('count-badge');
 
-  const totalTiles = 48;
+  const totalTiles = 132;
   const tiles = Array.from({ length: totalTiles }, (_, i) => ({
     pattern: patterns[i % patterns.length],
     palette: palettes[i % palettes.length],
@@ -563,7 +878,6 @@ function renderGallery() {
     const dur = 7 + (variant % 5);
     const animStyle = `style="transform-origin:300px 300px; animation:floaty ${dur}s ease-in-out infinite"`;
 
-    // For rendered tiles, inject the animation into the inner group
     const animatedSvg = svgMarkup.replace(
       `<g transform="rotate(${(variant*13)%360} 300 300)">`,
       `<g ${animStyle} transform="rotate(${(variant*13)%360} 300 300)">`
@@ -572,7 +886,7 @@ function renderGallery() {
     const tile = document.createElement('div');
     tile.className = 'tile';
     tile.dataset.family = pattern.family;
-    tile.style.animationDelay = `${(idx * 0.04).toFixed(2)}s`;
+    tile.style.animationDelay = `${(idx * 0.035).toFixed(2)}s`;
     tile.innerHTML = `
       <div class="tile-header">
         <div>

@@ -172,7 +172,7 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem;
       try{
         var r=await fetch("/_data/boom-posts.json");if(!r.ok)throw 0;
         var posts=await r.json();if(!posts||!posts.length)throw 0;
-        el.innerHTML=posts.map(function(p){return "<div class=\"post-item\"><div class=\"post-meta\"><span class=\"post-date\">"+fmtDate(p.date)+"</span>"+(p.keyword?"<span class=\"post-keyword\">"+p.keyword+"</span>":"")+"</div><h2 class=\"post-title\"><a href=\"/blog/boom/posts/"+p.slug+"/\">"+p.title+"</a></h2><p class=\"post-excerpt\">"+p.excerpt+"</p><a href=\"/blog/boom/posts/"+p.slug+"/\" class=\"post-read-more\">Read more &#8594;</a></div>";}).join("");
+        el.innerHTML=posts.map(function(p){return "<div class=\"post-item\"><div class=\"post-meta\"><span class=\"post-date\">"+fmtDate(p.date)+"</span>"+(p.keyword?"<span class=\"post-keyword\">"+p.keyword+"</span>":"")+"</div><h2 class=\"post-title\"><a href=\"/blog/boom/posts/"+p.slug+".html\">"+p.title+"</a></h2><p class=\"post-excerpt\">"+p.excerpt+"</p><a href=\"/blog/boom/posts/"+p.slug+".html\" class=\"post-read-more\">Read more &#8594;</a></div>";}).join("");
       }catch(e){el.innerHTML="<div class=\"empty-state\">Signal incoming. Check back soon.</div>";}
     }
     loadBoombotPosts();

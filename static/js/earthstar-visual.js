@@ -1,12 +1,14 @@
 // earthstar-visual.js
-// Dynamic EarthStar SVG injector for blog post hero sections.
+// Dynamic EarthStar SVG injector for blog post hero sections + body images.
 // Drop-in: <script src="/js/earthstar-visual.js"></script>
 //
 // • Reads page context (title, meta description, h1, keyword tags)
 // • Detects content theme via keyword matching
 // • Selects matching pattern family + random palette using a seeded
 //   PRNG (same post → same image every load; varied across posts)
-// • Injects SVG absolutely into .post-hero, behind all text
+// • Injects SVG into .post-hero OR .post-header (boom posts)
+// • Replaces .nasa-img-wrap blocks with full-width EarthStar banners
+// • For posts with no images, injects SVG dividers between paragraphs
 // • Exposes window.EarthstarVisual for programmatic use
 // ─────────────────────────────────────────────────────────────────────
 (function () {
@@ -305,7 +307,6 @@
   ];
 
   // ── Seeded PRNG ────────────────────────────────────────────────────
-  // Same seed → same sequence every time. Different posts → different images.
   function seededRng(seed) {
     var s = 0;
     for (var i = 0; i < seed.length; i++) {
@@ -318,20 +319,12 @@
   }
 
   // ── Core public API: getEarthstarImage ────────────────────────────
-  /**
-   * Given a post descriptor, returns a stable visual config.
-   * Same title → identical result on every call (seeded).
-   *
-   * @param {{ title?: string, content?: string, tags?: string[] }} post
-   * @returns {{ pattern, palette, rotation: number, scale: number, variant: number }}
-   */
   function getEarthstarImage(post) {
     var title   = post.title   || '';
     var content = post.content || '';
     var tags    = (post.tags   || []).join(' ');
     var text    = (title + ' ' + content + ' ' + tags).toLowerCase();
 
-    // Pick theme with the most keyword hits
     var bestTheme = null;
     var bestScore = 0;
     for (var i = 0; i < THEME_MAP.length; i++) {
@@ -343,41 +336,33 @@
       if (score > bestScore) { bestScore = score; bestTheme = theme; }
     }
 
-    // Valid patterns for this theme (or all if no theme hit)
     var validFamilies = bestTheme
       ? bestTheme.families
       : PATTERNS.map(function (p) { return p.family; });
     var validPatterns = PATTERNS.filter(function (p) {
       return validFamilies.indexOf(p.family) !== -1;
     });
-    if (!validPatterns.length) validPatterns = PATTERNS; // safety fallback
+    if (!validPatterns.length) validPatterns = PATTERNS;
 
-    // Seeded random picks
     var rng     = seededRng(title || String(Date.now()));
     var pattern = validPatterns[Math.floor(rng() * validPatterns.length)];
     var palette = PALETTES[Math.floor(rng() * PALETTES.length)];
-    var rotation = Math.floor(rng() * 360);            // 0–359 deg
-    var scale    = +(0.9 + rng() * 0.2).toFixed(3);   // 0.90–1.10
-    var variant  = 1 + Math.floor(rng() * 8);          // 1–8
+    var rotation = Math.floor(rng() * 360);
+    var scale    = +(0.9 + rng() * 0.2).toFixed(3);
+    var variant  = 1 + Math.floor(rng() * 8);
 
-    return {
-      pattern:  pattern,
-      palette:  palette,
-      rotation: rotation,
-      scale:    scale,
-      variant:  variant,
-    };
+    return { pattern: pattern, palette: palette, rotation: rotation, scale: scale, variant: variant };
   }
 
-  // ── Build a full SVG string from config ────────────────────────────
+  // ── Build hero SVG (no background, transparent — overlays page bg) ─
   function buildSvg(config) {
-    var p      = config.palette;
-    var pat    = config.pattern;
-    var v      = config.variant;
-    var uid    = pat.id + '-' + v + '-' + config.rotation;
-    var inner  = pat.draw(p, v);
-    var xform  = 'style="transform-origin:300px 300px;transform:rotate(' +
-                 config.rotation + 'deg) scale(' + config.scale + ')"';
+    var p   = config.palette;
+    var pat = config.pattern;
+    var v   = config.variant;
+    var uid = pat.id + '-' + v + '-' + config.rotation;
+    var inner = pat.draw(p, v);
+    var xform = 'style="transform-origin:300px 300px;transform:rotate(' +
+                config.rotation + 'deg) scale(' + config.scale + ')"';
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">' +
       '<defs>' +
         '<filter id="ev-glow-' + uid + '" x="-50%" y="-50%" width="200%" height="200%">' +
@@ -387,76 +372,229 @@
       '</defs>' +
       '<g filter="url(#ev-glow-' + uid + ')">' +
         starField() +
-        '<g ' + xform + '>' +
-          inner +
-        '</g>' +
+        '<g ' + xform + '>' + inner + '</g>' +
       '</g>' +
     '</svg>';
   }
 
-  // ── Inject SVG into a hero element ─────────────────────────────────
+  // ── Build banner SVG (dark bg, fills container, slice crop) ────────
+  // Used for NASA image replacements and paragraph dividers.
+  function buildSvgBanner(config) {
+    var p   = config.palette;
+    var pat = config.pattern;
+    var v   = config.variant;
+    var uid = 'b-' + pat.id + '-' + v + '-' + config.rotation;
+    var inner = pat.draw(p, v);
+    var xform = 'style="transform-origin:300px 300px;transform:rotate(' +
+                config.rotation + 'deg) scale(' + config.scale + ')"';
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"' +
+      ' width="100%" height="100%" preserveAspectRatio="xMidYMid slice"' +
+      ' style="display:block;">' +
+      '<rect width="600" height="600" fill="#020a0a"/>' +
+      '<defs>' +
+        '<filter id="ev-glow-' + uid + '" x="-50%" y="-50%" width="200%" height="200%">' +
+          '<feDropShadow dx="0" dy="0" stdDeviation="8"' +
+          ' flood-color="' + p.primary + '" flood-opacity="0.5"/>' +
+        '</filter>' +
+      '</defs>' +
+      '<g filter="url(#ev-glow-' + uid + ')">' +
+        starField() +
+        '<g ' + xform + '>' + inner + '</g>' +
+      '</g>' +
+    '</svg>';
+  }
+
+  // ── One-time CSS injection ──────────────────────────────────────────
+  function ensureStyles() {
+    if (document.getElementById('ev-styles')) return;
+    var css = [
+      // Float animation + fade-in animation
+      '@keyframes ev-float {',
+      '  0%,100%{ transform:translateY(0px) scale(1); }',
+      '  50%    { transform:translateY(-12px) scale(1.015); }',
+      '}',
+      '@keyframes ev-fadein { from { opacity:0; } to { opacity:1; } }',
+
+      // Hero overlay (positioned inside .post-hero or .post-header)
+      '.ev-art {',
+      '  position:absolute; inset:0; pointer-events:none; overflow:hidden;',
+      '  display:flex; align-items:center; justify-content:flex-end;',
+      '  padding-right:4%; z-index:0;',
+      '  opacity:0; transition:opacity 0.8s ease;',
+      '}',
+      '.ev-art.ev-visible { opacity:1; }',
+      '.ev-art svg {',
+      '  width:min(360px,52%); height:auto; flex-shrink:0;',
+      '  animation:ev-float 9s ease-in-out infinite;',
+      '}',
+      // Lower opacity for .post-header (boom posts — text readability)
+      '.post-header .ev-art.ev-visible { opacity:0.45; }',
+      '@media(max-width:768px){',
+      '  .ev-art { justify-content:center; padding-right:0; }',
+      '  .ev-art.ev-visible { opacity:0.4; }',
+      '  .post-header .ev-art.ev-visible { opacity:0.25; }',
+      '  .ev-art svg { width:min(240px,65%); }',
+      '}',
+
+      // Full-width banner (replaces nasa-img-wrap in body)
+      // Uses animation so it fades in without needing a JS class change.
+      '.ev-banner {',
+      '  display:block; width:100%; height:240px; overflow:hidden;',
+      '  border-radius:3px; margin:2.8rem 0;',
+      '  box-shadow:0 0 50px rgba(0,229,255,0.18), 0 6px 30px rgba(0,0,0,0.6);',
+      '  animation:ev-fadein 0.7s ease both;',
+      '}',
+      '.ev-banner svg { display:block; width:100%; height:100%; animation:ev-float 10s ease-in-out infinite; }',
+      '@media(max-width:600px){ .ev-banner { height:160px; margin:1.8rem 0; } }',
+
+      // Paragraph divider (shorter, centered)
+      '.ev-divider {',
+      '  display:block; width:65%; height:180px; overflow:hidden;',
+      '  border-radius:3px; margin:2.5rem auto;',
+      '  box-shadow:0 0 30px rgba(0,229,255,0.12), 0 4px 20px rgba(0,0,0,0.5);',
+      '  animation:ev-fadein 0.7s ease both;',
+      '}',
+      '.ev-divider svg { display:block; width:100%; height:100%; animation:ev-float 11s ease-in-out infinite; }',
+      '@media(max-width:600px){ .ev-divider { width:90%; height:120px; } }',
+    ].join('\n');
+    var styleEl = document.createElement('style');
+    styleEl.id = 'ev-styles';
+    styleEl.textContent = css;
+    document.head.appendChild(styleEl);
+  }
+
+  // ── Fade in helper ─────────────────────────────────────────────────
+  function fadeIn(el) {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        el.classList.add('ev-visible');
+      });
+    });
+  }
+
+  // ── Inject hero SVG into a positioned hero element ─────────────────
   function inject(heroEl, config) {
     if (!heroEl) return;
+    ensureStyles();
 
-    // One-time stylesheet injection
-    if (!document.getElementById('ev-styles')) {
-      var css = [
-        '@keyframes ev-float {',
-        '  0%,100%{ transform:translateY(0px) scale(1); }',
-        '  50%    { transform:translateY(-12px) scale(1.015); }',
-        '}',
-        '.ev-art {',
-        '  position:absolute; inset:0; pointer-events:none; overflow:hidden;',
-        '  display:flex; align-items:center; justify-content:flex-end;',
-        '  padding-right:4%; z-index:0;',
-        '  opacity:0; transition:opacity 0.8s ease;',
-        '}',
-        '.ev-art.ev-visible { opacity:1; }',
-        '.ev-art svg {',
-        '  width:min(360px,55%); height:auto; flex-shrink:0;',
-        '  animation:ev-float 9s ease-in-out infinite;',
-        '}',
-        /* On mobile: center and shrink the art, lower opacity so text stays readable */
-        '@media(max-width:768px){',
-        '  .ev-art { justify-content:center; padding-right:0; opacity:0; }',
-        '  .ev-art.ev-visible { opacity:0.5; }',
-        '  .ev-art svg { width:min(260px,70%); }',
-        '}',
-      ].join('\n');
-      var styleEl = document.createElement('style');
-      styleEl.id = 'ev-styles';
-      styleEl.textContent = css;
-      document.head.appendChild(styleEl);
-    }
-
-    // Remove any previous injection
     var old = heroEl.querySelector('.ev-art');
     if (old) old.remove();
 
-    // Build and attach
     var wrap = document.createElement('div');
     wrap.className = 'ev-art';
     wrap.setAttribute('aria-hidden', 'true');
     wrap.setAttribute('data-earthstar-id', config.pattern.id);
     wrap.innerHTML = buildSvg(config);
 
-    // Insert as first child so text layers above it
     heroEl.insertBefore(wrap, heroEl.firstChild);
-
-    // Fade in on next frame
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        wrap.classList.add('ev-visible');
-      });
-    });
-
+    fadeIn(wrap);
     return wrap;
+  }
+
+  // ── Replace a .nasa-img-wrap with a full-width EarthStar banner ────
+  function replaceWithBanner(wrapEl, config) {
+    ensureStyles();
+    var div = document.createElement('div');
+    div.className = 'ev-banner';
+    div.setAttribute('aria-hidden', 'true');
+    div.setAttribute('data-earthstar-id', config.pattern.id);
+    div.innerHTML = buildSvgBanner(config);
+    wrapEl.parentNode.replaceChild(div, wrapEl);
+    // Visibility handled by CSS animation (ev-fadein) — no JS class change needed.
+    return div;
+  }
+
+  // ── Inject body visuals: replace NASA blocks + insert dividers ──────
+  // Replaces .nasa-img-wrap elements in .post-body with EarthStar banners,
+  // then adds percentage-based dividers to fill the per-post visual target.
+  //
+  // Word count → target visuals:
+  //   < 900 words  → 1  (insert at ~45%)
+  //   900–1800     → 2  (insert at ~35%, ~68%)
+  //   > 1800       → 3  (insert at ~30%, ~62%, ~85%)
+  //
+  // NASA replacements count toward the target; only the deficit is added
+  // as new paragraph dividers.
+  function injectBodyVisuals(bodyEl, post) {
+    ensureStyles();
+
+    // Percentage positions indexed by total visual count (1, 2, or 3).
+    var SLOT_MAP = {
+      1: [0.45],
+      2: [0.35, 0.68],
+      3: [0.30, 0.62, 0.85],
+    };
+
+    // 1. Replace all .nasa-img-wrap elements inside .post-body.
+    //    Scope to post-body only — never touch header/hero images.
+    var nasaWraps = Array.prototype.slice.call(
+      bodyEl.querySelectorAll('.nasa-img-wrap')
+    );
+    nasaWraps.forEach(function (wrap, i) {
+      var imgConfig = getEarthstarImage({
+        title:   post.title + ' visual ' + i,
+        content: post.content,
+        tags:    post.tags,
+      });
+      replaceWithBanner(wrap, imgConfig);
+    });
+    var replaced = nasaWraps.length;
+
+    // 2. Word count → target total.
+    var wordCount = (bodyEl.textContent || '').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean).length;
+    var target    = wordCount < 900 ? 1 : wordCount < 1800 ? 2 : 3;
+    var toAdd     = Math.max(0, target - replaced);
+
+    if (toAdd <= 0) return;
+
+    // 3. Collect insertable prose blocks (direct children — not headings).
+    var textBlocks = Array.prototype.slice.call(bodyEl.children).filter(function (el) {
+      return /^(P|BLOCKQUOTE|UL|OL)$/.test(el.tagName);
+    });
+    if (textBlocks.length < 2) return; // too short
+
+    var n         = textBlocks.length;
+    var allSlots  = SLOT_MAP[target] || SLOT_MAP[3];
+    // Only use the "unfilled" tail of the slot list (NASA replacements fill the start).
+    var slotsToUse = allSlots.slice(replaced);
+
+    slotsToUse.forEach(function (pct, si) {
+      // Clamp: not the first or last block.
+      var targetIdx = Math.max(1, Math.min(Math.round(pct * n), n - 2));
+      var refEl     = textBlocks[targetIdx];
+      if (!refEl) return;
+
+      // Don't stack visuals back-to-back.
+      var prev = refEl.previousElementSibling;
+      var next = refEl.nextElementSibling;
+      if (
+        (prev && (prev.classList.contains('ev-banner') || prev.classList.contains('ev-divider'))) ||
+        (next && (next.classList.contains('ev-banner') || next.classList.contains('ev-divider')))
+      ) return;
+
+      var imgConfig = getEarthstarImage({
+        title:   post.title + ' slot ' + (replaced + si),
+        content: post.content,
+        tags:    post.tags,
+      });
+      var div = document.createElement('div');
+      div.className = 'ev-divider';
+      div.setAttribute('aria-hidden', 'true');
+      div.setAttribute('data-earthstar-id', imgConfig.pattern.id);
+      div.innerHTML = buildSvgBanner(imgConfig);
+      // Visibility handled by CSS animation — no fadeIn() needed.
+
+      if (refEl.nextSibling) {
+        bodyEl.insertBefore(div, refEl.nextSibling);
+      } else {
+        bodyEl.appendChild(div);
+      }
+    });
   }
 
   // ── Auto-init on page load ─────────────────────────────────────────
   function init() {
     try {
-      // Build post context from DOM
       var titleEl = document.querySelector('title');
       var descEl  = document.querySelector('meta[name="description"]');
       var h1El    = document.querySelector('h1');
@@ -472,23 +610,38 @@
         tags: [],
       };
 
-      // Pull in keyword/tag elements if present
       document.querySelectorAll('.keyword-tag, .post-tag, [data-tag]').forEach(function (el) {
         post.tags.push(el.textContent.trim());
       });
 
       var config = getEarthstarImage(post);
 
-      // Find hero target — tries explicit marker first, then standard selectors
+      // ── 1. Hero SVG ──────────────────────────────────────────────
+      // Tries explicit marker first, then .post-hero (matt posts),
+      // then .post-header (boom posts), then generic fallbacks.
       var hero =
         document.querySelector('[data-earthstar-visual]') ||
         document.querySelector('.post-hero')              ||
+        document.querySelector('.post-header')            ||
         document.querySelector('.hero-art')               ||
         document.querySelector('.earthstar-hero');
 
-      if (hero) inject(hero, config);
+      if (hero) {
+        // .post-header is static by default — needs relative for abs child
+        var pos = window.getComputedStyle(hero).position;
+        if (pos === 'static') {
+          hero.style.position = 'relative';
+          hero.style.overflow = 'hidden';
+        }
+        inject(hero, config);
+      }
+
+      // ── 2. Body visuals: replace NASA blocks + fill per word-count ──
+      if (bodyEl) {
+        injectBodyVisuals(bodyEl, post);
+      }
+
     } catch (e) {
-      // Fail silently — never break blog rendering
       if (window.console && console.warn) {
         console.warn('[earthstar-visual] init error:', e);
       }
@@ -497,16 +650,14 @@
 
   // ── Expose public API ──────────────────────────────────────────────
   window.EarthstarVisual = {
-    /** Select a visual config for a post. Call this anywhere. */
-    getEarthstarImage: getEarthstarImage,
-    /** Build an SVG string from a config object. */
-    buildSvg: buildSvg,
-    /** Inject a config into a given DOM element. */
-    inject: inject,
-    /** All 10 pattern definitions. */
-    PATTERNS: PATTERNS,
-    /** All 6 palettes. */
-    PALETTES: PALETTES,
+    getEarthstarImage:    getEarthstarImage,
+    buildSvg:             buildSvg,
+    buildSvgBanner:       buildSvgBanner,
+    inject:               inject,
+    replaceWithBanner:    replaceWithBanner,
+    injectBodyVisuals:       injectBodyVisuals,
+    PATTERNS:             PATTERNS,
+    PALETTES:             PALETTES,
   };
 
   if (document.readyState === 'loading') {
