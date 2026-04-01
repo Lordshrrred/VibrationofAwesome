@@ -271,10 +271,12 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .voa-logo span { color: var(--accent); }");
   H.push("    .voa-logo:hover { opacity: 1; }");
   H.push("    .header-blog-name { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); opacity: 0.8; }");
-  H.push("    .breadcrumb { padding: 0.75rem 0; font-size: 0.82rem; color: var(--text-muted); }");
-  H.push("    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }");
-  H.push("    .breadcrumb a:hover { color: var(--accent); }");
-  H.push("    .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }");
+  if (isMatt) {
+    H.push("    .breadcrumb { padding: 0.75rem 0; font-size: 0.82rem; color: var(--text-muted); }");
+    H.push("    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }");
+    H.push("    .breadcrumb a:hover { color: var(--accent); }");
+    H.push("    .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }");
+  }
   if (!isMatt && heroImageUrl) {
     H.push("    .post-header { position:relative; overflow:hidden; padding:11rem 0 4rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.42) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
     H.push("    .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; }");
@@ -365,15 +367,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push("      </article>");
     H.push("    </div>");
   } else {
-    // Boom posts: header breaks out of container for full-viewport hero (Forest Temple pattern)
-    H.push("    <div class=\"container\">");
-    H.push('      <nav class="breadcrumb" aria-label="Breadcrumb">');
-    H.push('        <a href="/">Home</a><span class="sep">&#8250;</span>');
-    H.push('        <a href="/blog/">Blog</a><span class="sep">&#8250;</span>');
-    H.push('        <a href="/blog/' + lane + '/">' + laneName + '</a><span class="sep">&#8250;</span>');
-    H.push("        <span>" + title + "</span>");
-    H.push("      </nav>");
-    H.push("    </div>");
+    // Boom posts: no breadcrumb; header breaks out of container for full-viewport hero
     H.push("    <header class=\"post-header\">");
     H.push('      <div class="post-header-inner">');
     H.push('        <div class="lane-badge">' + badge + "</div>");
