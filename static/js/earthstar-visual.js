@@ -536,13 +536,10 @@
       '@media(max-width:600px){ .ev-divider { width:90%; height:120px; } }',
 
       // Body visual — centered artful piece; transparent SVG floats on page bg.
-      // Replaces .ev-banner and .ev-divider for all new body injections.
+      // No background, no border, no frame — just geometry floating in the text.
       '.ev-body-visual {',
-      '  display:block; width:68%; height:210px; overflow:hidden;',
-      '  border-radius:12px; margin:2.6rem auto;',
-      '  background:rgba(2,10,10,0.55);',
-      '  box-shadow:0 0 50px rgba(0,229,255,0.10), 0 4px 28px rgba(0,0,0,0.45),',
-      '             inset 0 0 0 1px rgba(0,229,255,0.07);',
+      '  display:block; width:68%; height:210px; overflow:visible;',
+      '  margin:2.6rem auto;',
       '  animation:ev-fadein 0.7s ease both;',
       '}',
       '.ev-body-visual svg { display:block; width:100%; height:100%; animation:ev-float 11s ease-in-out infinite; }',

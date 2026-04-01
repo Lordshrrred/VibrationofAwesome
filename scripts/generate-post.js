@@ -276,10 +276,12 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .breadcrumb a:hover { color: var(--accent); }");
   H.push("    .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }");
   if (!isMatt && heroImageUrl) {
-    H.push("    .post-header { position:relative; overflow:hidden; padding:7rem 0 3rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.42) 0%, rgba(2,10,8,0.80) 60%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
+    H.push("    .post-header { position:relative; overflow:hidden; padding:11rem 0 4rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.42) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
+    H.push("    .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; }");
     H.push("    .post-header > *:not(.ev-art) { position:relative; z-index:1; }");
   } else if (!isMatt) {
-    H.push("    .post-header { position:relative; overflow:hidden; padding:4.5rem 0 2.5rem; border-bottom:1px solid var(--border); }");
+    H.push("    .post-header { position:relative; overflow:hidden; padding:6rem 0 3rem; border-bottom:1px solid var(--border); }");
+    H.push("    .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; }");
     H.push("    .post-header > *:not(.ev-art) { position:relative; z-index:1; }");
   } else {
     H.push("    .post-header { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--border); }");
@@ -316,7 +318,11 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .site-footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 0.82rem; color: var(--text-muted); }");
   H.push("    .site-footer a { color: var(--accent); text-decoration: none; }");
   H.push("    .site-footer a:hover { text-decoration: underline; }");
-  H.push("    @media (max-width: 600px) { body { font-size: 16px; } .post-header { padding: 1.8rem 0 1.4rem; } }");
+  if (!isMatt) {
+    H.push("    @media (max-width: 600px) { body { font-size: 16px; } .post-header { padding: 7rem 0 2.5rem; } }");
+  } else {
+    H.push("    @media (max-width: 600px) { body { font-size: 16px; } .post-header { padding: 1.8rem 0 1.4rem; } }");
+  }
   H.push("  </style>");
   H.push("</head>");
   H.push("<body>");
@@ -331,31 +337,65 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    </div>");
   H.push("  </header>");
   H.push("  <main>");
-  H.push("    <div class=\"container\">");
-  H.push('      <nav class="breadcrumb" aria-label="Breadcrumb">');
-  H.push('        <a href="/">Home</a><span class="sep">&#8250;</span>');
-  H.push('        <a href="/blog/">Blog</a><span class="sep">&#8250;</span>');
-  H.push('        <a href="/blog/' + lane + '/">' + laneName + '</a><span class="sep">&#8250;</span>');
-  H.push("        <span>" + title + "</span>");
-  H.push("      </nav>");
-  H.push("      <header class=\"post-header\">");
-  H.push('        <div class="lane-badge">' + badge + "</div>");
-  H.push('        <h1 class="post-title">' + title + "</h1>");
-  H.push("        <div class=\"post-meta\">");
-  H.push('          <span class="author">' + byline + "</span>");
-  H.push("          <span>&middot;</span>");
-  H.push('          <time datetime="' + dateStr + '">' + displayDate + "</time>");
-  H.push("        </div>");
-  H.push("      </header>");
-  H.push("      <article class=\"post-body\">");
-  H.push("        " + bodyHtml);
-  H.push('        <div class="post-cta">');
-  H.push("          <h3>Explore More at Vibration of Awesome</h3>");
-  H.push("          <p>Music, AI tools, digital creation, and the weird beautiful intersection of all three.</p>");
-  H.push('          <a href="https://vibrationofawesome.com">Visit vibrationofawesome.com</a>');
-  H.push("        </div>");
-  H.push("      </article>");
-  H.push("    </div>");
+  if (isMatt) {
+    // Matt posts: existing layout — header inside container (unchanged)
+    H.push("    <div class=\"container\">");
+    H.push('      <nav class="breadcrumb" aria-label="Breadcrumb">');
+    H.push('        <a href="/">Home</a><span class="sep">&#8250;</span>');
+    H.push('        <a href="/blog/">Blog</a><span class="sep">&#8250;</span>');
+    H.push('        <a href="/blog/' + lane + '/">' + laneName + '</a><span class="sep">&#8250;</span>');
+    H.push("        <span>" + title + "</span>");
+    H.push("      </nav>");
+    H.push("      <header class=\"post-header\">");
+    H.push('        <div class="lane-badge">' + badge + "</div>");
+    H.push('        <h1 class="post-title">' + title + "</h1>");
+    H.push("        <div class=\"post-meta\">");
+    H.push('          <span class="author">' + byline + "</span>");
+    H.push("          <span>&middot;</span>");
+    H.push('          <time datetime="' + dateStr + '">' + displayDate + "</time>");
+    H.push("        </div>");
+    H.push("      </header>");
+    H.push("      <article class=\"post-body\">");
+    H.push("        " + bodyHtml);
+    H.push('        <div class="post-cta">');
+    H.push("          <h3>Explore More at Vibration of Awesome</h3>");
+    H.push("          <p>Music, AI tools, digital creation, and the weird beautiful intersection of all three.</p>");
+    H.push('          <a href="https://vibrationofawesome.com">Visit vibrationofawesome.com</a>');
+    H.push("        </div>");
+    H.push("      </article>");
+    H.push("    </div>");
+  } else {
+    // Boom posts: header breaks out of container for full-viewport hero (Forest Temple pattern)
+    H.push("    <div class=\"container\">");
+    H.push('      <nav class="breadcrumb" aria-label="Breadcrumb">');
+    H.push('        <a href="/">Home</a><span class="sep">&#8250;</span>');
+    H.push('        <a href="/blog/">Blog</a><span class="sep">&#8250;</span>');
+    H.push('        <a href="/blog/' + lane + '/">' + laneName + '</a><span class="sep">&#8250;</span>');
+    H.push("        <span>" + title + "</span>");
+    H.push("      </nav>");
+    H.push("    </div>");
+    H.push("    <header class=\"post-header\">");
+    H.push('      <div class="post-header-inner">');
+    H.push('        <div class="lane-badge">' + badge + "</div>");
+    H.push('        <h1 class="post-title">' + title + "</h1>");
+    H.push("        <div class=\"post-meta\">");
+    H.push('          <span class="author">' + byline + "</span>");
+    H.push("          <span>&middot;</span>");
+    H.push('          <time datetime="' + dateStr + '">' + displayDate + "</time>");
+    H.push("        </div>");
+    H.push("      </div>");
+    H.push("    </header>");
+    H.push("    <div class=\"container\">");
+    H.push("      <article class=\"post-body\">");
+    H.push("        " + bodyHtml);
+    H.push('        <div class="post-cta">');
+    H.push("          <h3>Explore More at Vibration of Awesome</h3>");
+    H.push("          <p>Music, AI tools, digital creation, and the weird beautiful intersection of all three.</p>");
+    H.push('          <a href="https://vibrationofawesome.com">Visit vibrationofawesome.com</a>');
+    H.push("        </div>");
+    H.push("      </article>");
+    H.push("    </div>");
+  }
   H.push("  </main>");
   H.push("  <footer class=\"site-footer\">");
   H.push("    <div class=\"container\">");
