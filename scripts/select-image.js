@@ -319,14 +319,6 @@ export async function selectImage(_query, lane, tag) {
       console.log("[select-image] Boom local: \"" + img.title + "\"");
       return img;
     }
-    /* NASA APOD (commented out — replaced by local boom images above)
-    const results = await fetchNasaImages(1);
-    if (results.length > 0) {
-      const img = results[0];
-      console.log("[select-image] NASA APOD: \"" + img.title + "\" (" + img.date + ")");
-      return img;
-    }
-    */
     // Fallback to personal photos
     const personal = pickPersonalPhoto();
     if (personal) {
