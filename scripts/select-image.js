@@ -28,6 +28,7 @@ const __dirname   = path.dirname(__filename);
 const ROOT        = path.resolve(__dirname, "..");
 const PHOTOS_DIR  = path.join(ROOT, "static", "personal-photos");
 const FOREST_DIR  = path.join(ROOT, "static", "personal-photos", "forest");
+const BOOM_DIR    = path.join(ROOT, "static", "images", "boom");
 const IMAGE_EXTS  = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 const APOD_BASE   = "https://api.nasa.gov/planetary/apod";
 
@@ -104,6 +105,63 @@ export function fetchForestImages(count) {
     thumbUrl:     "https://vibrationofawesome.com/" + subpath + file,
     localPath:    path.join(dir, file),
     source:       "forest",
+    title:        path.basename(file, path.extname(file)).replace(/[-_]/g, " "),
+    attribution:  null,
+    photographer: null,
+  }));
+}
+
+// ── Boom local images (static/images/boom/) ───────────────────────────────────
+
+/**
+ * Pick one random space/astronomy image from static/images/boom/.
+ */
+function pickBoomPhoto() {
+  if (!fs.existsSync(BOOM_DIR)) return null;
+  const files = fs.readdirSync(BOOM_DIR).filter(f => {
+    const ext = path.extname(f).toLowerCase();
+    return IMAGE_EXTS.has(ext) && !f.startsWith(".");
+  });
+  if (files.length === 0) return null;
+  const file = files[Math.floor(Math.random() * files.length)];
+  return {
+    url:          "/images/boom/" + file,
+    thumbUrl:     "/images/boom/" + file,
+    localPath:    path.join(BOOM_DIR, file),
+    source:       "boom",
+    title:        path.basename(file, path.extname(file)).replace(/[-_]/g, " "),
+    attribution:  null,
+    photographer: null,
+  };
+}
+
+/**
+ * Return an array of `count` randomly chosen boom space images.
+ * Used for injecting inline images into Boom Frequency posts.
+ * Mirrors fetchForestImages() — reads static/images/boom/ locally.
+ */
+export function fetchBoomImages(count) {
+  count = count || 1;
+  if (!fs.existsSync(BOOM_DIR)) return [];
+
+  const files = fs.readdirSync(BOOM_DIR).filter(f => {
+    const ext = path.extname(f).toLowerCase();
+    return IMAGE_EXTS.has(ext) && !f.startsWith(".");
+  });
+  if (files.length === 0) return [];
+
+  // Fisher-Yates shuffle, then take first `count`
+  const shuffled = [...files];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  return shuffled.slice(0, count).map(file => ({
+    url:          "/images/boom/" + file,
+    thumbUrl:     "/images/boom/" + file,
+    localPath:    path.join(BOOM_DIR, file),
+    source:       "boom",
     title:        path.basename(file, path.extname(file)).replace(/[-_]/g, " "),
     attribution:  null,
     photographer: null,
@@ -254,13 +312,21 @@ export async function selectImage(_query, lane, tag) {
       return personal;
     }
   } else {
-    // BoomBot / default: use NASA APOD
+    // BoomBot / default: use local boom images from static/images/boom/
+    const results = fetchBoomImages(1);
+    if (results.length > 0) {
+      const img = results[0];
+      console.log("[select-image] Boom local: \"" + img.title + "\"");
+      return img;
+    }
+    /* NASA APOD (commented out — replaced by local boom images above)
     const results = await fetchNasaImages(1);
     if (results.length > 0) {
       const img = results[0];
       console.log("[select-image] NASA APOD: \"" + img.title + "\" (" + img.date + ")");
       return img;
     }
+    */
     // Fallback to personal photos
     const personal = pickPersonalPhoto();
     if (personal) {

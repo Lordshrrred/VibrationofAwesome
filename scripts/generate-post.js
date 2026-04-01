@@ -16,7 +16,7 @@ import { fileURLToPath } from "url";
 import { spawnSync } from "child_process";
 import { updateSitemap } from "./update-sitemap.js";
 import { syndicatePost } from "./syndicate.js";
-import { fetchNasaImages, fetchForestImages } from "./select-image.js";
+import { fetchNasaImages, fetchForestImages, fetchBoomImages } from "./select-image.js";
 
 dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
@@ -615,7 +615,7 @@ async function main() {
   const bodyMarkdown = cleanMarkdown.replace(/^#\s+.+$/m, "").trim();
 
   // Fetch 3 inline images and inject at 25%, 50%, 75% through the body
-  // Matt lane → forest photos; BoomBot lane → NASA APOD
+  // Matt lane → forest photos; BoomBot lane → local boom images (static/images/boom/)
   let bodyHtml = marked.parse(bodyMarkdown);
   let inlineImages = [];
   if (lane === "matt") {
@@ -628,6 +628,15 @@ async function main() {
       console.warn("No forest images found ~ post will have no inline images.");
     }
   } else {
+    console.log("Selecting 3 boom local images for inline art...");
+    inlineImages = fetchBoomImages(3);
+    if (inlineImages.length > 0) {
+      bodyHtml = injectNasaImages(bodyHtml, inlineImages);
+      console.log("Boom images injected: " + inlineImages.map(function(i) { return i.title || path.basename(i.url); }).join(", "));
+    } else {
+      console.warn("No boom images found ~ post will have no inline images.");
+    }
+    /* NASA APOD (commented out — replaced by local boom images above)
     console.log("Fetching 3 NASA APOD images for inline art...");
     inlineImages = await fetchNasaImages(3);
     if (inlineImages.length > 0) {
@@ -636,6 +645,7 @@ async function main() {
     } else {
       console.warn("No NASA images returned ~ post will have no inline images.");
     }
+    */
   }
   const slug = slugify(postTitle);
 
