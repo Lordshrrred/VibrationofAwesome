@@ -193,7 +193,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
       + '<link href="' + gfBase + '/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">'
     : '<link rel="preconnect" href="' + gfBase + '">'
       + '<link rel="preconnect" href="' + gfStatic + '" crossorigin>'
-      + '<link href="' + gfBase + '/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">';
+      + '<link href="' + gfBase + '/css2?family=Cinzel+Decorative:wght@400;700&family=Rajdhani:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">';
 
   const laneName    = isMatt ? "From the Forest Temple" : "Boom Frequency";
   const byline      = isMatt ? "by Matt EarthStar" : "by Matty BoomBoom (AI)";
@@ -278,7 +278,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push("    .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }");
   }
   if (!isMatt && heroImageUrl) {
-    H.push("    .post-header { position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; min-height:58vh; padding:0 0 4rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
+    H.push("    .post-header { position:relative; z-index:1; padding:12rem 0 4rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
     H.push("    .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; width:100%; }");
     H.push("    .post-header > *:not(.ev-art) { position:relative; z-index:1; }");
   } else if (!isMatt) {
@@ -321,7 +321,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .site-footer a { color: var(--accent); text-decoration: none; }");
   H.push("    .site-footer a:hover { text-decoration: underline; }");
   if (!isMatt) {
-    H.push("    @media (max-width: 600px) { body { font-size: 16px; } .post-header { min-height: 50vh; padding: 0 0 2rem; } }");
+    H.push("    @media (max-width: 600px) { body { font-size: 16px; } .post-header { padding: 8rem 0 2.5rem; } }");
   } else {
     H.push("    @media (max-width: 600px) { body { font-size: 16px; } .post-header { padding: 1.8rem 0 1.4rem; } }");
   }
