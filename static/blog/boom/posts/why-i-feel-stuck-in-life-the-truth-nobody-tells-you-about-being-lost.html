@@ -53,7 +53,7 @@
     .voa-logo span { color: var(--accent); }
     .voa-logo:hover { opacity: 1; }
     .header-blog-name { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); opacity: 0.8; }
-    .post-header { position:relative; overflow:hidden; padding:11rem 0 4rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.42) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('https://apod.nasa.gov/apod/image/0405/tadpole_hst_big.jpg') center/cover no-repeat; }
+    .post-header { position:relative; overflow:hidden; padding:12rem 0 4rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('https://apod.nasa.gov/apod/image/0405/tadpole_hst_big.jpg') center/cover no-repeat; }
     .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; }
     .post-header > *:not(.ev-art) { position:relative; z-index:1; }
     .lane-badge { display: inline-block; font-family: Space Grotesk, sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 0.2em 0.6em; margin-bottom: 1.2rem; }
@@ -92,6 +92,7 @@
   
 /* ── Site Nav (injected by inject-blog-nav.js) ───────────────── */
 nav.site-nav { display: block !important; padding: 0 !important;
+  position: fixed !important; top: 0; left: 0; right: 0;
   background: rgba(1,13,16,0.97) !important;
   border-bottom: 1px solid rgba(0,229,255,0.12) !important;
   backdrop-filter: blur(8px); flex-direction: unset !important; }

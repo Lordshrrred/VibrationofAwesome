@@ -78,6 +78,7 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem;
 const CYAN_CSS = `
 /* ── Site Nav (injected by inject-blog-nav.js) ───────────────── */
 nav.site-nav { display: block !important; padding: 0 !important;
+  position: fixed !important; top: 0; left: 0; right: 0;
   background: rgba(1,13,16,0.97) !important;
   border-bottom: 1px solid rgba(0,229,255,0.12) !important;
   backdrop-filter: blur(8px); flex-direction: unset !important; }

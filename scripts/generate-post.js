@@ -278,7 +278,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push("    .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }");
   }
   if (!isMatt && heroImageUrl) {
-    H.push("    .post-header { position:relative; overflow:hidden; padding:11rem 0 4rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.42) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
+    H.push("    .post-header { position:relative; overflow:hidden; padding:12rem 0 4rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
     H.push("    .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; }");
     H.push("    .post-header > *:not(.ev-art) { position:relative; z-index:1; }");
   } else if (!isMatt) {
