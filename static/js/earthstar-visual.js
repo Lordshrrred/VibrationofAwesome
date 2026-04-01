@@ -354,6 +354,58 @@
     return { pattern: pattern, palette: palette, rotation: rotation, scale: scale, variant: variant };
   }
 
+  // ── Unique variant: picks from unused patterns per page load ───────
+  // Pass the same `usedIds` array to every call on a page; patterns
+  // used earlier are excluded so no slot ever repeats a pattern.
+  function getUniqueEarthstarImage(post, usedIds) {
+    var title   = post.title   || '';
+    var content = post.content || '';
+    var tags    = (post.tags   || []).join(' ');
+    var text    = (title + ' ' + content + ' ' + tags).toLowerCase();
+
+    var bestTheme = null;
+    var bestScore = 0;
+    for (var i = 0; i < THEME_MAP.length; i++) {
+      var theme = THEME_MAP[i];
+      var score = 0;
+      for (var j = 0; j < theme.keywords.length; j++) {
+        if (text.indexOf(theme.keywords[j]) !== -1) score++;
+      }
+      if (score > bestScore) { bestScore = score; bestTheme = theme; }
+    }
+
+    var validFamilies = bestTheme
+      ? bestTheme.families
+      : PATTERNS.map(function (p) { return p.family; });
+    var themedPatterns = PATTERNS.filter(function (p) {
+      return validFamilies.indexOf(p.family) !== -1;
+    });
+    if (!themedPatterns.length) themedPatterns = PATTERNS;
+
+    // Prefer themed patterns not yet used on this page.
+    var available = themedPatterns.filter(function (p) {
+      return usedIds.indexOf(p.id) === -1;
+    });
+    // If all themed patterns are taken, try any unused pattern.
+    if (!available.length) {
+      available = PATTERNS.filter(function (p) {
+        return usedIds.indexOf(p.id) === -1;
+      });
+    }
+    // Ultimate fallback: recycle themed pool (very rare — 10 patterns, max 4 visuals/page).
+    if (!available.length) available = themedPatterns;
+
+    var rng     = seededRng(title || String(Date.now()));
+    var pattern = available[Math.floor(rng() * available.length)];
+    var palette = PALETTES[Math.floor(rng() * PALETTES.length)];
+    var rotation = Math.floor(rng() * 360);
+    var scale    = +(0.9 + rng() * 0.2).toFixed(3);
+    var variant  = 1 + Math.floor(rng() * 8);
+
+    usedIds.push(pattern.id); // register so next call skips this pattern
+    return { pattern: pattern, palette: palette, rotation: rotation, scale: scale, variant: variant };
+  }
+
   // ── Build hero SVG (no background, transparent — overlays page bg) ─
   function buildSvg(config) {
     var p   = config.palette;
@@ -378,7 +430,7 @@
   }
 
   // ── Build banner SVG (dark bg, fills container, slice crop) ────────
-  // Used for NASA image replacements and paragraph dividers.
+  // Kept for any legacy usage; new body visuals use buildSvgArt instead.
   function buildSvgBanner(config) {
     var p   = config.palette;
     var pat = config.pattern;
@@ -395,6 +447,33 @@
         '<filter id="ev-glow-' + uid + '" x="-50%" y="-50%" width="200%" height="200%">' +
           '<feDropShadow dx="0" dy="0" stdDeviation="8"' +
           ' flood-color="' + p.primary + '" flood-opacity="0.5"/>' +
+        '</filter>' +
+      '</defs>' +
+      '<g filter="url(#ev-glow-' + uid + ')">' +
+        starField() +
+        '<g ' + xform + '>' + inner + '</g>' +
+      '</g>' +
+    '</svg>';
+  }
+
+  // ── Build art SVG (transparent bg, geometry fully visible) ─────────
+  // Used for body visual slots. No forced dark rectangle — geometry
+  // floats on whatever background the page provides.
+  function buildSvgArt(config) {
+    var p   = config.palette;
+    var pat = config.pattern;
+    var v   = config.variant;
+    var uid = 'a-' + pat.id + '-' + v + '-' + config.rotation;
+    var inner = pat.draw(p, v);
+    var xform = 'style="transform-origin:300px 300px;transform:rotate(' +
+                config.rotation + 'deg) scale(' + config.scale + ')"';
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"' +
+      ' width="100%" height="100%" preserveAspectRatio="xMidYMid meet"' +
+      ' style="display:block;">' +
+      '<defs>' +
+        '<filter id="ev-glow-' + uid + '" x="-50%" y="-50%" width="200%" height="200%">' +
+          '<feDropShadow dx="0" dy="0" stdDeviation="9"' +
+          ' flood-color="' + p.primary + '" flood-opacity="0.55"/>' +
         '</filter>' +
       '</defs>' +
       '<g filter="url(#ev-glow-' + uid + ')">' +
@@ -436,8 +515,7 @@
       '  .ev-art svg { width:min(240px,65%); }',
       '}',
 
-      // Full-width banner (replaces nasa-img-wrap in body)
-      // Uses animation so it fades in without needing a JS class change.
+      // Full-width banner — legacy class kept for backwards compatibility.
       '.ev-banner {',
       '  display:block; width:100%; height:240px; overflow:hidden;',
       '  border-radius:3px; margin:2.8rem 0;',
@@ -447,7 +525,7 @@
       '.ev-banner svg { display:block; width:100%; height:100%; animation:ev-float 10s ease-in-out infinite; }',
       '@media(max-width:600px){ .ev-banner { height:160px; margin:1.8rem 0; } }',
 
-      // Paragraph divider (shorter, centered)
+      // Paragraph divider — legacy class kept for backwards compatibility.
       '.ev-divider {',
       '  display:block; width:65%; height:180px; overflow:hidden;',
       '  border-radius:3px; margin:2.5rem auto;',
@@ -456,6 +534,22 @@
       '}',
       '.ev-divider svg { display:block; width:100%; height:100%; animation:ev-float 11s ease-in-out infinite; }',
       '@media(max-width:600px){ .ev-divider { width:90%; height:120px; } }',
+
+      // Body visual — centered artful piece; transparent SVG floats on page bg.
+      // Replaces .ev-banner and .ev-divider for all new body injections.
+      '.ev-body-visual {',
+      '  display:block; width:68%; height:210px; overflow:hidden;',
+      '  border-radius:12px; margin:2.6rem auto;',
+      '  background:rgba(2,10,10,0.55);',
+      '  box-shadow:0 0 50px rgba(0,229,255,0.10), 0 4px 28px rgba(0,0,0,0.45),',
+      '             inset 0 0 0 1px rgba(0,229,255,0.07);',
+      '  animation:ev-fadein 0.7s ease both;',
+      '}',
+      '.ev-body-visual svg { display:block; width:100%; height:100%; animation:ev-float 11s ease-in-out infinite; }',
+      '@media(max-width:600px){ .ev-body-visual { width:92%; height:150px; } }',
+
+      // Ensure hero text children stack above the ev-art overlay.
+      '.post-header > *:not(.ev-art), .post-hero > *:not(.ev-art) { position:relative; z-index:1; }',
     ].join('\n');
     var styleEl = document.createElement('style');
     styleEl.id = 'ev-styles';
@@ -491,14 +585,14 @@
     return wrap;
   }
 
-  // ── Replace a .nasa-img-wrap with a full-width EarthStar banner ────
+  // ── Replace a .nasa-img-wrap with a centered EarthStar art visual ──
   function replaceWithBanner(wrapEl, config) {
     ensureStyles();
     var div = document.createElement('div');
-    div.className = 'ev-banner';
+    div.className = 'ev-body-visual';
     div.setAttribute('aria-hidden', 'true');
     div.setAttribute('data-earthstar-id', config.pattern.id);
-    div.innerHTML = buildSvgBanner(config);
+    div.innerHTML = buildSvgArt(config);
     wrapEl.parentNode.replaceChild(div, wrapEl);
     // Visibility handled by CSS animation (ev-fadein) — no JS class change needed.
     return div;
@@ -515,8 +609,10 @@
   //
   // NASA replacements count toward the target; only the deficit is added
   // as new paragraph dividers.
-  function injectBodyVisuals(bodyEl, post) {
+  // usedIds: array shared with hero injection — patterns already used are skipped.
+  function injectBodyVisuals(bodyEl, post, usedIds) {
     ensureStyles();
+    if (!usedIds) usedIds = []; // safe fallback if called without tracker
 
     // Percentage positions indexed by total visual count (1, 2, or 3).
     var SLOT_MAP = {
@@ -531,11 +627,11 @@
       bodyEl.querySelectorAll('.nasa-img-wrap')
     );
     nasaWraps.forEach(function (wrap, i) {
-      var imgConfig = getEarthstarImage({
+      var imgConfig = getUniqueEarthstarImage({
         title:   post.title + ' visual ' + i,
         content: post.content,
         tags:    post.tags,
-      });
+      }, usedIds);
       replaceWithBanner(wrap, imgConfig);
     });
     var replaced = nasaWraps.length;
@@ -568,20 +664,20 @@
       var prev = refEl.previousElementSibling;
       var next = refEl.nextElementSibling;
       if (
-        (prev && (prev.classList.contains('ev-banner') || prev.classList.contains('ev-divider'))) ||
-        (next && (next.classList.contains('ev-banner') || next.classList.contains('ev-divider')))
+        (prev && (prev.classList.contains('ev-body-visual') || prev.classList.contains('ev-banner') || prev.classList.contains('ev-divider'))) ||
+        (next && (next.classList.contains('ev-body-visual') || next.classList.contains('ev-banner') || next.classList.contains('ev-divider')))
       ) return;
 
-      var imgConfig = getEarthstarImage({
+      var imgConfig = getUniqueEarthstarImage({
         title:   post.title + ' slot ' + (replaced + si),
         content: post.content,
         tags:    post.tags,
-      });
+      }, usedIds);
       var div = document.createElement('div');
-      div.className = 'ev-divider';
+      div.className = 'ev-body-visual';
       div.setAttribute('aria-hidden', 'true');
       div.setAttribute('data-earthstar-id', imgConfig.pattern.id);
-      div.innerHTML = buildSvgBanner(imgConfig);
+      div.innerHTML = buildSvgArt(imgConfig);
       // Visibility handled by CSS animation — no fadeIn() needed.
 
       if (refEl.nextSibling) {
@@ -614,7 +710,10 @@
         post.tags.push(el.textContent.trim());
       });
 
-      var config = getEarthstarImage(post);
+      // Shared uniqueness tracker — hero registers first, body visuals skip its pattern.
+      var usedIds = [];
+
+      var config = getUniqueEarthstarImage(post, usedIds);
 
       // ── 1. Hero SVG ──────────────────────────────────────────────
       // Tries explicit marker first, then .post-hero (matt posts),
@@ -638,7 +737,7 @@
 
       // ── 2. Body visuals: replace NASA blocks + fill per word-count ──
       if (bodyEl) {
-        injectBodyVisuals(bodyEl, post);
+        injectBodyVisuals(bodyEl, post, usedIds);
       }
 
     } catch (e) {
@@ -650,14 +749,16 @@
 
   // ── Expose public API ──────────────────────────────────────────────
   window.EarthstarVisual = {
-    getEarthstarImage:    getEarthstarImage,
-    buildSvg:             buildSvg,
-    buildSvgBanner:       buildSvgBanner,
-    inject:               inject,
-    replaceWithBanner:    replaceWithBanner,
+    getEarthstarImage:       getEarthstarImage,
+    getUniqueEarthstarImage: getUniqueEarthstarImage,
+    buildSvg:                buildSvg,
+    buildSvgBanner:          buildSvgBanner,
+    buildSvgArt:             buildSvgArt,
+    inject:                  inject,
+    replaceWithBanner:       replaceWithBanner,
     injectBodyVisuals:       injectBodyVisuals,
-    PATTERNS:             PATTERNS,
-    PALETTES:             PALETTES,
+    PATTERNS:                PATTERNS,
+    PALETTES:                PALETTES,
   };
 
   if (document.readyState === 'loading') {

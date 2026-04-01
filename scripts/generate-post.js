@@ -179,7 +179,7 @@ function stripMeta(markdown) {
 }
 
 /** Build complete post HTML. Uses string array join to avoid template-literal/quoting issues. */
-function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription) {
+function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroImageUrl) {
   const isMatt      = lane === "matt";
   const accent      = isMatt ? "#ffb300" : "#00e5ff";
   const accentLight = isMatt ? "#ffe082" : "#b2f5ff";
@@ -275,7 +275,15 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription) {
   H.push("    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }");
   H.push("    .breadcrumb a:hover { color: var(--accent); }");
   H.push("    .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }");
-  H.push("    .post-header { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--border); }");
+  if (!isMatt && heroImageUrl) {
+    H.push("    .post-header { position:relative; overflow:hidden; padding:7rem 0 3rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.42) 0%, rgba(2,10,8,0.80) 60%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
+    H.push("    .post-header > *:not(.ev-art) { position:relative; z-index:1; }");
+  } else if (!isMatt) {
+    H.push("    .post-header { position:relative; overflow:hidden; padding:4.5rem 0 2.5rem; border-bottom:1px solid var(--border); }");
+    H.push("    .post-header > *:not(.ev-art) { position:relative; z-index:1; }");
+  } else {
+    H.push("    .post-header { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--border); }");
+  }
   H.push("    .lane-badge { display: inline-block; font-family: Space Grotesk, sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 0.2em 0.6em; margin-bottom: 1.2rem; }");
   H.push("    .post-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 1rem; }");
   H.push("    .post-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }");
@@ -608,7 +616,8 @@ async function main() {
   fs.mkdirSync(outputDir, { recursive: true });
 
   const dateStr = new Date().toISOString();
-  fs.writeFileSync(outputFile, buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription), "utf8");
+  const heroImageUrl = (lane === "boom" && inlineImages && inlineImages.length > 0) ? inlineImages[0].url : null;
+  fs.writeFileSync(outputFile, buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription, heroImageUrl), "utf8");
   console.log((isDraft ? "[DRAFT] " : "") + "Post saved: /blog/" + lane + "/" + outputSub + "/" + slug + ".html");
 
   if (!isDraft) {
