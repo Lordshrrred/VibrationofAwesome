@@ -549,7 +549,6 @@
     block.appendChild(frame);
     block.appendChild(nameEl);
     block.appendChild(cap);
-    block.appendChild(hint);
 
     block.addEventListener("click", function () {
       img.style.opacity = "0";
@@ -724,7 +723,6 @@
     block.appendChild(frame);
     block.appendChild(nameEl);
     block.appendChild(cap);
-    block.appendChild(hint);
 
     block.addEventListener("click", function () {
       img.style.opacity = "0";

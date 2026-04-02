@@ -89,7 +89,7 @@ const BOOMBOT_SYSTEM = [
   "Write in a voice that is helpful, slightly eccentric, and real ~ never corporate,",
   "never generic. Include H2 and H3 subheadings, a meta description on the first line",
   "(format: META: your description here), and a CTA at the end pointing readers to",
-  "vibrationofawesome.com and the free ebook at vibrationofawesome.com/free-ebook/",
+  "vibrationofawesome.com and the Field Guide at vibrationofawesome.com/field-guide/",
   "Return raw markdown only.",
   "Never use em dashes in your output. Use tildes, hyphens, commas, or restructure the sentence instead.",
 ].join("\n");
@@ -364,8 +364,14 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push('        <div class="post-cta">');
     H.push("          <h3>Explore More at Vibration of Awesome</h3>");
     H.push("          <p>Music, AI tools, digital creation, and the weird beautiful intersection of all three.</p>");
-    H.push('          <a href="https://vibrationofawesome.com">Visit vibrationofawesome.com</a>');
+    H.push('          <a href="https://vibrationofawesome.com/field-guide/">Start with the Field Guide</a>');
     H.push("        </div>");
+    H.push('        <div style="height:2rem;"></div>');
+    H.push('        <div class="voa-photo-rotator" data-folder="matt" data-mode="signature"></div>');
+    H.push('        <script src="/js/photo-rotator.js"><\/script>');
+    H.push('        <div style="height:2rem;"></div>');
+    H.push('        <div class="voa-ebook-cta" data-placement="end-of-post" data-blog-slug="' + slug + '"></div>');
+    H.push('        <script src="/js/ebook-cta.js"><\/script>');
     H.push("      </article>");
     H.push("    </div>");
   } else {
@@ -384,6 +390,10 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push("    <div class=\"container\">");
     H.push("      <article class=\"post-body\">");
     H.push("        " + bodyHtml);
+    H.push('        <div style="height:2rem;"></div>');
+    H.push('        <div class="voa-photo-rotator" data-folder="boombot" data-mode="signature"></div>');
+    H.push('        <script src="/js/photo-rotator.js"><\/script>');
+    H.push('        <div style="height:2rem;"></div>');
     H.push('        <div class="voa-ebook-cta" data-placement="end-of-post" data-blog-slug="' + slug + '"></div>');
     H.push('        <script src="/js/ebook-cta.js"><\/script>');
     H.push("      </article>");
