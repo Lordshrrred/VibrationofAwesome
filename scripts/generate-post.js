@@ -384,11 +384,8 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push("    <div class=\"container\">");
     H.push("      <article class=\"post-body\">");
     H.push("        " + bodyHtml);
-    H.push('        <div class="post-cta">');
-    H.push("          <h3>Explore More at Vibration of Awesome</h3>");
-    H.push("          <p>Music, AI tools, digital creation, and the weird beautiful intersection of all three.</p>");
-    H.push('          <a href="https://vibrationofawesome.com">Visit vibrationofawesome.com</a>');
-    H.push("        </div>");
+    H.push('        <div class="voa-ebook-cta" data-placement="end-of-post" data-blog-slug="' + slug + '"></div>');
+    H.push('        <script src="/js/ebook-cta.js"><\/script>');
     H.push("      </article>");
     H.push("    </div>");
   }

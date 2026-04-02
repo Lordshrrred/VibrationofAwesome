@@ -169,7 +169,7 @@
       ".voa-photo-rotator[data-theme='boom'] .voa-sig-rule{border-top-color:rgba(0,255,255,0.12);}",
       ".voa-photo-rotator[data-theme='boom'] .voa-sig-img-glow{border:1px solid rgba(0,255,255,0.2);box-shadow:inset 0 0 12px rgba(0,255,255,0.15);}",
       ".voa-photo-rotator[data-theme='boom'] .voa-sig-name{color:rgba(0,223,223,0.7);}",
-      ".voa-photo-rotator[data-theme='boom'] .voa-sig-caption{color:rgba(0,223,223,0.55);}"
+      ".voa-photo-rotator[data-theme='boom'] .voa-sig-caption{color:rgba(215,230,225,0.65);font-size:11px;font-style:italic;font-family:'Space Grotesk',sans-serif;line-height:1.6;min-height:0;}"
     ].join("\n");
     document.head.appendChild(el);
   }
@@ -448,7 +448,7 @@
     var sigColor    = (theme === "matt")  ? "#39FF14" : "#00FFFF";
     var name        = (container.getAttribute("data-name") ||
                        (folder === "matt" ? "Matt EarthStar" :
-                        folder === "boom" ? "Matty BoomBoom" : "")).trim();
+                        (folder === "boom" || folder === "boombot") ? "Matty BoomBoom" : "")).trim();
     var photos = buildPhotoList(metadata, photoFolder, "");
     // stamp theme on container so CSS overrides can target it
     container.setAttribute("data-theme", theme);
@@ -509,6 +509,12 @@
     var LANDSCAPE_FILES = ["treeyoga.jpeg", "treeyoga.jpg", "fulllotus.jpeg", "fulllotus.jpg"];
     var currentOrientation = null; // "P" portrait | "L" landscape — avoid redundant SVG swaps
 
+    // Boom theme: fixed byline HTML set once (not driven by individual photo captions)
+    if (theme === "boom") {
+      cap.innerHTML = "This was written by the AI persona of Matt EarthStar known as Matty BoomBoom. To learn how to fully automate a content creation machine of your own start with the <a href='/field-guide/' style='color:#00FFFF;'>Field Guide</a> \u2014 and to read Matt\u2019s words without the AI influence check out the very real and down to Earth <a href='/blog/matt/' style='color:#4eb868;'>Forest Temple Blog</a> \u2014 all human generated content from the heart, mind, and soul of Matt EarthStar.";
+      cap.style.display = "";
+    }
+
     function render(photo) {
       var isLandscape = LANDSCAPE_FILES.indexOf(photo.filename) !== -1;
       imgWrap.style.paddingBottom = isLandscape ? "75%" : "133.33%";
@@ -521,8 +527,11 @@
       }
       img.alt = photo.caption || name || "";
       img.src = photo.url;
-      cap.textContent = photo.caption || "";
-      cap.style.display = photo.caption ? "" : "none";
+      // Boom theme uses a fixed byline; never overwrite with individual photo captions
+      if (theme !== "boom") {
+        cap.textContent = photo.caption || "";
+        cap.style.display = photo.caption ? "" : "none";
+      }
     }
 
     img.onerror = function () {
