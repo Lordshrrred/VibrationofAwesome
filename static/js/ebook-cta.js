@@ -121,8 +121,8 @@
     tag.id = 'voa-cta-styles';
     tag.textContent = STYLES;
     document.head.appendChild(tag);
-    // Boom pages: upgrade CTA accent to premium deep green (#22c06a)
-    if (/\/blog\/boom/.test(window.location.pathname)) {
+    // Boom + Forest Temple pages: upgrade CTA accent to premium deep green (#22c06a)
+    if (/\/blog\/(boom|matt)/.test(window.location.pathname)) {
       const bt = document.createElement('style');
       bt.id = 'voa-cta-boom';
       bt.textContent = '.voa-cta-eop{border-color:rgba(34,192,106,0.35)!important;box-shadow:0 8px 40px rgba(0,0,0,0.5),0 0 0 1px rgba(34,192,106,0.08)!important;}.voa-cta-eop .voa-eyebrow{color:#22c06a!important;}.voa-cta-eop .voa-title span{color:#22c06a!important;}.voa-cta-input{border-color:rgba(34,192,106,0.3)!important;}.voa-cta-input:focus{border-color:#22c06a!important;}.voa-cta-submit{background:#22c06a!important;}.voa-cta-success .voa-dl-link{background:#22c06a!important;box-shadow:0 4px 20px rgba(34,192,106,0.25)!important;}.voa-cta-mid{background:rgba(34,192,106,0.07)!important;border-left-color:#22c06a!important;}.voa-cta-mid .voa-title span{color:#22c06a!important;}.voa-cta-banner{background:rgba(34,192,106,0.1)!important;border-bottom-color:rgba(34,192,106,0.25)!important;}.voa-cta-banner .voa-banner-text strong{color:#22c06a!important;}.voa-cta-banner .voa-banner-link{background:#22c06a!important;}';

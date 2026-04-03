@@ -65,11 +65,16 @@
 
   if (localStorage.getItem(STORAGE_KEY)) return;
 
+  // Blog pages (Boom + Forest Temple) use premium green; other pages use gold
+  var onBlog = /\/blog\//.test(window.location.pathname);
+  var bc     = onBlog ? '#22c06a' : '#D4AF37';
+  var bcRgb  = onBlog ? '34,192,106' : '212,175,55';
+
   var css = [
     '#voa-announce{',
       'position:fixed;top:0;left:0;width:100%;z-index:99999;',
       'background:linear-gradient(90deg,rgba(10,22,24,0.97),rgba(6,15,16,0.97));',
-      'border-bottom:1px solid rgba(212,175,55,0.3);',
+      'border-bottom:1px solid rgba(' + bcRgb + ',0.3);',
       'padding:0.55rem 1rem;',
       'display:flex;align-items:center;justify-content:center;gap:0.75rem;flex-wrap:wrap;',
       'font-family:"Poppins","Space Grotesk",sans-serif;font-size:0.78rem;',
@@ -78,9 +83,9 @@
     '}',
     '#voa-announce.visible{transform:translateY(0);}',
     '#voa-announce .ann-text{color:rgba(232,244,240,0.82);letter-spacing:0.01em;}',
-    '#voa-announce .ann-text strong{color:#D4AF37;}',
+    '#voa-announce .ann-text strong{color:' + bc + ';}',
     '#voa-announce .ann-link{',
-      'background:#D4AF37;color:#020a0a;',
+      'background:' + bc + ';color:#020a0a;',
       'font-weight:700;font-size:0.72rem;letter-spacing:0.07em;text-transform:uppercase;',
       'text-decoration:none;border-radius:4px;padding:0.3rem 0.85rem;',
       'white-space:nowrap;transition:opacity 0.2s;',
