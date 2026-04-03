@@ -150,7 +150,7 @@
       "@keyframes voa-tri-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}",
       "@keyframes voa-tri-breathe{0%,100%{opacity:0.4}50%{opacity:0.9}}",
       // Layout
-      ".voa-sig-rule{border:none;border-top:1px solid rgba(57,255,20,0.12);margin:2.5rem 0 1.75rem;}",
+      ".voa-sig-rule{border:none;border-top:1px solid rgba(57,255,20,0.12);margin:1rem 0 0.75rem;}",
       ".voa-sig-block{display:block;width:100%;text-align:center;cursor:pointer;user-select:none;padding-bottom:1rem;}",
       // Frame: 24px padding creates the gap zone; SVG covers this full area (inset:0 on frame)
       ".voa-sig-frame{position:relative;display:inline-block;max-width:268px;width:100%;padding:24px;box-sizing:border-box;}",
