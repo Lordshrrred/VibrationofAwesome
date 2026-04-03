@@ -226,6 +226,9 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push('  <link rel="canonical" href="' + postUrl + '">');
   H.push('  <meta name="robots" content="index, follow">');
   H.push('  <meta name="theme-color" content="' + accent + '">');
+  if (!isMatt && heroImageUrl) {
+    H.push('  <link rel="preload" as="image" fetchpriority="high" href="' + heroImageUrl + '">');
+  }
   H.push("  <!-- Open Graph -->");
   H.push('  <meta property="og:type" content="article">');
   H.push('  <meta property="og:site_name" content="Vibration of Awesome">');
@@ -278,7 +281,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push("    .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }");
   }
   if (!isMatt && heroImageUrl) {
-    H.push("    .post-header { position:relative; z-index:1; padding:12rem 4rem 4rem; border-bottom:1px solid var(--border); background: linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
+    H.push("    .post-header { position:relative; z-index:1; padding:12rem 4rem 4rem; border-bottom:1px solid var(--border); background-color:#020a0a; background: linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
     H.push("    .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; width:100%; }");
     H.push("    .post-header > *:not(.ev-art) { position:relative; z-index:1; }");
     H.push("    .ev-art { position:absolute; inset:0; z-index:0; opacity:0.35; pointer-events:none; }");
