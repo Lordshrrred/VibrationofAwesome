@@ -158,12 +158,15 @@
       ".voa-sig-img-wrap{position:relative;width:100%;padding-bottom:133.33%;overflow:hidden;border-radius:8px;}",
       ".voa-sig-photo{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:8px;transition:opacity 0.3s ease;}",
       // Glow overlay: sits above image, provides neon border + inner glow
-      ".voa-sig-img-glow{position:absolute;inset:0;border-radius:8px;border:1px solid rgba(57,255,20,0.22);box-shadow:inset 0 0 14px rgba(57,255,20,0.15);pointer-events:none;z-index:2;}",
+      ".voa-sig-img-glow{position:absolute;inset:0;border-radius:8px;border:1px solid rgba(34,192,106,0.22);box-shadow:inset 0 0 14px rgba(34,192,106,0.12);pointer-events:none;z-index:2;}",
       // SVG: covers full frame including 24px padding gap zone; drop-shadow set inline on SVG element
       ".voa-sig-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}",
-      // Text elements ~ Forest Temple amber tone (matt theme default)
-      ".voa-sig-name{font-family:'Cinzel Decorative','Lora',Georgia,serif;font-size:0.88rem;letter-spacing:0.18em;color:rgba(255,179,0,0.92);margin:0.9rem 0 0.35rem;font-variant:normal;text-transform:uppercase;}",
-      ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:normal;font-size:0.92rem;line-height:1.9;color:rgba(245,234,216,0.78);max-width:600px;margin:0 auto 0.6rem;min-height:0;}",
+      // Text elements ~ Forest Temple premium green (matt theme default)
+      ".voa-sig-name{font-family:'Cinzel Decorative','Lora',Georgia,serif;font-size:0.82rem;letter-spacing:0.18em;color:rgba(34,192,106,0.88);margin:0.9rem 0 0.3rem;font-variant:normal;text-transform:uppercase;}",
+      ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.93rem;line-height:1.75;color:rgba(245,234,216,0.7);max-width:600px;margin:0 auto 0.5rem;min-height:1.2em;}",
+      ".voa-sig-cta{font-family:'Lora',Georgia,serif;font-size:0.91rem;line-height:2;color:rgba(245,234,216,0.75);max-width:600px;margin:0.5rem auto 0;text-align:left;}",
+      ".voa-sig-cta a{color:#22c06a;font-weight:700;text-decoration:none;}",
+      ".voa-sig-cta a:hover{text-decoration:underline;}",
       ".voa-sig-hint{font-size:0.58rem;letter-spacing:0.13em;color:#7EB8B0;opacity:0.65;}",
       // Boom theme overrides ~ electric cyan (#00FFFF) palette
       ".voa-photo-rotator[data-theme='boom'] .voa-sig-rule{border-top-color:rgba(0,255,255,0.12);}",
@@ -445,7 +448,7 @@
     var photoFolder = (folder === "boom") ? "matt" : folder;
     // theme determines color palette; any non-matt folder gets cyan boom theme
     var theme       = (folder === "matt") ? "matt" : "boom";
-    var sigColor    = (theme === "matt")  ? "#39FF14" : "#00FFFF";
+    var sigColor    = (theme === "matt")  ? "#22c06a" : "#00FFFF";
     var name        = (container.getAttribute("data-name") ||
                        (folder === "matt" ? "Matt EarthStar" :
                         (folder === "boom" || folder === "boombot") ? "MATTY BOOMBOOM // BOOM FREQUENCY" : "")).trim();
@@ -514,10 +517,16 @@
       cap.innerHTML = "<span style='display:block;margin-bottom:0.75em;'><strong style='color:#00e5ff;letter-spacing:0.08em;'>MATTY BOOMBOOM</strong> is the AI writing persona of Matt EarthStar ~ Co Creator in Reality.</span><span style='display:block;margin-bottom:0.6em;'>\u2192 <a href='/field-guide/' style='color:#22c06a;font-weight:700;'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span><span style='display:block;'>\u2192 <a href='/blog/matt/' style='color:#4eb868;font-weight:700;'>Explore Forest Temple</a> \u2014 Matt EarthStar, unfiltered.</span>";
       cap.style.display = "";
     }
-    // Matt / Forest Temple theme: fixed 2-line byline
+
+    // Matt theme: build separate CTA block (3 fixed lines, never overwritten on cycle)
+    var mattCta = null;
     if (theme === "matt") {
-      cap.innerHTML = "<span style='display:block;margin-bottom:0.6em;'>\u2192 <a href='/field-guide/' style='color:#ffb300;font-weight:700;'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span><span style='display:block;'>\u2192 <a href='/blog/boom/' style='color:#c8a84b;font-weight:700;'>Explore Boom Frequency</a> \u2014 the AI alter ego. High signal. Zero filter.</span>";
-      cap.style.display = "";
+      mattCta = document.createElement("p");
+      mattCta.className = "voa-sig-cta";
+      mattCta.innerHTML =
+        "<span style='display:block;'>\u2192 <a href='/field-guide/'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span>" +
+        "<span style='display:block;'>\u2192 <a href='/blog/boom/'>Explore Boom Frequency</a> \u2014 AI-powered, high-signal, and weirdly worth reading.</span>" +
+        "<span style='display:block;'>\u2192 <a href='/art-store/'>Visit the Earth Star Art Store</a> \u2014 cosmic prints for people who feel things deeply.</span>";
     }
 
     function render(photo) {
@@ -532,8 +541,8 @@
       }
       img.alt = photo.caption || name || "";
       img.src = photo.url;
-      // Boom and Matt themes use fixed bylines; never overwrite with individual photo captions
-      if (theme !== "boom" && theme !== "matt") {
+      // Boom theme uses a fixed byline; never overwrite with individual photo captions
+      if (theme !== "boom") {
         cap.textContent = photo.caption || "";
         cap.style.display = photo.caption ? "" : "none";
       }
@@ -554,6 +563,7 @@
     block.appendChild(frame);
     block.appendChild(nameEl);
     block.appendChild(cap);
+    if (mattCta) block.appendChild(mattCta);
 
     block.addEventListener("click", function () {
       img.style.opacity = "0";
