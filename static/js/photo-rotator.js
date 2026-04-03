@@ -161,9 +161,9 @@
       ".voa-sig-img-glow{position:absolute;inset:0;border-radius:8px;border:1px solid rgba(57,255,20,0.22);box-shadow:inset 0 0 14px rgba(57,255,20,0.15);pointer-events:none;z-index:2;}",
       // SVG: covers full frame including 24px padding gap zone; drop-shadow set inline on SVG element
       ".voa-sig-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}",
-      // Text elements ~ electric green tone (matt theme default)
-      ".voa-sig-name{font-family:'Lora',Georgia,serif;font-variant:small-caps;font-size:0.95rem;letter-spacing:0.14em;color:rgba(57,255,20,0.7);margin:0.9rem 0 0.35rem;}",
-      ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.97rem;line-height:1.7;color:rgba(57,255,20,0.55);max-width:480px;margin:0 auto 0.6rem;min-height:1.4em;}",
+      // Text elements ~ Forest Temple amber tone (matt theme default)
+      ".voa-sig-name{font-family:'Cinzel Decorative','Lora',Georgia,serif;font-size:0.88rem;letter-spacing:0.18em;color:rgba(255,179,0,0.92);margin:0.9rem 0 0.35rem;font-variant:normal;text-transform:uppercase;}",
+      ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:normal;font-size:0.92rem;line-height:1.9;color:rgba(245,234,216,0.78);max-width:600px;margin:0 auto 0.6rem;min-height:0;}",
       ".voa-sig-hint{font-size:0.58rem;letter-spacing:0.13em;color:#7EB8B0;opacity:0.65;}",
       // Boom theme overrides ~ electric cyan (#00FFFF) palette
       ".voa-photo-rotator[data-theme='boom'] .voa-sig-rule{border-top-color:rgba(0,255,255,0.12);}",
@@ -514,6 +514,11 @@
       cap.innerHTML = "<span style='display:block;margin-bottom:0.75em;'><strong style='color:#00e5ff;letter-spacing:0.08em;'>MATTY BOOMBOOM</strong> is the AI writing persona of Matt EarthStar ~ Co Creator in Reality.</span><span style='display:block;margin-bottom:0.6em;'>\u2192 <a href='/field-guide/' style='color:#22c06a;font-weight:700;'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span><span style='display:block;'>\u2192 <a href='/blog/matt/' style='color:#4eb868;font-weight:700;'>Explore Forest Temple</a> \u2014 Matt EarthStar, unfiltered.</span>";
       cap.style.display = "";
     }
+    // Matt / Forest Temple theme: fixed 2-line byline
+    if (theme === "matt") {
+      cap.innerHTML = "<span style='display:block;margin-bottom:0.6em;'>\u2192 <a href='/field-guide/' style='color:#ffb300;font-weight:700;'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span><span style='display:block;'>\u2192 <a href='/blog/boom/' style='color:#c8a84b;font-weight:700;'>Explore Boom Frequency</a> \u2014 the AI alter ego. High signal. Zero filter.</span>";
+      cap.style.display = "";
+    }
 
     function render(photo) {
       var isLandscape = LANDSCAPE_FILES.indexOf(photo.filename) !== -1;
@@ -527,8 +532,8 @@
       }
       img.alt = photo.caption || name || "";
       img.src = photo.url;
-      // Boom theme uses a fixed byline; never overwrite with individual photo captions
-      if (theme !== "boom") {
+      // Boom and Matt themes use fixed bylines; never overwrite with individual photo captions
+      if (theme !== "boom" && theme !== "matt") {
         cap.textContent = photo.caption || "";
         cap.style.display = photo.caption ? "" : "none";
       }
