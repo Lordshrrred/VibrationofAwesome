@@ -17,21 +17,21 @@
   margin: 3rem auto 2rem;
   max-width: 640px;
   background: linear-gradient(135deg, rgba(10,22,24,0.97) 0%, rgba(6,15,16,0.97) 100%);
-  border: 1px solid rgba(212,175,55,0.35);
+  border: 1px solid rgba(61,184,110,0.35);
   border-radius: 12px;
   padding: 2.5rem 2rem;
   text-align: center;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.08);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(61,184,110,0.08);
 }
 .voa-cta-eop .voa-eyebrow {
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.28em;
-  text-transform: uppercase; color: #D4AF37; margin-bottom: 1rem;
+  text-transform: uppercase; color: #3db86e; margin-bottom: 1rem;
 }
 .voa-cta-eop .voa-title {
   font-size: clamp(1.25rem, 3vw, 1.65rem); font-weight: 800;
   color: #e8f4f0; margin-bottom: 0.6rem; line-height: 1.25;
 }
-.voa-cta-eop .voa-title span { color: #D4AF37; }
+.voa-cta-eop .voa-title span { color: #3db86e; }
 .voa-cta-eop .voa-sub {
   font-size: 0.9rem; color: rgba(232,244,240,0.7);
   margin-bottom: 1.75rem; line-height: 1.6;
@@ -40,15 +40,15 @@
 .voa-cta-form { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
 .voa-cta-input {
   flex: 1; min-width: 210px; max-width: 320px;
-  background: rgba(11,26,28,0.9); border: 1px solid rgba(212,175,55,0.3);
+  background: rgba(11,26,28,0.9); border: 1px solid rgba(61,184,110,0.3);
   border-radius: 6px; color: #e8f4f0; font-size: 0.88rem;
   padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s;
   font-family: inherit;
 }
-.voa-cta-input:focus { border-color: #D4AF37; }
+.voa-cta-input:focus { border-color: #3db86e; }
 .voa-cta-input::placeholder { color: rgba(232,244,240,0.35); }
 .voa-cta-submit {
-  background: #D4AF37; color: #020a0a;
+  background: #3db86e; color: #020a0a;
   font-family: inherit; font-size: 0.82rem; font-weight: 700;
   letter-spacing: 0.06em; text-transform: uppercase;
   border: none; border-radius: 6px; padding: 0.75rem 1.5rem;
@@ -59,11 +59,11 @@
 .voa-cta-success { display: none; }
 .voa-cta-success .voa-dl-link {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: #D4AF37; color: #020a0a;
+  background: #3db86e; color: #020a0a;
   font-family: inherit; font-size: 0.9rem; font-weight: 700;
   letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
   border-radius: 8px; padding: 0.85rem 2rem; margin-top: 1rem;
-  box-shadow: 0 4px 20px rgba(212,175,55,0.25); transition: opacity 0.2s;
+  box-shadow: 0 4px 20px rgba(61,184,110,0.25); transition: opacity 0.2s;
 }
 .voa-cta-success .voa-dl-link:hover { opacity: 0.85; }
 .voa-cta-success .voa-success-msg {
@@ -76,15 +76,15 @@
 .voa-cta-mid {
   margin: 2.5rem auto;
   max-width: 560px;
-  background: rgba(212,175,55,0.07);
-  border-left: 3px solid #D4AF37;
+  background: rgba(61,184,110,0.07);
+  border-left: 3px solid #3db86e;
   border-radius: 0 8px 8px 0;
   padding: 1.75rem 1.5rem;
 }
 .voa-cta-mid .voa-title {
   font-size: 1.05rem; font-weight: 700; color: #e8f4f0; margin-bottom: 0.5rem;
 }
-.voa-cta-mid .voa-title span { color: #D4AF37; }
+.voa-cta-mid .voa-title span { color: #3db86e; }
 .voa-cta-mid .voa-sub {
   font-size: 0.82rem; color: rgba(232,244,240,0.6); margin-bottom: 1rem;
   font-family: 'Lora', Georgia, serif;
@@ -93,8 +93,8 @@
 
 /* ── Top-banner ── */
 .voa-cta-banner {
-  background: rgba(212,175,55,0.1);
-  border-bottom: 1px solid rgba(212,175,55,0.25);
+  background: rgba(61,184,110,0.1);
+  border-bottom: 1px solid rgba(61,184,110,0.25);
   padding: 0.75rem 1rem;
   text-align: center;
   display: flex; align-items: center; justify-content: center;
@@ -104,9 +104,9 @@
   font-size: 0.82rem; color: rgba(232,244,240,0.8);
   font-family: 'Lora', Georgia, serif;
 }
-.voa-cta-banner .voa-banner-text strong { color: #D4AF37; }
+.voa-cta-banner .voa-banner-text strong { color: #3db86e; }
 .voa-cta-banner .voa-banner-link {
-  background: #D4AF37; color: #020a0a;
+  background: #3db86e; color: #020a0a;
   font-family: inherit; font-size: 0.75rem; font-weight: 700;
   letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
   border-radius: 4px; padding: 0.4rem 1rem; white-space: nowrap;

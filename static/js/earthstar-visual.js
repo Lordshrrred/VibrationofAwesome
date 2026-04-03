@@ -527,23 +527,23 @@
 
       // Paragraph divider — legacy class kept for backwards compatibility.
       '.ev-divider {',
-      '  display:block; width:65%; height:180px; overflow:hidden;',
+      '  display:block; width:88%; height:315px; overflow:hidden;',
       '  border-radius:3px; margin:2.5rem auto;',
       '  box-shadow:0 0 30px rgba(0,229,255,0.12), 0 4px 20px rgba(0,0,0,0.5);',
       '  animation:ev-fadein 0.7s ease both;',
       '}',
       '.ev-divider svg { display:block; width:100%; height:100%; animation:ev-float 11s ease-in-out infinite; }',
-      '@media(max-width:600px){ .ev-divider { width:90%; height:120px; } }',
+      '@media(max-width:600px){ .ev-divider { width:96%; height:210px; } }',
 
       // Body visual — centered artful piece; transparent SVG floats on page bg.
       // No background, no border, no frame — just geometry floating in the text.
       '.ev-body-visual {',
-      '  display:block; width:68%; height:210px; overflow:visible;',
+      '  display:block; width:90%; height:368px; overflow:visible;',
       '  margin:2.6rem auto;',
       '  animation:ev-fadein 0.7s ease both;',
       '}',
       '.ev-body-visual svg { display:block; width:100%; height:100%; animation:ev-float 11s ease-in-out infinite; }',
-      '@media(max-width:600px){ .ev-body-visual { width:92%; height:150px; } }',
+      '@media(max-width:600px){ .ev-body-visual { width:96%; height:262px; } }',
 
       // Ensure hero text children stack above the ev-art overlay.
       '.post-header > *:not(.ev-art), .post-hero > *:not(.ev-art) { position:relative; z-index:1; }',

@@ -511,7 +511,7 @@
 
     // Boom theme: fixed byline HTML set once (not driven by individual photo captions)
     if (theme === "boom") {
-      cap.innerHTML = "This was written by the AI persona of Matt EarthStar known as Matty BoomBoom. To learn how to fully automate a content creation machine of your own start with the <a href='/field-guide/' style='color:#00FFFF;'>Field Guide</a> \u2014 and to read Matt\u2019s words without the AI influence check out the very real and down to Earth <a href='/blog/matt/' style='color:#4eb868;'>Forest Temple Blog</a> \u2014 all human generated content from the heart, mind, and soul of Matt EarthStar.";
+      cap.innerHTML = "<span style='display:block;margin-bottom:0.65em;'><strong style='color:#00e5ff;letter-spacing:0.08em;font-size:0.88em;'>MATTY BOOMBOOM</strong> is the AI writing persona of Matt EarthStar \u2014 musician, creator, and 20-year internet marketing veteran.</span><span style='display:block;margin-bottom:0.65em;'>\u2192 New here? <a href='/field-guide/' style='color:#3db86e;font-weight:700;'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span><span style='display:block;'>\u2192 Want the human voice? <a href='/blog/matt/' style='color:#4eb868;font-weight:700;'>Forest Temple</a> is Matt writing without the algorithm.</span>";
       cap.style.display = "";
     }
 

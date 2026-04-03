@@ -3,6 +3,57 @@
 // Inject by adding: <script src="/js/announcement-bar.js"></script>
 // ─────────────────────────────────────────────────────────────────────────────
 
+// ── Nav Enhancement: green guide link + cross-lane dropdowns ─────────────────
+// Runs unconditionally (before the dismissal check) on every page load.
+(function () {
+  if (document.getElementById('voa-nav-enhance')) return;
+  var style = document.createElement('style');
+  style.id = 'voa-nav-enhance';
+  style.textContent = [
+    '.site-nav-links a.nav-guide-link{color:#3db86e!important;border:1px solid rgba(61,184,110,0.35)!important;}',
+    '.site-nav-links a.nav-guide-link:hover{background:rgba(61,184,110,0.08)!important;box-shadow:0 0 12px rgba(61,184,110,0.2)!important;}',
+    '.site-nav-links li.has-dropdown{position:relative;}',
+    '.nav-dropdown{display:none;position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%);min-width:168px;background:rgba(2,10,10,0.97);border:1px solid rgba(255,255,255,0.09);border-radius:3px;padding:0.25rem 0;z-index:400;box-shadow:0 8px 24px rgba(0,0,0,0.55);list-style:none;margin:0;}',
+    '.site-nav-links li.has-dropdown:hover .nav-dropdown{display:block;}',
+    '.nav-dropdown li{width:100%;}',
+    '.nav-dropdown a{display:block!important;padding:0.45rem 1rem!important;font-family:\'Rajdhani\',sans-serif;font-size:0.7rem!important;letter-spacing:0.15em;text-transform:uppercase;color:rgba(208,255,248,0.65)!important;white-space:nowrap;text-decoration:none!important;border:none!important;background:none!important;}',
+    '.nav-dropdown a::after{display:none!important;}',
+    '.nav-dropdown a:hover{color:rgba(208,255,248,1)!important;background:rgba(255,255,255,0.05)!important;}',
+    '@media(max-width:768px){.nav-dropdown{position:static!important;transform:none!important;border:none!important;box-shadow:none!important;background:transparent!important;padding:0 0 0.3rem 1.2rem!important;display:block!important;}}'
+  ].join('\n');
+  document.head.appendChild(style);
+
+  function enhanceBlogNav() {
+    var nav = document.querySelector('nav.site-nav');
+    if (!nav || nav.querySelector('.nav-dropdown')) return;
+    var links = nav.querySelectorAll('.site-nav-links > li > a');
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      var href = a.getAttribute('href');
+      var active = a.className.indexOf('active') !== -1;
+      var isBoom = active && (href === '/blog/boom/' || href === '/blog/boom');
+      var isMatt = active && (href === '/blog/matt/' || href === '/blog/matt');
+      if (isBoom || isMatt) {
+        var li = a.parentNode;
+        li.className = (li.className ? li.className + ' ' : '') + 'has-dropdown';
+        var ul = document.createElement('ul');
+        ul.className = 'nav-dropdown';
+        ul.innerHTML = isBoom
+          ? '<li><a href="/blog/matt/">\uD83C\uDF3F Forest Temple</a></li>'
+          : '<li><a href="/blog/boom/">\u26A1 Boom Frequency</a></li>';
+        li.appendChild(ul);
+        break;
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enhanceBlogNav);
+  } else {
+    enhanceBlogNav();
+  }
+})();
+
 (function () {
   'use strict';
 
