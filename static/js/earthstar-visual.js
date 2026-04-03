@@ -507,7 +507,7 @@
       '  animation:ev-float 9s ease-in-out infinite;',
       '}',
       // Lower opacity for .post-header (boom posts — text readability)
-      '.post-header .ev-art.ev-visible { opacity:0.45; }',
+      '.post-header .ev-art.ev-visible { opacity:0.52; }',
       '@media(max-width:768px){',
       '  .ev-art { justify-content:center; padding-right:0; }',
       '  .ev-art.ev-visible { opacity:0.4; }',
@@ -541,6 +541,7 @@
       '  display:block; width:90%; height:368px; overflow:visible;',
       '  margin:2.6rem auto;',
       '  animation:ev-fadein 0.7s ease both;',
+      '  filter:brightness(1.08) saturate(1.12);',
       '}',
       '.ev-body-visual svg { display:block; width:100%; height:100%; animation:ev-float 11s ease-in-out infinite; }',
       '@media(max-width:600px){ .ev-body-visual { width:96%; height:262px; } }',

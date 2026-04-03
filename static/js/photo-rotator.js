@@ -168,7 +168,7 @@
       // Boom theme overrides ~ electric cyan (#00FFFF) palette
       ".voa-photo-rotator[data-theme='boom'] .voa-sig-rule{border-top-color:rgba(0,255,255,0.12);}",
       ".voa-photo-rotator[data-theme='boom'] .voa-sig-img-glow{border:1px solid rgba(0,255,255,0.2);box-shadow:inset 0 0 12px rgba(0,255,255,0.15);}",
-      ".voa-photo-rotator[data-theme='boom'] .voa-sig-name{color:rgba(0,223,223,0.7);}",
+      ".voa-photo-rotator[data-theme='boom'] .voa-sig-name{color:rgba(0,229,255,0.9);font-family:'Rajdhani','Space Grotesk',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.22em;font-variant:normal;text-transform:uppercase;}",
       ".voa-photo-rotator[data-theme='boom'] .voa-sig-caption{color:rgba(215,230,225,0.88);font-size:0.92rem;font-style:normal;font-family:'Space Grotesk',sans-serif;line-height:1.9;min-height:0;max-width:600px;}"
     ].join("\n");
     document.head.appendChild(el);
@@ -448,7 +448,7 @@
     var sigColor    = (theme === "matt")  ? "#39FF14" : "#00FFFF";
     var name        = (container.getAttribute("data-name") ||
                        (folder === "matt" ? "Matt EarthStar" :
-                        (folder === "boom" || folder === "boombot") ? "Matty BoomBoom" : "")).trim();
+                        (folder === "boom" || folder === "boombot") ? "MATTY BOOMBOOM // BOOM FREQUENCY" : "")).trim();
     var photos = buildPhotoList(metadata, photoFolder, "");
     // stamp theme on container so CSS overrides can target it
     container.setAttribute("data-theme", theme);
@@ -511,7 +511,7 @@
 
     // Boom theme: fixed byline HTML set once (not driven by individual photo captions)
     if (theme === "boom") {
-      cap.innerHTML = "<span style='display:block;margin-bottom:0.7em;'><strong style='color:#00e5ff;letter-spacing:0.08em;'>MATTY BOOMBOOM</strong> is the AI writing persona of Matt EarthStar ~ Co Creator of Reality.</span><span style='display:block;margin-bottom:0.7em;'>\u2192 <a href='/field-guide/' style='color:#3db86e;font-weight:700;'>Start with the Field Guide</a></span><span style='display:block;'>\u2192 <a href='/blog/matt/' style='color:#4eb868;font-weight:700;'>Explore Forest Temple</a></span>";
+      cap.innerHTML = "<span style='display:block;margin-bottom:0.75em;'><strong style='color:#00e5ff;letter-spacing:0.08em;'>MATTY BOOMBOOM</strong> is the AI writing persona of Matt EarthStar ~ Co Creator in Reality.</span><span style='display:block;margin-bottom:0.6em;'>\u2192 <a href='/field-guide/' style='color:#22c06a;font-weight:700;'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span><span style='display:block;'>\u2192 <a href='/blog/matt/' style='color:#4eb868;font-weight:700;'>Explore Forest Temple</a> \u2014 Matt EarthStar, unfiltered.</span>";
       cap.style.display = "";
     }
 
