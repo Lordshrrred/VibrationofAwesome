@@ -164,7 +164,9 @@
       // Text elements ~ Forest Temple premium green (matt theme default)
       ".voa-sig-name{font-family:'Cinzel Decorative','Lora',Georgia,serif;font-size:0.82rem;letter-spacing:0.18em;color:rgba(34,192,106,0.88);margin:0.9rem 0 0.3rem;font-variant:normal;text-transform:uppercase;}",
       ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.93rem;line-height:1.75;color:rgba(245,234,216,0.7);max-width:600px;margin:0 auto 0.5rem;min-height:1.2em;}",
-      ".voa-sig-cta{font-family:'Space Grotesk','Lora',sans-serif;font-size:0.72rem;line-height:1.7;color:rgba(245,234,216,0.72);max-width:800px;margin:0.35rem auto 0;text-align:left;letter-spacing:0.01em;}",
+      ".voa-sig-cta{font-family:'Space Grotesk','Lora',sans-serif;font-size:0.68rem;line-height:1.6;color:rgba(245,234,216,0.72);max-width:800px;margin:0.3rem auto 0;letter-spacing:0.01em;}",
+      ".voa-sig-cta span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}",
+      "@media(max-width:600px){.voa-sig-cta span{white-space:normal;overflow:visible;text-overflow:unset;}}",
       ".voa-sig-cta a{color:#22c06a;font-weight:700;text-decoration:none;}",
       ".voa-sig-cta a:hover{text-decoration:underline;}",
       ".voa-sig-hint{font-size:0.58rem;letter-spacing:0.13em;color:#7EB8B0;opacity:0.65;}",
@@ -524,9 +526,8 @@
       mattCta = document.createElement("p");
       mattCta.className = "voa-sig-cta";
       mattCta.innerHTML =
-        "<span style='display:block;'>\u2192 <a href='/field-guide/'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span>" +
-        "<span style='display:block;'>\u2192 <a href='/blog/boom/'>Explore Boom Frequency</a> \u2014 AI-powered, high-signal, and weirdly worth reading.</span>" +
-        "<span style='display:block;'>\u2192 <a href='/art-store/'>Visit the Earth Star Art Store</a> \u2014 cosmic prints for people who feel things deeply.</span>";
+        "<span>\u2192 <a href='/field-guide/'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span>" +
+        "<span>\u2192 <a href='/blog/boom/'>Explore Boom Frequency</a> \u2014 AI-powered, high-signal, and weirdly worth reading.</span>";
     }
 
     function render(photo) {
