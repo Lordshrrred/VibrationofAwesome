@@ -161,14 +161,14 @@
       ".voa-sig-img-glow{position:absolute;inset:0;border-radius:8px;border:1px solid rgba(34,192,106,0.22);box-shadow:inset 0 0 14px rgba(34,192,106,0.12);pointer-events:none;z-index:2;}",
       // SVG: covers full frame including 24px padding gap zone; drop-shadow set inline on SVG element
       ".voa-sig-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}",
-      // Text elements ~ Forest Temple premium green (matt theme default)
-      ".voa-sig-name{font-family:'Cinzel Decorative','Lora',Georgia,serif;font-size:0.82rem;letter-spacing:0.18em;color:rgba(34,192,106,0.88);margin:0.9rem 0 0.3rem;font-variant:normal;text-transform:uppercase;}",
-      ".voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.93rem;line-height:1.75;color:rgba(245,234,216,0.7);max-width:600px;margin:0 auto 0.5rem;min-height:1.2em;}",
-      ".voa-sig-cta{font-family:'Space Grotesk','Lora',sans-serif;font-size:0.68rem;line-height:1.6;color:rgba(245,234,216,0.72);max-width:800px;margin:0.3rem auto 0;letter-spacing:0.01em;}",
-      ".voa-sig-cta span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}",
-      "@media(max-width:600px){.voa-sig-cta span{white-space:normal;overflow:visible;text-overflow:unset;}}",
-      ".voa-sig-cta a{color:#22c06a;font-weight:700;text-decoration:none;}",
-      ".voa-sig-cta a:hover{text-decoration:underline;}",
+      // Text elements: use .voa-sig-block parent for specificity (0,2,0) to beat .post-body p (0,1,1)
+      ".voa-sig-block .voa-sig-name{font-family:'Cinzel Decorative','Lora',Georgia,serif;font-size:0.82rem;letter-spacing:0.18em;color:rgba(34,192,106,0.88);margin:0.9rem 0 0.3rem;font-variant:normal;text-transform:uppercase;}",
+      ".voa-sig-block .voa-sig-caption{font-family:'Lora',Georgia,serif;font-style:italic;font-size:0.93rem;line-height:1.75;color:rgba(245,234,216,0.7);max-width:600px;margin:0 auto 0.5rem;min-height:1.2em;}",
+      ".voa-sig-block .voa-sig-cta{font-family:'Space Grotesk','Lora',sans-serif;font-size:0.68rem;line-height:1.6;color:rgba(245,234,216,0.72);max-width:800px;margin:0.3rem auto 0;letter-spacing:0.01em;}",
+      ".voa-sig-block .voa-sig-cta span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}",
+      "@media(max-width:600px){.voa-sig-block .voa-sig-cta span{white-space:normal;overflow:visible;text-overflow:unset;}}",
+      ".voa-sig-block .voa-sig-cta a{color:#22c06a;font-weight:700;text-decoration:none;}",
+      ".voa-sig-block .voa-sig-cta a:hover{text-decoration:underline;}",
       ".voa-sig-hint{font-size:0.58rem;letter-spacing:0.13em;color:#7EB8B0;opacity:0.65;}",
       // Boom theme overrides ~ electric cyan (#00FFFF) palette
       ".voa-photo-rotator[data-theme='boom'] .voa-sig-rule{border-top-color:rgba(0,255,255,0.12);}",
