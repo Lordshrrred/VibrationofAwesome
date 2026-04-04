@@ -232,6 +232,37 @@
     border-bottom: 1px solid rgba(0,229,204,0.08);
   }
 
+  /* SECTION BODY TYPOGRAPHY — shared by what-is-voa and why-exists */
+  .section-body {
+    max-width: 660px;
+  }
+  .section-body p {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: rgba(240,230,204,0.72);
+    margin-bottom: 1.4rem;
+  }
+  .section-body p.lead {
+    font-size: 1.18rem;
+    line-height: 1.9;
+    color: rgba(240,230,204,0.88);
+    margin-bottom: 1.8rem;
+  }
+  /* Anchor lines — key statements pulled out of body flow */
+  .anchor-line {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.12rem, 2.2vw, 1.42rem);
+    font-style: italic;
+    color: rgba(168,237,228,0.88);
+    line-height: 1.6;
+    margin: 2rem 0 1.4rem;
+    padding-left: 1.25rem;
+    border-left: 2px solid rgba(0,229,204,0.22);
+  }
+  @media (max-width: 768px) {
+    .anchor-line { font-size: 1.08rem; margin: 1.5rem 0 1rem; }
+  }
+
   /* THREE PATHS */
   #three-paths {
     border-top: 1px solid rgba(201,168,76,0.08);
@@ -841,10 +872,14 @@
           </div>
         </div>
       </div>
-      <div>
-        <p>Expected unexpectedness is the core of it. You cannot plan your way into the best moments of your life. The breakthrough conversation, the idea that arrives at 3am, the door that opens without warning — these do not come from forcing. They come from being present enough to notice them when they appear.</p>
-        <p>Surrender is not passivity. It is precision. It is the difference between swimming against the current and reading the water well enough to know where it is going. You stop fighting what is real and start working with it.</p>
-        <p>Then action. You still have to move. You still have to build. Intuition without execution is just daydreaming. The Vibration of Awesome lives where all three of these meet: openness, awareness, and deliberate forward motion.</p>
+      <div class="section-body">
+        <p class="lead">Expected unexpectedness is the core of it. You cannot plan your way into the best moments of your life.</p>
+        <div class="anchor-line">The breakthrough conversation, the idea that arrives at 3am, the door that opens without warning — these do not come from forcing.</div>
+        <p>They come from being present enough to notice them when they appear.</p>
+        <div class="anchor-line">Surrender is not passivity. It is precision.</div>
+        <p>The difference between swimming against the current and reading the water well enough to know where it is going. You stop fighting what is real and start working with it.</p>
+        <div class="anchor-line">Then action. You still have to move. You still have to build.</div>
+        <p>Intuition without execution is just daydreaming. The Vibration of Awesome lives where all three of these meet: openness, awareness, and deliberate forward motion.</p>
         <ul class="voa-list">
           <li><strong>Openness</strong> — not knowing what is coming and being okay with that.</li>
           <li><strong>Presence</strong> — actually here, not rehearsing the future or relitigating the past.</li>
@@ -889,10 +924,14 @@
           </div>
         </div>
       </div>
-      <div>
-        <p>This site exists because I needed it to. I am Matt EarthStar, and I have been building this in real time: the philosophy, the website, the content systems, the blog, all of it. Not from a place of having it figured out. From a place of believing it is real and showing up until it proves itself.</p>
-        <p>There is no finished version of this waiting to be revealed. It is being built now, in public, one post and one piece at a time. That is the whole point. The process is the content. The build is the demonstration.</p>
-        <p>The AI is not hidden here. Matty BoomBoom, the voice behind the Boom Frequency blog, is an AI persona running on Claude. The systems are documented. The tools are visible. This is a creative experiment and a real project happening at the same time, and there is no clean way to separate the two.</p>
+      <div class="section-body">
+        <p class="lead">This site exists because I needed it to. I am Matt EarthStar.</p>
+        <div class="anchor-line">I have been building this in real time. Not from a place of having it figured out. From a place of believing it is real and showing up until it proves itself.</div>
+        <p>The philosophy, the website, the content systems, the blog — all of it, built as it unfolds.</p>
+        <div class="anchor-line">There is no finished version of this waiting to be revealed.</div>
+        <p>It is being built now, in public, one post and one piece at a time. That is the whole point. The process is the content. The build is the demonstration.</p>
+        <div class="anchor-line">The AI is not hidden here.</div>
+        <p>Matty BoomBoom, the voice behind the Boom Frequency blog, is an AI persona running on Claude. The systems are documented. The tools are visible. This is a creative experiment and a real project happening at the same time, and there is no clean way to separate the two.</p>
         <p>No guru positioning. No polished origin story. No claims about where this ends up. Just someone building something real and publishing what gets discovered along the way.</p>
       </div>
     </div>
