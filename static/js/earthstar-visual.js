@@ -497,8 +497,8 @@
       // Hero overlay (positioned inside .post-hero or .post-header)
       '.ev-art {',
       '  position:absolute; inset:0; pointer-events:none; overflow:hidden;',
-      '  display:flex; align-items:center; justify-content:flex-end;',
-      '  padding-right:4%; z-index:0;',
+      '  display:flex; align-items:flex-start; justify-content:flex-end;',
+      '  padding:4.75rem 4% 0 0; z-index:0;',
       '  opacity:0; transition:opacity 0.8s ease;',
       '}',
       '.ev-art.ev-visible { opacity:1; }',
@@ -506,10 +506,11 @@
       '  width:min(360px,52%); height:auto; flex-shrink:0;',
       '  animation:ev-float 9s ease-in-out infinite;',
       '}',
+      '.post-hero, .post-header { overflow:hidden; }',
       // Lower opacity for .post-header (boom posts — text readability)
       '.post-header .ev-art.ev-visible { opacity:0.52; }',
       '@media(max-width:768px){',
-      '  .ev-art { justify-content:center; padding-right:0; }',
+      '  .ev-art { justify-content:center; align-items:center; padding:0; }',
       '  .ev-art.ev-visible { opacity:0.4; }',
       '  .post-header .ev-art.ev-visible { opacity:0.25; }',
       '  .ev-art svg { width:min(240px,65%); }',
