@@ -87,6 +87,10 @@ textarea {
   z-index: 20;
 }
 
+.gate-screen[hidden] {
+  display: none !important;
+}
+
 .gate-card {
   width: min(100%, 520px);
   padding: 2.5rem;
