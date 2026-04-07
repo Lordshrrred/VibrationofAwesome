@@ -1,0 +1,47 @@
+name: VOA Feeder Callback
+
+on:
+  repository_dispatch:
+    types:
+      - voa-feeder-published
+
+permissions:
+  contents: write
+
+jobs:
+  record-feeder-status:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Record feeder callback
+        env:
+          SOURCE_SLUG:         ${{ github.event.client_payload.source_slug }}
+          SOURCE_URL:          ${{ github.event.client_payload.source_url }}
+          SOURCE_TITLE:        ${{ github.event.client_payload.source_title }}
+          SOURCE_LANE:         ${{ github.event.client_payload.source_lane }}
+          FEEDER_STATUS:       ${{ github.event.client_payload.feeder_status }}
+          FEEDER_POST_URL:     ${{ github.event.client_payload.feeder_post_url }}
+          FEEDER_TIMESTAMP:    ${{ github.event.client_payload.feeder_timestamp }}
+          BACKLINK_CONFIRMED:  ${{ github.event.client_payload.backlink_confirmed }}
+          BACKLINK_SOURCE_URL: ${{ github.event.client_payload.backlink_source_url }}
+          FEEDER_ERROR:        ${{ github.event.client_payload.feeder_error }}
+        run: node scripts/record-feeder-callback.js
+
+      - name: Commit feeder status update
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add static/_data/syndication-results.json
+          git diff --staged --quiet || git commit -m "Record feeder callback [automated]"
+          git push

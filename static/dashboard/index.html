@@ -690,6 +690,24 @@ const FEEDER_SUFFIXES = ["-signal", "-shift", "-insight", "-guide"];
 const VERIFY_CACHE  = "voa_url_verify_cache_v2"; // v2: busts old bad cache from netlify usage_exceeded errors
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours — these are stable post URLs
 
+function getOpenTarget(primaryUrl, fallbackUrl) {
+  return primaryUrl || fallbackUrl || "";
+}
+
+function getOpenAttrs(primaryUrl, fallbackUrl) {
+  const target = getOpenTarget(primaryUrl, fallbackUrl);
+  if (!target) return "";
+  return `onclick="window.open('${esc(target)}','_blank')" style="cursor:pointer" tabindex="0" role="link"`;
+}
+
+function successTip(name, tooltip, primaryUrl, fallbackUrl, extra = "") {
+  const target = getOpenTarget(primaryUrl, fallbackUrl);
+  const suffix = primaryUrl ? "" : (target ? " · opens source post" : "");
+  return tooltip
+    ? `${name}: ✓ · ${tooltip}${suffix}${extra}`
+    : `${name}: ✓${target ? " → " + target : ""}${suffix}${extra}`;
+}
+
 // ── Auth ──────────────────────────────────────────────────────────────────────
 async function sha256hex(str) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
@@ -1023,8 +1041,9 @@ function renderRecentPosts(entries, resultsData) {
       const canonical = livePlatforms[key];
       if (canonical) {
         if (canonical.status === "success") {
-          const tip = tooltip || `${name}: ✓${canonical.url ? " → " + canonical.url : ""}`;
-          const onclick = canonical.url ? `onclick="window.open('${esc(canonical.url)}','_blank')"` : "";
+          const extra = key === "feeder" && canonical.backlink_confirmed ? " · backlink confirmed" : "";
+          const tip = successTip(name, tooltip, canonical.url, entry.postUrl, extra);
+          const onclick = getOpenAttrs(canonical.url, entry.postUrl);
           return `<span class="badge badge-ok" title="${esc(tip)}" ${onclick}>✓ ${label}</span>`;
         }
         if (canonical.status === "pending") {
@@ -1035,8 +1054,8 @@ function renderRecentPosts(entries, resultsData) {
       const r = platforms[key];
       if (!r) return `<span class="badge badge-skip" title="${name}: not attempted">~ ${label}</span>`;
       if (r.success) {
-        const tip = tooltip || `${name}: ✓${r.postUrl ? " → " + r.postUrl : ""}`;
-        const onclick = r.postUrl ? `onclick="window.open('${esc(r.postUrl)}','_blank')"` : "";
+        const tip = successTip(name, tooltip, r.postUrl, entry.postUrl);
+        const onclick = getOpenAttrs(r.postUrl, entry.postUrl);
         return `<span class="badge badge-ok" title="${esc(tip)}" ${onclick}>✓ ${label}</span>`;
       } else {
         return `<span class="badge badge-fail" title="${esc(name + ": ✗ " + (r.error || "failed"))}">✗ ${label}</span>`;
@@ -1084,8 +1103,9 @@ function renderMatrix(results) {
       if (!s) return `<td><div class="mat-cell mat-skip" title="${name}: not attempted">~</div></td>`;
       if (s.status === "success") {
         successCount++;
-        const tip = tooltip ? `${name}: ✓ · ${tooltip}` : `${name}: ✓${s.url ? " → " + s.url : ""}`;
-        const onclick = s.url ? `onclick="window.open('${esc(s.url)}','_blank')"` : "";
+        const extra = key === "feeder" && s.backlink_confirmed ? " · backlink confirmed" : "";
+        const tip = successTip(name, tooltip, s.url, entry.voa_url, extra);
+        const onclick = getOpenAttrs(s.url, entry.voa_url);
         return `<td><div class="mat-cell mat-ok" title="${esc(tip)}" ${onclick} data-verify="${esc(s.url||"")}" data-key="${key}">✓</div></td>`;
       } else if (s.status === "pending") {
         return `<td><div class="mat-cell mat-pend" title="${esc(name + ": trigger fired, waiting for post")}">⏳</div></td>`;
@@ -1359,6 +1379,7 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
   const syndicated     = results.length;
   const feederSuccess  = results.filter(r => r.syndication?.feeder?.status === "success");
   const feederCount    = feederSuccess.length;
+  const confirmedBacklinks = feederSuccess.filter(r => r.syndication?.feeder?.backlink_confirmed).length;
 
   // Most recent feeder trigger timestamp across all results
   const allTimes = results
@@ -1387,7 +1408,7 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
     </div>
     <div class="site-stat-row">
       <span class="site-stat-label">Backlink Coverage</span>
-      <span class="site-stat-value">${feederCount} / ${syndicated} posts covered</span>
+      <span class="site-stat-value">${confirmedBacklinks} / ${syndicated} confirmed</span>
     </div>
     <div class="site-stat-row">
       <span class="site-stat-label">Source Repo</span>
