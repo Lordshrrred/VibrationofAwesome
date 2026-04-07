@@ -16,6 +16,15 @@
   style.textContent = [
     '.site-nav-links a.nav-guide-link{color:' + gc + '!important;border:1px solid rgba(' + gcRgb + ',0.35)!important;}',
     '.site-nav-links a.nav-guide-link:hover{background:rgba(' + gcRgb + ',0.08)!important;box-shadow:0 0 12px rgba(' + gcRgb + ',0.2)!important;}',
+    '@media(min-width:769px){',
+    '  nav.site-nav{background:rgba(2,10,10,0.97)!important;}',
+    '  .site-nav-main{padding:1.2rem 3rem!important;}',
+    '  a.site-nav-logo{font-size:1.1rem!important;}',
+    '  .site-nav-links{gap:2.5rem!important;}',
+    '  .site-nav-links a{font-size:0.8rem!important;}',
+    '  .site-nav-breadcrumb{padding:0.45rem 3rem!important;}',
+    '  .site-nav-breadcrumb a,.site-nav-breadcrumb .nav-current{font-size:0.72rem!important;}',
+    '}',
     '.site-nav-links li.has-dropdown{position:relative;}',
     '.nav-dropdown{display:none;position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%);min-width:168px;background:rgba(2,10,10,0.97);border:1px solid rgba(255,255,255,0.09);border-radius:3px;padding:0.25rem 0;z-index:400;box-shadow:0 8px 24px rgba(0,0,0,0.55);list-style:none;margin:0;}',
     '.site-nav-links li.has-dropdown:hover .nav-dropdown{display:block;}',
@@ -97,6 +106,7 @@
       'font-size:1.1rem;line-height:1;cursor:pointer;padding:0.25rem;transition:color 0.2s;',
     '}',
     '#voa-announce .ann-close:hover{color:rgba(232,244,240,0.85);}',
+    '@media(min-width:769px){#voa-announce{display:none!important;}}',
   ].join('');
 
   var html = [
