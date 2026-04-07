@@ -129,6 +129,42 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem;
   .site-nav-links a.nav-aura-link { margin: 0.3rem 1.2rem; display: inline-block; }
   .site-nav-breadcrumb { padding: 0.35rem 1.2rem; flex-wrap: wrap; }
 }
+
+/* ── Blog Chrome Normalization ───────────────────────────────────── */
+nav.site-nav { position: fixed !important; top: 0; left: 0; right: 0; z-index: 200 !important; }
+.site-nav-breadcrumb { gap: 0.45rem !important; min-height: 32px !important; padding: 0.28rem 3rem !important; }
+.site-nav-breadcrumb a,
+.site-nav-breadcrumb .nav-current { font-size: 0.68rem !important; }
+.site-nav-breadcrumb .nav-sep { font-size: 0.6rem !important; }
+.post-hero,
+.post-header {
+  overflow: hidden;
+  min-height: 32rem;
+  display: flex;
+  align-items: flex-end;
+  padding: 11.5rem 4rem 4rem;
+  background-position: center center;
+}
+.post-hero-inner,
+.post-header-inner {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.post-hero > *:not(.ev-art),
+.post-header > *:not(.ev-art) {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 768px) {
+  .post-hero,
+  .post-header {
+    min-height: 27rem;
+    padding: 10rem 1.5rem 3rem;
+  }
+}
+/* ── End Blog Chrome Normalization ───────────────────────────────── */
 </style>
   <link rel="preload" as="image" fetchpriority="high" href="/personal-photos/forest/forest-15-sinharaja-jungle.webp">
 </head>

@@ -21,6 +21,7 @@ const ROOT      = path.resolve(__dirname, "..");
 const AMBER_CSS = `
 /* ── Site Nav (injected by inject-blog-nav.js) ───────────────── */
 nav.site-nav { display: block !important; padding: 0 !important;
+  position: fixed !important; top: 0; left: 0; right: 0; z-index: 200 !important;
   background: rgba(2,10,8,0.97) !important;
   border-bottom: 1px solid rgba(255,179,0,0.12) !important;
   backdrop-filter: blur(8px); flex-direction: unset !important; }
@@ -45,15 +46,15 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem;
   border-radius: 2px; }
 .site-nav-links a.nav-aura-link::after { display: none !important; }
 .site-nav-links a.nav-aura-link:hover { background: rgba(255,179,0,0.08); }
-.site-nav-breadcrumb { display: flex; align-items: center; gap: 0.55rem;
-  min-height: 40px; padding: 0.5rem 3rem; }
-.site-nav-breadcrumb a { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem;
+.site-nav-breadcrumb { display: flex; align-items: center; gap: 0.45rem;
+  min-height: 32px; padding: 0.28rem 3rem; }
+.site-nav-breadcrumb a { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem;
   letter-spacing: 0.15em; text-transform: uppercase;
   color: rgba(208,255,248,0.4); text-decoration: none; transition: color 0.2s; }
 .site-nav-breadcrumb a:hover { color: #ffb300; }
-.site-nav-breadcrumb .nav-sep { font-size: 0.65rem; color: rgba(208,255,248,0.2); }
+.site-nav-breadcrumb .nav-sep { font-size: 0.6rem; color: rgba(208,255,248,0.2); }
 .site-nav-breadcrumb .nav-current { font-family: 'Rajdhani', sans-serif;
-  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
   color: #ffb300; }
 .site-nav-hamburger { display: none; flex-direction: column; gap: 5px;
   cursor: pointer; background: none; border: none; padding: 4px; }
@@ -103,15 +104,15 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem;
   border-radius: 2px; }
 .site-nav-links a.nav-aura-link::after { display: none !important; }
 .site-nav-links a.nav-aura-link:hover { background: rgba(0,229,255,0.08); }
-.site-nav-breadcrumb { display: flex; align-items: center; gap: 0.55rem;
-  min-height: 40px; padding: 0.5rem 3rem; }
-.site-nav-breadcrumb a { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem;
+.site-nav-breadcrumb { display: flex; align-items: center; gap: 0.45rem;
+  min-height: 32px; padding: 0.28rem 3rem; }
+.site-nav-breadcrumb a { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem;
   letter-spacing: 0.15em; text-transform: uppercase;
   color: rgba(207,246,255,0.4); text-decoration: none; transition: color 0.2s; }
 .site-nav-breadcrumb a:hover { color: #00e5ff; }
-.site-nav-breadcrumb .nav-sep { font-size: 0.65rem; color: rgba(207,246,255,0.2); }
+.site-nav-breadcrumb .nav-sep { font-size: 0.6rem; color: rgba(207,246,255,0.2); }
 .site-nav-breadcrumb .nav-current { font-family: 'Rajdhani', sans-serif;
-  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
   color: #00e5ff; }
 .site-nav-hamburger { display: none; flex-direction: column; gap: 5px;
   cursor: pointer; background: none; border: none; padding: 4px; }

@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(__dirname, "..");
+
+const START = "/* ── Blog Chrome Normalization";
+const END = "/* ── End Blog Chrome Normalization ───────────────────────────────── */";
+const BLOCK = `
+/* ── Blog Chrome Normalization ───────────────────────────────────── */
+nav.site-nav { position: fixed !important; top: 0; left: 0; right: 0; z-index: 200 !important; }
+.site-nav-breadcrumb { gap: 0.45rem !important; min-height: 32px !important; padding: 0.28rem 3rem !important; }
+.site-nav-breadcrumb a,
+.site-nav-breadcrumb .nav-current { font-size: 0.68rem !important; }
+.site-nav-breadcrumb .nav-sep { font-size: 0.6rem !important; }
+.post-hero,
+.post-header {
+  overflow: hidden;
+  min-height: 32rem;
+  display: flex;
+  align-items: flex-end;
+  padding: 11.5rem 4rem 4rem;
+  background-position: center center;
+}
+.post-hero-inner,
+.post-header-inner {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.post-hero > *:not(.ev-art),
+.post-header > *:not(.ev-art) {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 768px) {
+  .post-hero,
+  .post-header {
+    min-height: 27rem;
+    padding: 10rem 1.5rem 3rem;
+  }
+}
+/* ── End Blog Chrome Normalization ───────────────────────────────── */
+`.trim();
+
+function collectHtml(dir) {
+  const results = [];
+  if (!fs.existsSync(dir)) return results;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) results.push(...collectHtml(full));
+    else if (entry.name.endsWith(".html")) results.push(full);
+  }
+  return results;
+}
+
+function normalizeFile(filePath) {
+  let html = fs.readFileSync(filePath, "utf8");
+
+  if (html.includes(START)) {
+    html = html.replace(/\/\* ── Blog Chrome Normalization[\s\S]*?\/\* ── End Blog Chrome Normalization ───────────────────────────────── \*\//, BLOCK);
+  } else {
+    html = html.replace("</style>", `\n${BLOCK}\n</style>`);
+  }
+
+  fs.writeFileSync(filePath, html, "utf8");
+}
+
+const targets = [
+  path.join(ROOT, "static/blog/matt/index.html"),
+  path.join(ROOT, "static/blog/boom/index.html"),
+  ...collectHtml(path.join(ROOT, "static/blog/matt/posts")),
+  ...collectHtml(path.join(ROOT, "static/blog/boom/posts")),
+];
+
+for (const target of targets) normalizeFile(target);
+
+console.log(`Normalized blog chrome in ${targets.length} file(s).`);
