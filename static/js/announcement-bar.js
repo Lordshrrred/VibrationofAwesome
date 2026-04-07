@@ -3,19 +3,13 @@
 // Inject by adding: <script src="/js/announcement-bar.js"></script>
 // ─────────────────────────────────────────────────────────────────────────────
 
-// ── Nav Enhancement: context-aware guide link color + cross-lane dropdowns ─────
+// ── Nav Enhancement: cross-lane dropdowns on the active blog lane ─────────────
 // Runs unconditionally (before the dismissal check) on every page load.
 (function () {
   if (document.getElementById('voa-nav-enhance')) return;
-  // Keep the guide CTA green across both blog lanes.
-  var onBlog   = /\/blog\//.test(window.location.pathname);
-  var gc       = onBlog ? '#22c06a' : '#D4AF37';
-  var gcRgb    = onBlog ? '34,192,106' : '212,175,55';
   var style = document.createElement('style');
   style.id = 'voa-nav-enhance';
   style.textContent = [
-    '.site-nav-links a.nav-guide-link{color:' + gc + '!important;border:1px solid rgba(' + gcRgb + ',0.42)!important;background:transparent!important;box-shadow:none!important;}',
-    '.site-nav-links a.nav-guide-link:hover{background:rgba(' + gcRgb + ',0.08)!important;box-shadow:0 0 12px rgba(' + gcRgb + ',0.18)!important;}',
     '.site-nav-links li.has-dropdown{position:relative;}',
     '.nav-dropdown{display:none;position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%);min-width:168px;background:rgba(2,10,10,0.97);border:1px solid rgba(255,255,255,0.09);border-radius:3px;padding:0.25rem 0;z-index:400;box-shadow:0 8px 24px rgba(0,0,0,0.55);list-style:none;margin:0;}',
     '.site-nav-links li.has-dropdown:hover .nav-dropdown{display:block;}',

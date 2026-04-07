@@ -52,6 +52,11 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem;
   border-radius: 2px; background: transparent; box-shadow: none; }
 .site-nav-links a.nav-guide-link::after { display: none !important; }
 .site-nav-links a.nav-guide-link:hover { background: rgba(34,192,106,0.08); box-shadow: 0 0 12px rgba(34,192,106,0.18); }
+.post-hero, .post-header { overflow: hidden; min-height: 31rem; display: flex;
+  align-items: flex-end; padding: 11rem 4rem 3.75rem; background-position: center center; }
+.post-hero, .post-header { border-bottom-color: rgba(255,179,0,0.16) !important; }
+.post-hero-inner, .post-header-inner { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+.post-hero > *:not(.ev-art), .post-header > *:not(.ev-art) { position: relative; z-index: 1; }
 .site-nav-breadcrumb { display: flex; align-items: center; gap: 0.45rem;
   min-height: 32px; padding: 0.28rem 3rem; }
 .site-nav-breadcrumb a { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem;
@@ -79,6 +84,7 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem;
   .site-nav-links li { width: 100%; }
   .site-nav-links a { display: block; padding: 0.65rem 1.5rem; font-size: 0.8rem; }
   .site-nav-links a.nav-aura-link { margin: 0.3rem 1.2rem; display: inline-block; }
+  .post-hero, .post-header { min-height: 26.5rem; padding: 10rem 1.5rem 3rem; }
   .site-nav-breadcrumb { padding: 0.35rem 1.2rem; flex-wrap: wrap; }
 }`;
 
@@ -116,6 +122,14 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem;
   border-radius: 2px; background: transparent; box-shadow: none; }
 .site-nav-links a.nav-guide-link::after { display: none !important; }
 .site-nav-links a.nav-guide-link:hover { background: rgba(34,192,106,0.08); box-shadow: 0 0 12px rgba(34,192,106,0.18); }
+.site-nav--boom { transform: translateY(-2px); }
+.site-nav--boom .site-nav-main { min-height: 58px; padding-top: 1rem; padding-bottom: 1rem; }
+.site-nav--boom .site-nav-breadcrumb { transform: translateY(-2px); }
+.post-hero, .post-header { overflow: hidden; min-height: 31rem; display: flex;
+  align-items: flex-end; padding: 11rem 4rem 3.75rem; background-position: center center; }
+.post-hero, .post-header { border-bottom-color: rgba(0,229,255,0.16) !important; }
+.post-hero-inner, .post-header-inner { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+.post-hero > *:not(.ev-art), .post-header > *:not(.ev-art) { position: relative; z-index: 1; }
 .site-nav-breadcrumb { display: flex; align-items: center; gap: 0.45rem;
   min-height: 32px; padding: 0.28rem 3rem; }
 .site-nav-breadcrumb a { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem;
@@ -143,6 +157,8 @@ a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem;
   .site-nav-links li { width: 100%; }
   .site-nav-links a { display: block; padding: 0.65rem 1.5rem; font-size: 0.8rem; }
   .site-nav-links a.nav-aura-link { margin: 0.3rem 1.2rem; display: inline-block; }
+  .site-nav--boom .site-nav-main { min-height: auto; padding-top: 0.75rem; padding-bottom: 0.75rem; }
+  .post-hero, .post-header { min-height: 26.5rem; padding: 10rem 1.5rem 3rem; }
   .site-nav-breadcrumb { padding: 0.35rem 1.2rem; flex-wrap: wrap; }
 }`;
 
@@ -275,12 +291,6 @@ function boomPostNav() {
 function processFile(filePath, lane, isIndex) {
   let html = fs.readFileSync(filePath, "utf8");
 
-  // Skip files already processed (CSS marker present)
-  if (html.includes("inject-blog-nav.js")) {
-    console.log("  (skipped — already processed)", path.relative(ROOT, filePath));
-    return false;
-  }
-
   // 1. Replace <nav>...</nav> — handle both single-line and multi-line
   const navBlock = isIndex
     ? (lane === "matt" ? mattIndexNav() : boomIndexNav())
@@ -289,21 +299,15 @@ function processFile(filePath, lane, isIndex) {
   // Match <nav> ... </nav> (greedy, handles any whitespace/newlines)
   html = html.replace(/<nav>[\s\S]*?<\/nav>/, navBlock);
 
-  // 2. Inject nav CSS before </style>
+  // 2. Replace existing injected blog-nav CSS block or inject it fresh.
   const css = lane === "matt" ? AMBER_CSS : CYAN_CSS;
-  html = html.replace("</style>", css + "\n</style>");
-
-  // 3. For post pages: bump post-hero top padding to clear the taller two-row nav
-  if (!isIndex) {
-    // Desktop: 9rem → 12rem  (also handles "9rem 4rem 4rem" pattern)
-    html = html.replace(/padding\s*:\s*9rem(\s+\S)/g, "padding:12rem$1");
-    // Mobile media query: 7rem → 10rem
-    html = html.replace(/\.post-hero\s*\{padding:7rem/g, ".post-hero{padding:10rem");
-    // Also handle space variants in mobile
-    html = html.replace(/\.post-hero\{padding:7rem/g, ".post-hero{padding:10rem");
+  if (html.includes("inject-blog-nav.js")) {
+    html = html.replace(/\/\* ── Site Nav \(injected by inject-blog-nav\.js\) ───────────────── \*\/[\s\S]*?(?=<\/style>)/, css.trim() + "\n");
+  } else {
+    html = html.replace("</style>", css + "\n</style>");
   }
 
-  // 4. Inject toggleSiteNav() before </body>
+  // 3. Inject toggleSiteNav() before </body>
   if (!html.includes("toggleSiteNav")) {
     html = html.replace("</body>", TOGGLE_JS + "\n</body>");
   }
