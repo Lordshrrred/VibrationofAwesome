@@ -6,7 +6,6 @@
 //
 // Platforms that require server-side checking (block browser CORS):
 // ~ Dev.to
-// ~ Hashnode
 // ~ Any platform may block CORS ~ always use this function for all URL verification
 
 "use strict";

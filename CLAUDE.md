@@ -48,7 +48,7 @@ Each post is generated as standalone HTML and indexed in `static/_data/[lane]-po
 `generate-post.js` calls Claude API with lane-specific system prompts → converts markdown to HTML via `marked` → writes to `static/blog/[lane]/posts/[slug].html` → updates the lane's JSON index.
 
 ### Syndication Engine
-`syndicate.js` reads recent posts, calls `generate-captions.js` for platform-specific copy, calls `select-image.js` (Pexels API) for images, then posts to: Bluesky, Mastodon, Facebook, Instagram, Threads, Pinterest, Dev.to, Hashnode, Tumblr. Results are logged to `static/_data/syndication-log.json`. Uses OAuth 1.0a (Tumblr) and OAuth 2.0 (Meta, Pinterest, Mastodon).
+`syndicate.js` reads recent posts, calls `generate-captions.js` for platform-specific copy, calls `select-image.js` (Pexels API) for images, then posts to: Bluesky, Mastodon, Facebook, Instagram, Threads, Pinterest, Dev.to, Tumblr, and Blogger. Results are logged to `static/_data/syndication-log.json`. Uses OAuth 1.0a (Tumblr) and OAuth 2.0 (Meta, Pinterest, Mastodon).
 
 ### Hugo Site
 Hugo watches `content/posts/*.md` and renders with `layouts/` templates. The `hugo.toml` has `unsafe = true` for goldmark to allow raw HTML in markdown. Deployed to GitHub Pages via `.github/workflows/hugo.yml` on push to main.
