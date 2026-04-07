@@ -135,6 +135,8 @@ nav.site-nav { position: fixed !important; top: 0; left: 0; right: 0; z-index: 2
 .site-nav-main { min-height: 62px !important; padding: 1.3rem 3rem !important; }
 .site-nav-logo,
 .site-nav-links a { line-height: 1 !important; }
+.site-nav--boom .site-nav-main { min-height: 60px !important; padding-top: 1.12rem !important; padding-bottom: 1.12rem !important; }
+.site-nav--boom .site-nav-breadcrumb { transform: translateY(-1px); }
 .site-nav-breadcrumb { gap: 0.45rem !important; min-height: 32px !important; padding: 0.28rem 3rem !important; }
 .site-nav-breadcrumb a,
 .site-nav-breadcrumb .nav-current { font-size: 0.68rem !important; }
@@ -176,7 +178,7 @@ nav.site-nav { position: fixed !important; top: 0; left: 0; right: 0; z-index: 2
 </head>
 <body>
 <div class="stars" id="stars"></div>
-<nav class="site-nav">
+<nav class="site-nav site-nav--matt">
   <div class="site-nav-main">
     <a href="/" class="site-nav-logo">VOA</a>
     <button class="site-nav-hamburger" id="siteNavHamburger" onclick="toggleSiteNav()" aria-label="Menu">

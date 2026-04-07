@@ -149,7 +149,7 @@ function toggleSiteNav() {
 // ── Nav HTML builders ─────────────────────────────────────────────────────────
 
 function mattIndexNav() {
-  return `<nav class="site-nav">
+  return `<nav class="site-nav site-nav--matt">
   <div class="site-nav-main">
     <a href="/" class="site-nav-logo">VOA</a>
     <button class="site-nav-hamburger" id="siteNavHamburger" onclick="toggleSiteNav()" aria-label="Menu">
@@ -177,7 +177,7 @@ function mattIndexNav() {
 }
 
 function mattPostNav() {
-  return `<nav class="site-nav">
+  return `<nav class="site-nav site-nav--matt">
   <div class="site-nav-main">
     <a href="/" class="site-nav-logo">VOA</a>
     <button class="site-nav-hamburger" id="siteNavHamburger" onclick="toggleSiteNav()" aria-label="Menu">
@@ -205,7 +205,7 @@ function mattPostNav() {
 }
 
 function boomIndexNav() {
-  return `<nav class="site-nav">
+  return `<nav class="site-nav site-nav--boom">
   <div class="site-nav-main">
     <a href="/" class="site-nav-logo">VOA</a>
     <button class="site-nav-hamburger" id="siteNavHamburger" onclick="toggleSiteNav()" aria-label="Menu">
@@ -233,7 +233,7 @@ function boomIndexNav() {
 }
 
 function boomPostNav() {
-  return `<nav class="site-nav">
+  return `<nav class="site-nav site-nav--boom">
   <div class="site-nav-main">
     <a href="/" class="site-nav-logo">VOA</a>
     <button class="site-nav-hamburger" id="siteNavHamburger" onclick="toggleSiteNav()" aria-label="Menu">
