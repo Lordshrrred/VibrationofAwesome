@@ -257,12 +257,57 @@
     return match ? match[2] : "";
   }
 
-  function editableBodyHtml(doc) {
+  function splitEditableBody(doc) {
     const bodyContainer = doc.querySelector(".post-body");
-    if (!bodyContainer) return "";
-    let html = bodyContainer.innerHTML;
-    html = html.replace(/^\s*<div class="post-divider"><\/div>\s*/i, "");
-    return html.trim();
+    if (!bodyContainer) {
+      return { editableHtml: "", lockedTailHtml: "" };
+    }
+
+    const working = bodyContainer.cloneNode(true);
+    const divider = working.querySelector(".post-divider");
+    if (divider) {
+      divider.remove();
+    }
+
+    const lockedAnchor =
+      findLockedTailAnchor(working) ||
+      working.querySelector(".voa-photo-rotator, [data-ebook-cta], footer");
+
+    let lockedTailHtml = "";
+    if (lockedAnchor) {
+      let node = lockedAnchor;
+      while (node) {
+        const next = node.nextSibling;
+        lockedTailHtml += node.outerHTML || node.textContent || "";
+        node.remove();
+        node = next;
+      }
+    }
+
+    return {
+      editableHtml: working.innerHTML.trim(),
+      lockedTailHtml: lockedTailHtml.trim(),
+    };
+  }
+
+  function findLockedTailAnchor(bodyContainer) {
+    const firstWidget = bodyContainer.querySelector(".voa-photo-rotator, [data-ebook-cta], footer");
+    if (!firstWidget) return null;
+
+    let anchor = firstWidget;
+    let node = firstWidget.previousSibling;
+    while (node) {
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName === "HR") {
+        anchor = node;
+        break;
+      }
+      if (node.nodeType === Node.ELEMENT_NODE && node.textContent.trim()) {
+        anchor = node;
+      }
+      node = node.previousSibling;
+    }
+
+    return anchor;
   }
 
   function detectArchive(doc) {
@@ -289,6 +334,8 @@
       "index, follow";
     const datePublished = jsonLd.datePublished || "";
 
+    const bodyParts = splitEditableBody(doc);
+
     return {
       path: path,
       slug: slugFromPath(path),
@@ -300,7 +347,8 @@
       noindex: /noindex/i.test(robots),
       date: datePublished,
       heroImage: extractHeroImage(doc),
-      bodyHtml: editableBodyHtml(doc),
+      bodyHtml: bodyParts.editableHtml,
+      lockedTailHtml: bodyParts.lockedTailHtml,
       isArchive: detectArchive(doc),
       originalHtml: content,
     };
@@ -567,6 +615,7 @@
     const postBody = doc.querySelector(".post-body");
     if (postBody) {
       const divider = postBody.querySelector(".post-divider");
+      const lockedTailHtml = state.currentPost.lockedTailHtml || "";
       postBody.innerHTML = "";
       if (divider) {
         postBody.appendChild(divider);
@@ -575,6 +624,13 @@
       wrapper.innerHTML = form.bodyHtml;
       while (wrapper.firstChild) {
         postBody.appendChild(wrapper.firstChild);
+      }
+      if (lockedTailHtml) {
+        const lockedWrapper = doc.createElement("div");
+        lockedWrapper.innerHTML = lockedTailHtml;
+        while (lockedWrapper.firstChild) {
+          postBody.appendChild(lockedWrapper.firstChild);
+        }
       }
     }
 
