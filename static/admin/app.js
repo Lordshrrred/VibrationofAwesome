@@ -26,10 +26,14 @@
     entryHeading: document.getElementById("entry-heading"),
     entryStatus: document.getElementById("entry-status"),
     authStatus: document.getElementById("auth-status"),
+    saveChip: document.getElementById("save-chip"),
+    saveBannerTitle: document.getElementById("save-banner-title"),
+    saveBannerCopy: document.getElementById("save-banner-copy"),
     previewLink: document.getElementById("preview-link"),
     githubLink: document.getElementById("github-link"),
     downloadButton: document.getElementById("download-button"),
     saveButton: document.getElementById("save-button"),
+    saveButtonSticky: document.getElementById("save-button-sticky"),
     resetButton: document.getElementById("reset-button"),
     lockButton: document.getElementById("lock-button"),
     statTotal: document.getElementById("stat-total"),
@@ -319,6 +323,23 @@
     els.entryStatus.style.color = dirty ? "var(--accent-warm)" : "var(--muted)";
   }
 
+  function setSaveControls(options) {
+    const config = options || {};
+    const disabled = !!config.disabled;
+    const label = config.label || "Save Live Edit";
+    const chipText = config.chipText || "Locked";
+    const chipState = config.chipState || "";
+
+    [els.saveButton, els.saveButtonSticky].forEach(function (button) {
+      button.disabled = disabled;
+      button.textContent = label;
+    });
+
+    els.saveChip.textContent = chipText;
+    els.saveChip.classList.toggle("ready", chipState === "ready");
+    els.saveChip.classList.toggle("dirty", chipState === "dirty");
+  }
+
   function autosaveKey() {
     return state.currentPost ? AUTOSAVE_PREFIX + state.currentPost.path : "";
   }
@@ -342,10 +363,30 @@
   function refreshDirtyState() {
     if (!state.currentPost) {
       setStatus("Choose a live Matt post on the left to open its edit view.", false);
+      els.saveBannerTitle.textContent = "No post selected yet";
+      els.saveBannerCopy.textContent = state.token
+        ? "Pick a Matt post from the left to load it, then use Save Live Edit to write changes back to the live blog."
+        : "Unlock the studio, open a Matt post, make your edits, then press Save Live Edit.";
+      setSaveControls({
+        disabled: true,
+        label: "Save Live Edit",
+        chipText: state.token ? "Ready" : "Locked",
+        chipState: state.token ? "ready" : "",
+      });
       return;
     }
     const dirty = currentSnapshot() !== state.initialSnapshot;
-    setStatus(dirty ? "Unsaved changes are waiting." : "All changes in sync with the loaded live post.", dirty);
+    setStatus(dirty ? "Unsaved changes are waiting. Press Save Live Edit when you're ready." : "All changes in sync with the loaded live post.", dirty);
+    els.saveBannerTitle.textContent = dirty ? "Live edits are ready to submit" : "This post matches the current live version";
+    els.saveBannerCopy.textContent = dirty
+      ? "Your updates are local in this browser right now. Press Save Live Edit to push them to GitHub and update the live Matt post source."
+      : "Make changes in the fields or WYSIWYG editor, then press Save Live Edit to update the real file behind this post.";
+    setSaveControls({
+      disabled: !state.token,
+      label: dirty ? "Save Live Edit" : "Save Live Edit",
+      chipText: dirty ? "Unsaved" : "Ready",
+      chipState: dirty ? "dirty" : "ready",
+    });
   }
 
   function updateLinks() {
@@ -401,6 +442,8 @@
 
     if (!state.filteredPosts.length) {
       els.postList.innerHTML = "<div class=\"post-item\"><h3>No Matt posts found</h3><p>Try a different search.</p></div>";
+      els.saveBannerTitle.textContent = "No matching post in this view";
+      els.saveBannerCopy.textContent = "Clear the search or try a different title or slug.";
       return;
     }
 
@@ -550,7 +593,12 @@
     if (!form.path) throw new Error("Post path is missing");
 
     els.saveButton.disabled = true;
+    els.saveButtonSticky.disabled = true;
     els.saveButton.textContent = "Saving...";
+    els.saveButtonSticky.textContent = "Saving...";
+    els.saveChip.textContent = "Saving";
+    els.saveChip.classList.remove("dirty");
+    els.saveChip.classList.add("ready");
 
     try {
       const existing = await githubRequest("/contents/" + form.path + "?ref=" + encodeURIComponent(GITHUB_BRANCH), {}, state.token);
@@ -575,8 +623,7 @@
       els.authStatus.textContent = "Saved to GitHub on branch " + GITHUB_BRANCH + ".";
       setStatus("Saved to GitHub and ready for the next deploy.", false);
     } finally {
-      els.saveButton.disabled = false;
-      els.saveButton.textContent = "Save Changes";
+      refreshDirtyState();
     }
   }
 
@@ -628,11 +675,22 @@
     els.downloadButton.addEventListener("click", downloadCurrentPost);
     els.resetButton.addEventListener("click", resetCurrentPost);
     els.lockButton.addEventListener("click", lockStudio);
-    els.saveButton.addEventListener("click", function () {
+    function handleSave() {
       savePost().catch(function (error) {
         setStatus(error.message || "Save failed.", true);
+        els.saveBannerTitle.textContent = "Save failed";
+        els.saveBannerCopy.textContent = error.message || "GitHub rejected the save. Check your token permissions and try again.";
+        setSaveControls({
+          disabled: !state.token,
+          label: "Save Live Edit",
+          chipText: "Attention",
+          chipState: "dirty",
+        });
       });
-    });
+    }
+
+    els.saveButton.addEventListener("click", handleSave);
+    els.saveButtonSticky.addEventListener("click", handleSave);
 
     [els.title, els.date, els.description, els.thumbnail, els.canonical, els.draft].forEach(function (input) {
       input.addEventListener("input", function () {
@@ -659,6 +717,12 @@
     bindEvents();
 
     const saved = sessionStorage.getItem(SESSION_KEY);
+    setSaveControls({
+      disabled: true,
+      label: "Save Live Edit",
+      chipText: "Locked",
+      chipState: "",
+    });
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -669,6 +733,7 @@
           els.gate.hidden = true;
           els.app.hidden = false;
           els.authStatus.textContent = "GitHub token already active. Save is enabled.";
+          refreshDirtyState();
         }
       } catch (_) {
         sessionStorage.removeItem(SESSION_KEY);
