@@ -65,8 +65,6 @@ jobs:
           PINTEREST_REFRESH_TOKEN:        ${{ secrets.PINTEREST_REFRESH_TOKEN }}
           PINTEREST_BOARD_ID:             ${{ secrets.PINTEREST_BOARD_ID }}
           DEVTO_API_KEY:                  ${{ secrets.DEVTO_API_KEY }}
-          HASHNODE_API_KEY:               ${{ secrets.HASHNODE_API_KEY }}
-          HASHNODE_PUBLICATION_ID:        ${{ secrets.HASHNODE_PUBLICATION_ID }}
           TUMBLR_CONSUMER_KEY:            ${{ secrets.TUMBLR_CONSUMER_KEY }}
           TUMBLR_CONSUMER_SECRET:         ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_TOKEN:                   ${{ secrets.TUMBLR_TOKEN }}
@@ -88,32 +86,7 @@ jobs:
             --keyword "${{ inputs.keyword }}" \
             --topic "${{ inputs.topic }}"
 
-      # ── 5. Fire feeder trigger (explicit workflow step) ────────────────────
-      # The generate script fires this too — this step gives visible confirmation
-      # in the Actions log and acts as a fallback if the script-level call failed.
-      - name: Fire feeder trigger
-        env:
-          VOA_FEEDER_TRIGGER_TOKEN: ${{ secrets.VOA_FEEDER_TRIGGER_TOKEN }}
-        run: |
-          STATUS=$(curl -s -o /tmp/feeder_resp.txt -w "%{http_code}" \
-            -X POST \
-            -H "Authorization: token $VOA_FEEDER_TRIGGER_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"event_type\": \"voa-post-published\",
-              \"client_payload\": {
-                \"voa_post_url\":     \"https://vibrationofawesome.com/blog/boom/posts/\",
-                \"voa_post_title\":   \"${{ inputs.keyword }}\",
-                \"voa_post_keyword\": \"${{ inputs.keyword }}\"
-              }
-            }" \
-            https://api.github.com/repos/Lordshrrred/VOA_GithubPages/dispatches)
-          echo "Feeder trigger HTTP status: $STATUS"
-          cat /tmp/feeder_resp.txt
-          [ "$STATUS" = "204" ] && echo "✓ Feeder triggered successfully" || echo "✗ Feeder trigger returned $STATUS"
-
-      # ── 6. Commit generated post back to repo ─────────────────────────────
+      # ── 5. Commit generated post back to repo ─────────────────────────────
       - name: Commit generated post
         run: |
           git config user.name  "github-actions[bot]"

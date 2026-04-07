@@ -86,8 +86,6 @@ jobs:
           PINTEREST_REFRESH_TOKEN:     ${{ secrets.PINTEREST_REFRESH_TOKEN }}
           PINTEREST_BOARD_ID:          ${{ secrets.PINTEREST_BOARD_ID }}
           DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
-          HASHNODE_API_KEY:            ${{ secrets.HASHNODE_API_KEY }}
-          HASHNODE_PUBLICATION_ID:     ${{ secrets.HASHNODE_PUBLICATION_ID }}
           TUMBLR_CONSUMER_KEY:         ${{ secrets.TUMBLR_CONSUMER_KEY }}
           TUMBLR_CONSUMER_SECRET:      ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_TOKEN:                ${{ secrets.TUMBLR_TOKEN }}

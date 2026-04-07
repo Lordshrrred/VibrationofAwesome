@@ -499,7 +499,7 @@ function injectNasaImages(html, images) {
  * In CI (GitHub Actions) the token is injected via secrets; locally via .env.
  * Wrapped in try/catch — a feeder failure never breaks the main publish.
  */
-async function triggerFeeder(postUrl, postTitle, keyword) {
+async function triggerFeeder(postUrl, postTitle, keyword, sourceMeta = {}) {
   const token = process.env.VOA_FEEDER_TRIGGER_TOKEN;
   if (!token) {
     console.log("  [feeder] VOA_FEEDER_TRIGGER_TOKEN not set — skipping feeder trigger");
@@ -521,6 +521,8 @@ async function triggerFeeder(postUrl, postTitle, keyword) {
             voa_post_url:     postUrl,
             voa_post_title:   postTitle,
             voa_post_keyword: keyword || "",
+            voa_post_slug:    sourceMeta.slug || "",
+            voa_post_lane:    sourceMeta.lane || "",
           },
         }),
       }
@@ -549,7 +551,8 @@ async function main() {
     await triggerFeeder(
       "https://vibrationofawesome.com/blog/boom/posts/test-post",
       "TEST ~ Do Not Publish",
-      "test keyword do not publish"
+      "test keyword do not publish",
+      { slug: "test-post", lane: "boom" }
     );
     console.log("\n[--test-feeder-only] Done. No files written, no posts created.");
     return;
@@ -714,7 +717,7 @@ async function main() {
     // Fire feeder trigger for every successfully published Boom post
     if (lane === "boom") {
       const fullPostUrl = "https://vibrationofawesome.com/blog/boom/posts/" + slug + ".html";
-      await triggerFeeder(fullPostUrl, postTitle, argv.keyword);
+      await triggerFeeder(fullPostUrl, postTitle, argv.keyword, { slug, lane });
     }
   } else {
     console.log("\n[DRAFT] Not indexed, not syndicated, feeder not triggered.");

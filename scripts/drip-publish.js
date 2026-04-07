@@ -190,6 +190,8 @@ async function main() {
                   voa_post_url:     postUrl,
                   voa_post_title:   item.title,
                   voa_post_keyword: item.keyword || "",
+                  voa_post_slug:    item.slug,
+                  voa_post_lane:    "boom",
                 },
               }),
             }
