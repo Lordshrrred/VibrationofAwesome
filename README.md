@@ -11,7 +11,8 @@ Roots in the Earth, Crown in the Stars. The Future is Ours.
 ```
 /                       → Hugo homepage (layouts/index.html)
 /posts/                 → Hugo-rendered blog posts from content/posts/
-/admin/                 → Decap content editor for existing Hugo posts
+/admin/                 → VOA Post Studio (custom post editor)
+/admin/decap/           → Branded legacy Decap fallback
 /blog/                  → Static dual-blog hub (legacy/generated HTML lane system)
 /blog/matt/             → From the Forest Temple — Matt EarthStar's personal lane
 /blog/boom/             → Boom Frequency — Matty BoomBoom AI SEO lane
@@ -119,11 +120,14 @@ npx decap-server
 
 ## Post Editing Dashboard
 
-`/admin/` is now configured against `content/posts/`, which means it edits the same markdown files Hugo renders for `/posts/`.
+`/admin/` is now a custom GUI called VOA Post Studio. It is the primary editing surface for `content/posts/`, defaults to a WYSIWYG editor, and is designed to save through Netlify Functions into GitHub.
 
-- Local editing works with `hugo server -D` plus `npx decap-server`.
-- Hosted editing still needs an auth-capable home for Decap, typically Netlify or another OAuth-enabled backend.
-- The old pre-Hugo Netlify CMS config was removed because it pointed at dead folders like `_posts` and `_art`.
+- `/admin/` is the custom branded editor.
+- `/admin/decap/` keeps a branded Decap fallback available.
+- The old raw Decap-at-root experience is no longer the primary workflow.
+- For fully hosted saves, Netlify needs these environment variables:
+  `DASHBOARD_PASSWORD`, `GITHUB_TOKEN`, `GITHUB_REPO`, and `GITHUB_BRANCH`.
+- Local legacy Decap editing still works with `hugo server -D` plus `npx decap-server`.
 
 ---
 

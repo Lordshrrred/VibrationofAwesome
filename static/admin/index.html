@@ -1,12 +1,175 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Post Editor | Vibration of Awesome</title>
-  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOA Post Studio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
+  <link rel="stylesheet" href="/admin/app.css">
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <canvas id="stars-canvas" aria-hidden="true"></canvas>
+
+  <div class="studio-shell">
+    <section id="gate" class="gate-screen">
+      <div class="gate-card">
+        <p class="eyebrow">Vibration of Awesome</p>
+        <h1>Post Studio</h1>
+        <p class="gate-copy">A branded writing dashboard for Hugo posts, with GitHub token saves available now and a legacy Decap fallback tucked out of the way.</p>
+        <form id="gate-form" class="gate-form">
+          <label class="mode-wrap">
+            <span>Access mode</span>
+            <select id="gate-mode">
+              <option value="github">GitHub token</option>
+              <option value="netlify">Netlify password</option>
+            </select>
+          </label>
+          <input id="gate-password" type="password" placeholder="GitHub personal access token" autocomplete="current-password">
+          <button type="submit">Unlock Studio</button>
+        </form>
+        <p class="gate-hint">Use a GitHub token with repo access if Netlify is unavailable.</p>
+        <p id="gate-error" class="gate-error" hidden>That credential did not unlock the editor.</p>
+        <div class="gate-actions">
+          <a href="/dashboard/">Open Ops Dashboard</a>
+          <a href="/admin/decap/">Legacy Decap</a>
+        </div>
+      </div>
+    </section>
+
+    <div id="app" class="app-shell" hidden>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Editorial System</p>
+          <h1 class="topbar-title">VOA Post Studio</h1>
+          <p class="topbar-subtitle">Custom editor for Hugo markdown with WYSIWYG writing, live metadata controls, and GitHub-backed saves.</p>
+        </div>
+        <div class="topbar-actions">
+          <a class="ghost-link" href="/dashboard/">Syndication</a>
+          <a class="ghost-link" href="/dashboard/analytics.html">Analytics</a>
+          <a class="ghost-link" href="/admin/decap/">Legacy Decap</a>
+          <button id="lock-button" class="ghost-button" type="button">Lock</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="sidebar">
+          <div class="sidebar-section">
+            <div class="sidebar-header">
+              <div>
+                <p class="sidebar-label">Library</p>
+                <h2>Posts</h2>
+              </div>
+              <button id="new-post-button" class="small-button" type="button">New</button>
+            </div>
+            <label class="search-wrap">
+              <span>Search</span>
+              <input id="post-search" type="search" placeholder="Find a title or slug">
+            </label>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span class="stat-label">Posts</span>
+                <strong id="stat-total">0</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Drafts</span>
+                <strong id="stat-drafts">0</strong>
+              </div>
+            </div>
+            <div id="post-list" class="post-list"></div>
+          </div>
+        </aside>
+
+        <section class="editor-panel">
+          <div class="meta-bar">
+            <div>
+              <p class="sidebar-label">Current Entry</p>
+              <h2 id="entry-heading">Select a post</h2>
+              <p id="entry-status" class="entry-status">Locked in and ready.</p>
+              <p id="auth-status" class="entry-status">Waiting for auth.</p>
+            </div>
+            <div class="meta-actions">
+              <a id="preview-link" class="ghost-link is-disabled" href="#" target="_blank" rel="noopener">Open Preview</a>
+              <a id="github-link" class="ghost-link is-disabled" href="#" target="_blank" rel="noopener">GitHub File</a>
+              <button id="download-button" class="ghost-button" type="button">Download</button>
+              <button id="duplicate-button" class="ghost-button" type="button">Duplicate</button>
+              <button id="reset-button" class="ghost-button" type="button">Reset</button>
+              <button id="save-button" class="primary-button" type="button">Save Changes</button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              <span>Title</span>
+              <input id="field-title" type="text" placeholder="Post title">
+            </label>
+            <label>
+              <span>Slug</span>
+              <input id="field-slug" type="text" placeholder="post-slug">
+            </label>
+            <label>
+              <span>Date</span>
+              <input id="field-date" type="datetime-local">
+            </label>
+            <label>
+              <span>Featured Image</span>
+              <input id="field-thumbnail" type="text" placeholder="/images/uploads/example.jpg">
+            </label>
+            <label class="full-width">
+              <span>Description</span>
+              <textarea id="field-description" rows="2" placeholder="Short summary for SEO and cards"></textarea>
+            </label>
+            <label>
+              <span>Canonical</span>
+              <input id="field-canonical" type="url" placeholder="https://example.com/original-post">
+            </label>
+            <label>
+              <span>Tags</span>
+              <input id="field-tags" type="text" placeholder="consciousness, unity, humanity">
+            </label>
+            <label class="checkbox-field">
+              <input id="field-draft" type="checkbox">
+              <span>Keep as draft</span>
+            </label>
+          </div>
+
+          <div class="editor-wrap">
+            <div class="editor-header">
+              <div>
+                <p class="sidebar-label">Body</p>
+                <h3>WYSIWYG Editor</h3>
+              </div>
+              <p class="editor-note">Rich text by default, markdown underneath, Hugo front matter handled for you.</p>
+            </div>
+            <div id="editor"></div>
+          </div>
+
+          <section class="notes-panel">
+            <div class="note-card">
+              <p class="sidebar-label">Primary Workflow</p>
+              <h3>Custom Admin</h3>
+              <p>`/admin/` is now the main editing surface, not raw Decap.</p>
+            </div>
+            <div class="note-card">
+              <p class="sidebar-label">Legacy Fallback</p>
+              <h3>Decap Still Available</h3>
+              <p>If anything feels off, the older Decap workflow still lives at <a href="/admin/decap/">/admin/decap/</a>.</p>
+            </div>
+            <div class="note-card">
+              <p class="sidebar-label">Persistence</p>
+              <h3>GitHub-Backed Saves</h3>
+              <p>Saves are designed to commit directly to the repo through Netlify Functions using a GitHub token.</p>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+  <script src="/admin/app.js"></script>
 </body>
 </html>
