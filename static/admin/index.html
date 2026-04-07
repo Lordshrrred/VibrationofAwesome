@@ -19,7 +19,7 @@
       <div class="gate-card">
         <p class="eyebrow">Vibration of Awesome</p>
         <h1>Post Studio</h1>
-        <p class="gate-copy">A branded writing dashboard for Hugo posts. Click a post, open its editor, and update content and post settings in one place.</p>
+        <p class="gate-copy">A branded writing dashboard for the live Forest Temple blog. Click a Matt post, open its editor, and tweak the real page that is already on the site.</p>
         <form id="gate-form" class="gate-form">
           <input id="gate-password" type="password" placeholder="GitHub personal access token" autocomplete="current-password">
           <button type="submit">Unlock Studio</button>
@@ -37,9 +37,10 @@
         <div>
           <p class="eyebrow">Editorial System</p>
           <h1 class="topbar-title">VOA Post Studio</h1>
-          <p class="topbar-subtitle">WordPress-style post management for Hugo markdown with a left-side library, a full edit surface, and GitHub-backed saves.</p>
+          <p class="topbar-subtitle">WordPress-style post management for the live Matt blog with a left-side post library, edit surface, and GitHub-backed saves.</p>
         </div>
         <div class="topbar-actions">
+          <a class="ghost-link" href="/blog/matt/" target="_blank" rel="noopener">Forest Temple</a>
           <a class="ghost-link" href="/dashboard/">Syndication</a>
           <a class="ghost-link" href="/dashboard/analytics.html">Analytics</a>
           <button id="lock-button" class="ghost-button" type="button">Lock</button>
@@ -52,9 +53,8 @@
             <div class="sidebar-header">
               <div>
                 <p class="sidebar-label">Post Manager</p>
-                <h2>Existing Posts</h2>
+                <h2>Forest Temple Posts</h2>
               </div>
-              <button id="new-post-button" class="small-button" type="button">New</button>
             </div>
             <label class="search-wrap">
               <span>Search</span>
@@ -62,11 +62,11 @@
             </label>
             <div class="stats-grid">
               <div class="stat-card">
-                <span class="stat-label">Posts</span>
+                <span class="stat-label">Live Posts</span>
                 <strong id="stat-total">0</strong>
               </div>
               <div class="stat-card">
-                <span class="stat-label">Drafts</span>
+                <span class="stat-label">Archive Posts</span>
                 <strong id="stat-drafts">0</strong>
               </div>
             </div>
@@ -78,15 +78,14 @@
           <div class="meta-bar">
             <div>
               <p class="sidebar-label">Current Entry</p>
-              <h2 id="entry-heading">Select a post</h2>
-              <p id="entry-status" class="entry-status">Click a post on the left to open its edit view.</p>
+              <h2 id="entry-heading">Select a Forest Temple post</h2>
+              <p id="entry-status" class="entry-status">Choose a live Matt post on the left and its edit view will load here.</p>
               <p id="auth-status" class="entry-status">Waiting for GitHub auth.</p>
             </div>
             <div class="meta-actions">
               <a id="preview-link" class="ghost-link is-disabled" href="#" target="_blank" rel="noopener">Open Preview</a>
               <a id="github-link" class="ghost-link is-disabled" href="#" target="_blank" rel="noopener">GitHub File</a>
               <button id="download-button" class="ghost-button" type="button">Download</button>
-              <button id="duplicate-button" class="ghost-button" type="button">Duplicate</button>
               <button id="reset-button" class="ghost-button" type="button">Reset</button>
               <button id="save-button" class="primary-button" type="button">Save Changes</button>
             </div>
@@ -98,15 +97,15 @@
               <input id="field-title" type="text" placeholder="Post title">
             </label>
             <label>
-              <span>Slug</span>
-              <input id="field-slug" type="text" placeholder="post-slug">
+              <span>Live URL</span>
+              <input id="field-slug" type="text" placeholder="/blog/matt/posts/example/" readonly>
             </label>
             <label>
               <span>Date</span>
               <input id="field-date" type="datetime-local">
             </label>
             <label>
-              <span>Featured Image</span>
+              <span>Hero Image</span>
               <input id="field-thumbnail" type="text" placeholder="/images/uploads/example.jpg">
             </label>
             <label class="full-width">
@@ -118,43 +117,87 @@
               <input id="field-canonical" type="url" placeholder="https://example.com/original-post">
             </label>
             <label>
-              <span>Tags</span>
-              <input id="field-tags" type="text" placeholder="consciousness, unity, humanity">
+              <span>Indexing</span>
+              <input id="field-tags" type="text" placeholder="index, follow or noindex, follow" readonly>
             </label>
             <label class="checkbox-field">
               <input id="field-draft" type="checkbox">
-              <span>Keep as draft</span>
+              <span>Hide from search engines (`noindex`)</span>
+            </label>
+            <label class="full-width">
+              <span>Post Path</span>
+              <input id="field-path" type="text" placeholder="static/blog/matt/posts/example/index.html" readonly>
+            </label>
+            <label class="full-width">
+              <span>Preview URL</span>
+              <input id="field-preview" type="text" placeholder="/blog/matt/posts/example/" readonly>
+            </label>
+            <label class="full-width">
+              <span>Quick Notes</span>
+              <textarea id="field-notes" rows="2" readonly placeholder="This editor is focused on safe tweaks to existing live Matt posts."></textarea>
             </label>
           </div>
 
-          <div class="editor-wrap">
+          <div class="preview-card">
             <div class="editor-header">
               <div>
-                <p class="sidebar-label">Body</p>
-                <h3>WYSIWYG Editor</h3>
+                <p class="sidebar-label">Snapshot</p>
+                <h3>Post Overview</h3>
               </div>
-              <p class="editor-note">Rich text by default, markdown underneath, Hugo front matter handled for you.</p>
+              <p class="editor-note">A quick visual summary of the live Matt post you are editing.</p>
             </div>
-            <div id="editor"></div>
+            <div class="snapshot-grid">
+              <div class="snapshot-block">
+                <span class="snapshot-label">Title</span>
+                <strong id="snapshot-title">None selected</strong>
+              </div>
+              <div class="snapshot-block">
+                <span class="snapshot-label">Status</span>
+                <strong id="snapshot-status">Waiting</strong>
+              </div>
+              <div class="snapshot-block full">
+                <span class="snapshot-label">Description</span>
+                <p id="snapshot-description">Pick a post from the list to load its live metadata.</p>
+              </div>
+            </div>
           </div>
 
-          <section class="notes-panel">
-            <div class="note-card">
-              <p class="sidebar-label">Editing Flow</p>
-              <h3>Click, Open, Edit</h3>
-              <p>Select any existing post from the library and the full edit surface opens on the right with title, slug, date, SEO, and body controls.</p>
-            </div>
-            <div class="note-card">
-              <p class="sidebar-label">Appearance</p>
-              <h3>Content + Meta</h3>
-              <p>Change the body, draft state, tags, featured image path, description, canonical link, and preview target from one place.</p>
-            </div>
-            <div class="note-card">
-              <p class="sidebar-label">Auth Reality</p>
-              <h3>Backend Needed for Password-Only</h3>
-              <p>GitHub token saves work now. A password-only editor can come later, but only once you connect a secure backend like Netlify, Vercel, Cloudflare, or a GitHub App service.</p>
-            </div>
-          </section>
+          <div class="editor-sections">
+            <details class="editor-section" open>
+              <summary>Content Editor</summary>
+              <div class="editor-wrap">
+                <div class="editor-header">
+                  <div>
+                    <p class="sidebar-label">Body</p>
+                    <h3>WYSIWYG Editor</h3>
+                  </div>
+                  <p class="editor-note">This edits the live HTML content block for the selected Matt post.</p>
+                </div>
+                <div id="editor"></div>
+              </div>
+            </details>
+
+            <details class="editor-section" open>
+              <summary>Publish and SEO</summary>
+              <section class="notes-panel">
+                <div class="note-card">
+                  <p class="sidebar-label">Editing Flow</p>
+                  <h3>Live Matt Posts Only</h3>
+                  <p>The library now targets the actual Forest Temple files that are already live on the website, not the Boom lane and not the separate Hugo markdown posts.</p>
+                </div>
+                <div class="note-card">
+                  <p class="sidebar-label">Appearance</p>
+                  <h3>Metadata + Body</h3>
+                  <p>Update title, description, hero image, canonical URL, indexing state, and the main body content from a single edit view.</p>
+                </div>
+                <div class="note-card">
+                  <p class="sidebar-label">Auth Reality</p>
+                  <h3>Backend Needed for Password-Only</h3>
+                  <p>GitHub token saves work now. A password-only editor can come later, but only once you connect a secure backend like Netlify, Vercel, Cloudflare, or a GitHub App service.</p>
+                </div>
+              </section>
+            </details>
+          </div>
         </section>
       </main>
     </div>
