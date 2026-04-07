@@ -43,8 +43,19 @@
     .hero-eyebrow { font-size:0.75rem; font-weight:700; letter-spacing:0.25em; color:#4a9e96; text-transform:uppercase; margin-bottom:1rem; }
     .hero h1 { font-family:"Cinzel Decorative",serif; font-size:clamp(2rem,5vw,3.5rem); color:#00e5cc; line-height:1.15; margin-bottom:1.2rem; text-shadow:0 0 40px rgba(0,229,204,0.3); }
     .hero p { font-size:1.1rem; color:rgba(208,255,248,0.7); max-width:560px; margin:0 auto; line-height:1.7; }
+    .quickstart { margin:0 auto 3rem; max-width:900px; display:grid; grid-template-columns:1.2fr 0.8fr; gap:1.25rem; }
+    .quickstart-card { border-radius:14px; padding:1.4rem 1.5rem; border:1px solid rgba(0,229,204,0.14); background:linear-gradient(135deg,rgba(3,18,18,0.95),rgba(2,10,10,0.78)); box-shadow:0 8px 34px rgba(0,0,0,0.18); }
+    .quickstart-card h2 { font-family:"Cinzel Decorative",serif; font-size:1.1rem; line-height:1.25; color:#d0fff8; margin-bottom:0.7rem; }
+    .quickstart-card p { font-size:0.96rem; line-height:1.65; color:rgba(208,255,248,0.7); margin-bottom:1rem; }
+    .quickstart-label { font-size:0.66rem; letter-spacing:0.22em; text-transform:uppercase; color:#4a9e96; font-weight:700; margin-bottom:0.7rem; }
+    .quickstart-actions { display:flex; flex-wrap:wrap; gap:0.75rem; }
+    .quickstart-link { display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:0.7rem 1rem; border-radius:999px; text-decoration:none; font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; transition:transform 0.2s,opacity 0.2s,box-shadow 0.2s; }
+    .quickstart-link:hover { transform:translateY(-1px); }
+    .quickstart-primary { color:#041110; background:#22c06a; box-shadow:0 0 22px rgba(34,192,106,0.18); }
+    .quickstart-secondary { color:#00e5ff; border:1px solid rgba(0,229,255,0.34); background:rgba(0,229,255,0.07); }
+    .quickstart-tertiary { color:#ffb300; border:1px solid rgba(255,179,0,0.34); background:rgba(255,179,0,0.07); }
     .cards { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
-    @media (max-width:700px) { .cards { grid-template-columns:1fr; } nav .lane-links { display:none; } }
+    @media (max-width:700px) { .quickstart { grid-template-columns:1fr; } .cards { grid-template-columns:1fr; } nav .lane-links { display:none; } }
     .card { border-radius:12px; padding:2rem; display:flex; flex-direction:column; gap:1.2rem; position:relative; overflow:hidden; transition:transform 0.3s,box-shadow 0.3s; cursor:pointer; }
     .card:hover { transform:translateY(-4px); }
     .card-matt { background:linear-gradient(135deg,rgba(26,61,43,0.6) 0%,rgba(2,10,10,0.9) 100%); border:1px solid rgba(255,179,0,0.3); box-shadow:0 4px 32px rgba(255,179,0,0.06); }
@@ -89,6 +100,26 @@
       <h1>The Transmissions</h1>
       <p>Two voices. One signal. Pick your frequency and tune in.</p>
     </div>
+    <section class="quickstart" aria-label="Start here">
+      <div class="quickstart-card">
+        <div class="quickstart-label">Start Here</div>
+        <h2>New to the whole thing?</h2>
+        <p>The cleanest path is simple: read the philosophy first, then go deeper into the system when it clicks. The blog is the living signal around it.</p>
+        <div class="quickstart-actions">
+          <a href="/field-guide/" class="quickstart-link quickstart-primary">Download Free Guide</a>
+          <a href="/user-manual/" class="quickstart-link quickstart-secondary">See Volume Two</a>
+        </div>
+      </div>
+      <div class="quickstart-card">
+        <div class="quickstart-label">Choose Your Entry</div>
+        <h2>Personal depth or practical signal.</h2>
+        <p>Forest Temple is the inner architecture. Boom Frequency is the creator-tech layer. Both point back to the same operating system.</p>
+        <div class="quickstart-actions">
+          <a href="/blog/matt/" class="quickstart-link quickstart-tertiary">Forest Temple</a>
+          <a href="/blog/boom/" class="quickstart-link quickstart-secondary">Boom Frequency</a>
+        </div>
+      </div>
+    </section>
     <div class="cards">
       <div class="card card-matt" onclick="location.href='/blog/matt/'" role="link" tabindex="0" onkeydown="if(event.key==='Enter')location.href='/blog/matt/'">
         <div class="card-icon">&#127807;</div>
