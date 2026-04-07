@@ -463,7 +463,7 @@
 
   function updateLinks() {
     const preview = els.preview.value.trim();
-    els.previewLink.href = preview || "#";
+    els.previewLink.href = preview ? "https://vibrationofawesome.com" + preview : "#";
     els.previewLink.classList.toggle("is-disabled", !preview);
 
     const githubPath = els.path.value.trim();
@@ -526,7 +526,7 @@
           "<h3>" + escapeHtml(post.title) + "</h3>" +
           "<p>" + escapeHtml(post.description || post.previewUrl) + "</p>" +
           "<div class=\"post-item-meta\">" +
-            "<span class=\"pill\">" + escapeHtml(post.previewUrl) + "</span>" +
+            "<a class=\"pill post-link\" href=\"" + escapeHtml("https://vibrationofawesome.com" + post.previewUrl) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapeHtml(post.previewUrl) + "</a>" +
             "<span class=\"pill\">" + escapeHtml(formatDate(post.date)) + "</span>" +
             (post.isArchive ? "<span class=\"pill draft\">Archive</span>" : "<span class=\"pill\">Live</span>") +
           "</div>" +
@@ -542,6 +542,12 @@
         if (match) {
           fillForm(match);
         }
+      });
+    });
+
+    Array.from(document.querySelectorAll(".post-link")).forEach(function (node) {
+      node.addEventListener("click", function (event) {
+        event.stopPropagation();
       });
     });
   }

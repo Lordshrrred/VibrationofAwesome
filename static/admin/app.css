@@ -388,6 +388,19 @@ textarea {
   font-size: 0.72rem;
 }
 
+.post-link {
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.post-link:hover,
+.post-link:focus-visible {
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(0, 229, 204, 0.08);
+  outline: none;
+}
+
 .pill.draft {
   border-color: rgba(212, 195, 122, 0.3);
   color: var(--accent-warm);
