@@ -10,6 +10,7 @@
     "image": "node scripts/select-image.js",
     "research": "node scripts/seo-research.js",
     "sitemap": "node scripts/update-sitemap.js",
+    "redirects": "node scripts/generate-legacy-redirects.js",
     "fb-token": "node scripts/get-facebook-token.js",
     "pinterest-token": "node scripts/get-pinterest-token.js"
   },

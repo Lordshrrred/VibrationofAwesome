@@ -1,0 +1,109 @@
+#!/usr/bin/env node
+/**
+ * generate-legacy-redirects.js
+ *
+ * Creates compatibility redirects for:
+ * - archive Matt posts that now live at directory URLs but are still linked as .html
+ * - historical root-level archive canonicals from the original site
+ * - the old /free-ebook/ CTA path that now lives at /field-guide/
+ */
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const ROOT = path.resolve(__dirname, "..");
+const STATIC_ROOT = path.join(ROOT, "static");
+const SITE_ORIGIN = "https://vibrationofawesome.com";
+const MATT_POSTS_FILE = path.join(STATIC_ROOT, "_data", "matt-posts.json");
+
+function ensureDir(filePath) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+}
+
+function writeRedirect(filePath, targetPath, title) {
+  const destination = targetPath.startsWith("http")
+    ? targetPath
+    : `${SITE_ORIGIN}${targetPath.startsWith("/") ? targetPath : `/${targetPath}`}`;
+  const html = [
+    "<!DOCTYPE html>",
+    '<html lang="en">',
+    "<head>",
+    '  <meta charset="utf-8">',
+    `  <title>${title}</title>`,
+    `  <link rel="canonical" href="${destination}">`,
+    '  <meta name="robots" content="noindex, follow">',
+    '  <meta http-equiv="refresh" content="0; url=' + destination + '">',
+    '  <meta name="viewport" content="width=device-width, initial-scale=1">',
+    "</head>",
+    "<body>",
+    `  <p>Redirecting to <a href="${destination}">${destination}</a>...</p>`,
+    `  <script>window.location.replace(${JSON.stringify(destination)});</script>`,
+    "</body>",
+    "</html>",
+    "",
+  ].join("\n");
+  ensureDir(filePath);
+  fs.writeFileSync(filePath, html, "utf8");
+}
+
+function parseArchiveCanonical(slug) {
+  const archiveFile = path.join(STATIC_ROOT, "blog", "matt", "posts", slug, "index.html");
+  if (!fs.existsSync(archiveFile)) return null;
+  const html = fs.readFileSync(archiveFile, "utf8");
+  const match = html.match(/<link rel="canonical" href="([^"]+)"/i);
+  if (!match) return null;
+  try {
+    const url = new URL(match[1]);
+    return url.pathname;
+  } catch {
+    return null;
+  }
+}
+
+function main() {
+  const mattPosts = JSON.parse(fs.readFileSync(MATT_POSTS_FILE, "utf8"));
+  let written = 0;
+
+  for (const post of mattPosts) {
+    if (!post?.slug || !post?.url) continue;
+
+    if (post.url.endsWith(".html")) {
+      const slashVariant = post.url.replace(/\.html$/, "/");
+      const slashFile = path.join(STATIC_ROOT, slashVariant.replace(/^\/+/, ""), "index.html");
+      writeRedirect(slashFile, post.url, `${post.title} | Redirect`);
+      written += 1;
+    }
+
+    if (!post.isArchive) continue;
+
+    const compatibilityHtml = path.join(
+      STATIC_ROOT,
+      "blog",
+      "matt",
+      "posts",
+      `${post.slug}.html`
+    );
+    writeRedirect(compatibilityHtml, post.url, `${post.title} | Redirect`);
+    written += 1;
+
+    const legacyPath = parseArchiveCanonical(post.slug);
+    if (legacyPath && legacyPath !== "/") {
+      const legacyFile = path.join(STATIC_ROOT, legacyPath.replace(/^\/+/, ""), "index.html");
+      writeRedirect(legacyFile, post.url, `${post.title} | Redirect`);
+      written += 1;
+    }
+  }
+
+  writeRedirect(
+    path.join(STATIC_ROOT, "free-ebook", "index.html"),
+    "/field-guide/",
+    "Free Ebook | Redirect"
+  );
+  written += 1;
+
+  console.log(`Generated ${written} legacy redirect files.`);
+}
+
+main();
