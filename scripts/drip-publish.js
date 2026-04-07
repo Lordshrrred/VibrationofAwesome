@@ -50,6 +50,18 @@ function extractExcerptFromHtml(html) {
   return match[1].replace(/<[^>]+>/g, "").trim().slice(0, 150);
 }
 
+function extractSourceTextFromHtml(html) {
+  return String(html || "")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .slice(0, 700)
+    .join(" ");
+}
+
 async function main() {
   // ── Read queue ──────────────────────────────────────────────────────────
   if (!fs.existsSync(QUEUE_FILE)) {
@@ -174,6 +186,8 @@ async function main() {
     } else {
       for (const item of justPublished) {
         const postUrl = "https://vibrationofawesome.com/blog/boom/posts/" + item.slug + ".html";
+        const postHtmlPath = path.join(POSTS_DIR, item.slug + ".html");
+        const postHtml = fs.existsSync(postHtmlPath) ? fs.readFileSync(postHtmlPath, "utf8") : "";
         try {
           const resp = await fetch(
             "https://api.github.com/repos/Lordshrrred/VOA_Feeder/dispatches",
@@ -192,6 +206,10 @@ async function main() {
                   voa_post_keyword: item.keyword || "",
                   voa_post_slug:    item.slug,
                   voa_post_lane:    "boom",
+                  voa_post_excerpt: extractExcerptFromHtml(postHtml),
+                  voa_post_tags:    Array.isArray(item.tags) ? item.tags.join(", ") : "",
+                  voa_post_category: item.topic || item.category || "",
+                  voa_post_source_text: extractSourceTextFromHtml(postHtml),
                 },
               }),
             }

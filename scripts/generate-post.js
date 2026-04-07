@@ -163,6 +163,10 @@ function extractExcerpt(markdown) {
   return "";
 }
 
+function firstWords(text, count) {
+  return String(text || "").split(/\s+/).filter(Boolean).slice(0, count).join(" ");
+}
+
 /** Strip META: line from BoomBot output. Returns { metaDescription, cleanMarkdown } */
 function stripMeta(markdown) {
   const lines = markdown.split("\n");
@@ -523,6 +527,10 @@ async function triggerFeeder(postUrl, postTitle, keyword, sourceMeta = {}) {
             voa_post_keyword: keyword || "",
             voa_post_slug:    sourceMeta.slug || "",
             voa_post_lane:    sourceMeta.lane || "",
+            voa_post_excerpt: sourceMeta.excerpt || "",
+            voa_post_tags:    Array.isArray(sourceMeta.tags) ? sourceMeta.tags.join(", ") : (sourceMeta.tags || ""),
+            voa_post_category: sourceMeta.category || "",
+            voa_post_source_text: sourceMeta.sourceText || "",
           },
         }),
       }
@@ -717,7 +725,14 @@ async function main() {
     // Fire feeder trigger for every successfully published Boom post
     if (lane === "boom") {
       const fullPostUrl = "https://vibrationofawesome.com/blog/boom/posts/" + slug + ".html";
-      await triggerFeeder(fullPostUrl, postTitle, argv.keyword, { slug, lane });
+      await triggerFeeder(fullPostUrl, postTitle, argv.keyword, {
+        slug,
+        lane,
+        excerpt: extractExcerpt(bodyMarkdown),
+        tags: [],
+        category: argv.topic || "",
+        sourceText: firstWords(bodyMarkdown, 700),
+      });
     }
   } else {
     console.log("\n[DRAFT] Not indexed, not syndicated, feeder not triggered.");
