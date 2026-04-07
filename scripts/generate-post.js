@@ -481,7 +481,7 @@ function injectNasaImages(html, images) {
 
   // Build image HTML blocks
   function imgBlock(img) {
-    return '</p>\n<div class="nasa-img-wrap">'
+    return '<div class="nasa-img-wrap">'
       + '<img src="' + img.url + '" alt="' + (img.title || "NASA astronomy image") + '" loading="lazy">'
       + '</div>';
   }

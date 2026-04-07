@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * get-pinterest-token.js ~ Fresh Pinterest OAuth with correct scopes
  *

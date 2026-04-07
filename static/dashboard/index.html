@@ -685,6 +685,8 @@ const RESULTS_URL   = "/_data/syndication-results.json";
 const DRIP_URL      = "/_data/drip-queue.json";
 const BOOM_URL      = "/_data/boom-posts.json";
 const MATT_URL      = "/_data/matt-posts.json";
+const FEEDER_POSTS_URL = "https://lordshrrred.github.io/VOA_Feeder/blog/posts.json";
+const FEEDER_SUFFIXES = ["-signal", "-shift", "-insight", "-guide"];
 const VERIFY_CACHE  = "voa_url_verify_cache_v2"; // v2: busts old bad cache from netlify usage_exceeded errors
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours — these are stable post URLs
 
@@ -741,13 +743,15 @@ document.getElementById("lock-btn").addEventListener("click", () => {
 
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const [logData, resultsData, dripData, boomPosts, mattPosts] = await Promise.all([
+  const [logData, resultsDataRaw, dripData, boomPosts, mattPosts, feederPosts] = await Promise.all([
     fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
     fetch(RESULTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(DRIP_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(BOOM_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(MATT_URL).then(r => r.ok ? r.json() : []).catch(() => []),
+    fetch(FEEDER_POSTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
   ]);
+  const resultsData = mergeFeederStatuses(resultsDataRaw, feederPosts);
 
   // Deduplicate log entries by slug (keep most recent per slug)
   const rawEntries = Array.isArray(logData.entries) ? logData.entries : [];
@@ -776,6 +780,42 @@ async function loadDashboard() {
   renderQueue(entries, allPosts, dripData);
   renderTrigger(allPosts);
   renderFeederSection(resultsData, dripData, boomPosts, mattPosts);
+}
+
+function feederSourceSlug(feederSlug) {
+  const slug = String(feederSlug || "");
+  for (const suffix of FEEDER_SUFFIXES) {
+    if (slug.endsWith(suffix)) return slug.slice(0, -suffix.length);
+  }
+  return null;
+}
+
+function mergeFeederStatuses(resultsData, feederPosts) {
+  const feederBySourceSlug = new Map();
+  for (const post of (Array.isArray(feederPosts) ? feederPosts : [])) {
+    const sourceSlug = feederSourceSlug(post.slug);
+    if (!sourceSlug) continue;
+    feederBySourceSlug.set(sourceSlug, {
+      status: "success",
+      url: post.url && !String(post.url).startsWith("http")
+        ? `https://lordshrrred.github.io/VOA_Feeder/${String(post.url).replace(/^\/+/, "")}`
+        : (post.url || null),
+      timestamp: post.date || null,
+    });
+  }
+
+  return (Array.isArray(resultsData) ? resultsData : []).map(entry => {
+    const existing = entry?.syndication?.feeder;
+    const inferred = feederBySourceSlug.get(entry.slug);
+    if (!existing && !inferred) return entry;
+    return {
+      ...entry,
+      syndication: {
+        ...(entry.syndication || {}),
+        feeder: existing?.status === "success" ? existing : (inferred || existing),
+      },
+    };
+  });
 }
 
 // ── Stats ─────────────────────────────────────────────────────────────────────

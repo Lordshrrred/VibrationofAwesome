@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * update-sitemap.js ~ Regenerates static/sitemap.xml from post JSON indexes.
  *

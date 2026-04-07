@@ -566,16 +566,23 @@ function saveResults(slug, title, lane, voaUrl, platforms) {
     }
   } catch (_) { results = []; }
 
+  const idx = results.findIndex(e => e.slug === slug);
+  const existingEntry = idx >= 0 ? results[idx] : null;
+  const existingSyndication = existingEntry?.syndication || {};
+
   // Build syndication map: { platformKey: { status, url, timestamp, error? } }
   const timestamp = new Date().toISOString();
-  const syndication = {};
+  const syndication = { ...existingSyndication };
   for (const [key, r] of Object.entries(platforms)) {
-    syndication[key] = {
+    const next = {
+      ...(existingSyndication[key] || {}),
       status:    r.success ? "success" : "failed",
       url:       r.postUrl || null,
       timestamp,
-      ...(r.error ? { error: r.error } : {}),
     };
+    if (r.error) next.error = r.error;
+    else delete next.error;
+    syndication[key] = next;
   }
 
   const newEntry = {
@@ -588,7 +595,6 @@ function saveResults(slug, title, lane, voaUrl, platforms) {
   };
 
   // Upsert: replace existing entry for this slug, or prepend
-  const idx = results.findIndex(e => e.slug === slug);
   if (idx >= 0) {
     results[idx] = newEntry;
   } else {

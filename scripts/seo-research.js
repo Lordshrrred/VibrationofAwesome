@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * seo-research.js ~ SEO keyword research tool for vibrationofawesome.com
  *
