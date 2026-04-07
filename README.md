@@ -1,6 +1,6 @@
 # Vibration of Awesome
 
-**vibrationofawesome.com** — Hugo static site deployed via Netlify.
+**vibrationofawesome.com** — Hugo static site deployed via GitHub Pages, with Netlify retained for serverless/functions workflows.
 
 Roots in the Earth, Crown in the Stars. The Future is Ours.
 
@@ -10,12 +10,13 @@ Roots in the Earth, Crown in the Stars. The Future is Ours.
 
 ```
 /                       → Hugo homepage (layouts/index.html)
-/posts/                 → Hugo blog (content/posts/)
-/blog/                  → Dual-blog hub (static/blog/index.html)
+/posts/                 → Hugo-rendered blog posts from content/posts/
+/admin/                 → Decap content editor for existing Hugo posts
+/blog/                  → Static dual-blog hub (legacy/generated HTML lane system)
 /blog/matt/             → From the Forest Temple — Matt EarthStar's personal lane
-/blog/boom/          → Boom Frequency — Matty BoomBoom AI SEO lane
-/art-store/             → Wieldable Art Store (static/art-store/index.html)
-/aura/                  → Aura experience (static/aura/index.html)
+/blog/boom/             → Boom Frequency — Matty BoomBoom AI SEO lane
+/art-store/             → Static art store landing page
+/aura/                  → Aura experience
 ```
 
 ---
@@ -47,7 +48,7 @@ node scripts/generate-post.js --lane boom --keyword "how to use claude api for m
 2. Generates full blog post as markdown
 3. Converts to HTML and writes to `static/blog/[lane]/posts/[slug].html`
 4. Updates `static/_data/[lane]-posts.json` with post metadata
-5. Homepage feed (`/_data/`) auto-updates when you push
+5. Static lane indexes keep reading from `static/_data/`
 
 ### Syndicate a Post to Social Media
 
@@ -91,9 +92,9 @@ node scripts/seo-research.js --topic "AI tools for musicians"
 
 ## Deployment
 
-Netlify auto-deploys on every push to `main`. No manual deploy needed.
+GitHub Actions deploys the Hugo site to GitHub Pages on push to `main`.
 
-Hugo builds the site → static HTML served globally via Netlify CDN.
+Netlify remains useful for serverless functions and any future authenticated admin hosting.
 
 ### Environment Variables Required
 
@@ -110,8 +111,19 @@ NETLIFY_SITE_ID       → In GitHub repo secrets
 # Run Hugo dev server
 hugo server -D
 
+# Optional: run the local Decap backend so /admin can edit posts without OAuth
+npx decap-server
+
 # Site is available at http://localhost:1313
 ```
+
+## Post Editing Dashboard
+
+`/admin/` is now configured against `content/posts/`, which means it edits the same markdown files Hugo renders for `/posts/`.
+
+- Local editing works with `hugo server -D` plus `npx decap-server`.
+- Hosted editing still needs an auth-capable home for Decap, typically Netlify or another OAuth-enabled backend.
+- The old pre-Hugo Netlify CMS config was removed because it pointed at dead folders like `_posts` and `_art`.
 
 ---
 
