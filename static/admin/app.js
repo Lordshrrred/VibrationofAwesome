@@ -13,6 +13,7 @@
     currentPost: null,
     initialSnapshot: "",
     editor: null,
+    booted: false,
   };
 
   const els = {
@@ -95,6 +96,10 @@
   }
 
   function initEditor() {
+    if (state.editor) return;
+    if (!window.toastui || !window.toastui.Editor) {
+      throw new Error("The editor library did not load. Refresh the page and try again.");
+    }
     state.editor = new toastui.Editor({
       el: document.getElementById("editor"),
       height: "760px",
@@ -576,6 +581,13 @@
     }
   }
 
+  async function bootStudio() {
+    if (state.booted) return;
+    initEditor();
+    await loadPosts();
+    state.booted = true;
+  }
+
   function rewriteHtml(originalHtml, form) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(originalHtml, "text/html");
@@ -745,10 +757,17 @@
     els.gateForm.addEventListener("submit", async function (event) {
       event.preventDefault();
       els.gateError.hidden = true;
+      const submitButton = els.gateForm.querySelector("button[type='submit']");
+      const originalLabel = submitButton ? submitButton.textContent : "";
       try {
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Unlocking...";
+        }
         const token = els.gatePassword.value.trim();
         if (!token) throw new Error("GitHub token required");
         await validateTokenForStudio(token);
+        await bootStudio();
         state.token = token;
         sessionStorage.setItem(SESSION_KEY, JSON.stringify({ token: token }));
         els.authStatus.textContent = "GitHub token accepted with write access. Save is enabled.";
@@ -757,6 +776,11 @@
       } catch (error) {
         els.gateError.hidden = false;
         els.gateError.textContent = friendlyGithubError(error) || "That credential did not unlock the editor.";
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalLabel || "Unlock Studio";
+        }
       }
     });
 
@@ -802,7 +826,6 @@
 
   async function init() {
     drawStars();
-    initEditor();
     bindEvents();
 
     const saved = sessionStorage.getItem(SESSION_KEY);
@@ -816,10 +839,11 @@
       try {
         const parsed = JSON.parse(saved);
         if (parsed.token) {
+          await bootStudio();
           state.token = parsed.token;
           await validateTokenForStudio(state.token);
-          els.gate.hidden = true;
           els.authStatus.textContent = "GitHub token already active with write access. Save is enabled.";
+          els.gate.hidden = true;
           refreshDirtyState();
         }
       } catch (_) {
@@ -827,10 +851,20 @@
       }
     }
 
-    await loadPosts();
+    if (!state.booted) {
+      try {
+        await bootStudio();
+      } catch (error) {
+        setStatus(error && error.message ? error.message : "Studio failed to initialize.", true);
+      }
+    }
   }
 
   init().catch(function (error) {
     setStatus(error && error.message ? error.message : "Studio failed to initialize.", true);
+    if (els.gateError) {
+      els.gateError.hidden = false;
+      els.gateError.textContent = error && error.message ? error.message : "Studio failed to initialize.";
+    }
   });
 })();
