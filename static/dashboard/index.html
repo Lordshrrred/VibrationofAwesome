@@ -62,9 +62,12 @@
     .dash-header {
       border-bottom: 1px solid var(--border); background: rgba(2,10,10,0.9);
       backdrop-filter: blur(12px); padding: 1rem 2rem;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
       position: sticky; top: 0; z-index: 100;
     }
+    .header-left { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+    .header-brand { display: flex; flex-direction: column; }
+    .dash-right { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .dash-logo { font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; }
     .dash-logo span { color: var(--accent); }
     .dash-subtitle { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
@@ -85,13 +88,13 @@
     .dash-tab:first-child { border-left: none; }
 
     /* ── Main content ── */
-    .dash-main { padding: 2rem; max-width: 1500px; margin: 0 auto; width: 100%; flex: 1; }
+    .dash-main { padding: 1.75rem 2rem 4rem; max-width: 1760px; margin: 0 auto; width: 100%; flex: 1; }
 
     /* ── Stats strip ── */
-    .stats-strip { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .stats-strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.9rem; margin-bottom: 1.5rem; }
     .stat-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1rem 1.5rem; flex: 1; min-width: 130px;
+      padding: 1rem 1.1rem; min-width: 0;
     }
     .stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
     .stat-value { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
@@ -111,6 +114,18 @@
       margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
     }
     .section-title { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .two-col { display: grid; gap: 1rem; margin-bottom: 1.5rem; }
+    .two-col.split-6040 { grid-template-columns: 3fr 2fr; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.35rem 1.4rem;
+    }
+    .card-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 1rem;
+    }
+    .card-title {
+      font-size: 0.95rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text);
+    }
+    .card-sub { font-size: 0.74rem; color: var(--text-muted); }
 
     /* ── Platform badges (LARGE) ── */
     .platform-badges { display: flex; gap: 5px; flex-wrap: nowrap; align-items: center; }
@@ -125,6 +140,28 @@
     .badge-fail { background: rgba(255,68,68,0.12);  color: var(--danger);  border: 1px solid rgba(255,68,68,0.3); }
     .badge-skip { background: rgba(255,255,255,0.04); color: #555;           border: 1px solid #1e1e1e; }
     .badge-pend { background: rgba(0,255,255,0.08);  color: var(--info);    border: 1px solid rgba(0,255,255,0.25); }
+
+    /* ── Recent syndications ── */
+    .recent-list { display: flex; flex-direction: column; gap: 0.55rem; }
+    .recent-row {
+      background: var(--surface2); border: 1px solid rgba(0,229,204,0.08);
+      border-radius: 8px; padding: 0.8rem 0.95rem;
+    }
+    .recent-top {
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+      margin-bottom: 0.45rem;
+    }
+    .recent-title {
+      color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .recent-title:hover { color: var(--accent); }
+    .recent-meta { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    .recent-date { font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; }
+    .recent-lane {
+      font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.12rem 0.45rem;
+      border-radius: 999px; border: 1px solid currentColor;
+    }
 
     /* ── Post table ── */
     .post-table { width: 100%; border-collapse: collapse; }
@@ -233,22 +270,32 @@
     .badge-queued    { background: rgba(255,179,0,0.1);   color: var(--warn);   border: 1px solid rgba(255,179,0,0.25); }
     .badge-published { background: rgba(57,255,20,0.1);   color: var(--success);border: 1px solid rgba(57,255,20,0.25); }
 
-    /* ── Queue section ── */
-    .queue-grid { display: grid; gap: 0.65rem; }
-    .queue-item {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 0.8rem 1.1rem; display: flex; align-items: center; gap: 1rem;
+    /* ── Queue panels ── */
+    .queue-panels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    .queue-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .panel-header {
+      padding: 0.9rem 1.05rem; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border); background: rgba(0,229,204,0.02);
     }
-    .queue-lane-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .queue-item-title { font-size: 0.88rem; font-weight: 500; flex: 1; }
-    .queue-item-date  { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
-    .queue-synced { opacity: 0.35; }
-    .queue-status-badge {
-      font-size: 0.62rem; letter-spacing: 0.07em; padding: 0.18em 0.5em;
-      border-radius: 2px; text-transform: uppercase; font-weight: 700;
+    .panel-title { font-size: 0.86rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .panel-count { font-size: 0.72rem; color: var(--text-muted); }
+    .panel-body { max-height: 430px; overflow-y: auto; }
+    .panel-item { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(0,229,204,0.05); border-left: 3px solid transparent; }
+    .panel-item:last-child { border-bottom: none; }
+    .panel-item.synced { border-left-color: var(--success); }
+    .panel-item.queued { border-left-color: var(--warn); }
+    .panel-item.scheduled { border-left-color: var(--text-muted); }
+    .item-title { font-size: 0.82rem; font-weight: 600; color: var(--text); text-decoration: none; display: block; }
+    .item-title:hover { color: var(--accent); }
+    .item-meta { display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; margin-top: 0.2rem; font-size: 0.72rem; color: var(--text-muted); }
+    .item-pill {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.12rem 0.4rem; border-radius: 999px; border: 1px solid transparent;
     }
-    .badge-pending  { background: rgba(0,229,204,0.08);  color: var(--accent); border: 1px solid rgba(0,229,204,0.2); }
-    .badge-synced   { background: rgba(57,255,20,0.08);  color: var(--success);border: 1px solid rgba(57,255,20,0.2); font-size: 0.62rem; }
+    .item-pill.score { color: var(--success); border-color: rgba(57,255,20,0.2); background: rgba(57,255,20,0.08); }
+    .item-pill.queue { color: var(--warn); border-color: rgba(255,179,0,0.2); background: rgba(255,179,0,0.08); }
+    .item-pill.lane-matt { color: var(--warn); border-color: rgba(255,179,0,0.2); background: rgba(255,179,0,0.08); }
+    .item-pill.lane-boom { color: var(--accent2); border-color: rgba(0,180,216,0.22); background: rgba(0,180,216,0.08); }
 
     /* ── Manual trigger ── */
     .trigger-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
@@ -323,18 +370,8 @@
     /* ── Tooltip ── */
     [title] { position: relative; }
 
-    @media (max-width: 768px) {
-      .dash-main { padding: 1rem; }
-      .dash-header { padding: 0.75rem 1rem; }
-      .stats-strip { gap: 0.5rem; }
-      .platform-badges { flex-wrap: wrap; }
-      .post-table { font-size: 0.82rem; }
-      .drip-meta { gap: 1rem; }
-    }
-
     /* ── Site & Feeder Stats ── */
-    .site-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    @media (max-width: 900px) { .site-cards { grid-template-columns: 1fr; } }
+    .site-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
     .site-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem;
     }
@@ -351,6 +388,22 @@
     .site-stat-value { font-size: 0.9rem; font-weight: 600; color: var(--text); text-align: right; }
     .site-link { color: var(--warn); text-decoration: none; }
     .site-link:hover { text-decoration: underline; }
+
+    @media (max-width: 1200px) {
+      .stats-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .two-col.split-6040 { grid-template-columns: 1fr; }
+      .queue-panels { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .dash-main { padding: 1rem; }
+      .dash-header { padding: 0.75rem 1rem; }
+      .stats-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+      .platform-badges { flex-wrap: wrap; }
+      .post-table { font-size: 0.82rem; }
+      .drip-meta { gap: 1rem; }
+      .site-cards { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -377,15 +430,18 @@
   <!-- ── MAIN APP ── -->
   <div id="app">
     <header class="dash-header">
-      <div>
-        <div class="dash-logo">Vibration<span>of</span>Awesome</div>
-        <div class="dash-subtitle">Admin Dashboard</div>
+      <div class="header-left">
+        <div class="header-brand">
+          <div class="dash-logo">Vibration<span>of</span>Awesome</div>
+          <div class="dash-subtitle">Syndication Dashboard</div>
+        </div>
+        <nav class="dash-tabs">
+          <a href="./index.html" class="dash-tab active">Syndication</a>
+          <a href="./analytics.html" class="dash-tab">Analytics</a>
+          <a href="/admin/" class="dash-tab">Admin</a>
+        </nav>
       </div>
-      <nav class="dash-tabs">
-        <a href="./index.html" class="dash-tab active">Syndication</a>
-        <a href="./analytics.html" class="dash-tab">Analytics</a>
-      </nav>
-      <div style="display:flex;align-items:center;gap:1rem">
+      <div class="dash-right">
         <span id="last-updated" style="font-size:0.75rem;color:var(--text-muted)"></span>
         <button class="dash-lock-btn" id="lock-btn">Lock</button>
       </div>
@@ -412,7 +468,7 @@
         <div class="stat-card">
           <div class="stat-label">Platforms Active</div>
           <div class="stat-value" id="stat-platforms">~</div>
-          <div class="stat-sub" id="stat-platforms-sub" style="font-size:0.7rem">Bsky·Mast·FB-V·FB-E·Dev·Hash·Tumblr·Blog·Pins·Insta·Thrd</div>
+          <div class="stat-sub" id="stat-platforms-sub" style="font-size:0.7rem">Bsky·Mast·FB-V·FB-E·Dev·Tumblr·Blog·Pins·Insta·Thrd</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Drip Queue</div>
@@ -426,25 +482,25 @@
         </div>
       </div>
 
-      <!-- ── Drip Queue ── -->
-      <div class="section">
-        <div class="section-header">
-          <span class="section-title">Drip Queue</span>
-          <span style="font-size:0.75rem;color:var(--text-muted)" id="drip-count-label"></span>
+      <div class="two-col split-6040">
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Drip Queue</div>
+            <div class="card-sub" id="drip-count-label"></div>
+          </div>
+          <div id="drip-wrap">
+            <div class="loading dot-pulse">Loading</div>
+          </div>
         </div>
-        <div id="drip-wrap">
-          <div class="loading dot-pulse">Loading</div>
-        </div>
-      </div>
 
-      <!-- ── Recent Syndications ── -->
-      <div class="section">
-        <div class="section-header">
-          <span class="section-title">Recent Syndications</span>
-          <span style="font-size:0.75rem;color:var(--text-muted)" id="entry-count"></span>
-        </div>
-        <div id="recent-posts-wrap">
-          <div class="loading dot-pulse">Loading</div>
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Recent Syndications</div>
+            <div class="card-sub" id="entry-count"></div>
+          </div>
+          <div id="recent-posts-wrap">
+            <div class="loading dot-pulse">Loading</div>
+          </div>
         </div>
       </div>
 
@@ -459,22 +515,45 @@
         </div>
       </div>
 
-      <!-- ── Post Queue ── -->
-      <div class="section">
-        <div class="section-header">
-          <span class="section-title">Post Queue</span>
-          <span style="font-size:0.75rem;color:var(--text-muted)">All posts · newest first</span>
+      <div class="section-header">
+        <span class="section-title">Post Queue</span>
+        <span style="font-size:0.75rem;color:var(--text-muted)">Recent blog inventory, grouped by state</span>
+      </div>
+      <div class="queue-panels">
+        <div class="queue-panel">
+          <div class="panel-header">
+            <span class="panel-title" style="color:var(--success)">Syndicated</span>
+            <span class="panel-count" id="pq-synced-count">—</span>
+          </div>
+          <div class="panel-body" id="pq-synced">
+            <div class="loading dot-pulse">Loading</div>
+          </div>
         </div>
-        <div id="queue-wrap">
-          <div class="loading dot-pulse">Loading</div>
+        <div class="queue-panel">
+          <div class="panel-header">
+            <span class="panel-title" style="color:var(--warn)">Queued</span>
+            <span class="panel-count" id="pq-queued-count">—</span>
+          </div>
+          <div class="panel-body" id="pq-queued">
+            <div class="loading dot-pulse">Loading</div>
+          </div>
+        </div>
+        <div class="queue-panel">
+          <div class="panel-header">
+            <span class="panel-title" style="color:var(--text-muted)">Recent Blog Posts</span>
+            <span class="panel-count" id="pq-scheduled-count">—</span>
+          </div>
+          <div class="panel-body" id="pq-scheduled">
+            <div class="loading dot-pulse">Loading</div>
+          </div>
         </div>
       </div>
 
       <!-- ── Site & Feeder Stats ── -->
       <div class="section">
         <div class="section-header">
-          <span class="section-title">Frequency Rising Feeder</span>
-          <span style="font-size:0.75rem;color:var(--text-muted)">VOA main site · GitHub Pages feeder</span>
+          <span class="section-title">Site Status</span>
+          <span style="font-size:0.75rem;color:var(--text-muted)">VOA main site, live feeder coverage, and syndication footprint</span>
         </div>
         <div class="site-cards">
           <div class="site-card" id="voa-site-card">
@@ -483,8 +562,8 @@
           </div>
           <div class="site-card" id="feeder-site-card">
             <div class="site-card-title">
-              <a href="https://lordshrrred.github.io/VOA_GithubPages" target="_blank" class="site-link">
-                Frequency Rising Feeder ↗
+              <a href="https://lordshrrred.github.io/VOA_Feeder" target="_blank" class="site-link">
+                VOA Feeder ↗
               </a>
             </div>
             <div class="loading dot-pulse">Loading</div>
@@ -590,13 +669,12 @@ const PLATFORMS = [
   { key: "facebook_voa",       label: "FB-V",   name: "Facebook (VOA Page)" },
   { key: "facebook_earthstar", label: "FB-E",   name: "Facebook (EarthStar Page)" },
   { key: "devto",              label: "Dev",    name: "Dev.to" },
-  { key: "hashnode",           label: "Hash",   name: "Hashnode" },
   { key: "tumblr",             label: "Tumblr", name: "Tumblr" },
   { key: "blogger",            label: "Blog",   name: "Blogger" },
   { key: "pinterest",          label: "Pins",   name: "Pinterest" },
   { key: "instagram",          label: "Insta",  name: "Instagram ⓘ", tooltip: "No clickable links in Instagram posts ~ visual reach only" },
   { key: "threads",            label: "Thrd",   name: "Threads" },
-  { key: "feeder",             label: "Feeder", name: "Frequency Rising Feeder" },
+  { key: "feeder",             label: "Feeder", name: "VOA Feeder" },
 ];
 const PLATFORM_MAP = Object.fromEntries(PLATFORMS.map(p => [p.key, p]));
 
@@ -735,8 +813,8 @@ function renderStats(entries, results, drip) {
   const activeCount = feederHasSuccess ? PLATFORMS.length : baseCount;
   document.getElementById("stat-platforms").textContent = activeCount;
   document.getElementById("stat-platforms-sub").textContent = feederHasSuccess
-    ? "Bsky·Mast·FB-V·FB-E·Dev·Hash·Tumblr·Blog·Pins·Insta·Thrd·Feeder"
-    : "Bsky·Mast·FB-V·FB-E·Dev·Hash·Tumblr·Blog·Pins·Insta·Thrd";
+    ? "Bsky·Mast·FB-V·FB-E·Dev·Tumblr·Blog·Pins·Insta·Thrd·Feeder"
+    : "Bsky·Mast·FB-V·FB-E·Dev·Tumblr·Blog·Pins·Insta·Thrd";
 
   // Backlink health card
   if (results.length > 0) {
@@ -886,7 +964,7 @@ function copyDripCmd() {
 // ── Recent Syndications ───────────────────────────────────────────────────────
 function renderRecentPosts(entries, resultsData) {
   const wrap = document.getElementById("recent-posts-wrap");
-  document.getElementById("entry-count").textContent = entries.length + " entries (deduplicated)";
+  document.getElementById("entry-count").textContent = entries.length + " live entries";
 
   if (entries.length === 0) {
     wrap.innerHTML = `<div class="empty-state">No syndications yet.<br>Run: <code>node scripts/syndicate.js --lane boom --slug your-slug</code></div>`;
@@ -899,7 +977,7 @@ function renderRecentPosts(entries, resultsData) {
     if (r.syndication?.feeder) feederBySlug[r.slug] = r.syndication.feeder;
   }
 
-  const rows = entries.slice(0, 25).map(entry => {
+  const rows = entries.slice(0, 12).map(entry => {
     const platforms = entry.platforms || {};
     const badges = PLATFORMS.map(({ key, label, name, tooltip }) => {
       // Feeder data lives in results, not the log — handle separately
@@ -926,32 +1004,23 @@ function renderRecentPosts(entries, resultsData) {
       }
     }).join("");
 
-    const hasCaptions = entry.captions && Object.keys(entry.captions).length > 0;
-    const captionBtn = hasCaptions
-      ? `<button onclick="showCaptions(${JSON.stringify(JSON.stringify(entry.captions))})" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.75rem;padding:0.2rem 0.4rem;border-radius:3px;border:1px solid var(--border)">captions</button>`
-      : "";
-
     const date   = new Date(entry.timestamp).toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" });
     const laneClr = entry.lane === "matt" ? "#ffb300" : "#00e5ff";
     const laneNm  = entry.lane === "matt" ? "Forest Temple" : "Boom Frequency";
 
-    return `<tr>
-      <td class="post-title-cell">
-        <a href="${esc(entry.postUrl)}" target="_blank" class="post-title-link">${esc(entry.postTitle)}</a>
-        <div class="post-lane" style="color:${laneClr}">${laneNm}</div>
-      </td>
-      <td class="post-date">${date}</td>
-      <td><div class="platform-badges">${badges}</div></td>
-      <td>${captionBtn}</td>
-    </tr>`;
+    return `<div class="recent-row">
+      <div class="recent-top">
+        <a href="${esc(entry.postUrl)}" target="_blank" class="recent-title">${esc(entry.postTitle)}</a>
+        <span class="recent-date">${date}</span>
+      </div>
+      <div class="recent-meta">
+        <span class="recent-lane" style="color:${laneClr}">${laneNm}</span>
+      </div>
+      <div class="platform-badges" style="margin-top:0.6rem;flex-wrap:wrap">${badges}</div>
+    </div>`;
   }).join("");
 
-  wrap.innerHTML = `<table class="post-table">
-    <thead><tr>
-      <th>Post</th><th>Date</th><th>Platforms (${PLATFORMS.length})</th><th></th>
-    </tr></thead>
-    <tbody>${rows}</tbody>
-  </table>`;
+  wrap.innerHTML = `<div class="recent-list">${rows}</div>`;
 }
 
 // ── Syndication Status Matrix ─────────────────────────────────────────────────
@@ -1112,7 +1181,6 @@ function updateMatrixCell(cell, live) {
 
 // ── Post Queue ────────────────────────────────────────────────────────────────
 function renderQueue(entries, allPosts, drip) {
-  const wrap    = document.getElementById("queue-wrap");
   const syncedSlugs = new Set(entries.map(e => e.postSlug));
 
   // Build drip status map: slug → "draft" | "queued" | "published"
@@ -1140,7 +1208,9 @@ function renderQueue(entries, allPosts, drip) {
   ];
 
   if (combined.length === 0) {
-    wrap.innerHTML = `<div class="empty-state">No posts found.</div>`;
+    document.getElementById("pq-synced").innerHTML = `<div class="empty-state">No posts found.</div>`;
+    document.getElementById("pq-queued").innerHTML = `<div class="empty-state">No posts found.</div>`;
+    document.getElementById("pq-scheduled").innerHTML = `<div class="empty-state">No posts found.</div>`;
     return;
   }
 
@@ -1153,35 +1223,55 @@ function renderQueue(entries, allPosts, drip) {
       ? new Date(post.date).toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" })
       : "—";
 
-    let badge;
-    if (isSynced) {
-      badge = `<span class="queue-status-badge badge-synced">✓ Synced</span>`;
-    } else if (dripStatus === "published") {
-      badge = `<span class="queue-status-badge badge-published">Published</span>`;
-    } else if (dripStatus === "queued") {
-      badge = `<span class="queue-status-badge badge-queued">Queued</span>`;
-    } else if (!post.date) {
-      badge = `<span class="queue-status-badge badge-draft">Draft</span>`;
-    } else {
-      badge = `<span class="queue-status-badge badge-pending">Pending</span>`;
-    }
-
     const url = post.date
       ? "https://vibrationofawesome.com" + post.url
       : "#";
-    const opacity = isSynced ? " queue-synced" : "";
+    const resultEntry = entries.find(e => e.postSlug === post.slug);
+    const platformScore = resultEntry
+      ? Object.values(resultEntry.platforms || {}).filter(v => v?.success).length
+      : 0;
+    return {
+      slug: post.slug,
+      title: post.title,
+      url,
+      laneNm,
+      laneCls: post.lane === "matt" ? "lane-matt" : "lane-boom",
+      date,
+      isSynced,
+      isQueued: dripStatus === "queued",
+      isPublishedOnly: dripStatus === "published",
+      score: platformScore,
+      rawDate: post.date ? new Date(post.date).getTime() : 0,
+      html: `<div class="panel-item ${isSynced ? "synced" : dripStatus === "queued" ? "queued" : "scheduled"}">
+        <a class="item-title" href="${url}" target="_blank">${esc(post.title)}</a>
+        <div class="item-meta">
+          <span>${date}</span>
+          <span class="item-pill ${post.lane === "matt" ? "lane-matt" : "lane-boom"}">${laneNm}</span>
+          ${isSynced ? `<span class="item-pill score">${platformScore}/${PLATFORMS.length}</span>` : ""}
+          ${dripStatus === "queued" ? `<span class="item-pill queue">Queued</span>` : ""}
+          ${dripStatus === "published" && !isSynced ? `<span class="item-pill queue">Published</span>` : ""}
+        </div>
+      </div>`,
+    };
+  });
 
-    return `<div class="queue-item${opacity}">
-      <div class="queue-lane-dot" style="background:${laneClr}" title="${laneNm}"></div>
-      <div class="queue-item-title">
-        <a href="${url}" target="_blank" style="color:inherit;text-decoration:none">${esc(post.title)}</a>
-      </div>
-      <div class="queue-item-date">${date}</div>
-      ${badge}
-    </div>`;
-  }).join("");
+  const syncedItems = items.filter(item => item.isSynced);
+  const queuedItems = items.filter(item => item.isQueued || item.isPublishedOnly).sort((a, b) => a.rawDate - b.rawDate);
+  const scheduledItems = items.filter(item => !item.isSynced).sort((a, b) => b.rawDate - a.rawDate);
 
-  wrap.innerHTML = `<div class="queue-grid">${items}</div>`;
+  document.getElementById("pq-synced-count").textContent = `${syncedItems.length} posts`;
+  document.getElementById("pq-queued-count").textContent = `${queuedItems.length} posts`;
+  document.getElementById("pq-scheduled-count").textContent = `${scheduledItems.length} posts`;
+
+  document.getElementById("pq-synced").innerHTML = syncedItems.length
+    ? syncedItems.slice(0, 20).map(item => item.html).join("")
+    : `<div class="empty-state">No syndicated posts yet.</div>`;
+  document.getElementById("pq-queued").innerHTML = queuedItems.length
+    ? queuedItems.slice(0, 20).map(item => item.html).join("")
+    : `<div class="empty-state">Nothing queued right now.</div>`;
+  document.getElementById("pq-scheduled").innerHTML = scheduledItems.length
+    ? scheduledItems.slice(0, 20).map(item => item.html).join("")
+    : `<div class="empty-state">No recent blog posts found.</div>`;
 }
 
 // ── Feeder Section ────────────────────────────────────────────────────────────
@@ -1222,11 +1312,11 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
       <span class="site-stat-value" style="font-size:0.78rem;max-width:55%;text-align:right">${nextTitle}</span>
     </div>
     <div class="site-stat-row">
-      <span class="site-stat-label">Last Deploy</span>
+      <span class="site-stat-label">Last Content Update</span>
       <span class="site-stat-value">${lastDeploy}</span>
     </div>`;
 
-  // ── Right card: Frequency Rising Feeder ──
+  // ── Right card: VOA Feeder ──
   const syndicated     = results.length;
   const feederSuccess  = results.filter(r => r.syndication?.feeder?.status === "success");
   const feederCount    = feederSuccess.length;
@@ -1248,8 +1338,8 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
 
   document.getElementById("feeder-site-card").innerHTML = `
     <div class="site-card-title">
-      <a href="https://lordshrrred.github.io/VOA_GithubPages" target="_blank" class="site-link">
-        Frequency Rising Feeder ↗
+      <a href="https://lordshrrred.github.io/VOA_Feeder" target="_blank" class="site-link">
+        lordshrrred.github.io/VOA_Feeder ↗
       </a>
     </div>
     <div class="site-stat-row">
@@ -1261,8 +1351,8 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
       <span class="site-stat-value">${feederCount} / ${syndicated} posts covered</span>
     </div>
     <div class="site-stat-row">
-      <span class="site-stat-label">Platform</span>
-      <span class="site-stat-value">GitHub Pages</span>
+      <span class="site-stat-label">Source Repo</span>
+      <span class="site-stat-value">VOA_Feeder</span>
     </div>
     <div class="site-stat-row">
       <span class="site-stat-label">Last Triggered</span>
@@ -1311,7 +1401,7 @@ async function renderTrigger(allPosts) {
 }
 
 // ── Caption Modal ─────────────────────────────────────────────────────────────
-const CAPTION_ORDER = ["facebook","bluesky","mastodon","pinterest","devto","hashnode","tumblr","instagram","threads"];
+const CAPTION_ORDER = ["facebook","bluesky","mastodon","pinterest","devto","tumblr","instagram","threads"];
 function showCaptions(captionsJson) {
   const captions = JSON.parse(captionsJson);
   document.getElementById("caption-body").innerHTML = CAPTION_ORDER.map(key => {

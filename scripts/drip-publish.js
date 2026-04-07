@@ -176,7 +176,7 @@ async function main() {
         const postUrl = "https://vibrationofawesome.com/blog/boom/posts/" + item.slug + ".html";
         try {
           const resp = await fetch(
-            "https://api.github.com/repos/Lordshrrred/VOA_GithubPages/dispatches",
+            "https://api.github.com/repos/Lordshrrred/VOA_Feeder/dispatches",
             {
               method:  "POST",
               headers: {

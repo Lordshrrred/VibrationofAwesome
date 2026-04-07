@@ -1,9 +1,9 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * syndicate.js ~ Full content syndication engine for vibrationofawesome.com
  *
  * Platforms: Bluesky · Mastodon · Facebook (VOA + EarthStar) · Pinterest
- *            Dev.to · Hashnode · Tumblr · Instagram (Publer) · Threads (Publer)
+ *            Dev.to · Tumblr · Instagram (Publer) · Threads (Publer) · Blogger
  *
  * CLI:  node scripts/syndicate.js --lane [matt|boom] --slug <post-slug> [--keyword "search term"] [--blogger-only]
  * API:  import { syndicatePost } from "./syndicate.js"
@@ -13,7 +13,7 @@
   SYNDICATION CONTENT RULE
 
   When syndicating to ANY platform ~ Blogger,
-  Bluesky, Mastodon, Pinterest, Dev.to, Hashnode,
+  Bluesky, Mastodon, Pinterest, Dev.to,
   Tumblr or any future platform ~ we NEVER copy
   and paste the original article.
 
@@ -300,81 +300,6 @@ async function postToDevTo(postTitle, caption, postUrl, tags) {
   const data = await resp.json();
   if (!resp.ok) throw new Error(`Dev.to: ${data.error || JSON.stringify(data.errors) || resp.status}`);
   return { postId: String(data.id), postUrl: data.url };
-}
-
-/** Publish a teaser on Hashnode via two-step draft → publish flow */
-async function postToHashnode(postTitle, caption, postUrl, tags, imageUrl) {
-  const key           = process.env.HASHNODE_API_KEY;
-  const publicationId = process.env.HASHNODE_PUBLICATION_ID;
-  if (!key)           throw new Error("HASHNODE_API_KEY not set");
-  if (!publicationId) throw new Error("HASHNODE_PUBLICATION_ID not set (set in .env)");
-
-  const gqlHeaders = { "Content-Type": "application/json", Authorization: key };
-
-  const contentMarkdown = [
-    caption,
-    "",
-    `---`,
-    `*This post was originally written for [Vibration of Awesome](${postUrl}) ~ a philosophy for living deliberately.*`,
-  ].join("\n");
-
-  const tagInput = (tags || []).slice(0, 5).map(t => ({
-    slug: t.toLowerCase().replace(/\s+/g, "-"),
-    name: t,
-  }));
-
-  // ── Step 1: Create draft ──────────────────────────────────────────────────
-  const draftMutation = `
-    mutation CreateDraft($input: CreateDraftInput!) {
-      createDraft(input: $input) {
-        draft { id }
-      }
-    }
-  `;
-
-  const draftVariables = {
-    input: {
-      title:              postTitle,
-      contentMarkdown,
-      publicationId,
-      originalArticleURL: postUrl,
-      tags:               tagInput,
-      ...(imageUrl ? { coverImageOptions: { coverImageURL: imageUrl } } : {}),
-    },
-  };
-
-  const draftResp = await fetch("https://gql.hashnode.com", {
-    method:  "POST",
-    headers: gqlHeaders,
-    body:    JSON.stringify({ query: draftMutation, variables: draftVariables }),
-  });
-  const draftData = await draftResp.json();
-  if (draftData.errors) {
-    throw new Error(`Hashnode createDraft: ${draftData.errors[0]?.message || JSON.stringify(draftData.errors)}`);
-  }
-  const draftId = draftData.data?.createDraft?.draft?.id;
-  if (!draftId) throw new Error("Hashnode createDraft: no draft ID returned");
-
-  // ── Step 2: Publish draft ─────────────────────────────────────────────────
-  const publishMutation = `
-    mutation PublishDraft($input: PublishDraftInput!) {
-      publishDraft(input: $input) {
-        post { id url }
-      }
-    }
-  `;
-
-  const publishResp = await fetch("https://gql.hashnode.com", {
-    method:  "POST",
-    headers: gqlHeaders,
-    body:    JSON.stringify({ query: publishMutation, variables: { input: { draftId } } }),
-  });
-  const publishData = await publishResp.json();
-  if (publishData.errors) {
-    throw new Error(`Hashnode publishDraft: ${publishData.errors[0]?.message || JSON.stringify(publishData.errors)}`);
-  }
-  const post = publishData.data?.publishDraft?.post;
-  return { postId: post?.id, postUrl: post?.url };
 }
 
 /** Post to Tumblr using OAuth 1.0a (legacy /post endpoint with form body) */
@@ -802,10 +727,6 @@ export async function syndicatePost(lane, slug, options = {}) {
   // Dev.to
   await attempt("devto", () =>
     postToDevTo(post.title, captions.devto, postUrl, post.tags));
-
-  // Hashnode
-  await attempt("hashnode", () =>
-    postToHashnode(post.title, captions.hashnode, postUrl, post.tags, imageUrl));
 
   // Tumblr
   await attempt("tumblr", () =>

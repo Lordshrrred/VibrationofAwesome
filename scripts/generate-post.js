@@ -494,7 +494,7 @@ function injectNasaImages(html, images) {
 
 // ── FEEDER TRIGGER ────────────────────────────────────────────────────────────
 /**
- * Ping the VOA_GithubPages feeder repo via GitHub repository_dispatch.
+ * Ping the VOA_Feeder repo via GitHub repository_dispatch.
  * Fires when VOA_FEEDER_TRIGGER_TOKEN is set in the environment.
  * In CI (GitHub Actions) the token is injected via secrets; locally via .env.
  * Wrapped in try/catch — a feeder failure never breaks the main publish.
@@ -507,7 +507,7 @@ async function triggerFeeder(postUrl, postTitle, keyword) {
   }
   try {
     const resp = await fetch(
-      "https://api.github.com/repos/Lordshrrred/VOA_GithubPages/dispatches",
+      "https://api.github.com/repos/Lordshrrred/VOA_Feeder/dispatches",
       {
         method:  "POST",
         headers: {

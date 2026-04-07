@@ -1,8 +1,8 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * generate-captions.js ~ Platform-specific caption generator for vibrationofawesome.com
  *
- * Generates unique captions for 9 social platforms using Claude.
+ * Generates unique captions for 8 social platforms using Claude.
  *
  * Exports: generateCaptions(post, client?)
  * CLI:     node scripts/generate-captions.js --lane [matt|boom] --slug <slug>
@@ -24,7 +24,7 @@ const ROOT       = path.resolve(__dirname, "..");
 // Ordered list of platform labels ~ order matters for the section parser
 const LABELS = [
   "FACEBOOK", "BLUESKY", "MASTODON", "PINTEREST",
-  "DEVTO", "HASHNODE", "TUMBLR", "INSTAGRAM", "THREADS",
+  "DEVTO", "TUMBLR", "INSTAGRAM", "THREADS",
 ];
 
 const SYSTEM_PROMPT = `You are a social media copywriter for vibrationofawesome.com.
@@ -114,7 +114,6 @@ export async function generateCaptions(post, client) {
     `MASTODON: thoughtful and contextual, 2-3 sentences, end with 2-3 relevant #hashtags`,
     `PINTEREST: descriptive keyword-rich paragraph (good for search), end with 3-5 #hashtags, include URL`,
     `DEVTO: short compelling intro paragraph with a technical/AI-automation angle, suitable as a Dev.to article teaser, must mention AI or automation angle, end with URL`,
-    `HASHNODE: same technical angle as Dev.to but more personal and first-person story-driven, end with URL`,
     `TUMBLR: creative, aesthetic, slightly poetic, 2-4 sentences, then 5-8 #hashtags on a new line separated from the caption`,
     `INSTAGRAM: visual and inspiring, 1-2 punchy sentences MAX (no hashtags in caption body), then on a separate new line: 5-8 relevant #hashtags`,
     `THREADS: conversational and punchy, under 500 chars total including hashtags, 2-3 #hashtags at end`,
