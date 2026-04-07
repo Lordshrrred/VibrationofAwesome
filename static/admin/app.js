@@ -2,6 +2,7 @@
   const GITHUB_API = "https://api.github.com/repos/Lordshrrred/VibrationofAwesome";
   const GITHUB_BRANCH = "main";
   const MATT_POST_PREFIX = "static/blog/matt/posts/";
+  const RAW_BASE = "https://raw.githubusercontent.com/Lordshrrred/VibrationofAwesome/main/";
   const SESSION_KEY = "voa_post_studio_auth";
   const AUTOSAVE_PREFIX = "voa_forest_temple_autosave:";
 
@@ -126,6 +127,14 @@
     }
 
     return data;
+  }
+
+  async function fetchText(url) {
+    const response = await fetch(url, { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error("Failed to load " + url);
+    }
+    return response.text();
   }
 
   function escapeHtml(value) {
@@ -269,6 +278,28 @@
     };
   }
 
+  function extractMattPathsFromIndex(indexHtml) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(indexHtml, "text/html");
+    const links = Array.from(doc.querySelectorAll('.post-title a'));
+    const seen = new Set();
+    const paths = [];
+
+    for (const link of links) {
+      const href = link.getAttribute("href") || "";
+      if (!href.startsWith("/blog/matt/posts/")) continue;
+      const relative = href.replace(/^\/+/, "");
+      const path = relative.endsWith(".html")
+        ? "static/" + relative
+        : "static/" + relative.replace(/\/+$/, "") + "/index.html";
+      if (seen.has(path)) continue;
+      seen.add(path);
+      paths.push(path);
+    }
+
+    return paths;
+  }
+
   function currentSnapshot() {
     return JSON.stringify({
       title: els.title.value.trim(),
@@ -401,15 +432,12 @@
   }
 
   async function loadPosts() {
-    const tree = await githubRequest("/git/trees/" + encodeURIComponent(GITHUB_BRANCH) + "?recursive=1", {}, state.token);
-    const fileItems = (tree.tree || []).filter(function (item) {
-      return item.type === "blob" && item.path.startsWith(MATT_POST_PREFIX) && item.path.endsWith(".html");
-    });
+    const mattIndexHtml = await fetchText(RAW_BASE + "static/blog/matt/index.html");
+    const paths = extractMattPathsFromIndex(mattIndexHtml);
 
-    state.posts = await Promise.all(fileItems.map(async function (item) {
-      const data = await githubRequest("/contents/" + item.path + "?ref=" + encodeURIComponent(GITHUB_BRANCH), {}, state.token);
-      const decoded = decodeBase64Unicode(data.content);
-      return parseMattPost(item.path, decoded);
+    state.posts = await Promise.all(paths.map(async function (path) {
+      const html = await fetchText(RAW_BASE + path);
+      return parseMattPost(path, html);
     }));
 
     state.posts.sort(function (a, b) {
@@ -586,9 +614,9 @@
         await githubRequest("", {}, token);
         state.token = token;
         sessionStorage.setItem(SESSION_KEY, JSON.stringify({ token: token }));
+        els.authStatus.textContent = "GitHub token accepted. Save is now enabled.";
         els.gate.hidden = true;
         els.app.hidden = false;
-        els.authStatus.textContent = "Auth mode: GitHub token save path.";
         await loadPosts();
       } catch (error) {
         els.gateError.hidden = false;
@@ -637,10 +665,10 @@
         if (parsed.token) {
           state.token = parsed.token;
           await githubRequest("", {}, state.token);
+          await loadPosts();
           els.gate.hidden = true;
           els.app.hidden = false;
-          els.authStatus.textContent = "Auth mode: GitHub token save path.";
-          await loadPosts();
+          els.authStatus.textContent = "GitHub token already active. Save is enabled.";
         }
       } catch (_) {
         sessionStorage.removeItem(SESSION_KEY);
@@ -648,5 +676,7 @@
     }
   }
 
-  init().catch(function () {});
+  init().catch(function (error) {
+    setStatus(error && error.message ? error.message : "Studio failed to initialize.", true);
+  });
 })();
