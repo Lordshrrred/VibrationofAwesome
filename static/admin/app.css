@@ -60,6 +60,11 @@ textarea {
   min-height: 100vh;
 }
 
+.app-shell {
+  display: grid;
+  min-height: 100vh;
+}
+
 .eyebrow,
 .sidebar-label {
   margin: 0 0 0.45rem;
@@ -72,10 +77,14 @@ textarea {
 }
 
 .gate-screen {
-  min-height: 100vh;
+  position: fixed;
+  inset: 0;
   display: grid;
   place-items: center;
   padding: 2rem;
+  background: rgba(3, 16, 18, 0.72);
+  backdrop-filter: blur(10px);
+  z-index: 20;
 }
 
 .gate-card {
@@ -178,23 +187,87 @@ textarea {
   margin-top: 1.2rem;
 }
 
-.app-shell {
-  display: grid;
-  min-height: 100vh;
-}
-
-.topbar {
+.dash-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1.25rem 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--border);
   background: rgba(4, 14, 16, 0.88);
   backdrop-filter: blur(14px);
   position: sticky;
   top: 0;
-  z-index: 5;
+  z-index: 10;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.header-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-logo {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dash-logo span {
+  color: var(--accent);
+}
+
+.dash-subtitle {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dash-tabs {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.dash-tab {
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  background: transparent;
+  transition: all 0.2s;
+}
+
+.dash-tab:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.dash-tab.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.dash-right {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .topbar-title {
@@ -409,6 +482,7 @@ textarea {
 .editor-panel {
   padding: 1rem;
   min-width: 0;
+  overflow: hidden;
 }
 
 .save-banner {
@@ -625,7 +699,8 @@ textarea {
 }
 
 @media (max-width: 760px) {
-  .topbar,
+  .dash-header,
+  .header-left,
   .meta-bar,
   .save-banner,
   .sidebar-header,

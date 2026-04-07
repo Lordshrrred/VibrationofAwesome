@@ -15,34 +15,21 @@
   <canvas id="stars-canvas" aria-hidden="true"></canvas>
 
   <div class="studio-shell">
-    <section id="gate" class="gate-screen">
-      <div class="gate-card">
-        <p class="eyebrow">Vibration of Awesome</p>
-        <h1>Post Studio</h1>
-        <p class="gate-copy">A branded writing dashboard for the live Forest Temple blog. Click a Matt post, open its editor, and tweak the real page that is already on the site.</p>
-        <form id="gate-form" class="gate-form">
-          <input id="gate-password" type="password" placeholder="GitHub personal access token" autocomplete="current-password">
-          <button type="submit">Unlock Studio</button>
-        </form>
-        <p class="gate-hint">Use a GitHub token with repo access for now. A password-only editor needs a secure backend because GitHub Pages alone cannot safely hold write credentials.</p>
-        <p id="gate-error" class="gate-error" hidden>That credential did not unlock the editor.</p>
-        <div class="gate-actions">
-          <a href="/dashboard/">Open Ops Dashboard</a>
+    <div id="app" class="app-shell">
+      <header class="dash-header">
+        <div class="header-left">
+          <div class="header-brand">
+            <div class="dash-logo">Vibration<span>of</span>Awesome</div>
+            <div class="dash-subtitle">Live Posts Dashboard</div>
+          </div>
+          <nav class="dash-tabs">
+            <a href="/dashboard/" class="dash-tab">Syndication</a>
+            <a href="/dashboard/analytics.html" class="dash-tab">Analytics</a>
+            <a href="/admin/" class="dash-tab active">Admin</a>
+          </nav>
         </div>
-      </div>
-    </section>
-
-    <div id="app" class="app-shell" hidden>
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">Editorial System</p>
-          <h1 class="topbar-title">VOA Post Studio</h1>
-          <p class="topbar-subtitle">WordPress-style post management for the live Matt blog with a left-side post library, edit surface, and GitHub-backed saves.</p>
-        </div>
-        <div class="topbar-actions">
+        <div class="dash-right">
           <a class="ghost-link" href="/blog/matt/" target="_blank" rel="noopener">Forest Temple</a>
-          <a class="ghost-link" href="/dashboard/">Syndication</a>
-          <a class="ghost-link" href="/dashboard/analytics.html">Analytics</a>
           <button id="lock-button" class="ghost-button" type="button">Lock</button>
         </div>
       </header>
@@ -210,6 +197,20 @@
         </section>
       </main>
     </div>
+
+    <section id="gate" class="gate-screen">
+      <div class="gate-card">
+        <p class="eyebrow">Vibration of Awesome</p>
+        <h1>Unlock Live Posts</h1>
+        <p class="gate-copy">Use your GitHub token to unlock the live Forest Temple post editor. Once accepted, this overlay disappears and the dashboard stays in place.</p>
+        <form id="gate-form" class="gate-form">
+          <input id="gate-password" type="password" placeholder="GitHub personal access token" autocomplete="current-password">
+          <button type="submit">Unlock Studio</button>
+        </form>
+        <p class="gate-hint">Use a GitHub token with repo access for now. A password-only editor needs a secure backend because GitHub Pages alone cannot safely hold write credentials.</p>
+        <p id="gate-error" class="gate-error" hidden>That credential did not unlock the editor.</p>
+      </div>
+    </section>
   </div>
 
   <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>

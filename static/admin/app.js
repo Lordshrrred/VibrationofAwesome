@@ -496,7 +496,9 @@
 
     state.editor.setHTML(post.bodyHtml || "<p></p>");
     state.initialSnapshot = currentSnapshot();
-    els.authStatus.textContent = "Editing " + post.path;
+    els.authStatus.textContent = state.token
+      ? "Editing " + post.path
+      : "Studio is locked. Unlock with a GitHub token to enable saves.";
     updateLinks();
     updateSnapshot(post);
     refreshDirtyState();
@@ -751,8 +753,7 @@
         sessionStorage.setItem(SESSION_KEY, JSON.stringify({ token: token }));
         els.authStatus.textContent = "GitHub token accepted with write access. Save is enabled.";
         els.gate.hidden = true;
-        els.app.hidden = false;
-        await loadPosts();
+        refreshDirtyState();
       } catch (error) {
         els.gateError.hidden = false;
         els.gateError.textContent = friendlyGithubError(error) || "That credential did not unlock the editor.";
@@ -817,9 +818,7 @@
         if (parsed.token) {
           state.token = parsed.token;
           await validateTokenForStudio(state.token);
-          await loadPosts();
           els.gate.hidden = true;
-          els.app.hidden = false;
           els.authStatus.textContent = "GitHub token already active with write access. Save is enabled.";
           refreshDirtyState();
         }
@@ -827,6 +826,8 @@
         sessionStorage.removeItem(SESSION_KEY);
       }
     }
+
+    await loadPosts();
   }
 
   init().catch(function (error) {
