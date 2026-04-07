@@ -133,6 +133,30 @@
     return data;
   }
 
+  function friendlyGithubError(error) {
+    const message = error && error.message ? error.message : "GitHub request failed";
+    if (/resource not accessible by personal access token/i.test(message)) {
+      return "This GitHub token can see the repo but cannot write to it. Create a token for the account that has write access to Lordshrrred/VibrationofAwesome and give it Contents: Read and write.";
+    }
+    if (/bad credentials/i.test(message)) {
+      return "GitHub rejected this token. Paste a valid personal access token and try again.";
+    }
+    return message;
+  }
+
+  async function validateTokenForStudio(token) {
+    const repo = await githubRequest("", {}, token);
+    const permissions = repo.permissions || {};
+    const canPush = !!(permissions.admin || permissions.maintain || permissions.push);
+
+    if (!canPush) {
+      throw new Error("This token is connected, but the GitHub account behind it does not have write access to Lordshrrred/VibrationofAwesome.");
+    }
+
+    await githubRequest("/contents/static/blog/matt/index.html?ref=" + encodeURIComponent(GITHUB_BRANCH), {}, token);
+    return repo;
+  }
+
   async function fetchText(url) {
     const response = await fetch(url, { cache: "no-store" });
     if (!response.ok) {
@@ -622,6 +646,8 @@
       }
       els.authStatus.textContent = "Saved to GitHub on branch " + GITHUB_BRANCH + ".";
       setStatus("Saved to GitHub and ready for the next deploy.", false);
+    } catch (error) {
+      throw new Error(friendlyGithubError(error));
     } finally {
       refreshDirtyState();
     }
@@ -658,16 +684,16 @@
       try {
         const token = els.gatePassword.value.trim();
         if (!token) throw new Error("GitHub token required");
-        await githubRequest("", {}, token);
+        await validateTokenForStudio(token);
         state.token = token;
         sessionStorage.setItem(SESSION_KEY, JSON.stringify({ token: token }));
-        els.authStatus.textContent = "GitHub token accepted. Save is now enabled.";
+        els.authStatus.textContent = "GitHub token accepted with write access. Save is enabled.";
         els.gate.hidden = true;
         els.app.hidden = false;
         await loadPosts();
       } catch (error) {
         els.gateError.hidden = false;
-        els.gateError.textContent = error.message || "That credential did not unlock the editor.";
+        els.gateError.textContent = friendlyGithubError(error) || "That credential did not unlock the editor.";
       }
     });
 
@@ -728,11 +754,11 @@
         const parsed = JSON.parse(saved);
         if (parsed.token) {
           state.token = parsed.token;
-          await githubRequest("", {}, state.token);
+          await validateTokenForStudio(state.token);
           await loadPosts();
           els.gate.hidden = true;
           els.app.hidden = false;
-          els.authStatus.textContent = "GitHub token already active. Save is enabled.";
+          els.authStatus.textContent = "GitHub token already active with write access. Save is enabled.";
           refreshDirtyState();
         }
       } catch (_) {
