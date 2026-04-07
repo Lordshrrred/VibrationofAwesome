@@ -330,7 +330,7 @@ function buildPostHTML({ post, title, content, imageUrl, imageAttribution, readM
   .nav-breadcrumb a { font-family:'Rajdhani',sans-serif; font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
   .nav-breadcrumb a:hover { color:var(--amber); }
   .nav-sep { color:var(--muted); opacity:0.4; font-size:0.7rem; }
-  .post-hero { position:relative; overflow:hidden; z-index:1; min-height:32rem; display:flex; align-items:flex-end; padding:11.5rem 4rem 4rem; border-bottom:1px solid rgba(255,179,0,0.08); ${heroStyle} }
+  .post-hero { position:relative; overflow:hidden; z-index:1; min-height:31rem; display:flex; align-items:flex-end; padding:11rem 4rem 3.75rem; border-bottom:1px solid rgba(255,179,0,0.16); ${heroStyle} }
   .post-hero-inner { max-width:720px; margin:0 auto; }
   .lane-badge { display:inline-block; margin-bottom:1rem; font-family:'Rajdhani',sans-serif; font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--amber); border:1px solid rgba(255,179,0,0.3); background:rgba(255,179,0,0.05); padding:0.3rem 0.8rem; }
   .archive-badge { display:inline-block; margin-bottom:1.5rem; margin-left:0.75rem; font-family:'Rajdhani',sans-serif; font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(245,234,216,0.45); border:1px solid rgba(245,234,216,0.15); padding:0.3rem 0.7rem; }

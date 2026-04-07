@@ -26,13 +26,14 @@ nav.site-nav { display: block !important; padding: 0 !important;
   border-bottom: 1px solid rgba(255,179,0,0.12) !important;
   backdrop-filter: blur(8px); flex-direction: unset !important; }
 .site-nav-main { display: flex; align-items: center;
-  justify-content: space-between; padding: 1.5rem 3rem;
+  justify-content: space-between; min-height: 62px; padding: 1.3rem 3rem;
   border-bottom: 1px solid rgba(255,179,0,0.06); }
 a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem;
   color: #ffb300 !important; text-decoration: none; letter-spacing: 0.15em;
   text-shadow: 0 0 15px rgba(255,179,0,0.3); }
 .site-nav-links { display: flex; gap: 2.5rem; list-style: none;
   align-items: center; }
+.site-nav-logo, .site-nav-links a { line-height: 1; }
 .site-nav-links a { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem;
   letter-spacing: 0.2em; text-transform: uppercase;
   color: rgba(208,255,248,0.55); text-decoration: none;
@@ -84,13 +85,14 @@ nav.site-nav { display: block !important; padding: 0 !important;
   border-bottom: 1px solid rgba(0,229,255,0.12) !important;
   backdrop-filter: blur(8px); flex-direction: unset !important; }
 .site-nav-main { display: flex; align-items: center;
-  justify-content: space-between; padding: 1.5rem 3rem;
+  justify-content: space-between; min-height: 62px; padding: 1.3rem 3rem;
   border-bottom: 1px solid rgba(0,229,255,0.06); }
 a.site-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem;
   color: #00e5ff !important; text-decoration: none; letter-spacing: 0.15em;
   text-shadow: 0 0 15px rgba(0,229,255,0.3); }
 .site-nav-links { display: flex; gap: 2.5rem; list-style: none;
   align-items: center; }
+.site-nav-logo, .site-nav-links a { line-height: 1; }
 .site-nav-links a { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem;
   letter-spacing: 0.2em; text-transform: uppercase;
   color: rgba(207,246,255,0.55); text-decoration: none;
