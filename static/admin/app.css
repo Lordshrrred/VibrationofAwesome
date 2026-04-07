@@ -116,25 +116,9 @@ textarea {
   margin-top: 1.6rem;
 }
 
-.mode-wrap {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.mode-wrap span,
 .gate-hint {
   color: var(--muted);
   font-size: 0.82rem;
-}
-
-.mode-wrap select {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text);
-  padding: 0.9rem 1rem;
-  outline: none;
 }
 
 .gate-form input,

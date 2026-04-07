@@ -10,7 +10,6 @@
 
   const state = {
     password: "",
-    authMode: "",
     posts: [],
     filteredPosts: [],
     currentPost: null,
@@ -21,7 +20,6 @@
   const els = {
     gate: document.getElementById("gate"),
     gateForm: document.getElementById("gate-form"),
-    gateMode: document.getElementById("gate-mode"),
     gatePassword: document.getElementById("gate-password"),
     gateError: document.getElementById("gate-error"),
     app: document.getElementById("app"),
@@ -243,6 +241,9 @@
     state.editor.setMarkdown(post.body || "");
     state.initialSnapshot = snapshot();
     updatePreviewLink();
+    if (post.path) {
+      els.authStatus.textContent = "Editing " + post.path;
+    }
     refreshDirtyState();
   }
 
@@ -282,8 +283,9 @@
       return (
         "<article class=\"post-item" + (active ? " active" : "") + "\" data-path=\"" + post.path + "\">" +
           "<h3>" + escapeHtml(post.title || "Untitled Post") + "</h3>" +
-          "<p>" + escapeHtml(post.slug || "") + "</p>" +
+          "<p>" + escapeHtml(post.description || post.slug || "") + "</p>" +
           "<div class=\"post-item-meta\">" +
+            "<span class=\"pill\">" + escapeHtml(post.slug || "") + "</span>" +
             "<span class=\"pill\">" + escapeHtml(formatDate(post.date)) + "</span>" +
             (post.draft ? "<span class=\"pill draft\">Draft</span>" : "<span class=\"pill\">Published</span>") +
           "</div>" +
@@ -341,16 +343,7 @@
     els.saveButton.textContent = "Saving...";
 
     try {
-      let result;
-      if (state.authMode === "github") {
-        result = await saveViaGitHub(payload);
-      } else {
-        result = await api("/admin-posts", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      }
+      const result = await saveViaGitHub(payload);
 
       await loadPosts();
       const matchingPost = state.posts.find(function (post) {
@@ -359,6 +352,7 @@
       if (matchingPost) {
         await loadPost(matchingPost.path);
       }
+      els.authStatus.textContent = "Saved to GitHub on branch " + GITHUB_BRANCH + ".";
       setStatus("Saved to GitHub and ready for the next deploy.", false);
     } finally {
       els.saveButton.disabled = false;
@@ -371,6 +365,7 @@
     state.currentPost = null;
     fillForm(blankPost(seed));
     els.entryHeading.textContent = "New post";
+    els.authStatus.textContent = "Creating a new draft in the editor.";
     renderPostList();
   }
 
@@ -393,15 +388,12 @@
       .replace(/'/g, "&#39;");
   }
 
-  function unlock(mode, credential) {
+  function unlock(credential) {
     state.password = credential;
-    state.authMode = mode;
-    sessionStorage.setItem(SESSION_KEY, JSON.stringify({ mode: mode, credential: credential }));
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify({ credential: credential }));
     els.gate.hidden = true;
     els.app.hidden = false;
-    els.authStatus.textContent = mode === "github"
-      ? "Auth mode: GitHub token save path."
-      : "Auth mode: Netlify function save path.";
+    els.authStatus.textContent = "Auth mode: GitHub token save path.";
   }
 
   function lockStudio() {
@@ -414,18 +406,11 @@
   }
 
   async function attemptUnlock(password) {
-    const mode = els.gateMode.value;
-    if (mode === "github") {
-      if (!password.trim()) {
-        throw new Error("GitHub token required");
-      }
-      await githubRequest("", {}, password);
-      unlock(mode, password);
-    } else {
-      state.password = password;
-      await api("/admin-posts?action=list");
-      unlock(mode, password);
+    if (!password.trim()) {
+      throw new Error("GitHub token required");
     }
+    await githubRequest("", {}, password);
+    unlock(password);
     await loadPosts();
   }
 
@@ -551,12 +536,6 @@
       }
     });
 
-    els.gateMode.addEventListener("change", function () {
-      els.gatePassword.placeholder = els.gateMode.value === "github"
-        ? "GitHub personal access token"
-        : "Dashboard password";
-    });
-
     els.postSearch.addEventListener("input", renderPostList);
     els.newPostButton.addEventListener("click", createNewPost);
     els.duplicateButton.addEventListener("click", createNewPost);
@@ -590,10 +569,6 @@
     if (savedAuth) {
       try {
         const parsed = JSON.parse(savedAuth);
-        els.gateMode.value = parsed.mode || "github";
-        els.gatePassword.placeholder = els.gateMode.value === "github"
-          ? "GitHub personal access token"
-          : "Dashboard password";
         await attemptUnlock(parsed.credential || "");
       } catch (_) {
         sessionStorage.removeItem(SESSION_KEY);

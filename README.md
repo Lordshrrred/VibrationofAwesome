@@ -12,7 +12,6 @@ Roots in the Earth, Crown in the Stars. The Future is Ours.
 /                       → Hugo homepage (layouts/index.html)
 /posts/                 → Hugo-rendered blog posts from content/posts/
 /admin/                 → VOA Post Studio (custom post editor)
-/admin/decap/           → Branded legacy Decap fallback
 /blog/                  → Static dual-blog hub (legacy/generated HTML lane system)
 /blog/matt/             → From the Forest Temple — Matt EarthStar's personal lane
 /blog/boom/             → Boom Frequency — Matty BoomBoom AI SEO lane
@@ -112,22 +111,17 @@ NETLIFY_SITE_ID       → In GitHub repo secrets
 # Run Hugo dev server
 hugo server -D
 
-# Optional: run the local Decap backend so /admin can edit posts without OAuth
-npx decap-server
-
 # Site is available at http://localhost:1313
 ```
 
 ## Post Editing Dashboard
 
-`/admin/` is now a custom GUI called VOA Post Studio. It is the primary editing surface for `content/posts/`, defaults to a WYSIWYG editor, and is designed to save through Netlify Functions into GitHub.
+`/admin/` is now a custom GUI called VOA Post Studio. It is the primary editing surface for `content/posts/`, defaults to a WYSIWYG editor, and is designed to feel more like a post manager than a CMS config screen.
 
 - `/admin/` is the custom branded editor.
-- `/admin/decap/` keeps a branded Decap fallback available.
-- The old raw Decap-at-root experience is no longer the primary workflow.
-- For fully hosted saves, Netlify needs these environment variables:
-  `DASHBOARD_PASSWORD`, `GITHUB_TOKEN`, `GITHUB_REPO`, and `GITHUB_BRANCH`.
-- Local legacy Decap editing still works with `hugo server -D` plus `npx decap-server`.
+- Existing posts load into the left-hand library and open into the edit surface on click.
+- Right now the secure working save flow is GitHub-token based.
+- A password-only hosted editor will require a real backend or GitHub App service, because GitHub Pages alone cannot safely hold write credentials.
 
 ---
 

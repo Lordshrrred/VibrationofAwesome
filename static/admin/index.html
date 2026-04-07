@@ -19,23 +19,15 @@
       <div class="gate-card">
         <p class="eyebrow">Vibration of Awesome</p>
         <h1>Post Studio</h1>
-        <p class="gate-copy">A branded writing dashboard for Hugo posts, with GitHub token saves available now and a legacy Decap fallback tucked out of the way.</p>
+        <p class="gate-copy">A branded writing dashboard for Hugo posts. Click a post, open its editor, and update content and post settings in one place.</p>
         <form id="gate-form" class="gate-form">
-          <label class="mode-wrap">
-            <span>Access mode</span>
-            <select id="gate-mode">
-              <option value="github">GitHub token</option>
-              <option value="netlify">Netlify password</option>
-            </select>
-          </label>
           <input id="gate-password" type="password" placeholder="GitHub personal access token" autocomplete="current-password">
           <button type="submit">Unlock Studio</button>
         </form>
-        <p class="gate-hint">Use a GitHub token with repo access if Netlify is unavailable.</p>
+        <p class="gate-hint">Use a GitHub token with repo access for now. A password-only editor needs a secure backend because GitHub Pages alone cannot safely hold write credentials.</p>
         <p id="gate-error" class="gate-error" hidden>That credential did not unlock the editor.</p>
         <div class="gate-actions">
           <a href="/dashboard/">Open Ops Dashboard</a>
-          <a href="/admin/decap/">Legacy Decap</a>
         </div>
       </div>
     </section>
@@ -45,12 +37,11 @@
         <div>
           <p class="eyebrow">Editorial System</p>
           <h1 class="topbar-title">VOA Post Studio</h1>
-          <p class="topbar-subtitle">Custom editor for Hugo markdown with WYSIWYG writing, live metadata controls, and GitHub-backed saves.</p>
+          <p class="topbar-subtitle">WordPress-style post management for Hugo markdown with a left-side library, a full edit surface, and GitHub-backed saves.</p>
         </div>
         <div class="topbar-actions">
           <a class="ghost-link" href="/dashboard/">Syndication</a>
           <a class="ghost-link" href="/dashboard/analytics.html">Analytics</a>
-          <a class="ghost-link" href="/admin/decap/">Legacy Decap</a>
           <button id="lock-button" class="ghost-button" type="button">Lock</button>
         </div>
       </header>
@@ -60,8 +51,8 @@
           <div class="sidebar-section">
             <div class="sidebar-header">
               <div>
-                <p class="sidebar-label">Library</p>
-                <h2>Posts</h2>
+                <p class="sidebar-label">Post Manager</p>
+                <h2>Existing Posts</h2>
               </div>
               <button id="new-post-button" class="small-button" type="button">New</button>
             </div>
@@ -88,8 +79,8 @@
             <div>
               <p class="sidebar-label">Current Entry</p>
               <h2 id="entry-heading">Select a post</h2>
-              <p id="entry-status" class="entry-status">Locked in and ready.</p>
-              <p id="auth-status" class="entry-status">Waiting for auth.</p>
+              <p id="entry-status" class="entry-status">Click a post on the left to open its edit view.</p>
+              <p id="auth-status" class="entry-status">Waiting for GitHub auth.</p>
             </div>
             <div class="meta-actions">
               <a id="preview-link" class="ghost-link is-disabled" href="#" target="_blank" rel="noopener">Open Preview</a>
@@ -149,19 +140,19 @@
 
           <section class="notes-panel">
             <div class="note-card">
-              <p class="sidebar-label">Primary Workflow</p>
-              <h3>Custom Admin</h3>
-              <p>`/admin/` is now the main editing surface, not raw Decap.</p>
+              <p class="sidebar-label">Editing Flow</p>
+              <h3>Click, Open, Edit</h3>
+              <p>Select any existing post from the library and the full edit surface opens on the right with title, slug, date, SEO, and body controls.</p>
             </div>
             <div class="note-card">
-              <p class="sidebar-label">Legacy Fallback</p>
-              <h3>Decap Still Available</h3>
-              <p>If anything feels off, the older Decap workflow still lives at <a href="/admin/decap/">/admin/decap/</a>.</p>
+              <p class="sidebar-label">Appearance</p>
+              <h3>Content + Meta</h3>
+              <p>Change the body, draft state, tags, featured image path, description, canonical link, and preview target from one place.</p>
             </div>
             <div class="note-card">
-              <p class="sidebar-label">Persistence</p>
-              <h3>GitHub-Backed Saves</h3>
-              <p>Saves are designed to commit directly to the repo through Netlify Functions using a GitHub token.</p>
+              <p class="sidebar-label">Auth Reality</p>
+              <h3>Backend Needed for Password-Only</h3>
+              <p>GitHub token saves work now. A password-only editor can come later, but only once you connect a secure backend like Netlify, Vercel, Cloudflare, or a GitHub App service.</p>
             </div>
           </section>
         </section>

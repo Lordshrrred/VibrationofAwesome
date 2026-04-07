@@ -54,7 +54,7 @@ Each post is generated as standalone HTML and indexed in `static/_data/[lane]-po
 Hugo watches `content/posts/*.md` and renders with `layouts/` templates. The `hugo.toml` has `unsafe = true` for goldmark to allow raw HTML in markdown. Deployed to GitHub Pages via `.github/workflows/hugo.yml` on push to main.
 
 ### Post Editing
-`static/admin/` is the custom VOA Post Studio editor for `content/posts/`. It is intended to save via `netlify/functions/admin-posts.js` into GitHub using Netlify env vars. `static/admin/decap/` keeps a branded Decap fallback for legacy editing and local `npx decap-server` usage.
+`static/admin/` is the custom VOA Post Studio editor for `content/posts/`. It currently uses a GitHub-token save path from the browser and is meant to feel like a focused post manager for existing Hugo content. A future password-only flow requires a server-side auth layer, not GitHub Pages alone.
 
 ### AURA Chatbot (Serverless)
 `netlify/functions/chat.js` is a POST endpoint that proxies requests to Claude Sonnet API with an AURA (spiritual companion AI) system prompt. The chatbot UI lives at `/aura/`. Netlify handles the serverless hosting separately from GitHub Pages.
