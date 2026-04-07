@@ -158,6 +158,7 @@ function mattIndexNav() {
       <li><a href="/blog/matt/" class="active">Forest Temple</a></li>
       <li><a href="/earthstar/">EarthStar ✦</a></li>
       <li><a href="/art-store/">Art Store</a></li>
+      <li><a href="/field-guide/" class="nav-guide-link">Free Guide &#10022;</a></li>
       <li><a href="/aura/" class="nav-aura-link">AURA ✦</a></li>
       <li><a href="/portfolio/">Portfolio</a></li>
     </ul>
@@ -185,6 +186,7 @@ function mattPostNav() {
       <li><a href="/blog/matt/" class="active">Forest Temple</a></li>
       <li><a href="/earthstar/">EarthStar ✦</a></li>
       <li><a href="/art-store/">Art Store</a></li>
+      <li><a href="/field-guide/" class="nav-guide-link">Free Guide &#10022;</a></li>
       <li><a href="/aura/" class="nav-aura-link">AURA ✦</a></li>
       <li><a href="/portfolio/">Portfolio</a></li>
     </ul>
@@ -212,6 +214,7 @@ function boomIndexNav() {
       <li><a href="/blog/boom/" class="active">Boom Frequency ⚡</a></li>
       <li><a href="/earthstar/">EarthStar ✦</a></li>
       <li><a href="/art-store/">Art Store</a></li>
+      <li><a href="/field-guide/" class="nav-guide-link">Free Guide &#10022;</a></li>
       <li><a href="/aura/" class="nav-aura-link">AURA ✦</a></li>
       <li><a href="/portfolio/">Portfolio</a></li>
     </ul>
@@ -239,6 +242,7 @@ function boomPostNav() {
       <li><a href="/blog/boom/" class="active">Boom Frequency ⚡</a></li>
       <li><a href="/earthstar/">EarthStar ✦</a></li>
       <li><a href="/art-store/">Art Store</a></li>
+      <li><a href="/field-guide/" class="nav-guide-link">Free Guide &#10022;</a></li>
       <li><a href="/aura/" class="nav-aura-link">AURA ✦</a></li>
       <li><a href="/portfolio/">Portfolio</a></li>
     </ul>

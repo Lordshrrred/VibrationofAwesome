@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * generate-post.js ~ Dual-lane blog post generator for vibrationofawesome.com
  *
