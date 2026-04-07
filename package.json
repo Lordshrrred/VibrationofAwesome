@@ -11,6 +11,7 @@
     "research": "node scripts/seo-research.js",
     "sitemap": "node scripts/update-sitemap.js",
     "redirects": "node scripts/generate-legacy-redirects.js",
+    "normalize-archive": "node scripts/normalize-archive-metadata.js",
     "fb-token": "node scripts/get-facebook-token.js",
     "pinterest-token": "node scripts/get-pinterest-token.js"
   },
