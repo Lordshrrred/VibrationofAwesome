@@ -12,6 +12,7 @@
     "sitemap": "node scripts/update-sitemap.js",
     "redirects": "node scripts/generate-legacy-redirects.js",
     "normalize-archive": "node scripts/normalize-archive-metadata.js",
+    "archive-og": "node scripts/add-archive-og-images.js",
     "fb-token": "node scripts/get-facebook-token.js",
     "pinterest-token": "node scripts/get-pinterest-token.js"
   },
