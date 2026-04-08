@@ -201,17 +201,17 @@
   <div class="voa-cta-eop">
     <div class="voa-cta-grid">
       <div class="voa-cta-copy">
-        <div class="voa-eyebrow">Free Download</div>
+        <div class="voa-eyebrow">Free Transmission</div>
         <div class="voa-title">Take this further with the <span>Field Guide</span></div>
-        <div class="voa-sub">A short, practical guide to entering the Vibration of Awesome — what the state actually is, how to access it, and what changes when you do. Free. Instant download.</div>
+        <div class="voa-sub">A clean entry point into the Vibration of Awesome — the feeling, the framework, and the way back into alignment when life gets noisy.</div>
         <div class="voa-cta-form-wrap">
           <div class="voa-cta-form">
             <input type="email" class="voa-cta-input" placeholder="Your email address" autocomplete="email">
-            <button class="voa-cta-submit">Get the Free Guide ✦</button>
+            <button class="voa-cta-submit">Send Me the Guide ✦</button>
           </div>
           <div class="voa-cta-success">
-            <a href="#" class="voa-dl-link" target="_blank" rel="noopener">⬇ Download the Field Guide</a>
-            <div class="voa-success-msg">Check your inbox too — we sent a copy to your email.</div>
+            <a href="#" class="voa-dl-link" target="_blank" rel="noopener">⬇ Open the Field Guide</a>
+            <div class="voa-success-msg">It is on the way to your inbox too, in case you want to return to it later.</div>
           </div>
         </div>
       </div>
@@ -232,14 +232,14 @@
     <div class="voa-cta-grid">
       <div>
         <div class="voa-title">Want the <span>Field Guide</span>?</div>
-        <div class="voa-sub">The free practical guide to entering the Vibration of Awesome. Drop your email for an instant download.</div>
+        <div class="voa-sub">Start with the clearest entry point. Drop your email and the guide opens right away.</div>
         <div class="voa-cta-form-wrap">
           <div class="voa-cta-form">
             <input type="email" class="voa-cta-input" placeholder="Your email" autocomplete="email">
-            <button class="voa-cta-submit">Get It Free ✦</button>
+            <button class="voa-cta-submit">Open the Signal ✦</button>
           </div>
           <div class="voa-cta-success">
-            <a href="#" class="voa-dl-link" target="_blank" rel="noopener">⬇ Download Now</a>
+            <a href="#" class="voa-dl-link" target="_blank" rel="noopener">⬇ Open the Guide</a>
           </div>
         </div>
       </div>
@@ -256,8 +256,8 @@
     el.innerHTML = `
 <div class="voa-cta-wrap">
   <div class="voa-cta-banner">
-    <div class="voa-banner-text"><strong>Free guide:</strong> A Field Guide to Vibration of Awesome</div>
-    <a href="/field-guide/" class="voa-banner-link">Download Free ✦</a>
+    <div class="voa-banner-text"><strong>Start here:</strong> A Field Guide to Vibration of Awesome</div>
+    <a href="/field-guide/" class="voa-banner-link">Enter the Guide ✦</a>
   </div>
 </div>`;
     // top-banner links directly to landing page, no inline form
@@ -283,7 +283,7 @@
         return;
       }
       btn.disabled = true;
-      btn.textContent = '…';
+      btn.textContent = 'Opening…';
       window.dataLayer.push({ event: 'ebook_optin_submit', placement, blog_slug: slug });
 
       try {
