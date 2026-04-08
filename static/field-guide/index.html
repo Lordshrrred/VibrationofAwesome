@@ -81,7 +81,9 @@
      v1 archived ~ soft orbit aura + concentric circles + abstract geometry + sparkles.
      restore commit 28d11d3 for that version.
      v2 archived ~ heavy triforce swarm replacing the frame language.
-     restore commit 7e2ff7b for that version. */
+     restore commit 7e2ff7b for that version.
+     v3 archived ~ sacred-tech frame + lighter rotor.
+     restore commit 5c91308 for that version. */
   .book-showcase {
     position: relative;
     display: flex;
@@ -120,24 +122,11 @@
     animation: auraPulse 5s ease-in-out infinite;
   }
   .book-aura::after {
-    inset: -26px;
-    background:
-      radial-gradient(circle at 30% 35%, rgba(20,241,149,0.18), transparent 22%),
-      radial-gradient(circle at 68% 68%, rgba(0,178,255,0.14), transparent 22%),
-      radial-gradient(circle at 50% 50%, rgba(139,92,246,0.12), transparent 42%);
-    filter: blur(16px);
-    opacity: 0.7;
-    animation: auraRing 8s linear infinite;
-  }
-  .book-rotator {
-    position: absolute;
-    inset: -26px;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.4;
-    animation: slowRotor 18s linear infinite;
-    transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
-    filter: drop-shadow(0 0 18px rgba(20,241,149,0.12));
+    inset: -8px;
+    border: 1px solid rgba(20,241,149,0.22);
+    box-shadow: 0 0 34px rgba(20,241,149,0.16), 0 0 54px rgba(0,178,255,0.12);
+    opacity: 0.65;
+    animation: auraRing 7s linear infinite;
   }
   .book-cover {
     position: relative;
@@ -159,15 +148,8 @@
   .book-aura:hover::after,
   .book-aura:focus-visible::after {
     opacity: 1;
-    transform: scale(1.04);
-    filter: blur(18px);
-  }
-  .book-aura:hover .book-rotator,
-  .book-aura:focus-visible .book-rotator {
-    opacity: 0.65;
-    transform: scale(1.02);
-    filter: drop-shadow(0 0 26px rgba(20,241,149,0.2));
-    animation-duration: 12s;
+    transform: scale(1.03);
+    box-shadow: 0 0 46px rgba(20,241,149,0.24), 0 0 74px rgba(0,178,255,0.18);
   }
   .book-aura:hover .book-cover,
   .book-aura:focus-visible .book-cover {
@@ -183,11 +165,11 @@
   .book-aura:hover .vector-orbit,
   .book-aura:focus-visible .vector-orbit {
     opacity: 1;
-    transform: scale(1.15) rotate(10deg);
+    transform: scale(1.12) rotate(8deg);
   }
   .book-aura:hover .vector-orbit.orbit-2,
   .book-aura:focus-visible .vector-orbit.orbit-2 {
-    transform: scale(1.1) rotate(-18deg);
+    transform: scale(1.06) rotate(-14deg);
   }
   .sparkle-cluster {
     position: absolute;
@@ -233,7 +215,7 @@
     z-index: 1;
     width: 112%;
     height: 112%;
-    opacity: 0.08;
+    opacity: 0.58;
     pointer-events: none;
     transition: opacity 0.35s ease, transform 0.35s ease;
     animation: orbitFloat 9s ease-in-out infinite;
@@ -241,60 +223,27 @@
   .vector-orbit.orbit-2 {
     width: 124%;
     height: 124%;
-    opacity: 0.05;
+    opacity: 0.42;
     animation-duration: 11s;
     animation-direction: reverse;
-  }
-  .book-tech-frame {
-    position: absolute;
-    inset: -8px;
-    z-index: 3;
-    pointer-events: none;
-    opacity: 0.82;
-    transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
-    filter: drop-shadow(0 0 12px rgba(20,241,149,0.16));
-  }
-  .book-tech-frame path,
-  .book-tech-frame polyline,
-  .book-tech-frame line {
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    vector-effect: non-scaling-stroke;
-    stroke-dasharray: 28 18;
-    animation: circuitTravel 8s linear infinite;
-  }
-  .book-tech-frame .trace-blue { animation-duration: 11s; }
-  .book-tech-frame .trace-soft { stroke-dasharray: 12 16; animation-duration: 13s; }
-  .book-aura:hover .book-tech-frame,
-  .book-aura:focus-visible .book-tech-frame {
-    opacity: 1;
-    transform: scale(1.014);
-    filter: drop-shadow(0 0 18px rgba(20,241,149,0.24));
-  }
-  .book-aura:hover .book-tech-frame path,
-  .book-aura:focus-visible .book-tech-frame path,
-  .book-aura:hover .book-tech-frame polyline,
-  .book-aura:focus-visible .book-tech-frame polyline,
-  .book-aura:hover .book-tech-frame line,
-  .book-aura:focus-visible .book-tech-frame line {
-    animation-duration: 5s;
   }
   .tiny-triforce {
     position: absolute;
     z-index: 4;
     width: 14px;
     height: 14px;
-    opacity: 0.62;
+    opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
     filter: drop-shadow(0 0 6px rgba(20,241,149,0.18));
   }
-  .tiny-triforce.tt1 { top: 8px; left: 10px; }
-  .tiny-triforce.tt2 { top: 10px; right: 12px; }
-  .tiny-triforce.tt3 { bottom: 10px; right: 10px; }
-  .tiny-triforce.tt4 { bottom: 12px; left: 12px; }
-  .tiny-triforce.tt5 { top: 42%; left: 6px; width: 10px; height: 10px; opacity: 0.46; }
-  .tiny-triforce.tt6 { top: 38%; right: 7px; width: 10px; height: 10px; opacity: 0.46; }
+  .tiny-triforce.tt1 { top: 2%; left: 20%; width: 10px; height: 10px; }
+  .tiny-triforce.tt2 { top: 10%; right: 16%; width: 11px; height: 11px; }
+  .tiny-triforce.tt3 { bottom: 14%; left: 12%; width: 10px; height: 10px; }
+  .tiny-triforce.tt4 { bottom: 4%; right: 22%; width: 11px; height: 11px; }
+  .tiny-triforce.tt5 { top: 22%; left: 4%; width: 8px; height: 8px; opacity: 0; }
+  .tiny-triforce.tt6 { top: 28%; right: 3%; width: 8px; height: 8px; opacity: 0; }
+  .tiny-triforce.tt7 { bottom: 26%; left: 2%; width: 7px; height: 7px; opacity: 0; }
+  .tiny-triforce.tt8 { bottom: 18%; right: 5%; width: 7px; height: 7px; opacity: 0; }
   .book-aura:hover .tiny-triforce,
   .book-aura:focus-visible .tiny-triforce {
     opacity: 1;
@@ -501,17 +450,9 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
-  @keyframes slowRotor {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
   @keyframes orbitFloat {
     0%, 100% { transform: scale(1) rotate(0deg); }
     50% { transform: scale(1.04) rotate(6deg); }
-  }
-  @keyframes circuitTravel {
-    from { stroke-dashoffset: 0; }
-    to { stroke-dashoffset: -180; }
   }
   @keyframes triforceBlink {
     0%, 100% { opacity: 0.24; transform: translateY(0) scale(0.92); }
@@ -649,43 +590,15 @@
       <div class="book-showcase">
         <div class="book-badge">Beautiful object. Real signal.</div>
         <button class="book-aura" type="button" id="book-trigger" aria-haspopup="dialog" aria-controls="book-modal" aria-label="Open the Field Guide capture experience">
-          <svg class="book-rotator" viewBox="0 0 420 420" aria-hidden="true">
-            <rect x="92" y="88" width="236" height="244" rx="28" fill="none" stroke="rgba(20,241,149,0.18)" stroke-width="2"/>
-            <rect x="112" y="108" width="196" height="204" rx="24" fill="none" stroke="rgba(0,178,255,0.12)" stroke-width="1.6"/>
-            <path d="M210 68 L318 244 L102 244 Z" fill="none" stroke="rgba(20,241,149,0.18)" stroke-width="1.7"/>
-            <path d="M210 106 L270 210 L150 210 Z" fill="none" stroke="rgba(0,178,255,0.14)" stroke-width="1.4"/>
-          </svg>
           <svg class="vector-orbit orbit-1" viewBox="0 0 360 360" aria-hidden="true">
-            <circle cx="180" cy="180" r="132" fill="none" stroke="rgba(20,241,149,0.18)" stroke-width="1.3"/>
-            <g fill="none" stroke-linejoin="round">
-              <path d="M180 44 L292 236 L68 236 Z" stroke="rgba(20,241,149,0.34)" stroke-width="1.5"/>
-              <path d="M180 82 L246 194 L114 194 Z" stroke="rgba(0,178,255,0.36)" stroke-width="1.35"/>
-              <path d="M134 162 L180 84 L226 162 Z" stroke="rgba(20,241,149,0.3)" stroke-width="1.1"/>
-              <path d="M112 198 L158 120 L204 198 Z" stroke="rgba(0,178,255,0.22)" stroke-width="1.05"/>
-              <path d="M156 198 L202 120 L248 198 Z" stroke="rgba(20,241,149,0.28)" stroke-width="1.05"/>
-            </g>
+            <circle cx="180" cy="180" r="126" fill="none" stroke="rgba(20,241,149,0.28)" stroke-width="1.5"/>
+            <circle cx="180" cy="180" r="92" fill="none" stroke="rgba(0,178,255,0.22)" stroke-width="1.3"/>
+            <path d="M180 52 L287 240 L73 240 Z" fill="none" stroke="rgba(20,241,149,0.26)" stroke-width="1.4"/>
+            <path d="M180 78 L245 214 L115 214 Z" fill="none" stroke="rgba(0,178,255,0.22)" stroke-width="1.2"/>
           </svg>
           <svg class="vector-orbit orbit-2" viewBox="0 0 360 360" aria-hidden="true">
-            <circle cx="180" cy="180" r="102" fill="none" stroke="rgba(0,178,255,0.16)" stroke-width="1.1"/>
-            <g fill="none" stroke-linejoin="round">
-              <path d="M180 64 L274 228 L86 228 Z" stroke="rgba(139,92,246,0.24)" stroke-width="1.25"/>
-              <path d="M180 108 L230 194 L130 194 Z" stroke="rgba(20,241,149,0.3)" stroke-width="1.15"/>
-              <path d="M142 198 L180 132 L218 198 Z" stroke="rgba(0,178,255,0.24)" stroke-width="1.05"/>
-              <path d="M90 146 L132 218 L48 218 Z" stroke="rgba(20,241,149,0.16)" stroke-width="1"/>
-              <path d="M270 146 L312 218 L228 218 Z" stroke="rgba(0,178,255,0.16)" stroke-width="1"/>
-            </g>
-          </svg>
-          <svg class="book-tech-frame" viewBox="0 0 360 520" aria-hidden="true">
-            <path class="trace-green" d="M34 78 V26 H118 M242 26 H326 V110" stroke="rgba(20,241,149,0.9)" stroke-width="2.3"/>
-            <path class="trace-green" d="M326 412 V492 H246 M122 492 H34 V392" stroke="rgba(20,241,149,0.9)" stroke-width="2.3"/>
-            <polyline class="trace-blue" points="34,122 54,122 74,142 74,188 92,206 132,206" stroke="rgba(0,178,255,0.86)" stroke-width="1.9"/>
-            <polyline class="trace-blue" points="326,364 308,364 286,386 286,434 266,454 230,454" stroke="rgba(0,178,255,0.86)" stroke-width="1.9"/>
-            <polyline class="trace-green" points="286,76 312,76 330,58 330,34" stroke="rgba(20,241,149,0.82)" stroke-width="1.8"/>
-            <polyline class="trace-green" points="70,444 46,444 30,462 30,488" stroke="rgba(20,241,149,0.82)" stroke-width="1.8"/>
-            <line class="trace-soft" x1="120" y1="28" x2="242" y2="28" stroke="rgba(20,241,149,0.5)" stroke-width="1.2"/>
-            <line class="trace-soft" x1="120" y1="492" x2="242" y2="492" stroke="rgba(20,241,149,0.5)" stroke-width="1.2"/>
-            <line class="trace-soft" x1="32" y1="190" x2="32" y2="332" stroke="rgba(0,178,255,0.42)" stroke-width="1.15"/>
-            <line class="trace-soft" x1="328" y1="190" x2="328" y2="332" stroke="rgba(0,178,255,0.42)" stroke-width="1.15"/>
+            <path d="M74 130 C128 58, 232 58, 286 130 C310 164, 308 216, 280 250 C232 308, 128 308, 80 250 C52 216, 50 164, 74 130 Z" fill="none" stroke="rgba(139,92,246,0.22)" stroke-width="1.3"/>
+            <path d="M106 180 H254 M180 106 V254" stroke="rgba(20,241,149,0.18)" stroke-width="1.2"/>
           </svg>
           <svg class="tiny-triforce tt1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.9)"/></svg>
           <svg class="tiny-triforce tt2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.84)"/></svg>
@@ -693,6 +606,8 @@
           <svg class="tiny-triforce tt4" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.76)"/></svg>
           <svg class="tiny-triforce tt5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.7)"/></svg>
           <svg class="tiny-triforce tt6" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.64)"/></svg>
+          <svg class="tiny-triforce tt7" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.58)"/></svg>
+          <svg class="tiny-triforce tt8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.52)"/></svg>
           <svg class="triforce-glint t1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.86)"/></svg>
           <svg class="triforce-glint t2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.8)"/></svg>
           <svg class="triforce-glint t3" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.8)"/></svg>
