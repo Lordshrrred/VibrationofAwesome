@@ -15,13 +15,21 @@
 /* ── End-of-post ── */
 .voa-cta-eop {
   margin: 3rem auto 2rem;
-  max-width: 640px;
+  max-width: 760px;
   background: linear-gradient(135deg, rgba(10,22,24,0.97) 0%, rgba(6,15,16,0.97) 100%);
   border: 1px solid rgba(212,175,55,0.35);
   border-radius: 12px;
   padding: 2.5rem 2rem;
-  text-align: center;
   box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.08);
+}
+.voa-cta-eop .voa-cta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 1.5rem;
+  align-items: center;
+}
+.voa-cta-eop .voa-cta-copy {
+  text-align: left;
 }
 .voa-cta-eop .voa-eyebrow {
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.28em;
@@ -36,6 +44,25 @@
   font-size: 0.9rem; color: rgba(232,244,240,0.7);
   margin-bottom: 1.75rem; line-height: 1.6;
   font-family: 'Lora', Georgia, serif;
+}
+.voa-cover-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+.voa-cover-card img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(212,175,55,0.22);
+  box-shadow: 0 18px 42px rgba(0,0,0,0.35);
+}
+.voa-cover-note {
+  font-size: 0.72rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(232,244,240,0.58);
 }
 .voa-cta-form { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
 .voa-cta-input {
@@ -75,11 +102,18 @@
 /* ── Mid-article ── */
 .voa-cta-mid {
   margin: 2.5rem auto;
-  max-width: 560px;
+  max-width: 720px;
   background: rgba(212,175,55,0.07);
+  border: 1px solid rgba(212,175,55,0.18);
   border-left: 3px solid #D4AF37;
-  border-radius: 0 8px 8px 0;
+  border-radius: 12px;
   padding: 1.75rem 1.5rem;
+}
+.voa-cta-mid .voa-cta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 160px;
+  gap: 1.15rem;
+  align-items: center;
 }
 .voa-cta-mid .voa-title {
   font-size: 1.05rem; font-weight: 700; color: #e8f4f0; margin-bottom: 0.5rem;
@@ -90,6 +124,12 @@
   font-family: 'Lora', Georgia, serif;
 }
 .voa-cta-mid .voa-cta-form { justify-content: flex-start; }
+.voa-cta-mid .voa-cover-card img {
+  border-radius: 10px;
+}
+.voa-cta-mid .voa-cover-note {
+  font-size: 0.62rem;
+}
 
 /* ── Top-banner ── */
 .voa-cta-banner {
@@ -113,6 +153,25 @@
   transition: opacity 0.2s;
 }
 .voa-cta-banner .voa-banner-link:hover { opacity: 0.85; }
+
+@media (max-width: 700px) {
+  .voa-cta-eop .voa-cta-grid,
+  .voa-cta-mid .voa-cta-grid {
+    grid-template-columns: 1fr;
+  }
+  .voa-cta-eop .voa-cta-copy,
+  .voa-cta-mid {
+    text-align: center;
+  }
+  .voa-cta-mid .voa-cta-form,
+  .voa-cta-eop .voa-cta-form {
+    justify-content: center;
+  }
+  .voa-cover-card {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+}
 `;
 
   function injectStyles() {
@@ -140,17 +199,25 @@
     el.innerHTML = `
 <div class="voa-cta-wrap">
   <div class="voa-cta-eop">
-    <div class="voa-eyebrow">Free Download</div>
-    <div class="voa-title">Take this further with the <span>Field Guide</span></div>
-    <div class="voa-sub">A short, practical guide to entering the Vibration of Awesome — what the state actually is, how to access it, and what changes when you do. Free. Instant download.</div>
-    <div class="voa-cta-form-wrap">
-      <div class="voa-cta-form">
-        <input type="email" class="voa-cta-input" placeholder="Your email address" autocomplete="email">
-        <button class="voa-cta-submit">Get the Free Guide ✦</button>
+    <div class="voa-cta-grid">
+      <div class="voa-cta-copy">
+        <div class="voa-eyebrow">Free Download</div>
+        <div class="voa-title">Take this further with the <span>Field Guide</span></div>
+        <div class="voa-sub">A short, practical guide to entering the Vibration of Awesome — what the state actually is, how to access it, and what changes when you do. Free. Instant download.</div>
+        <div class="voa-cta-form-wrap">
+          <div class="voa-cta-form">
+            <input type="email" class="voa-cta-input" placeholder="Your email address" autocomplete="email">
+            <button class="voa-cta-submit">Get the Free Guide ✦</button>
+          </div>
+          <div class="voa-cta-success">
+            <a href="#" class="voa-dl-link" target="_blank" rel="noopener">⬇ Download the Field Guide</a>
+            <div class="voa-success-msg">Check your inbox too — we sent a copy to your email.</div>
+          </div>
+        </div>
       </div>
-      <div class="voa-cta-success">
-        <a href="#" class="voa-dl-link" target="_blank" rel="noopener">⬇ Download the Field Guide</a>
-        <div class="voa-success-msg">Check your inbox too — we sent a copy to your email.</div>
+      <div class="voa-cover-card">
+        <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
+        <div class="voa-cover-note">The actual guide, ready to grab</div>
       </div>
     </div>
   </div>
@@ -162,15 +229,22 @@
     el.innerHTML = `
 <div class="voa-cta-wrap">
   <div class="voa-cta-mid">
-    <div class="voa-title">Want the <span>Field Guide</span>?</div>
-    <div class="voa-sub">The free practical guide to entering the Vibration of Awesome. Drop your email for an instant download.</div>
-    <div class="voa-cta-form-wrap">
-      <div class="voa-cta-form">
-        <input type="email" class="voa-cta-input" placeholder="Your email" autocomplete="email">
-        <button class="voa-cta-submit">Get It Free ✦</button>
+    <div class="voa-cta-grid">
+      <div>
+        <div class="voa-title">Want the <span>Field Guide</span>?</div>
+        <div class="voa-sub">The free practical guide to entering the Vibration of Awesome. Drop your email for an instant download.</div>
+        <div class="voa-cta-form-wrap">
+          <div class="voa-cta-form">
+            <input type="email" class="voa-cta-input" placeholder="Your email" autocomplete="email">
+            <button class="voa-cta-submit">Get It Free ✦</button>
+          </div>
+          <div class="voa-cta-success">
+            <a href="#" class="voa-dl-link" target="_blank" rel="noopener">⬇ Download Now</a>
+          </div>
+        </div>
       </div>
-      <div class="voa-cta-success">
-        <a href="#" class="voa-dl-link" target="_blank" rel="noopener">⬇ Download Now</a>
+      <div class="voa-cover-card">
+        <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
       </div>
     </div>
   </div>

@@ -12,11 +12,11 @@
 <meta property="og:title" content="Enter the Vibration of Awesome — Free Field Guide">
 <meta property="og:description" content="A free field guide to living in flow, expected unexpectedness, grounded power, and the state where life starts opening back up.">
 <meta property="og:url" content="https://vibrationofawesome.com/field-guide/">
-<meta property="og:image" content="https://vibrationofawesome.com/images/earthstar-hero.jpg">
+<meta property="og:image" content="https://vibrationofawesome.com/images/field-guide-cover.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Enter the Vibration of Awesome — Free Field Guide">
 <meta name="twitter:description" content="A free field guide to living in flow, expected unexpectedness, grounded power, and the state where life starts opening back up.">
-<meta name="twitter:image" content="https://vibrationofawesome.com/images/earthstar-hero.jpg">
+<meta name="twitter:image" content="https://vibrationofawesome.com/images/field-guide-cover.png">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G5HF0WKZT9');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,24 +44,59 @@
   .nav-back:hover { color: var(--gold); }
 
   /* ── Hero ── */
-  .hero { padding: 6rem 2rem 5rem; text-align: center; max-width: 780px; margin: 0 auto; }
+  .hero { padding: 6rem 2rem 5rem; max-width: 1080px; margin: 0 auto; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, 360px); gap: 3rem; align-items: center; }
+  .hero-copy-wrap { text-align: left; }
   .hero-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
   .hero-headline { font-family: 'Poppins', sans-serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; color: var(--text); margin-bottom: 1.5rem; }
   .hero-headline span { color: var(--gold); }
-  .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.8; color: var(--body); max-width: 600px; margin: 0 auto 3rem; }
-
-  /* ── Book mockup ── */
-  .book-mock {
-    width: 200px; height: 280px; margin: 0 auto 3rem;
-    background: linear-gradient(135deg, #1a2f2a 0%, #0d1e1a 100%);
-    border: 1px solid var(--gold-border); border-radius: 4px 10px 10px 4px;
-    box-shadow: -6px 6px 0 0 rgba(212,175,55,0.15), 0 20px 60px rgba(0,0,0,0.6);
-    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1.5rem; position: relative;
+  .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.8; color: var(--body); max-width: 640px; margin: 0 0 1.4rem; }
+  .hero-hook {
+    max-width: 620px;
+    margin: 0 0 2rem;
+    padding: 1.1rem 1.2rem;
+    background: linear-gradient(180deg, rgba(0,229,204,0.08), rgba(212,175,55,0.08));
+    border: 1px solid rgba(212,175,55,0.18);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 1rem;
   }
-  .book-mock::before { content: ''; position: absolute; left: 0; top: 4%; bottom: 4%; width: 6px; background: rgba(212,175,55,0.3); border-radius: 2px 0 0 2px; }
-  .book-mock-title { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 0.75rem; }
-  .book-mock-subtitle { font-family: 'Lora', serif; font-size: 0.7rem; color: rgba(232,244,240,0.5); text-align: center; font-style: italic; }
-  .book-mock-star { font-size: 1.4rem; color: var(--gold); margin: 0.75rem 0; opacity: 0.7; }
+  .hero-hook strong { color: var(--gold); }
+
+  /* ── Book cover ── */
+  .book-showcase {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .book-cover {
+    width: min(100%, 340px);
+    border-radius: 14px;
+    border: 1px solid rgba(0,229,204,0.24);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.55), 0 0 32px rgba(0,229,204,0.14);
+    transform: perspective(1200px) rotateY(-9deg) rotateX(2deg);
+    transform-origin: center;
+  }
+  .book-badge {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #020a0a;
+    background: linear-gradient(90deg, var(--gold), #f5d97d);
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+  }
+  .book-caption {
+    max-width: 320px;
+    text-align: center;
+    color: var(--body);
+    font-size: 0.95rem;
+  }
 
   /* ── Email form ── */
   .form-wrap { max-width: 480px; margin: 0 auto; }
@@ -136,6 +171,13 @@
   .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
   .footer-links a { font-family: 'Poppins', sans-serif; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--gold); }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-copy-wrap { text-align: center; }
+    .hero-sub, .hero-hook { margin-left: auto; margin-right: auto; }
+    .book-cover { transform: none; }
+  }
 </style>
 </head>
 <body>
@@ -149,32 +191,37 @@
 
   <!-- ── HERO ── -->
   <section class="hero">
-    <div class="hero-eyebrow">Free Download</div>
-    <h1 class="hero-headline">Enter the <span>Vibration<br>of Awesome</span></h1>
-    <p class="hero-sub">A free field guide to living in flow, expected unexpectedness, grounded power, and the state where life starts opening back up.</p>
+    <div class="hero-grid">
+      <div class="hero-copy-wrap">
+        <div class="hero-eyebrow">Free Download</div>
+        <h1 class="hero-headline">Enter the <span>Vibration<br>of Awesome</span></h1>
+        <p class="hero-sub">The cover alone feels like a transmission, and the guide inside is the invitation to step into that frequency on purpose.</p>
+        <div class="hero-hook"><strong>This is the one you want in your library.</strong> A compact, beautifully-packaged entry point into the philosophy behind flow, synchronicity, grounded power, and the feeling that life is finally opening instead of closing.</div>
+        <p class="hero-sub">If the phrase <em>you already know what it feels like</em> hits something in you, this guide was made for that exact recognition.</p>
 
-    <!-- Book mockup -->
-    <div class="book-mock">
-      <div class="book-mock-title">A Field Guide to<br>Vibration of<br>Awesome</div>
-      <div class="book-mock-star">✦</div>
-      <div class="book-mock-subtitle">Matt EarthStar<br>vibrationofawesome.com</div>
-    </div>
-
-    <!-- Form -->
-    <div class="form-wrap" id="hero-form-wrap">
-      <div id="hero-form">
-        <div class="form-row">
-          <input type="email" class="form-input" id="hero-email" placeholder="Your email address" autocomplete="email">
-          <button class="form-btn" id="hero-btn" onclick="submitForm('hero')">Download the Free Guide</button>
+        <!-- Form -->
+        <div class="form-wrap" id="hero-form-wrap">
+          <div id="hero-form">
+            <div class="form-row">
+              <input type="email" class="form-input" id="hero-email" placeholder="Your email address" autocomplete="email">
+              <button class="form-btn" id="hero-btn" onclick="submitForm('hero')">Download the Free Guide</button>
+            </div>
+            <div class="form-error" id="hero-error"></div>
+            <p class="form-note">No spam. Just signal. Unsubscribe anytime.</p>
+          </div>
+          <div class="form-success" id="hero-success">
+            <h3>You're in. ✦</h3>
+            <p>Your Field Guide is ready.</p>
+            <a href="#" class="download-btn" id="hero-download-btn">Download the Field Guide →</a>
+            <p style="margin-top:1rem;font-family:'Poppins',sans-serif;font-size:0.78rem;color:var(--muted)">Want the tactical manual too? <a href="/user-manual/" style="color:var(--gold)">See Volume Two →</a></p>
+          </div>
         </div>
-        <div class="form-error" id="hero-error"></div>
-        <p class="form-note">No spam. Just signal. Unsubscribe anytime.</p>
       </div>
-      <div class="form-success" id="hero-success">
-        <h3>You're in. ✦</h3>
-        <p>Your Field Guide is ready.</p>
-        <a href="#" class="download-btn" id="hero-download-btn">Download the Field Guide →</a>
-        <p style="margin-top:1rem;font-family:'Poppins',sans-serif;font-size:0.78rem;color:var(--muted)">Want the tactical manual too? <a href="/user-manual/" style="color:var(--gold)">See Volume Two →</a></p>
+
+      <div class="book-showcase">
+        <div class="book-badge">Looks too good to leave unread</div>
+        <img class="book-cover" src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
+        <div class="book-caption">A real cover, a real invitation, and a much stronger first impression than the old placeholder block.</div>
       </div>
     </div>
   </section>
