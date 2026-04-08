@@ -107,25 +107,26 @@
   .book-aura::after {
     content: "";
     position: absolute;
-    inset: -18px;
-    border-radius: 26px;
+    inset: -34px;
     pointer-events: none;
     transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
   }
   .book-aura::before {
     background:
-      radial-gradient(circle at 35% 28%, rgba(20,241,149,0.34), transparent 30%),
-      radial-gradient(circle at 72% 78%, rgba(0,178,255,0.28), transparent 34%),
-      radial-gradient(circle at 50% 50%, rgba(139,92,246,0.18), transparent 52%);
-    filter: blur(22px);
-    opacity: 0.75;
+      radial-gradient(circle at 32% 26%, rgba(20,241,149,0.28), transparent 24%),
+      radial-gradient(circle at 72% 72%, rgba(0,178,255,0.2), transparent 28%),
+      radial-gradient(circle at 50% 50%, rgba(20,241,149,0.12), transparent 46%);
+    filter: blur(28px);
+    opacity: 0.62;
     animation: auraPulse 5s ease-in-out infinite;
   }
   .book-aura::after {
-    inset: -8px;
-    border: 1px solid rgba(20,241,149,0.22);
-    box-shadow: 0 0 34px rgba(20,241,149,0.16), 0 0 54px rgba(0,178,255,0.12);
-    opacity: 0.65;
+    inset: -24px;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(0,178,255,0.12), transparent 48%),
+      radial-gradient(circle at 50% 50%, rgba(20,241,149,0.08), transparent 64%);
+    filter: blur(18px);
+    opacity: 0.52;
     animation: auraRing 7s linear infinite;
   }
   .book-cover {
@@ -141,15 +142,15 @@
   }
   .book-aura:hover::before,
   .book-aura:focus-visible::before {
-    opacity: 1;
-    transform: scale(1.06);
-    filter: blur(28px);
+    opacity: 0.84;
+    transform: scale(1.04);
+    filter: blur(32px);
   }
   .book-aura:hover::after,
   .book-aura:focus-visible::after {
-    opacity: 1;
-    transform: scale(1.03);
-    box-shadow: 0 0 46px rgba(20,241,149,0.24), 0 0 74px rgba(0,178,255,0.18);
+    opacity: 0.72;
+    transform: scale(1.02);
+    filter: blur(22px);
   }
   .book-aura:hover .book-cover,
   .book-aura:focus-visible .book-cover {
@@ -244,6 +245,10 @@
   .tiny-triforce.tt6 { top: 28%; right: 3%; width: 8px; height: 8px; opacity: 0; }
   .tiny-triforce.tt7 { bottom: 26%; left: 2%; width: 7px; height: 7px; opacity: 0; }
   .tiny-triforce.tt8 { bottom: 18%; right: 5%; width: 7px; height: 7px; opacity: 0; }
+  .tiny-triforce.tt9 { top: 36%; left: 1%; width: 6px; height: 6px; opacity: 0; }
+  .tiny-triforce.tt10 { top: 42%; right: 1%; width: 6px; height: 6px; opacity: 0; }
+  .tiny-triforce.tt11 { bottom: 34%; left: 4%; width: 5px; height: 5px; opacity: 0; }
+  .tiny-triforce.tt12 { bottom: 30%; right: 3%; width: 5px; height: 5px; opacity: 0; }
   .book-aura:hover .tiny-triforce,
   .book-aura:focus-visible .tiny-triforce {
     opacity: 1;
@@ -394,12 +399,13 @@
   }
   .modal-spark {
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     border-radius: 999px;
     background: radial-gradient(circle, rgba(20,241,149,0.98) 0%, rgba(0,178,255,0.48) 44%, transparent 72%);
-    box-shadow: 0 0 18px rgba(20,241,149,0.34), 0 0 28px rgba(0,178,255,0.18);
+    box-shadow: 0 0 22px rgba(20,241,149,0.42), 0 0 34px rgba(0,178,255,0.24);
     animation: modalSparkle 3.4s ease-in-out infinite;
+    opacity: 0.92;
   }
   .modal-spark::before,
   .modal-spark::after {
@@ -415,11 +421,11 @@
   }
   .modal-spark::after { transform: rotate(90deg); }
   .modal-spark.ms1 { top: 8%; left: 10%; animation-delay: 0.1s; }
-  .modal-spark.ms2 { top: 14%; right: 12%; width: 9px; height: 9px; animation-delay: 0.7s; }
-  .modal-spark.ms3 { bottom: 16%; left: 8%; width: 10px; height: 10px; animation-delay: 1.3s; }
+  .modal-spark.ms2 { top: 14%; right: 12%; width: 10px; height: 10px; animation-delay: 0.7s; }
+  .modal-spark.ms3 { bottom: 16%; left: 8%; width: 11px; height: 11px; animation-delay: 1.3s; }
   .modal-spark.ms4 { bottom: 12%; right: 14%; animation-delay: 1.9s; }
-  .modal-spark.ms5 { top: 48%; left: 2%; width: 8px; height: 8px; animation-delay: 2.3s; }
-  .modal-spark.ms6 { top: 44%; right: 4%; width: 8px; height: 8px; animation-delay: 2.8s; }
+  .modal-spark.ms5 { top: 48%; left: 2%; width: 9px; height: 9px; animation-delay: 2.3s; }
+  .modal-spark.ms6 { top: 44%; right: 4%; width: 9px; height: 9px; animation-delay: 2.8s; }
   .modal-copy {
     padding: 3rem;
   }
@@ -653,6 +659,10 @@
           <svg class="tiny-triforce tt6" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.64)"/></svg>
           <svg class="tiny-triforce tt7" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.58)"/></svg>
           <svg class="tiny-triforce tt8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.52)"/></svg>
+          <svg class="tiny-triforce tt9" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.52)"/></svg>
+          <svg class="tiny-triforce tt10" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.48)"/></svg>
+          <svg class="tiny-triforce tt11" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.44)"/></svg>
+          <svg class="tiny-triforce tt12" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.4)"/></svg>
           <svg class="triforce-glint t1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.86)"/></svg>
           <svg class="triforce-glint t2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.8)"/></svg>
           <svg class="triforce-glint t3" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.8)"/></svg>
