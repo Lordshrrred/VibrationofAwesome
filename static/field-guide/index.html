@@ -84,13 +84,162 @@
     align-items: center;
     gap: 1rem;
   }
+  .book-aura {
+    position: relative;
+    width: min(100%, 340px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    isolation: isolate;
+  }
+  .book-aura::before,
+  .book-aura::after {
+    content: "";
+    position: absolute;
+    inset: -18px;
+    border-radius: 26px;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+  }
+  .book-aura::before {
+    background:
+      radial-gradient(circle at 35% 28%, rgba(20,241,149,0.34), transparent 30%),
+      radial-gradient(circle at 72% 78%, rgba(0,178,255,0.28), transparent 34%),
+      radial-gradient(circle at 50% 50%, rgba(139,92,246,0.18), transparent 52%);
+    filter: blur(22px);
+    opacity: 0.75;
+    animation: auraPulse 5s ease-in-out infinite;
+  }
+  .book-aura::after {
+    inset: -8px;
+    border: 1px solid rgba(20,241,149,0.22);
+    box-shadow: 0 0 34px rgba(20,241,149,0.16), 0 0 54px rgba(0,178,255,0.12);
+    opacity: 0.65;
+    animation: auraRing 7s linear infinite;
+  }
   .book-cover {
+    position: relative;
+    z-index: 2;
     width: min(100%, 340px);
     border-radius: 14px;
     border: 1px solid rgba(20,241,149,0.18);
-    box-shadow: 0 24px 70px rgba(0,0,0,0.55), 0 0 28px rgba(139,92,246,0.14);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.55), 0 0 28px rgba(139,92,246,0.14), 0 0 48px rgba(20,241,149,0.18);
     transform: perspective(1200px) rotateY(-9deg) rotateX(2deg);
     transform-origin: center;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+  }
+  .book-aura:hover::before,
+  .book-aura:focus-visible::before {
+    opacity: 1;
+    transform: scale(1.06);
+    filter: blur(28px);
+  }
+  .book-aura:hover::after,
+  .book-aura:focus-visible::after {
+    opacity: 1;
+    transform: scale(1.03);
+    box-shadow: 0 0 46px rgba(20,241,149,0.24), 0 0 74px rgba(0,178,255,0.18);
+  }
+  .book-aura:hover .book-cover,
+  .book-aura:focus-visible .book-cover {
+    transform: perspective(1200px) rotateY(-13deg) rotateX(5deg) translateY(-6px) scale(1.03);
+    box-shadow: 0 34px 86px rgba(0,0,0,0.62), 0 0 40px rgba(20,241,149,0.28), 0 0 74px rgba(0,178,255,0.16);
+    filter: saturate(1.08) brightness(1.04);
+  }
+  .book-aura:hover .cover-invite,
+  .book-aura:focus-visible .cover-invite {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  .book-aura:hover .vector-orbit,
+  .book-aura:focus-visible .vector-orbit {
+    opacity: 1;
+    transform: scale(1.12) rotate(8deg);
+  }
+  .book-aura:hover .vector-orbit.orbit-2,
+  .book-aura:focus-visible .vector-orbit.orbit-2 {
+    transform: scale(1.06) rotate(-14deg);
+  }
+  .sparkle-cluster {
+    position: absolute;
+    inset: -18px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .sparkle {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(20,241,149,0.95) 0%, rgba(0,178,255,0.42) 48%, transparent 72%);
+    box-shadow: 0 0 14px rgba(20,241,149,0.45), 0 0 26px rgba(0,178,255,0.22);
+    opacity: 0;
+    transform: scale(0.35);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .sparkle::before,
+  .sparkle::after {
+    content: "";
+    position: absolute;
+    inset: 50%;
+    width: 18px;
+    height: 2px;
+    margin-left: -9px;
+    margin-top: -1px;
+    border-radius: 999px;
+    background: rgba(153,255,223,0.9);
+  }
+  .sparkle::after { transform: rotate(90deg); }
+  .sparkle.s1 { top: 8%; left: 10%; animation: sparkleDrift 2.8s ease-in-out infinite; }
+  .sparkle.s2 { top: 18%; right: 7%; animation: sparkleDrift 3.2s ease-in-out infinite 0.4s; }
+  .sparkle.s3 { bottom: 14%; left: 6%; animation: sparkleDrift 3s ease-in-out infinite 0.8s; }
+  .sparkle.s4 { bottom: 10%; right: 10%; animation: sparkleDrift 2.6s ease-in-out infinite 1.2s; }
+  .book-aura:hover .sparkle,
+  .book-aura:focus-visible .sparkle {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .vector-orbit {
+    position: absolute;
+    z-index: 1;
+    width: 112%;
+    height: 112%;
+    opacity: 0.58;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    animation: orbitFloat 9s ease-in-out infinite;
+  }
+  .vector-orbit.orbit-2 {
+    width: 124%;
+    height: 124%;
+    opacity: 0.42;
+    animation-duration: 11s;
+    animation-direction: reverse;
+  }
+  .cover-invite {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    z-index: 4;
+    transform: translateX(-50%) translateY(8px) scale(0.96);
+    padding: 0.48rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(20,241,149,0.26);
+    background: rgba(3,16,18,0.84);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.3);
+    font-family: var(--ui);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
   }
   .book-badge {
     font-family: var(--ui);
@@ -111,6 +260,154 @@
     color: var(--body);
     font-size: 1.05rem;
     line-height: 1.65;
+  }
+  .book-caption strong { color: var(--cyan); }
+
+  .modal-shell {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(1,8,10,0.74);
+    backdrop-filter: blur(12px);
+  }
+  .modal-shell.is-open { display: flex; }
+  .modal-card {
+    position: relative;
+    width: min(100%, 980px);
+    border-radius: 24px;
+    border: 1px solid rgba(20,241,149,0.18);
+    background:
+      radial-gradient(circle at top left, rgba(20,241,149,0.1), transparent 34%),
+      radial-gradient(circle at top right, rgba(0,178,255,0.12), transparent 32%),
+      linear-gradient(180deg, rgba(6,15,16,0.98), rgba(4,10,12,0.98));
+    box-shadow: 0 30px 90px rgba(0,0,0,0.62), 0 0 0 1px rgba(139,92,246,0.08);
+    overflow: hidden;
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(20,241,149,0.2);
+    border-radius: 999px;
+    background: rgba(4,15,16,0.82);
+    color: var(--text);
+    font-family: var(--ui);
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .modal-close:hover { transform: scale(1.06); border-color: rgba(20,241,149,0.44); color: var(--cyan); }
+  .modal-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+    gap: 0;
+  }
+  .modal-visual {
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.4rem 1.8rem;
+    border-right: 1px solid rgba(139,92,246,0.12);
+    background: linear-gradient(180deg, rgba(7,16,18,0.9), rgba(4,10,12,0.98));
+  }
+  .modal-visual::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border-radius: 22px;
+    border: 1px solid rgba(20,241,149,0.1);
+    pointer-events: none;
+  }
+  .modal-cover {
+    width: min(100%, 290px);
+    border-radius: 16px;
+    box-shadow: 0 34px 82px rgba(0,0,0,0.6), 0 0 54px rgba(20,241,149,0.18);
+  }
+  .modal-copy {
+    padding: 3rem;
+  }
+  .modal-eyebrow {
+    font-family: var(--ui);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 1rem;
+  }
+  .modal-title {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.04;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .modal-title span { color: var(--cyan); }
+  .modal-copy p {
+    font-size: 1.18rem;
+    color: var(--body);
+    margin-bottom: 1.1rem;
+  }
+  .modal-hook {
+    margin: 1.5rem 0;
+    padding: 1rem 1.15rem;
+    border-radius: 14px;
+    border: 1px solid rgba(20,241,149,0.16);
+    background: linear-gradient(135deg, rgba(20,241,149,0.08), rgba(0,178,255,0.08), rgba(139,92,246,0.08));
+    color: var(--text);
+  }
+  .modal-hook strong { color: var(--cyan); }
+  .modal-form-wrap { max-width: 100%; margin-top: 1.7rem; }
+  .modal-form-wrap .form-row { gap: 0.65rem; }
+  .modal-form-wrap .form-input {
+    min-width: 0;
+    background: rgba(8,20,22,0.95);
+    border-color: rgba(0,178,255,0.18);
+    box-shadow: inset 0 0 0 1px rgba(20,241,149,0.04);
+  }
+  .modal-form-wrap .form-btn,
+  .modal-form-wrap .download-btn {
+    padding-inline: 1.8rem;
+    box-shadow: 0 16px 32px rgba(0,178,255,0.16);
+  }
+  .modal-note {
+    margin-top: 0.9rem;
+    color: var(--muted);
+    font-family: var(--ui);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .modal-caption {
+    margin-top: 1rem;
+    color: rgba(232,244,240,0.72);
+    font-size: 1rem;
+  }
+
+  @keyframes auraPulse {
+    0%, 100% { transform: scale(0.98); opacity: 0.72; }
+    50% { transform: scale(1.04); opacity: 1; }
+  }
+  @keyframes auraRing {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes orbitFloat {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.04) rotate(6deg); }
+  }
+  @keyframes sparkleDrift {
+    0%, 100% { transform: translateY(0) scale(0.88); }
+    50% { transform: translateY(-8px) scale(1.08); }
   }
 
   /* ── Email form ── */
@@ -192,6 +489,10 @@
     .hero-copy-wrap { text-align: center; }
     .hero-sub, .hero-hook { margin-left: auto; margin-right: auto; }
     .book-cover { transform: none; }
+    .modal-grid { grid-template-columns: 1fr; }
+    .modal-visual { border-right: none; border-bottom: 1px solid rgba(139,92,246,0.12); }
+    .modal-copy { padding: 2rem 1.4rem 2.2rem; }
+    .cover-invite { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
   }
 </style>
 </head>
@@ -235,11 +536,63 @@
 
       <div class="book-showcase">
         <div class="book-badge">Beautiful object. Real signal.</div>
-        <img class="book-cover" src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
-        <div class="book-caption">Not just something to download. Something to keep, return to, and actually feel your way through.</div>
+        <button class="book-aura" type="button" id="book-trigger" aria-haspopup="dialog" aria-controls="book-modal" aria-label="Open the Field Guide capture experience">
+          <svg class="vector-orbit orbit-1" viewBox="0 0 360 360" aria-hidden="true">
+            <circle cx="180" cy="180" r="126" fill="none" stroke="rgba(20,241,149,0.28)" stroke-width="1.5"/>
+            <circle cx="180" cy="180" r="92" fill="none" stroke="rgba(0,178,255,0.22)" stroke-width="1.3"/>
+            <path d="M180 52 L287 240 L73 240 Z" fill="none" stroke="rgba(20,241,149,0.26)" stroke-width="1.4"/>
+            <path d="M180 78 L245 214 L115 214 Z" fill="none" stroke="rgba(0,178,255,0.22)" stroke-width="1.2"/>
+          </svg>
+          <svg class="vector-orbit orbit-2" viewBox="0 0 360 360" aria-hidden="true">
+            <path d="M74 130 C128 58, 232 58, 286 130 C310 164, 308 216, 280 250 C232 308, 128 308, 80 250 C52 216, 50 164, 74 130 Z" fill="none" stroke="rgba(139,92,246,0.22)" stroke-width="1.3"/>
+            <path d="M106 180 H254 M180 106 V254" stroke="rgba(20,241,149,0.18)" stroke-width="1.2"/>
+          </svg>
+          <div class="sparkle-cluster" aria-hidden="true">
+            <span class="sparkle s1"></span>
+            <span class="sparkle s2"></span>
+            <span class="sparkle s3"></span>
+            <span class="sparkle s4"></span>
+          </div>
+          <img class="book-cover" src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
+          <span class="cover-invite">Click me ✦</span>
+        </button>
+        <div class="book-caption"><strong>Click the cover.</strong> It opens a more direct path in.</div>
       </div>
     </div>
   </section>
+
+  <div class="modal-shell" id="book-modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="book-modal-title">
+      <button class="modal-close" type="button" id="book-modal-close" aria-label="Close Field Guide modal">✕</button>
+      <div class="modal-grid">
+        <div class="modal-visual">
+          <img class="modal-cover" src="/images/field-guide-cover.png" alt="A Field Guide to Vibration of Awesome cover art">
+        </div>
+        <div class="modal-copy">
+          <div class="modal-eyebrow">You clicked this for a reason</div>
+          <h2 class="modal-title" id="book-modal-title">Something in you already <span>recognizes the signal.</span></h2>
+          <p>This is not a generic freebie. It is the cleanest entry point into the Vibration of Awesome ~ the feeling, the framework, and the language for what your life is trying to become.</p>
+          <div class="modal-hook"><strong>Take the transmission.</strong> Drop your email and the guide opens immediately ~ no detour, no weird wait, no dead air.</div>
+          <div class="form-wrap modal-form-wrap" id="book-form-wrap">
+            <div id="book-form">
+              <div class="form-row">
+                <input type="email" class="form-input" id="book-email" placeholder="Enter the email where the signal should land" autocomplete="email">
+                <button class="form-btn" id="book-btn" onclick="submitForm('book')">Send Me the Transmission</button>
+              </div>
+              <div class="form-error" id="book-error"></div>
+              <p class="modal-note">Instant access. Zero fluff. Only signal.</p>
+            </div>
+            <div class="form-success" id="book-success">
+              <h3>Signal received ✦</h3>
+              <p>Your Field Guide is ready. Open it while the feeling is live.</p>
+              <a href="#" class="download-btn" id="book-download-btn">Open the Field Guide →</a>
+              <p class="modal-caption">If this hit, it was not random.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="divider"></div>
 
@@ -458,14 +811,44 @@ async function submitForm(id) {
 
   } catch (err) {
     btnEl.disabled = false;
-    btnEl.textContent = id === 'hero' ? 'Download the Free Guide' : 'Download Free Guide';
+    btnEl.textContent =
+      id === 'hero' ? 'Send Me the Field Guide' :
+      id === 'mid' ? 'Unlock the Field Guide' :
+      'Send Me the Transmission';
     errEl.textContent = 'Something went wrong. Please try again.';
     errEl.style.display = 'block';
   }
 }
 
-// Enter key submits
-['hero-email','mid-email'].forEach(id => {
+const bookModal = document.getElementById('book-modal');
+const bookTrigger = document.getElementById('book-trigger');
+const bookClose = document.getElementById('book-modal-close');
+const bookEmail = document.getElementById('book-email');
+
+function openBookModal() {
+  bookModal.classList.add('is-open');
+  bookModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  window.dataLayer.push({ event: 'ebook_cover_click', placement: 'field-guide-cover' });
+  setTimeout(() => bookEmail?.focus(), 120);
+}
+
+function closeBookModal() {
+  bookModal.classList.remove('is-open');
+  bookModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+bookTrigger?.addEventListener('click', openBookModal);
+bookClose?.addEventListener('click', closeBookModal);
+bookModal?.addEventListener('click', (event) => {
+  if (event.target === bookModal) closeBookModal();
+});
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && bookModal?.classList.contains('is-open')) closeBookModal();
+});
+
+['hero-email','mid-email','book-email'].forEach(id => {
   const el = document.getElementById(id);
   if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') submitForm(id.replace('-email','')); });
 });
