@@ -118,11 +118,14 @@
     animation: auraPulse 5s ease-in-out infinite;
   }
   .book-aura::after {
-    inset: -8px;
-    border: 1px solid rgba(20,241,149,0.22);
-    box-shadow: 0 0 34px rgba(20,241,149,0.16), 0 0 54px rgba(0,178,255,0.12);
-    opacity: 0.65;
-    animation: auraRing 7s linear infinite;
+    inset: -26px;
+    background:
+      radial-gradient(circle at 30% 35%, rgba(20,241,149,0.18), transparent 22%),
+      radial-gradient(circle at 68% 68%, rgba(0,178,255,0.14), transparent 22%),
+      radial-gradient(circle at 50% 50%, rgba(139,92,246,0.12), transparent 42%);
+    filter: blur(16px);
+    opacity: 0.7;
+    animation: auraRing 8s linear infinite;
   }
   .book-cover {
     position: relative;
@@ -144,8 +147,8 @@
   .book-aura:hover::after,
   .book-aura:focus-visible::after {
     opacity: 1;
-    transform: scale(1.03);
-    box-shadow: 0 0 46px rgba(20,241,149,0.24), 0 0 74px rgba(0,178,255,0.18);
+    transform: scale(1.08);
+    filter: blur(20px);
   }
   .book-aura:hover .book-cover,
   .book-aura:focus-visible .book-cover {
@@ -211,7 +214,7 @@
     z-index: 1;
     width: 112%;
     height: 112%;
-    opacity: 0.68;
+    opacity: 0.22;
     pointer-events: none;
     transition: opacity 0.35s ease, transform 0.35s ease;
     animation: orbitFloat 9s ease-in-out infinite;
@@ -219,42 +222,57 @@
   .vector-orbit.orbit-2 {
     width: 124%;
     height: 124%;
-    opacity: 0.54;
+    opacity: 0.16;
     animation-duration: 11s;
     animation-direction: reverse;
   }
-  .triforce-frame {
+  .triforce-swarm {
     position: absolute;
+    inset: -72px -88px;
     z-index: 1;
-    width: 126px;
-    height: 126px;
     pointer-events: none;
+  }
+  .triforce-sigil {
+    position: absolute;
     opacity: 0.88;
-    transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
-    filter: drop-shadow(0 0 14px rgba(20,241,149,0.22));
+    transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+    filter: drop-shadow(0 0 18px rgba(20,241,149,0.18));
   }
-  .triforce-frame.left {
-    top: -22px;
-    left: -46px;
-    transform: rotate(-12deg);
+  .triforce-sigil svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
   }
-  .triforce-frame.right {
-    right: -48px;
-    bottom: -18px;
-    transform: rotate(11deg);
-  }
-  .book-aura:hover .triforce-frame,
-  .book-aura:focus-visible .triforce-frame {
+  .triforce-sigil.s1 { width: 190px; top: -26px; left: -80px; transform: rotate(-12deg); }
+  .triforce-sigil.s2 { width: 138px; top: 18%; right: -48px; transform: rotate(14deg); animation-delay: 0.6s; }
+  .triforce-sigil.s3 { width: 212px; bottom: -18px; right: -70px; transform: rotate(10deg); animation-delay: 1.2s; }
+  .triforce-sigil.s4 { width: 124px; bottom: 12%; left: -36px; transform: rotate(-18deg); animation-delay: 1.8s; }
+  .triforce-sigil.s5 { width: 96px; top: 44%; left: 58%; transform: translateX(-50%) rotate(6deg); animation-delay: 2.4s; opacity: 0.62; }
+  .book-aura:hover .triforce-sigil,
+  .book-aura:focus-visible .triforce-sigil {
     opacity: 1;
-    filter: drop-shadow(0 0 22px rgba(20,241,149,0.34));
+    filter: drop-shadow(0 0 24px rgba(20,241,149,0.28));
   }
-  .book-aura:hover .triforce-frame.left,
-  .book-aura:focus-visible .triforce-frame.left {
-    transform: rotate(-18deg) translateY(-4px) scale(1.08);
+  .book-aura:hover .triforce-sigil.s1,
+  .book-aura:focus-visible .triforce-sigil.s1 {
+    transform: rotate(-20deg) translate(-6px, -6px) scale(1.08);
   }
-  .book-aura:hover .triforce-frame.right,
-  .book-aura:focus-visible .triforce-frame.right {
-    transform: rotate(18deg) translateY(4px) scale(1.08);
+  .book-aura:hover .triforce-sigil.s2,
+  .book-aura:focus-visible .triforce-sigil.s2 {
+    transform: rotate(20deg) translate(10px, -4px) scale(1.12);
+  }
+  .book-aura:hover .triforce-sigil.s3,
+  .book-aura:focus-visible .triforce-sigil.s3 {
+    transform: rotate(18deg) translate(8px, 8px) scale(1.1);
+  }
+  .book-aura:hover .triforce-sigil.s4,
+  .book-aura:focus-visible .triforce-sigil.s4 {
+    transform: rotate(-24deg) translate(-8px, 6px) scale(1.08);
+  }
+  .book-aura:hover .triforce-sigil.s5,
+  .book-aura:focus-visible .triforce-sigil.s5 {
+    transform: translateX(-50%) rotate(18deg) scale(1.18);
+    opacity: 0.86;
   }
   .cover-invite {
     position: absolute;
@@ -596,11 +614,43 @@
       <div class="book-showcase">
         <div class="book-badge">Beautiful object. Real signal.</div>
         <button class="book-aura" type="button" id="book-trigger" aria-haspopup="dialog" aria-controls="book-modal" aria-label="Open the Field Guide capture experience">
-          <svg class="triforce-frame left" viewBox="0 0 160 160" aria-hidden="true">
-            <path d="M80 18 L136 114 H24 Z" fill="none" stroke="rgba(20,241,149,0.9)" stroke-width="3"/>
-            <path d="M80 52 L112 107 H48 Z" fill="none" stroke="rgba(0,178,255,0.88)" stroke-width="2.5"/>
-            <path d="M53 106 L80 60 L107 106 Z" fill="none" stroke="rgba(20,241,149,0.78)" stroke-width="2.2"/>
-          </svg>
+          <div class="triforce-swarm" aria-hidden="true">
+            <div class="triforce-sigil s1">
+              <svg viewBox="0 0 220 220">
+                <path d="M110 24 L188 160 H32 Z" fill="none" stroke="rgba(20,241,149,0.96)" stroke-width="3.2"/>
+                <path d="M110 72 L152 146 H68 Z" fill="none" stroke="rgba(0,178,255,0.92)" stroke-width="2.5"/>
+                <path d="M74 148 L110 86 L146 148 Z" fill="none" stroke="rgba(20,241,149,0.84)" stroke-width="2.1"/>
+              </svg>
+            </div>
+            <div class="triforce-sigil s2">
+              <svg viewBox="0 0 180 180">
+                <path d="M90 18 L152 128 H28 Z" fill="none" stroke="rgba(0,178,255,0.94)" stroke-width="3"/>
+                <path d="M90 58 L122 114 H58 Z" fill="none" stroke="rgba(20,241,149,0.82)" stroke-width="2.2"/>
+                <path d="M62 116 L90 68 L118 116 Z" fill="none" stroke="rgba(0,178,255,0.7)" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <div class="triforce-sigil s3">
+              <svg viewBox="0 0 240 240">
+                <path d="M120 28 L206 178 H34 Z" fill="none" stroke="rgba(20,241,149,0.92)" stroke-width="3.4"/>
+                <path d="M120 84 L164 160 H76 Z" fill="none" stroke="rgba(0,178,255,0.88)" stroke-width="2.5"/>
+                <path d="M82 162 L120 96 L158 162 Z" fill="none" stroke="rgba(20,241,149,0.72)" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="triforce-sigil s4">
+              <svg viewBox="0 0 170 170">
+                <path d="M85 18 L144 122 H26 Z" fill="none" stroke="rgba(0,178,255,0.88)" stroke-width="2.8"/>
+                <path d="M85 55 L116 109 H54 Z" fill="none" stroke="rgba(20,241,149,0.76)" stroke-width="2.1"/>
+                <path d="M58 110 L85 64 L112 110 Z" fill="none" stroke="rgba(0,178,255,0.68)" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <div class="triforce-sigil s5">
+              <svg viewBox="0 0 140 140">
+                <path d="M70 14 L118 98 H22 Z" fill="none" stroke="rgba(20,241,149,0.72)" stroke-width="2.4"/>
+                <path d="M70 42 L96 86 H44 Z" fill="none" stroke="rgba(0,178,255,0.7)" stroke-width="1.9"/>
+                <path d="M48 88 L70 50 L92 88 Z" fill="none" stroke="rgba(20,241,149,0.58)" stroke-width="1.6"/>
+              </svg>
+            </div>
+          </div>
           <svg class="vector-orbit orbit-1" viewBox="0 0 360 360" aria-hidden="true">
             <circle cx="180" cy="180" r="132" fill="none" stroke="rgba(20,241,149,0.18)" stroke-width="1.3"/>
             <g fill="none" stroke-linejoin="round">
@@ -620,11 +670,6 @@
               <path d="M90 146 L132 218 L48 218 Z" stroke="rgba(20,241,149,0.16)" stroke-width="1"/>
               <path d="M270 146 L312 218 L228 218 Z" stroke="rgba(0,178,255,0.16)" stroke-width="1"/>
             </g>
-          </svg>
-          <svg class="triforce-frame right" viewBox="0 0 160 160" aria-hidden="true">
-            <path d="M80 18 L136 114 H24 Z" fill="none" stroke="rgba(0,178,255,0.9)" stroke-width="3"/>
-            <path d="M80 52 L112 107 H48 Z" fill="none" stroke="rgba(20,241,149,0.88)" stroke-width="2.5"/>
-            <path d="M53 106 L80 60 L107 106 Z" fill="none" stroke="rgba(0,178,255,0.78)" stroke-width="2.2"/>
           </svg>
           <svg class="triforce-glint t1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.86)"/></svg>
           <svg class="triforce-glint t2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.8)"/></svg>
