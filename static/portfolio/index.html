@@ -4,221 +4,427 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio · Vibration of Awesome</title>
-<meta name="description" content="Original wire works by Matt EarthStar ~ handcrafted jewelry and wearable art from Vibration of Awesome.">
+<meta name="description" content="An archival gallery of sold wire work by Matt EarthStar, presented as individual pieces with images, materials, and story notes.">
 <link rel="canonical" href="https://vibrationofawesome.com/portfolio/">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#00e5cc">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vibration of Awesome">
 <meta property="og:title" content="Portfolio · Vibration of Awesome">
-<meta property="og:description" content="Original wire works by Matt EarthStar ~ handcrafted jewelry and wearable art from Vibration of Awesome.">
+<meta property="og:description" content="An archival gallery of sold wire work by Matt EarthStar, presented as individual pieces with images, materials, and story notes.">
 <meta property="og:url" content="https://vibrationofawesome.com/portfolio/">
-<meta property="og:image" content="https://vibrationofawesome.com/images/eartstarart.jpg">
+<meta property="og:image" content="https://vibrationofawesome.com/personal-photos/jewelry/6DC6DD49-D6CE-4226-97D8-49610C407870_4_5005_c.jpeg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Portfolio · Vibration of Awesome">
-<meta name="twitter:description" content="Original wire works by Matt EarthStar ~ handcrafted jewelry and wearable art from Vibration of Awesome.">
-<meta name="twitter:image" content="https://vibrationofawesome.com/images/eartstarart.jpg">
+<meta name="twitter:description" content="An archival gallery of sold wire work by Matt EarthStar, presented as individual pieces with images, materials, and story notes.">
+<meta name="twitter:image" content="https://vibrationofawesome.com/personal-photos/jewelry/6DC6DD49-D6CE-4226-97D8-49610C407870_4_5005_c.jpeg">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G5HF0WKZT9');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Rajdhani:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --gold: #00e5cc;
     --gold-light: #4dfff0;
     --deep: #020a0a;
+    --deep-soft: #061414;
     --cream: #d0fff8;
-    --muted: #4a9e96;
+    --muted: #69b8b0;
+    --panel: rgba(3, 18, 18, 0.88);
+    --border: rgba(0, 229, 204, 0.14);
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background: var(--deep); color: var(--cream); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; }
+  body {
+    background:
+      radial-gradient(circle at top, rgba(0, 229, 204, 0.08), transparent 42%),
+      linear-gradient(180deg, #041111 0%, #010607 100%);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
 
-  /* ── Stars ── */
-  .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-  .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--dur,3s) ease-in-out infinite; animation-delay: var(--delay,0s); opacity: 0; }
-  @keyframes twinkle { 0%,100%{opacity:0;transform:scale(0.5)} 50%{opacity:var(--brightness,0.8);transform:scale(1)} }
+  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .star { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: twinkle var(--dur, 3s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
+  @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: var(--brightness, 0.75); transform: scale(1); } }
 
-  /* ── Nav ── */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 3rem; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, rgba(10,10,18,0.95), transparent); border-bottom: 1px solid rgba(0,229,204,0.1); }
-  .nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.15em; text-decoration: none; text-shadow: 0 0 20px rgba(0,229,204,0.4); }
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(5, 16, 16, 0.96), transparent);
+    border-bottom: 1px solid rgba(0, 229, 204, 0.08);
+  }
+  .nav-logo {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    text-shadow: 0 0 20px rgba(0, 229, 204, 0.35);
+  }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+  .nav-links a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
   .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
-  /* ── Hero ── */
-  .hero { position: relative; z-index: 1; padding: 9rem 4rem 5rem; text-align: center; border-bottom: 1px solid rgba(0,229,204,0.08); }
-  .hero-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-bottom: 1.25rem; }
-  .hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem,5vw,4rem); color: var(--cream); line-height: 1.15; margin-bottom: 1.5rem; }
-  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.85; color: rgba(208,255,248,0.75); max-width: 580px; margin: 0 auto 2rem; }
-  .hero-sub p + p { margin-top: 0.6em; }
-  .hero-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 0 auto; }
-
-  /* ── Section label ── */
-  .section-label { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); opacity: 0.7; margin-bottom: 2rem; }
-
-  /* ── Featured piece section ── */
-  .featured-section { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 4rem 2rem 3rem; }
-
-  .featured-main {
+  .hero {
     position: relative;
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
-    border: 1px solid rgba(0,229,204,0.15);
-    background: #010d0c;
+    z-index: 1;
+    padding: 9rem 4rem 3rem;
+    border-bottom: 1px solid rgba(0, 229, 204, 0.08);
   }
-  .featured-main img {
-    position: absolute;
-    inset: 0;
+  .hero-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+    gap: 2rem;
+    align-items: end;
+  }
+  .hero-eyebrow {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.78;
+    margin-bottom: 1.15rem;
+  }
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2.4rem, 5.2vw, 4.5rem);
+    line-height: 1.08;
+    color: var(--cream);
+    margin-bottom: 1.25rem;
+  }
+  .hero-copy {
+    max-width: 640px;
+    font-size: 1.18rem;
+    line-height: 1.8;
+    color: rgba(208, 255, 248, 0.82);
+  }
+  .hero-copy p + p { margin-top: 0.7rem; }
+
+  .archive-card {
+    padding: 1.4rem 1.35rem;
+    background: linear-gradient(180deg, rgba(6, 20, 20, 0.95), rgba(4, 12, 12, 0.86));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .archive-card-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.85rem;
+  }
+  .archive-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(208, 255, 248, 0.72);
+  }
+  .archive-card p + p { margin-top: 0.7rem; }
+
+  .gallery-shell {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 6rem;
+  }
+
+  .gallery-summary {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 1rem 0 1.4rem;
+    border-bottom: 1px solid rgba(0, 229, 204, 0.08);
+  }
+  .section-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.8;
+  }
+  .summary-copy {
+    max-width: 620px;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(208, 255, 248, 0.72);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.15rem;
+  }
+
+  .piece-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: rgba(4, 14, 14, 0.94);
+    cursor: pointer;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  }
+  .piece-card:hover, .piece-card:focus-visible {
+    transform: translateY(-4px);
+    border-color: rgba(0, 229, 204, 0.4);
+    box-shadow: 0 24px 45px rgba(0, 0, 0, 0.26);
+  }
+  .piece-card img {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1 / 1;
+    display: block;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.45s ease;
   }
-  .featured-main img.active { opacity: 1; }
-
-  .featured-thumbs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-  .featured-thumb {
-    width: 80px; height: 80px;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid transparent;
-    flex-shrink: 0;
-    transition: border-color 0.2s, opacity 0.2s;
-    opacity: 0.55;
-  }
-  .featured-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .featured-thumb:hover { opacity: 0.85; border-color: rgba(0,229,204,0.4); }
-  .featured-thumb.active { opacity: 1; border-color: var(--gold); }
-
-  .featured-info { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(0,229,204,0.08); }
-  .featured-title { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem; color: var(--cream); letter-spacing: 0.04em; margin-bottom: 0.35rem; min-height: 1.4em; }
-  .featured-medium { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.65; margin-bottom: 0.5rem; min-height: 1.2em; }
-  .featured-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: rgba(208,255,248,0.55); line-height: 1.7; min-height: 1.4em; }
-
-  /* ── Gallery grid ── */
-  .gallery-section { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 7rem; border-top: 1px solid rgba(0,229,204,0.08); }
-  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-
-  .gallery-item {
-    height: 280px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
-    border: 1px solid rgba(0,229,204,0.07);
-    transition: border-color 0.3s;
-  }
-  .gallery-item:hover { border-color: rgba(0,229,204,0.45); }
-  .gallery-item::after {
+  .piece-card::after {
     content: '';
     position: absolute;
     inset: 0;
-    box-shadow: inset 0 0 0 0 rgba(0,229,204,0);
-    transition: box-shadow 0.3s;
+    background: linear-gradient(180deg, transparent 42%, rgba(2, 10, 10, 0.9) 100%);
     pointer-events: none;
   }
-  .gallery-item:hover::after { box-shadow: inset 0 0 24px rgba(0,229,204,0.07); }
-  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease; }
-  .gallery-item:hover img { transform: scale(1.04); }
+  .piece-card-copy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 1rem;
+  }
+  .piece-card-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 0.55rem;
+    padding: 0.22rem 0.5rem;
+    border: 1px solid rgba(0, 229, 204, 0.18);
+    background: rgba(3, 12, 12, 0.8);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .piece-card-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    line-height: 1.35;
+    color: var(--cream);
+    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+  .piece-card-meta {
+    margin-top: 0.45rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(208, 255, 248, 0.72);
+  }
 
-  /* ── Lightbox overlay ── */
-  .lightbox {
+  .piece-modal {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 1000;
-    background: rgba(2,10,8,0.96);
-    align-items: center;
-    justify-content: center;
+    padding: 2rem;
+    background: rgba(2, 10, 10, 0.92);
+    backdrop-filter: blur(10px);
   }
-  .lightbox.open { display: flex; }
+  .piece-modal.open { display: block; }
+  .piece-modal-dialog {
+    max-width: 1180px;
+    max-height: calc(100vh - 4rem);
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(6, 20, 20, 0.98), rgba(2, 10, 10, 0.98));
+    border: 1px solid rgba(0, 229, 204, 0.2);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+    overflow: auto;
+  }
+  .piece-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(0, 229, 204, 0.08);
+  }
+  .piece-modal-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .piece-modal-close {
+    border: none;
+    background: transparent;
+    color: rgba(208, 255, 248, 0.7);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .piece-modal-close:hover { color: var(--gold); }
 
-  .lightbox-inner {
-    pointer-events: none;
+  .piece-modal-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    gap: 1.5rem;
+    padding: 1.25rem;
+  }
+  .piece-viewer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+  }
+  .piece-stage {
+    position: relative;
+    background: var(--deep-soft);
+    border: 1px solid rgba(0, 229, 204, 0.1);
+    min-height: 480px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
-  .lightbox-inner img {
-    max-width: 80vw;
-    max-height: 85vh;
+  .piece-stage img {
+    width: 100%;
+    height: 100%;
+    max-height: 78vh;
     object-fit: contain;
-    box-shadow: 0 0 80px rgba(0,229,204,0.1);
     display: block;
-    transition: opacity 0.18s ease;
   }
-
-  .lb-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: rgba(208,255,248,0.5);
-    font-size: 4.5rem;
-    line-height: 1;
+  .piece-thumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(86px, 1fr));
+    gap: 0.7rem;
+  }
+  .piece-thumb {
+    border: 1px solid rgba(0, 229, 204, 0.12);
+    background: rgba(3, 12, 12, 0.8);
     cursor: pointer;
-    padding: 0.5rem 1.2rem;
-    z-index: 1001;
-    transition: color 0.2s;
-    pointer-events: all;
-    user-select: none;
+    padding: 0;
+    transition: border-color 0.18s ease, transform 0.18s ease;
   }
-  .lb-arrow:hover { color: var(--gold); }
-  .lb-prev { left: 1rem; }
-  .lb-next { right: 1rem; }
+  .piece-thumb:hover, .piece-thumb.active {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .piece-thumb img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
 
-  .lb-counter {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+  .piece-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.25rem 0;
+  }
+  .piece-status {
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.72rem;
-    letter-spacing: 0.25em;
-    color: rgba(208,255,248,0.45);
-    pointer-events: none;
-  }
-
-  .lightbox-close {
-    position: absolute;
-    top: 1.5rem; right: 2rem;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: rgba(208,255,248,0.35);
-    pointer-events: none;
+    color: var(--gold);
+  }
+  .piece-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+    line-height: 1.35;
+    color: var(--cream);
+  }
+  .piece-medium {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(208, 255, 248, 0.72);
+  }
+  .piece-description {
+    font-size: 1.06rem;
+    line-height: 1.82;
+    color: rgba(208, 255, 248, 0.84);
+  }
+  .piece-count {
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(0, 229, 204, 0.08);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(208, 255, 248, 0.56);
   }
 
-  /* ── Footer ── */
-  footer { padding: 3rem 4rem; border-top: 1px solid rgba(0,229,204,0.08); text-align: center; position: relative; z-index: 1; }
-  footer p { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); opacity: 0.6; }
+  .empty-state {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    text-align: center;
+    color: rgba(208, 255, 248, 0.72);
+  }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 4rem;
+    border-top: 1px solid rgba(0, 229, 204, 0.08);
+    text-align: center;
+  }
+  footer p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.68;
+  }
   footer a { color: var(--gold); text-decoration: none; }
 
-  /* ── Responsive ── */
-  @media(max-width: 900px) {
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .gallery-item { height: 220px; }
-    .featured-main { height: 380px; }
-    .lb-arrow { font-size: 3rem; padding: 0.5rem 0.8rem; }
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .piece-modal-body { grid-template-columns: 1fr; }
+    .piece-stage { min-height: 360px; }
   }
-  @media(max-width: 600px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.2rem; }
-    .hero { padding: 7rem 1.5rem 3.5rem; }
-    .featured-section { padding: 2.5rem 1rem 2rem; }
-    .gallery-section { padding: 2rem 1rem 4rem; }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { gap: 1.1rem; }
+    .hero { padding: 7rem 1.2rem 2.2rem; }
+    .gallery-shell { padding: 1.75rem 1rem 4rem; }
     .gallery-grid { grid-template-columns: 1fr; }
-    .gallery-item { height: 240px; }
-    .featured-main { height: 260px; }
-    .featured-thumb { width: 58px; height: 58px; }
-    footer { padding: 2rem 1.5rem; }
-    .lb-arrow { font-size: 2.5rem; padding: 0.5rem 0.6rem; }
-    .lightbox-close { font-size: 0.6rem; right: 1rem; }
+    .piece-modal { padding: 1rem; }
+    .piece-modal-dialog { max-height: calc(100vh - 2rem); }
+    .piece-modal-body { padding: 1rem; }
+    .piece-stage { min-height: 280px; }
+    footer { padding: 2rem 1.2rem; }
   }
 </style>
 </head>
@@ -235,49 +441,58 @@
   </div>
 </nav>
 
-<div class="hero">
-  <div class="hero-eyebrow">Matt EarthStar &middot; Vibration of Awesome</div>
-  <h1 class="hero-title">Portfolio</h1>
-  <div class="hero-sub">
-    <p>Original wire works over the years from Matt EarthStar.</p>
-    <p>These past works have found homes and are not currently available.</p>
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Matt EarthStar · Wearable Archive</div>
+      <h1 class="hero-title">Portfolio</h1>
+      <div class="hero-copy">
+        <p>This page now works as an archive of individual sold pieces rather than a bucket of random photos.</p>
+        <p>Each card opens a focused gallery so the work can be viewed piece by piece, with the title, materials, and a cleaned showcase description instead of a scattered image wall.</p>
+      </div>
+    </div>
+    <aside class="archive-card">
+      <div class="archive-card-label">Archive Notes</div>
+      <p>These entries are presented as sold archival works from the RuzindlaWraps era.</p>
+      <p>The gallery below is structured so each piece can keep growing with additional images and cleaner story details as the archive expands.</p>
+    </aside>
   </div>
-  <div class="hero-divider"></div>
-</div>
+</header>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     FEATURED PIECE SECTION
-     Curate this section by editing FEATURED_PIECES in the script
-     below. Each entry takes: filename, title, medium, desc.
-     ═══════════════════════════════════════════════════════════════ -->
-<div class="featured-section">
-  <div class="section-label">Featured Work</div>
-  <div class="featured-main" id="featuredMain">
-    <!-- images injected by JS -->
-  </div>
-  <div class="featured-thumbs" id="featuredThumbs"></div>
-  <div class="featured-info">
-    <div class="featured-title"  id="featuredTitle"></div>
-    <div class="featured-medium" id="featuredMedium"></div>
-    <div class="featured-desc"   id="featuredDesc"></div>
-  </div>
-</div>
+<main class="gallery-shell">
+  <section class="gallery-summary">
+    <div>
+      <div class="section-label">Sold Work Archive</div>
+      <div class="summary-copy">A curated gallery of past jewelry work. Open any piece to move through its image set and read the corresponding description without leaving the page.</div>
+    </div>
+    <div class="section-label" id="pieceCountLabel">Loading archive…</div>
+  </section>
 
-<!-- Gallery grid -->
-<div class="gallery-section">
-  <div class="section-label">All Works</div>
-  <div class="gallery-grid" id="galleryGrid"></div>
-</div>
+  <section class="gallery-grid" id="galleryGrid" aria-live="polite"></section>
+</main>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <button class="lb-arrow lb-prev" id="lbPrev">&#8249;</button>
-  <div class="lightbox-inner">
-    <img id="lightboxImg" src="" alt="">
+<div class="piece-modal" id="pieceModal" aria-hidden="true">
+  <div class="piece-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="pieceTitle">
+    <div class="piece-modal-header">
+      <div class="piece-modal-label">Piece Archive</div>
+      <button class="piece-modal-close" id="pieceModalClose" type="button">Close</button>
+    </div>
+    <div class="piece-modal-body">
+      <div class="piece-viewer">
+        <div class="piece-stage">
+          <img id="pieceStageImage" src="" alt="">
+        </div>
+        <div class="piece-thumbs" id="pieceThumbs"></div>
+      </div>
+      <aside class="piece-details">
+        <div class="piece-status" id="pieceStatus"></div>
+        <h2 class="piece-title" id="pieceTitle"></h2>
+        <div class="piece-medium" id="pieceMedium"></div>
+        <div class="piece-description" id="pieceDescription"></div>
+        <div class="piece-count" id="pieceImageCount"></div>
+      </aside>
+    </div>
   </div>
-  <button class="lb-arrow lb-next" id="lbNext">&#8250;</button>
-  <div class="lb-counter" id="lbCounter"></div>
-  <div class="lightbox-close">esc or click outside to close</div>
 </div>
 
 <footer>
@@ -285,258 +500,169 @@
 </footer>
 
 <script>
-  // ── Stars ──
   (function() {
-    var s = document.getElementById('stars');
+    var stars = document.getElementById('stars');
     for (var i = 0; i < 130; i++) {
-      var el = document.createElement('div');
-      el.className = 'star';
-      var sz = Math.random() * 2 + 0.4;
-      el.style.cssText = 'width:'+sz+'px;height:'+sz+'px;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;--dur:'+(Math.random()*4+2)+'s;--delay:'+(Math.random()*6)+'s;--brightness:'+(Math.random()*0.5+0.25)+';';
-      s.appendChild(el);
+      var star = document.createElement('div');
+      var size = Math.random() * 2 + 0.4;
+      star.className = 'star';
+      star.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + Math.random() * 100 + '%;top:' + Math.random() * 100 + '%;--dur:' + (Math.random() * 4 + 2) + 's;--delay:' + (Math.random() * 6) + 's;--brightness:' + (Math.random() * 0.5 + 0.25) + ';';
+      stars.appendChild(star);
     }
   })();
 
-  // Fisher-Yates shuffle
-  function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  (function() {
+    var grid = document.getElementById('galleryGrid');
+    var pieceCountLabel = document.getElementById('pieceCountLabel');
+    var modal = document.getElementById('pieceModal');
+    var modalClose = document.getElementById('pieceModalClose');
+    var stageImage = document.getElementById('pieceStageImage');
+    var pieceThumbs = document.getElementById('pieceThumbs');
+    var pieceStatus = document.getElementById('pieceStatus');
+    var pieceTitle = document.getElementById('pieceTitle');
+    var pieceMedium = document.getElementById('pieceMedium');
+    var pieceDescription = document.getElementById('pieceDescription');
+    var pieceImageCount = document.getElementById('pieceImageCount');
+    var pieces = [];
+    var activePieceIndex = 0;
+    var activeImageIndex = 0;
+
+    function renderEmpty(message) {
+      grid.innerHTML = '<div class="empty-state">' + message + '</div>';
+      pieceCountLabel.textContent = 'Archive unavailable';
     }
-    return a;
-  }
 
-  var BASE = '/personal-photos/jewelry/';
+    function renderCards() {
+      grid.innerHTML = '';
+      pieceCountLabel.textContent = pieces.length + ' archived pieces';
 
-  // ──────────────────────────────────────────────────────────────────────
-  // FEATURED PIECE — update these manually
-  // Each entry: { filename, title, medium, desc }
-  // filename lives in /personal-photos/jewelry/
-  // ──────────────────────────────────────────────────────────────────────
-  var FEATURED_PIECES = [
-    {
-      filename: '16EA37EB-0C44-4AD9-AE29-CEA447C7D03B_1_105_c.jpeg',
-      title:    'Wire Wrap Original',
-      medium:   'Wire Wrap · Handcrafted',
-      desc:     'One of a kind wire work piece by Matt EarthStar.'
-    },
-    {
-      filename: '177DCF26-EF16-47B4-B7DD-DD54178F1E4F_1_105_c.jpeg',
-      title:    'Wearable Art',
-      medium:   'Wire Wrap · Jewelry',
-      desc:     ''
-    },
-    {
-      filename: '4ECCAE2F-221A-46A3-BC29-ED99FD1B3143_4_5005_c.jpeg',
-      title:    'Crystal Pendant',
-      medium:   'Wire Wrap · Crystal',
-      desc:     ''
-    },
-    {
-      filename: 'C177405C-054C-406E-87FF-5F401B9753BB_4_5005_c.jpeg',
-      title:    'Wrapped Stone',
-      medium:   'Wire Work · Stone Setting',
-      desc:     ''
-    },
-    {
-      filename: 'BDBD30AB-E681-41F9-B81F-777CB1BA1570_4_5005_c.jpeg',
-      title:    'Original Piece',
-      medium:   'Wire Work · Wearable',
-      desc:     ''
-    },
-  ];
+      pieces.forEach(function(piece, index) {
+        if (!piece.images || !piece.images.length) return;
 
-  // ──────────────────────────────────────────────────────────────────────
-  // JEWELRY IMAGES — all filenames in /personal-photos/jewelry/
-  // Add jewelry filenames here e.g. piece-01.jpg
-  // ──────────────────────────────────────────────────────────────────────
-  var JEWELRY_IMAGES = [
-    '16EA37EB-0C44-4AD9-AE29-CEA447C7D03B_1_105_c.jpeg',
-    '177DCF26-EF16-47B4-B7DD-DD54178F1E4F_1_105_c.jpeg',
-    '186FB930-61D6-4581-8F0B-47747AE2F37E_1_105_c.jpeg',
-    '1A7D47A5-C051-40BC-9E5C-573FF99668E8_1_105_c.jpeg',
-    '1C0C6943-2693-46E6-847C-80BAD0394CBF_1_105_c.jpeg',
-    '226BC400-1A62-4C39-94E0-634F570895C1_1_105_c.jpeg',
-    '25095EAB-AFBF-4C7E-A6B3-3E8067ED5153_1_105_c.jpeg',
-    '2CE13706-2C95-4FC3-923F-A926985ED46C_1_105_c.jpeg',
-    '34D79DBE-C55F-445A-BCBA-D6775223F495_1_102_a.jpeg',
-    '37572281-8962-4B55-AD45-105799E93CB6_1_105_c.jpeg',
-    '37B13747-A96D-4F0D-AB56-55BC734EC887_1_105_c.jpeg',
-    '4ECCAE2F-221A-46A3-BC29-ED99FD1B3143_4_5005_c.jpeg',
-    '55A86073-0E27-439D-AE2E-F78A4EC087A1_1_105_c.jpeg',
-    '57F9E1CA-E6F1-4825-8874-E35F5A172FA4_1_105_c.jpeg',
-    '6628538D-F7C8-45F8-B81A-2D6211820EAC_1_105_c.jpeg',
-    '677615EB-BAD9-4CF2-967C-A78012E73212_1_105_c.jpeg',
-    '67A5B41B-ED17-4DE7-B81B-4CC3B86BA490_1_105_c.jpeg',
-    '6B039367-96B2-4E82-AD69-8EB4F507D36E_1_105_c.jpeg',
-    '6CB7A5A3-7518-4115-8055-255A10B78E3C_1_105_c.jpeg',
-    '6DC6DD49-D6CE-4226-97D8-49610C407870_4_5005_c.jpeg',
-    '710660D3-65CC-48B0-8ED2-F011EDAEF908_1_105_c.jpeg',
-    '79E55FA3-3471-4C89-8BC4-2568F7AF3B45_1_105_c.jpeg',
-    '84A5D0CB-0171-4C75-A3B5-7E852E5E7CE1_1_105_c.jpeg',
-    '8A456D78-9DDF-4DD0-BC7B-DE9888AB1728_1_105_c.jpeg',
-    '8CE6CC86-8634-491C-BC31-BA9D4E3BB007_1_105_c.jpeg',
-    '957B6E01-05C4-43A7-9FA8-248774186A65_1_105_c.jpeg',
-    '97F02925-25F9-4C34-92D8-C9FFCBD3FC1E_4_5005_c.jpeg',
-    '9AC1B4F0-8D23-4E4C-800A-5FCAFD6D2509_4_5005_c.jpeg',
-    'A1B3A2F8-4837-4593-A613-4F5F67B14AAF_1_105_c.jpeg',
-    'A5FB899D-9BD6-4E80-9711-04FD53F47A7D_1_105_c.jpeg',
-    'AF1261DC-31AD-4BCD-BF53-25A05294BBE0_1_105_c.jpeg',
-    'B298AD5F-5F4C-41E5-BA21-6A7546F817C4_1_105_c.jpeg',
-    'BBBB1FAA-42E1-43B7-8302-E3AA55153AE3_1_105_c.jpeg',
-    'BDBD30AB-E681-41F9-B81F-777CB1BA1570_4_5005_c.jpeg',
-    'BE9208B9-54FC-427E-BFE8-70CFA8B77DCF_1_105_c.jpeg',
-    'BF5D4FD8-0918-4C9B-8B90-A99C862BD05F_1_105_c.jpeg',
-    'C04D0B5C-EE54-4A90-81DE-A6FD21A597DA_1_105_c.jpeg',
-    'C177405C-054C-406E-87FF-5F401B9753BB_4_5005_c.jpeg',
-    'C1BDDF9F-5E61-4BD4-BFFE-33865AF37A0E_1_105_c.jpeg',
-    'C84F7024-16B0-4F7B-BEEE-1B71AD740640_1_201_a.jpeg',
-    'C968C87F-9FCC-4D8A-B0EE-0F26DA6AFBFE_1_102_a.jpeg',
-    'CF028757-5155-4C52-838D-D331CAFE522B_1_105_c.jpeg',
-    'CFC9282C-F962-482B-8388-CD5E04FA5A64_1_105_c.jpeg',
-    'D17522C3-8656-4543-AE5E-3196623C09A8_1_105_c.jpeg',
-    'D1842328-5954-4373-AD72-E9664C89C2E0_1_105_c.jpeg',
-    'D82BEAA0-8E64-455B-980F-150D47C5C71B_1_105_c.jpeg',
-    'D8C611AC-DA9D-45AB-A4B3-AD67743181B5_1_105_c.jpeg',
-    'DBC54989-5DD7-4530-AA4F-CFAFAB568F0D_1_105_c.jpeg',
-    'DDD1AD35-AE10-4392-812E-0B746E454B56_1_105_c.jpeg',
-    'E0F78359-722C-4E2C-9502-B735F76520F0_1_105_c.jpeg',
-    'E66B9F0A-2C44-4DC1-8891-BF06ADCB694C_4_5005_c.jpeg',
-    'E8B4B286-A8EF-40B8-AE1B-177ADD918668_4_5005_c.jpeg',
-    'F59744F7-592A-440D-B988-0B64B879863F_1_105_c.jpeg',
-    'F7647046-3CAD-4314-A663-777FAE8B83D5_1_105_c.jpeg',
-    'FB0B828A-770F-4DC3-A06E-760D2EBF6453_4_5005_c.jpeg',
-    'FDDCA74B-F650-4B22-B515-31418C85D30E_1_105_c.jpeg',
-    'FF8A15CA-140C-4F07-9B74-6D8EC41F9B3E_1_105_c.jpeg',
-  ];
+        var button = document.createElement('button');
+        button.className = 'piece-card';
+        button.type = 'button';
+        button.setAttribute('aria-label', 'Open ' + piece.title);
 
-  // ── Featured section ──────────────────────────────────────────────────
-  (function() {
-    if (!FEATURED_PIECES.length) return;
-    var main     = document.getElementById('featuredMain');
-    var thumbsEl = document.getElementById('featuredThumbs');
-    var titleEl  = document.getElementById('featuredTitle');
-    var mediumEl = document.getElementById('featuredMedium');
-    var descEl   = document.getElementById('featuredDesc');
-    var activeIdx = 0;
-    var mainImgs  = [];
-    var thumbEls  = [];
+        var image = document.createElement('img');
+        image.src = piece.images[0];
+        image.alt = piece.title;
+        image.loading = 'lazy';
 
-    FEATURED_PIECES.forEach(function(p, i) {
-      // main display image (all preloaded, CSS opacity-fade to swap)
-      var img = document.createElement('img');
-      img.src = BASE + p.filename;
-      img.alt = p.title || '';
-      if (i === 0) img.className = 'active';
-      main.appendChild(img);
-      mainImgs.push(img);
+        var copy = document.createElement('div');
+        copy.className = 'piece-card-copy';
+        copy.innerHTML =
+          '<div class="piece-card-kicker">' + (piece.status || 'Sold archival piece') + '</div>' +
+          '<div class="piece-card-title">' + piece.title + '</div>' +
+          '<div class="piece-card-meta">' + piece.images.length + ' image' + (piece.images.length === 1 ? '' : 's') + ' · tap to view</div>';
 
-      // thumbnail
-      var thumb = document.createElement('div');
-      thumb.className = 'featured-thumb' + (i === 0 ? ' active' : '');
-      var tImg = document.createElement('img');
-      tImg.src     = BASE + p.filename;
-      tImg.alt     = p.title || '';
-      tImg.loading = 'lazy';
-      thumb.appendChild(tImg);
-      thumbsEl.appendChild(thumb);
-      thumbEls.push(thumb);
-
-      thumb.addEventListener('click', function() {
-        if (i === activeIdx) return;
-        mainImgs[activeIdx].classList.remove('active');
-        thumbEls[activeIdx].classList.remove('active');
-        activeIdx = i;
-        mainImgs[activeIdx].classList.add('active');
-        thumbEls[activeIdx].classList.add('active');
-        var piece = FEATURED_PIECES[activeIdx];
-        titleEl.textContent  = piece.title  || '';
-        mediumEl.textContent = piece.medium || '';
-        descEl.textContent   = piece.desc   || '';
-      });
-    });
-
-    // initial info display
-    titleEl.textContent  = FEATURED_PIECES[0].title  || '';
-    mediumEl.textContent = FEATURED_PIECES[0].medium || '';
-    descEl.textContent   = FEATURED_PIECES[0].desc   || '';
-  })();
-
-  // ── Gallery + Lightbox ────────────────────────────────────────────────
-  (function() {
-    if (!JEWELRY_IMAGES.length) return;
-
-    var grid      = document.getElementById('galleryGrid');
-    var lightbox  = document.getElementById('lightbox');
-    var lbImg     = document.getElementById('lightboxImg');
-    var lbCounter = document.getElementById('lbCounter');
-    var lbPrev    = document.getElementById('lbPrev');
-    var lbNext    = document.getElementById('lbNext');
-
-    var shuffled     = shuffle(JEWELRY_IMAGES);
-    var currentIndex = 0;
-
-    // ── Build grid ──
-    shuffled.forEach(function(filename, idx) {
-      var item = document.createElement('div');
-      item.className = 'gallery-item';
-
-      var img = document.createElement('img');
-      img.src     = BASE + filename;
-      img.alt     = '';
-      img.loading = 'lazy';
-      img.onerror = function() { item.style.display = 'none'; };
-
-      item.appendChild(img);
-      item.addEventListener('click', function() { openLightbox(idx); });
-      grid.appendChild(item);
-    });
-
-    // ── Lightbox helpers ──
-    function openLightbox(idx) {
-      currentIndex = idx;
-      lbImg.style.opacity = '0';
-      lbImg.src = BASE + shuffled[currentIndex];
-      lbCounter.textContent = (currentIndex + 1) + ' / ' + shuffled.length;
-      lightbox.classList.add('open');
-      requestAnimationFrame(function() {
-        requestAnimationFrame(function() {
-          lbImg.style.opacity = '1';
+        button.appendChild(image);
+        button.appendChild(copy);
+        button.addEventListener('click', function() {
+          openPiece(index);
         });
+        grid.appendChild(button);
       });
+    }
+
+    function setActiveImage(imageIndex) {
+      activeImageIndex = imageIndex;
+      var piece = pieces[activePieceIndex];
+      stageImage.src = piece.images[activeImageIndex];
+      stageImage.alt = piece.title + ' image ' + (activeImageIndex + 1);
+
+      var thumbs = pieceThumbs.querySelectorAll('.piece-thumb');
+      thumbs.forEach(function(thumb, idx) {
+        thumb.classList.toggle('active', idx === activeImageIndex);
+      });
+
+      pieceImageCount.textContent = 'Image ' + (activeImageIndex + 1) + ' of ' + piece.images.length;
+    }
+
+    function openPiece(pieceIndex) {
+      activePieceIndex = pieceIndex;
+      activeImageIndex = 0;
+      var piece = pieces[pieceIndex];
+
+      pieceStatus.textContent = piece.status || 'Sold archival piece';
+      pieceTitle.textContent = piece.title || '';
+      pieceMedium.textContent = piece.medium || '';
+      pieceDescription.textContent = piece.description || '';
+
+      pieceThumbs.innerHTML = '';
+      piece.images.forEach(function(src, idx) {
+        var thumb = document.createElement('button');
+        thumb.type = 'button';
+        thumb.className = 'piece-thumb' + (idx === 0 ? ' active' : '');
+        thumb.setAttribute('aria-label', 'View image ' + (idx + 1) + ' for ' + piece.title);
+
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = piece.title + ' thumbnail ' + (idx + 1);
+        img.loading = 'lazy';
+
+        thumb.appendChild(img);
+        thumb.addEventListener('click', function() {
+          setActiveImage(idx);
+        });
+        pieceThumbs.appendChild(thumb);
+      });
+
+      setActiveImage(0);
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      stageImage.src = '';
+      pieceThumbs.innerHTML = '';
     }
 
     function navigate(delta) {
-      currentIndex = (currentIndex + delta + shuffled.length) % shuffled.length;
-      lbImg.style.opacity = '0';
-      setTimeout(function() {
-        lbImg.src = BASE + shuffled[currentIndex];
-        lbCounter.textContent = (currentIndex + 1) + ' / ' + shuffled.length;
-        lbImg.style.opacity = '1';
-      }, 190);
+      if (!modal.classList.contains('open')) return;
+      var piece = pieces[activePieceIndex];
+      var nextIndex = activeImageIndex + delta;
+      if (nextIndex < 0) nextIndex = piece.images.length - 1;
+      if (nextIndex >= piece.images.length) nextIndex = 0;
+      setActiveImage(nextIndex);
     }
 
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      lbImg.src = '';
-    }
-
-    // ── Lightbox events ──
-    lbPrev.addEventListener('click', function(e) { e.stopPropagation(); navigate(-1); });
-    lbNext.addEventListener('click', function(e) { e.stopPropagation(); navigate(1); });
-
-    // click backdrop to close (not arrows or image)
-    lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox) closeLightbox();
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) closeModal();
     });
 
-    document.addEventListener('keydown', function(e) {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft')  navigate(-1);
-      if (e.key === 'ArrowRight') navigate(1);
+    document.addEventListener('keydown', function(event) {
+      if (!modal.classList.contains('open')) return;
+      if (event.key === 'Escape') closeModal();
+      if (event.key === 'ArrowLeft') navigate(-1);
+      if (event.key === 'ArrowRight') navigate(1);
     });
+
+    fetch('/_data/portfolio-pieces.json')
+      .then(function(response) {
+        if (!response.ok) throw new Error('bad response');
+        return response.json();
+      })
+      .then(function(data) {
+        pieces = Array.isArray(data) ? data.filter(function(piece) {
+          return piece && Array.isArray(piece.images) && piece.images.length;
+        }) : [];
+
+        if (!pieces.length) {
+          renderEmpty('No archived pieces are available yet.');
+          return;
+        }
+
+        renderCards();
+      })
+      .catch(function() {
+        renderEmpty('The portfolio archive could not be loaded right now.');
+      });
   })();
 </script>
 </body>
