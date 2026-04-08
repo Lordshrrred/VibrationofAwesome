@@ -1,11 +1,11 @@
 /*
-  REQUIRED ENVIRONMENT VARIABLES — add to Netlify:
+  REQUIRED ENVIRONMENT VARIABLES ~ add to Netlify:
 
-  GA_CREDENTIALS_JSON — paste the entire contents
+  GA_CREDENTIALS_JSON ~ paste the entire contents
   of your Google service account JSON file as a
   single line string (minify it or paste as-is)
 
-  GA_PROPERTY_ID — your GA4 property ID
+  GA_PROPERTY_ID ~ your GA4 property ID
   (found in GA4 → Admin → Property Settings)
   looks like: 123456789
 

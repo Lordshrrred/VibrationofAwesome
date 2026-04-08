@@ -4,11 +4,11 @@ Simple 3-step process. Works from phone or desktop.
 
 ---
 
-## Step 1 — Drop the photo into the right folder
+## Step 1 ~ Drop the photo into the right folder
 
 | Folder | What goes here |
 |--------|---------------|
-| `forest/` | Nature, trees, landscapes — used in Forest Temple blog |
+| `forest/` | Nature, trees, landscapes ~ used in Forest Temple blog |
 | `matt/` | Personal photos of Matt (create this folder if it doesn't exist) |
 | `jewelry/` | Jewelry pieces for the art store (create if needed) |
 
@@ -20,7 +20,7 @@ Supported formats: `.jpg`, `.jpeg`, `.png`, `.webp`, `.avif`
 
 ---
 
-## Step 2 — Add an entry to photo-metadata.json
+## Step 2 ~ Add an entry to photo-metadata.json
 
 Open `static/personal-photos/photo-metadata.json` and add your photo under the right section:
 
@@ -43,7 +43,7 @@ The `year` field is optional for jewelry. Caption and tags are required.
 
 ---
 
-## Step 3 — Commit and push
+## Step 3 ~ Commit and push
 
 ```bash
 git add static/personal-photos/
@@ -60,5 +60,5 @@ That's it. The photo rotator widget picks it up automatically on next page load.
 ## Troubleshooting
 
 - **Photo not showing?** Check the filename in `photo-metadata.json` matches exactly (case-sensitive).
-- **Widget shows nothing?** The folder might be empty — that's fine, it hides itself gracefully.
-- **Wrong folder?** Move the file and update the JSON key — the section name (`"matt"`, `"forest"`, etc.) must match the subfolder.
+- **Widget shows nothing?** The folder might be empty ~ that's fine, it hides itself gracefully.
+- **Wrong folder?** Move the file and update the JSON key ~ the section name (`"matt"`, `"forest"`, etc.) must match the subfolder.

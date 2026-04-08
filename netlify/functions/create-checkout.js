@@ -74,7 +74,7 @@ exports.handler = async (event) => {
       });
 
     } else {
-      // ── Subscription (AURA Premium — existing flow) ───────────────────────
+      // ── Subscription (AURA Premium ~ existing flow) ───────────────────────
       const resolvedPriceId = priceId || process.env.STRIPE_PRICE_ID_AURA_PREMIUM;
       if (!resolvedPriceId) {
         return {

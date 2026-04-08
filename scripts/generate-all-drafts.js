@@ -23,7 +23,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 const ROOT       = path.resolve(__dirname, "..");
 
-// Same slugify logic as generate-post.js — keep in sync
+// Same slugify logic as generate-post.js ~ keep in sync
 function slugify(str) {
   return str.toLowerCase()
     .replace(/[^a-z0-9\s-]/g, "")

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * inject-blog-nav.js — Add full site navigation to all Forest Temple & Boom Frequency pages
+ * inject-blog-nav.js ~ Add full site navigation to all Forest Temple & Boom Frequency pages
  *
  * Replaces existing <nav>…</nav> with a two-row nav:
  *   Row 1: VOA logo + full site links + hamburger
@@ -291,7 +291,7 @@ function boomPostNav() {
 function processFile(filePath, lane, isIndex) {
   let html = fs.readFileSync(filePath, "utf8");
 
-  // 1. Replace <nav>...</nav> — handle both single-line and multi-line
+  // 1. Replace <nav>...</nav> ~ handle both single-line and multi-line
   const navBlock = isIndex
     ? (lane === "matt" ? mattIndexNav() : boomIndexNav())
     : (lane === "matt" ? mattPostNav()  : boomPostNav());
@@ -374,4 +374,4 @@ for (const f of boomFiles) {
   }
 }
 
-console.log(`\n✅ Done — updated ${updated} file(s).`);
+console.log(`\n✅ Done ~ updated ${updated} file(s).`);

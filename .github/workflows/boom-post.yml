@@ -40,6 +40,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Enforce no em dashes
+        run: npm run check:emdash
+
       # ── 4. Generate post (auto-syndicates + fires feeder trigger) ──────────
       - name: Generate Boom post
         env:

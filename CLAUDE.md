@@ -65,7 +65,7 @@ Hugo watches `content/posts/*.md` and renders with `layouts/` templates. The `hu
 
 ## Environment Variables
 Copy `.env.example` to `.env`. Required keys:
-- `ANTHROPIC_API_KEY` — content generation and AURA chatbot
-- `PEXELS_API_KEY` — image selection for syndication
+- `ANTHROPIC_API_KEY` ~ content generation and AURA chatbot
+- `PEXELS_API_KEY` ~ image selection for syndication
 - OAuth credentials for each social platform (see `.env.example` for full list)
-- `DASHBOARD_PASSWORD` — protects the admin dashboard
+- `DASHBOARD_PASSWORD` ~ protects the admin dashboard

@@ -6,7 +6,7 @@ Usage:
     python scripts/get_blogger_token.py
 
 Requirements:
-    No third-party packages — stdlib only.
+    No third-party packages ~ stdlib only.
 
 Expects in .env (or as environment variables):
     BLOGGER_CLIENT_ID
@@ -142,7 +142,7 @@ def main():
 
     print()
     print('=' * 70)
-    print('  BLOGGER OAUTH — localhost redirect flow')
+    print('  BLOGGER OAUTH ~ localhost redirect flow')
     print('=' * 70)
     print()
     print('Opening authorization URL in your browser...')
@@ -161,7 +161,7 @@ def main():
     _wait_for_callback()
 
     if _captured_error:
-        print(f'\nERROR: Authorization denied — {_captured_error}')
+        print(f'\nERROR: Authorization denied ~ {_captured_error}')
         sys.exit(1)
 
     auth_code = _captured_code

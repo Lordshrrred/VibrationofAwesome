@@ -349,7 +349,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("  </header>");
   H.push("  <main>");
   if (isMatt) {
-    // Matt posts: existing layout — header inside container (unchanged)
+    // Matt posts: existing layout ~ header inside container (unchanged)
     H.push("    <div class=\"container\">");
     H.push('      <nav class="breadcrumb" aria-label="Breadcrumb">');
     H.push('        <a href="/">Home</a><span class="sep">&#8250;</span>');
@@ -501,12 +501,12 @@ function injectNasaImages(html, images) {
  * Ping the VOA_Feeder repo via GitHub repository_dispatch.
  * Fires when VOA_FEEDER_TRIGGER_TOKEN is set in the environment.
  * In CI (GitHub Actions) the token is injected via secrets; locally via .env.
- * Wrapped in try/catch — a feeder failure never breaks the main publish.
+ * Wrapped in try/catch ~ a feeder failure never breaks the main publish.
  */
 async function triggerFeeder(postUrl, postTitle, keyword, sourceMeta = {}) {
   const token = process.env.VOA_FEEDER_TRIGGER_TOKEN;
   if (!token) {
-    console.log("  [feeder] VOA_FEEDER_TRIGGER_TOKEN not set — skipping feeder trigger");
+    console.log("  [feeder] VOA_FEEDER_TRIGGER_TOKEN not set ~ skipping feeder trigger");
     return;
   }
   try {

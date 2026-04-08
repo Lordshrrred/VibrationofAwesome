@@ -34,6 +34,14 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Enforce no em dashes
+        run: node scripts/check-no-emdash.js
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

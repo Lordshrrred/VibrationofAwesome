@@ -512,7 +512,7 @@
 
     // These two images are landscape ~ switch container to 4:3 for them
     var LANDSCAPE_FILES = ["treeyoga.jpeg", "treeyoga.jpg", "fulllotus.jpeg", "fulllotus.jpg"];
-    var currentOrientation = null; // "P" portrait | "L" landscape — avoid redundant SVG swaps
+    var currentOrientation = null; // "P" portrait | "L" landscape ~ avoid redundant SVG swaps
 
     // Boom theme: fixed byline HTML set once (not driven by individual photo captions)
     if (theme === "boom") {

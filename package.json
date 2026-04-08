@@ -4,6 +4,7 @@
   "description": "Dual-blog content engine for vibrationofawesome.com",
   "type": "module",
   "scripts": {
+    "check:emdash": "node scripts/check-no-emdash.js",
     "generate": "node scripts/generate-post.js",
     "syndicate": "node scripts/syndicate.js",
     "captions": "node scripts/generate-captions.js",

@@ -1,7 +1,7 @@
 name: Drip Publish ~ Boom Frequency
 
 on:
-  workflow_dispatch:         # Manual trigger only — auto-schedule DISABLED
+  workflow_dispatch:         # Manual trigger only ~ auto-schedule DISABLED
 
 permissions:
   contents: write
@@ -28,6 +28,9 @@ jobs:
       # ── 3. Install dependencies ──────────────────────────────────────────
       - name: Install dependencies
         run: npm ci
+
+      - name: Enforce no em dashes
+        run: npm run check:emdash
 
       # ── 4. Check drip queue status ───────────────────────────────────────
       - name: Check drip queue status

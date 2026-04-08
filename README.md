@@ -1,6 +1,6 @@
 # Vibration of Awesome
 
-**vibrationofawesome.com** — Hugo static site deployed via GitHub Pages, with Netlify retained for serverless/functions workflows.
+**vibrationofawesome.com** ~ Hugo static site deployed via GitHub Pages, with Netlify retained for serverless/functions workflows.
 
 Roots in the Earth, Crown in the Stars. The Future is Ours.
 
@@ -13,8 +13,8 @@ Roots in the Earth, Crown in the Stars. The Future is Ours.
 /posts/                 → Hugo-rendered blog posts from content/posts/
 /admin/                 → VOA Post Studio (custom post editor)
 /blog/                  → Static dual-blog hub (legacy/generated HTML lane system)
-/blog/matt/             → From the Forest Temple — Matt EarthStar's personal lane
-/blog/boom/             → Boom Frequency — Matty BoomBoom AI SEO lane
+/blog/matt/             → From the Forest Temple ~ Matt EarthStar's personal lane
+/blog/boom/             → Boom Frequency ~ Matty BoomBoom AI SEO lane
 /art-store/             → Static art store landing page
 /aura/                  → Aura experience
 ```
@@ -36,10 +36,10 @@ cp .env.example .env
 ### Generate a Blog Post
 
 ```bash
-# Matt lane — personal voice, raw + honest
+# Matt lane ~ personal voice, raw + honest
 node scripts/generate-post.js --lane matt --title "Why I Spent 20 Years Doing Internet Marketing Wrong"
 
-# BoomBot lane — SEO-optimized, Matty BoomBoom voice
+# BoomBot lane ~ SEO-optimized, Matty BoomBoom voice
 node scripts/generate-post.js --lane boom --keyword "how to use claude api for musicians" --topic "AI tools for independent artists"
 ```
 

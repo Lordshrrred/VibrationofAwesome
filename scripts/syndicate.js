@@ -467,13 +467,13 @@ async function getBloggerAccessToken() {
 
 /**
  * Use Claude to write a fresh related article inspired by the source post.
- * Returns { title, html } — clean HTML body content only, no wrappers.
+ * Returns { title, html } ~ clean HTML body content only, no wrappers.
  */
 async function generateBloggerArticle(sourceTitle, sourceText, sourceUrl, anthropic) {
   const msg = await anthropic.messages.create({
     model:      "claude-opus-4-6",
     max_tokens: 2000,
-    system: `You are Matt EarthStar, the voice behind Vibration of Awesome (vibrationofawesome.com). Write in Matt's authentic personal voice: reflective, honest, spiritual but grounded — the voice of someone who has lived through real struggles and found genuine insight. Not corporate motivation or new-age fluff. Raw, direct, human.`,
+    system: `You are Matt EarthStar, the voice behind Vibration of Awesome (vibrationofawesome.com). Write in Matt's authentic personal voice: reflective, honest, spiritual but grounded ~ the voice of someone who has lived through real struggles and found genuine insight. Not corporate motivation or new-age fluff. Raw, direct, human.`,
     messages: [
       {
         role:    "user",
@@ -485,7 +485,7 @@ SOURCE URL: ${sourceUrl}
 BODY TEXT:
 ${sourceText}
 
-Write a NEW original article inspired by these themes but from a completely fresh angle. NOT a rewrite — a new piece. Think: a different metaphor, a more recent realization, or a personal story that connects to the same ideas.
+Write a NEW original article inspired by these themes but from a completely fresh angle. NOT a rewrite ~ a new piece. Think: a different metaphor, a more recent realization, or a personal story that connects to the same ideas.
 
 Format your response EXACTLY like this:
 TITLE: [your article title here]

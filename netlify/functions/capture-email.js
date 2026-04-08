@@ -5,8 +5,8 @@
 // Returns { success: true, token: "XXXXX", download_url: "/.netlify/functions/deliver-ebook?token=XXXXX" }
 //
 // ─────────────────────────────────────────────────────────────────────────────
-// EMAIL PROVIDER — swap by changing PROVIDER env var:
-//   PROVIDER=internal   (default — stores to Netlify function log, no external calls)
+// EMAIL PROVIDER ~ swap by changing PROVIDER env var:
+//   PROVIDER=internal   (default ~ stores to Netlify function log, no external calls)
 //   PROVIDER=convertkit (add CK_API_KEY + CK_FORM_ID)
 //   PROVIDER=mailerlite (add ML_API_KEY + ML_GROUP_ID)
 //   PROVIDER=beehiiv    (add BH_API_KEY + BH_PUB_ID)
@@ -36,7 +36,7 @@ function isValidEmail(email) {
 }
 
 // ── Provider: internal (default) ─────────────────────────────────────────────
-// No external calls — just logs the submission and returns the token.
+// No external calls ~ just logs the submission and returns the token.
 // The token is added to VALID_EBOOK_TOKENS env var manually (or via CI).
 // For production, swap to a real provider below.
 async function saveInternal(email, meta, token) {

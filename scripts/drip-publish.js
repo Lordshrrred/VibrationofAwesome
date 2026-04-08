@@ -131,7 +131,7 @@ async function main() {
     const postFile  = path.join(POSTS_DIR,  item.slug + ".html");
 
     if (!fs.existsSync(draftFile)) {
-      console.error(`  ✗ Draft not found: ${item.slug}.html — skipping`);
+      console.error(`  ✗ Draft not found: ${item.slug}.html ~ skipping`);
       continue;
     }
 
@@ -182,7 +182,7 @@ async function main() {
   if (queue.trigger_feeder_on_publish) {
     const token = process.env.VOA_FEEDER_TRIGGER_TOKEN;
     if (!token) {
-      console.log("  [feeder] VOA_FEEDER_TRIGGER_TOKEN not set — skipping");
+      console.log("  [feeder] VOA_FEEDER_TRIGGER_TOKEN not set ~ skipping");
     } else {
       for (const item of justPublished) {
         const postUrl = "https://vibrationofawesome.com/blog/boom/posts/" + item.slug + ".html";

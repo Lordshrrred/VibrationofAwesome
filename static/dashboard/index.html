@@ -523,7 +523,7 @@
         <div class="queue-panel">
           <div class="panel-header">
             <span class="panel-title" style="color:var(--success)">Syndicated</span>
-            <span class="panel-count" id="pq-synced-count">—</span>
+            <span class="panel-count" id="pq-synced-count">~</span>
           </div>
           <div class="panel-body" id="pq-synced">
             <div class="loading dot-pulse">Loading</div>
@@ -532,7 +532,7 @@
         <div class="queue-panel">
           <div class="panel-header">
             <span class="panel-title" style="color:var(--warn)">Queued</span>
-            <span class="panel-count" id="pq-queued-count">—</span>
+            <span class="panel-count" id="pq-queued-count">~</span>
           </div>
           <div class="panel-body" id="pq-queued">
             <div class="loading dot-pulse">Loading</div>
@@ -541,7 +541,7 @@
         <div class="queue-panel">
           <div class="panel-header">
             <span class="panel-title" style="color:var(--text-muted)">Recent Blog Posts</span>
-            <span class="panel-count" id="pq-scheduled-count">—</span>
+            <span class="panel-count" id="pq-scheduled-count">~</span>
           </div>
           <div class="panel-body" id="pq-scheduled">
             <div class="loading dot-pulse">Loading</div>
@@ -688,7 +688,7 @@ const MATT_URL      = "/_data/matt-posts.json";
 const FEEDER_POSTS_URL = "https://lordshrrred.github.io/VOA_Feeder/blog/posts.json";
 const FEEDER_SUFFIXES = ["-signal", "-shift", "-insight", "-guide"];
 const VERIFY_CACHE  = "voa_url_verify_cache_v2"; // v2: busts old bad cache from netlify usage_exceeded errors
-const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours — these are stable post URLs
+const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
 
 function getOpenTarget(primaryUrl, fallbackUrl) {
   return primaryUrl || fallbackUrl || "";
@@ -865,7 +865,7 @@ function renderStats(entries, results, drip) {
       `${badge} <span style="font-size:0.75rem;color:var(--text-muted)">${published} published</span>`;
   }
 
-  // Platforms Active — add feeder once it has at least one success
+  // Platforms Active ~ add feeder once it has at least one success
   const feederHasSuccess = results.some(r => r.syndication?.feeder?.status === "success");
   const baseCount = PLATFORMS.length - 1; // all except feeder
   const activeCount = feederHasSuccess ? PLATFORMS.length : baseCount;
@@ -911,7 +911,7 @@ function renderDripQueue(drip) {
     : `<span class="drip-status-badge drip-paused">⏸ Paused</span>`;
 
   // Compute "next scheduled" date
-  let nextScheduled = "—";
+  let nextScheduled = "~";
   if (isActive && q.length > 0) {
     const now = new Date();
     const next = new Date(now);
@@ -1144,7 +1144,7 @@ function renderMatrix(results) {
 }
 
 // ── Live URL Verification ─────────────────────────────────────────────────────
-// ALL platforms use direct browser fetch (no-cors) — zero Netlify function calls.
+// ALL platforms use direct browser fetch (no-cors) ~ zero Netlify function calls.
 //
 // WHY: The Netlify check-url function was returning usage_exceeded (free tier limit
 // hit by other functions like AURA chat), causing all proxied platforms to show red.
@@ -1155,7 +1155,7 @@ function renderMatrix(results) {
 //   STORED (show syndication status, no live check): instagram, threads (never have URLs)
 // Results cached in localStorage for 24 hours.
 
-// Platforms that show stored status only — no live check (they don't return post URLs)
+// Platforms that show stored status only ~ no live check (they don't return post URLs)
 const STORED_STATUS_KEYS = new Set(["instagram", "threads"]);
 
 // Purge old v1 cache and any legacy url-check-* keys that may have bad false entries
@@ -1208,7 +1208,7 @@ async function verifyMatrixUrls() {
     toCheck.push({ cell, url });
   }
 
-  // Direct no-cors browser fetches — sequential to avoid flooding
+  // Direct no-cors browser fetches ~ sequential to avoid flooding
   // no-cors: opaque response = server responded (treat as live); throws = network dead
   for (const { cell, url } of toCheck) {
     try {
@@ -1280,7 +1280,7 @@ function renderQueue(entries, allPosts, drip) {
     const laneNm      = post.lane === "matt" ? "Forest Temple" : "Boom Frequency";
     const date        = post.date
       ? new Date(post.date).toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" })
-      : "—";
+      : "~";
 
     const url = post.date
       ? "https://vibrationofawesome.com" + post.url
@@ -1344,13 +1344,13 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
 
   // Next scheduled post title
   const nextTitle = drip?.queue?.length > 0
-    ? esc((drip.queue[0].title || "—").slice(0, 45)) + (drip.queue[0].title?.length > 45 ? "…" : "")
-    : "—";
+    ? esc((drip.queue[0].title || "~").slice(0, 45)) + (drip.queue[0].title?.length > 45 ? "…" : "")
+    : "~";
 
   // Last deploy proxy: most recent syndication log timestamp
   const lastDeploy = drip?.lastUpdated
     ? new Date(drip.lastUpdated).toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" })
-    : "—";
+    : "~";
 
   document.getElementById("voa-site-card").innerHTML = `
     <div class="site-card-title">vibrationofawesome.com</div>

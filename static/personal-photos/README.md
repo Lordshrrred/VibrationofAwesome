@@ -15,7 +15,7 @@ no results, network error), it falls back to a **random image from this folder**
 
 ## Recommendations
 
-- Add 10–20 photos that represent the vibe of the site — EarthStar performances, studio
+- Add 10–20 photos that represent the vibe of the site ~ EarthStar performances, studio
   shots, nature/forest scenes, keyboard/gear photos, cosmic/space imagery, etc.
 - Use landscape orientation (wider than tall) for best results across platforms.
 - Aim for 1200×630px or larger for quality social media display.

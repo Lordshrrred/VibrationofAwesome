@@ -203,7 +203,7 @@
       <div class="voa-cta-copy">
         <div class="voa-eyebrow">Free Transmission</div>
         <div class="voa-title">Take this further with the <span>Field Guide</span></div>
-        <div class="voa-sub">A clean entry point into the Vibration of Awesome — the feeling, the framework, and the way back into alignment when life gets noisy.</div>
+        <div class="voa-sub">A clean entry point into the Vibration of Awesome ~ the feeling, the framework, and the way back into alignment when life gets noisy.</div>
         <div class="voa-cta-form-wrap">
           <div class="voa-cta-form">
             <input type="email" class="voa-cta-input" placeholder="Your email address" autocomplete="email">

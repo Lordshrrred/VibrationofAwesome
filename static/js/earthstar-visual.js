@@ -392,7 +392,7 @@
         return usedIds.indexOf(p.id) === -1;
       });
     }
-    // Ultimate fallback: recycle themed pool (very rare — 10 patterns, max 4 visuals/page).
+    // Ultimate fallback: recycle themed pool (very rare ~ 10 patterns, max 4 visuals/page).
     if (!available.length) available = themedPatterns;
 
     var rng     = seededRng(title || String(Date.now()));
@@ -406,7 +406,7 @@
     return { pattern: pattern, palette: palette, rotation: rotation, scale: scale, variant: variant };
   }
 
-  // ── Build hero SVG (no background, transparent — overlays page bg) ─
+  // ── Build hero SVG (no background, transparent ~ overlays page bg) ─
   function buildSvg(config) {
     var p   = config.palette;
     var pat = config.pattern;
@@ -457,7 +457,7 @@
   }
 
   // ── Build art SVG (transparent bg, geometry fully visible) ─────────
-  // Used for body visual slots. No forced dark rectangle — geometry
+  // Used for body visual slots. No forced dark rectangle ~ geometry
   // floats on whatever background the page provides.
   function buildSvgArt(config) {
     var p   = config.palette;
@@ -507,7 +507,7 @@
       '  animation:ev-float 9s ease-in-out infinite;',
       '}',
       '.post-hero, .post-header { overflow:hidden; }',
-      // Lower opacity for .post-header (boom posts — text readability)
+      // Lower opacity for .post-header (boom posts ~ text readability)
       '.post-header .ev-art.ev-visible { opacity:0.52; }',
       '@media(max-width:768px){',
       '  .ev-art { justify-content:center; align-items:center; padding:0; }',
@@ -516,7 +516,7 @@
       '  .ev-art svg { width:min(240px,65%); }',
       '}',
 
-      // Full-width banner — legacy class kept for backwards compatibility.
+      // Full-width banner ~ legacy class kept for backwards compatibility.
       '.ev-banner {',
       '  display:block; width:100%; height:240px; overflow:hidden;',
       '  border-radius:3px; margin:2.8rem 0;',
@@ -526,7 +526,7 @@
       '.ev-banner svg { display:block; width:100%; height:100%; animation:ev-float 10s ease-in-out infinite; }',
       '@media(max-width:600px){ .ev-banner { height:160px; margin:1.8rem 0; } }',
 
-      // Paragraph divider — legacy class kept for backwards compatibility.
+      // Paragraph divider ~ legacy class kept for backwards compatibility.
       '.ev-divider {',
       '  display:block; width:88%; height:315px; overflow:hidden;',
       '  border-radius:3px; margin:2.5rem auto;',
@@ -536,8 +536,8 @@
       '.ev-divider svg { display:block; width:100%; height:100%; animation:ev-float 11s ease-in-out infinite; }',
       '@media(max-width:600px){ .ev-divider { width:96%; height:210px; } }',
 
-      // Body visual — centered artful piece; transparent SVG floats on page bg.
-      // No background, no border, no frame — just geometry floating in the text.
+      // Body visual ~ centered artful piece; transparent SVG floats on page bg.
+      // No background, no border, no frame ~ just geometry floating in the text.
       '.ev-body-visual {',
       '  display:block; width:90%; height:368px; overflow:visible;',
       '  margin:2.6rem auto;',
@@ -593,7 +593,7 @@
     div.setAttribute('data-earthstar-id', config.pattern.id);
     div.innerHTML = buildSvgArt(config);
     wrapEl.parentNode.replaceChild(div, wrapEl);
-    // Visibility handled by CSS animation (ev-fadein) — no JS class change needed.
+    // Visibility handled by CSS animation (ev-fadein) ~ no JS class change needed.
     return div;
   }
 
@@ -608,7 +608,7 @@
   //
   // NASA replacements count toward the target; only the deficit is added
   // as new paragraph dividers.
-  // usedIds: array shared with hero injection — patterns already used are skipped.
+  // usedIds: array shared with hero injection ~ patterns already used are skipped.
   function injectBodyVisuals(bodyEl, post, usedIds) {
     ensureStyles();
     if (!usedIds) usedIds = []; // safe fallback if called without tracker
@@ -621,7 +621,7 @@
     };
 
     // 1. Replace all .nasa-img-wrap elements inside .post-body.
-    //    Scope to post-body only — never touch header/hero images.
+    //    Scope to post-body only ~ never touch header/hero images.
     var nasaWraps = Array.prototype.slice.call(
       bodyEl.querySelectorAll('.nasa-img-wrap')
     );
@@ -642,7 +642,7 @@
 
     if (toAdd <= 0) return;
 
-    // 3. Collect insertable prose blocks (direct children — not headings).
+    // 3. Collect insertable prose blocks (direct children ~ not headings).
     var textBlocks = Array.prototype.slice.call(bodyEl.children).filter(function (el) {
       return /^(P|BLOCKQUOTE|UL|OL)$/.test(el.tagName);
     });
@@ -677,7 +677,7 @@
       div.setAttribute('aria-hidden', 'true');
       div.setAttribute('data-earthstar-id', imgConfig.pattern.id);
       div.innerHTML = buildSvgArt(imgConfig);
-      // Visibility handled by CSS animation — no fadeIn() needed.
+      // Visibility handled by CSS animation ~ no fadeIn() needed.
 
       if (refEl.nextSibling) {
         bodyEl.insertBefore(div, refEl.nextSibling);
@@ -709,7 +709,7 @@
         post.tags.push(el.textContent.trim());
       });
 
-      // Shared uniqueness tracker — hero registers first, body visuals skip its pattern.
+      // Shared uniqueness tracker ~ hero registers first, body visuals skip its pattern.
       var usedIds = [];
 
       var config = getUniqueEarthstarImage(post, usedIds);
@@ -725,7 +725,7 @@
         document.querySelector('.earthstar-hero');
 
       if (hero) {
-        // .post-header is static by default — needs relative for abs child
+        // .post-header is static by default ~ needs relative for abs child
         var pos = window.getComputedStyle(hero).position;
         if (pos === 'static') {
           hero.style.position = 'relative';

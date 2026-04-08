@@ -46,7 +46,7 @@ try {
 if (argv.pause) {
   queue.status = "paused";
   fs.writeFileSync(QUEUE_FILE, JSON.stringify(queue, null, 2), "utf8");
-  console.log("✓ Drip queue PAUSED — no posts will publish until re-activated.");
+  console.log("✓ Drip queue PAUSED ~ no posts will publish until re-activated.");
   commitAndPush("Pause drip queue");
   process.exit(0);
 }
@@ -85,7 +85,7 @@ function commitAndPush(message) {
     console.error("git commit error:", commit.error.message); process.exit(1);
   }
   if (commit.status !== 0) {
-    console.log("(nothing new to commit — drip-queue.json was already up to date)");
+    console.log("(nothing new to commit ~ drip-queue.json was already up to date)");
     return;
   }
 

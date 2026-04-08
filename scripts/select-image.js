@@ -138,7 +138,7 @@ function pickBoomPhoto() {
 /**
  * Return an array of `count` randomly chosen boom space images.
  * Used for injecting inline images into Boom Frequency posts.
- * Mirrors fetchForestImages() — reads static/images/boom/ locally.
+ * Mirrors fetchForestImages() ~ reads static/images/boom/ locally.
  */
 export function fetchBoomImages(count) {
   count = count || 1;

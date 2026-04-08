@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EarthStar SVG Gallery | Vibration of Awesome</title>
-<meta name="description" content="132 sacred-tech vector tiles — 22 geometric patterns × 12 EarthStar color palettes. Copyable and downloadable SVG database.">
+<meta name="description" content="132 sacred-tech vector tiles ~ 22 geometric patterns × 12 EarthStar color palettes. Copyable and downloadable SVG database.">
 <link rel="canonical" href="https://vibrationofawesome.com/earthstar/svg-gallery/">
 <meta name="robots" content="noindex, follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vibration of Awesome">
 <meta property="og:title" content="EarthStar SVG Gallery | Vibration of Awesome">
-<meta property="og:description" content="132 sacred-tech vector tiles — 22 geometric patterns × 12 EarthStar color palettes. Copyable and downloadable SVG database.">
+<meta property="og:description" content="132 sacred-tech vector tiles ~ 22 geometric patterns × 12 EarthStar color palettes. Copyable and downloadable SVG database.">
 <meta property="og:url" content="https://vibrationofawesome.com/earthstar/svg-gallery/">
 <meta property="og:image" content="https://vibrationofawesome.com/images/earthstar-hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="EarthStar SVG Gallery | Vibration of Awesome">
-<meta name="twitter:description" content="132 sacred-tech vector tiles — 22 geometric patterns × 12 EarthStar color palettes. Copyable and downloadable SVG database.">
+<meta name="twitter:description" content="132 sacred-tech vector tiles ~ 22 geometric patterns × 12 EarthStar color palettes. Copyable and downloadable SVG database.">
 <meta name="twitter:image" content="https://vibrationofawesome.com/images/earthstar-hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
@@ -226,7 +226,7 @@ footer a:hover { color:#00e5cc; }
   <div class="eyebrow">EarthStar · Internal SVG Database</div>
   <h1>Sacred-Tech <span>Vector Library</span></h1>
   <p class="hero-sub">
-    132 geometric vector tiles — 22 patterns across 12 EarthStar palettes.
+    132 geometric vector tiles ~ 22 patterns across 12 EarthStar palettes.
     Triforce-heavy sacred-tech geometry. Click <strong>Copy</strong> to grab SVG markup or <strong>↓</strong> to download.
     Filter by pattern family below.
   </p>
@@ -317,7 +317,7 @@ function triforceSet(p, size = 150, rotation = 0, opacity = 0.9) {
   </g>`;
 }
 
-// Off-center triforce — single color, at any canvas position, with optional rotation
+// Off-center triforce ~ single color, at any canvas position, with optional rotation
 function triMonoAt(color, cx0, cy0, size, rotDeg = 0, opacity = 0.72) {
   const h = size;
   const r = rotDeg * Math.PI / 180;
@@ -345,7 +345,7 @@ function starField() {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Color palettes  (12 total — 6 original + 6 new)
+// Color palettes  (12 total ~ 6 original + 6 new)
 // ─────────────────────────────────────────────────────────────
 const palettes = [
   // ── Original 6 ──
@@ -365,7 +365,7 @@ const palettes = [
 ];
 
 // ─────────────────────────────────────────────────────────────
-// Pattern definitions  (22 total — 10 original + 12 new)
+// Pattern definitions  (22 total ~ 10 original + 12 new)
 // ─────────────────────────────────────────────────────────────
 const patterns = [
 
@@ -837,7 +837,7 @@ async function copySvg(btn, pattern, palette, variant) {
     showToast('SVG copied to clipboard');
     setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
   } catch (e) {
-    showToast('Copy failed — try right-click → Copy SVG source');
+    showToast('Copy failed ~ try right-click → Copy SVG source');
   }
 }
 

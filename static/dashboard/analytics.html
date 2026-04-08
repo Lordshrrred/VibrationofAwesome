@@ -317,7 +317,7 @@
     <!-- Row 2: Pageviews chart + Sources -->
     <div class="two-col split-6040" id="row2">
       <div class="chart-card">
-        <h3>Pageviews Over Time <span style="font-size:0.72rem;color:var(--text-muted);font-weight:400;">— last 30 days</span></h3>
+        <h3>Pageviews Over Time <span style="font-size:0.72rem;color:var(--text-muted);font-weight:400;">~ last 30 days</span></h3>
         <div class="chart-wrap"><div class="skeleton chart-skel" id="pv-skel" style="height:200px;"></div><canvas id="pv-chart" style="display:none;"></canvas></div>
       </div>
       <div class="chart-card">
@@ -330,7 +330,7 @@
     <!-- Row 3: Top pages + Geo -->
     <div class="two-col split-5050" id="row3">
       <div class="chart-card">
-        <h3>Top Pages <span style="font-size:0.72rem;color:var(--text-muted);font-weight:400;">— last 30 days</span></h3>
+        <h3>Top Pages <span style="font-size:0.72rem;color:var(--text-muted);font-weight:400;">~ last 30 days</span></h3>
         <div id="pages-list"><div class="skeleton chart-skel" style="height:320px;"></div></div>
       </div>
       <div class="chart-card">
@@ -473,7 +473,7 @@ function fmtDate(d) { // YYYYMMDD → Mon DD
   return new Date(`${y}-${m}-${day}`).toLocaleDateString("en-US",{month:"short",day:"numeric"});
 }
 function errHtml(msg) {
-  return `<div class="error-msg">⚠ Could not load — ${msg || "check GA credentials"}</div>`;
+  return `<div class="error-msg">⚠ Could not load ~ ${msg || "check GA credentials"}</div>`;
 }
 
 // ── Chart instances (to destroy on refresh) ──────────────────────────────────
