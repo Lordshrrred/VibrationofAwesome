@@ -33,6 +33,8 @@ const TEXT_EXTENSIONS = new Set([
 
 const offenders = [];
 const EM_DASH = String.fromCharCode(0x2014);
+const EM_DASH_ESCAPE = "\\u" + "2014";
+const MDASH_ENTITY = "&m" + "dash;";
 
 function walk(targetPath) {
   const stat = fs.statSync(targetPath);
@@ -52,7 +54,7 @@ function walk(targetPath) {
   const lines = text.split("\n");
 
   lines.forEach((line, index) => {
-    if (line.includes(EM_DASH)) {
+    if (line.includes(EM_DASH) || line.includes(EM_DASH_ESCAPE) || line.includes(MDASH_ENTITY)) {
       offenders.push({
         file: path.relative(ROOT, targetPath),
         line: index + 1,

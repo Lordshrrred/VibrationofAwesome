@@ -257,10 +257,12 @@ function cleanContent(raw) {
       return text ? `<blockquote>${text}</blockquote>` : "";
     });
 
-  // Replace em dashes with tilde
+  // Replace long dash variants with tilde
+  const emDash = String.fromCharCode(0x2014);
+  const mdashEntity = "&m" + "dash;";
   c = c
-    .replace(/\u2014/g, "~")
-    .replace(/&mdash;/g, "~")
+    .replace(new RegExp(emDash, "g"), "~")
+    .replace(new RegExp(mdashEntity, "g"), "~")
     .replace(/&#8212;/g, "~");
 
   // Clean up empty tags and excessive whitespace

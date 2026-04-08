@@ -516,7 +516,7 @@
 
     // Boom theme: fixed byline HTML set once (not driven by individual photo captions)
     if (theme === "boom") {
-      cap.innerHTML = "<span style='display:block;margin-bottom:0.75em;'><strong style='color:#00e5ff;letter-spacing:0.08em;'>MATTY BOOMBOOM</strong> is the AI writing persona of Matt EarthStar ~ Co Creator in Reality.</span><span style='display:block;margin-bottom:0.6em;'>\u2192 <a href='/field-guide/' style='color:#22c06a;font-weight:700;'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span><span style='display:block;'>\u2192 <a href='/blog/matt/' style='color:#4eb868;font-weight:700;'>Explore Forest Temple</a> \u2014 Matt EarthStar, unfiltered.</span>";
+      cap.innerHTML = "<span style='display:block;margin-bottom:0.75em;'><strong style='color:#00e5ff;letter-spacing:0.08em;'>MATTY BOOMBOOM</strong> is the AI writing persona of Matt EarthStar ~ Co Creator in Reality.</span><span style='display:block;margin-bottom:0.6em;'>\u2192 <a href='/field-guide/' style='color:#22c06a;font-weight:700;'>Start with the Field Guide</a> ~ the framework behind this whole operation.</span><span style='display:block;'>\u2192 <a href='/blog/matt/' style='color:#4eb868;font-weight:700;'>Explore Forest Temple</a> ~ Matt EarthStar, unfiltered.</span>";
       cap.style.display = "";
     }
 
@@ -526,8 +526,8 @@
       mattCta = document.createElement("p");
       mattCta.className = "voa-sig-cta";
       mattCta.innerHTML =
-        "<span>\u2192 <a href='/field-guide/'>Start with the Field Guide</a> \u2014 the framework behind this whole operation.</span>" +
-        "<span>\u2192 <a href='/blog/boom/'>Explore Boom Frequency</a> \u2014 AI-powered, high-signal Utility.</span>";
+        "<span>\u2192 <a href='/field-guide/'>Start with the Field Guide</a> ~ the framework behind this whole operation.</span>" +
+        "<span>\u2192 <a href='/blog/boom/'>Explore Boom Frequency</a> ~ AI-powered, high-signal Utility.</span>";
     }
 
     function render(photo) {

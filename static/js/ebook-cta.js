@@ -46,16 +46,84 @@
   font-family: 'Lora', Georgia, serif;
 }
 .voa-cover-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.65rem;
 }
+.voa-cover-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.voa-cover-trigger::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 35% 25%, rgba(34,192,106,0.18), transparent 28%),
+    radial-gradient(circle at 72% 72%, rgba(0,229,255,0.18), transparent 34%);
+  filter: blur(16px);
+  opacity: 0.72;
+  transition: opacity 0.28s ease, transform 0.28s ease, filter 0.28s ease;
+}
+.voa-cover-trigger svg {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  pointer-events: none;
+  opacity: 0.46;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.voa-cover-trigger .voa-cover-glint {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  filter: drop-shadow(0 0 8px rgba(34,192,106,0.45));
+}
+.voa-cover-trigger .voa-cover-glint.g1 { top: 6%; left: 14%; }
+.voa-cover-trigger .voa-cover-glint.g2 { right: 12%; bottom: 12%; }
+.voa-cover-trigger:hover::before,
+.voa-cover-trigger:focus-visible::before {
+  opacity: 1;
+  transform: scale(1.04);
+  filter: blur(19px);
+}
+.voa-cover-trigger:hover svg,
+.voa-cover-trigger:focus-visible svg {
+  opacity: 0.82;
+  transform: scale(1.06) rotate(4deg);
+}
+.voa-cover-trigger:hover .voa-cover-glint,
+.voa-cover-trigger:focus-visible .voa-cover-glint {
+  opacity: 1;
+  transform: scale(1.08);
+}
 .voa-cover-card img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   border-radius: 10px;
   border: 1px solid rgba(34,192,106,0.22);
   box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
+}
+.voa-cover-trigger:hover img,
+.voa-cover-trigger:focus-visible img {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 18px 34px rgba(0,0,0,0.36), 0 0 22px rgba(0,229,255,0.12);
+  filter: saturate(1.05) brightness(1.03);
 }
 .voa-cover-note {
   font-size: 0.62rem;
@@ -63,6 +131,13 @@
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: rgba(232,244,240,0.46);
+}
+.voa-cover-click {
+  font-size: 0.58rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(34,192,106,0.76);
 }
 .voa-cta-form { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
 .voa-cta-input {
@@ -97,6 +172,103 @@
   font-size: 0.85rem; color: rgba(232,244,240,0.65);
   margin-top: 0.5rem;
   font-family: 'Lora', Georgia, serif;
+}
+
+.voa-modal-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(2,10,8,0.74);
+  backdrop-filter: blur(12px);
+}
+.voa-modal-shell.is-open { display: flex; }
+.voa-modal-card {
+  position: relative;
+  width: min(100%, 920px);
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(34,192,106,0.18);
+  background:
+    radial-gradient(circle at top left, rgba(34,192,106,0.08), transparent 34%),
+    radial-gradient(circle at top right, rgba(0,229,255,0.08), transparent 30%),
+    linear-gradient(180deg, rgba(6,15,16,0.98), rgba(3,10,12,0.98));
+  box-shadow: 0 32px 90px rgba(0,0,0,0.6);
+}
+.voa-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(34,192,106,0.18);
+  background: rgba(5,16,14,0.86);
+  color: #e8f4f0;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.voa-modal-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
+}
+.voa-modal-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.4rem;
+  border-right: 1px solid rgba(34,192,106,0.08);
+}
+.voa-modal-visual img {
+  width: min(100%, 255px);
+  border-radius: 14px;
+  box-shadow: 0 22px 60px rgba(0,0,0,0.45), 0 0 34px rgba(34,192,106,0.14);
+}
+.voa-modal-copy {
+  padding: 2.35rem 2.4rem;
+}
+.voa-modal-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #22c06a;
+  margin-bottom: 0.9rem;
+}
+.voa-modal-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.06;
+  color: #e8f4f0;
+  margin-bottom: 0.9rem;
+}
+.voa-modal-title span { color: #00e5ff; }
+.voa-modal-copy p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(232,244,240,0.8);
+  margin-bottom: 1rem;
+  font-family: 'Lora', Georgia, serif;
+}
+.voa-modal-hook {
+  padding: 0.95rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(34,192,106,0.14);
+  background: linear-gradient(135deg, rgba(34,192,106,0.08), rgba(0,229,255,0.07));
+  margin: 1.15rem 0 1.35rem;
+  color: #e8f4f0;
+}
+.voa-modal-hook strong { color: #22c06a; }
+.voa-modal-form .voa-cta-form { justify-content: flex-start; }
+.voa-modal-note {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(232,244,240,0.48);
+  margin-top: 0.85rem;
 }
 
 /* ── Mid-article ── */
@@ -171,6 +343,16 @@
     max-width: 220px;
     margin: 0 auto;
   }
+  .voa-modal-grid {
+    grid-template-columns: 1fr;
+  }
+  .voa-modal-visual {
+    border-right: 0;
+    border-bottom: 1px solid rgba(34,192,106,0.08);
+  }
+  .voa-modal-copy {
+    padding: 1.6rem 1.35rem 1.85rem;
+  }
 }
 `;
 
@@ -187,6 +369,118 @@
       bt.textContent = '.voa-cta-eop{border-color:rgba(34,192,106,0.3)!important;box-shadow:0 8px 34px rgba(0,0,0,0.42),0 0 0 1px rgba(34,192,106,0.05)!important;}.voa-cta-eop .voa-eyebrow{color:#22c06a!important;}.voa-cta-eop .voa-title span{color:#22c06a!important;}.voa-cta-input{border-color:rgba(34,192,106,0.28)!important;}.voa-cta-input:focus{border-color:#22c06a!important;}.voa-cta-submit{background:#22c06a!important;}.voa-cta-success .voa-dl-link{background:#22c06a!important;box-shadow:0 4px 20px rgba(34,192,106,0.22)!important;}.voa-cta-mid{background:rgba(34,192,106,0.06)!important;border-color:rgba(34,192,106,0.18)!important;border-left-color:#22c06a!important;}.voa-cta-mid .voa-title span{color:#22c06a!important;}.voa-cta-banner{background:rgba(34,192,106,0.1)!important;border-bottom-color:rgba(34,192,106,0.25)!important;}.voa-cta-banner .voa-banner-text strong{color:#22c06a!important;}.voa-cta-banner .voa-banner-link{background:#22c06a!important;}';
       document.head.appendChild(bt);
     }
+  }
+
+  function ensureModal() {
+    if (document.getElementById('voa-book-modal')) return;
+    const shell = document.createElement('div');
+    shell.id = 'voa-book-modal';
+    shell.className = 'voa-modal-shell';
+    shell.setAttribute('aria-hidden', 'true');
+    shell.innerHTML = `
+<div class="voa-modal-card" role="dialog" aria-modal="true" aria-labelledby="voa-modal-title">
+  <button class="voa-modal-close" type="button" aria-label="Close Field Guide modal">✕</button>
+  <div class="voa-modal-grid">
+    <div class="voa-modal-visual">
+      <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
+    </div>
+    <div class="voa-modal-copy">
+      <div class="voa-modal-eyebrow">You clicked this for a reason</div>
+      <div class="voa-modal-title" id="voa-modal-title">Something in you already <span>recognizes the signal.</span></div>
+      <p>This is the cleanest entry point into the Vibration of Awesome ~ not a generic opt-in, not fluff, just the guide that helps the feeling make sense.</p>
+      <div class="voa-modal-hook"><strong>Take the transmission.</strong> Drop your email and the guide opens immediately while the impulse is still alive.</div>
+      <div class="voa-modal-form">
+        <div class="voa-cta-form">
+          <input type="email" class="voa-cta-input" id="voa-modal-email" placeholder="Enter the email where the signal should land" autocomplete="email">
+          <button class="voa-cta-submit" id="voa-modal-btn">Send Me the Transmission</button>
+        </div>
+        <div class="voa-cta-success" id="voa-modal-success">
+          <a href="/field-guide/" class="voa-dl-link" id="voa-modal-link">⬇ Open the Field Guide</a>
+          <div class="voa-success-msg">It is in your hands now ~ and in your inbox too.</div>
+        </div>
+        <div class="voa-modal-note">Instant access. Zero fluff. Only signal.</div>
+      </div>
+    </div>
+  </div>
+</div>`;
+    document.body.appendChild(shell);
+
+    const close = shell.querySelector('.voa-modal-close');
+    close.addEventListener('click', closeModal);
+    shell.addEventListener('click', function (event) {
+      if (event.target === shell) closeModal();
+    });
+    window.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && shell.classList.contains('is-open')) closeModal();
+    });
+    shell.querySelector('#voa-modal-btn').addEventListener('click', function () {
+      submitModalForm();
+    });
+    shell.querySelector('#voa-modal-email').addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') submitModalForm();
+    });
+  }
+
+  function openModal(slug, placement) {
+    ensureModal();
+    const shell = document.getElementById('voa-book-modal');
+    shell.dataset.slug = slug || '';
+    shell.dataset.placement = placement || 'cover-click';
+    shell.classList.add('is-open');
+    shell.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const input = shell.querySelector('#voa-modal-email');
+    setTimeout(function () { if (input) input.focus(); }, 120);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'ebook_cover_click', placement: placement || 'cover-click', blog_slug: slug || '' });
+  }
+
+  function closeModal() {
+    const shell = document.getElementById('voa-book-modal');
+    if (!shell) return;
+    shell.classList.remove('is-open');
+    shell.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  async function submitModalForm() {
+    const shell = document.getElementById('voa-book-modal');
+    if (!shell) return;
+    const input = shell.querySelector('#voa-modal-email');
+    const btn = shell.querySelector('#voa-modal-btn');
+    const success = shell.querySelector('#voa-modal-success');
+    const link = shell.querySelector('#voa-modal-link');
+    const email = input.value.trim();
+    const slug = shell.dataset.slug || '';
+    const placement = shell.dataset.placement || 'cover-click';
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      input.style.borderColor = '#e05050';
+      setTimeout(function () { input.style.borderColor = ''; }, 1500);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Opening...';
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'ebook_optin_submit', placement, blog_slug: slug });
+
+    try {
+      const resp = await fetch('/.netlify/functions/capture-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source_page: window.location.pathname, cta_placement: placement, blog_slug: slug }),
+      });
+      const data = await resp.json();
+      link.href = data.download_url || '/field-guide/';
+    } catch (_) {
+      link.href = '/field-guide/';
+    }
+
+    shell.querySelector('.voa-cta-form').style.display = 'none';
+    shell.querySelector('.voa-modal-note').style.display = 'none';
+    success.style.display = 'block';
+    window.dataLayer.push({ event: 'ebook_optin_success', placement, blog_slug: slug });
   }
 
   function getPageSlug(el) {
@@ -216,7 +510,17 @@
         </div>
       </div>
       <div class="voa-cover-card">
-        <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
+        <button type="button" class="voa-cover-trigger" aria-label="Open the Field Guide capture form">
+          <svg viewBox="0 0 240 240" aria-hidden="true">
+            <path d="M120 28 L194 158 L46 158 Z" fill="none" stroke="rgba(34,192,106,0.3)" stroke-width="1.5"/>
+            <path d="M120 70 L162 144 L78 144 Z" fill="none" stroke="rgba(0,229,255,0.28)" stroke-width="1.2"/>
+            <path d="M85 148 L120 88 L155 148 Z" fill="none" stroke="rgba(34,192,106,0.22)" stroke-width="1.05"/>
+          </svg>
+          <svg class="voa-cover-glint g1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(34,192,106,0.86)"/></svg>
+          <svg class="voa-cover-glint g2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,229,255,0.82)"/></svg>
+          <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
+        </button>
+        <div class="voa-cover-click">click the cover</div>
         <div class="voa-cover-note">The actual guide, ready to grab</div>
       </div>
     </div>
@@ -244,7 +548,16 @@
         </div>
       </div>
       <div class="voa-cover-card">
-        <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
+        <button type="button" class="voa-cover-trigger" aria-label="Open the Field Guide capture form">
+          <svg viewBox="0 0 240 240" aria-hidden="true">
+            <path d="M120 28 L194 158 L46 158 Z" fill="none" stroke="rgba(34,192,106,0.28)" stroke-width="1.4"/>
+            <path d="M120 70 L162 144 L78 144 Z" fill="none" stroke="rgba(0,229,255,0.24)" stroke-width="1.15"/>
+            <path d="M85 148 L120 88 L155 148 Z" fill="none" stroke="rgba(34,192,106,0.2)" stroke-width="1"/>
+          </svg>
+          <svg class="voa-cover-glint g1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(34,192,106,0.82)"/></svg>
+          <svg class="voa-cover-glint g2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,229,255,0.76)"/></svg>
+          <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
+        </button>
       </div>
     </div>
   </div>
@@ -274,6 +587,13 @@
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'ebook_cta_view', placement, blog_slug: slug });
+
+    const coverTrigger = el.querySelector('.voa-cover-trigger');
+    if (coverTrigger) {
+      coverTrigger.addEventListener('click', function () {
+        openModal(slug, placement + '-cover');
+      });
+    }
 
     async function submit() {
       const email = input.value.trim();
