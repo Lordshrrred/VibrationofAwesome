@@ -25,7 +25,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg: #020a0a; --surface: #060f10; --surface2: #0b1a1c;
-    --gold: #D4AF37; --gold-dim: rgba(212,175,55,0.12); --gold-border: rgba(212,175,55,0.25);
+    --gold: #22c06a; --gold-dim: rgba(34,192,106,0.12); --gold-border: rgba(34,192,106,0.24);
     --cyan: #00e5cc;
     --text: #e8f4f0; --muted: #5a8a80; --body: rgba(232,244,240,0.85);
   }
@@ -34,7 +34,7 @@
   #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
   .wrap { position: relative; z-index: 1; }
 
-  .top-nav { padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(212,175,55,0.08); }
+  .top-nav { padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(34,192,106,0.08); }
   .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
   .nav-link { font-family: 'Poppins', sans-serif; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .nav-link:hover { color: var(--gold); }
@@ -63,16 +63,16 @@
     font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700;
     letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
     border-radius: 8px; padding: 1rem 2.5rem; transition: opacity 0.2s;
-    border: none; cursor: pointer; box-shadow: 0 4px 24px rgba(212,175,55,0.25);
+    border: none; cursor: pointer; box-shadow: 0 4px 24px rgba(34,192,106,0.25);
   }
   .buy-btn:hover { opacity: 0.85; }
-  .buy-btn.coming-soon { background: var(--surface2); color: var(--muted); border: 1px solid rgba(212,175,55,0.2); cursor: not-allowed; opacity: 0.7; box-shadow: none; }
+  .buy-btn.coming-soon { background: var(--surface2); color: var(--muted); border: 1px solid rgba(34,192,106,0.2); cursor: not-allowed; opacity: 0.7; box-shadow: none; }
   .btn-note { font-family: 'Poppins', sans-serif; font-size: 0.78rem; color: var(--muted); margin-top: 0.75rem; }
 
   /* ── What's different ── */
   .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
   @media (max-width: 580px) { .vs-grid { grid-template-columns: 1fr; } }
-  .vs-card { background: var(--surface); border: 1px solid rgba(212,175,55,0.12); border-radius: 10px; padding: 1.75rem; }
+  .vs-card { background: var(--surface); border: 1px solid rgba(34,192,106,0.12); border-radius: 10px; padding: 1.75rem; }
   .vs-card.highlight { border-color: var(--gold-border); background: var(--gold-dim); }
   .vs-label { font-family: 'Poppins', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
   .vs-card h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.5rem; }
@@ -82,7 +82,7 @@
   .inside-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
   .inside-list li {
     display: flex; align-items: flex-start; gap: 1rem;
-    background: var(--surface); border: 1px solid rgba(212,175,55,0.08); border-radius: 8px; padding: 1.1rem 1.25rem;
+    background: var(--surface); border: 1px solid rgba(34,192,106,0.08); border-radius: 8px; padding: 1.1rem 1.25rem;
   }
   .inside-icon { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; line-height: 1.6; }
   .inside-text { font-family: 'Poppins', sans-serif; font-size: 0.92rem; font-weight: 600; color: var(--text); line-height: 1.5; }
@@ -97,7 +97,7 @@
   .guarantee span { color: var(--gold); }
 
   /* ── FAQ ── */
-  .faq-item { border-bottom: 1px solid rgba(212,175,55,0.1); padding: 1.5rem 0; }
+  .faq-item { border-bottom: 1px solid rgba(34,192,106,0.1); padding: 1.5rem 0; }
   .faq-q { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 0.75rem; }
   .faq-a { color: var(--body); font-size: 0.95rem; }
 
@@ -114,8 +114,8 @@
   .wl-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
   .wl-input { flex: 1; min-width: 200px; background: var(--surface2); border: 1px solid var(--gold-border); border-radius: 6px; color: var(--text); font-family: 'Lora', serif; font-size: 0.9rem; padding: 0.7rem 0.9rem; outline: none; transition: border-color 0.2s; }
   .wl-input:focus { border-color: var(--gold); }
-  .wl-btn { background: rgba(212,175,55,0.15); color: var(--gold); font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--gold-border); border-radius: 6px; padding: 0.7rem 1rem; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-  .wl-btn:hover { background: rgba(212,175,55,0.25); }
+  .wl-btn { background: rgba(34,192,106,0.15); color: var(--gold); font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--gold-border); border-radius: 6px; padding: 0.7rem 1rem; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+  .wl-btn:hover { background: rgba(34,192,106,0.25); }
   .wl-success { display: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; color: var(--gold); margin-top: 0.5rem; }
 </style>
 </head>
@@ -320,7 +320,7 @@
       s.pulse += s.ps;
       const op = s.op * (0.7 + 0.3 * Math.sin(s.pulse));
       ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.gold ? `rgba(212,175,55,${op})` : `rgba(255,255,255,${op})`;
+      ctx.fillStyle = s.gold ? `rgba(34,192,106,)` : `rgba(255,255,255,${op})`;
       ctx.fill();
       s.y += s.speed;
       if (s.y > c.height + 2) { s.y = -2; s.x = Math.random() * c.width; }

@@ -12,11 +12,11 @@
 <meta property="og:title" content="You're In — Download Your Field Guide | Vibration of Awesome">
 <meta property="og:description" content="Your Field Guide is ready. Download it now and continue deeper into the Vibration of Awesome.">
 <meta property="og:url" content="https://vibrationofawesome.com/field-guide/thank-you/">
-<meta property="og:image" content="https://vibrationofawesome.com/images/earthstar-hero.jpg">
+<meta property="og:image" content="https://vibrationofawesome.com/images/field-guide-cover.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="You're In — Download Your Field Guide | Vibration of Awesome">
 <meta name="twitter:description" content="Your Field Guide is ready. Download it now and continue deeper into the Vibration of Awesome.">
-<meta name="twitter:image" content="https://vibrationofawesome.com/images/earthstar-hero.jpg">
+<meta name="twitter:image" content="https://vibrationofawesome.com/images/field-guide-cover.png">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G5HF0WKZT9');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg: #020a0a; --surface: #060f10; --surface2: #0b1a1c;
-    --gold: #D4AF37; --gold-dim: rgba(212,175,55,0.12); --gold-border: rgba(212,175,55,0.25);
+    --gold: #22c06a; --gold-dim: rgba(34,192,106,0.12); --gold-border: rgba(34,192,106,0.24);
     --cyan: #00e5cc;
     --text: #e8f4f0; --muted: #5a8a80; --body: rgba(232,244,240,0.85);
   }
@@ -34,7 +34,7 @@
   #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
   .wrap { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 2rem; }
 
-  .top-nav { padding: 1.2rem 0; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(212,175,55,0.08); margin-bottom: 0; }
+  .top-nav { padding: 1.2rem 0; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(34,192,106,0.08); margin-bottom: 0; }
   .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
 
   /* ── Confirm section ── */
@@ -50,7 +50,7 @@
     font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700;
     letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
     border-radius: 8px; padding: 1rem 2.5rem; transition: opacity 0.2s;
-    box-shadow: 0 4px 24px rgba(212,175,55,0.2);
+    box-shadow: 0 4px 24px rgba(34,192,106,0.2);
   }
   .dl-btn:hover { opacity: 0.85; }
   .dl-loading { display: none; font-family: 'Poppins', sans-serif; font-size: 0.9rem; color: var(--muted); margin-top: 1rem; }
@@ -66,7 +66,7 @@
   .vol-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 3rem; }
   @media (max-width: 500px) { .vol-compare { grid-template-columns: 1fr; } }
   .vol-card {
-    background: var(--surface); border: 1px solid rgba(212,175,55,0.12); border-radius: 10px; padding: 1.5rem;
+    background: var(--surface); border: 1px solid rgba(34,192,106,0.12); border-radius: 10px; padding: 1.5rem;
   }
   .vol-card.highlight { border-color: var(--gold-border); background: var(--gold-dim); }
   .vol-label { font-family: 'Poppins', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
@@ -86,7 +86,7 @@
     border: none; cursor: pointer;
   }
   .buy-btn:hover { opacity: 0.85; }
-  .buy-btn.coming-soon { opacity: 0.5; cursor: not-allowed; background: var(--surface2); color: var(--muted); border: 1px solid rgba(212,175,55,0.2); }
+  .buy-btn.coming-soon { opacity: 0.5; cursor: not-allowed; background: var(--surface2); color: var(--muted); border: 1px solid rgba(34,192,106,0.2); }
   .coming-soon-note { font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: var(--muted); margin-top: 0.75rem; }
 
   /* ── Waitlist form ── */
@@ -101,12 +101,12 @@
   }
   .wl-input:focus { border-color: var(--gold); }
   .wl-btn {
-    background: rgba(212,175,55,0.15); color: var(--gold);
+    background: rgba(34,192,106,0.15); color: var(--gold);
     font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 700;
     letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--gold-border);
     border-radius: 6px; padding: 0.7rem 1.2rem; cursor: pointer; transition: background 0.2s; white-space: nowrap;
   }
-  .wl-btn:hover { background: rgba(212,175,55,0.25); }
+  .wl-btn:hover { background: rgba(34,192,106,0.25); }
   .wl-success { display: none; font-family: 'Poppins', sans-serif; font-size: 0.88rem; color: var(--gold); margin-top: 0.5rem; }
 
   .page-footer { padding: 3rem 0 5rem; text-align: center; border-top: 1px solid var(--gold-border); }
@@ -207,7 +207,7 @@
       s.pulse += s.ps;
       const op = s.op * (0.7 + 0.3 * Math.sin(s.pulse));
       ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.gold ? `rgba(212,175,55,${op})` : `rgba(255,255,255,${op})`;
+      ctx.fillStyle = s.gold ? `rgba(34,192,106,)` : `rgba(255,255,255,${op})`;
       ctx.fill();
       s.y += s.speed;
       if (s.y > c.height + 2) { s.y = -2; s.x = Math.random() * c.width; }
