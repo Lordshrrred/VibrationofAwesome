@@ -162,15 +162,6 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-  .book-aura:hover .vector-orbit,
-  .book-aura:focus-visible .vector-orbit {
-    opacity: 1;
-    transform: scale(1.12) rotate(8deg);
-  }
-  .book-aura:hover .vector-orbit.orbit-2,
-  .book-aura:focus-visible .vector-orbit.orbit-2 {
-    transform: scale(1.06) rotate(-14deg);
-  }
   .sparkle-cluster {
     position: absolute;
     inset: -18px;
@@ -210,22 +201,31 @@
     opacity: 1;
     transform: scale(1);
   }
-  .vector-orbit {
+  .triangle-field {
     position: absolute;
     z-index: 1;
     width: 112%;
     height: 112%;
-    opacity: 0.58;
+    opacity: 0.66;
     pointer-events: none;
     transition: opacity 0.35s ease, transform 0.35s ease;
-    animation: orbitFloat 9s ease-in-out infinite;
+    animation: triangleFloat 8s ease-in-out infinite;
   }
-  .vector-orbit.orbit-2 {
+  .triangle-field.field-2 {
     width: 124%;
     height: 124%;
-    opacity: 0.42;
-    animation-duration: 11s;
+    opacity: 0.44;
+    animation-duration: 10.5s;
     animation-direction: reverse;
+  }
+  .book-aura:hover .triangle-field,
+  .book-aura:focus-visible .triangle-field {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  .book-aura:hover .triangle-field.field-2,
+  .book-aura:focus-visible .triangle-field.field-2 {
+    transform: scale(1.04);
   }
   .tiny-triforce {
     position: absolute;
@@ -381,6 +381,45 @@
     border-radius: 16px;
     box-shadow: 0 34px 82px rgba(0,0,0,0.6), 0 0 54px rgba(20,241,149,0.18);
   }
+  .modal-cover-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-sparkles {
+    position: absolute;
+    inset: -18px;
+    pointer-events: none;
+  }
+  .modal-spark {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(20,241,149,0.98) 0%, rgba(0,178,255,0.48) 44%, transparent 72%);
+    box-shadow: 0 0 18px rgba(20,241,149,0.34), 0 0 28px rgba(0,178,255,0.18);
+    animation: modalSparkle 3.4s ease-in-out infinite;
+  }
+  .modal-spark::before,
+  .modal-spark::after {
+    content: "";
+    position: absolute;
+    inset: 50%;
+    width: 18px;
+    height: 2px;
+    margin-left: -9px;
+    margin-top: -1px;
+    border-radius: 999px;
+    background: rgba(181,255,235,0.92);
+  }
+  .modal-spark::after { transform: rotate(90deg); }
+  .modal-spark.ms1 { top: 8%; left: 10%; animation-delay: 0.1s; }
+  .modal-spark.ms2 { top: 14%; right: 12%; width: 9px; height: 9px; animation-delay: 0.7s; }
+  .modal-spark.ms3 { bottom: 16%; left: 8%; width: 10px; height: 10px; animation-delay: 1.3s; }
+  .modal-spark.ms4 { bottom: 12%; right: 14%; animation-delay: 1.9s; }
+  .modal-spark.ms5 { top: 48%; left: 2%; width: 8px; height: 8px; animation-delay: 2.3s; }
+  .modal-spark.ms6 { top: 44%; right: 4%; width: 8px; height: 8px; animation-delay: 2.8s; }
   .modal-copy {
     padding: 3rem;
   }
@@ -450,9 +489,13 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
-  @keyframes orbitFloat {
+  @keyframes triangleFloat {
     0%, 100% { transform: scale(1) rotate(0deg); }
     50% { transform: scale(1.04) rotate(6deg); }
+  }
+  @keyframes modalSparkle {
+    0%, 100% { transform: translateY(0) scale(0.8); opacity: 0.32; }
+    50% { transform: translateY(-7px) scale(1.14); opacity: 1; }
   }
   @keyframes triforceBlink {
     0%, 100% { opacity: 0.24; transform: translateY(0) scale(0.92); }
@@ -590,15 +633,17 @@
       <div class="book-showcase">
         <div class="book-badge">Beautiful object. Real signal.</div>
         <button class="book-aura" type="button" id="book-trigger" aria-haspopup="dialog" aria-controls="book-modal" aria-label="Open the Field Guide capture experience">
-          <svg class="vector-orbit orbit-1" viewBox="0 0 360 360" aria-hidden="true">
+          <svg class="triangle-field field-1" viewBox="0 0 360 360" aria-hidden="true">
             <circle cx="180" cy="180" r="126" fill="none" stroke="rgba(20,241,149,0.28)" stroke-width="1.5"/>
             <circle cx="180" cy="180" r="92" fill="none" stroke="rgba(0,178,255,0.22)" stroke-width="1.3"/>
             <path d="M180 52 L287 240 L73 240 Z" fill="none" stroke="rgba(20,241,149,0.26)" stroke-width="1.4"/>
             <path d="M180 78 L245 214 L115 214 Z" fill="none" stroke="rgba(0,178,255,0.22)" stroke-width="1.2"/>
           </svg>
-          <svg class="vector-orbit orbit-2" viewBox="0 0 360 360" aria-hidden="true">
-            <path d="M74 130 C128 58, 232 58, 286 130 C310 164, 308 216, 280 250 C232 308, 128 308, 80 250 C52 216, 50 164, 74 130 Z" fill="none" stroke="rgba(139,92,246,0.22)" stroke-width="1.3"/>
-            <path d="M106 180 H254 M180 106 V254" stroke="rgba(20,241,149,0.18)" stroke-width="1.2"/>
+          <svg class="triangle-field field-2" viewBox="0 0 360 360" aria-hidden="true">
+            <path d="M180 34 L305 252 L55 252 Z" fill="none" stroke="rgba(139,92,246,0.22)" stroke-width="1.3"/>
+            <path d="M180 98 L248 216 L112 216 Z" fill="none" stroke="rgba(20,241,149,0.18)" stroke-width="1.2"/>
+            <path d="M88 124 L132 198 L44 198 Z" fill="none" stroke="rgba(0,178,255,0.16)" stroke-width="1.05"/>
+            <path d="M272 124 L316 198 L228 198 Z" fill="none" stroke="rgba(0,178,255,0.16)" stroke-width="1.05"/>
           </svg>
           <svg class="tiny-triforce tt1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.9)"/></svg>
           <svg class="tiny-triforce tt2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.84)"/></svg>
@@ -631,7 +676,17 @@
       <button class="modal-close" type="button" id="book-modal-close" aria-label="Close Field Guide modal">✕</button>
       <div class="modal-grid">
         <div class="modal-visual">
-          <img class="modal-cover" src="/images/field-guide-cover.png" alt="A Field Guide to Vibration of Awesome cover art">
+          <div class="modal-cover-wrap">
+            <div class="modal-sparkles" aria-hidden="true">
+              <span class="modal-spark ms1"></span>
+              <span class="modal-spark ms2"></span>
+              <span class="modal-spark ms3"></span>
+              <span class="modal-spark ms4"></span>
+              <span class="modal-spark ms5"></span>
+              <span class="modal-spark ms6"></span>
+            </div>
+            <img class="modal-cover" src="/images/field-guide-cover.png" alt="A Field Guide to Vibration of Awesome cover art">
+          </div>
         </div>
         <div class="modal-copy">
           <div class="modal-eyebrow">You clicked this for a reason</div>
