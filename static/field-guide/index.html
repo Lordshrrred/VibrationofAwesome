@@ -223,6 +223,39 @@
     animation-duration: 11s;
     animation-direction: reverse;
   }
+  .triforce-frame {
+    position: absolute;
+    z-index: 1;
+    width: 126px;
+    height: 126px;
+    pointer-events: none;
+    opacity: 0.88;
+    transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
+    filter: drop-shadow(0 0 14px rgba(20,241,149,0.22));
+  }
+  .triforce-frame.left {
+    top: -22px;
+    left: -46px;
+    transform: rotate(-12deg);
+  }
+  .triforce-frame.right {
+    right: -48px;
+    bottom: -18px;
+    transform: rotate(11deg);
+  }
+  .book-aura:hover .triforce-frame,
+  .book-aura:focus-visible .triforce-frame {
+    opacity: 1;
+    filter: drop-shadow(0 0 22px rgba(20,241,149,0.34));
+  }
+  .book-aura:hover .triforce-frame.left,
+  .book-aura:focus-visible .triforce-frame.left {
+    transform: rotate(-18deg) translateY(-4px) scale(1.08);
+  }
+  .book-aura:hover .triforce-frame.right,
+  .book-aura:focus-visible .triforce-frame.right {
+    transform: rotate(18deg) translateY(4px) scale(1.08);
+  }
   .cover-invite {
     position: absolute;
     left: 50%;
@@ -563,6 +596,11 @@
       <div class="book-showcase">
         <div class="book-badge">Beautiful object. Real signal.</div>
         <button class="book-aura" type="button" id="book-trigger" aria-haspopup="dialog" aria-controls="book-modal" aria-label="Open the Field Guide capture experience">
+          <svg class="triforce-frame left" viewBox="0 0 160 160" aria-hidden="true">
+            <path d="M80 18 L136 114 H24 Z" fill="none" stroke="rgba(20,241,149,0.9)" stroke-width="3"/>
+            <path d="M80 52 L112 107 H48 Z" fill="none" stroke="rgba(0,178,255,0.88)" stroke-width="2.5"/>
+            <path d="M53 106 L80 60 L107 106 Z" fill="none" stroke="rgba(20,241,149,0.78)" stroke-width="2.2"/>
+          </svg>
           <svg class="vector-orbit orbit-1" viewBox="0 0 360 360" aria-hidden="true">
             <circle cx="180" cy="180" r="132" fill="none" stroke="rgba(20,241,149,0.18)" stroke-width="1.3"/>
             <g fill="none" stroke-linejoin="round">
@@ -582,6 +620,11 @@
               <path d="M90 146 L132 218 L48 218 Z" stroke="rgba(20,241,149,0.16)" stroke-width="1"/>
               <path d="M270 146 L312 218 L228 218 Z" stroke="rgba(0,178,255,0.16)" stroke-width="1"/>
             </g>
+          </svg>
+          <svg class="triforce-frame right" viewBox="0 0 160 160" aria-hidden="true">
+            <path d="M80 18 L136 114 H24 Z" fill="none" stroke="rgba(0,178,255,0.9)" stroke-width="3"/>
+            <path d="M80 52 L112 107 H48 Z" fill="none" stroke="rgba(20,241,149,0.88)" stroke-width="2.5"/>
+            <path d="M53 106 L80 60 L107 106 Z" fill="none" stroke="rgba(0,178,255,0.78)" stroke-width="2.2"/>
           </svg>
           <svg class="triforce-glint t1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.86)"/></svg>
           <svg class="triforce-glint t2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.8)"/></svg>
