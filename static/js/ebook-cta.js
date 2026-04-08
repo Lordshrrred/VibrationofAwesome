@@ -110,6 +110,47 @@
   opacity: 1;
   transform: scale(1.08);
 }
+.voa-cover-sparkles {
+  position: absolute;
+  inset: -10px;
+  pointer-events: none;
+  z-index: 2;
+}
+.voa-cover-spark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0.58;
+  filter: drop-shadow(0 0 8px rgba(34,192,106,0.36));
+  animation: voaSparkDrift 3.4s ease-in-out infinite;
+}
+.voa-cover-spark::before,
+.voa-cover-spark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: linear-gradient(90deg, rgba(34,192,106,0), rgba(34,192,106,0.98), rgba(0,229,255,0));
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+}
+.voa-cover-spark::before {
+  width: 100%;
+  height: 2px;
+}
+.voa-cover-spark::after {
+  width: 2px;
+  height: 100%;
+}
+.voa-cover-spark.s1 { top: 12%; left: 10%; animation-delay: 0s; }
+.voa-cover-spark.s2 { top: 22%; right: 8%; width: 8px; height: 8px; animation-delay: 0.7s; }
+.voa-cover-spark.s3 { bottom: 18%; left: 8%; width: 9px; height: 9px; animation-delay: 1.3s; }
+.voa-cover-spark.s4 { bottom: 10%; right: 12%; width: 8px; height: 8px; animation-delay: 1.9s; }
+.voa-cover-trigger:hover .voa-cover-spark,
+.voa-cover-trigger:focus-visible .voa-cover-spark {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px rgba(0,229,255,0.45));
+}
 .voa-cover-card img {
   position: relative;
   z-index: 1;
@@ -140,7 +181,47 @@
   color: rgba(34,192,106,0.76);
 }
 .voa-cta-form { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+.voa-cta-form-wrap {
+  position: relative;
+}
+.voa-form-sparkles {
+  position: absolute;
+  inset: -12px;
+  pointer-events: none;
+  z-index: 0;
+}
+.voa-form-spark {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  opacity: 0.46;
+  animation: voaSparkDrift 3.1s ease-in-out infinite;
+}
+.voa-form-spark::before,
+.voa-form-spark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: linear-gradient(90deg, rgba(34,192,106,0), rgba(34,192,106,0.9), rgba(0,229,255,0));
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+}
+.voa-form-spark::before {
+  width: 100%;
+  height: 2px;
+}
+.voa-form-spark::after {
+  width: 2px;
+  height: 100%;
+}
+.voa-form-spark.f1 { top: 4%; left: 2%; animation-delay: 0.2s; }
+.voa-form-spark.f2 { top: 10%; right: 4%; width: 7px; height: 7px; animation-delay: 0.9s; }
+.voa-form-spark.f3 { bottom: 14%; left: 7%; width: 7px; height: 7px; animation-delay: 1.5s; }
+.voa-form-spark.f4 { bottom: 6%; right: 10%; animation-delay: 2.1s; }
 .voa-cta-input {
+  position: relative;
+  z-index: 1;
   flex: 1; min-width: 210px; max-width: 300px;
   background: rgba(11,26,28,0.9); border: 1px solid rgba(34,192,106,0.28);
   border-radius: 6px; color: #e8f4f0; font-size: 0.88rem;
@@ -150,6 +231,8 @@
 .voa-cta-input:focus { border-color: #22c06a; }
 .voa-cta-input::placeholder { color: rgba(232,244,240,0.35); }
 .voa-cta-submit {
+  position: relative;
+  z-index: 1;
   background: #22c06a; color: #041110;
   font-family: inherit; font-size: 0.82rem; font-weight: 700;
   letter-spacing: 0.06em; text-transform: uppercase;
@@ -217,13 +300,53 @@
   grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
 }
 .voa-modal-visual {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem 1.4rem;
   border-right: 1px solid rgba(34,192,106,0.08);
 }
+.voa-modal-sparkles {
+  position: absolute;
+  inset: 1rem;
+  pointer-events: none;
+}
+.voa-modal-spark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0.72;
+  filter: drop-shadow(0 0 10px rgba(34,192,106,0.4));
+  animation: voaSparkDrift 3.5s ease-in-out infinite;
+}
+.voa-modal-spark::before,
+.voa-modal-spark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: linear-gradient(90deg, rgba(34,192,106,0), rgba(34,192,106,0.98), rgba(0,229,255,0));
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+}
+.voa-modal-spark::before {
+  width: 100%;
+  height: 2px;
+}
+.voa-modal-spark::after {
+  width: 2px;
+  height: 100%;
+}
+.voa-modal-spark.m1 { top: 12%; left: 11%; animation-delay: 0.1s; }
+.voa-modal-spark.m2 { top: 18%; right: 14%; width: 8px; height: 8px; animation-delay: 0.8s; }
+.voa-modal-spark.m3 { top: 48%; left: 6%; width: 8px; height: 8px; animation-delay: 1.4s; }
+.voa-modal-spark.m4 { top: 56%; right: 8%; animation-delay: 2s; }
+.voa-modal-spark.m5 { bottom: 16%; left: 15%; width: 9px; height: 9px; animation-delay: 2.5s; }
+.voa-modal-spark.m6 { bottom: 10%; right: 18%; width: 8px; height: 8px; animation-delay: 3s; }
 .voa-modal-visual img {
+  position: relative;
+  z-index: 1;
   width: min(100%, 255px);
   border-radius: 14px;
   box-shadow: 0 22px 60px rgba(0,0,0,0.45), 0 0 34px rgba(34,192,106,0.14);
@@ -269,6 +392,11 @@
   text-transform: uppercase;
   color: rgba(232,244,240,0.48);
   margin-top: 0.85rem;
+}
+@keyframes voaSparkDrift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.88); opacity: 0.36; }
+  45% { transform: translate3d(2px, -4px, 0) scale(1.06); opacity: 0.9; }
+  70% { transform: translate3d(-2px, 3px, 0) scale(0.96); opacity: 0.62; }
 }
 
 /* ── Mid-article ── */
@@ -382,6 +510,14 @@
   <button class="voa-modal-close" type="button" aria-label="Close Field Guide modal">✕</button>
   <div class="voa-modal-grid">
     <div class="voa-modal-visual">
+      <div class="voa-modal-sparkles" aria-hidden="true">
+        <span class="voa-modal-spark m1"></span>
+        <span class="voa-modal-spark m2"></span>
+        <span class="voa-modal-spark m3"></span>
+        <span class="voa-modal-spark m4"></span>
+        <span class="voa-modal-spark m5"></span>
+        <span class="voa-modal-spark m6"></span>
+      </div>
       <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
     </div>
     <div class="voa-modal-copy">
@@ -499,6 +635,12 @@
         <div class="voa-title">Take this further with the <span>Field Guide</span></div>
         <div class="voa-sub">A clean entry point into the Vibration of Awesome ~ the feeling, the framework, and the way back into alignment when life gets noisy.</div>
         <div class="voa-cta-form-wrap">
+          <div class="voa-form-sparkles" aria-hidden="true">
+            <span class="voa-form-spark f1"></span>
+            <span class="voa-form-spark f2"></span>
+            <span class="voa-form-spark f3"></span>
+            <span class="voa-form-spark f4"></span>
+          </div>
           <div class="voa-cta-form">
             <input type="email" class="voa-cta-input" placeholder="Your email address" autocomplete="email">
             <button class="voa-cta-submit">Send Me the Guide ✦</button>
@@ -516,6 +658,12 @@
             <path d="M120 70 L162 144 L78 144 Z" fill="none" stroke="rgba(0,229,255,0.28)" stroke-width="1.2"/>
             <path d="M85 148 L120 88 L155 148 Z" fill="none" stroke="rgba(34,192,106,0.22)" stroke-width="1.05"/>
           </svg>
+          <div class="voa-cover-sparkles" aria-hidden="true">
+            <span class="voa-cover-spark s1"></span>
+            <span class="voa-cover-spark s2"></span>
+            <span class="voa-cover-spark s3"></span>
+            <span class="voa-cover-spark s4"></span>
+          </div>
           <svg class="voa-cover-glint g1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(34,192,106,0.86)"/></svg>
           <svg class="voa-cover-glint g2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,229,255,0.82)"/></svg>
           <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
@@ -538,6 +686,12 @@
         <div class="voa-title">Want the <span>Field Guide</span>?</div>
         <div class="voa-sub">Start with the clearest entry point. Drop your email and the guide opens right away.</div>
         <div class="voa-cta-form-wrap">
+          <div class="voa-form-sparkles" aria-hidden="true">
+            <span class="voa-form-spark f1"></span>
+            <span class="voa-form-spark f2"></span>
+            <span class="voa-form-spark f3"></span>
+            <span class="voa-form-spark f4"></span>
+          </div>
           <div class="voa-cta-form">
             <input type="email" class="voa-cta-input" placeholder="Your email" autocomplete="email">
             <button class="voa-cta-submit">Open the Signal ✦</button>
@@ -554,6 +708,12 @@
             <path d="M120 70 L162 144 L78 144 Z" fill="none" stroke="rgba(0,229,255,0.24)" stroke-width="1.15"/>
             <path d="M85 148 L120 88 L155 148 Z" fill="none" stroke="rgba(34,192,106,0.2)" stroke-width="1"/>
           </svg>
+          <div class="voa-cover-sparkles" aria-hidden="true">
+            <span class="voa-cover-spark s1"></span>
+            <span class="voa-cover-spark s2"></span>
+            <span class="voa-cover-spark s3"></span>
+            <span class="voa-cover-spark s4"></span>
+          </div>
           <svg class="voa-cover-glint g1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(34,192,106,0.82)"/></svg>
           <svg class="voa-cover-glint g2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,229,255,0.76)"/></svg>
           <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
