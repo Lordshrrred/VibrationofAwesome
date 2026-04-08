@@ -107,26 +107,25 @@
   .book-aura::after {
     content: "";
     position: absolute;
-    inset: -34px;
+    inset: -18px;
+    border-radius: 26px;
     pointer-events: none;
     transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
   }
   .book-aura::before {
     background:
-      radial-gradient(circle at 32% 26%, rgba(20,241,149,0.28), transparent 24%),
-      radial-gradient(circle at 72% 72%, rgba(0,178,255,0.2), transparent 28%),
-      radial-gradient(circle at 50% 50%, rgba(20,241,149,0.12), transparent 46%);
-    filter: blur(28px);
-    opacity: 0.62;
+      radial-gradient(circle at 35% 28%, rgba(20,241,149,0.34), transparent 30%),
+      radial-gradient(circle at 72% 78%, rgba(0,178,255,0.28), transparent 34%),
+      radial-gradient(circle at 50% 50%, rgba(139,92,246,0.18), transparent 52%);
+    filter: blur(22px);
+    opacity: 0.75;
     animation: auraPulse 5s ease-in-out infinite;
   }
   .book-aura::after {
-    inset: -24px;
-    background:
-      radial-gradient(circle at 50% 50%, rgba(0,178,255,0.12), transparent 48%),
-      radial-gradient(circle at 50% 50%, rgba(20,241,149,0.08), transparent 64%);
-    filter: blur(18px);
-    opacity: 0.52;
+    inset: -8px;
+    border: 1px solid rgba(20,241,149,0.22);
+    box-shadow: 0 0 34px rgba(20,241,149,0.16), 0 0 54px rgba(0,178,255,0.12);
+    opacity: 0.65;
     animation: auraRing 7s linear infinite;
   }
   .book-cover {
@@ -142,15 +141,15 @@
   }
   .book-aura:hover::before,
   .book-aura:focus-visible::before {
-    opacity: 0.84;
-    transform: scale(1.04);
-    filter: blur(32px);
+    opacity: 1;
+    transform: scale(1.06);
+    filter: blur(28px);
   }
   .book-aura:hover::after,
   .book-aura:focus-visible::after {
-    opacity: 0.72;
-    transform: scale(1.02);
-    filter: blur(22px);
+    opacity: 1;
+    transform: scale(1.03);
+    box-shadow: 0 0 46px rgba(20,241,149,0.24), 0 0 74px rgba(0,178,255,0.18);
   }
   .book-aura:hover .book-cover,
   .book-aura:focus-visible .book-cover {
@@ -205,30 +204,28 @@
   .triangle-field {
     position: absolute;
     z-index: 1;
-    width: 120%;
-    height: 120%;
-    opacity: 0.84;
+    width: 112%;
+    height: 112%;
+    opacity: 0.66;
     pointer-events: none;
     transition: opacity 0.35s ease, transform 0.35s ease;
     animation: triangleFloat 8s ease-in-out infinite;
-    filter: drop-shadow(0 0 18px rgba(20,241,149,0.18));
   }
   .triangle-field.field-2 {
-    width: 132%;
-    height: 132%;
-    opacity: 0.62;
+    width: 124%;
+    height: 124%;
+    opacity: 0.44;
     animation-duration: 10.5s;
     animation-direction: reverse;
-    filter: drop-shadow(0 0 22px rgba(0,178,255,0.18));
   }
   .book-aura:hover .triangle-field,
   .book-aura:focus-visible .triangle-field {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.08);
   }
   .book-aura:hover .triangle-field.field-2,
   .book-aura:focus-visible .triangle-field.field-2 {
-    transform: scale(1.06);
+    transform: scale(1.04);
   }
   .tiny-triforce {
     position: absolute;
@@ -247,10 +244,6 @@
   .tiny-triforce.tt6 { top: 28%; right: 3%; width: 8px; height: 8px; opacity: 0; }
   .tiny-triforce.tt7 { bottom: 26%; left: 2%; width: 7px; height: 7px; opacity: 0; }
   .tiny-triforce.tt8 { bottom: 18%; right: 5%; width: 7px; height: 7px; opacity: 0; }
-  .tiny-triforce.tt9 { top: 36%; left: 1%; width: 6px; height: 6px; opacity: 0; }
-  .tiny-triforce.tt10 { top: 42%; right: 1%; width: 6px; height: 6px; opacity: 0; }
-  .tiny-triforce.tt11 { bottom: 34%; left: 4%; width: 5px; height: 5px; opacity: 0; }
-  .tiny-triforce.tt12 { bottom: 30%; right: 3%; width: 5px; height: 5px; opacity: 0; }
   .book-aura:hover .tiny-triforce,
   .book-aura:focus-visible .tiny-triforce {
     opacity: 1;
@@ -642,18 +635,16 @@
         <div class="book-badge">Beautiful object. Real signal.</div>
         <button class="book-aura" type="button" id="book-trigger" aria-haspopup="dialog" aria-controls="book-modal" aria-label="Open the Field Guide capture experience">
           <svg class="triangle-field field-1" viewBox="0 0 360 360" aria-hidden="true">
-            <path d="M180 36 L302 250 L58 250 Z" fill="none" stroke="rgba(20,241,149,0.52)" stroke-width="1.9"/>
-            <path d="M180 72 L260 214 L100 214 Z" fill="none" stroke="rgba(0,178,255,0.44)" stroke-width="1.6"/>
-            <path d="M108 160 L144 222 L72 222 Z" fill="none" stroke="rgba(20,241,149,0.34)" stroke-width="1.25"/>
-            <path d="M252 160 L288 222 L216 222 Z" fill="none" stroke="rgba(20,241,149,0.34)" stroke-width="1.25"/>
-            <path d="M180 112 L216 174 L144 174 Z" fill="none" stroke="rgba(0,178,255,0.3)" stroke-width="1.15"/>
+            <circle cx="180" cy="180" r="126" fill="none" stroke="rgba(20,241,149,0.28)" stroke-width="1.5"/>
+            <circle cx="180" cy="180" r="92" fill="none" stroke="rgba(0,178,255,0.22)" stroke-width="1.3"/>
+            <path d="M180 52 L287 240 L73 240 Z" fill="none" stroke="rgba(20,241,149,0.26)" stroke-width="1.4"/>
+            <path d="M180 78 L245 214 L115 214 Z" fill="none" stroke="rgba(0,178,255,0.22)" stroke-width="1.2"/>
           </svg>
           <svg class="triangle-field field-2" viewBox="0 0 360 360" aria-hidden="true">
-            <path d="M180 22 L320 268 L40 268 Z" fill="none" stroke="rgba(139,92,246,0.28)" stroke-width="1.5"/>
-            <path d="M180 58 L282 236 L78 236 Z" fill="none" stroke="rgba(20,241,149,0.3)" stroke-width="1.35"/>
-            <path d="M180 94 L244 206 L116 206 Z" fill="none" stroke="rgba(0,178,255,0.26)" stroke-width="1.15"/>
-            <path d="M64 192 L102 256 L26 256 Z" fill="none" stroke="rgba(0,178,255,0.18)" stroke-width="1.05"/>
-            <path d="M296 192 L334 256 L258 256 Z" fill="none" stroke="rgba(0,178,255,0.18)" stroke-width="1.05"/>
+            <path d="M180 34 L305 252 L55 252 Z" fill="none" stroke="rgba(139,92,246,0.22)" stroke-width="1.3"/>
+            <path d="M180 98 L248 216 L112 216 Z" fill="none" stroke="rgba(20,241,149,0.18)" stroke-width="1.2"/>
+            <path d="M88 124 L132 198 L44 198 Z" fill="none" stroke="rgba(0,178,255,0.16)" stroke-width="1.05"/>
+            <path d="M272 124 L316 198 L228 198 Z" fill="none" stroke="rgba(0,178,255,0.16)" stroke-width="1.05"/>
           </svg>
           <svg class="tiny-triforce tt1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.9)"/></svg>
           <svg class="tiny-triforce tt2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.84)"/></svg>
@@ -663,10 +654,6 @@
           <svg class="tiny-triforce tt6" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.64)"/></svg>
           <svg class="tiny-triforce tt7" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.58)"/></svg>
           <svg class="tiny-triforce tt8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.52)"/></svg>
-          <svg class="tiny-triforce tt9" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.52)"/></svg>
-          <svg class="tiny-triforce tt10" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.48)"/></svg>
-          <svg class="tiny-triforce tt11" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.44)"/></svg>
-          <svg class="tiny-triforce tt12" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.4)"/></svg>
           <svg class="triforce-glint t1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.86)"/></svg>
           <svg class="triforce-glint t2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,178,255,0.8)"/></svg>
           <svg class="triforce-glint t3" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(20,241,149,0.8)"/></svg>
