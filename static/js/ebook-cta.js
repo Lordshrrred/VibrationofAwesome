@@ -69,10 +69,10 @@
   inset: -8px;
   border-radius: 16px;
   background:
-    radial-gradient(circle at 35% 25%, rgba(34,192,106,0.18), transparent 28%),
-    radial-gradient(circle at 72% 72%, rgba(0,229,255,0.18), transparent 34%);
-  filter: blur(16px);
-  opacity: 0.72;
+    radial-gradient(circle at 35% 25%, rgba(34,192,106,0.28), transparent 28%),
+    radial-gradient(circle at 72% 72%, rgba(0,229,255,0.24), transparent 34%);
+  filter: blur(18px);
+  opacity: 0.92;
   transition: opacity 0.28s ease, transform 0.28s ease, filter 0.28s ease;
 }
 .voa-cover-trigger svg {
@@ -81,29 +81,29 @@
   width: 120%;
   height: 120%;
   pointer-events: none;
-  opacity: 0.46;
+  opacity: 0.62;
   transition: opacity 0.28s ease, transform 0.28s ease;
 }
 .voa-cover-trigger .voa-cover-glint {
   position: absolute;
   width: 10px;
   height: 10px;
-  opacity: 0;
+  opacity: 0.56;
   transition: opacity 0.28s ease, transform 0.28s ease;
-  filter: drop-shadow(0 0 8px rgba(34,192,106,0.45));
+  filter: drop-shadow(0 0 10px rgba(34,192,106,0.5));
 }
 .voa-cover-trigger .voa-cover-glint.g1 { top: 6%; left: 14%; }
 .voa-cover-trigger .voa-cover-glint.g2 { right: 12%; bottom: 12%; }
 .voa-cover-trigger:hover::before,
 .voa-cover-trigger:focus-visible::before {
   opacity: 1;
-  transform: scale(1.04);
-  filter: blur(19px);
+  transform: scale(1.07);
+  filter: blur(24px);
 }
 .voa-cover-trigger:hover svg,
 .voa-cover-trigger:focus-visible svg {
   opacity: 0.82;
-  transform: scale(1.06) rotate(4deg);
+  transform: scale(1.09) rotate(4deg);
 }
 .voa-cover-trigger:hover .voa-cover-glint,
 .voa-cover-trigger:focus-visible .voa-cover-glint {
@@ -120,8 +120,8 @@
   position: absolute;
   width: 10px;
   height: 10px;
-  opacity: 0.58;
-  filter: drop-shadow(0 0 8px rgba(34,192,106,0.36));
+  opacity: 0.78;
+  filter: drop-shadow(0 0 10px rgba(34,192,106,0.4));
   animation: voaSparkDrift 3.4s ease-in-out infinite;
 }
 .voa-cover-spark::before,
@@ -149,7 +149,7 @@
 .voa-cover-trigger:hover .voa-cover-spark,
 .voa-cover-trigger:focus-visible .voa-cover-spark {
   opacity: 1;
-  filter: drop-shadow(0 0 10px rgba(0,229,255,0.45));
+  filter: drop-shadow(0 0 14px rgba(0,229,255,0.56));
 }
 .voa-cover-card img {
   position: relative;
@@ -157,14 +157,14 @@
   width: 100%;
   border-radius: 10px;
   border: 1px solid rgba(34,192,106,0.22);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.3), 0 0 24px rgba(34,192,106,0.18), 0 0 34px rgba(0,229,255,0.12);
   transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
 }
 .voa-cover-trigger:hover img,
 .voa-cover-trigger:focus-visible img {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 18px 34px rgba(0,0,0,0.36), 0 0 22px rgba(0,229,255,0.12);
-  filter: saturate(1.05) brightness(1.03);
+  box-shadow: 0 18px 34px rgba(0,0,0,0.36), 0 0 34px rgba(34,192,106,0.24), 0 0 42px rgba(0,229,255,0.18);
+  filter: saturate(1.07) brightness(1.05);
 }
 .voa-cover-note {
   font-size: 0.62rem;
@@ -314,10 +314,10 @@
 }
 .voa-modal-spark {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  opacity: 0.72;
-  filter: drop-shadow(0 0 10px rgba(34,192,106,0.4));
+  width: 11px;
+  height: 11px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 14px rgba(34,192,106,0.48));
   animation: voaSparkDrift 3.5s ease-in-out infinite;
 }
 .voa-modal-spark::before,
@@ -339,17 +339,17 @@
   height: 100%;
 }
 .voa-modal-spark.m1 { top: 12%; left: 11%; animation-delay: 0.1s; }
-.voa-modal-spark.m2 { top: 18%; right: 14%; width: 8px; height: 8px; animation-delay: 0.8s; }
-.voa-modal-spark.m3 { top: 48%; left: 6%; width: 8px; height: 8px; animation-delay: 1.4s; }
+.voa-modal-spark.m2 { top: 18%; right: 14%; width: 9px; height: 9px; animation-delay: 0.8s; }
+.voa-modal-spark.m3 { top: 48%; left: 6%; width: 9px; height: 9px; animation-delay: 1.4s; }
 .voa-modal-spark.m4 { top: 56%; right: 8%; animation-delay: 2s; }
-.voa-modal-spark.m5 { bottom: 16%; left: 15%; width: 9px; height: 9px; animation-delay: 2.5s; }
-.voa-modal-spark.m6 { bottom: 10%; right: 18%; width: 8px; height: 8px; animation-delay: 3s; }
+.voa-modal-spark.m5 { bottom: 16%; left: 15%; width: 10px; height: 10px; animation-delay: 2.5s; }
+.voa-modal-spark.m6 { bottom: 10%; right: 18%; width: 9px; height: 9px; animation-delay: 3s; }
 .voa-modal-visual img {
   position: relative;
   z-index: 1;
   width: min(100%, 255px);
   border-radius: 14px;
-  box-shadow: 0 22px 60px rgba(0,0,0,0.45), 0 0 34px rgba(34,192,106,0.14);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.45), 0 0 42px rgba(34,192,106,0.22), 0 0 52px rgba(0,229,255,0.14);
 }
 .voa-modal-copy {
   padding: 2.35rem 2.4rem;

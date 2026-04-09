@@ -379,7 +379,7 @@
   .modal-cover {
     width: min(100%, 290px);
     border-radius: 16px;
-    box-shadow: 0 34px 82px rgba(0,0,0,0.6), 0 0 54px rgba(20,241,149,0.18);
+    box-shadow: 0 34px 82px rgba(0,0,0,0.6), 0 0 62px rgba(20,241,149,0.26), 0 0 72px rgba(0,178,255,0.12);
   }
   .modal-cover-wrap {
     position: relative;
@@ -398,9 +398,9 @@
     height: 13px;
     border-radius: 999px;
     background: radial-gradient(circle, rgba(20,241,149,0.98) 0%, rgba(0,178,255,0.48) 44%, transparent 72%);
-    box-shadow: 0 0 22px rgba(20,241,149,0.42), 0 0 34px rgba(0,178,255,0.24);
+    box-shadow: 0 0 28px rgba(20,241,149,0.5), 0 0 42px rgba(0,178,255,0.28);
     animation: modalSparkle 3.4s ease-in-out infinite;
-    opacity: 0.92;
+    opacity: 1;
   }
   .modal-spark::before,
   .modal-spark::after {
@@ -509,6 +509,82 @@
 
   /* ── Email form ── */
   .form-wrap { max-width: 480px; margin: 0 auto; }
+  .field-guide-mini-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 1.6rem;
+  }
+  .field-guide-mini {
+    position: relative;
+    width: 118px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    pointer-events: none;
+  }
+  .field-guide-mini::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 16px;
+    background:
+      radial-gradient(circle at 35% 24%, rgba(20,241,149,0.32), transparent 30%),
+      radial-gradient(circle at 72% 72%, rgba(0,178,255,0.24), transparent 34%);
+    filter: blur(16px);
+    opacity: 0.92;
+  }
+  .field-guide-mini img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(20,241,149,0.22);
+    box-shadow: 0 18px 38px rgba(0,0,0,0.34), 0 0 28px rgba(20,241,149,0.18), 0 0 36px rgba(0,178,255,0.1);
+  }
+  .field-guide-mini-sparkles {
+    position: absolute;
+    inset: -10px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .field-guide-mini-spark {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(20,241,149,0.96) 0%, rgba(0,178,255,0.42) 48%, transparent 72%);
+    box-shadow: 0 0 16px rgba(20,241,149,0.44), 0 0 24px rgba(0,178,255,0.22);
+    animation: sparkleDrift 3.2s ease-in-out infinite;
+  }
+  .field-guide-mini-spark::before,
+  .field-guide-mini-spark::after {
+    content: "";
+    position: absolute;
+    inset: 50%;
+    width: 16px;
+    height: 2px;
+    margin-left: -8px;
+    margin-top: -1px;
+    border-radius: 999px;
+    background: rgba(181,255,235,0.92);
+  }
+  .field-guide-mini-spark::after { transform: rotate(90deg); }
+  .field-guide-mini-spark.m1 { top: 10%; left: 8%; animation-delay: 0.1s; }
+  .field-guide-mini-spark.m2 { top: 18%; right: 10%; width: 8px; height: 8px; animation-delay: 0.7s; }
+  .field-guide-mini-spark.m3 { bottom: 16%; left: 8%; width: 8px; height: 8px; animation-delay: 1.3s; }
+  .field-guide-mini-spark.m4 { bottom: 10%; right: 10%; animation-delay: 1.9s; }
+  .field-guide-mini-note {
+    margin-top: 0.8rem;
+    font-family: var(--ui);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(232,244,240,0.56);
+    text-align: center;
+  }
   .form-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
   .form-input {
     flex: 1; min-width: 220px; background: rgba(11,26,28,0.82); border: 1px solid rgba(139,92,246,0.22);
@@ -798,6 +874,18 @@
     <div class="section-label">Receive the guide</div>
     <h2 style="margin-bottom:0.75rem">Step into it now.</h2>
     <p style="max-width:480px;margin:0 auto 2.5rem">Drop your email and the guide opens immediately. No waitlist. No dead-end funnel detour.</p>
+    <div class="field-guide-mini-wrap" aria-hidden="true">
+      <div class="field-guide-mini">
+        <div class="field-guide-mini-sparkles">
+          <span class="field-guide-mini-spark m1"></span>
+          <span class="field-guide-mini-spark m2"></span>
+          <span class="field-guide-mini-spark m3"></span>
+          <span class="field-guide-mini-spark m4"></span>
+        </div>
+        <img src="../images/field-guide-cover.png" alt="">
+      </div>
+    </div>
+    <div class="field-guide-mini-note">The guide itself ~ glowing at the threshold</div>
     <div class="form-wrap" id="mid-form-wrap">
       <div id="mid-form">
         <div class="form-row" style="justify-content:center">
