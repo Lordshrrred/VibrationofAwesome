@@ -349,7 +349,10 @@
   z-index: 1;
   width: min(100%, 255px);
   border-radius: 14px;
-  box-shadow: 0 22px 60px rgba(0,0,0,0.45), 0 0 42px rgba(34,192,106,0.22), 0 0 52px rgba(0,229,255,0.14);
+  box-shadow:
+    0 22px 60px rgba(0,0,0,0.45),
+    0 0 58px rgba(34,192,106,0.3),
+    0 0 74px rgba(0,229,255,0.18);
 }
 .voa-modal-copy {
   padding: 2.35rem 2.4rem;
