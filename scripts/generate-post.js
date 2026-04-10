@@ -205,9 +205,9 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   const displayDate = new Date(dateStr).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
   const socialImageUrl = isMatt
     ? "https://vibrationofawesome.com/personal-photos/forest/forest-14-hoh-rainforest.webp"
-    : "https://vibrationofawesome.com/images/earthstar-hero.jpg";
-  const socialImageWidth = isMatt ? "1536" : "1200";
-  const socialImageHeight = isMatt ? "2049" : "630";
+    : (heroImageUrl || "https://vibrationofawesome.com/images/StarLogo.png");
+  const socialImageWidth = isMatt ? "1536" : (heroImageUrl ? "1200" : "1072");
+  const socialImageHeight = isMatt ? "2049" : (heroImageUrl ? "630" : "960");
 
   // Parse hex accent colour to RGB for the stars canvas
   const hexClean = accent.replace("#", "");

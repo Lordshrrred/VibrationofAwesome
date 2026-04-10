@@ -10,6 +10,13 @@ const APP_ID = process.env.PINTEREST_APP_ID;
 const APP_SECRET = process.env.PINTEREST_APP_SECRET;
 const PORT = 9877;
 const REDIRECT_URI = `http://localhost:${PORT}/callback`;
+const PINTEREST_TOKEN_URL = "https://api.pinterest.com/v5/oauth/token";
+const PINTEREST_API_BASE = process.env.PINTEREST_DEMO_API_BASE || "https://api.pinterest.com";
+const PINTEREST_SANDBOX_API_BASE = process.env.PINTEREST_DEMO_SANDBOX_API_BASE || "https://api-sandbox.pinterest.com";
+const DEMO_BOARD_ID = process.env.PINTEREST_DEMO_BOARD_ID || process.env.PINTEREST_BOARD_ID || "";
+const DEMO_SITE_URL = process.env.PINTEREST_DEMO_SITE_URL || "https://vibrationofawesome.com/";
+const DEMO_IMAGE_URL = process.env.PINTEREST_DEMO_IMAGE_URL || "https://vibrationofawesome.com/images/StarLogo.png";
+const ENABLE_SANDBOX_PIN = ["1", "true", "yes", "on"].includes(String(process.env.PINTEREST_DEMO_CREATE_PIN || "true").toLowerCase());
 const SCOPES = [
   "boards:read",
   "boards:write",
@@ -27,6 +34,7 @@ const state = Math.random().toString(36).slice(2);
 const app = express();
 
 let latest = {
+  callbackUrl: "",
   code: "",
   scopes: "",
   accessTokenPreview: "",
@@ -34,6 +42,16 @@ let latest = {
   accountType: "",
   accountName: "",
   boards: [],
+  boardNames: [],
+  tokenRequestSummary: "",
+  tokenResponseSummary: "",
+  userResponseSummary: "",
+  boardsResponseSummary: "",
+  pinCreateRequestSummary: "",
+  pinCreateResponseSummary: "",
+  createdPinId: "",
+  createdPinUrl: "",
+  pinCreateSkippedReason: "",
   error: "",
 };
 
@@ -49,6 +67,10 @@ function tokenPreview(value = "") {
   if (!value) return "";
   if (value.length < 12) return value;
   return `${value.slice(0, 6)}...${value.slice(-4)}`;
+}
+
+function prettyJson(value) {
+  return JSON.stringify(value, null, 2);
 }
 
 function authUrl() {
@@ -167,6 +189,7 @@ function homepage() {
           ? `<p class="status-bad"><strong>Error:</strong> ${esc(latest.error)}</p>`
           : `
             <p class="status-good"><strong>OAuth complete.</strong> Your callback, token exchange, and API data fetch all ran.</p>
+            <p><strong>Callback URL:</strong> <code>${esc(latest.callbackUrl)}</code></p>
             <p><strong>Code:</strong> <code>${esc(latest.code)}</code></p>
             <p><strong>Access token:</strong> <code>${esc(latest.accessTokenPreview)}</code></p>
             <p><strong>Refresh token:</strong> <code>${esc(latest.refreshTokenPreview)}</code></p>
@@ -211,7 +234,28 @@ function homepage() {
       </div>
       <div class="card">
         <h3>Integration shown in this demo</h3>
-        <p>After OAuth, the demo calls <code>/v5/user_account</code> and <code>/v5/boards</code> and renders the results like a simple Pinterest data dashboard.</p>
+        <p>After OAuth, the demo calls <code>POST /v5/oauth/token</code>, <code>GET /v5/user_account</code>, <code>GET /v5/boards?page_size=10</code>, and an optional sandbox <code>POST /v5/pins</code> request.</p>
+      </div>
+      <div class="card">
+        <h3>How to record this correctly</h3>
+        <ol>
+          <li>Start on this page and keep the browser address bar visible.</li>
+          <li>Click <code>Start OAuth Demo</code> and leave the recording running.</li>
+          <li>On Pinterest, show the login and authorize-app screen clearly.</li>
+          <li>After redirect, pause on the callback URL so the returned <code>code</code> is visible.</li>
+          <li>Scroll this result page so the token exchange, API responses, and sandbox pin section are visible.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Access Link</h3>
+        <p><a href="http://localhost:${PORT}">http://localhost:${PORT}</a></p>
+        <p>Open this local link to access the approval demo.</p>
+      </div>
+      <div class="card">
+        <h3>Important Sandbox Note</h3>
+        <p>The optional pin-create step uses Pinterest's sandbox API, not the normal production API.</p>
+        <p>Do not assume a sandbox-created pin will appear on your public Pinterest profile or your normal live board view.</p>
+        <p>For the review video, treat the on-screen request and response as the proof that the write integration works.</p>
       </div>
       ${resultBlock}
     </div>
@@ -234,26 +278,62 @@ function resultPage() {
     <div class="grid">
       <div class="card">
         <h3>OAuth Callback</h3>
+        <p><strong>Returned URL:</strong></p>
+        <pre>${esc(latest.callbackUrl || "(none)")}</pre>
         <p><strong>Code from URL:</strong></p>
         <pre>${esc(latest.code || "(none)")}</pre>
       </div>
       <div class="card">
         <h3>Token Exchange</h3>
+        <p><strong>Endpoint:</strong> <code>POST /v5/oauth/token</code></p>
+        <p><strong>Request summary:</strong></p>
+        <pre>${esc(latest.tokenRequestSummary || "(none)")}</pre>
         <p><strong>Access token:</strong> <code>${esc(latest.accessTokenPreview || "(none)")}</code></p>
         <p><strong>Refresh token:</strong> <code>${esc(latest.refreshTokenPreview || "(none)")}</code></p>
         <p><strong>Scopes:</strong> ${esc(latest.scopes || "(none)")}</p>
+        <p><strong>Response summary:</strong></p>
+        <pre>${esc(latest.tokenResponseSummary || "(none)")}</pre>
       </div>
       <div class="card">
         <h3>User Account API</h3>
         <p><strong>Endpoint:</strong> <code>GET /v5/user_account</code></p>
         <p><strong>Name:</strong> ${esc(latest.accountName || "(none)")}</p>
         <p><strong>Type:</strong> ${esc(latest.accountType || "(none)")}</p>
+        <pre>${esc(latest.userResponseSummary || "(none)")}</pre>
       </div>
       <div class="card">
         <h3>Boards API</h3>
         <p><strong>Endpoint:</strong> <code>GET /v5/boards?page_size=10</code></p>
         <p><strong>Board count:</strong> ${latest.boards.length}</p>
-        <pre>${esc(latest.boards.map((board) => `${board.id} ~ ${board.name}`).join("\n") || "(none)")}</pre>
+        <pre>${esc(latest.boardNames.map((board) => `${board.id} ~ ${board.name}`).join("\n") || "(none)")}</pre>
+      </div>
+      <div class="card">
+        <h3>Boards API Raw Result</h3>
+        <pre>${esc(latest.boardsResponseSummary || "(none)")}</pre>
+      </div>
+      <div class="card">
+        <h3>Sandbox Pin Create</h3>
+        <p><strong>Endpoint:</strong> <code>POST ${esc(PINTEREST_SANDBOX_API_BASE)}/v5/pins</code></p>
+        <p><strong>What this means:</strong> This demonstrates the write integration path in Pinterest's sandbox environment. It might not show up on your public Pinterest board.</p>
+        <p><strong>Status:</strong> ${esc(latest.pinCreateSkippedReason || (latest.createdPinId ? "Created successfully" : "Attempted"))}</p>
+        <p><strong>Created pin ID:</strong> ${esc(latest.createdPinId || "(none)")}</p>
+        <p><strong>Created pin URL:</strong> ${latest.createdPinUrl ? `<a href="${esc(latest.createdPinUrl)}">${esc(latest.createdPinUrl)}</a>` : "(none)"}</p>
+        <p><strong>Request summary:</strong></p>
+        <pre>${esc(latest.pinCreateRequestSummary || "(none)")}</pre>
+        <p><strong>Response summary:</strong></p>
+        <pre>${esc(latest.pinCreateResponseSummary || "(none)")}</pre>
+      </div>
+      <div class="card">
+        <h3>Reviewer Checklist</h3>
+        <ol>
+          <li>Pinterest login page shown.</li>
+          <li>Authorize app screen shown.</li>
+          <li>Redirect back to registered callback URI shown.</li>
+          <li>Authorization code visible in the callback URL.</li>
+          <li>Token exchange shown on this page.</li>
+          <li>Live Pinterest API results shown on this page.</li>
+          <li>Pin-create integration path shown on this page, even if it remains sandbox-only.</li>
+        </ol>
       </div>
     </div>
   `, "Pinterest Demo Result");
@@ -262,6 +342,22 @@ function resultPage() {
 async function pinterestJson(url, accessToken) {
   const resp = await fetch(url, {
     headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  const data = await resp.json();
+  if (!resp.ok) {
+    throw new Error(data.message || data.error || JSON.stringify(data));
+  }
+  return data;
+}
+
+async function pinterestPostJson(url, accessToken, body) {
+  const resp = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
   });
   const data = await resp.json();
   if (!resp.ok) {
@@ -280,6 +376,7 @@ app.get("/start", (_req, res) => {
 
 app.get("/callback", async (req, res) => {
   latest = {
+    callbackUrl: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
     code: String(req.query.code || ""),
     scopes: "",
     accessTokenPreview: "",
@@ -287,6 +384,16 @@ app.get("/callback", async (req, res) => {
     accountType: "",
     accountName: "",
     boards: [],
+    boardNames: [],
+    tokenRequestSummary: "",
+    tokenResponseSummary: "",
+    userResponseSummary: "",
+    boardsResponseSummary: "",
+    pinCreateRequestSummary: "",
+    pinCreateResponseSummary: "",
+    createdPinId: "",
+    createdPinUrl: "",
+    pinCreateSkippedReason: "",
     error: "",
   };
 
@@ -311,7 +418,21 @@ app.get("/callback", async (req, res) => {
 
   try {
     const credentials = Buffer.from(`${APP_ID}:${APP_SECRET}`).toString("base64");
-    const tokenResp = await fetch("https://api.pinterest.com/v5/oauth/token", {
+    latest.tokenRequestSummary = prettyJson({
+      method: "POST",
+      url: PINTEREST_TOKEN_URL,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${tokenPreview(credentials)}`,
+      },
+      body: {
+        grant_type: "authorization_code",
+        code: latest.code,
+        redirect_uri: REDIRECT_URI,
+      },
+    });
+
+    const tokenResp = await fetch(PINTEREST_TOKEN_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -333,13 +454,61 @@ app.get("/callback", async (req, res) => {
     latest.accessTokenPreview = tokenPreview(accessToken);
     latest.refreshTokenPreview = tokenPreview(refreshToken);
     latest.scopes = tokenData.scope || "";
+    latest.tokenResponseSummary = prettyJson({
+      scope: tokenData.scope || "",
+      token_type: tokenData.token_type || "",
+      expires_in: tokenData.expires_in || "",
+      access_token_preview: tokenPreview(accessToken),
+      refresh_token_preview: tokenPreview(refreshToken),
+    });
 
-    const userData = await pinterestJson("https://api.pinterest.com/v5/user_account", accessToken);
+    const userData = await pinterestJson(`${PINTEREST_API_BASE}/v5/user_account`, accessToken);
     latest.accountName = userData.username || userData.account_type || "Pinterest account";
     latest.accountType = userData.account_type || "";
+    latest.userResponseSummary = prettyJson(userData);
 
-    const boardsData = await pinterestJson("https://api.pinterest.com/v5/boards?page_size=10", accessToken);
+    const boardsData = await pinterestJson(`${PINTEREST_API_BASE}/v5/boards?page_size=10`, accessToken);
     latest.boards = boardsData.items || [];
+    latest.boardNames = latest.boards.map((board) => ({
+      id: board.id || "",
+      name: board.name || "",
+    }));
+    latest.boardsResponseSummary = prettyJson(boardsData);
+
+    if (!ENABLE_SANDBOX_PIN) {
+      latest.pinCreateSkippedReason = "Skipped because PINTEREST_DEMO_CREATE_PIN is disabled.";
+    } else if (!DEMO_BOARD_ID) {
+      latest.pinCreateSkippedReason = "Skipped because PINTEREST_DEMO_BOARD_ID or PINTEREST_BOARD_ID is not set.";
+    } else {
+      const pinPayload = {
+        board_id: DEMO_BOARD_ID,
+        title: `Pinterest OAuth Review Demo ${new Date().toISOString().slice(0, 16)}`,
+        description: "Sandbox pin created by the approval demo after OAuth, token exchange, and API verification.",
+        link: DEMO_SITE_URL,
+        media_source: {
+          source_type: "image_url",
+          url: DEMO_IMAGE_URL,
+        },
+      };
+
+      latest.pinCreateRequestSummary = prettyJson({
+        method: "POST",
+        url: `${PINTEREST_SANDBOX_API_BASE}/v5/pins`,
+        body: pinPayload,
+      });
+
+      try {
+        const pinData = await pinterestPostJson(`${PINTEREST_SANDBOX_API_BASE}/v5/pins`, accessToken, pinPayload);
+        latest.createdPinId = pinData.id || "";
+        latest.createdPinUrl = pinData.id ? `https://www.pinterest.com/pin/${pinData.id}/` : "";
+        latest.pinCreateResponseSummary = prettyJson(pinData);
+      } catch (pinErr) {
+        latest.pinCreateResponseSummary = prettyJson({
+          error: pinErr.message,
+          note: "The sandbox pin-create request was attempted to demonstrate the write integration path.",
+        });
+      }
+    }
   } catch (err) {
     latest.error = err.message;
   }
@@ -352,5 +521,9 @@ app.listen(PORT, async () => {
   console.log(`Open this in your browser: http://localhost:${PORT}`);
   console.log(`Registered redirect URI needed: ${REDIRECT_URI}`);
   console.log(`Scopes used: ${SCOPES}\n`);
+  console.log(`Production API base: ${PINTEREST_API_BASE}`);
+  console.log(`Sandbox API base:    ${PINTEREST_SANDBOX_API_BASE}`);
+  console.log(`Sandbox pin create:  ${ENABLE_SANDBOX_PIN ? "enabled" : "disabled"}`);
+  console.log(`Demo board ID:       ${DEMO_BOARD_ID || "(not set)"}\n`);
   await open(`http://localhost:${PORT}`);
 });

@@ -13,11 +13,11 @@
 <meta property="og:title" content="AURA - Your AI Spiritual Companion | Cosmic Guidance & Mindset">
 <meta property="og:description" content="AURA is your personal AI spiritual companion for mindset, manifestation, and cosmic guidance. Available 24/7 to help you elevate your vibration and unlock your potential.">
 <meta property="og:url" content="https://vibrationofawesome.com/aura/">
-<meta property="og:image" content="https://vibrationofawesome.com/images/earthstar-hero.jpg">
+<meta property="og:image" content="https://vibrationofawesome.com/images/StarLogo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AURA - Your AI Spiritual Companion | Cosmic Guidance & Mindset">
 <meta name="twitter:description" content="AURA is your personal AI spiritual companion for mindset, manifestation, and cosmic guidance. Available 24/7 to help you elevate your vibration and unlock your potential.">
-<meta name="twitter:image" content="https://vibrationofawesome.com/images/earthstar-hero.jpg">
+<meta name="twitter:image" content="https://vibrationofawesome.com/images/StarLogo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -1076,12 +1076,11 @@
     if (nudgeBtn) { nudgeBtn.textContent = 'Opening checkout...'; nudgeBtn.disabled = true; }
 
     try {
-      const priceId = 'STRIPE_PRICE_ID_PLACEHOLDER'; // replaced at deploy by env var injection or setup-stripe output
       const res = await fetch(FUNCTIONS_BASE + '/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          priceId,
+          product: 'aura_premium',
           successUrl: window.location.origin + '/aura/success/?session_id={CHECKOUT_SESSION_ID}',
           cancelUrl: window.location.origin + '/aura/cancel/',
         }),
