@@ -6,6 +6,7 @@ description: "The world we live in today feels more divided than ever. A persona
 tags: ["consciousness", "vision", "unity", "humanity", "politics"]
 canonical: "https://medium.com/p/567a51016b16"
 draft: false
+social_image: "/images/posts/first-transmission/post-img-1.png"
 ---
 
 The world we live in today feels more divided than ever. Polarization runs deep, with both sides often unable, or unwilling, to see the humanity in the other. It's easy to lose hope when every conversation seems to turn into a battlefield of egos and ideologies. Even when you approach with respect and sincerity, you're met with resistance, misunderstanding, or outright hostility.

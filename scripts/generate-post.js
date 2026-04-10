@@ -203,11 +203,11 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   const byline      = isMatt ? "by Matt EarthStar" : "by Matty BoomBoom (AI)";
   const badge       = isMatt ? "FOREST TEMPLE" : "BOOM FREQUENCY";
   const displayDate = new Date(dateStr).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-  const socialImageUrl = isMatt
+  const socialImageUrl = heroImageUrl || (isMatt
     ? "https://vibrationofawesome.com/personal-photos/forest/forest-14-hoh-rainforest.webp"
-    : (heroImageUrl || "https://vibrationofawesome.com/images/StarLogo.png");
-  const socialImageWidth = isMatt ? "1536" : (heroImageUrl ? "1200" : "1072");
-  const socialImageHeight = isMatt ? "2049" : (heroImageUrl ? "630" : "960");
+    : "https://vibrationofawesome.com/images/StarLogo.png");
+  const socialImageWidth = heroImageUrl ? "1200" : (isMatt ? "1536" : "1072");
+  const socialImageHeight = heroImageUrl ? "630" : (isMatt ? "2049" : "960");
 
   // Parse hex accent colour to RGB for the stars canvas
   const hexClean = accent.replace("#", "");
@@ -235,7 +235,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push('  <link rel="canonical" href="' + postUrl + '">');
   H.push('  <meta name="robots" content="index, follow">');
   H.push('  <meta name="theme-color" content="' + accent + '">');
-  if (!isMatt && heroImageUrl) {
+  if (heroImageUrl) {
     H.push('  <link rel="preload" as="image" fetchpriority="high" href="' + heroImageUrl + '">');
   }
   H.push("  <!-- Open Graph -->");
@@ -678,7 +678,7 @@ async function main() {
   fs.mkdirSync(outputDir, { recursive: true });
 
   const dateStr = new Date().toISOString();
-  const heroImageUrl = (lane === "boom" && inlineImages && inlineImages.length > 0) ? inlineImages[0].url : null;
+  const heroImageUrl = (inlineImages && inlineImages.length > 0) ? inlineImages[0].url : null;
   fs.writeFileSync(outputFile, buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription, heroImageUrl), "utf8");
   console.log((isDraft ? "[DRAFT] " : "") + "Post saved: /blog/" + lane + "/" + outputSub + "/" + slug + ".html");
 

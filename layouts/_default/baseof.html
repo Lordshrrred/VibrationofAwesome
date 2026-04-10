@@ -20,6 +20,21 @@
 {{ $socialImage := "https://vibrationofawesome.com/images/StarLogo.png" }}
 {{ $socialImageWidth := "1072" }}
 {{ $socialImageHeight := "960" }}
+{{ with .Params.social_image }}
+  {{ if hasPrefix . "http" }}
+    {{ $socialImage = . }}
+  {{ else }}
+    {{ $socialImage = printf "https://vibrationofawesome.com%s" . }}
+  {{ end }}
+{{ else }}
+  {{ with .Params.image }}
+    {{ if hasPrefix . "http" }}
+      {{ $socialImage = . }}
+    {{ else }}
+      {{ $socialImage = printf "https://vibrationofawesome.com%s" . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
 {{ if .IsSection }}
   {{ if eq .Section "posts" }}
     {{ $socialImage = "https://vibrationofawesome.com/images/eartstarart2.jpg" }}
@@ -34,9 +49,11 @@
 {{ end }}
 {{ if .IsPage }}
   {{ if eq .Section "posts" }}
-    {{ $socialImage = "https://vibrationofawesome.com/images/eartstarart3.jpg" }}
-    {{ $socialImageWidth = "1168" }}
-    {{ $socialImageHeight = "784" }}
+    {{ if eq $socialImage "https://vibrationofawesome.com/images/StarLogo.png" }}
+      {{ $socialImage = "https://vibrationofawesome.com/images/eartstarart3.jpg" }}
+      {{ $socialImageWidth = "1168" }}
+      {{ $socialImageHeight = "784" }}
+    {{ end }}
   {{ end }}
 {{ end }}
 <!-- Open Graph -->
