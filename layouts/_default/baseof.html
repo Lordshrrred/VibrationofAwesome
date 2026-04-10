@@ -17,20 +17,42 @@
 <meta name="robots" content="index, follow">
 <meta name="facebook-domain-verification" content="ownhqsod3yr3yr7usw7q95ppctbmog" />
 <meta name="theme-color" content="#00e5cc">
+{{ $socialImage := "https://vibrationofawesome.com/images/StarLogo.png" }}
+{{ $socialImageWidth := "1072" }}
+{{ $socialImageHeight := "960" }}
+{{ if .IsSection }}
+  {{ if eq .Section "posts" }}
+    {{ $socialImage = "https://vibrationofawesome.com/images/eartstarart2.jpg" }}
+    {{ $socialImageWidth = "1168" }}
+    {{ $socialImageHeight = "784" }}
+  {{ end }}
+{{ end }}
+{{ if or (eq .Kind "taxonomy") (eq .Kind "term") }}
+  {{ $socialImage = "https://vibrationofawesome.com/images/eartstarart.jpg" }}
+  {{ $socialImageWidth = "1168" }}
+  {{ $socialImageHeight = "784" }}
+{{ end }}
+{{ if .IsPage }}
+  {{ if eq .Section "posts" }}
+    {{ $socialImage = "https://vibrationofawesome.com/images/eartstarart3.jpg" }}
+    {{ $socialImageWidth = "1168" }}
+    {{ $socialImageHeight = "784" }}
+  {{ end }}
+{{ end }}
 <!-- Open Graph -->
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
 <meta property="og:site_name" content="Vibration of Awesome">
 <meta property="og:title" content="{{ if .IsHome }}Vibration of Awesome{{ else }}{{ .Title }} | Vibration of Awesome{{ end }}">
 <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:image" content="https://vibrationofawesome.com/images/StarLogo.png">
-<meta property="og:image:width" content="1072">
-<meta property="og:image:height" content="960">
+<meta property="og:image" content="{{ $socialImage }}">
+<meta property="og:image:width" content="{{ $socialImageWidth }}">
+<meta property="og:image:height" content="{{ $socialImageHeight }}">
 <!-- Twitter / X Cards -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ if .IsHome }}Vibration of Awesome{{ else }}{{ .Title }} | Vibration of Awesome{{ end }}">
 <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-<meta name="twitter:image" content="https://vibrationofawesome.com/images/StarLogo.png">
+<meta name="twitter:image" content="{{ $socialImage }}">
 <!-- Structured Data -->
 {{ if .IsHome }}<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Vibration of Awesome","url":"https://vibrationofawesome.com","description":"{{ .Site.Params.description }}","author":{"@type":"Person","name":"Matt EarthStar","url":"https://vibrationofawesome.com"}}
