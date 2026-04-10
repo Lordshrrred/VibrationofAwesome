@@ -203,6 +203,11 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   const byline      = isMatt ? "by Matt EarthStar" : "by Matty BoomBoom (AI)";
   const badge       = isMatt ? "FOREST TEMPLE" : "BOOM FREQUENCY";
   const displayDate = new Date(dateStr).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  const socialImageUrl = isMatt
+    ? "https://vibrationofawesome.com/personal-photos/forest/forest-14-hoh-rainforest.webp"
+    : "https://vibrationofawesome.com/images/earthstar-hero.jpg";
+  const socialImageWidth = isMatt ? "1536" : "1200";
+  const socialImageHeight = isMatt ? "2049" : "630";
 
   // Parse hex accent colour to RGB for the stars canvas
   const hexClean = accent.replace("#", "");
@@ -239,17 +244,17 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push('  <meta property="og:title" content="' + title + '">');
   H.push('  <meta property="og:description" content="' + metaContent + '">');
   H.push('  <meta property="og:url" content="' + postUrl + '">');
-  H.push('  <meta property="og:image" content="https://vibrationofawesome.com/images/earthstar-hero.jpg">');
-  H.push('  <meta property="og:image:width" content="1200">');
-  H.push('  <meta property="og:image:height" content="630">');
+  H.push('  <meta property="og:image" content="' + socialImageUrl + '">');
+  H.push('  <meta property="og:image:width" content="' + socialImageWidth + '">');
+  H.push('  <meta property="og:image:height" content="' + socialImageHeight + '">');
   H.push("  <!-- Twitter / X Cards -->");
   H.push('  <meta name="twitter:card" content="summary_large_image">');
   H.push('  <meta name="twitter:title" content="' + title + '">');
   H.push('  <meta name="twitter:description" content="' + metaContent + '">');
-  H.push('  <meta name="twitter:image" content="https://vibrationofawesome.com/images/earthstar-hero.jpg">');
+  H.push('  <meta name="twitter:image" content="' + socialImageUrl + '">');
   H.push("  <!-- Structured Data -->");
   H.push('  <script type="application/ld+json">');
-  H.push('  {"@context":"https://schema.org","@type":"BlogPosting","headline":"' + title.replace(/"/g, '\\"') + '","description":"' + metaContent.replace(/"/g, '\\"') + '","url":"' + postUrl + '","datePublished":"' + datePublished + '","author":{"@type":"Person","name":"' + authorName + '","url":"https://vibrationofawesome.com"},"publisher":{"@type":"Organization","name":"Vibration of Awesome","url":"https://vibrationofawesome.com"},"image":"https://vibrationofawesome.com/images/earthstar-hero.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"' + postUrl + '"}}');
+  H.push('  {"@context":"https://schema.org","@type":"BlogPosting","headline":"' + title.replace(/"/g, '\\"') + '","description":"' + metaContent.replace(/"/g, '\\"') + '","url":"' + postUrl + '","datePublished":"' + datePublished + '","author":{"@type":"Person","name":"' + authorName + '","url":"https://vibrationofawesome.com"},"publisher":{"@type":"Organization","name":"Vibration of Awesome","url":"https://vibrationofawesome.com"},"image":"' + socialImageUrl + '","mainEntityOfPage":{"@type":"WebPage","@id":"' + postUrl + '"}}');
   H.push("  </script>");
   H.push("  " + googleFont);
   H.push("  <!-- Google Analytics GA4 -->");

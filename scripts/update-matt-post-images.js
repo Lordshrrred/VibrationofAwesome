@@ -48,8 +48,8 @@ const POST_IMAGE_MAP = {
   // Twenty years internet marketing: redwood fog
   "twenty-years-internet-marketing":             "forest-13-redwood-fog.jpg",
 
-  // Why I built forest temple: sequoia (rooted, elemental)
-  "why-i-built-forest-temple":                   "forest-01-sequoia-sempervirens-mhnt.bot.2007.52.2.jpg",
+  // Why I built forest temple: rainforest depth instead of the old sequoia shot
+  "why-i-built-forest-temple":                   "forest-14-hoh-rainforest.jpg",
 };
 
 // Regex to match .post-hero background url(...)
