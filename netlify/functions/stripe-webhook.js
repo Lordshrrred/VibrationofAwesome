@@ -6,6 +6,7 @@
 //            customer.subscription.updated, invoice.payment_failed
 
 const Stripe = require("stripe");
+const STRIPE_API_VERSION = "2026-02-25.clover";
 
 exports.handler = async (event) => {
   // Stripe requires the raw body for signature verification.
@@ -22,7 +23,7 @@ exports.handler = async (event) => {
     return { statusCode: 500, body: "Webhook not configured" };
   }
 
-  const stripe = new Stripe(secretKey);
+  const stripe = new Stripe(secretKey, { apiVersion: STRIPE_API_VERSION });
   const signature = event.headers["stripe-signature"];
 
   let stripeEvent;
@@ -41,8 +42,9 @@ exports.handler = async (event) => {
       const email = session.customer_details?.email || session.customer_email;
       const customerId = session.customer;
       const subscriptionId = session.subscription;
+      const amountTax = session.total_details?.amount_tax || 0;
 
-      console.log(`Checkout complete: email=${email}, customer=${customerId}, subscription=${subscriptionId}`);
+      console.log(`Checkout complete: email=${email}, customer=${customerId}, subscription=${subscriptionId}, amount_tax=${amountTax}`);
       // Token generation happens in verify-subscription via Stripe lookup.
       // No separate storage needed -- Stripe is the source of truth.
       break;

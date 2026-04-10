@@ -11,6 +11,7 @@
 
 const Stripe = require("stripe");
 const crypto = require("crypto");
+const STRIPE_API_VERSION = "2026-02-25.clover";
 
 const FUNCTIONS_URL = "https://vibrationofawesome.netlify.app/.netlify/functions";
 
@@ -67,7 +68,7 @@ exports.handler = async (event) => {
     const body = JSON.parse(event.body || "{}");
     const { sessionId, token, subscriptionId } = body;
 
-    const stripe = new Stripe(secretKey);
+    const stripe = new Stripe(secretKey, { apiVersion: STRIPE_API_VERSION });
 
     // --- Verify by token (subsequent visits) ---
     if (token && (subscriptionId || sessionId)) {
@@ -109,7 +110,7 @@ exports.handler = async (event) => {
     }
 
     const session = await stripe.checkout.sessions.retrieve(sessionId, {
-      expand: ["subscription"],
+      expand: ["subscription", "customer"],
     });
 
     if (session.payment_status !== "paid" && session.status !== "complete") {
@@ -140,7 +141,12 @@ exports.handler = async (event) => {
 
     // Generate signed token using the subscription ID
     const newToken = generateToken(subscription.id, signingKey);
-    const email = session.customer_details?.email || session.customer_email || "";
+    const email =
+      session.customer_details?.email ||
+      session.customer_email ||
+      session.customer?.email ||
+      "";
+    const amountTax = session.total_details?.amount_tax || 0;
 
     return {
       statusCode: 200,
@@ -152,6 +158,7 @@ exports.handler = async (event) => {
         subscriptionId: subscription.id,
         email,
         status: subscription.status,
+        amountTax,
       }),
     };
   } catch (err) {
