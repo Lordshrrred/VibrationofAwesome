@@ -12,6 +12,15 @@ const TARGETS = [
   "static/blog/matt/posts",
 ];
 
+const EXCLUDED_IMAGE_PATTERNS = [
+  /StarLogo\.png/i,
+  /field-guide-cover\.png/i,
+  /photo-rotator/i,
+  /ebook-cta/i,
+  /signature/i,
+  /^data:/i,
+];
+
 function walk(dir) {
   const out = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -33,15 +42,44 @@ function toAbsoluteUrl(rawUrl) {
   return null;
 }
 
+function isAllowedImage(rawUrl) {
+  if (!rawUrl) return false;
+  const url = rawUrl.trim();
+  return !EXCLUDED_IMAGE_PATTERNS.some((pattern) => pattern.test(url));
+}
+
+function getArticleBody(html) {
+  const match = html.match(
+    /<(article|div)\s+class="post-body"[^>]*>([\s\S]*?)(?:<div class="voa-photo-rotator"|<div data-ebook-cta|<div class="voa-ebook-cta"|<\/article>|<\/div>\s*<div class="post-footer")/i
+  );
+  return match ? match[2] : html;
+}
+
+function findFirstMatchingImage(fragment, extensionPattern = null) {
+  const imageRegex = /<img[^>]+src="([^"]+)"/gi;
+  let match;
+  while ((match = imageRegex.exec(fragment)) !== null) {
+    const candidate = match[1].trim();
+    if (!isAllowedImage(candidate)) continue;
+    if (extensionPattern && !extensionPattern.test(candidate)) continue;
+    return candidate;
+  }
+  return null;
+}
+
 function getBestImage(html) {
   const preloadMatch = html.match(/<link[^>]+rel="preload"[^>]+as="image"[^>]+href="([^"]+)"/i);
-  if (preloadMatch) return preloadMatch[1];
+  if (preloadMatch && isAllowedImage(preloadMatch[1])) return preloadMatch[1];
 
   const heroMatch = html.match(/background:[^;]*url\(['"]?([^)'"\s]+)['"]?\)\s+center\/cover\s+no-repeat/i);
-  if (heroMatch) return heroMatch[1];
+  if (heroMatch && isAllowedImage(heroMatch[1])) return heroMatch[1];
 
-  const imgMatch = html.match(/<img[^>]+src="([^"]+)"/i);
-  if (imgMatch) return imgMatch[1];
+  const articleBody = getArticleBody(html);
+  const svgImage = findFirstMatchingImage(articleBody, /\.svg(?:$|\?)/i);
+  if (svgImage) return svgImage;
+
+  const contentImage = findFirstMatchingImage(articleBody);
+  if (contentImage) return contentImage;
 
   return null;
 }
