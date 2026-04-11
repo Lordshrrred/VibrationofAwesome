@@ -688,6 +688,8 @@ const BOOM_URL      = "/_data/boom-posts.json";
 const MATT_URL      = "/_data/matt-posts.json";
 const FEEDER_POSTS_URL = "https://lordshrrred.github.io/VOA_Feeder/blog/posts.json";
 const FEEDER_SUFFIXES = ["-signal", "-shift", "-insight", "-guide"];
+const WORDPRESS_SITE_URL = "https://earthstarrisingsun.wordpress.com";
+const WORDPRESS_POSTS_API = "https://public-api.wordpress.com/rest/v1.1/sites/earthstarrisingsun.wordpress.com/posts?number=100";
 const VERIFY_CACHE  = "voa_url_verify_cache_v2"; // v2: busts old bad cache from netlify usage_exceeded errors
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
 
@@ -770,7 +772,8 @@ async function loadDashboard() {
     fetch(MATT_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(FEEDER_POSTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
   ]);
-  const resultsData = mergeFeederStatuses(resultsDataRaw, feederPosts);
+  const feederMerged = mergeFeederStatuses(resultsDataRaw, feederPosts);
+  const resultsData = await mergeWordPressStatuses(feederMerged);
 
   // Deduplicate log entries by slug (keep most recent per slug)
   const rawEntries = Array.isArray(logData.entries) ? logData.entries : [];
@@ -834,6 +837,58 @@ function mergeFeederStatuses(resultsData, feederPosts) {
         feeder: existing?.status === "success" ? existing : (inferred || existing),
       },
     };
+  });
+}
+
+async function fetchWordPressPosts() {
+  try {
+    const data = await fetch(WORDPRESS_POSTS_API).then(r => r.ok ? r.json() : null);
+    return Array.isArray(data?.posts) ? data.posts : [];
+  } catch (_) {
+    return [];
+  }
+}
+
+async function mergeWordPressStatuses(resultsData) {
+  const posts = await fetchWordPressPosts();
+  return resultsData.map(entry => {
+    const existing = entry?.syndication?.wordpress_earthstar;
+    if (!existing) return entry;
+
+    const matched = posts.find(post => String(post?.content || "").includes(entry.voa_url));
+    if (matched) {
+      return {
+        ...entry,
+        syndication: {
+          ...entry.syndication,
+          wordpress_earthstar: {
+            ...existing,
+            status: "success",
+            url: matched.URL || existing.url || null,
+            backlink_confirmed: true,
+            backlink_source_url: entry.voa_url,
+          },
+        },
+      };
+    }
+
+    if (existing.status === "success" && !existing.url) {
+      return {
+        ...entry,
+        syndication: {
+          ...entry.syndication,
+          wordpress_earthstar: {
+            ...existing,
+            status: "failed",
+            error: existing.error || "Not found on earthstarrisingsun.wordpress.com",
+            backlink_confirmed: false,
+            backlink_source_url: entry.voa_url,
+          },
+        },
+      };
+    }
+
+    return entry;
   });
 }
 

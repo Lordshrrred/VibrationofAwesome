@@ -158,21 +158,25 @@ async function listPublerAccounts(headers, baseUrl = "https://app.publer.com/api
   return Array.isArray(data) ? data : [];
 }
 
-async function resolvePublerWordPressAccount(headers, baseUrl = "https://app.publer.com/api/v1") {
+async function getPublerWordPressAccount(headers, baseUrl = "https://app.publer.com/api/v1") {
   const explicitId = process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_ID
     || process.env.PUBLER_WORDPRESS_ACCOUNT_ID;
-  if (explicitId) return explicitId;
+  const accounts = await listPublerAccounts(headers, baseUrl);
+  if (explicitId) {
+    const matchById = accounts.find(account => account?.id === explicitId);
+    if (!matchById?.id) throw new Error(`Could not find Publer WordPress account ${explicitId}`);
+    return matchById;
+  }
 
   const preferredName = (process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_NAME || "Earthstarrising").trim().toLowerCase();
-  const accounts = await listPublerAccounts(headers, baseUrl);
-  const match = accounts.find(account =>
+  const matchByName = accounts.find(account =>
     account?.provider === "wordpress_oauth"
     && String(account?.name || "").trim().toLowerCase() === preferredName
   );
-  if (!match?.id) {
+  if (!matchByName?.id) {
     throw new Error("Could not find Publer WordPress account for EarthStarRising");
   }
-  return match.id;
+  return matchByName;
 }
 
 // ── OAuth 1.0a (Tumblr) ───────────────────────────────────────────────────────
@@ -634,7 +638,11 @@ function createWordPressContentBlocks(html) {
 
 async function postToWordPressViaPubler(article, imageUrl = null) {
   const { BASE, headers } = getPublerConfig();
-  const accountId = await resolvePublerWordPressAccount(headers, BASE);
+  const account = await getPublerWordPressAccount(headers, BASE);
+  if (account?.permissions?.can_access === false) {
+    throw new Error("Publer WordPress account is connected but does not currently have publishing access");
+  }
+  const accountId = account.id;
   const categoryIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_CATEGORY_IDS, ["1"]);
   const tagIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_TAG_IDS, []);
   const network = {
