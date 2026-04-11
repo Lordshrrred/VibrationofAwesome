@@ -125,6 +125,29 @@ function resolvePublerTaxonomyIds(requestedIds, availableItems, fallbackIds = []
   return availableIds.length ? availableIds : fallbackIds;
 }
 
+function hasWordPressDirectConfig() {
+  return Boolean(process.env.WORDPRESS_OAUTH2_TOKEN && process.env.WORDPRESS_BLOG);
+}
+
+function getWordPressDirectConfig() {
+  const token = process.env.WORDPRESS_OAUTH2_TOKEN;
+  const blog = process.env.WORDPRESS_BLOG || process.env.WORDPRESS_SITE_URL;
+  if (!token) throw new Error("WORDPRESS_OAUTH2_TOKEN not set");
+  if (!blog) throw new Error("WORDPRESS_BLOG not set");
+  return {
+    token,
+    blog,
+    baseUrl: "https://public-api.wordpress.com/rest/v1.1",
+  };
+}
+
+function getPublicImageUrl(imageUrl) {
+  if (!imageUrl) return null;
+  if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
+  if (imageUrl.startsWith("/")) return `https://vibrationofawesome.com${imageUrl}`;
+  return `https://vibrationofawesome.com/${imageUrl.replace(/^\/+/, "")}`;
+}
+
 function getPublerConfig() {
   const key  = process.env.PUBLER_API_KEY;
   const wsId = process.env.PUBLER_WORKSPACE_ID;
@@ -683,6 +706,47 @@ Requirements:
   return { title, excerpt, html };
 }
 
+async function postToWordPressDirect(article, imageUrl = null) {
+  const { token, blog, baseUrl } = getWordPressDirectConfig();
+  const endpoint = `${baseUrl}/sites/${encodeURIComponent(blog)}/posts/new`;
+  const categoryNames = parseCsvEnv(process.env.WORDPRESS_CATEGORY_NAMES, []);
+  const tagNames = parseCsvEnv(process.env.WORDPRESS_TAG_NAMES, []);
+
+  const body = new URLSearchParams({
+    title: article.title,
+    content: article.html,
+    excerpt: article.excerpt || "",
+    slug: article.slug || "",
+    status: "publish",
+    format: "standard",
+  });
+
+  if (categoryNames.length) body.append("categories", categoryNames.join(","));
+  if (tagNames.length) body.append("tags", tagNames.join(","));
+
+  const publicImageUrl = getPublicImageUrl(imageUrl);
+  if (publicImageUrl) body.append("media_urls[]", publicImageUrl);
+
+  const resp = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body,
+  });
+  const data = await resp.json().catch(() => ({}));
+  if (!resp.ok) {
+    throw new Error(`WordPress direct: ${data?.error_description || data?.message || data?.error || resp.status}`);
+  }
+
+  return {
+    postId: String(data.ID || data.id || article.slug || "published"),
+    postUrl: firstNonEmpty(data.URL, data.url, data.short_URL),
+  };
+}
+
 function createWordPressContentBlocks(html) {
   return [
     {
@@ -1064,10 +1128,14 @@ export async function syndicatePost(lane, slug, options = {}) {
   await attempt("wordpress_earthstar", async () => {
     const wordpressArticle = options.wordpressArticle
       || await generateWordPressArticle(post.title, sourceText, postUrl, anthropic);
-    return postToWordPressViaPubler({
+    const article = {
       ...wordpressArticle,
       slug: `${slug}-earthstar`,
-    }, imageUrl);
+    };
+    if (hasWordPressDirectConfig()) {
+      return postToWordPressDirect(article, imageUrl);
+    }
+    return postToWordPressViaPubler(article, imageUrl);
   });
 
   // ── 7. Build log entry ──

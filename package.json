@@ -16,6 +16,7 @@
     "archive-og": "node scripts/add-archive-og-images.js",
     "fb-token": "node scripts/get-facebook-token.js",
     "pinterest-token": "node scripts/get-pinterest-token.js",
+    "wordpress-token": "python3 scripts/get-wordpress-oauth-token.py",
     "pinterest-demo": "node scripts/pinterest-standard-access-demo.js",
     "syndicate:wordpress-backlog": "node scripts/backfill-wordpress-publer.js"
   },
