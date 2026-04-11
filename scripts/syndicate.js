@@ -159,7 +159,8 @@ async function listPublerAccounts(headers, baseUrl = "https://app.publer.com/api
 }
 
 async function resolvePublerWordPressAccount(headers, baseUrl = "https://app.publer.com/api/v1") {
-  const explicitId = process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_ID;
+  const explicitId = process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_ID
+    || process.env.PUBLER_WORDPRESS_ACCOUNT_ID;
   if (explicitId) return explicitId;
 
   const preferredName = (process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_NAME || "Earthstarrising").trim().toLowerCase();
