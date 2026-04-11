@@ -4,7 +4,7 @@
   const MATT_POST_PREFIX = "static/blog/matt/posts/";
   const RAW_BASE = "https://raw.githubusercontent.com/Lordshrrred/VibrationofAwesome/main/";
   const DASH_SESSION_KEY = "voa_dash_authed";
-  const GITHUB_SESSION_KEY = "voa_post_studio_auth";
+  const GITHUB_STORAGE_KEY = "voa_post_studio_auth";
   const CONFIG_URL = "/_data/dashboard-config.json";
   const AUTOSAVE_PREFIX = "voa_forest_temple_autosave:";
 
@@ -26,6 +26,7 @@
     app: document.getElementById("app"),
     githubAuthForm: document.getElementById("github-auth-form"),
     githubTokenInput: document.getElementById("github-token-input"),
+    githubForgetButton: document.getElementById("github-forget-button"),
     githubAuthError: document.getElementById("github-auth-error"),
     postList: document.getElementById("post-list"),
     postSearch: document.getElementById("post-search"),
@@ -767,14 +768,21 @@
 
   function lockStudio() {
     sessionStorage.removeItem(DASH_SESSION_KEY);
-    sessionStorage.removeItem(GITHUB_SESSION_KEY);
     window.location.reload();
+  }
+
+  function forgetGithubToken() {
+    state.token = "";
+    localStorage.removeItem(GITHUB_STORAGE_KEY);
+    els.authStatus.textContent = "GitHub token removed. Connect GitHub to enable saves again.";
+    els.githubAuthError.hidden = true;
+    refreshDirtyState();
   }
 
   async function connectGithubToken(token) {
     await validateTokenForStudio(token);
     state.token = token;
-    sessionStorage.setItem(GITHUB_SESSION_KEY, JSON.stringify({ token: token }));
+    localStorage.setItem(GITHUB_STORAGE_KEY, JSON.stringify({ token: token }));
     els.authStatus.textContent = "GitHub token accepted with write access. Save is enabled.";
     els.githubAuthError.hidden = true;
     els.githubTokenInput.value = "";
@@ -854,6 +862,7 @@
     els.downloadButton.addEventListener("click", downloadCurrentPost);
     els.resetButton.addEventListener("click", resetCurrentPost);
     els.lockButton.addEventListener("click", lockStudio);
+    els.githubForgetButton.addEventListener("click", forgetGithubToken);
     function handleSave() {
       savePost().catch(function (error) {
         setStatus(error.message || "Save failed.", true);
@@ -905,7 +914,7 @@
       await bootStudio();
     }
 
-    const saved = sessionStorage.getItem(GITHUB_SESSION_KEY);
+    const saved = localStorage.getItem(GITHUB_STORAGE_KEY);
     if (authed && saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -914,7 +923,7 @@
           refreshDirtyState();
         }
       } catch (_) {
-        sessionStorage.removeItem(GITHUB_SESSION_KEY);
+        localStorage.removeItem(GITHUB_STORAGE_KEY);
       }
     }
 
