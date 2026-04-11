@@ -3,7 +3,9 @@
   const GITHUB_BRANCH = "main";
   const MATT_POST_PREFIX = "static/blog/matt/posts/";
   const RAW_BASE = "https://raw.githubusercontent.com/Lordshrrred/VibrationofAwesome/main/";
-  const SESSION_KEY = "voa_post_studio_auth";
+  const DASH_SESSION_KEY = "voa_dash_authed";
+  const GITHUB_SESSION_KEY = "voa_post_studio_auth";
+  const CONFIG_URL = "/_data/dashboard-config.json";
   const AUTOSAVE_PREFIX = "voa_forest_temple_autosave:";
 
   const state = {
@@ -22,6 +24,9 @@
     gatePassword: document.getElementById("gate-password"),
     gateError: document.getElementById("gate-error"),
     app: document.getElementById("app"),
+    githubAuthForm: document.getElementById("github-auth-form"),
+    githubTokenInput: document.getElementById("github-token-input"),
+    githubAuthError: document.getElementById("github-auth-error"),
     postList: document.getElementById("post-list"),
     postSearch: document.getElementById("post-search"),
     entryHeading: document.getElementById("entry-heading"),
@@ -93,6 +98,18 @@
     window.addEventListener("resize", resize);
     resize();
     tick();
+  }
+
+  async function sha256hex(str) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(function (b) {
+      return b.toString(16).padStart(2, "0");
+    }).join("");
+  }
+
+  function showApp() {
+    els.gate.hidden = true;
+    els.app.style.display = "grid";
   }
 
   function initEditor() {
@@ -443,7 +460,7 @@
       els.saveBannerTitle.textContent = "No post selected yet";
       els.saveBannerCopy.textContent = state.token
         ? "Pick a Matt post from the left to load it, then use Save Live Edit to write changes back to the live blog."
-        : "Unlock the studio, open a Matt post, make your edits, then press Save Live Edit.";
+        : "Connect a GitHub token, open a Matt post, make your edits, then press Save Live Edit.";
       setSaveControls({
         disabled: true,
         label: "Save Live Edit",
@@ -503,7 +520,7 @@
     state.initialSnapshot = currentSnapshot();
     els.authStatus.textContent = state.token
       ? "Editing " + post.path
-      : "Studio is locked. Unlock with a GitHub token to enable saves.";
+      : "Editor unlocked. Connect a GitHub token to enable saves.";
     updateLinks();
     updateSnapshot(post);
     refreshDirtyState();
@@ -749,37 +766,86 @@
   }
 
   function lockStudio() {
-    sessionStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(DASH_SESSION_KEY);
+    sessionStorage.removeItem(GITHUB_SESSION_KEY);
     window.location.reload();
   }
 
-  function bindEvents() {
-    els.gateForm.addEventListener("submit", async function (event) {
+  async function connectGithubToken(token) {
+    await validateTokenForStudio(token);
+    state.token = token;
+    sessionStorage.setItem(GITHUB_SESSION_KEY, JSON.stringify({ token: token }));
+    els.authStatus.textContent = "GitHub token accepted with write access. Save is enabled.";
+    els.githubAuthError.hidden = true;
+    els.githubTokenInput.value = "";
+    refreshDirtyState();
+  }
+
+  async function initDashboardGate() {
+    if (sessionStorage.getItem(DASH_SESSION_KEY) === "1") {
+      showApp();
+      return true;
+    }
+
+    let configHash = null;
+    try {
+      const cfg = await fetch(CONFIG_URL).then(function (response) {
+        return response.ok ? response.json() : null;
+      });
+      configHash = cfg && cfg.passwordHash ? cfg.passwordHash : null;
+    } catch (_) {}
+
+    async function tryLogin() {
+      const value = els.gatePassword.value.trim();
+      if (!value) return;
+      if (!configHash) {
+        sessionStorage.setItem(DASH_SESSION_KEY, "1");
+        showApp();
+        await bootStudio();
+        return;
+      }
+      const hash = await sha256hex(value);
+      if (hash === configHash) {
+        els.gateError.hidden = true;
+        sessionStorage.setItem(DASH_SESSION_KEY, "1");
+        showApp();
+        await bootStudio();
+      } else {
+        els.gateError.hidden = false;
+        els.gateError.textContent = "That password did not unlock the editor.";
+        els.gatePassword.value = "";
+      }
+    }
+
+    els.gateForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      els.gateError.hidden = true;
-      const submitButton = els.gateForm.querySelector("button[type='submit']");
+      tryLogin();
+    });
+
+    return false;
+  }
+
+  function bindEvents() {
+    els.githubAuthForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      els.githubAuthError.hidden = true;
+      const submitButton = els.githubAuthForm.querySelector("button[type='submit']");
       const originalLabel = submitButton ? submitButton.textContent : "";
       try {
         if (submitButton) {
           submitButton.disabled = true;
-          submitButton.textContent = "Unlocking...";
+          submitButton.textContent = "Connecting...";
         }
-        const token = els.gatePassword.value.trim();
+        const token = els.githubTokenInput.value.trim();
         if (!token) throw new Error("GitHub token required");
-        await validateTokenForStudio(token);
-        await bootStudio();
-        state.token = token;
-        sessionStorage.setItem(SESSION_KEY, JSON.stringify({ token: token }));
-        els.authStatus.textContent = "GitHub token accepted with write access. Save is enabled.";
-        els.gate.hidden = true;
-        refreshDirtyState();
+        await connectGithubToken(token);
       } catch (error) {
-        els.gateError.hidden = false;
-        els.gateError.textContent = friendlyGithubError(error) || "That credential did not unlock the editor.";
+        els.githubAuthError.hidden = false;
+        els.githubAuthError.textContent = friendlyGithubError(error) || "That credential did not unlock saving.";
       } finally {
         if (submitButton) {
           submitButton.disabled = false;
-          submitButton.textContent = originalLabel || "Unlock Studio";
+          submitButton.textContent = originalLabel || "Connect GitHub";
         }
       }
     });
@@ -827,31 +893,32 @@
   async function init() {
     drawStars();
     bindEvents();
+    const authed = await initDashboardGate();
 
-    const saved = sessionStorage.getItem(SESSION_KEY);
     setSaveControls({
       disabled: true,
       label: "Save Live Edit",
       chipText: "Locked",
       chipState: "",
     });
-    if (saved) {
+    if (authed && !state.booted) {
+      await bootStudio();
+    }
+
+    const saved = sessionStorage.getItem(GITHUB_SESSION_KEY);
+    if (authed && saved) {
       try {
         const parsed = JSON.parse(saved);
         if (parsed.token) {
-          await bootStudio();
-          state.token = parsed.token;
-          await validateTokenForStudio(state.token);
-          els.authStatus.textContent = "GitHub token already active with write access. Save is enabled.";
-          els.gate.hidden = true;
+          await connectGithubToken(parsed.token);
           refreshDirtyState();
         }
       } catch (_) {
-        sessionStorage.removeItem(SESSION_KEY);
+        sessionStorage.removeItem(GITHUB_SESSION_KEY);
       }
     }
 
-    if (!state.booted) {
+    if (authed && !state.booted) {
       try {
         await bootStudio();
       } catch (error) {
