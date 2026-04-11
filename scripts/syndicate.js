@@ -723,9 +723,9 @@ async function postToWordPressDirect(article, imageUrl = null) {
 
   if (categoryNames.length) body.append("categories", categoryNames.join(","));
   if (tagNames.length) body.append("tags", tagNames.join(","));
-
-  const publicImageUrl = getPublicImageUrl(imageUrl);
-  if (publicImageUrl) body.append("media_urls[]", publicImageUrl);
+  // WordPress.com turns unsupported external media imports into a stray empty
+  // gallery shortcode in some cases, so keep direct posts clean until we add a
+  // proper upload/attachment flow.
 
   const resp = await fetch(endpoint, {
     method: "POST",
