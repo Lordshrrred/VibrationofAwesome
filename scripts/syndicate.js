@@ -81,6 +81,27 @@ function firstNonEmpty(...values) {
   return values.find(v => typeof v === "string" && v.trim()) || null;
 }
 
+async function fetchPublerJson(url, options = {}, attempts = 3) {
+  let lastResponse = null;
+  for (let attempt = 0; attempt < attempts; attempt++) {
+    const response = await fetch(url, options);
+    lastResponse = response;
+    if (response.status !== 429) {
+      const data = await response.json().catch(() => ({}));
+      return { response, data };
+    }
+
+    const retryAfter = Number(response.headers.get("retry-after")) || (attempt + 1) * 3;
+    if (attempt < attempts - 1) {
+      await sleep(retryAfter * 1000);
+      continue;
+    }
+  }
+
+  const data = await lastResponse?.json().catch(() => ({}));
+  return { response: lastResponse, data };
+}
+
 function parseCsvEnv(value, fallback = []) {
   if (!value || !String(value).trim()) return fallback;
   return String(value)
@@ -124,9 +145,7 @@ function getPublerConfig() {
 async function pollPublerJob(jobId, headers, baseUrl = "https://app.publer.com/api/v1", maxAttempts = 30, delayMs = 2000) {
   for (let i = 0; i < maxAttempts; i++) {
     await sleep(delayMs);
-    const status = await fetch(`${baseUrl}/job_status/${jobId}`, { headers })
-      .then(r => r.json())
-      .catch(() => ({}));
+    const { data: status } = await fetchPublerJson(`${baseUrl}/job_status/${jobId}`, { headers }, 3);
     if (status.status === "complete" || status.status === "completed") return status;
     if (status.status === "failed" || status.status === "error") return status;
   }
@@ -142,7 +161,7 @@ function extractPublerFailure(jobStatus) {
 }
 
 async function uploadPublerMediaFromUrl(imageUrl, headers, baseUrl = "https://app.publer.com/api/v1") {
-  const upResp = await fetch(`${baseUrl}/media/from-url`, {
+  const { response: upResp, data: upData } = await fetchPublerJson(`${baseUrl}/media/from-url`, {
     method: "POST",
     headers,
     body: JSON.stringify({
@@ -151,8 +170,7 @@ async function uploadPublerMediaFromUrl(imageUrl, headers, baseUrl = "https://ap
       direct_upload: false,
       in_library: false,
     }),
-  });
-  const upData = await upResp.json().catch(() => ({}));
+  }, 3);
   if (!upResp.ok) throw new Error(`Publer media upload: ${upData.message || upResp.status}`);
 
   if (!upData.job_id) {
@@ -168,8 +186,7 @@ async function uploadPublerMediaFromUrl(imageUrl, headers, baseUrl = "https://ap
 }
 
 async function listPublerAccounts(headers, baseUrl = "https://app.publer.com/api/v1") {
-  const resp = await fetch(`${baseUrl}/accounts`, { headers });
-  const data = await resp.json().catch(() => ([]));
+  const { response: resp, data } = await fetchPublerJson(`${baseUrl}/accounts`, { headers }, 3);
   if (!resp.ok) throw new Error(`Publer accounts: ${data.message || resp.status}`);
   if (Array.isArray(data)) return data;
   if (Array.isArray(data?.data)) return data.data;
@@ -181,8 +198,7 @@ async function findRecentPublerWordPressPost(accountId, title, headers, baseUrl 
     "account_ids[]": accountId,
     limit: "10",
   });
-  const resp = await fetch(`${baseUrl}/posts?${params.toString()}`, { headers });
-  const data = await resp.json().catch(() => ({}));
+  const { response: resp, data } = await fetchPublerJson(`${baseUrl}/posts?${params.toString()}`, { headers }, 3);
   if (!resp.ok) return null;
 
   const posts = Array.isArray(data?.posts) ? data.posts : [];
@@ -197,13 +213,18 @@ async function findRecentPublerWordPressPost(accountId, title, headers, baseUrl 
 async function getPublerWordPressAccount(headers, baseUrl = "https://app.publer.com/api/v1") {
   const explicitId = process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_ID
     || process.env.PUBLER_WORDPRESS_ACCOUNT_ID;
-  const accounts = await listPublerAccounts(headers, baseUrl);
   if (explicitId) {
-    const matchById = accounts.find(account => account?.id === explicitId);
-    if (!matchById?.id) throw new Error(`Could not find Publer WordPress account ${explicitId}`);
-    return matchById;
+    return {
+      id: explicitId,
+      provider: "wordpress_oauth",
+      name: process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_NAME || "Earthstarrising",
+      permissions: { can_access: false },
+      wordpress_categories: [],
+      wordpress_tags: [],
+    };
   }
 
+  const accounts = await listPublerAccounts(headers, baseUrl);
   const preferredName = (process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_NAME || "Earthstarrising").trim().toLowerCase();
   const matchByName = accounts.find(account =>
     account?.provider === "wordpress_oauth"
@@ -672,29 +693,78 @@ function createWordPressContentBlocks(html) {
   ];
 }
 
+function decodeHtmlEntities(text) {
+  return String(text || "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, "\"")
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
+function createSimpleWordPressBlocks(html) {
+  const blocks = [];
+  const pattern = /<(p|h2)[^>]*>([\s\S]*?)<\/\1>/gi;
+  let match;
+  while ((match = pattern.exec(html)) !== null) {
+    const tag = match[1].toLowerCase();
+    const inner = decodeHtmlEntities(match[2].replace(/<br\s*\/?>/gi, "\n").trim());
+    if (!inner) continue;
+    if (tag === "h2") {
+      blocks.push({
+        id: makeBlockId("hdr"),
+        type: "header",
+        data: {
+          text: inner.replace(/<[^>]+>/g, "").trim(),
+          level: 2,
+        },
+      });
+    } else {
+      blocks.push({
+        id: makeBlockId("p"),
+        type: "paragraph",
+        data: { text: inner },
+      });
+    }
+  }
+
+  if (!blocks.length) {
+    blocks.push({
+      id: makeBlockId("p"),
+      type: "paragraph",
+      data: { text: stripHtml(html) },
+    });
+  }
+  return blocks;
+}
+
+function buildMinimalWordPressNetwork(article) {
+  return {
+    type: "article",
+    title: article.title,
+    excerpt: article.excerpt || undefined,
+    url: article.slug || undefined,
+    content: createSimpleWordPressBlocks(article.html),
+  };
+}
+
 async function postToWordPressViaPubler(article, imageUrl = null) {
   const { BASE, headers } = getPublerConfig();
   const account = await getPublerWordPressAccount(headers, BASE);
-  if (account?.permissions?.can_access === false) {
-    throw new Error("Publer WordPress account is connected but does not currently have publishing access");
-  }
   const accountId = account.id;
   const requestedCategoryIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_CATEGORY_IDS, []);
   const requestedTagIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_TAG_IDS, []);
   const categoryIds = resolvePublerTaxonomyIds(requestedCategoryIds, account?.wordpress_categories, ["1"]);
   const tagIds = resolvePublerTaxonomyIds(requestedTagIds, account?.wordpress_tags, []);
-  const network = {
-    type: "article",
-    title: article.title,
-    excerpt: article.excerpt,
-    url: article.slug || undefined,
-    content: createWordPressContentBlocks(article.html),
-    ...(imageUrl ? { featured_media: { path: imageUrl } } : {}),
-  };
-  if (categoryIds.length) network.categories = categoryIds;
-  if (tagIds.length) network.tags = tagIds;
+  const network = buildMinimalWordPressNetwork(article);
+  if (account?.permissions?.can_access !== false) {
+    if (categoryIds.length) network.categories = categoryIds;
+    if (tagIds.length) network.tags = tagIds;
+    if (imageUrl) network.featured_media = { path: imageUrl };
+  }
 
-  const resp = await fetch(`${BASE}/posts/schedule/publish`, {
+  const { response: resp, data } = await fetchPublerJson(`${BASE}/posts/schedule/publish`, {
     method: "POST",
     headers,
     body: JSON.stringify({
@@ -706,15 +776,25 @@ async function postToWordPressViaPubler(article, imageUrl = null) {
         }],
       },
     }),
-  });
-  const data = await resp.json().catch(() => ({}));
+  }, 3);
   if (!resp.ok) throw new Error(`Publer (wordpress_earthstar): ${data.message || data.error || data.errors?.[0] || resp.status}`);
 
-  let postId = data.post?.id || data.id || null;
-  let postUrl = firstNonEmpty(data.post?.post_link, data.post?.url, data.post_link, data.url);
+  const payloadRoot = data?.data && typeof data.data === "object" ? data.data : data;
+  let postId = payloadRoot?.post?.id || payloadRoot?.id || data.post?.id || data.id || null;
+  let postUrl = firstNonEmpty(
+    payloadRoot?.post?.post_link,
+    payloadRoot?.post?.url,
+    payloadRoot?.post_link,
+    payloadRoot?.url,
+    data.post?.post_link,
+    data.post?.url,
+    data.post_link,
+    data.url,
+  );
+  const jobId = data.job_id || data?.data?.job_id || payloadRoot?.job_id || null;
 
-  if (data.job_id) {
-    const status = await pollPublerJob(data.job_id, headers, BASE, 20, 2000);
+  if (jobId) {
+    const status = await pollPublerJob(jobId, headers, BASE, 20, 2000);
     const failure = extractPublerFailure(status);
     if (failure) throw new Error(`Publer (wordpress_earthstar): ${failure}`);
 
