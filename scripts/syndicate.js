@@ -89,6 +89,21 @@ function parseCsvEnv(value, fallback = []) {
     .filter(Boolean);
 }
 
+function resolvePublerTaxonomyIds(requestedIds, availableItems, fallbackIds = []) {
+  const availableIds = Array.isArray(availableItems)
+    ? availableItems
+        .map(item => String(item?.id || "").trim())
+        .filter(Boolean)
+    : [];
+
+  if (!availableIds.length) return requestedIds.length ? requestedIds : fallbackIds;
+  if (!requestedIds.length) return availableIds.length ? availableIds : fallbackIds;
+
+  const matchedIds = requestedIds.filter(id => availableIds.includes(String(id)));
+  if (matchedIds.length) return matchedIds;
+  return availableIds.length ? availableIds : fallbackIds;
+}
+
 function getPublerConfig() {
   const key  = process.env.PUBLER_API_KEY;
   const wsId = process.env.PUBLER_WORKSPACE_ID;
@@ -99,6 +114,7 @@ function getPublerConfig() {
     BASE: "https://app.publer.com/api/v1",
     headers: {
       "Content-Type": "application/json",
+      "Accept": "application/json",
       "Authorization": `Bearer-API ${key}`,
       "Publer-Workspace-Id": wsId,
     },
@@ -155,7 +171,27 @@ async function listPublerAccounts(headers, baseUrl = "https://app.publer.com/api
   const resp = await fetch(`${baseUrl}/accounts`, { headers });
   const data = await resp.json().catch(() => ([]));
   if (!resp.ok) throw new Error(`Publer accounts: ${data.message || resp.status}`);
-  return Array.isArray(data) ? data : [];
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.data)) return data.data;
+  return [];
+}
+
+async function findRecentPublerWordPressPost(accountId, title, headers, baseUrl = "https://app.publer.com/api/v1") {
+  const params = new URLSearchParams({
+    "account_ids[]": accountId,
+    limit: "10",
+  });
+  const resp = await fetch(`${baseUrl}/posts?${params.toString()}`, { headers });
+  const data = await resp.json().catch(() => ({}));
+  if (!resp.ok) return null;
+
+  const posts = Array.isArray(data?.posts) ? data.posts : [];
+  const normalizedTitle = String(title || "").trim().toLowerCase();
+  const match = posts.find(post =>
+    String(post?.title || "").trim().toLowerCase() === normalizedTitle
+      && firstNonEmpty(post?.post_link, post?.url)
+  );
+  return firstNonEmpty(match?.post_link, match?.url);
 }
 
 async function getPublerWordPressAccount(headers, baseUrl = "https://app.publer.com/api/v1") {
@@ -643,18 +679,20 @@ async function postToWordPressViaPubler(article, imageUrl = null) {
     throw new Error("Publer WordPress account is connected but does not currently have publishing access");
   }
   const accountId = account.id;
-  const categoryIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_CATEGORY_IDS, ["1"]);
-  const tagIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_TAG_IDS, []);
+  const requestedCategoryIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_CATEGORY_IDS, []);
+  const requestedTagIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_TAG_IDS, []);
+  const categoryIds = resolvePublerTaxonomyIds(requestedCategoryIds, account?.wordpress_categories, ["1"]);
+  const tagIds = resolvePublerTaxonomyIds(requestedTagIds, account?.wordpress_tags, []);
   const network = {
     type: "article",
     title: article.title,
     excerpt: article.excerpt,
     url: article.slug || undefined,
     content: createWordPressContentBlocks(article.html),
-    categories: categoryIds,
-    tags: tagIds,
     ...(imageUrl ? { featured_media: { path: imageUrl } } : {}),
   };
+  if (categoryIds.length) network.categories = categoryIds;
+  if (tagIds.length) network.tags = tagIds;
 
   const resp = await fetch(`${BASE}/posts/schedule/publish`, {
     method: "POST",
@@ -689,6 +727,10 @@ async function postToWordPressViaPubler(article, imageUrl = null) {
 
     postId = firstNonEmpty(String(success?.id || ""), String(success?.post_id || ""), String(postId || "")) || "queued";
     postUrl = firstNonEmpty(success?.post_link, success?.url, postUrl);
+  }
+
+  if (!postUrl) {
+    postUrl = await findRecentPublerWordPressPost(accountId, article.title, headers, BASE);
   }
 
   return { postId: String(postId || "queued"), postUrl: postUrl || null };
