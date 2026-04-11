@@ -671,6 +671,7 @@ const PLATFORMS = [
   { key: "devto",              label: "Dev",    name: "Dev.to" },
   { key: "tumblr",             label: "Tumblr", name: "Tumblr" },
   { key: "blogger",            label: "Blog",   name: "Blogger" },
+  { key: "wordpress_earthstar",label: "WP",     name: "WordPress (EarthStarRising)" },
   { key: "pinterest",          label: "Pins",   name: "Pinterest" },
   { key: "instagram",          label: "Insta",  name: "Instagram ⓘ", tooltip: "No clickable links in Instagram posts ~ visual reach only" },
   { key: "threads",            label: "Thrd",   name: "Threads" },
@@ -871,8 +872,8 @@ function renderStats(entries, results, drip) {
   const activeCount = feederHasSuccess ? PLATFORMS.length : baseCount;
   document.getElementById("stat-platforms").textContent = activeCount;
   document.getElementById("stat-platforms-sub").textContent = feederHasSuccess
-    ? "Bsky·Mast·FB-V·FB-E·Dev·Tumblr·Blog·Pins·Insta·Thrd·Feeder"
-    : "Bsky·Mast·FB-V·FB-E·Dev·Tumblr·Blog·Pins·Insta·Thrd";
+    ? "Bsky·Mast·FB-V·FB-E·Dev·Tumblr·Blog·WP·Pins·Insta·Thrd·Feeder"
+    : "Bsky·Mast·FB-V·FB-E·Dev·Tumblr·Blog·WP·Pins·Insta·Thrd";
 
   // Backlink health card
   if (results.length > 0) {

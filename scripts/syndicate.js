@@ -3,7 +3,8 @@
  * syndicate.js ~ Full content syndication engine for vibrationofawesome.com
  *
  * Platforms: Bluesky · Mastodon · Facebook (VOA + EarthStar) · Pinterest
- *            Dev.to · Tumblr · Instagram (Publer) · Threads (Publer) · Blogger
+ *            Dev.to · Tumblr · Instagram (Publer) · Threads (Publer)
+ *            Blogger · WordPress (EarthStarRising via Publer)
  *
  * CLI:  node scripts/syndicate.js --lane [matt|boom] --slug <post-slug> [--keyword "search term"] [--blogger-only]
  * API:  import { syndicatePost } from "./syndicate.js"
@@ -66,6 +67,111 @@ function pctEncode(s) {
   return encodeURIComponent(String(s))
     .replace(/!/g, "%21").replace(/'/g, "%27")
     .replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/\*/g, "%2A");
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function makeBlockId(prefix = "blk") {
+  return `${prefix}_${crypto.randomBytes(5).toString("hex")}`;
+}
+
+function firstNonEmpty(...values) {
+  return values.find(v => typeof v === "string" && v.trim()) || null;
+}
+
+function parseCsvEnv(value, fallback = []) {
+  if (!value || !String(value).trim()) return fallback;
+  return String(value)
+    .split(",")
+    .map(part => part.trim())
+    .filter(Boolean);
+}
+
+function getPublerConfig() {
+  const key  = process.env.PUBLER_API_KEY;
+  const wsId = process.env.PUBLER_WORKSPACE_ID;
+  if (!key)  throw new Error("PUBLER_API_KEY not set");
+  if (!wsId) throw new Error("PUBLER_WORKSPACE_ID not set");
+
+  return {
+    BASE: "https://app.publer.com/api/v1",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer-API ${key}`,
+      "Publer-Workspace-Id": wsId,
+    },
+  };
+}
+
+async function pollPublerJob(jobId, headers, baseUrl = "https://app.publer.com/api/v1", maxAttempts = 30, delayMs = 2000) {
+  for (let i = 0; i < maxAttempts; i++) {
+    await sleep(delayMs);
+    const status = await fetch(`${baseUrl}/job_status/${jobId}`, { headers })
+      .then(r => r.json())
+      .catch(() => ({}));
+    if (status.status === "complete" || status.status === "completed") return status;
+    if (status.status === "failed" || status.status === "error") return status;
+  }
+  throw new Error("Publer job timed out");
+}
+
+function extractPublerFailure(jobStatus) {
+  const failures = jobStatus?.payload?.failures;
+  if (!failures) return null;
+  const firstFailureGroup = Object.values(failures).find(Array.isArray);
+  if (firstFailureGroup?.[0]?.message) return firstFailureGroup[0].message;
+  return null;
+}
+
+async function uploadPublerMediaFromUrl(imageUrl, headers, baseUrl = "https://app.publer.com/api/v1") {
+  const upResp = await fetch(`${baseUrl}/media/from-url`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      media: [{ url: imageUrl, name: "post-image" }],
+      type: "single",
+      direct_upload: false,
+      in_library: false,
+    }),
+  });
+  const upData = await upResp.json().catch(() => ({}));
+  if (!upResp.ok) throw new Error(`Publer media upload: ${upData.message || upResp.status}`);
+
+  if (!upData.job_id) {
+    return Array.isArray(upData) ? upData[0]?.id : upData.id;
+  }
+
+  const job = await pollPublerJob(upData.job_id, headers, baseUrl);
+  const failure = extractPublerFailure(job);
+  if (failure) throw new Error(`Publer media upload: ${failure}`);
+  const mediaId = Array.isArray(job.payload) ? job.payload[0]?.id : job.payload?.id;
+  if (!mediaId) throw new Error("Publer media upload timed out");
+  return mediaId;
+}
+
+async function listPublerAccounts(headers, baseUrl = "https://app.publer.com/api/v1") {
+  const resp = await fetch(`${baseUrl}/accounts`, { headers });
+  const data = await resp.json().catch(() => ([]));
+  if (!resp.ok) throw new Error(`Publer accounts: ${data.message || resp.status}`);
+  return Array.isArray(data) ? data : [];
+}
+
+async function resolvePublerWordPressAccount(headers, baseUrl = "https://app.publer.com/api/v1") {
+  const explicitId = process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_ID;
+  if (explicitId) return explicitId;
+
+  const preferredName = (process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_NAME || "Earthstarrising").trim().toLowerCase();
+  const accounts = await listPublerAccounts(headers, baseUrl);
+  const match = accounts.find(account =>
+    account?.provider === "wordpress_oauth"
+    && String(account?.name || "").trim().toLowerCase() === preferredName
+  );
+  if (!match?.id) {
+    throw new Error("Could not find Publer WordPress account for EarthStarRising");
+  }
+  return match.id;
 }
 
 // ── OAuth 1.0a (Tumblr) ───────────────────────────────────────────────────────
@@ -352,54 +458,14 @@ async function postToTumblr(caption, tags) {
 
 /** Post Instagram or Threads via Publer API v1 */
 async function postViaPubler(platform, caption, imageUrl) {
-  const key       = process.env.PUBLER_API_KEY;
-  const wsId      = process.env.PUBLER_WORKSPACE_ID;
+  const { BASE, headers } = getPublerConfig();
   const accountId = platform === "instagram"
     ? process.env.PUBLER_INSTAGRAM_ACCOUNT_ID
     : process.env.PUBLER_THREADS_ACCOUNT_ID;
-
-  if (!key)       throw new Error("PUBLER_API_KEY not set");
-  if (!wsId)      throw new Error("PUBLER_WORKSPACE_ID not set");
   if (!accountId) throw new Error(`PUBLER_${platform.toUpperCase()}_ACCOUNT_ID not set`);
 
-  const BASE    = "https://app.publer.com/api/v1";
-  const headers = {
-    "Content-Type":       "application/json",
-    "Authorization":      `Bearer-API ${key}`,
-    "Publer-Workspace-Id": wsId,
-  };
-
-  // ── Step 1: upload image from URL (async ~ must poll job_status) ──────────
   let mediaId = null;
-  if (imageUrl) {
-    const upResp = await fetch(`${BASE}/media/from-url`, {
-      method: "POST", headers,
-      body: JSON.stringify({
-        media: [{ url: imageUrl, name: "post-image" }],
-        type: "single", direct_upload: false, in_library: false,
-      }),
-    });
-    const upData = await upResp.json().catch(() => ({}));
-    if (!upResp.ok) throw new Error(`Publer media upload: ${upData.message || upResp.status}`);
-
-    const jobId = upData.job_id;
-    if (jobId) {
-      // Poll up to 60 s for the upload job to complete
-      for (let i = 0; i < 30; i++) {
-        await new Promise(r => setTimeout(r, 2000));
-        const st = await fetch(`${BASE}/job_status/${jobId}`, { headers })
-          .then(r => r.json()).catch(() => ({}));
-        if (st.status === "complete" || st.status === "completed") {
-          mediaId = Array.isArray(st.payload) ? st.payload[0]?.id : st.payload?.id;
-          break;
-        }
-        if (st.status === "failed" || st.status === "error") throw new Error("Publer media upload job failed");
-      }
-      if (!mediaId) throw new Error("Publer media upload timed out");
-    } else {
-      mediaId = Array.isArray(upData) ? upData[0]?.id : upData.id;
-    }
-  }
+  if (imageUrl) mediaId = await uploadPublerMediaFromUrl(imageUrl, headers, BASE);
 
   // ── Step 2: publish immediately via /posts/schedule/publish ──────────────
   // Omitting scheduled_at signals immediate publish per Publer docs.
@@ -426,15 +492,10 @@ async function postViaPubler(platform, caption, imageUrl) {
   let postId = postData.post?.id || postData.id;
   const jobId2 = postData.job_id;
   if (jobId2 && !postId) {
-    for (let i = 0; i < 10; i++) {
-      await new Promise(r => setTimeout(r, 2000));
-      const st = await fetch(`${BASE}/job_status/${jobId2}`, { headers })
-        .then(r => r.json()).catch(() => ({}));
-      if (st.status === "complete" || st.status === "completed") {
-        postId = Array.isArray(st.payload) ? st.payload[0]?.id : st.payload?.id;
-        break;
-      }
-    }
+    const status = await pollPublerJob(jobId2, headers, BASE, 10, 2000);
+    const failure = extractPublerFailure(status);
+    if (failure) throw new Error(`Publer (${platform}): ${failure}`);
+    postId = Array.isArray(status.payload) ? status.payload[0]?.id : status.payload?.id;
   }
 
   return { postId: String(postId || "queued"), postUrl: null };
@@ -507,6 +568,121 @@ Requirements:
   const title      = titleMatch ? titleMatch[1].trim() : `Reflections on ${sourceTitle}`;
   const html       = raw.replace(/^TITLE:\s*.+\n*/m, "").trim();
   return { title, html };
+}
+
+/**
+ * Use Claude to write a fresh WordPress article with a unique title, excerpt,
+ * and backlink to the original VOA post.
+ */
+async function generateWordPressArticle(sourceTitle, sourceText, sourceUrl, anthropic) {
+  const msg = await anthropic.messages.create({
+    model: "claude-opus-4-6",
+    max_tokens: 2200,
+    system: `You are Matt EarthStar, writing for EarthStarRising. Keep the voice human, direct, spiritual-but-grounded, and rooted in lived experience instead of generic inspiration.`,
+    messages: [
+      {
+        role: "user",
+        content: `You are syndicating a Vibration of Awesome post to an EarthStarRising WordPress site.
+
+SOURCE TITLE: ${sourceTitle}
+SOURCE URL: ${sourceUrl}
+
+SOURCE BODY:
+${sourceText}
+
+Write a NEW original companion article inspired by the source material, not a rewrite. It should feel native to EarthStarRising while still naturally linking back to the original.
+
+Format your response EXACTLY like this:
+TITLE: [new title]
+EXCERPT: [1-2 sentence excerpt]
+
+[article body as clean HTML using only <p>, <h2>, <blockquote>, <strong>, <em>, <a>, <ul>, <ol>, <li>]
+
+Requirements:
+- 600-900 words
+- Include one natural backlink to the original source using this exact URL: ${sourceUrl}
+- Keep the HTML body clean with no wrappers, classes, styles, scripts, or markdown fences
+- The title must be distinct from the source title
+- The excerpt should be compelling and specific`,
+      },
+    ],
+  });
+
+  const raw = msg.content[0].text.trim();
+  const titleMatch = raw.match(/^TITLE:\s*(.+)$/m);
+  const excerptMatch = raw.match(/^EXCERPT:\s*(.+)$/m);
+  const title = titleMatch ? titleMatch[1].trim() : `EarthStar reflection on ${sourceTitle}`;
+  const excerpt = excerptMatch ? excerptMatch[1].trim() : firstWords(stripHtml(raw), 28);
+  const html = raw
+    .replace(/^TITLE:\s*.+$/m, "")
+    .replace(/^EXCERPT:\s*.+$/m, "")
+    .trim();
+
+  return { title, excerpt, html };
+}
+
+function createWordPressContentBlocks(html) {
+  return [
+    {
+      id: makeBlockId("html"),
+      type: "html",
+      data: { html: html.trim() },
+    },
+  ];
+}
+
+async function postToWordPressViaPubler(article, imageUrl = null) {
+  const { BASE, headers } = getPublerConfig();
+  const accountId = await resolvePublerWordPressAccount(headers, BASE);
+  const categoryIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_CATEGORY_IDS, ["1"]);
+  const tagIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_TAG_IDS, []);
+  const network = {
+    type: "article",
+    title: article.title,
+    excerpt: article.excerpt,
+    url: article.slug || undefined,
+    content: createWordPressContentBlocks(article.html),
+    categories: categoryIds,
+    tags: tagIds,
+    ...(imageUrl ? { featured_media: { path: imageUrl } } : {}),
+  };
+
+  const resp = await fetch(`${BASE}/posts/schedule/publish`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      bulk: {
+        state: "scheduled",
+        posts: [{
+          accounts: [{ id: accountId }],
+          networks: { wordpress_oauth: network },
+        }],
+      },
+    }),
+  });
+  const data = await resp.json().catch(() => ({}));
+  if (!resp.ok) throw new Error(`Publer (wordpress_earthstar): ${data.message || data.error || data.errors?.[0] || resp.status}`);
+
+  let postId = data.post?.id || data.id || null;
+  let postUrl = firstNonEmpty(data.post?.post_link, data.post?.url, data.post_link, data.url);
+
+  if (data.job_id) {
+    const status = await pollPublerJob(data.job_id, headers, BASE, 20, 2000);
+    const failure = extractPublerFailure(status);
+    if (failure) throw new Error(`Publer (wordpress_earthstar): ${failure}`);
+
+    const payload = status.payload || {};
+    const success = Array.isArray(payload?.successes)
+      ? payload.successes[0]
+      : Array.isArray(payload)
+        ? payload[0]
+        : payload.success || payload.post || payload;
+
+    postId = firstNonEmpty(String(success?.id || ""), String(success?.post_id || ""), String(postId || "")) || "queued";
+    postUrl = firstNonEmpty(success?.post_link, success?.url, postUrl);
+  }
+
+  return { postId: String(postId || "queued"), postUrl: postUrl || null };
 }
 
 /** Publish a post immediately to Blogger using the v3 API */
@@ -753,6 +929,16 @@ export async function syndicatePost(lane, slug, options = {}) {
     return postToBlogger(bloggerArticle.title, bloggerArticle.html);
   });
 
+  // WordPress EarthStarRising via Publer
+  await attempt("wordpress_earthstar", async () => {
+    const wordpressArticle = options.wordpressArticle
+      || await generateWordPressArticle(post.title, sourceText, postUrl, anthropic);
+    return postToWordPressViaPubler({
+      ...wordpressArticle,
+      slug: `${slug}-earthstar`,
+    }, imageUrl);
+  });
+
   // ── 7. Build log entry ──
   const entry = {
     id:          String(Date.now()),
@@ -811,6 +997,8 @@ if (isCli) {
       fbe:  "facebook_earthstar",
       fb:   "facebook_voa",
       dev:  "devto",
+      wp:   "wordpress_earthstar",
+      wordpress: "wordpress_earthstar",
     };
     const platformFilter = argv.platforms
       ? argv.platforms.split(",").map(s => {
