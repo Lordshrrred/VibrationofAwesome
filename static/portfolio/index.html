@@ -3,436 +3,607 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio · Vibration of Awesome</title>
-<meta name="description" content="An archival gallery of sold wire work by Matt EarthStar, presented as individual pieces with images, materials, and story notes.">
+<title>Jewelry Archive · Vibration of Awesome</title>
+<meta name="description" content="An archival portfolio of Matt EarthStar's jewelry work, showing a curated history of handcrafted wire-wrap pieces and personal commissions.">
 <link rel="canonical" href="https://vibrationofawesome.com/portfolio/">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#00e5cc">
+<meta name="theme-color" content="#0e1a17">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vibration of Awesome">
-<meta property="og:title" content="Portfolio · Vibration of Awesome">
-<meta property="og:description" content="An archival gallery of sold wire work by Matt EarthStar, presented as individual pieces with images, materials, and story notes.">
+<meta property="og:title" content="Jewelry Archive · Vibration of Awesome">
+<meta property="og:description" content="A curated archive of handcrafted jewelry pieces by Matt EarthStar, presented as a visual history rather than a storefront.">
 <meta property="og:url" content="https://vibrationofawesome.com/portfolio/">
-<meta property="og:image" content="https://vibrationofawesome.com/personal-photos/jewelry/6DC6DD49-D6CE-4226-97D8-49610C407870_4_5005_c.jpeg">
+<meta property="og:image" content="https://vibrationofawesome.com/portfolio/archive/aquamarine/cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Portfolio · Vibration of Awesome">
-<meta name="twitter:description" content="An archival gallery of sold wire work by Matt EarthStar, presented as individual pieces with images, materials, and story notes.">
-<meta name="twitter:image" content="https://vibrationofawesome.com/personal-photos/jewelry/6DC6DD49-D6CE-4226-97D8-49610C407870_4_5005_c.jpeg">
+<meta name="twitter:title" content="Jewelry Archive · Vibration of Awesome">
+<meta name="twitter:description" content="A curated archive of handcrafted jewelry pieces by Matt EarthStar, presented as a visual history rather than a storefront.">
+<meta name="twitter:image" content="https://vibrationofawesome.com/portfolio/archive/aquamarine/cover.jpg">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G5HF0WKZT9');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #00e5cc;
-    --gold-light: #4dfff0;
-    --deep: #020a0a;
-    --deep-soft: #061414;
-    --cream: #d0fff8;
-    --muted: #69b8b0;
-    --panel: rgba(3, 18, 18, 0.88);
-    --border: rgba(0, 229, 204, 0.14);
-    --shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
+    --ink: #f5efe2;
+    --soft-ink: rgba(245, 239, 226, 0.78);
+    --moss: #b5c7a6;
+    --gold: #d4b67d;
+    --ember: #a56344;
+    --forest: #0d1713;
+    --forest-deep: #08100d;
+    --panel: rgba(17, 28, 23, 0.84);
+    --panel-strong: rgba(12, 20, 17, 0.94);
+    --border: rgba(212, 182, 125, 0.18);
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
+    margin: 0;
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
     background:
-      radial-gradient(circle at top, rgba(0, 229, 204, 0.08), transparent 42%),
-      linear-gradient(180deg, #041111 0%, #010607 100%);
-    color: var(--cream);
-    font-family: 'Cormorant Garamond', serif;
-    overflow-x: hidden;
+      radial-gradient(circle at top left, rgba(181, 199, 166, 0.16), transparent 30%),
+      radial-gradient(circle at top right, rgba(212, 182, 125, 0.1), transparent 28%),
+      linear-gradient(180deg, #111b17 0%, #090e0c 100%);
+    min-height: 100vh;
   }
 
-  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-  .star { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: twinkle var(--dur, 3s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
-  @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: var(--brightness, 0.75); transform: scale(1); } }
+  body.modal-open { overflow: hidden; }
+
+  .grain,
+  .backdrop-bloom {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .grain {
+    opacity: 0.12;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 5px 5px, 7px 7px;
+    mix-blend-mode: soft-light;
+  }
+
+  .backdrop-bloom::before,
+  .backdrop-bloom::after {
+    content: '';
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(90px);
+    opacity: 0.35;
+  }
+
+  .backdrop-bloom::before {
+    width: 28rem;
+    height: 28rem;
+    left: -6rem;
+    top: 8rem;
+    background: rgba(165, 99, 68, 0.3);
+  }
+
+  .backdrop-bloom::after {
+    width: 34rem;
+    height: 34rem;
+    right: -8rem;
+    top: 16rem;
+    background: rgba(181, 199, 166, 0.14);
+  }
 
   nav {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 1.5rem 3rem;
+    z-index: 30;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(to bottom, rgba(5, 16, 16, 0.96), transparent);
-    border-bottom: 1px solid rgba(0, 229, 204, 0.08);
+    gap: 1rem;
+    padding: 1.1rem 1.5rem;
+    background: rgba(9, 14, 12, 0.76);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(212, 182, 125, 0.08);
   }
+
   .nav-logo {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1.1rem;
-    color: var(--gold);
-    letter-spacing: 0.15em;
+    color: var(--ink);
     text-decoration: none;
-    text-shadow: 0 0 20px rgba(0, 229, 204, 0.35);
-  }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.3s;
   }
-  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    color: rgba(245, 239, 226, 0.72);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a.active,
+  .nav-links a:hover {
+    color: var(--gold);
+  }
 
   .hero {
     position: relative;
     z-index: 1;
-    padding: 9rem 4rem 3rem;
-    border-bottom: 1px solid rgba(0, 229, 204, 0.08);
+    padding: 4rem 1.25rem 2rem;
   }
-  .hero-inner {
-    max-width: 1140px;
+
+  .hero-shell {
+    max-width: 1240px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-    gap: 2rem;
-    align-items: end;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    gap: 1.5rem;
+    align-items: stretch;
   }
-  .hero-eyebrow {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.78;
-    margin-bottom: 1.15rem;
-  }
-  .hero-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(2.4rem, 5.2vw, 4.5rem);
-    line-height: 1.08;
-    color: var(--cream);
-    margin-bottom: 1.25rem;
-  }
-  .hero-copy {
-    max-width: 640px;
-    font-size: 1.18rem;
-    line-height: 1.8;
-    color: rgba(208, 255, 248, 0.82);
-  }
-  .hero-copy p + p { margin-top: 0.7rem; }
 
-  .archive-card {
-    padding: 1.4rem 1.35rem;
-    background: linear-gradient(180deg, rgba(6, 20, 20, 0.95), rgba(4, 12, 12, 0.86));
+  .hero-copy,
+  .hero-side {
     border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(19, 30, 25, 0.92), rgba(10, 16, 14, 0.88));
     box-shadow: var(--shadow);
   }
-  .archive-card-label {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.85rem;
-  }
-  .archive-card p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: rgba(208, 255, 248, 0.72);
-  }
-  .archive-card p + p { margin-top: 0.7rem; }
 
-  .gallery-shell {
+  .hero-copy {
+    padding: 2rem;
+  }
+
+  .eyebrow,
+  .pill,
+  .summary-label,
+  .meta-label,
+  .detail-chip {
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.73rem;
+  }
+
+  .eyebrow {
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    margin: 0;
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(2.7rem, 6vw, 5.5rem);
+    line-height: 0.98;
+    max-width: 8ch;
+  }
+
+  .hero-description {
+    margin-top: 1.35rem;
+    max-width: 56rem;
+    color: var(--soft-ink);
+    font-size: 1.05rem;
+    line-height: 1.85;
+  }
+
+  .hero-side {
+    padding: 1.4rem;
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  .hero-side .pill {
+    color: var(--moss);
+  }
+
+  .hero-side p {
+    margin: 0;
+    color: var(--soft-ink);
+    line-height: 1.7;
+    font-size: 0.97rem;
+  }
+
+  .hero-note {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(212, 182, 125, 0.12);
+  }
+
+  .summary-bar {
     position: relative;
     z-index: 1;
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 2.5rem 2rem 6rem;
+    padding: 0 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: end;
+    flex-wrap: wrap;
   }
 
-  .gallery-summary {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    padding: 1rem 0 1.4rem;
-    border-bottom: 1px solid rgba(0, 229, 204, 0.08);
-  }
-  .section-label {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.34em;
-    text-transform: uppercase;
-    color: var(--muted);
-    opacity: 0.8;
-  }
   .summary-copy {
-    max-width: 620px;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: rgba(208, 255, 248, 0.72);
+    max-width: 40rem;
+    color: rgba(245, 239, 226, 0.66);
+    line-height: 1.75;
+    font-size: 0.98rem;
+  }
+
+  .summary-label {
+    color: rgba(245, 239, 226, 0.58);
+  }
+
+  .gallery {
+    position: relative;
+    z-index: 1;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 1.25rem 4.5rem;
   }
 
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.15rem;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1rem;
   }
 
   .piece-card {
+    grid-column: span 4;
     position: relative;
-    overflow: hidden;
     border: 1px solid var(--border);
-    background: rgba(4, 14, 14, 0.94);
+    background: var(--panel);
+    overflow: hidden;
+    box-shadow: var(--shadow);
     cursor: pointer;
+    min-height: 21rem;
     transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
   }
-  .piece-card:hover, .piece-card:focus-visible {
-    transform: translateY(-4px);
-    border-color: rgba(0, 229, 204, 0.4);
-    box-shadow: 0 24px 45px rgba(0, 0, 0, 0.26);
+
+  .piece-card:hover,
+  .piece-card:focus-visible {
+    transform: translateY(-6px);
+    border-color: rgba(212, 182, 125, 0.4);
+    box-shadow: 0 34px 70px rgba(0, 0, 0, 0.42);
   }
+
+  .piece-card.tall { grid-row: span 2; min-height: 32rem; }
+  .piece-card.wide { grid-column: span 8; min-height: 22rem; }
+
   .piece-card img {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    display: block;
+    height: 100%;
     object-fit: cover;
+    object-position: center;
   }
-  .piece-card::after {
+
+  .piece-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 42%, rgba(2, 10, 10, 0.9) 100%);
-    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(7, 10, 9, 0.04) 0%, rgba(7, 10, 9, 0.16) 40%, rgba(7, 10, 9, 0.88) 100%),
+      linear-gradient(120deg, rgba(212, 182, 125, 0.14), transparent 40%);
   }
+
   .piece-card-copy {
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: auto 0 0 0;
     z-index: 2;
-    padding: 1rem;
+    padding: 1.1rem;
+    display: grid;
+    gap: 0.55rem;
   }
-  .piece-card-kicker {
+
+  .piece-card .pill {
     display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    margin-bottom: 0.55rem;
-    padding: 0.22rem 0.5rem;
-    border: 1px solid rgba(0, 229, 204, 0.18);
-    background: rgba(3, 12, 12, 0.8);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
+    width: fit-content;
+    padding: 0.34rem 0.55rem;
+    border: 1px solid rgba(245, 239, 226, 0.16);
+    background: rgba(9, 14, 12, 0.55);
+    color: rgba(245, 239, 226, 0.85);
+    backdrop-filter: blur(8px);
   }
-  .piece-card-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1rem;
-    line-height: 1.35;
-    color: var(--cream);
-    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  .piece-card h2 {
+    margin: 0;
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(1.05rem, 2vw, 1.5rem);
+    line-height: 1.08;
+    max-width: 18ch;
   }
-  .piece-card-meta {
-    margin-top: 0.45rem;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(208, 255, 248, 0.72);
+
+  .piece-card p {
+    margin: 0;
+    color: rgba(245, 239, 226, 0.74);
+    font-size: 0.84rem;
+    line-height: 1.6;
+    max-width: 42ch;
+  }
+
+  .empty-state {
+    border: 1px solid var(--border);
+    background: rgba(16, 25, 21, 0.84);
+    padding: 2rem;
+    color: var(--soft-ink);
+    text-align: center;
   }
 
   .piece-modal {
-    display: none;
     position: fixed;
     inset: 0;
-    z-index: 1000;
-    padding: 2rem;
-    background: rgba(2, 10, 10, 0.92);
-    backdrop-filter: blur(10px);
+    z-index: 60;
+    display: none;
+    padding: 1rem;
+    background: rgba(6, 10, 9, 0.86);
+    backdrop-filter: blur(18px);
   }
+
   .piece-modal.open { display: block; }
+
   .piece-modal-dialog {
-    max-width: 1180px;
-    max-height: calc(100vh - 4rem);
+    max-width: 1280px;
+    max-height: calc(100vh - 2rem);
     margin: 0 auto;
-    background: linear-gradient(180deg, rgba(6, 20, 20, 0.98), rgba(2, 10, 10, 0.98));
-    border: 1px solid rgba(0, 229, 204, 0.2);
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
-    overflow: auto;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background: linear-gradient(180deg, rgba(19, 29, 25, 0.98), rgba(10, 15, 13, 0.98));
+    border: 1px solid rgba(212, 182, 125, 0.24);
+    overflow: hidden;
+    box-shadow: 0 32px 90px rgba(0, 0, 0, 0.5);
   }
+
   .piece-modal-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid rgba(0, 229, 204, 0.08);
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgba(212, 182, 125, 0.12);
   }
-  .piece-modal-label {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
+
+  .piece-modal-header .meta-label {
     color: var(--gold);
   }
+
   .piece-modal-close {
-    border: none;
-    background: transparent;
-    color: rgba(208, 255, 248, 0.7);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
+    border: 1px solid rgba(245, 239, 226, 0.14);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--ink);
+    padding: 0.55rem 0.8rem;
     cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
   }
-  .piece-modal-close:hover { color: var(--gold); }
 
   .piece-modal-body {
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-    gap: 1.5rem;
-    padding: 1.25rem;
+    grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+    min-height: 0;
   }
+
   .piece-viewer {
-    display: flex;
-    flex-direction: column;
-    gap: 0.95rem;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 0.9rem;
+    padding: 1.1rem;
+    min-height: 0;
   }
+
   .piece-stage {
-    position: relative;
-    background: var(--deep-soft);
-    border: 1px solid rgba(0, 229, 204, 0.1);
-    min-height: 480px;
+    background:
+      radial-gradient(circle at top, rgba(212, 182, 125, 0.08), transparent 38%),
+      rgba(8, 12, 11, 0.96);
+    border: 1px solid rgba(212, 182, 125, 0.12);
+    min-height: 28rem;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
   }
+
   .piece-stage img {
     width: 100%;
     height: 100%;
-    max-height: 78vh;
     object-fit: contain;
     display: block;
   }
+
   .piece-thumbs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(86px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
     gap: 0.7rem;
   }
+
   .piece-thumb {
-    border: 1px solid rgba(0, 229, 204, 0.12);
-    background: rgba(3, 12, 12, 0.8);
-    cursor: pointer;
     padding: 0;
+    border: 1px solid rgba(212, 182, 125, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+    cursor: pointer;
     transition: border-color 0.18s ease, transform 0.18s ease;
   }
-  .piece-thumb:hover, .piece-thumb.active {
-    border-color: var(--gold);
+
+  .piece-thumb.active,
+  .piece-thumb:hover {
+    border-color: rgba(212, 182, 125, 0.6);
     transform: translateY(-2px);
   }
+
   .piece-thumb img {
     width: 100%;
     aspect-ratio: 1 / 1;
-    object-fit: cover;
     display: block;
+    object-fit: cover;
   }
 
   .piece-details {
-    display: flex;
-    flex-direction: column;
+    padding: 1.4rem;
+    border-left: 1px solid rgba(212, 182, 125, 0.12);
+    overflow: auto;
+    display: grid;
+    align-content: start;
     gap: 1rem;
-    padding: 0.25rem 0;
-  }
-  .piece-status {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-  .piece-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(1.25rem, 2.4vw, 1.8rem);
-    line-height: 1.35;
-    color: var(--cream);
-  }
-  .piece-medium {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(208, 255, 248, 0.72);
-  }
-  .piece-description {
-    font-size: 1.06rem;
-    line-height: 1.82;
-    color: rgba(208, 255, 248, 0.84);
-  }
-  .piece-count {
-    padding-top: 0.75rem;
-    border-top: 1px solid rgba(0, 229, 204, 0.08);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(208, 255, 248, 0.56);
   }
 
-  .empty-state {
-    padding: 2rem;
-    border: 1px solid var(--border);
-    text-align: center;
-    color: rgba(208, 255, 248, 0.72);
+  .detail-chip {
+    color: var(--moss);
+  }
+
+  .piece-title {
+    margin: 0;
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(1.5rem, 3vw, 2.35rem);
+    line-height: 1.08;
+  }
+
+  .piece-medium,
+  .piece-context,
+  .piece-description,
+  .piece-count {
+    color: var(--soft-ink);
+  }
+
+  .piece-medium {
+    font-size: 0.84rem;
+    line-height: 1.7;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .piece-description,
+  .piece-context {
+    font-size: 0.98rem;
+    line-height: 1.78;
+  }
+
+  .piece-context {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(212, 182, 125, 0.12);
+  }
+
+  .piece-count {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(212, 182, 125, 0.12);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 
   footer {
     position: relative;
     z-index: 1;
-    padding: 3rem 4rem;
-    border-top: 1px solid rgba(0, 229, 204, 0.08);
-    text-align: center;
+    padding: 2rem 1.25rem 3rem;
+    border-top: 1px solid rgba(212, 182, 125, 0.08);
   }
+
   footer p {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
+    max-width: 1240px;
+    margin: 0 auto;
+    color: rgba(245, 239, 226, 0.52);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
-    opacity: 0.68;
-  }
-  footer a { color: var(--gold); text-decoration: none; }
-
-  @media (max-width: 1024px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .piece-modal-body { grid-template-columns: 1fr; }
-    .piece-stage { min-height: 360px; }
   }
 
-  @media (max-width: 640px) {
-    nav { padding: 1rem 1.2rem; }
-    .nav-links { gap: 1.1rem; }
-    .hero { padding: 7rem 1.2rem 2.2rem; }
-    .gallery-shell { padding: 1.75rem 1rem 4rem; }
-    .gallery-grid { grid-template-columns: 1fr; }
-    .piece-modal { padding: 1rem; }
-    .piece-modal-dialog { max-height: calc(100vh - 2rem); }
-    .piece-modal-body { padding: 1rem; }
-    .piece-stage { min-height: 280px; }
-    footer { padding: 2rem 1.2rem; }
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  @media (max-width: 1080px) {
+    .hero-shell,
+    .piece-modal-body {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .piece-card,
+    .piece-card.wide,
+    .piece-card.tall {
+      grid-column: span 1;
+      grid-row: auto;
+      min-height: 24rem;
+    }
+
+    .piece-details {
+      border-left: none;
+      border-top: 1px solid rgba(212, 182, 125, 0.12);
+    }
+  }
+
+  @media (max-width: 720px) {
+    nav {
+      padding: 0.95rem 1rem;
+      align-items: start;
+      flex-direction: column;
+    }
+
+    .hero {
+      padding: 2.5rem 1rem 1.5rem;
+    }
+
+    .hero-copy,
+    .hero-side {
+      padding: 1.25rem;
+    }
+
+    .summary-bar,
+    .gallery,
+    footer {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .piece-card,
+    .piece-card.wide,
+    .piece-card.tall {
+      min-height: 24rem;
+    }
+
+    .piece-modal {
+      padding: 0.5rem;
+    }
+
+    .piece-modal-dialog {
+      max-height: calc(100vh - 1rem);
+    }
+
+    .piece-viewer,
+    .piece-details {
+      padding: 0.85rem;
+    }
+
+    .piece-stage {
+      min-height: 20rem;
+    }
   }
 </style>
 </head>
 <body>
-<div class="stars" id="stars"></div>
+<div class="grain"></div>
+<div class="backdrop-bloom"></div>
 
 <nav>
-  <a href="/" class="nav-logo">VOA</a>
+  <a href="/" class="nav-logo">Vibration of Awesome</a>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/blog/">Blog</a>
@@ -442,39 +613,38 @@
 </nav>
 
 <header class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-eyebrow">Matt EarthStar · Wearable Archive</div>
-      <h1 class="hero-title">Portfolio</h1>
-      <div class="hero-copy">
-        <p>This page now works as an archive of individual sold pieces rather than a bucket of random photos.</p>
-        <p>Each card opens a focused gallery so the work can be viewed piece by piece, with the title, materials, and a cleaned showcase description instead of a scattered image wall.</p>
+  <div class="hero-shell">
+    <section class="hero-copy">
+      <div class="eyebrow">Matt EarthStar · Jewelry Archive</div>
+      <h1 class="hero-title">A history of the work.</h1>
+      <div class="hero-description">
+        This page is not a shop. It is a hand-picked archive of past pieces, commissions, and experiments gathered to show the shape of the work over time.
       </div>
-    </div>
-    <aside class="archive-card">
-      <div class="archive-card-label">Archive Notes</div>
-      <p>These entries are presented as sold archival works from the RuzindlaWraps era.</p>
-      <p>The gallery below is structured so each piece can keep growing with additional images and cleaner story details as the archive expands.</p>
+    </section>
+    <aside class="hero-side">
+      <div class="pill">Archive Disclaimer</div>
+      <p>None of the pieces shown here are currently for sale. This is a visual record of past jewelry work, not an active catalog.</p>
+      <p class="hero-note">Some entries carry fuller context from old Etsy listings or personal notes. Others are intentionally sparse for now so the archive can stay clean while the details are still being reconstructed.</p>
     </aside>
   </div>
 </header>
 
-<main class="gallery-shell">
-  <section class="gallery-summary">
-    <div>
-      <div class="section-label">Sold Work Archive</div>
-      <div class="summary-copy">A curated gallery of past jewelry work. Open any piece to move through its image set and read the corresponding description without leaving the page.</div>
-    </div>
-    <div class="section-label" id="pieceCountLabel">Loading archive…</div>
-  </section>
+<section class="summary-bar">
+  <div>
+    <div class="summary-label">Curated Selection</div>
+    <div class="summary-copy">Only the strongest images are shown here, with the focus kept on the jewelry itself. Open any piece for a fuller view and the context that survived the archive process.</div>
+  </div>
+  <div class="summary-label" id="pieceCountLabel">Loading archive...</div>
+</section>
 
+<main class="gallery">
   <section class="gallery-grid" id="galleryGrid" aria-live="polite"></section>
 </main>
 
 <div class="piece-modal" id="pieceModal" aria-hidden="true">
   <div class="piece-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="pieceTitle">
     <div class="piece-modal-header">
-      <div class="piece-modal-label">Piece Archive</div>
+      <div class="meta-label">Archive Piece</div>
       <button class="piece-modal-close" id="pieceModalClose" type="button">Close</button>
     </div>
     <div class="piece-modal-body">
@@ -485,10 +655,11 @@
         <div class="piece-thumbs" id="pieceThumbs"></div>
       </div>
       <aside class="piece-details">
-        <div class="piece-status" id="pieceStatus"></div>
+        <div class="detail-chip">Selected from the archive</div>
         <h2 class="piece-title" id="pieceTitle"></h2>
         <div class="piece-medium" id="pieceMedium"></div>
         <div class="piece-description" id="pieceDescription"></div>
+        <div class="piece-context" id="pieceContext"></div>
         <div class="piece-count" id="pieceImageCount"></div>
       </aside>
     </div>
@@ -496,21 +667,10 @@
 </div>
 
 <footer>
-  <p>&copy; 2026 <a href="/">Vibration of Awesome</a> ~ <a href="/portfolio/">Portfolio</a> ~ <a href="/art-store/">Art Store</a> ~ <a href="/blog/">Blog</a></p>
+  <p>&copy; 2026 <a href="/">Vibration of Awesome</a> · jewelry archive · not a storefront · past work preserved with care</p>
 </footer>
 
 <script>
-  (function() {
-    var stars = document.getElementById('stars');
-    for (var i = 0; i < 130; i++) {
-      var star = document.createElement('div');
-      var size = Math.random() * 2 + 0.4;
-      star.className = 'star';
-      star.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + Math.random() * 100 + '%;top:' + Math.random() * 100 + '%;--dur:' + (Math.random() * 4 + 2) + 's;--delay:' + (Math.random() * 6) + 's;--brightness:' + (Math.random() * 0.5 + 0.25) + ';';
-      stars.appendChild(star);
-    }
-  })();
-
   (function() {
     var grid = document.getElementById('galleryGrid');
     var pieceCountLabel = document.getElementById('pieceCountLabel');
@@ -518,51 +678,25 @@
     var modalClose = document.getElementById('pieceModalClose');
     var stageImage = document.getElementById('pieceStageImage');
     var pieceThumbs = document.getElementById('pieceThumbs');
-    var pieceStatus = document.getElementById('pieceStatus');
     var pieceTitle = document.getElementById('pieceTitle');
     var pieceMedium = document.getElementById('pieceMedium');
     var pieceDescription = document.getElementById('pieceDescription');
+    var pieceContext = document.getElementById('pieceContext');
     var pieceImageCount = document.getElementById('pieceImageCount');
     var pieces = [];
     var activePieceIndex = 0;
     var activeImageIndex = 0;
+    var layoutPattern = ['wide', 'tall', '', '', 'tall', '', 'wide', '', '', 'tall', '', ''];
 
     function renderEmpty(message) {
       grid.innerHTML = '<div class="empty-state">' + message + '</div>';
       pieceCountLabel.textContent = 'Archive unavailable';
     }
 
-    function renderCards() {
-      grid.innerHTML = '';
-      pieceCountLabel.textContent = pieces.length + ' archived pieces';
-
-      pieces.forEach(function(piece, index) {
-        if (!piece.images || !piece.images.length) return;
-
-        var button = document.createElement('button');
-        button.className = 'piece-card';
-        button.type = 'button';
-        button.setAttribute('aria-label', 'Open ' + piece.title);
-
-        var image = document.createElement('img');
-        image.src = piece.images[0];
-        image.alt = piece.title;
-        image.loading = 'lazy';
-
-        var copy = document.createElement('div');
-        copy.className = 'piece-card-copy';
-        copy.innerHTML =
-          '<div class="piece-card-kicker">' + (piece.status || 'Sold archival piece') + '</div>' +
-          '<div class="piece-card-title">' + piece.title + '</div>' +
-          '<div class="piece-card-meta">' + piece.images.length + ' image' + (piece.images.length === 1 ? '' : 's') + ' · tap to view</div>';
-
-        button.appendChild(image);
-        button.appendChild(copy);
-        button.addEventListener('click', function() {
-          openPiece(index);
-        });
-        grid.appendChild(button);
-      });
+    function cardSummary(piece) {
+      if (piece.description) return piece.description;
+      if (piece.context) return piece.context;
+      return '';
     }
 
     function setActiveImage(imageIndex) {
@@ -584,10 +718,10 @@
       activeImageIndex = 0;
       var piece = pieces[pieceIndex];
 
-      pieceStatus.textContent = piece.status || 'Sold archival piece';
       pieceTitle.textContent = piece.title || '';
       pieceMedium.textContent = piece.medium || '';
       pieceDescription.textContent = piece.description || '';
+      pieceContext.textContent = piece.context || 'Context still being restored for this piece.';
 
       pieceThumbs.innerHTML = '';
       piece.images.forEach(function(src, idx) {
@@ -611,13 +745,13 @@
       setActiveImage(0);
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
     }
 
     function closeModal() {
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
       stageImage.src = '';
       pieceThumbs.innerHTML = '';
     }
@@ -629,6 +763,50 @@
       if (nextIndex < 0) nextIndex = piece.images.length - 1;
       if (nextIndex >= piece.images.length) nextIndex = 0;
       setActiveImage(nextIndex);
+    }
+
+    function renderCards() {
+      grid.innerHTML = '';
+      pieceCountLabel.textContent = pieces.length + ' archived pieces';
+
+      pieces.forEach(function(piece, index) {
+        if (!piece.images || !piece.images.length) return;
+
+        var button = document.createElement('button');
+        var shape = layoutPattern[index % layoutPattern.length];
+        button.className = 'piece-card' + (shape ? ' ' + shape : '');
+        button.type = 'button';
+        button.setAttribute('aria-label', 'Open ' + piece.title);
+
+        var image = document.createElement('img');
+        image.src = piece.cover_image || piece.images[0];
+        image.alt = piece.title;
+        image.loading = index < 4 ? 'eager' : 'lazy';
+
+        var copy = document.createElement('div');
+        copy.className = 'piece-card-copy';
+
+        var pill = document.createElement('div');
+        pill.className = 'pill';
+        pill.textContent = piece.medium || 'Archive piece';
+
+        var title = document.createElement('h2');
+        title.textContent = piece.title;
+
+        var summary = document.createElement('p');
+        summary.textContent = cardSummary(piece);
+
+        copy.appendChild(pill);
+        copy.appendChild(title);
+        if (summary.textContent) copy.appendChild(summary);
+
+        button.appendChild(image);
+        button.appendChild(copy);
+        button.addEventListener('click', function() {
+          openPiece(index);
+        });
+        grid.appendChild(button);
+      });
     }
 
     modalClose.addEventListener('click', closeModal);
@@ -661,7 +839,7 @@
         renderCards();
       })
       .catch(function() {
-        renderEmpty('The portfolio archive could not be loaded right now.');
+        renderEmpty('The jewelry archive could not be loaded right now.');
       });
   })();
 </script>
