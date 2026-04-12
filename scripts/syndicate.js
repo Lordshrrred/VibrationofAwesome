@@ -4,7 +4,7 @@
  *
  * Platforms: Bluesky · Mastodon · Facebook (VOA + EarthStar) · Pinterest
  *            Dev.to · Tumblr · Instagram (Publer) · Threads (Publer)
- *            Blogger · WordPress (EarthStarRising via Publer)
+ *            Blogger · WordPress (EarthStarRising direct API)
  *
  * CLI:  node scripts/syndicate.js --lane [matt|boom] --slug <post-slug> [--keyword "search term"] [--blogger-only]
  * API:  import { syndicatePost } from "./syndicate.js"
@@ -73,10 +73,6 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function makeBlockId(prefix = "blk") {
-  return `${prefix}_${crypto.randomBytes(5).toString("hex")}`;
-}
-
 function firstNonEmpty(...values) {
   return values.find(v => typeof v === "string" && v.trim()) || null;
 }
@@ -108,21 +104,6 @@ function parseCsvEnv(value, fallback = []) {
     .split(",")
     .map(part => part.trim())
     .filter(Boolean);
-}
-
-function resolvePublerTaxonomyIds(requestedIds, availableItems, fallbackIds = []) {
-  const availableIds = Array.isArray(availableItems)
-    ? availableItems
-        .map(item => String(item?.id || "").trim())
-        .filter(Boolean)
-    : [];
-
-  if (!availableIds.length) return requestedIds.length ? requestedIds : fallbackIds;
-  if (!requestedIds.length) return availableIds.length ? availableIds : fallbackIds;
-
-  const matchedIds = requestedIds.filter(id => availableIds.includes(String(id)));
-  if (matchedIds.length) return matchedIds;
-  return availableIds.length ? availableIds : fallbackIds;
 }
 
 function hasWordPressDirectConfig() {
@@ -206,57 +187,6 @@ async function uploadPublerMediaFromUrl(imageUrl, headers, baseUrl = "https://ap
   const mediaId = Array.isArray(job.payload) ? job.payload[0]?.id : job.payload?.id;
   if (!mediaId) throw new Error("Publer media upload timed out");
   return mediaId;
-}
-
-async function listPublerAccounts(headers, baseUrl = "https://app.publer.com/api/v1") {
-  const { response: resp, data } = await fetchPublerJson(`${baseUrl}/accounts`, { headers }, 3);
-  if (!resp.ok) throw new Error(`Publer accounts: ${data.message || resp.status}`);
-  if (Array.isArray(data)) return data;
-  if (Array.isArray(data?.data)) return data.data;
-  return [];
-}
-
-async function findRecentPublerWordPressPost(accountId, title, headers, baseUrl = "https://app.publer.com/api/v1") {
-  const params = new URLSearchParams({
-    "account_ids[]": accountId,
-    limit: "10",
-  });
-  const { response: resp, data } = await fetchPublerJson(`${baseUrl}/posts?${params.toString()}`, { headers }, 3);
-  if (!resp.ok) return null;
-
-  const posts = Array.isArray(data?.posts) ? data.posts : [];
-  const normalizedTitle = String(title || "").trim().toLowerCase();
-  const match = posts.find(post =>
-    String(post?.title || "").trim().toLowerCase() === normalizedTitle
-      && firstNonEmpty(post?.post_link, post?.url)
-  );
-  return firstNonEmpty(match?.post_link, match?.url);
-}
-
-async function getPublerWordPressAccount(headers, baseUrl = "https://app.publer.com/api/v1") {
-  const explicitId = process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_ID
-    || process.env.PUBLER_WORDPRESS_ACCOUNT_ID;
-  if (explicitId) {
-    return {
-      id: explicitId,
-      provider: "wordpress_oauth",
-      name: process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_NAME || "Earthstarrising",
-      permissions: { can_access: false },
-      wordpress_categories: [],
-      wordpress_tags: [],
-    };
-  }
-
-  const accounts = await listPublerAccounts(headers, baseUrl);
-  const preferredName = (process.env.PUBLER_WORDPRESS_EARTHSTAR_ACCOUNT_NAME || "Earthstarrising").trim().toLowerCase();
-  const matchByName = accounts.find(account =>
-    account?.provider === "wordpress_oauth"
-    && String(account?.name || "").trim().toLowerCase() === preferredName
-  );
-  if (!matchByName?.id) {
-    throw new Error("Could not find Publer WordPress account for EarthStarRising");
-  }
-  return matchByName;
 }
 
 // ── OAuth 1.0a (Tumblr) ───────────────────────────────────────────────────────
@@ -747,139 +677,6 @@ async function postToWordPressDirect(article, imageUrl = null) {
   };
 }
 
-function createWordPressContentBlocks(html) {
-  return [
-    {
-      id: makeBlockId("html"),
-      type: "html",
-      data: { html: html.trim() },
-    },
-  ];
-}
-
-function decodeHtmlEntities(text) {
-  return String(text || "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, "\"")
-    .replace(/&#39;/g, "'")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">");
-}
-
-function createSimpleWordPressBlocks(html) {
-  const blocks = [];
-  const pattern = /<(p|h2)[^>]*>([\s\S]*?)<\/\1>/gi;
-  let match;
-  while ((match = pattern.exec(html)) !== null) {
-    const tag = match[1].toLowerCase();
-    const inner = decodeHtmlEntities(match[2].replace(/<br\s*\/?>/gi, "\n").trim());
-    if (!inner) continue;
-    if (tag === "h2") {
-      blocks.push({
-        id: makeBlockId("hdr"),
-        type: "header",
-        data: {
-          text: inner.replace(/<[^>]+>/g, "").trim(),
-          level: 2,
-        },
-      });
-    } else {
-      blocks.push({
-        id: makeBlockId("p"),
-        type: "paragraph",
-        data: { text: inner },
-      });
-    }
-  }
-
-  if (!blocks.length) {
-    blocks.push({
-      id: makeBlockId("p"),
-      type: "paragraph",
-      data: { text: stripHtml(html) },
-    });
-  }
-  return blocks;
-}
-
-function buildMinimalWordPressNetwork(article) {
-  return {
-    type: "article",
-    title: article.title,
-    excerpt: article.excerpt || undefined,
-    url: article.slug || undefined,
-    content: createSimpleWordPressBlocks(article.html),
-  };
-}
-
-async function postToWordPressViaPubler(article, imageUrl = null) {
-  const { BASE, headers } = getPublerConfig();
-  const account = await getPublerWordPressAccount(headers, BASE);
-  const accountId = account.id;
-  const requestedCategoryIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_CATEGORY_IDS, []);
-  const requestedTagIds = parseCsvEnv(process.env.PUBLER_WORDPRESS_EARTHSTAR_TAG_IDS, []);
-  const categoryIds = resolvePublerTaxonomyIds(requestedCategoryIds, account?.wordpress_categories, ["1"]);
-  const tagIds = resolvePublerTaxonomyIds(requestedTagIds, account?.wordpress_tags, []);
-  const network = buildMinimalWordPressNetwork(article);
-  if (account?.permissions?.can_access !== false) {
-    if (categoryIds.length) network.categories = categoryIds;
-    if (tagIds.length) network.tags = tagIds;
-    if (imageUrl) network.featured_media = { path: imageUrl };
-  }
-
-  const { response: resp, data } = await fetchPublerJson(`${BASE}/posts/schedule/publish`, {
-    method: "POST",
-    headers,
-    body: JSON.stringify({
-      bulk: {
-        state: "scheduled",
-        posts: [{
-          accounts: [{ id: accountId }],
-          networks: { wordpress_oauth: network },
-        }],
-      },
-    }),
-  }, 3);
-  if (!resp.ok) throw new Error(`Publer (wordpress_earthstar): ${data.message || data.error || data.errors?.[0] || resp.status}`);
-
-  const payloadRoot = data?.data && typeof data.data === "object" ? data.data : data;
-  let postId = payloadRoot?.post?.id || payloadRoot?.id || data.post?.id || data.id || null;
-  let postUrl = firstNonEmpty(
-    payloadRoot?.post?.post_link,
-    payloadRoot?.post?.url,
-    payloadRoot?.post_link,
-    payloadRoot?.url,
-    data.post?.post_link,
-    data.post?.url,
-    data.post_link,
-    data.url,
-  );
-  const jobId = data.job_id || data?.data?.job_id || payloadRoot?.job_id || null;
-
-  if (jobId) {
-    const status = await pollPublerJob(jobId, headers, BASE, 20, 2000);
-    const failure = extractPublerFailure(status);
-    if (failure) throw new Error(`Publer (wordpress_earthstar): ${failure}`);
-
-    const payload = status.payload || {};
-    const success = Array.isArray(payload?.successes)
-      ? payload.successes[0]
-      : Array.isArray(payload)
-        ? payload[0]
-        : payload.success || payload.post || payload;
-
-    postId = firstNonEmpty(String(success?.id || ""), String(success?.post_id || ""), String(postId || "")) || "queued";
-    postUrl = firstNonEmpty(success?.post_link, success?.url, postUrl);
-  }
-
-  if (!postUrl) {
-    postUrl = await findRecentPublerWordPressPost(accountId, article.title, headers, BASE);
-  }
-
-  return { postId: String(postId || "queued"), postUrl: postUrl || null };
-}
-
 /** Publish a post immediately to Blogger using the v3 API */
 async function postToBlogger(title, htmlContent) {
   const blogId = process.env.BLOGGER_BLOG_ID;
@@ -1124,7 +921,7 @@ export async function syndicatePost(lane, slug, options = {}) {
     return postToBlogger(bloggerArticle.title, bloggerArticle.html);
   });
 
-  // WordPress EarthStarRising via Publer
+  // WordPress EarthStarRising via direct WordPress.com API
   await attempt("wordpress_earthstar", async () => {
     const wordpressArticle = options.wordpressArticle
       || await generateWordPressArticle(post.title, sourceText, postUrl, anthropic);
@@ -1132,10 +929,10 @@ export async function syndicatePost(lane, slug, options = {}) {
       ...wordpressArticle,
       slug: `${slug}-earthstar`,
     };
-    if (hasWordPressDirectConfig()) {
-      return postToWordPressDirect(article, imageUrl);
+    if (!hasWordPressDirectConfig()) {
+      throw new Error("WordPress direct API is not configured. Set WORDPRESS_OAUTH2_TOKEN and WORDPRESS_BLOG.");
     }
-    return postToWordPressViaPubler(article, imageUrl);
+    return postToWordPressDirect(article, imageUrl);
   });
 
   // ── 7. Build log entry ──
