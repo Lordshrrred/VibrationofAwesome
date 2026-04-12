@@ -116,12 +116,13 @@ hugo server -D
 
 ## Post Editing Dashboard
 
-`/admin/` is now a custom GUI called VOA Post Studio. It is the primary editing surface for `content/posts/`, defaults to a WYSIWYG editor, and is designed to feel more like a post manager than a CMS config screen.
+`/admin/` is now a custom GUI called VOA Post Studio. It is the primary editing surface for the live Forest Temple HTML posts, defaults to a WYSIWYG editor, and is designed to feel more like a post manager than a CMS config screen.
 
 - `/admin/` is the custom branded editor.
 - Existing posts load into the left-hand library and open into the edit surface on click.
-- Right now the secure working save flow is GitHub-token based.
-- A password-only hosted editor will require a real backend or GitHub App service, because GitHub Pages alone cannot safely hold write credentials.
+- The preferred save path is now a tiny backend broker that accepts the same dashboard password, opens a short-lived editor session, and commits to GitHub server-side.
+- GitHub remains the source of truth for content, but GitHub Pages alone still cannot safely hold write credentials in the browser.
+- If the backend is not configured, the editor can still fall back to a browser-side GitHub token for local/admin use.
 
 ---
 

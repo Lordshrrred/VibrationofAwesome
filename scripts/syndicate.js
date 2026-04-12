@@ -778,14 +778,20 @@ function writeDashboardConfig() {
   const password = process.env.DASHBOARD_PASSWORD;
   if (!password) return; // nothing to do
 
-  const hash        = crypto.createHash("sha256").update(password).digest("hex");
-  const configFile  = path.join(ROOT, "static", "_data", "dashboard-config.json");
-  const existing    = fs.existsSync(configFile)
+  const hash = crypto.createHash("sha256").update(password).digest("hex");
+  const configFile = path.join(ROOT, "static", "_data", "dashboard-config.json");
+  const existing = fs.existsSync(configFile)
     ? JSON.parse(fs.readFileSync(configFile, "utf8"))
     : {};
+  const editorApiBase = process.env.EDITOR_API_BASE || existing.editorApiBase || "";
+  const nextConfig = {
+    passwordHash: hash,
+    editorBackendEnabled: Boolean(editorApiBase),
+    editorApiBase,
+  };
 
-  if (existing.passwordHash !== hash) {
-    fs.writeFileSync(configFile, JSON.stringify({ passwordHash: hash }, null, 2), "utf8");
+  if (JSON.stringify(existing) !== JSON.stringify(nextConfig)) {
+    fs.writeFileSync(configFile, JSON.stringify(nextConfig, null, 2), "utf8");
     console.log("  [dashboard] Password config updated.");
   }
 }

@@ -4,12 +4,17 @@
   const MATT_POST_PREFIX = "static/blog/matt/posts/";
   const RAW_BASE = "https://raw.githubusercontent.com/Lordshrrred/VibrationofAwesome/main/";
   const DASH_SESSION_KEY = "voa_dash_authed";
+  const BACKEND_SESSION_KEY = "voa_post_studio_backend_session";
   const GITHUB_STORAGE_KEY = "voa_post_studio_auth";
   const CONFIG_URL = "/_data/dashboard-config.json";
   const AUTOSAVE_PREFIX = "voa_forest_temple_autosave:";
 
   const state = {
     token: "",
+    backendEnabled: false,
+    backendSessionToken: "",
+    backendFallbackMessage: "",
+    editorApiBase: "",
     posts: [],
     filteredPosts: [],
     currentPost: null,
@@ -28,6 +33,7 @@
     githubTokenInput: document.getElementById("github-token-input"),
     githubForgetButton: document.getElementById("github-forget-button"),
     githubAuthError: document.getElementById("github-auth-error"),
+    authPanelCopy: document.getElementById("auth-panel-copy"),
     postList: document.getElementById("post-list"),
     postSearch: document.getElementById("post-search"),
     entryHeading: document.getElementById("entry-heading"),
@@ -134,6 +140,81 @@
     });
   }
 
+  function normalizeApiBase(value) {
+    return String(value || "").replace(/\/+$/, "");
+  }
+
+  function resolveEditorApiBase(config) {
+    const explicit = normalizeApiBase(config && config.editorApiBase);
+    if (explicit) return explicit;
+    if (
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1"
+    ) {
+      return normalizeApiBase(window.location.origin + "/.netlify/functions");
+    }
+    return "";
+  }
+
+  function hasSaveAccess() {
+    return state.backendEnabled ? !!state.backendSessionToken : !!state.token;
+  }
+
+  function isBackendSaveMode() {
+    return state.backendEnabled && !!state.editorApiBase;
+  }
+
+  async function backendRequest(endpoint, options, skipAuth) {
+    if (!state.editorApiBase) {
+      throw new Error("Editor backend is not configured.");
+    }
+
+    const requestOptions = options || {};
+    const headers = Object.assign({
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    }, requestOptions.headers || {});
+
+    if (!skipAuth && state.backendSessionToken) {
+      headers.Authorization = "Bearer " + state.backendSessionToken;
+    }
+
+    const response = await fetch(state.editorApiBase + "/" + endpoint.replace(/^\/+/, ""), Object.assign({}, requestOptions, { headers }));
+    const data = await response.json().catch(function () {
+      return {};
+    });
+
+    if (!response.ok) {
+      throw new Error(data.error || data.message || "Editor backend request failed");
+    }
+
+    return data;
+  }
+
+  function syncAuthPanel() {
+    if (!els.authPanelCopy) return;
+
+    if (isBackendSaveMode()) {
+      els.authPanelCopy.textContent = "Secure backend save broker is active. The dashboard password opens a short editor session, and GitHub writes happen server-side.";
+      els.githubAuthForm.style.display = "none";
+      els.githubAuthError.hidden = true;
+      els.authStatus.textContent = state.backendSessionToken
+        ? "Secure backend session active. Save is enabled."
+        : "Unlock the studio to start a secure backend save session.";
+      return;
+    }
+
+    els.authPanelCopy.textContent = "Backend save broker is not configured here yet, so this editor falls back to a GitHub token in your browser for live saves.";
+    els.githubAuthForm.style.display = "";
+    if (state.backendFallbackMessage) {
+      els.authStatus.textContent = state.backendFallbackMessage;
+    } else {
+      els.authStatus.textContent = state.token
+        ? "GitHub token accepted with write access. Save is enabled."
+        : "Editor unlocked. Connect a GitHub token to enable saves.";
+    }
+  }
+
   async function githubRequest(path, options, token) {
     const requestOptions = options || {};
     const headers = Object.assign({
@@ -158,6 +239,9 @@
 
   function friendlyGithubError(error) {
     const message = error && error.message ? error.message : "GitHub request failed";
+    if (/secure backend save session|editor backend|session expired|session token/i.test(message)) {
+      return "The secure editor session expired or the backend is unavailable. Unlock the studio again and try the save one more time.";
+    }
     if (/resource not accessible by personal access token/i.test(message)) {
       return "This GitHub token can see the repo but cannot write to it. Create a token for the account that has write access to Lordshrrred/VibrationofAwesome and give it Contents: Read and write.";
     }
@@ -456,17 +540,22 @@
   }
 
   function refreshDirtyState() {
+    const canSave = hasSaveAccess();
+    const saveModeCopy = isBackendSaveMode()
+      ? "Unlock the studio, open a Matt post, make your edits, then press Save Live Edit. The GitHub write happens through the secure backend."
+      : "Connect a GitHub token, open a Matt post, make your edits, then press Save Live Edit.";
+
     if (!state.currentPost) {
       setStatus("Choose a live Matt post on the left to open its edit view.", false);
       els.saveBannerTitle.textContent = "No post selected yet";
-      els.saveBannerCopy.textContent = state.token
+      els.saveBannerCopy.textContent = canSave
         ? "Pick a Matt post from the left to load it, then use Save Live Edit to write changes back to the live blog."
-        : "Connect a GitHub token, open a Matt post, make your edits, then press Save Live Edit.";
+        : saveModeCopy;
       setSaveControls({
         disabled: true,
         label: "Save Live Edit",
-        chipText: state.token ? "Ready" : "Locked",
-        chipState: state.token ? "ready" : "",
+        chipText: canSave ? "Ready" : "Locked",
+        chipState: canSave ? "ready" : "",
       });
       return;
     }
@@ -477,7 +566,7 @@
       ? "Your updates are local in this browser right now. Press Save Live Edit to push them to GitHub and update the live Matt post source."
       : "Make changes in the fields or WYSIWYG editor, then press Save Live Edit to update the real file behind this post.";
     setSaveControls({
-      disabled: !state.token,
+      disabled: !canSave,
       label: dirty ? "Save Live Edit" : "Save Live Edit",
       chipText: dirty ? "Unsaved" : "Ready",
       chipState: dirty ? "dirty" : "ready",
@@ -519,9 +608,11 @@
 
     state.editor.setHTML(post.bodyHtml || "<p></p>");
     state.initialSnapshot = currentSnapshot();
-    els.authStatus.textContent = state.token
+    els.authStatus.textContent = hasSaveAccess()
       ? "Editing " + post.path
-      : "Editor unlocked. Connect a GitHub token to enable saves.";
+      : (isBackendSaveMode()
+        ? "Unlock the studio to activate a secure backend save session."
+        : "Editor unlocked. Connect a GitHub token to enable saves.");
     updateLinks();
     updateSnapshot(post);
     refreshDirtyState();
@@ -706,6 +797,12 @@
       throw new Error("Select a Matt post first");
     }
 
+    if (!hasSaveAccess()) {
+      throw new Error(isBackendSaveMode()
+        ? "Unlock the studio again to refresh the secure backend save session."
+        : "Connect a GitHub token before saving.");
+    }
+
     const form = currentFormState();
     if (!form.title) throw new Error("Title is required");
     if (!form.path) throw new Error("Post path is missing");
@@ -719,18 +816,29 @@
     els.saveChip.classList.add("ready");
 
     try {
-      const existing = await githubRequest("/contents/" + form.path + "?ref=" + encodeURIComponent(GITHUB_BRANCH), {}, state.token);
       const updatedHtml = rewriteHtml(state.currentPost.originalHtml, form);
-      await githubRequest("/contents/" + form.path, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: "Update Matt post: " + form.title,
-          content: encodeBase64Unicode(updatedHtml),
-          sha: existing.sha,
-          branch: GITHUB_BRANCH,
-        }),
-      }, state.token);
+      if (isBackendSaveMode()) {
+        await backendRequest("editor-save", {
+          method: "POST",
+          body: JSON.stringify({
+            path: form.path,
+            html: updatedHtml,
+            message: "Update Matt post: " + form.title,
+          }),
+        });
+      } else {
+        const existing = await githubRequest("/contents/" + form.path + "?ref=" + encodeURIComponent(GITHUB_BRANCH), {}, state.token);
+        await githubRequest("/contents/" + form.path, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: "Update Matt post: " + form.title,
+            content: encodeBase64Unicode(updatedHtml),
+            sha: existing.sha,
+            branch: GITHUB_BRANCH,
+          }),
+        }, state.token);
+      }
 
       clearAutosave();
       await loadPosts();
@@ -738,7 +846,9 @@
       if (refreshed) {
         fillForm(refreshed);
       }
-      els.authStatus.textContent = "Saved to GitHub on branch " + GITHUB_BRANCH + ".";
+      els.authStatus.textContent = isBackendSaveMode()
+        ? "Saved through the secure backend to GitHub."
+        : "Saved to GitHub on branch " + GITHUB_BRANCH + ".";
       setStatus("Saved to GitHub and ready for the next deploy.", false);
     } catch (error) {
       throw new Error(friendlyGithubError(error));
@@ -768,6 +878,7 @@
 
   function lockStudio() {
     sessionStorage.removeItem(DASH_SESSION_KEY);
+    sessionStorage.removeItem(BACKEND_SESSION_KEY);
     window.location.reload();
   }
 
@@ -776,6 +887,7 @@
     localStorage.removeItem(GITHUB_STORAGE_KEY);
     els.authStatus.textContent = "GitHub token removed. Connect GitHub to enable saves again.";
     els.githubAuthError.hidden = true;
+    syncAuthPanel();
     refreshDirtyState();
   }
 
@@ -786,27 +898,67 @@
     els.authStatus.textContent = "GitHub token accepted with write access. Save is enabled.";
     els.githubAuthError.hidden = true;
     els.githubTokenInput.value = "";
+    syncAuthPanel();
     refreshDirtyState();
   }
 
-  async function initDashboardGate() {
-    if (sessionStorage.getItem(DASH_SESSION_KEY) === "1") {
-      showApp();
-      return true;
-    }
+  async function establishBackendSession(password) {
+    const data = await backendRequest("editor-login", {
+      method: "POST",
+      body: JSON.stringify({ password: password }),
+    }, true);
+    state.backendFallbackMessage = "";
+    state.backendSessionToken = data.sessionToken || "";
+    sessionStorage.setItem(BACKEND_SESSION_KEY, state.backendSessionToken);
+    syncAuthPanel();
+    return data;
+  }
 
+  async function maybeEstablishBackendSession(password) {
+    if (!isBackendSaveMode()) return false;
+    try {
+      await establishBackendSession(password);
+      return true;
+    } catch (error) {
+      state.backendEnabled = false;
+      state.editorApiBase = "";
+      state.backendSessionToken = "";
+      state.backendFallbackMessage = "Secure backend is not ready yet, so the studio fell back to manual GitHub token mode for now.";
+      sessionStorage.removeItem(BACKEND_SESSION_KEY);
+      syncAuthPanel();
+      return false;
+    }
+  }
+
+  async function initDashboardGate() {
+    let config = null;
     let configHash = null;
     try {
-      const cfg = await fetch(CONFIG_URL).then(function (response) {
+      config = await fetch(CONFIG_URL).then(function (response) {
         return response.ok ? response.json() : null;
       });
-      configHash = cfg && cfg.passwordHash ? cfg.passwordHash : null;
+      configHash = config && config.passwordHash ? config.passwordHash : null;
     } catch (_) {}
+
+    state.editorApiBase = resolveEditorApiBase(config);
+    state.backendEnabled = !!(config && config.editorBackendEnabled && state.editorApiBase);
+    syncAuthPanel();
+
+    if (sessionStorage.getItem(DASH_SESSION_KEY) === "1") {
+      const savedBackendSession = sessionStorage.getItem(BACKEND_SESSION_KEY);
+      if (savedBackendSession) {
+        state.backendSessionToken = savedBackendSession;
+      }
+      showApp();
+      syncAuthPanel();
+      return true;
+    }
 
     async function tryLogin() {
       const value = els.gatePassword.value.trim();
       if (!value) return;
       if (!configHash) {
+        await maybeEstablishBackendSession(value);
         sessionStorage.setItem(DASH_SESSION_KEY, "1");
         showApp();
         await bootStudio();
@@ -815,6 +967,7 @@
       const hash = await sha256hex(value);
       if (hash === configHash) {
         els.gateError.hidden = true;
+        await maybeEstablishBackendSession(value);
         sessionStorage.setItem(DASH_SESSION_KEY, "1");
         showApp();
         await bootStudio();
@@ -827,7 +980,10 @@
 
     els.gateForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      tryLogin();
+      tryLogin().catch(function (error) {
+        els.gateError.hidden = false;
+        els.gateError.textContent = error && error.message ? error.message : "That credential did not unlock the editor.";
+      });
     });
 
     return false;
@@ -910,12 +1066,13 @@
       chipText: "Locked",
       chipState: "",
     });
+    syncAuthPanel();
     if (authed && !state.booted) {
       await bootStudio();
     }
 
     const saved = localStorage.getItem(GITHUB_STORAGE_KEY);
-    if (authed && saved) {
+    if (authed && !isBackendSaveMode() && saved) {
       try {
         const parsed = JSON.parse(saved);
         if (parsed.token) {

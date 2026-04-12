@@ -81,7 +81,7 @@
           <div class="auth-panel">
             <div>
               <p class="sidebar-label">GitHub Save Access</p>
-              <p class="auth-panel-copy">This page uses the same password gate as the dashboard. To save live edits, connect a GitHub token with repo write access.</p>
+              <p id="auth-panel-copy" class="auth-panel-copy">This page uses the same password gate as the dashboard. When the secure backend is configured, saves go through the backend and the GitHub write credential stays off the page.</p>
             </div>
             <form id="github-auth-form" class="auth-inline-form">
               <input id="github-token-input" type="password" placeholder="GitHub personal access token" autocomplete="current-password">
@@ -200,8 +200,8 @@
                 </div>
                 <div class="note-card">
                   <p class="sidebar-label">Auth Reality</p>
-                  <h3>Backend Needed for Password-Only</h3>
-                  <p>GitHub token saves work now. A password-only editor can come later, but only once you connect a secure backend like Netlify, Vercel, Cloudflare, or a GitHub App service.</p>
+                  <h3>Secure Save Broker</h3>
+                  <p>The goal is simple: same dashboard password to unlock, then a tiny backend brokers the GitHub save so the write credential never sits in the browser.</p>
                 </div>
               </section>
             </details>
@@ -219,7 +219,7 @@
           <input id="gate-password" type="password" placeholder="Dashboard password" autocomplete="current-password">
           <button type="submit">Unlock Studio</button>
         </form>
-        <p class="gate-hint">Once inside, connect a GitHub token only if you want to save changes back to GitHub.</p>
+        <p class="gate-hint">When the secure backend is live, this same password also opens the save session behind the scenes.</p>
         <p id="gate-error" class="gate-error" hidden>That credential did not unlock the editor.</p>
       </div>
     </section>
