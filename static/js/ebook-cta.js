@@ -51,6 +51,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.65rem;
+  text-align: center;
 }
 .voa-cover-trigger {
   position: relative;
@@ -84,16 +85,6 @@
   opacity: 0.62;
   transition: opacity 0.28s ease, transform 0.28s ease;
 }
-.voa-cover-trigger .voa-cover-glint {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  opacity: 0.56;
-  transition: opacity 0.28s ease, transform 0.28s ease;
-  filter: drop-shadow(0 0 10px rgba(34,192,106,0.5));
-}
-.voa-cover-trigger .voa-cover-glint.g1 { top: 6%; left: 14%; }
-.voa-cover-trigger .voa-cover-glint.g2 { right: 12%; bottom: 12%; }
 .voa-cover-trigger:hover::before,
 .voa-cover-trigger:focus-visible::before {
   opacity: 1;
@@ -104,11 +95,6 @@
 .voa-cover-trigger:focus-visible svg {
   opacity: 0.88;
   transform: scale(1.12) rotate(4deg);
-}
-.voa-cover-trigger:hover .voa-cover-glint,
-.voa-cover-trigger:focus-visible .voa-cover-glint {
-  opacity: 1;
-  transform: scale(1.14);
 }
 .voa-cover-sparkles {
   position: absolute;
@@ -172,13 +158,18 @@
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: rgba(232,244,240,0.46);
+  width: 100%;
+  text-align: center;
 }
 .voa-cover-click {
   font-size: 0.58rem;
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: rgba(34,192,106,0.76);
+  color: rgba(34,192,106,0.9);
+  width: 100%;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(34,192,106,0.16);
 }
 .voa-cta-form { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
 .voa-cta-form-wrap {
@@ -682,8 +673,6 @@
             <span class="voa-cover-spark s3"></span>
             <span class="voa-cover-spark s4"></span>
           </div>
-          <svg class="voa-cover-glint g1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(34,192,106,0.86)"/></svg>
-          <svg class="voa-cover-glint g2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,229,255,0.82)"/></svg>
           <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
         </button>
         <div class="voa-cover-click">click the cover</div>
@@ -732,8 +721,6 @@
             <span class="voa-cover-spark s3"></span>
             <span class="voa-cover-spark s4"></span>
           </div>
-          <svg class="voa-cover-glint g1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(34,192,106,0.82)"/></svg>
-          <svg class="voa-cover-glint g2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L17 13 H7 Z M7 14 H17 L12 23 Z" fill="rgba(0,229,255,0.76)"/></svg>
           <img src="/images/field-guide-cover.png" alt="Cover of A Field Guide to Vibration of Awesome by Matt EarthStar">
         </button>
       </div>
