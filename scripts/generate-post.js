@@ -214,6 +214,8 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   const accentR  = parseInt(hexClean.slice(0, 2), 16);
   const accentG  = parseInt(hexClean.slice(2, 4), 16);
   const accentB  = parseInt(hexClean.slice(4, 6), 16);
+  const footerLogoRest = isMatt ? "rgba(208,255,248,0.82)" : "rgba(207,246,255,0.72)";
+  const footerTaglineColor = isMatt ? "rgba(245,234,216,0.78)" : "rgba(207,246,255,0.76)";
 
   const metaContent = metaDescription
     ? metaDescription.replace(/"/g, "&quot;")
@@ -335,11 +337,13 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .site-footer p { margin: 0; }");
   H.push("    .site-footer a { color: var(--accent); text-decoration: none; }");
   H.push("    .site-footer a:hover { text-decoration: underline; }");
-  H.push("    .site-footer .footer-meta { font-family: 'Rajdhani', sans-serif; font-size: 0.76rem; line-height: 1.7; letter-spacing: 0.14em; }");
+  H.push("    .site-footer .footer-meta { font-family: 'Rajdhani', sans-serif; font-size: 0.76rem; line-height: 1.7; letter-spacing: 0.14em; font-weight: 500; }");
+  H.push("    .site-footer .footer-meta a { font-weight: 500; }");
   H.push("    .site-footer .footer-brand { margin-top: 0.95rem; display: flex; flex-direction: column; align-items: center; gap: 0.42rem; }");
-  H.push("    .site-footer .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.18rem; letter-spacing: 0.08em; color: var(--accent); text-decoration: none; text-shadow: 0 0 18px rgba(" + accentR + "," + accentG + "," + accentB + ",0.18); }");
+  H.push("    .site-footer .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.18rem; letter-spacing: 0.08em; color: " + footerLogoRest + "; text-decoration: none; text-shadow: 0 0 18px rgba(" + accentR + "," + accentG + "," + accentB + ",0.12); transition: color 0.22s ease, text-shadow 0.22s ease, transform 0.22s ease; }");
   H.push("    .site-footer .footer-logo span { font-size: 0.82em; opacity: 0.92; }");
-  H.push("    .site-footer .footer-tagline { font-family: " + fontFamily + "; font-style: italic; font-size: 0.98rem; letter-spacing: 0.01em; color: " + (isMatt ? "rgba(245,234,216,0.82)" : "rgba(207,246,255,0.76)") + "; }");
+  H.push("    .site-footer .footer-logo:hover { color: var(--accent); text-shadow: 0 0 24px rgba(" + accentR + "," + accentG + "," + accentB + ",0.24); text-decoration: none; transform: translateY(-1px); }");
+  H.push("    .site-footer .footer-tagline { font-family: " + fontFamily + "; font-style: italic; font-size: 0.98rem; letter-spacing: 0.01em; color: " + footerTaglineColor + "; font-weight: 600; }");
   if (!isMatt) {
     H.push("    @media (max-width: 768px) { body { font-size: 16px; } .post-header { padding: 10rem 1.5rem 3rem; } }");
   } else {
