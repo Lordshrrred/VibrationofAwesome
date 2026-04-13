@@ -340,11 +340,11 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .site-footer a:hover { text-decoration: underline; }");
   H.push("    .site-footer .footer-meta { font-family: 'Rajdhani', sans-serif; font-size: 0.76rem; line-height: 1.7; letter-spacing: 0.14em; font-weight: 600; }");
   H.push("    .site-footer .footer-meta a { font-weight: 600; }");
-  H.push("    .site-footer .footer-brand { margin-top: 1.05rem; display: flex; flex-direction: column; align-items: center; gap: 0.56rem; }");
+  H.push("    .site-footer .footer-brand { margin-top: " + (isMatt ? "1.05rem" : "0.9rem") + "; display: flex; flex-direction: column; align-items: center; gap: " + (isMatt ? "0.56rem" : "0.36rem") + "; }");
   H.push("    .site-footer .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.18rem; letter-spacing: 0.08em; color: " + footerLogoRest + "; text-decoration: none; text-shadow: 0 0 18px rgba(" + accentR + "," + accentG + "," + accentB + ",0.12); transition: color 0.22s ease, text-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease; border-bottom: 1px solid transparent; padding-bottom: 0.08rem; }");
   H.push("    .site-footer .footer-logo span { font-size: 0.82em; opacity: 0.92; }");
-  H.push("    .site-footer .footer-logo:hover { color: " + footerLogoHover + "; text-shadow: 0 0 24px rgba(" + accentR + "," + accentG + "," + accentB + ",0.24); text-decoration: none; transform: translateY(-1px); border-bottom-color: rgba(" + accentR + "," + accentG + "," + accentB + ",0.75); }");
-  H.push("    .site-footer .footer-tagline { font-family: " + fontFamily + "; font-style: italic; font-size: 0.98rem; letter-spacing: 0.01em; color: " + footerTaglineColor + "; font-weight: 600; }");
+  H.push("    .site-footer a.footer-logo:hover { color: " + footerLogoHover + "; text-shadow: 0 0 24px rgba(" + accentR + "," + accentG + "," + accentB + ",0.24); text-decoration: none !important; transform: translateY(-1px); border-bottom-color: rgba(" + accentR + "," + accentG + "," + accentB + ",0.75); }");
+  H.push("    .site-footer .footer-tagline { font-family: " + fontFamily + "; font-style: italic; font-size: 0.98rem; letter-spacing: 0.01em; color: " + footerTaglineColor + "; font-weight: " + (isMatt ? "600" : "400") + "; }");
   if (!isMatt) {
     H.push("    @media (max-width: 768px) { body { font-size: 16px; } .post-header { padding: 10rem 1.5rem 3rem; } }");
   } else {
