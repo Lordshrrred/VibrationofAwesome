@@ -382,6 +382,30 @@
     min-width: 0;
   }
 
+  .footer-right-links {
+    margin-top: 0.9rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-right-links a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+    white-space: nowrap;
+  }
+
+  .footer-right-links a:hover {
+    color: var(--gold);
+    text-shadow: 0 0 8px rgba(0,229,204,0.35);
+  }
+
   footer p {
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.7rem;
@@ -455,8 +479,9 @@
     footer { padding: 2rem 1.5rem; grid-template-columns: 1fr; gap: 2rem; text-align: center; }
     .footer-left { text-align: center; align-items: center; }
     .footer-right { text-align: center; }
-    .footer-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; }
+    .footer-nav { display: none; }
     .footer-meta-links { justify-content: center; }
+    .footer-right-links { justify-content: center; }
     .footer-tagline {
       font-size: 0.85rem;
       letter-spacing: 0.02em;
@@ -496,13 +521,13 @@
   <div class="footer-left">
     <div class="footer-logo">Vibration of Awesome</div>
     <div class="footer-tagline">Empower Thyself. Empower the Earth.</div>
-    <div class="footer-meta-links">
-      <a href="/privacy/">Privacy Policy</a>
-      <a href="/contact/">Contact</a>
-    </div>
   </div>
   <div class="footer-right">
     <p>© 2026 Vibration of Awesome</p>
+    <div class="footer-right-links">
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/contact/">Contact</a>
+    </div>
   </div>
   <nav class="footer-nav" aria-label="Footer navigation">
     <a href="/field-guide/">Field Guide</a>
