@@ -353,6 +353,21 @@
     0 22px 60px rgba(0,0,0,0.45),
     0 0 58px rgba(34,192,106,0.3),
     0 0 74px rgba(0,229,255,0.18);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+  transform: translateY(0) scale(1);
+}
+.voa-modal-visual:hover img,
+.voa-modal-visual:focus-within img {
+  transform: translateY(-3px) scale(1.015);
+  box-shadow:
+    0 26px 66px rgba(0,0,0,0.48),
+    0 0 64px rgba(34,192,106,0.34),
+    0 0 82px rgba(0,229,255,0.22);
+  filter: brightness(1.04) saturate(1.04);
+}
+.voa-modal-visual:hover .voa-modal-spark,
+.voa-modal-visual:focus-within .voa-modal-spark {
+  filter: drop-shadow(0 0 16px rgba(34,192,106,0.58));
 }
 .voa-modal-copy {
   padding: 2.35rem 2.4rem;
