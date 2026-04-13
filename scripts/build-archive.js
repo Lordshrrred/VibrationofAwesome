@@ -367,7 +367,7 @@ function buildPostHTML({ post, title, content, imageUrl, imageAttribution, readM
   footer { padding:3rem 4rem; border-top:1px solid rgba(255,179,0,0.08); text-align:center; position:relative; z-index:1; }
   footer p { font-family:'Rajdhani',sans-serif; font-size:0.82rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); opacity:0.6; margin:0; }
   footer a { color:var(--amber); text-decoration:none; }
-  footer .footer-meta { line-height:1.7; }
+  footer .footer-meta { font-family:'Rajdhani',sans-serif; font-size:0.76rem; line-height:1.7; letter-spacing:0.14em; }
   footer .footer-brand { margin-top:0.95rem; display:flex; flex-direction:column; align-items:center; gap:0.42rem; }
   footer .footer-logo { font-family:'Cinzel Decorative',serif; font-size:1.18rem; letter-spacing:0.08em; color:var(--amber); text-decoration:none; text-shadow:0 0 18px rgba(255,179,0,0.16); }
   footer .footer-logo span { font-size:0.82em; opacity:0.92; }

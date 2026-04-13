@@ -335,7 +335,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .site-footer p { margin: 0; }");
   H.push("    .site-footer a { color: var(--accent); text-decoration: none; }");
   H.push("    .site-footer a:hover { text-decoration: underline; }");
-  H.push("    .site-footer .footer-meta { line-height: 1.7; }");
+  H.push("    .site-footer .footer-meta { font-family: 'Rajdhani', sans-serif; font-size: 0.76rem; line-height: 1.7; letter-spacing: 0.14em; }");
   H.push("    .site-footer .footer-brand { margin-top: 0.95rem; display: flex; flex-direction: column; align-items: center; gap: 0.42rem; }");
   H.push("    .site-footer .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.18rem; letter-spacing: 0.08em; color: var(--accent); text-decoration: none; text-shadow: 0 0 18px rgba(" + accentR + "," + accentG + "," + accentB + ",0.18); }");
   H.push("    .site-footer .footer-logo span { font-size: 0.82em; opacity: 0.92; }");
