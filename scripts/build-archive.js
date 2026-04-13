@@ -365,8 +365,13 @@ function buildPostHTML({ post, title, content, imageUrl, imageAttribution, readM
   .post-footer a { font-family:'Rajdhani',sans-serif; font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
   .post-footer a:hover { color:var(--amber); }
   footer { padding:3rem 4rem; border-top:1px solid rgba(255,179,0,0.08); text-align:center; position:relative; z-index:1; }
-  footer p { font-family:'Rajdhani',sans-serif; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); opacity:0.6; }
+  footer p { font-family:'Rajdhani',sans-serif; font-size:0.82rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); opacity:0.6; margin:0; }
   footer a { color:var(--amber); text-decoration:none; }
+  footer .footer-meta { line-height:1.7; }
+  footer .footer-brand { margin-top:0.95rem; display:flex; flex-direction:column; align-items:center; gap:0.42rem; }
+  footer .footer-logo { font-family:'Cinzel Decorative',serif; font-size:1.18rem; letter-spacing:0.08em; color:var(--amber); text-decoration:none; text-shadow:0 0 18px rgba(255,179,0,0.16); }
+  footer .footer-logo span { font-size:0.82em; opacity:0.92; }
+  footer .footer-tagline { font-family:'Lora',serif; font-style:italic; font-size:0.98rem; letter-spacing:0.01em; color:rgba(245,234,216,0.78); text-transform:none; }
   @media(max-width:768px) { nav{padding:1rem 1.5rem;} .post-hero{padding:7rem 1.5rem 3rem;} .archive-disclaimer{padding:2rem 1.5rem 0;} .post-body{padding:2.5rem 1.5rem 4rem;} .post-footer{padding:2rem 1.5rem 3.5rem;} footer{padding:2rem 1.5rem;} .disclaimer-inner{padding:1.4rem 1.5rem;} }
 </style>
 </head>
@@ -414,7 +419,11 @@ ${content}
 </div>
 
 <footer>
-  <p>&copy; 2026 <a href="/">Vibration of Awesome</a></p>
+  <p class="footer-meta">&copy; 2026 <a href="/">Vibration of Awesome</a> &nbsp;&middot;&nbsp; <a href="/blog/matt/">Forest Temple</a> &nbsp;&middot;&nbsp; <a href="/blog/">All Posts</a></p>
+  <div class="footer-brand">
+    <a href="/" class="footer-logo">Vibration <span>of</span> Awesome</a>
+    <div class="footer-tagline">Empower Thyself. Empower the Earth.</div>
+  </div>
 </footer>
 
 <script>

@@ -194,7 +194,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   const googleFont  = isMatt
     ? '<link rel="preconnect" href="' + gfBase + '">'
       + '<link rel="preconnect" href="' + gfStatic + '" crossorigin>'
-      + '<link href="' + gfBase + '/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">'
+      + '<link href="' + gfBase + '/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">'
     : '<link rel="preconnect" href="' + gfBase + '">'
       + '<link rel="preconnect" href="' + gfStatic + '" crossorigin>'
       + '<link href="' + gfBase + '/css2?family=Cinzel+Decorative:wght@400;700&family=Rajdhani:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">';
@@ -332,8 +332,14 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .post-cta a { display: inline-block; background: var(--accent); color: #020a0a !important; font-family: Space Grotesk, sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.7em 1.6em; border-radius: 4px; text-decoration: none !important; border-bottom: none !important; transition: opacity 0.2s, transform 0.15s; }");
   H.push("    .post-cta a:hover { opacity: 0.85; transform: translateY(-1px); }");
   H.push("    .site-footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 0.82rem; color: var(--text-muted); }");
+  H.push("    .site-footer p { margin: 0; }");
   H.push("    .site-footer a { color: var(--accent); text-decoration: none; }");
   H.push("    .site-footer a:hover { text-decoration: underline; }");
+  H.push("    .site-footer .footer-meta { line-height: 1.7; }");
+  H.push("    .site-footer .footer-brand { margin-top: 0.95rem; display: flex; flex-direction: column; align-items: center; gap: 0.42rem; }");
+  H.push("    .site-footer .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.18rem; letter-spacing: 0.08em; color: var(--accent); text-decoration: none; text-shadow: 0 0 18px rgba(" + accentR + "," + accentG + "," + accentB + ",0.18); }");
+  H.push("    .site-footer .footer-logo span { font-size: 0.82em; opacity: 0.92; }");
+  H.push("    .site-footer .footer-tagline { font-family: " + fontFamily + "; font-style: italic; font-size: 0.98rem; letter-spacing: 0.01em; color: " + (isMatt ? "rgba(245,234,216,0.82)" : "rgba(207,246,255,0.76)") + "; }");
   if (!isMatt) {
     H.push("    @media (max-width: 768px) { body { font-size: 16px; } .post-header { padding: 10rem 1.5rem 3rem; } }");
   } else {
@@ -408,15 +414,22 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push('        <div style="height:1rem;"></div>');
     H.push('        <div data-ebook-cta data-placement="end-of-post" data-blog-slug="' + slug + '"></div>');
     H.push('        <script src="/js/ebook-cta.js"><\/script>');
-    H.push('        <footer class="site-footer">');
-    H.push('          <div class="container">');
-    H.push('            <p>&copy; ' + yearNow + ' <a href="https://vibrationofawesome.com">Vibration of Awesome</a>');
-    H.push('            &nbsp;&middot;&nbsp; ' + laneName + ' &nbsp;&middot;&nbsp; <a href="/blog/">All Posts</a></p>');
-    H.push('          </div>');
-    H.push('        </footer>');
     H.push("      </article>");
     H.push("    </div>");
   }
+  H.push('    <footer class="site-footer">');
+  H.push('      <div class="container">');
+  if (isMatt) {
+    H.push('        <p class="footer-meta">&copy; ' + yearNow + ' <a href="https://vibrationofawesome.com">Vibration of Awesome</a> &nbsp;&middot;&nbsp; <a href="/blog/matt/">Forest Temple</a> &nbsp;&middot;&nbsp; <a href="/blog/">All Posts</a></p>');
+  } else {
+    H.push('        <p class="footer-meta">&copy; ' + yearNow + ' <a href="https://vibrationofawesome.com">Vibration of Awesome</a> &nbsp;&middot;&nbsp; <a href="/blog/boom/">Boom Frequency</a> &nbsp;&middot;&nbsp; <a href="/blog/">All Posts</a></p>');
+  }
+  H.push('        <div class="footer-brand">');
+  H.push('          <a href="https://vibrationofawesome.com" class="footer-logo">Vibration <span>of</span> Awesome</a>');
+  H.push('          <div class="footer-tagline">Empower Thyself. Empower the Earth.</div>');
+  H.push('        </div>');
+  H.push('      </div>');
+  H.push('    </footer>');
   H.push("  </main>");
   H.push("</div>");
   H.push("<script>");

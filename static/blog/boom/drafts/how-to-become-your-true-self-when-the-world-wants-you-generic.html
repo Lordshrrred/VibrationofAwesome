@@ -89,6 +89,13 @@
     .post-cta a:hover { opacity: 0.85; transform: translateY(-1px); }
     .site-footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 0.82rem; color: var(--text-muted); }
     .site-footer a { color: var(--accent); text-decoration: none; }
+
+  footer p { margin:0; }
+  footer .footer-meta { line-height:1.7; }
+  footer .footer-brand { margin-top:0.95rem; display:flex; flex-direction:column; align-items:center; gap:0.42rem; }
+  footer .footer-logo { font-family:'Cinzel Decorative',serif; font-size:1.18rem; letter-spacing:0.08em; color:var(--cyan); text-decoration:none; text-shadow:0 0 18px rgba(0,229,255,0.18); }
+  footer .footer-logo span { font-size:0.82em; opacity:0.92; }
+  footer .footer-tagline { font-family:Georgia,serif; font-style:italic; font-size:0.98rem; letter-spacing:0.01em; color:rgba(207,246,255,0.76); text-transform:none; }
     .site-footer a:hover { text-decoration: underline; }
     @media (max-width: 600px) { body { font-size: 16px; } .post-header { padding: 1.8rem 0 1.4rem; } }
   </style>
@@ -264,9 +271,14 @@
   <footer class="site-footer">
     <div class="container">
       <p>&copy; 2026 <a href="https://vibrationofawesome.com">Vibration of Awesome</a>
-      &nbsp;&middot;&nbsp; Boom Frequency &nbsp;&middot;&nbsp; <a href="/blog/">All Posts</a></p>
+      &nbsp;&middot;&nbsp; <a href="/blog/boom/">Boom Frequency</a> &nbsp;&middot;&nbsp; <a href="/blog/">All Posts</a></p>
     </div>
-  </footer>
+  
+  <div class="footer-brand">
+    <a href="/" class="footer-logo">Vibration <span>of</span> Awesome</a>
+    <div class="footer-tagline">Empower Thyself. Empower the Earth.</div>
+  </div>
+</footer>
 </div>
 <script>
 (function() {
