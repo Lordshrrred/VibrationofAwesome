@@ -110,6 +110,15 @@
     color: var(--muted);
     text-decoration: none;
     transition: color 0.3s, text-shadow 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
   }
 
   .nav-links a:hover,
@@ -117,6 +126,41 @@
     color: var(--gold);
     text-shadow: 0 0 10px rgba(0, 229, 204, 0.45);
   }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { width: 100%; }
+
+  .nav-links a.aura-link {
+    color: var(--gold) !important;
+    border: 1px solid rgba(0,229,204,0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+  }
+  .nav-links a.aura-link:hover {
+    background: rgba(0,229,204,0.08) !important;
+    box-shadow: 0 0 12px rgba(0,229,204,0.2);
+    text-shadow: none !important;
+  }
+  .nav-links a.aura-link::after { display: none !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
   .hero {
     position: relative;
@@ -478,8 +522,30 @@
   }
 
   @media (max-width: 720px) {
-    nav { padding: 1rem 1.2rem; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-    .nav-links { gap: 1rem; flex-wrap: wrap; }
+    nav { padding: 1.2rem 1.5rem; position: relative; flex-wrap: wrap; }
+    .hamburger { display: flex; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      gap: 0;
+      background: rgba(2,10,10,0.98);
+      border: 1px solid rgba(0,229,204,0.12);
+      border-top: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      z-index: 200;
+      padding: 0.5rem 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block;
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid rgba(0,229,204,0.05);
+      font-size: 0.85rem;
+    }
+    .nav-links a.aura-link { margin: 0.5rem 1.5rem; display: block; text-align: center; }
     .hero { padding: 7.8rem 1.2rem 2rem; }
     .summary { padding: 0 1.2rem 1.5rem; }
     .gallery-shell { padding: 0 1.2rem 4rem; }
@@ -497,13 +563,20 @@
 <div class="stars" id="stars"></div>
 
 <nav>
-  <a href="/" class="nav-logo">VOA</a>
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/blog/">Blog</a>
-    <a href="/portfolio/" class="active">Portfolio</a>
-    <a href="/art-store/">Art Store</a>
-  </div>
+  <a href="/#home" class="nav-logo">VOA</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/#home">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#vibration">Vibration</a></li>
+    <li><a href="/earthstar/">EarthStar ✦</a></li>
+    <li><a href="/art-store/">Art Store</a></li>
+    <li><a href="/portfolio/" class="active">Portfolio</a></li>
+    <li><a href="/aura/" class="aura-link">AURA ✦</a></li>
+    <li><a href="/blog/">Blog</a></li>
+  </ul>
 </nav>
 
 <header class="hero">
@@ -565,6 +638,19 @@
 </footer>
 
 <script>
+  (function() {
+    window.toggleNav = function() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+    };
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('open');
+      });
+    });
+  })();
+
   (function() {
     var stars = document.getElementById('stars');
     for (var i = 0; i < 130; i++) {

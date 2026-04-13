@@ -113,31 +113,68 @@
     text-shadow: 0 0 20px rgba(0,229,204,0.4);
   }
 
-  .nav-right {
+  .nav-links {
     display: flex;
-    align-items: center;
-    gap: 2rem;
+    gap: 2.5rem;
+    list-style: none;
   }
-
-  .nav-back {
+  .nav-links a {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.3s, text-shadow 0.3s;
+    position: relative;
   }
-  .nav-back:hover { color: var(--gold); }
-
-  .nav-store-title {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover,
+  .nav-links a.active {
     color: var(--gold);
-    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(0,229,204,0.5);
   }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { width: 100%; }
+  .nav-links a.aura-link {
+    color: var(--gold) !important;
+    border: 1px solid rgba(0,229,204,0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+  }
+  .nav-links a.aura-link:hover {
+    background: rgba(0,229,204,0.08) !important;
+    box-shadow: 0 0 12px rgba(0,229,204,0.2);
+    text-shadow: none !important;
+  }
+  .nav-links a.aura-link::after { display: none !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
   /* HERO */
   .store-hero {
@@ -307,6 +344,62 @@
   @keyframes pulse-dot {
     0%, 100% { opacity: 0.5; transform: scale(0.8); }
     50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  .portfolio-invite {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 1.5rem auto 0;
+    padding: 0 4rem;
+  }
+  .portfolio-invite-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.5rem;
+    align-items: center;
+    border: 1px solid rgba(0,229,204,0.16);
+    background: linear-gradient(135deg, rgba(0,26,24,0.88), rgba(2,10,10,0.94));
+    padding: 1.4rem 1.5rem;
+    box-shadow: 0 22px 50px rgba(0,0,0,0.22);
+  }
+  .portfolio-invite-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 0.65rem;
+  }
+  .portfolio-invite h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.15rem, 2vw, 1.65rem);
+    color: var(--cream);
+    margin-bottom: 0.45rem;
+  }
+  .portfolio-invite p {
+    color: rgba(208,255,248,0.74);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  .portfolio-invite-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.76rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--deep);
+    background: var(--gold);
+    padding: 1rem 1.3rem;
+    text-decoration: none;
+    white-space: nowrap;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: all 0.3s;
+  }
+  .portfolio-invite-btn:hover {
+    background: var(--gold-light);
+    box-shadow: 0 0 30px rgba(0,229,204,0.24);
+    transform: translateY(-2px);
   }
 
   /* MAIN CONTENT */
@@ -846,11 +939,37 @@
     main { padding: 4rem 2rem; }
     .payment-banner { padding: 1.5rem; gap: 1.5rem; }
     .payment-divider { display: none; }
+    .portfolio-invite { padding: 0 2rem; }
+    .portfolio-invite-card { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
     .art-grid, .payment-methods-grid { grid-template-columns: 1fr; }
-    #mainNav { padding: 1.2rem 1.5rem; }
+    #mainNav { padding: 1.2rem 1.5rem; position: relative; flex-wrap: wrap; }
+    .hamburger { display: flex; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      gap: 0;
+      background: rgba(2,10,10,0.98);
+      border: 1px solid rgba(0,229,204,0.12);
+      border-top: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      z-index: 200;
+      padding: 0.5rem 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block;
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid rgba(0,229,204,0.05);
+      font-size: 0.85rem;
+    }
+    .nav-links a.aura-link { margin: 0.5rem 1.5rem; display: block; text-align: center; }
     .store-hero { min-height: 45vh; }
+    .portfolio-invite { padding: 0 1.5rem; }
     .payment-section { padding: 2.5rem 1.5rem; }
     footer { padding: 2rem 1.5rem; grid-template-columns: 1fr; text-align: center; }
     .footer-right { text-align: center; }
@@ -865,12 +984,20 @@
 
 <!-- NAV -->
 <nav id="mainNav">
-  <a href="/" class="nav-logo">VOA</a>
-  <div class="nav-right">
-    <span class="nav-store-title">Art Store</span>
-    <a href="/portfolio/" class="nav-back">Portfolio</a>
-    <a href="/" class="nav-back">← Back to Site</a>
-  </div>
+  <a href="/#home" class="nav-logo">VOA</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/#home">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#vibration">Vibration</a></li>
+    <li><a href="/earthstar/">EarthStar ✦</a></li>
+    <li><a href="/art-store/" class="active">Art Store</a></li>
+    <li><a href="/portfolio/">Portfolio</a></li>
+    <li><a href="/aura/" class="aura-link">AURA ✦</a></li>
+    <li><a href="/blog/">Blog</a></li>
+  </ul>
 </nav>
 
 <!-- HERO -->
@@ -921,6 +1048,17 @@
   <p>Pay with Solana or Bitcoin and receive 11% off your entire order, crypto aligned with the frequency</p>
   <div class="glow-dot"></div>
 </div>
+
+<section class="portfolio-invite">
+  <div class="portfolio-invite-card reveal">
+    <div>
+      <div class="portfolio-invite-label">Archive Beyond the Store</div>
+      <h2>Curious about the older jewelry work?</h2>
+      <p>The portfolio holds the deeper archive: older wraps, one-off experiments, and pieces that shaped the signal long before they ever became products.</p>
+    </div>
+    <a href="/portfolio/" class="portfolio-invite-btn">Explore Portfolio</a>
+  </div>
+</section>
 
 <!-- MAIN CONTENT -->
 <main>
@@ -1151,6 +1289,17 @@
 </footer>
 
 <script>
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    });
+  });
+
   // Stars
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 120; i++) {

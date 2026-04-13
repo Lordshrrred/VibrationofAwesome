@@ -308,6 +308,9 @@
 
   .footer-left {
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
   }
 
   .footer-logo {
@@ -327,10 +330,33 @@
     line-height: 1.5;
   }
 
+  .footer-meta-links {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1.1rem;
+  }
+
+  .footer-meta-links a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+    white-space: nowrap;
+  }
+
+  .footer-meta-links a:hover {
+    color: var(--gold);
+    text-shadow: 0 0 8px rgba(0,229,204,0.35);
+  }
+
   .footer-nav {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     gap: 0.6rem;
     flex-shrink: 0;
   }
@@ -352,7 +378,7 @@
   }
 
   .footer-right {
-    text-align: right;
+    text-align: center;
     min-width: 0;
   }
 
@@ -427,9 +453,10 @@
     }
     section { padding: 5rem 1.5rem; }
     footer { padding: 2rem 1.5rem; grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-    .footer-left { text-align: center; }
+    .footer-left { text-align: center; align-items: center; }
     .footer-right { text-align: center; }
     .footer-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; }
+    .footer-meta-links { justify-content: center; }
     .footer-tagline {
       font-size: 0.85rem;
       letter-spacing: 0.02em;
@@ -468,18 +495,20 @@
 <footer>
   <div class="footer-left">
     <div class="footer-logo">Vibration of Awesome</div>
-    <div class="footer-tagline">Live deliberately. Create boldly. Cultivate the Vibration of Awesome.</div>
+    <div class="footer-tagline">Empower Thyself. Empower the Earth.</div>
+    <div class="footer-meta-links">
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </div>
+  <div class="footer-right">
+    <p>© 2026 Vibration of Awesome</p>
   </div>
   <nav class="footer-nav" aria-label="Footer navigation">
     <a href="/field-guide/">Field Guide</a>
     <a href="/user-manual/">Volume Two</a>
     <a href="/blog/">Blog</a>
-    <a href="/privacy/">Privacy Policy</a>
-    <a href="/contact/">Contact</a>
   </nav>
-  <div class="footer-right">
-    <p>© 2026 Vibration of Awesome</p>
-  </div>
 </footer>
 
 <script>
