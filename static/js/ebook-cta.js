@@ -97,18 +97,18 @@
 .voa-cover-trigger:hover::before,
 .voa-cover-trigger:focus-visible::before {
   opacity: 1;
-  transform: scale(1.07);
-  filter: blur(24px);
+  transform: scale(1.1);
+  filter: blur(28px);
 }
 .voa-cover-trigger:hover svg,
 .voa-cover-trigger:focus-visible svg {
-  opacity: 0.82;
-  transform: scale(1.09) rotate(4deg);
+  opacity: 0.88;
+  transform: scale(1.12) rotate(4deg);
 }
 .voa-cover-trigger:hover .voa-cover-glint,
 .voa-cover-trigger:focus-visible .voa-cover-glint {
   opacity: 1;
-  transform: scale(1.08);
+  transform: scale(1.14);
 }
 .voa-cover-sparkles {
   position: absolute;
@@ -149,7 +149,7 @@
 .voa-cover-trigger:hover .voa-cover-spark,
 .voa-cover-trigger:focus-visible .voa-cover-spark {
   opacity: 1;
-  filter: drop-shadow(0 0 14px rgba(0,229,255,0.56));
+  filter: drop-shadow(0 0 18px rgba(0,229,255,0.62));
 }
 .voa-cover-card img {
   position: relative;
@@ -162,9 +162,9 @@
 }
 .voa-cover-trigger:hover img,
 .voa-cover-trigger:focus-visible img {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 18px 34px rgba(0,0,0,0.36), 0 0 34px rgba(34,192,106,0.24), 0 0 42px rgba(0,229,255,0.18);
-  filter: saturate(1.07) brightness(1.05);
+  transform: translateY(-6px) scale(1.035);
+  box-shadow: 0 22px 40px rgba(0,0,0,0.4), 0 0 40px rgba(34,192,106,0.28), 0 0 52px rgba(0,229,255,0.24);
+  filter: saturate(1.1) brightness(1.07);
 }
 .voa-cover-note {
   font-size: 0.62rem;
