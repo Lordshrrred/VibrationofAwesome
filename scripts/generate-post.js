@@ -25,9 +25,9 @@ const ROOT = path.resolve(__dirname, "..");
 
 // ── CLI ARGS ──
 const argv = minimist(process.argv.slice(2), {
-  string:  ["lane", "title", "keyword", "topic"],
+  string:  ["lane", "title", "keyword", "topic", "rant"],
   boolean: ["skip-syndicate", "test-feeder-only", "draft"],
-  alias:   { l: "lane", t: "title", k: "keyword", p: "topic" },
+  alias:   { l: "lane", t: "title", k: "keyword", p: "topic", r: "rant" },
 });
 const lane = argv.lane;
 if (!lane || !["matt", "boom"].includes(lane)) {
@@ -92,6 +92,26 @@ const BOOMBOT_SYSTEM = [
   "vibrationofawesome.com and the Field Guide at vibrationofawesome.com/field-guide/",
   "Return raw markdown only.",
   "Never use em dashes in your output. Use tildes, hyphens, commas, or restructure the sentence instead.",
+  "",
+  "You are Matty BoomBoom ~ the AI writing voice of Vibration of Awesome. Your audience: spiritually awakening, purpose-driven, neurodivergent, HSP, and alternative abundance seekers who are done with generic self-help. They are outliers. Write like one.",
+  "",
+  "Tone: sharp, direct, a little raw, no fluff, no toxic positivity. You're the friend who actually tells them the truth.",
+  "",
+  "WRITING RULES:",
+  "- No em dashes ~ use tildes or restructure the sentence",
+  "- No word \"misfits\"",
+  "- No generic self-help hooks",
+  "- No AI-sounding copy",
+  "- Open every post by naming the reader's exact pain, problem, or predicament ~ make them feel seen in the first sentence",
+  "- After the hook, use ONE of these transition types: continue the thought, quote an authority, ask a question, tell a vivid story, skeptical slant story, reporter style, social proof, or short Q&A rhythm",
+  "- People buy on emotion first ~ write to create a feeling before introducing logic or facts",
+  "- Use concrete specific language ~ never abstract (\"your car won't start at 11pm alone in a parking lot\" not \"car trouble is stressful\")",
+  "- Plant at least one information gap per post ~ something unsaid that makes the reader need to keep going (\"there's one thing almost nobody does here ~ and it changes everything\")",
+  "- Use Feel/Felt/Found once if there's reader resistance: \"I know how you feel, I felt the same way, what I found was...\"",
+  "- End with a benefit-forward CTA ~ specific action tied to a specific outcome ~ no author bio, no \"thanks for reading\"",
+  "- Write at 8th grade reading level, short paragraphs, one idea each",
+  "- Never open with \"In today's world\" or \"In this article we will\"",
+  "- Never end with \"I hope this helps\"",
 ].join("\n");
 
 // ── TOPIC PILLARS & KEYWORD POOL ──────────────────────────────────────────────
@@ -592,6 +612,31 @@ async function main() {
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   let postTitle, userMessage, systemPrompt;
 
+  // Load rant file if provided via --rant path/to/rant.txt
+  let rantText = "";
+  if (argv.rant) {
+    const rantPath = path.resolve(argv.rant);
+    if (fs.existsSync(rantPath)) {
+      rantText = fs.readFileSync(rantPath, "utf8").trim();
+      console.log("Rant file loaded: " + rantPath + " (" + rantText.length + " chars)\n");
+    } else {
+      console.warn("Warning: --rant file not found: " + rantPath);
+    }
+  }
+
+  const rantInstruction = rantText
+    ? [
+        "",
+        "---",
+        "VOICE CONTEXT ~ RAW NOTES FROM MATT (use to shape the post's voice, angles, and opinions):",
+        rantText,
+        "---",
+        "Draw from these raw thoughts to give the post authentic opinions, specific observations,",
+        "and real energy. Translate the honesty into Matty BoomBoom's voice without losing the edge.",
+        "The rant is the source material ~ the post is the refined version.",
+      ].join("\n")
+    : "";
+
   // Build internal-linking context from existing published posts
   const existingPosts = buildExistingPostsList();
   const internalLinkingInstruction = existingPosts
@@ -610,7 +655,7 @@ async function main() {
   if (lane === "matt") {
     postTitle    = argv.title;
     systemPrompt = MATT_SYSTEM;
-    userMessage  = "Write a full blog post with the title: \"" + argv.title + "\"" + internalLinkingInstruction;
+    userMessage  = "Write a full blog post with the title: \"" + argv.title + "\"" + rantInstruction + internalLinkingInstruction;
   } else {
     postTitle    = argv.keyword;
     systemPrompt = BOOMBOT_SYSTEM;
@@ -621,6 +666,7 @@ async function main() {
       "Write a long-form SEO blog post targeting the long-tail keyword: \"" + argv.keyword + "\"",
       "Broader topic context: \"" + argv.topic + "\"",
       titleLine,
+      rantInstruction,
       internalLinkingInstruction,
     ].join("\n");
   }

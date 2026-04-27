@@ -55,13 +55,17 @@
   }
 
   .hero-title {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: clamp(2.5rem, 6vw, 5rem);
-    line-height: 1.1;
+    font-weight: 600;
+    line-height: 1.04;
     color: var(--cream);
-    text-shadow: 0 0 40px rgba(201,168,76,0.2);
+    text-shadow: 0 0 26px rgba(0,229,204,0.12);
     margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
+    max-width: 11ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-title span {
@@ -70,22 +74,23 @@
   }
 
   .hero-tagline {
-    font-size: clamp(1rem, 2.4vw, 1.45rem);
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
     font-style: italic;
-    color: #a8ede4;
-    text-shadow: 0 0 18px rgba(168,237,228,0.45);
-    line-height: 2;
+    color: rgba(221,255,250,0.92);
+    text-shadow: 0 0 12px rgba(0,229,204,0.14);
+    line-height: 1.75;
     margin-bottom: 1.2rem;
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
   }
 
   .hero-sub {
     font-family: 'Lora', Georgia, serif;
-    font-size: 1rem;
-    color: rgba(208,235,228,0.72);
-    line-height: 1.7;
+    font-size: 1.02rem;
+    color: rgba(221,255,250,0.82);
+    line-height: 1.75;
     margin-bottom: 2.5rem;
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
   }
 
   .hero-cta {
@@ -135,9 +140,10 @@
   }
 
   .start-text p {
-    font-size: 1.15rem;
-    line-height: 1.9;
-    color: rgba(240,230,204,0.75);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.08rem;
+    line-height: 1.82;
+    color: rgba(228,250,245,0.84);
     margin-bottom: 1.5rem;
   }
 
@@ -285,16 +291,18 @@
     max-width: 660px;
   }
   .section-body p {
-    font-size: 1.08rem;
-    line-height: 1.95;
-    color: rgba(232,222,200,0.88);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.03rem;
+    line-height: 1.82;
+    color: rgba(228,250,245,0.84);
     margin-bottom: 1.4rem;
     font-weight: 400;
   }
   .section-body p.lead {
-    font-size: 1.2rem;
-    line-height: 1.85;
-    color: rgba(240,232,212,0.96);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.14rem;
+    line-height: 1.78;
+    color: rgba(238,255,252,0.94);
     margin-bottom: 1.8rem;
     font-weight: 400;
   }
@@ -680,10 +688,12 @@
   }
 
   .feed-title {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 0.95rem;
+    font-weight: 600;
     color: var(--cream);
     line-height: 1.45;
+    letter-spacing: 0.02em;
     margin-bottom: 0.5rem;
   }
 
@@ -814,10 +824,12 @@
 
   @media (max-width: 768px) {
     .hero-tagline {
-      font-size: 0.95rem;
-      line-height: 2;
-      text-shadow: 0 0 20px rgba(168,237,228,0.7), 0 0 50px rgba(168,237,228,0.4);
-      letter-spacing: 0.02em;
+      font-size: 1rem;
+      line-height: 1.7;
+      text-shadow: 0 0 10px rgba(0,229,204,0.12);
+    }
+    .hero-title {
+      max-width: 9ch;
     }
     .vibration-layout { grid-template-columns: 1fr; gap: 3rem; }
     .earthstar-grid { grid-template-columns: 1fr; }
