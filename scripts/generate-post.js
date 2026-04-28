@@ -493,6 +493,10 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("  resize(); initStars(); draw();");
   H.push("})();");
   H.push("<\/script>");
+  H.push('  <script src="/js/announcement-bar.js"><\/script>');
+  if (!isMatt) {
+    H.push('  <script src="/js/earthstar-visual.js"><\/script>');
+  }
   H.push("</body>");
   H.push("</html>");
   return H.join("\n");
