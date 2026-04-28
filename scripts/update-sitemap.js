@@ -23,6 +23,8 @@ const STATIC_PAGES = [
   { loc: "/blog/boom/",             lastmod: "2026-03-04", changefreq: "weekly",  priority: "0.8" },
   { loc: "/aura/",                     lastmod: "2026-03-03", changefreq: "monthly", priority: "0.6" },
   { loc: "/art-store/",                lastmod: "2026-03-03", changefreq: "monthly", priority: "0.6" },
+  { loc: "/privacy/",                  lastmod: "2026-03-07", changefreq: "yearly",  priority: "0.3" },
+  { loc: "/terms/",                    lastmod: "2026-04-27", changefreq: "yearly",  priority: "0.3" },
   { loc: "/posts/",                    lastmod: "2026-03-03", changefreq: "monthly", priority: "0.5" },
   { loc: "/posts/first-transmission/", lastmod: "2026-03-03", changefreq: "monthly", priority: "0.5" },
 ];
