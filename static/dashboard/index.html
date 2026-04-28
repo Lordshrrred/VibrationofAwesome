@@ -690,10 +690,8 @@ const FEEDER_POSTS_URL = "https://lordshrrred.github.io/VOA_Feeder/blog/posts.js
 const FEEDER_SUFFIXES = ["-signal", "-shift", "-insight", "-guide"];
 const WORDPRESS_SITE_URL = "https://earthstarrisingsun.wordpress.com";
 const WORDPRESS_POSTS_API = "https://public-api.wordpress.com/rest/v1.1/sites/earthstarrisingsun.wordpress.com/posts?number=100";
-const VERIFY_CACHE  = "voa_url_verify_cache_v3"; // v3: backend status + backlink verification
+const VERIFY_CACHE  = "voa_url_verify_cache_v4"; // v4: free browser-side checks, no Netlify function usage
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
-const CHECK_URL_ENDPOINT = "https://vibrationofawesome.netlify.app/.netlify/functions/check-url";
-const VERIFY_CONCURRENCY = 4;
 
 function getOpenTarget(primaryUrl, fallbackUrl) {
   return primaryUrl || fallbackUrl || "";
@@ -1164,7 +1162,7 @@ function renderMatrix(results) {
         const extra = key === "feeder" && s.backlink_confirmed ? " · backlink confirmed" : "";
         const tip = successTip(name, tooltip, s.url, entry.voa_url, extra);
         const onclick = getOpenAttrs(s.url, entry.voa_url);
-        return `<td><div class="mat-cell mat-ok" title="${esc(tip)}" ${onclick} data-verify="${esc(s.url||"")}" data-source-url="${esc(s.backlink_source_url || entry.voa_url || entry.postUrl || "")}" data-key="${key}">✓</div></td>`;
+        return `<td><div class="mat-cell mat-ok" title="${esc(tip)}" ${onclick} data-verify="${esc(s.url||"")}" data-key="${key}">✓</div></td>`;
       } else if (s.status === "pending") {
         return `<td><div class="mat-cell mat-pend" title="${esc(name + ": trigger fired, waiting for post")}">⏳</div></td>`;
       } else {
@@ -1202,9 +1200,18 @@ function renderMatrix(results) {
 }
 
 // ── Live URL Verification ─────────────────────────────────────────────────────
-// Backend verification uses the Netlify check-url function so the dashboard can
-// distinguish real HTTP statuses and confirm backlinks when the target page text
-// includes the source VOA URL. Results are cached in localStorage for 24 hours.
+// ALL platforms use direct browser fetch (no-cors) ~ zero Netlify function calls.
+//
+// WHY: Netlify function calls are credit-expensive for dashboard-wide URL checks.
+// no-cors fetch: throws on network failure → red; returns opaque response → green.
+// Trade-off: can't distinguish 404 from 200, but post URLs are stable after syndication.
+//
+// Backlink status comes from the stored syndication result, especially the Feeder
+// callback's backlink_confirmed flag. We do not re-scrape pages from the dashboard.
+//
+//   DIRECT (browser fetch, no-cors): all platforms with a URL
+//   STORED (show syndication status, no live check): instagram, threads (never have URLs)
+// Results cached in localStorage for 24 hours.
 
 // Platforms that show stored status only ~ no live check (they don't return post URLs)
 const STORED_STATUS_KEYS = new Set(["instagram", "threads"]);
@@ -1250,84 +1257,40 @@ async function verifyMatrixUrls() {
     if (STORED_STATUS_KEYS.has(key)) continue;
 
     if (cache[url] !== undefined) {
-      updateMatrixCell(cell, cache[url]);
+      updateMatrixCell(cell, cache[url].live);
       continue;
     }
 
     cell.innerHTML = "⏳";
     cell.classList.replace("mat-ok", "mat-pend");
-    toCheck.push({
-      cell,
-      url,
-      sourceUrl: cell.getAttribute("data-source-url") || "",
-    });
+    toCheck.push({ cell, url });
   }
 
-  let cursor = 0;
-  async function worker() {
-    while (cursor < toCheck.length) {
-      const item = toCheck[cursor++];
-      try {
-        const params = new URLSearchParams({ url: item.url });
-        if (item.sourceUrl) params.set("source", item.sourceUrl);
-
-        const resp = await fetch(`${CHECK_URL_ENDPOINT}?${params.toString()}`, { cache: "no-store" });
-        const data = await resp.json();
-        const result = {
-          live: Boolean(data.live),
-          status: data.status,
-          finalUrl: data.finalUrl || item.url,
-          method: data.method || "",
-          backlink: data.backlink || { checked: false },
-          error: data.error || "",
-          ts: Date.now(),
-        };
-        cache[item.url] = result;
-        updateMatrixCell(item.cell, result);
-      } catch (err) {
-        const result = {
-          live: false,
-          status: -1,
-          error: err && err.message ? err.message : "verification failed",
-          backlink: { checked: Boolean(item.sourceUrl), confirmed: false },
-          ts: Date.now(),
-        };
-        cache[item.url] = result;
-        updateMatrixCell(item.cell, result);
-      }
-      setVerifyCache(cache);
+  // Direct no-cors browser fetches ~ sequential to avoid flooding target sites
+  // no-cors: opaque response = server responded (treat as live); throws = network dead
+  for (const { cell, url } of toCheck) {
+    try {
+      await fetch(url, { mode: "no-cors", cache: "no-store" });
+      cache[url] = { live: true, ts: Date.now() };
+      updateMatrixCell(cell, true);
+    } catch (_) {
+      cache[url] = { live: false, ts: Date.now() };
+      updateMatrixCell(cell, false);
     }
   }
 
-  await Promise.all(
-    Array.from({ length: Math.min(VERIFY_CONCURRENCY, toCheck.length) }, worker)
-  );
+  if (toCheck.length > 0) setVerifyCache(cache);
 }
 
-function updateMatrixCell(cell, result) {
-  const live = typeof result === "boolean" ? result : Boolean(result && result.live);
-  const backlink = result && typeof result === "object" ? result.backlink : null;
-  const status = result && typeof result === "object" ? result.status : "";
-  const finalUrl = result && typeof result === "object" ? result.finalUrl : "";
-  const error = result && typeof result === "object" ? result.error : "";
-
+function updateMatrixCell(cell, live) {
   cell.innerHTML = live ? "✓" : "✗";
   cell.classList.remove("mat-pend");
   if (live) {
     cell.classList.add("mat-ok");
     cell.classList.remove("mat-fail");
-    if (backlink && backlink.checked) {
-      cell.title = backlink.confirmed
-        ? `Live (${status}) · backlink confirmed`
-        : `Live (${status}) · backlink not found`;
-    } else {
-      cell.title = status ? `Live (${status})` : "Live";
-    }
-    if (finalUrl) cell.setAttribute("data-final-url", finalUrl);
   } else {
     cell.classList.add("mat-fail");
     cell.classList.remove("mat-ok");
-    cell.title = error ? `Not live · ${error}` : (status ? `Not live (${status})` : "Not live");
     cell.onclick = null;
     cell.style.cursor = "default";
   }
