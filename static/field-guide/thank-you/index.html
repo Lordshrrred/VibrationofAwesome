@@ -108,6 +108,7 @@
   }
   .wl-btn:hover { background: rgba(34,192,106,0.25); }
   .wl-success { display: none; font-family: 'Poppins', sans-serif; font-size: 0.88rem; color: var(--gold); margin-top: 0.5rem; }
+  .wl-error { display: none; font-family: 'Poppins', sans-serif; font-size: 0.82rem; color: #ff6767; margin-top: 0.65rem; }
 
   .page-footer { padding: 3rem 0 5rem; text-align: center; border-top: 1px solid var(--gold-border); }
   .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
@@ -161,17 +162,18 @@
     <a href="/user-manual/" class="buy-btn coming-soon" id="buy-btn">
       Get the User Manual ~ $17
     </a>
-    <div class="coming-soon-note" id="coming-soon-note">Stripe checkout coming soon. Get on the early list below.</div>
+    <div class="coming-soon-note" id="coming-soon-note">The User Manual is not available yet. Get on the waiting list below.</div>
 
     <!-- Paid waitlist -->
     <div class="waitlist">
-      <h3>Get notified when Volume Two launches.</h3>
-      <p>Early list gets it at the launch price before it increases.</p>
+      <h3>Get notified when Volume Two is ready.</h3>
+      <p>Join the waiting list and we will reach out as soon as A User Manual for Reality is available. Read the Field Guide first while you wait.</p>
       <div class="waitlist-row">
         <input type="email" class="wl-input" id="wl-email" placeholder="Your email address">
-        <button class="wl-btn" id="wl-btn" onclick="submitWaitlist()">Join Early List</button>
+        <button class="wl-btn" id="wl-btn" onclick="submitWaitlist()">Join Waitlist</button>
       </div>
       <div class="wl-success" id="wl-success">You're on the list. ✦ We'll reach out at launch.</div>
+      <div class="wl-error" id="wl-error">Something went wrong. Please try again.</div>
     </div>
   </section>
 
@@ -207,7 +209,7 @@
       s.pulse += s.ps;
       const op = s.op * (0.7 + 0.3 * Math.sin(s.pulse));
       ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.gold ? `rgba(34,192,106,)` : `rgba(255,255,255,${op})`;
+      ctx.fillStyle = s.gold ? `rgba(34,192,106,${op})` : `rgba(255,255,255,${op})`;
       ctx.fill();
       s.y += s.speed;
       if (s.y > c.height + 2) { s.y = -2; s.x = Math.random() * c.width; }
@@ -220,6 +222,7 @@
 
 // ── Set download URL from token in URL params ──────────────────────────────
 window.dataLayer = window.dataLayer || [];
+const API_CAPTURE_URL = window.VOA_CAPTURE_EMAIL_URL || 'https://vibrationofawesome-mailer.vercel.app/api/capture-email';
 
 (function() {
   const params = new URLSearchParams(window.location.search);
@@ -227,7 +230,7 @@ window.dataLayer = window.dataLayer || [];
   const dlBtn  = document.getElementById('dl-btn');
 
   if (token) {
-    dlBtn.href = `/.netlify/functions/deliver-ebook?token=${encodeURIComponent(token)}&product=free`;
+    dlBtn.href = '/downloads/voa-field-guide.pdf';
     window.dataLayer.push({ event: 'ebook_download_page_view', token_present: true });
   } else {
     // No token ~ show general link to field-guide page
@@ -241,16 +244,30 @@ window.dataLayer = window.dataLayer || [];
 async function submitWaitlist() {
   const email = document.getElementById('wl-email').value.trim();
   const btn   = document.getElementById('wl-btn');
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+  const err   = document.getElementById('wl-error');
+  err.style.display = 'none';
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    err.textContent = 'Please enter a valid email address.';
+    err.style.display = 'block';
+    return;
+  }
   btn.disabled = true;
   btn.textContent = '…';
   try {
-    await fetch('/.netlify/functions/capture-email', {
+    const resp = await fetch(API_CAPTURE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, source_page: '/field-guide/thank-you/', cta_placement: 'waitlist', blog_slug: '' }),
+      body: JSON.stringify({ email, source_page: '/field-guide/thank-you/', cta_placement: 'waitlist', blog_slug: '', list: 'user_manual_waitlist' }),
     });
-  } catch (_) {}
+    const data = await resp.json();
+    if (!resp.ok || !data.success) throw new Error(data.error || 'Email capture failed');
+  } catch (_) {
+    btn.disabled = false;
+    btn.textContent = 'Join Waitlist';
+    err.textContent = 'Something went wrong. Please try again.';
+    err.style.display = 'block';
+    return;
+  }
   document.getElementById('wl-success').style.display = 'block';
   document.querySelector('.waitlist-row').style.display = 'none';
   window.dataLayer.push({ event: 'paid_waitlist_signup' });

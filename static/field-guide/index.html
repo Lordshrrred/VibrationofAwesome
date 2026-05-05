@@ -968,7 +968,7 @@
       s.pulse += s.ps;
       const op = s.op * (0.7 + 0.3 * Math.sin(s.pulse));
       ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.gold ? `rgba(34,192,106,)` : `rgba(255,255,255,${op})`;
+      ctx.fillStyle = s.gold ? `rgba(34,192,106,${op})` : `rgba(255,255,255,${op})`;
       ctx.fill();
       s.y += s.speed;
       if (s.y > c.height + 2) { s.y = -2; s.x = Math.random() * c.width; }
@@ -982,6 +982,7 @@
 // ── Track CTA view ─────────────────────────────────────────────────────────
 window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({ event: 'ebook_cta_view', placement: 'field-guide-page' });
+const API_CAPTURE_URL = window.VOA_CAPTURE_EMAIL_URL || 'https://vibrationofawesome-mailer.vercel.app/api/capture-email';
 
 // ── Form submission ────────────────────────────────────────────────────────
 async function submitForm(id) {
@@ -1003,7 +1004,7 @@ async function submitForm(id) {
   window.dataLayer.push({ event: 'ebook_optin_submit', placement: id });
 
   try {
-    const resp = await fetch('/.netlify/functions/capture-email', {
+    const resp = await fetch(API_CAPTURE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1011,10 +1012,11 @@ async function submitForm(id) {
         source_page: '/field-guide/',
         cta_placement: id,
         blog_slug: '',
+        list: 'field_guide',
       }),
     });
     const data = await resp.json();
-    if (!data.success) throw new Error(data.error || 'Server error');
+    if (!resp.ok || !data.success) throw new Error(data.error || 'Server error');
 
     window.dataLayer.push({ event: 'ebook_optin_success', placement: id });
 

@@ -9,6 +9,8 @@
 (function () {
   'use strict';
 
+  const API_CAPTURE_URL = window.VOA_CAPTURE_EMAIL_URL || 'https://vibrationofawesome-mailer.vercel.app/api/capture-email';
+
   const STYLES = `
 .voa-cta-wrap { position: relative; z-index: 2; font-family: 'Poppins', 'Space Grotesk', sans-serif; }
 
@@ -611,15 +613,21 @@
     window.dataLayer.push({ event: 'ebook_optin_submit', placement, blog_slug: slug });
 
     try {
-      const resp = await fetch('/.netlify/functions/capture-email', {
+      const resp = await fetch(API_CAPTURE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source_page: window.location.pathname, cta_placement: placement, blog_slug: slug }),
+        body: JSON.stringify({ email, source_page: window.location.pathname, cta_placement: placement, blog_slug: slug, list: 'field_guide' }),
       });
       const data = await resp.json();
+      if (!resp.ok || !data.success) throw new Error(data.error || 'Email capture failed');
       link.href = data.download_url || '/field-guide/';
     } catch (_) {
       link.href = '/field-guide/';
+      btn.disabled = false;
+      btn.textContent = 'Opening...';
+      input.style.borderColor = '#e05050';
+      setTimeout(function () { input.style.borderColor = ''; }, 1500);
+      return;
     }
 
     shell.querySelector('.voa-cta-form').style.display = 'none';
@@ -772,12 +780,13 @@
       window.dataLayer.push({ event: 'ebook_optin_submit', placement, blog_slug: slug });
 
       try {
-        const resp = await fetch('/.netlify/functions/capture-email', {
+        const resp = await fetch(API_CAPTURE_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, source_page: window.location.pathname, cta_placement: placement, blog_slug: slug }),
+          body: JSON.stringify({ email, source_page: window.location.pathname, cta_placement: placement, blog_slug: slug, list: 'field_guide' }),
         });
         const data = await resp.json();
+        if (!resp.ok || !data.success) throw new Error(data.error || 'Email capture failed');
         if (data.download_url) {
           dlLink.href = data.download_url;
         } else {
@@ -785,6 +794,11 @@
         }
       } catch (_) {
         dlLink.href = '/field-guide/';
+        btn.disabled = false;
+        btn.textContent = placement === 'mid-article' ? 'Open the Signal ✦' : 'Send Me the Guide ✦';
+        input.style.borderColor = '#e05050';
+        setTimeout(() => { input.style.borderColor = ''; }, 1500);
+        return;
       }
 
       form.style.display = 'none';
