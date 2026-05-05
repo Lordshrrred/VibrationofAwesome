@@ -1,0 +1,220 @@
+#!/usr/bin/env node
+/**
+ * Non-publishing syndication readiness checks.
+ *
+ * This script validates env wiring and performs safe read/auth calls only.
+ * It never creates posts, pins, drafts, or media.
+ */
+
+import crypto from "crypto";
+import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+dotenv.config({ override: true });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const ROOT = path.resolve(__dirname, "..");
+
+const results = [];
+
+function pctEncode(s) {
+  return encodeURIComponent(String(s))
+    .replace(/!/g, "%21").replace(/'/g, "%27")
+    .replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/\*/g, "%2A");
+}
+
+function buildOAuthHeader({ method, url, consumerKey, consumerSecret, token, tokenSecret }) {
+  const oauthParams = {
+    oauth_consumer_key: consumerKey,
+    oauth_nonce: crypto.randomBytes(16).toString("hex"),
+    oauth_signature_method: "HMAC-SHA1",
+    oauth_timestamp: String(Math.floor(Date.now() / 1000)),
+    oauth_token: token,
+    oauth_version: "1.0",
+  };
+  const paramStr = Object.keys(oauthParams).sort()
+    .map(k => `${pctEncode(k)}=${pctEncode(oauthParams[k])}`).join("&");
+  const baseStr = `${method.toUpperCase()}&${pctEncode(url)}&${pctEncode(paramStr)}`;
+  const signingKey = `${pctEncode(consumerSecret)}&${pctEncode(tokenSecret)}`;
+  oauthParams.oauth_signature = crypto.createHmac("sha1", signingKey).update(baseStr).digest("base64");
+  return "OAuth " + Object.entries(oauthParams)
+    .map(([k, v]) => `${pctEncode(k)}="${pctEncode(v)}"`).join(", ");
+}
+
+function hasEnv(...keys) {
+  const missing = keys.filter(key => !process.env[key]?.trim());
+  if (missing.length) throw new Error(`missing ${missing.join(", ")}`);
+}
+
+async function check(name, fn) {
+  try {
+    const detail = await fn();
+    results.push({ name, ok: true, detail: detail || "ok" });
+  } catch (err) {
+    results.push({ name, ok: false, detail: err.message });
+  }
+}
+
+async function publerJson(pathname, options = {}) {
+  hasEnv("PUBLER_API_KEY", "PUBLER_WORKSPACE_ID");
+  const resp = await fetch(`https://app.publer.com/api/v1${pathname}`, {
+    ...options,
+    headers: {
+      Authorization: `Bearer-API ${process.env.PUBLER_API_KEY}`,
+      "Publer-Workspace-Id": process.env.PUBLER_WORKSPACE_ID,
+      Accept: "application/json",
+      ...(options.headers || {}),
+    },
+  });
+  const data = await resp.json().catch(() => ({}));
+  if (!resp.ok) throw new Error(data.message || data.error || `HTTP ${resp.status}`);
+  return data;
+}
+
+function extractAccounts(data) {
+  return Array.isArray(data) ? data : Array.isArray(data.data) ? data.data : [];
+}
+
+async function main() {
+  await check("drip queue", () => {
+    const file = path.join(ROOT, "static", "_data", "drip-queue.json");
+    const queue = JSON.parse(fs.readFileSync(file, "utf8"));
+    return `status=${queue.status}, rate=${queue.drip_rate || 2}/run, time=${queue.drip_time || "10:00 UTC"}, remaining=${queue.queue?.length || 0}`;
+  });
+
+  let publerAccounts = [];
+  await check("Publer accounts", async () => {
+    publerAccounts = extractAccounts(await publerJson("/accounts"));
+    const providers = publerAccounts.map(a => a.provider).filter(Boolean);
+    for (const provider of ["pinterest", "instagram", "threads"]) {
+      if (!providers.includes(provider)) throw new Error(`missing ${provider} account`);
+    }
+    return providers.join(", ");
+  });
+
+  await check("Publer Pinterest board", async () => {
+    const pinterest = publerAccounts.find(a => a.provider === "pinterest");
+    if (!pinterest?.id) throw new Error("missing Pinterest account");
+    const pathPart = `/workspaces/${encodeURIComponent(process.env.PUBLER_WORKSPACE_ID)}/media_options?accounts[]=${encodeURIComponent(pinterest.id)}`;
+    const rows = extractAccounts(await publerJson(pathPart));
+    const boards = rows.flatMap(row => row.albums || row.boards || []);
+    if (!boards.length) throw new Error("no Pinterest boards returned");
+    return `${boards.length} board(s) available`;
+  });
+
+  await check("Bluesky auth", async () => {
+    hasEnv("BLUESKY_HANDLE", "BLUESKY_APP_PASSWORD");
+    const resp = await fetch("https://bsky.social/xrpc/com.atproto.server.createSession", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        identifier: process.env.BLUESKY_HANDLE,
+        password: process.env.BLUESKY_APP_PASSWORD,
+      }),
+    });
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok) throw new Error(data.message || `HTTP ${resp.status}`);
+    return data.handle || "session ok";
+  });
+
+  await check("Mastodon auth", async () => {
+    hasEnv("MASTODON_INSTANCE", "MASTODON_ACCESS_TOKEN");
+    const instance = process.env.MASTODON_INSTANCE.startsWith("http")
+      ? process.env.MASTODON_INSTANCE.replace(/\/+$/, "")
+      : `https://${process.env.MASTODON_INSTANCE.replace(/\/+$/, "")}`;
+    const resp = await fetch(`${instance}/api/v1/accounts/verify_credentials`, {
+      headers: { Authorization: `Bearer ${process.env.MASTODON_ACCESS_TOKEN}` },
+    });
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok) throw new Error(data.error || `HTTP ${resp.status}`);
+    return data.acct || "account ok";
+  });
+
+  for (const [label, idKey, tokenKey] of [
+    ["Facebook VOA", "META_PAGE_ID_VOA", "META_PAGE_TOKEN_VOA"],
+    ["Facebook EarthStar", "META_PAGE_ID_EARTHSTAR", "META_PAGE_TOKEN_EARTHSTAR"],
+  ]) {
+    await check(label, async () => {
+      hasEnv(idKey, tokenKey);
+      const qs = new URLSearchParams({ fields: "id,name", access_token: process.env[tokenKey] });
+      const resp = await fetch(`https://graph.facebook.com/v19.0/${process.env[idKey]}?${qs}`);
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || data.error) throw new Error(data.error?.message || `HTTP ${resp.status}`);
+      return data.name || data.id || "page ok";
+    });
+  }
+
+  await check("Dev.to auth", async () => {
+    hasEnv("DEVTO_API_KEY");
+    const resp = await fetch("https://dev.to/api/users/me", {
+      headers: { "api-key": process.env.DEVTO_API_KEY },
+    });
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok) throw new Error(data.error || `HTTP ${resp.status}`);
+    return data.username || "user ok";
+  });
+
+  await check("Tumblr auth", async () => {
+    hasEnv("TUMBLR_CONSUMER_KEY", "TUMBLR_CONSUMER_SECRET", "TUMBLR_TOKEN", "TUMBLR_TOKEN_SECRET", "TUMBLR_BLOG_NAME");
+    const url = "https://api.tumblr.com/v2/user/info";
+    const resp = await fetch(url, {
+      headers: {
+        Authorization: buildOAuthHeader({
+          method: "GET",
+          url,
+          consumerKey: process.env.TUMBLR_CONSUMER_KEY,
+          consumerSecret: process.env.TUMBLR_CONSUMER_SECRET,
+          token: process.env.TUMBLR_TOKEN,
+          tokenSecret: process.env.TUMBLR_TOKEN_SECRET,
+        }),
+      },
+    });
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok || data.meta?.status >= 400) throw new Error(data.meta?.msg || `HTTP ${resp.status}`);
+    return "user ok";
+  });
+
+  await check("Blogger token refresh", async () => {
+    hasEnv("BLOGGER_CLIENT_ID", "BLOGGER_CLIENT_SECRET", "BLOGGER_REFRESH_TOKEN", "BLOGGER_BLOG_ID");
+    const resp = await fetch("https://oauth2.googleapis.com/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        client_id: process.env.BLOGGER_CLIENT_ID,
+        client_secret: process.env.BLOGGER_CLIENT_SECRET,
+        refresh_token: process.env.BLOGGER_REFRESH_TOKEN,
+        grant_type: "refresh_token",
+      }),
+    });
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok) throw new Error([data.error, data.error_description].filter(Boolean).join(": ") || `HTTP ${resp.status}`);
+    return "token ok";
+  });
+
+  await check("WordPress direct auth", async () => {
+    hasEnv("WORDPRESS_OAUTH2_TOKEN", "WORDPRESS_BLOG");
+    const resp = await fetch(`https://public-api.wordpress.com/rest/v1.1/sites/${encodeURIComponent(process.env.WORDPRESS_BLOG)}`, {
+      headers: { Authorization: `Bearer ${process.env.WORDPRESS_OAUTH2_TOKEN}` },
+    });
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok) throw new Error(data.message || data.error || `HTTP ${resp.status}`);
+    return data.name || data.URL || "site ok";
+  });
+
+  console.log("\nSyndication readiness checks\n");
+  for (const result of results) {
+    console.log(`${result.ok ? "OK  " : "FAIL"} ${result.name}: ${result.detail}`);
+  }
+
+  const failed = results.filter(result => !result.ok);
+  console.log(`\n${results.length - failed.length}/${results.length} checks passed.`);
+  if (failed.length) process.exitCode = 1;
+}
+
+main().catch(err => {
+  console.error(err);
+  process.exit(1);
+});

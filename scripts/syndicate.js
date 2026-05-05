@@ -2,8 +2,9 @@
 /**
  * syndicate.js ~ Full content syndication engine for vibrationofawesome.com
  *
- * Platforms: Bluesky · Mastodon · Facebook (VOA + EarthStar) · Pinterest
- *            Dev.to · Tumblr · Instagram (Publer) · Threads (Publer)
+ * Platforms: Bluesky · Mastodon · Facebook (VOA + EarthStar)
+ *            Pinterest · Instagram · Threads (via Publer)
+ *            Dev.to · Tumblr
  *            Blogger · WordPress (EarthStarRising direct API)
  *
  * CLI:  node scripts/syndicate.js --lane [matt|boom] --slug <post-slug> [--keyword "search term"] [--blogger-only]
@@ -189,6 +190,42 @@ async function uploadPublerMediaFromUrl(imageUrl, headers, baseUrl = "https://ap
   return mediaId;
 }
 
+async function listPublerAccounts(headers, baseUrl = "https://app.publer.com/api/v1") {
+  const { response, data } = await fetchPublerJson(`${baseUrl}/accounts`, { headers }, 3);
+  if (!response.ok) throw new Error(`Publer accounts: ${data.message || data.error || response.status}`);
+  return Array.isArray(data) ? data : Array.isArray(data.data) ? data.data : [];
+}
+
+async function getPublerAccountId(platform, headers, baseUrl = "https://app.publer.com/api/v1") {
+  const envKey = `PUBLER_${platform.toUpperCase()}_ACCOUNT_ID`;
+  const configured = process.env[envKey];
+  if (configured?.trim()) return configured.trim();
+
+  const accounts = await listPublerAccounts(headers, baseUrl);
+  const match = accounts.find(account => account.provider === platform);
+  if (!match?.id) throw new Error(`${envKey} not set and no ${platform} account found in Publer`);
+  return match.id;
+}
+
+async function getPublerPinterestBoardId(accountId, headers, baseUrl = "https://app.publer.com/api/v1") {
+  const configured = process.env.PUBLER_PINTEREST_BOARD_ID || process.env.PINTEREST_BOARD_ID;
+  if (configured?.trim()) return configured.trim();
+
+  const workspaceId = process.env.PUBLER_WORKSPACE_ID;
+  if (!workspaceId) throw new Error("PUBLER_WORKSPACE_ID not set");
+
+  const url = `${baseUrl}/workspaces/${encodeURIComponent(workspaceId)}/media_options?accounts[]=${encodeURIComponent(accountId)}`;
+  const { response, data } = await fetchPublerJson(url, { headers }, 3);
+  if (!response.ok) throw new Error(`Publer media options: ${data.message || data.error || response.status}`);
+
+  const rows = Array.isArray(data) ? data : Array.isArray(data.data) ? data.data : [];
+  const row = rows.find(item => item.id === accountId) || rows[0] || {};
+  const boards = row.albums || row.boards || [];
+  const board = boards.find(item => item.type === "pinterest") || boards[0];
+  if (!board?.id) throw new Error("PUBLER_PINTEREST_BOARD_ID not set and no Pinterest board found in Publer");
+  return board.id;
+}
+
 // ── OAuth 1.0a (Tumblr) ───────────────────────────────────────────────────────
 
 /**
@@ -359,34 +396,6 @@ async function postToFacebookPage(pageId, pageToken, caption, postUrl) {
   return { postId: data.id, postUrl: `https://www.facebook.com/${data.id}` };
 }
 
-/** Post a Pin to Pinterest */
-async function postToPinterest(caption, postTitle, postUrl, imageUrl) {
-  const token   = process.env.PINTEREST_ACCESS_TOKEN;
-  const boardId = process.env.PINTEREST_BOARD_ID;
-  if (!token)   throw new Error("PINTEREST_ACCESS_TOKEN not set");
-  if (!boardId) throw new Error("PINTEREST_BOARD_ID not set");
-
-  const body = {
-    link:        postUrl,
-    title:       postTitle.slice(0, 100),
-    description: caption.slice(0, 800),
-    board_id:    boardId,
-    ...(imageUrl ? { media_source: { source_type: "image_url", url: imageUrl } } : {}),
-  };
-
-  const resp = await fetch("https://api.pinterest.com/v5/pins", {
-    method:  "POST",
-    headers: {
-      Authorization:  `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  const data = await resp.json();
-  if (!resp.ok) throw new Error(`Pinterest: ${data.message || resp.status}`);
-  return { postId: data.id, postUrl: `https://www.pinterest.com/pin/${data.id}/` };
-}
-
 /** Publish a teaser article on Dev.to */
 async function postToDevTo(postTitle, caption, postUrl, tags) {
   const key = process.env.DEVTO_API_KEY;
@@ -471,23 +480,30 @@ async function postToTumblr(caption, tags) {
   };
 }
 
-/** Post Instagram or Threads via Publer API v1 */
-async function postViaPubler(platform, caption, imageUrl) {
+/** Post Pinterest, Instagram, or Threads via Publer API v1 */
+async function postViaPubler(platform, caption, imageUrl, details = {}) {
   const { BASE, headers } = getPublerConfig();
-  const accountId = platform === "instagram"
-    ? process.env.PUBLER_INSTAGRAM_ACCOUNT_ID
-    : process.env.PUBLER_THREADS_ACCOUNT_ID;
-  if (!accountId) throw new Error(`PUBLER_${platform.toUpperCase()}_ACCOUNT_ID not set`);
+  const accountId = await getPublerAccountId(platform, headers, BASE);
 
   let mediaId = null;
   if (imageUrl) mediaId = await uploadPublerMediaFromUrl(imageUrl, headers, BASE);
+  if (platform === "pinterest" && !mediaId) throw new Error("Publer (pinterest): image is required");
+
+  const accountTarget = { id: accountId };
+  if (platform === "pinterest") {
+    accountTarget.album_id = await getPublerPinterestBoardId(accountId, headers, BASE);
+  }
 
   // ── Step 2: publish immediately via /posts/schedule/publish ──────────────
   // Omitting scheduled_at signals immediate publish per Publer docs.
   const networkCfg = {
-    type: mediaId ? "photo" : "status",
-    text: caption,
-    ...(mediaId ? { media: [{ id: mediaId, type: "image" }] } : {}),
+    type: platform === "pinterest" ? "photo" : mediaId ? "photo" : "status",
+    text: platform === "pinterest" ? caption.slice(0, 500) : caption,
+    ...(platform === "pinterest" ? {
+      title: (details.title || "").slice(0, 100),
+      url: details.url,
+    } : {}),
+    ...(mediaId ? { media: [{ id: mediaId, type: platform === "pinterest" ? "photo" : "image" }] } : {}),
   };
 
   const postResp = await fetch(`${BASE}/posts/schedule/publish`, {
@@ -495,7 +511,7 @@ async function postViaPubler(platform, caption, imageUrl) {
     body: JSON.stringify({
       bulk: {
         state: "scheduled",
-        posts: [{ networks: { [platform]: networkCfg }, accounts: [{ id: accountId }] }],
+        posts: [{ networks: { [platform]: networkCfg }, accounts: [accountTarget] }],
       },
     }),
   });
@@ -851,7 +867,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   // ── 4. Select image ──
   const keyword = options.keyword || (post.tags || [])[0] || post.title;
   const image   = await selectImage(keyword);
-  const imageUrl = image?.url || null;
+  const imageUrl = getPublicImageUrl(image?.url || null);
 
   // ── 5. Extract hashtags from tumblr/instagram captions ──
   function extractHashtags(text) {
@@ -900,9 +916,9 @@ export async function syndicatePost(lane, slug, options = {}) {
     results.facebook_earthstar = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 
-  // Pinterest
+  // Pinterest via Publer
   await attempt("pinterest", () =>
-    postToPinterest(captions.pinterest, post.title, postUrl, imageUrl));
+    postViaPubler("pinterest", captions.pinterest, imageUrl, { title: post.title, url: postUrl }));
 
   // Dev.to
   await attempt("devto", () =>

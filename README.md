@@ -57,9 +57,21 @@ node scripts/syndicate.js --lane boom --slug "how-to-use-claude-api-for-musician
 ```
 
 **What it does:**
-- Calls Claude to generate platform-specific captions (Facebook, Instagram, Twitter thread)
-- Posts to each platform via their APIs
+- Calls Claude to generate platform-specific captions for the configured platforms
+- Posts directly where approved, and routes Pinterest, Instagram, and Threads through Publer
 - Logs success/failure per platform independently
+
+### Check Syndication Readiness
+
+```bash
+npm run check:syndication
+```
+
+This performs non-publishing auth/config checks for the syndication engine. It does not create posts.
+
+### Boom Drip Rate
+
+The current drip queue is configured for `2` Boom Frequency posts per publish run at `10:00 UTC`. The GitHub Actions drip workflow is manual-only until its schedule is re-enabled.
 
 ### SEO Keyword Research
 
