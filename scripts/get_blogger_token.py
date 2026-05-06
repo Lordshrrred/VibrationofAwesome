@@ -14,6 +14,9 @@ Expects in .env (or as environment variables):
 
 Writes to .env (appends/updates):
     BLOGGER_REFRESH_TOKEN
+
+If the GitHub CLI is authenticated for this repo, also updates:
+    GitHub Secret BLOGGER_REFRESH_TOKEN
 """
 
 import os
@@ -24,6 +27,7 @@ import urllib.parse
 import urllib.request
 import http.server
 import threading
+import subprocess
 
 # ── Load .env manually (no dotenv dependency required) ──────────────────
 def load_dotenv(path='.env'):
@@ -46,6 +50,7 @@ REDIRECT_URI   = 'http://localhost:8080/'
 SCOPE          = 'https://www.googleapis.com/auth/blogger'
 AUTH_ENDPOINT  = 'https://accounts.google.com/o/oauth2/v2/auth'
 TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token'
+BLOGGER_API    = 'https://www.googleapis.com/blogger/v3'
 
 # ── Localhost callback server ─────────────────────────────────────────────
 
@@ -115,6 +120,35 @@ def exchange_code(auth_code):
     with urllib.request.urlopen(req) as resp:
         return json.loads(resp.read())
 
+def refresh_access_token(refresh_token):
+    data = urllib.parse.urlencode({
+        'client_id':     CLIENT_ID,
+        'client_secret': CLIENT_SECRET,
+        'refresh_token': refresh_token.strip(),
+        'grant_type':    'refresh_token',
+    }).encode()
+    req = urllib.request.Request(TOKEN_ENDPOINT, data=data,
+                                 headers={'Content-Type': 'application/x-www-form-urlencoded'})
+    with urllib.request.urlopen(req) as resp:
+        return json.loads(resp.read())
+
+def validate_refresh_token(refresh_token):
+    token_data = refresh_access_token(refresh_token)
+    access_token = token_data.get('access_token')
+    if not access_token:
+        raise RuntimeError('No access_token returned during validation.')
+
+    blog_id = os.environ.get('BLOGGER_BLOG_ID', '').strip()
+    if blog_id:
+        req = urllib.request.Request(
+            f'{BLOGGER_API}/blogs/{urllib.parse.quote(blog_id)}',
+            headers={'Authorization': f'Bearer {access_token}'}
+        )
+        with urllib.request.urlopen(req) as resp:
+            json.loads(resp.read())
+
+    return access_token
+
 def save_token_to_env(refresh_token, env_path='.env'):
     """Append or replace BLOGGER_REFRESH_TOKEN in .env."""
     lines = []
@@ -130,6 +164,37 @@ def save_token_to_env(refresh_token, env_path='.env'):
         lines.append(f'BLOGGER_REFRESH_TOKEN={refresh_token}\n')
     with open(env_path, 'w') as f:
         f.writelines(lines)
+
+def sync_github_secret(refresh_token):
+    """Set BLOGGER_REFRESH_TOKEN in GitHub Actions secrets when gh is available."""
+    try:
+        status = subprocess.run(
+            ['gh', 'auth', 'status'],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        )
+        if status.returncode != 0:
+            print('GitHub Secret not updated ~ gh is not authenticated.')
+            return False
+
+        update = subprocess.run(
+            ['gh', 'secret', 'set', 'BLOGGER_REFRESH_TOKEN', '--body', refresh_token],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=False,
+        )
+        if update.returncode != 0:
+            print('GitHub Secret not updated ~ gh secret set failed:')
+            print(update.stderr.strip() or update.stdout.strip())
+            return False
+
+        print('GitHub Secret BLOGGER_REFRESH_TOKEN updated.')
+        return True
+    except FileNotFoundError:
+        print('GitHub Secret not updated ~ gh CLI not installed.')
+        return False
 
 # ── Main ──────────────────────────────────────────────────────────────────
 
@@ -182,7 +247,16 @@ def main():
         print('Response:', json.dumps(token_data, indent=2))
         sys.exit(1)
 
+    print('Validating refresh token...')
+    try:
+        validate_refresh_token(refresh_token)
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        print(f'ERROR: Refresh token validation failed ({e.code}): {body}')
+        sys.exit(1)
+
     save_token_to_env(refresh_token)
+    sync_github_secret(refresh_token)
 
     print()
     print('=' * 70)

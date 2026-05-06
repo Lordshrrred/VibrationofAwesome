@@ -69,6 +69,14 @@ npm run check:syndication
 
 This performs non-publishing auth/config checks for the syndication engine. It does not create posts.
 
+If Blogger reports `invalid_grant`, regenerate it:
+
+```bash
+npm run blogger-token
+```
+
+That opens Google consent, validates the new Blogger refresh token, saves it to `.env`, and updates the GitHub Actions `BLOGGER_REFRESH_TOKEN` secret when `gh` is authenticated.
+
 ### Boom Drip Rate
 
 The current drip queue is configured for `2` Boom Frequency posts per publish run at `10:00 UTC`. The GitHub Actions drip workflow is manual-only until its schedule is re-enabled.
