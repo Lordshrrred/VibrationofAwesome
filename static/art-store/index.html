@@ -409,6 +409,11 @@
     margin-top: 1.8rem;
   }
 
+  /* ── COLLECTION GRID (5 cards) ── */
+  .collection-grid--5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
   /* ── PRODUCT CARD ── */
   .product-card {
     position: relative;
@@ -614,8 +619,15 @@
   footer a:hover { color: var(--gold); }
 
   /* RESPONSIVE */
+  @media (max-width: 1300px) {
+    .collection-grid--5 { grid-template-columns: repeat(3, 1fr); }
+  }
   @media (max-width: 1100px) {
     .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    .collection-grid--5 { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .collection-grid--5 { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 900px) {
     main { padding: 4rem 2rem; }
@@ -738,49 +750,81 @@
       <p class="collection-desc">Abstract art meets the spirit of the electric guitar. Raw frequency made visible.</p>
       <div class="collection-rule"></div>
     </div>
-    <div class="collection-grid">
+    <div class="collection-grid collection-grid--5">
 
-      <!-- Shirt -->
+      <!-- Male / Unisex Tee -->
       <div class="product-card" data-type="shirt">
-        <div class="product-media">
-          <div class="product-art">
-            <div class="product-art-icon">👕</div>
-            <div class="product-art-design">Abstratocaster</div>
+        <div class="product-carousel">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/Abstrar-male-tee-1.jpg" class="carousel-slide" alt="Abstratocaster Unisex Tee Front" loading="lazy">
+            <img src="/personal-photos/merch/Abstrar-male-tee-2.jpg" class="carousel-slide" alt="Abstratocaster Unisex Tee Back" loading="lazy">
           </div>
-          <span class="product-type-badge">Shirt</span>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+          </div>
+          <span class="product-type-badge">Tee</span>
         </div>
         <div class="product-info">
           <div class="product-title">Abstratocaster</div>
           <div class="product-sub">Unisex Tee · Print on Demand</div>
-          <!-- UPDATE: replace with specific Spring shirt listing URL -->
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/abstratocatser-crew')">Get It ✦</button>
+        </div>
+      </div>
+
+      <!-- Women's / Fitted Tee -->
+      <div class="product-card" data-type="shirt">
+        <div class="product-carousel">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/Abstrar-female-tee-1.jpg" class="carousel-slide" alt="Abstratocaster Women's Tee Front" loading="lazy">
+            <img src="/personal-photos/merch/Abstrar-female-tee-2.jpg" class="carousel-slide" alt="Abstratocaster Women's Tee Back" loading="lazy">
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+          </div>
+          <span class="product-type-badge">Women's Tee</span>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Abstratocaster</div>
+          <div class="product-sub">Women's Tee · Print on Demand</div>
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/new-abstratocaster')">Get It ✦</button>
         </div>
       </div>
 
       <!-- Hoodie -->
       <div class="product-card" data-type="hoodie">
-        <div class="product-media">
-          <div class="product-art">
-            <div class="product-art-icon">🧥</div>
-            <div class="product-art-design">Abstratocaster</div>
+        <div class="product-carousel">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/Abstrar-hoodie-1.jpg" class="carousel-slide" alt="Abstratocaster Hoodie Front" loading="lazy">
+            <img src="/personal-photos/merch/Abstrar-hoodie-2.jpg" class="carousel-slide" alt="Abstratocaster Hoodie Back" loading="lazy">
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
           </div>
           <span class="product-type-badge">Hoodie</span>
         </div>
         <div class="product-info">
           <div class="product-title">Abstratocaster</div>
           <div class="product-sub">Pullover Hoodie · Print on Demand</div>
-          <!-- UPDATE: replace with specific Spring hoodie listing URL -->
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/buy-abstratocaster')">Get It ✦</button>
         </div>
       </div>
 
-      <!-- Mug (Black) ~ live Spring link -->
+      <!-- Mug -->
       <div class="product-card" data-type="mug">
         <div class="product-carousel">
           <div class="carousel-track">
-            <img src="/personal-photos/merch/Abstrblk1.jpg" class="carousel-slide" alt="Abstratocaster Black Mug" loading="lazy">
-            <img src="/personal-photos/merch/Abstrblk2.jpg" class="carousel-slide" alt="Abstratocaster Black Mug" loading="lazy">
-            <img src="/personal-photos/merch/Abstrblk3.jpg" class="carousel-slide" alt="Abstratocaster Black Mug" loading="lazy">
+            <img src="/personal-photos/merch/Abstrar-mug-1.jpg" class="carousel-slide" alt="Abstratocaster Mug Side" loading="lazy">
+            <img src="/personal-photos/merch/Abstrar-mug-2.jpg" class="carousel-slide" alt="Abstratocaster Mug Front" loading="lazy">
+            <img src="/personal-photos/merch/Abstrar-mug-3.jpg" class="carousel-slide" alt="Abstratocaster Mug Angle" loading="lazy">
           </div>
           <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
           <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
@@ -792,26 +836,22 @@
           <span class="product-type-badge">Mug</span>
         </div>
         <div class="product-info">
-          <div class="product-title">Abstratocaster Black</div>
+          <div class="product-title">Abstratocaster</div>
           <div class="product-sub">11oz Mug · Print on Demand</div>
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/abstratocaster-black-mug?product=1637&variation=105025')">Get It ✦</button>
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/new-abstratocaster-mug')">Get It ✦</button>
         </div>
       </div>
 
       <!-- Sticker -->
       <div class="product-card" data-type="sticker">
         <div class="product-media">
-          <div class="product-art">
-            <div class="product-art-icon">✦</div>
-            <div class="product-art-design">Abstratocaster</div>
-          </div>
+          <img src="/personal-photos/merch/Abstrar-sticker-1.jpg" alt="Abstratocaster Sticker" loading="lazy">
           <span class="product-type-badge">Sticker</span>
         </div>
         <div class="product-info">
           <div class="product-title">Abstratocaster</div>
           <div class="product-sub">Die Cut Sticker · Ships Worldwide</div>
-          <!-- UPDATE: replace with specific Spring sticker listing URL -->
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/abstratocaster-2026')">Get It ✦</button>
         </div>
       </div>
 
