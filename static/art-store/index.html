@@ -1,21 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Art Store · Vibration of Awesome</title>
-<meta name="description" content="Browse original art, jewelry, and handcrafted pieces from Vibration of Awesome. Wearable signal, ritual objects, and one-of-one creations.">
+<title>EarthStar Art Store · Vibration of Awesome</title>
+<meta name="description" content="Wearable EarthStar art. Curated designs on shirts, hoodies, mugs, and stickers. Each piece is a signal, not just merch.">
 <link rel="canonical" href="https://vibrationofawesome.com/art-store/">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vibration of Awesome">
-<meta property="og:title" content="Art Store · Vibration of Awesome">
-<meta property="og:description" content="Browse original art, jewelry, and handcrafted pieces from Vibration of Awesome. Wearable signal, ritual objects, and one-of-one creations.">
+<meta property="og:title" content="EarthStar Art Store · Vibration of Awesome">
+<meta property="og:description" content="Wearable EarthStar art. Curated designs on shirts, hoodies, mugs, and stickers.">
 <meta property="og:url" content="https://vibrationofawesome.com/art-store/">
 <meta property="og:image" content="https://vibrationofawesome.com/images/eartstarart.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Art Store · Vibration of Awesome">
-<meta name="twitter:description" content="Browse original art, jewelry, and handcrafted pieces from Vibration of Awesome. Wearable signal, ritual objects, and one-of-one creations.">
+<meta name="twitter:title" content="EarthStar Art Store · Vibration of Awesome">
+<meta name="twitter:description" content="Wearable EarthStar art. Curated designs on shirts, hoodies, mugs, and stickers.">
 <meta name="twitter:image" content="https://vibrationofawesome.com/images/eartstarart.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Rajdhani:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -124,10 +124,7 @@
     min-width: 0;
     margin-left: 1rem;
   }
-  .nav-links li {
-    flex: 0 1 auto;
-    min-width: 0;
-  }
+  .nav-links li { flex: 0 1 auto; min-width: 0; }
   .nav-links a {
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.8rem;
@@ -151,13 +148,8 @@
     background: var(--gold);
     transition: width 0.3s;
   }
-  .nav-links a:hover,
-  .nav-links a.active {
-    color: var(--gold);
-    text-shadow: 0 0 10px rgba(0,229,204,0.5);
-  }
-  .nav-links a:hover::after,
-  .nav-links a.active::after { width: 100%; }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); text-shadow: 0 0 10px rgba(0,229,204,0.5); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
   .nav-links a.aura-link {
     color: var(--gold) !important;
     border: 1px solid rgba(0,229,204,0.3);
@@ -167,11 +159,7 @@
     align-items: center;
     justify-content: center;
   }
-  .nav-links a.aura-link:hover {
-    background: rgba(0,229,204,0.08) !important;
-    box-shadow: 0 0 12px rgba(0,229,204,0.2);
-    text-shadow: none !important;
-  }
+  .nav-links a.aura-link:hover { background: rgba(0,229,204,0.08) !important; box-shadow: 0 0 12px rgba(0,229,204,0.2); text-shadow: none !important; }
   .nav-links a.aura-link::after { display: none !important; }
 
   .hamburger {
@@ -183,13 +171,7 @@
     background: none;
     border: none;
   }
-  .hamburger span {
-    display: block;
-    width: 24px; height: 2px;
-    background: var(--gold);
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; transition: all 0.3s; }
   .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -267,108 +249,12 @@
     margin-bottom: 2rem;
   }
 
-  /* PAYMENT BANNER */
-  .payment-banner {
-    position: relative;
-    z-index: 1;
-    background: rgba(0,0,0,0.4);
-    border-top: 1px solid rgba(0,229,204,0.08);
-    border-bottom: 1px solid rgba(0,229,204,0.08);
-    padding: 1.5rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .payment-method {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .payment-method.crypto { color: var(--gold); }
-
-  .payment-icon {
-    width: 32px; height: 32px;
-    border: 1px solid rgba(0,229,204,0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-  }
-  .payment-method.crypto .payment-icon {
-    border-color: rgba(0,229,204,0.5);
-    background: rgba(0,229,204,0.05);
-    box-shadow: 0 0 10px rgba(0,229,204,0.1);
-  }
-
-  .crypto-discount {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--deep);
-    background: var(--gold);
-    padding: 0.3rem 0.8rem;
-    font-weight: 700;
-    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-  }
-
-  .payment-divider {
-    width: 1px;
-    height: 24px;
-    background: rgba(0,229,204,0.1);
-  }
-
-  /* CRYPTO INFO BAR */
-  .crypto-info {
-    position: relative;
-    z-index: 1;
-    background: rgba(0,229,204,0.03);
-    border-bottom: 1px solid rgba(0,229,204,0.08);
-    padding: 1rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-  }
-
-  .crypto-info p {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.9;
-    text-align: center;
-  }
-
-  .crypto-info .glow-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    box-shadow: 0 0 8px var(--gold);
-    animation: pulse-dot 2s ease-in-out infinite;
-    flex-shrink: 0;
-  }
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 0.5; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.2); }
-  }
-
+  /* PORTFOLIO INVITE */
   .portfolio-invite {
     position: relative;
     z-index: 1;
     max-width: 1200px;
-    margin: 1.5rem auto 0;
+    margin: 2rem auto 0;
     padding: 0 4rem;
   }
   .portfolio-invite-card {
@@ -396,11 +282,7 @@
     color: var(--cream);
     margin-bottom: 0.45rem;
   }
-  .portfolio-invite p {
-    color: rgba(208,255,248,0.74);
-    font-size: 1rem;
-    line-height: 1.75;
-  }
+  .portfolio-invite p { color: rgba(208,255,248,0.74); font-size: 1rem; line-height: 1.75; }
   .portfolio-invite-btn {
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.76rem;
@@ -414,13 +296,9 @@
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
     transition: all 0.3s;
   }
-  .portfolio-invite-btn:hover {
-    background: var(--gold-light);
-    box-shadow: 0 0 30px rgba(0,229,204,0.24);
-    transform: translateY(-2px);
-  }
+  .portfolio-invite-btn:hover { background: var(--gold-light); box-shadow: 0 0 30px rgba(0,229,204,0.24); transform: translateY(-2px); }
 
-  /* MAIN CONTENT */
+  /* MAIN */
   main {
     position: relative;
     z-index: 1;
@@ -441,13 +319,7 @@
     align-items: center;
     gap: 1rem;
   }
-  .section-label::before {
-    content: '';
-    display: block;
-    width: 30px; height: 1px;
-    background: var(--gold);
-    opacity: 0.5;
-  }
+  .section-label::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); opacity: 0.5; }
 
   .section-title {
     font-family: 'Cinzel Decorative', serif;
@@ -457,206 +329,85 @@
     margin-bottom: 1rem;
   }
 
-  .divider {
-    width: 60px; height: 1px;
-    background: linear-gradient(to right, var(--gold), transparent);
-    margin: 1.5rem 0 3rem;
-  }
+  .divider { width: 60px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); margin: 1.5rem 0 3rem; }
 
-  /* ART GRID */
-  .art-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 6rem;
-  }
-
-  .art-card {
-    position: relative;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(0,229,204,0.1);
-    overflow: hidden;
-    transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
-    cursor: none;
-  }
-  .art-card:hover {
-    border-color: rgba(0,229,204,0.35);
-    transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0,229,204,0.05);
-  }
-
-  .art-image-wrap {
-    aspect-ratio: 4/5;
-    background: linear-gradient(135deg, rgba(0,20,25,0.9), rgba(0,40,35,0.7), rgba(0,20,25,0.9));
+  /* ── COLLECTION FILTER BAR ── */
+  .filter-bar {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .art-image-wrap::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 40%, rgba(0,229,204,0.06) 0%, transparent 70%);
-  }
-
-  .art-num {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 5rem;
-    color: rgba(0,229,204,0.06);
-    line-height: 1;
-    position: absolute;
-    bottom: 1rem;
-    right: 1.5rem;
-  }
-
-  .art-placeholder-text {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: rgba(74,158,150,0.5);
-    z-index: 1;
-  }
-
-  .art-placeholder-icon {
-    width: 60px; height: 60px;
-    border: 1px solid rgba(0,229,204,0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    z-index: 1;
-    font-size: 1.5rem;
-    opacity: 0.3;
-  }
-
-  .art-info {
-    padding: 1.5rem;
-    border-top: 1px solid rgba(0,229,204,0.06);
-    background: rgba(0,0,0,0.2);
-  }
-
-  .art-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 0.85rem;
-    color: var(--cream);
-    margin-bottom: 0.4rem;
-    letter-spacing: 0.05em;
-  }
-
-  .art-medium {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--muted);
-    opacity: 0.7;
-    margin-bottom: 1.2rem;
-  }
-
-  .art-pricing {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    gap: 0.6rem;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0,229,204,0.07);
   }
-
-  .price-usd {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--cream);
-    letter-spacing: 0.05em;
-  }
-
-  .price-crypto-block {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.2rem;
-  }
-
-  .price-crypto {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    opacity: 0.8;
-  }
-
-  .discount-tag {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--deep);
-    background: var(--gold);
-    padding: 0.15rem 0.5rem;
-    font-weight: 700;
-  }
-
-  .art-buy-btn {
-    display: block;
-    width: 100%;
-    margin-top: 1.2rem;
+  .filter-btn {
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.7rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--deep);
-    background: var(--gold);
-    padding: 0.8rem;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.3s;
-    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-    cursor: none;
-    border: none;
-    font-weight: 700;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid rgba(0,229,204,0.15);
+    padding: 0.55rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
   }
-  .art-buy-btn:hover {
-    background: var(--gold-light);
-    box-shadow: 0 0 20px rgba(0,229,204,0.3);
-  }
+  .filter-btn:hover { color: var(--gold); border-color: rgba(0,229,204,0.4); }
+  .filter-btn.active { color: var(--deep); background: var(--gold); border-color: var(--gold); }
 
-  /* COMING SOON OVERLAY */
-  .coming-soon-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(2,10,10,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    backdrop-filter: blur(2px);
+  /* ── COLLECTION SECTION ── */
+  .collection {
+    margin-bottom: 6rem;
+    transition: opacity 0.3s;
   }
+  .collection.hidden { display: none; }
 
-  .coming-soon-badge {
+  .collection-header {
+    margin-bottom: 2rem;
+  }
+  .collection-label-tag {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.35em;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
     color: var(--gold);
-    border: 1px solid rgba(0,229,204,0.3);
-    padding: 0.6rem 1.5rem;
-    background: rgba(0,0,0,0.6);
-    text-align: center;
+    opacity: 0.7;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .collection-label-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); opacity: 0.5; }
+  .collection-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+  .collection-desc {
+    font-size: 1rem;
+    font-style: italic;
+    color: rgba(168,237,228,0.55);
+    line-height: 1.7;
+  }
+  .collection-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, rgba(0,229,204,0.3), transparent);
+    margin-top: 1.2rem;
   }
 
-  /* FEATURED PRODUCTS SECTION */
-  .products-section { margin-bottom: 4rem; }
-  .products-grid {
+  /* ── COLLECTION GRID (4 cards) ── */
+  .collection-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.8rem;
-    margin-bottom: 2.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.4rem;
+    margin-top: 1.8rem;
   }
+
+  /* ── PRODUCT CARD ── */
   .product-card {
     position: relative;
     background: rgba(255,255,255,0.02);
@@ -666,29 +417,84 @@
   }
   .product-card:hover {
     border-color: rgba(0,229,204,0.4);
-    transform: translateY(-6px);
+    transform: translateY(-5px);
     box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0,229,204,0.07);
   }
-  /* ── Product carousel ── */
-  .product-carousel {
+  .product-card.coming-soon-card { opacity: 0.5; pointer-events: none; }
+
+  /* Product image area */
+  .product-media {
     position: relative;
-    height: 280px;
+    height: 240px;
     background: #020a08;
     overflow: hidden;
   }
-  .carousel-track {
-    display: flex;
-    height: 100%;
-    transition: transform 0.35s ease;
-    will-change: transform;
-  }
-  .carousel-slide {
-    flex: 0 0 100%;
+  .product-media img {
+    width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 1.2rem;
-    box-sizing: border-box;
+    padding: 1rem;
   }
+
+  /* Placeholder art for products without images */
+  .product-art {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0,20,25,0.9), rgba(0,40,35,0.7), rgba(0,20,25,0.9));
+    position: relative;
+  }
+  .product-art::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 40%, rgba(0,229,204,0.05) 0%, transparent 70%);
+  }
+  .product-art-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    z-index: 1;
+    opacity: 0.5;
+  }
+  .product-art-design {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: rgba(0,229,204,0.4);
+    text-align: center;
+    z-index: 1;
+    padding: 0 1rem;
+    line-height: 1.6;
+  }
+
+  /* Product type badge */
+  .product-type-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(2,10,10,0.85);
+    border: 1px solid rgba(0,229,204,0.25);
+    padding: 0.25rem 0.6rem;
+    z-index: 2;
+  }
+
+  /* Carousel (kept for multi-image mug products) */
+  .product-carousel {
+    position: relative;
+    height: 240px;
+    background: #020a08;
+    overflow: hidden;
+  }
+  .carousel-track { display: flex; height: 100%; transition: transform 0.35s ease; will-change: transform; }
+  .carousel-slide { flex: 0 0 100%; height: 100%; object-fit: contain; padding: 1rem; box-sizing: border-box; }
   .carousel-btn {
     position: absolute;
     top: 50%;
@@ -697,7 +503,7 @@
     border: 1px solid rgba(212,175,55,0.28);
     color: rgba(212,175,55,0.85);
     font-size: 1.5rem;
-    width: 32px; height: 32px;
+    width: 28px; height: 28px;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
     border-radius: 50%;
@@ -707,181 +513,78 @@
     padding: 0;
   }
   .carousel-btn:hover { background: rgba(212,175,55,0.18); border-color: rgba(212,175,55,0.65); }
-  .carousel-prev { left: 8px; }
-  .carousel-next { right: 8px; }
+  .carousel-prev { left: 6px; }
+  .carousel-next { right: 6px; }
   .carousel-dots {
     position: absolute;
-    bottom: 9px; left: 0; right: 0;
-    display: flex; justify-content: center; gap: 7px;
+    bottom: 8px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 6px;
     z-index: 3;
   }
-  .carousel-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(212,175,55,0.22);
-    cursor: pointer;
-    transition: background 0.2s;
-  }
+  .carousel-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(212,175,55,0.22); cursor: pointer; transition: background 0.2s; }
   .carousel-dot.active { background: rgba(212,175,55,0.88); }
+
+  /* Product info */
   .product-info {
-    padding: 1.4rem 1.5rem 1.5rem;
+    padding: 1.2rem 1.3rem 1.4rem;
     border-top: 1px solid rgba(0,229,204,0.06);
     background: rgba(0,0,0,0.25);
   }
   .product-title {
     font-family: 'Cinzel Decorative', serif;
-    font-size: 0.82rem; color: var(--cream);
-    margin-bottom: 0.3rem; letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    color: var(--cream);
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.04em;
     line-height: 1.4;
   }
-  .product-type {
+  .product-sub {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--muted); opacity: 0.7; margin-bottom: 1.2rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.6;
+    margin-bottom: 1.1rem;
   }
   .product-get-btn {
-    display: block; width: 100%; box-sizing: border-box;
+    display: block; width: 100%;
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
     color: var(--deep);
     background: var(--gold);
-    padding: 0.75rem; text-align: center; text-decoration: none;
-    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    padding: 0.7rem; text-align: center; text-decoration: none;
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
     transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
     font-weight: 700; border: none; cursor: pointer;
   }
-  .product-get-btn:hover {
-    background: var(--gold-light);
-    box-shadow: 0 0 22px rgba(0,229,204,0.28);
-    transform: translateY(-1px);
-  }
-  .products-footer-row {
+  .product-get-btn:hover { background: var(--gold-light); box-shadow: 0 0 22px rgba(0,229,204,0.28); transform: translateY(-1px); }
+  .product-get-btn:disabled, .product-get-btn.disabled { background: rgba(0,229,204,0.15); color: rgba(0,229,204,0.3); cursor: not-allowed; transform: none; box-shadow: none; pointer-events: none; }
+
+  /* STORE FOOTER ROW */
+  .store-footer-row {
     display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 1.5rem;
-    padding: 1.5rem 0;
+    padding: 2rem 0 1rem;
     border-top: 1px solid rgba(0,229,204,0.07);
-    border-bottom: 1px solid rgba(0,229,204,0.07);
-    margin-bottom: 4rem;
+    margin-top: 2rem;
   }
-  .products-note {
-    font-size: 0.95rem; font-style: italic;
-    color: rgba(168,237,228,0.5);
-    line-height: 1.7;
-  }
+  .store-note { font-size: 0.95rem; font-style: italic; color: rgba(168,237,228,0.45); line-height: 1.7; }
   .btn-full-store {
     display: inline-block;
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--deep);
-    background: var(--gold);
+    color: var(--deep); background: var(--gold);
     padding: 0.75rem 1.8rem; text-decoration: none;
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
     transition: background 0.2s, box-shadow 0.2s;
     font-weight: 700; white-space: nowrap;
   }
-  .btn-full-store:hover {
-    background: var(--gold-light);
-    box-shadow: 0 0 20px rgba(0,229,204,0.25);
-  }
-  @media (max-width: 900px) {
-    .products-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 600px) {
-    .products-grid { grid-template-columns: 1fr; }
-    .products-footer-row { flex-direction: column; align-items: flex-start; }
-  }
+  .btn-full-store:hover { background: var(--gold-light); box-shadow: 0 0 20px rgba(0,229,204,0.25); }
 
-  /* PAYMENT INFO SECTION */
-  .payment-section {
-    margin-bottom: 6rem;
-    padding: 4rem;
-    border: 1px solid rgba(0,229,204,0.08);
-    background: rgba(0,0,0,0.2);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .payment-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    opacity: 0.3;
-  }
-
-  .payment-methods-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .payment-card {
-    padding: 2.5rem 2rem;
-    border: 1px solid rgba(0,229,204,0.08);
-    background: rgba(0,0,0,0.3);
-    position: relative;
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .payment-card:hover {
-    border-color: rgba(0,229,204,0.2);
-    background: rgba(0,229,204,0.02);
-  }
-
-  .payment-card.crypto-card {
-    border-color: rgba(0,229,204,0.15);
-  }
-  .payment-card.crypto-card:hover {
-    border-color: rgba(0,229,204,0.4);
-    box-shadow: 0 0 30px rgba(0,229,204,0.05);
-  }
-
-  .payment-card-icon {
-    font-size: 2rem;
-    margin-bottom: 1.2rem;
-    display: block;
-  }
-
-  .payment-card-name {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--cream);
-    margin-bottom: 0.5rem;
-  }
-
-  .payment-card-desc {
-    font-size: 0.9rem;
-    font-style: italic;
-    color: rgba(168,237,228,0.5);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  .crypto-badge {
-    display: inline-block;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--deep);
-    background: var(--gold);
-    padding: 0.3rem 0.8rem;
-    font-weight: 700;
-  }
-
-  .payment-card-note {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    opacity: 0.6;
-    margin-top: 0.8rem;
-  }
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* FOOTER */
   footer {
@@ -895,102 +598,54 @@
     z-index: 1;
   }
   .footer-right { text-align: right; }
-  .footer-nav-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
+  .footer-nav-links { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
   .footer-nav-links a {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.3s;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.3s;
   }
   .footer-nav-links a:hover { color: var(--gold); }
-
-  .footer-logo {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1rem;
-    color: var(--gold);
-    text-shadow: 0 0 20px rgba(0,229,204,0.3);
-  }
-  .footer-sub {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--muted);
-    opacity: 0.5;
-    margin-top: 0.4rem;
-  }
-
-  footer p {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: rgba(74,158,150,0.3);
-    text-transform: uppercase;
-  }
-
-  footer a {
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
+  .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--gold); text-shadow: 0 0 20px rgba(0,229,204,0.3); }
+  .footer-sub { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); opacity: 0.5; margin-top: 0.4rem; }
+  footer p { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(74,158,150,0.3); text-transform: uppercase; }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
   footer a:hover { color: var(--gold); }
 
-  /* Reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+  /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
   }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* Responsive */
   @media (max-width: 900px) {
-    .art-grid, .payment-methods-grid { grid-template-columns: 1fr 1fr; }
     main { padding: 4rem 2rem; }
-    .payment-banner { padding: 1.5rem; gap: 1.5rem; }
-    .payment-divider { display: none; }
     .portfolio-invite { padding: 0 2rem; }
     .portfolio-invite-card { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
-    .art-grid, .payment-methods-grid { grid-template-columns: 1fr; }
+    .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .product-media, .product-carousel { height: 180px; }
     #mainNav { padding: 1.2rem 1.5rem; position: relative; flex-wrap: wrap; }
     .hamburger { display: flex; }
     .nav-links {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      gap: 0;
+      display: none; flex-direction: column; width: 100%; gap: 0;
       background: rgba(2,10,10,0.98);
       border: 1px solid rgba(0,229,204,0.12);
       border-top: none;
-      position: absolute;
-      top: 100%; left: 0; right: 0;
-      z-index: 200;
-      padding: 0.5rem 0;
+      position: absolute; top: 100%; left: 0; right: 0;
+      z-index: 200; padding: 0.5rem 0;
     }
     .nav-links.open { display: flex; }
     .nav-links li { width: 100%; }
-    .nav-links a {
-      display: block;
-      padding: 0.9rem 1.5rem;
-      border-bottom: 1px solid rgba(0,229,204,0.05);
-      font-size: 0.85rem;
-    }
+    .nav-links a { display: block; padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(0,229,204,0.05); font-size: 0.85rem; }
     .nav-links a.aura-link { margin: 0.5rem 1.5rem; display: block; text-align: center; }
     .store-hero { min-height: 45vh; }
     .portfolio-invite { padding: 0 1.5rem; }
-    .payment-section { padding: 2.5rem 1.5rem; }
     footer { padding: 2rem 1.5rem; grid-template-columns: 1fr; text-align: center; }
     .footer-right { text-align: center; }
+    .filter-bar { gap: 0.4rem; margin-bottom: 2.5rem; }
+    .store-footer-row { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 400px) {
+    .collection-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -1034,148 +689,91 @@
     <line x1="26" y1="130" x2="474" y2="370" stroke="#00e5cc" stroke-width="0.3"/>
   </svg>
   <div class="hero-content">
-    <p class="hero-eyebrow">✦ Original Works ✦</p>
-    <h1 class="hero-title">Art Store</h1>
-    <p class="hero-sub">Original works of art from the heart, mind, and soul of Matt EarthStar.</p>
+    <p class="hero-eyebrow">✦ EarthStar Art Gallery ✦</p>
+    <h1 class="hero-title">Wearable <span>Signal.</span></h1>
+    <p class="hero-sub">Not merch. Identity. Each design is a movement piece — choose your design, then choose your form.</p>
   </div>
 </section>
 
-<!-- PAYMENT BANNER -->
-<div class="payment-banner">
-  <div class="payment-method">
-    <div class="payment-icon">💳</div>
-    Credit Card
-  </div>
-  <div class="payment-divider"></div>
-  <div class="payment-method crypto">
-    <div class="payment-icon">◎</div>
-    Solana
-    <span class="crypto-discount">11% Off</span>
-  </div>
-  <div class="payment-divider"></div>
-  <div class="payment-method crypto">
-    <div class="payment-icon">₿</div>
-    Bitcoin
-    <span class="crypto-discount">11% Off</span>
-  </div>
-</div>
-
-<!-- CRYPTO INFO BAR -->
-<div class="crypto-info">
-  <div class="glow-dot"></div>
-  <p>Pay with Solana or Bitcoin and receive 11% off your entire order, crypto aligned with the frequency</p>
-  <div class="glow-dot"></div>
-</div>
-
+<!-- PORTFOLIO ARCHIVE INVITE -->
 <section class="portfolio-invite">
   <div class="portfolio-invite-card reveal">
     <div>
-      <div class="portfolio-invite-label">Archive Beyond the Store</div>
-      <h2>Curious about the older jewelry work?</h2>
-      <p>The portfolio holds the deeper archive: older wraps, one-off experiments, and pieces that shaped the signal long before they ever became products.</p>
+      <div class="portfolio-invite-label">Beyond the Store</div>
+      <h2>Curious about the original jewelry work?</h2>
+      <p>The portfolio holds the deeper archive: older wraps, one-off experiments, and pieces that shaped the signal long before they became products.</p>
     </div>
     <a href="/portfolio/" class="portfolio-invite-btn">Explore Portfolio</a>
   </div>
 </section>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN STORE -->
 <main>
 
-  <!-- ART LISTINGS -->
+  <!-- SECTION HEADER -->
   <div class="reveal">
-    <p class="section-label">Original Works</p>
-    <h2 class="section-title">Available Pieces</h2>
+    <p class="section-label">Shop by Design</p>
+    <h2 class="section-title">The Collections</h2>
     <div class="divider"></div>
   </div>
 
-  <div class="art-grid reveal">
-
-    <!-- PIECE 01 -->
-    <div class="art-card">
-      <div class="art-image-wrap">
-        <div class="art-placeholder-icon">✦</div>
-        <span class="art-placeholder-text">Artwork Coming Soon</span>
-        <div class="art-num">01</div>
-      </div>
-      <div class="art-info">
-        <div class="art-title">Untitled No. I</div>
-        <div class="art-medium">Medium · Dimensions TBD</div>
-        <div class="art-pricing">
-          <span class="price-usd">$~</span>
-          <div class="price-crypto-block">
-            <span class="price-crypto">◎ ~ SOL &nbsp;|&nbsp; ₿ ~</span>
-            <span class="discount-tag">11% crypto discount</span>
-          </div>
-        </div>
-        <button class="art-buy-btn" disabled style="opacity:0.4;cursor:not-allowed">Coming Soon</button>
-      </div>
-      <div class="coming-soon-overlay">
-        <div class="coming-soon-badge">Coming Soon</div>
-      </div>
-    </div>
-
-    <!-- PIECE 02 -->
-    <div class="art-card">
-      <div class="art-image-wrap">
-        <div class="art-placeholder-icon">✦</div>
-        <span class="art-placeholder-text">Artwork Coming Soon</span>
-        <div class="art-num">02</div>
-      </div>
-      <div class="art-info">
-        <div class="art-title">Untitled No. II</div>
-        <div class="art-medium">Medium · Dimensions TBD</div>
-        <div class="art-pricing">
-          <span class="price-usd">$~</span>
-          <div class="price-crypto-block">
-            <span class="price-crypto">◎ ~ SOL &nbsp;|&nbsp; ₿ ~</span>
-            <span class="discount-tag">11% crypto discount</span>
-          </div>
-        </div>
-        <button class="art-buy-btn" disabled style="opacity:0.4;cursor:not-allowed">Coming Soon</button>
-      </div>
-      <div class="coming-soon-overlay">
-        <div class="coming-soon-badge">Coming Soon</div>
-      </div>
-    </div>
-
-    <!-- PIECE 03 -->
-    <div class="art-card">
-      <div class="art-image-wrap">
-        <div class="art-placeholder-icon">✦</div>
-        <span class="art-placeholder-text">Artwork Coming Soon</span>
-        <div class="art-num">03</div>
-      </div>
-      <div class="art-info">
-        <div class="art-title">Untitled No. III</div>
-        <div class="art-medium">Medium · Dimensions TBD</div>
-        <div class="art-pricing">
-          <span class="price-usd">$~</span>
-          <div class="price-crypto-block">
-            <span class="price-crypto">◎ ~ SOL &nbsp;|&nbsp; ₿ ~</span>
-            <span class="discount-tag">11% crypto discount</span>
-          </div>
-        </div>
-        <button class="art-buy-btn" disabled style="opacity:0.4;cursor:not-allowed">Coming Soon</button>
-      </div>
-      <div class="coming-soon-overlay">
-        <div class="coming-soon-badge">Coming Soon</div>
-      </div>
-    </div>
-
+  <!-- FILTER BAR -->
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="shirt">Shirts</button>
+    <button class="filter-btn" data-filter="hoodie">Hoodies</button>
+    <button class="filter-btn" data-filter="mug">Mugs</button>
+    <button class="filter-btn" data-filter="sticker">Stickers</button>
   </div>
 
-  <!-- FEATURED PRODUCTS -->
-  <div class="products-section">
-    <div class="reveal">
-      <p class="section-label">Featured Products</p>
-      <h2 class="section-title">Shop the Collection</h2>
-      <div class="divider"></div>
+  <!-- ════════════════════════════════════════
+       COLLECTION: ABSTRATOCASTER
+       ════════════════════════════════════════ -->
+  <div class="collection reveal" id="col-abstratocaster">
+    <div class="collection-header">
+      <div class="collection-label-tag">Collection</div>
+      <h2 class="collection-name">Abstratocaster</h2>
+      <p class="collection-desc">Abstract art meets the spirit of the electric guitar. Raw frequency made visible.</p>
+      <div class="collection-rule"></div>
     </div>
+    <div class="collection-grid">
 
-    <div class="products-grid reveal">
+      <!-- Shirt -->
+      <div class="product-card" data-type="shirt">
+        <div class="product-media">
+          <div class="product-art">
+            <div class="product-art-icon">👕</div>
+            <div class="product-art-design">Abstratocaster</div>
+          </div>
+          <span class="product-type-badge">Shirt</span>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Abstratocaster</div>
+          <div class="product-sub">Unisex Tee · Print on Demand</div>
+          <!-- UPDATE: replace with specific Spring shirt listing URL -->
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+        </div>
+      </div>
 
-      <!-- ABSTRATOCASTER BLACK MUG -->
-      <div class="product-card">
+      <!-- Hoodie -->
+      <div class="product-card" data-type="hoodie">
+        <div class="product-media">
+          <div class="product-art">
+            <div class="product-art-icon">🧥</div>
+            <div class="product-art-design">Abstratocaster</div>
+          </div>
+          <span class="product-type-badge">Hoodie</span>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Abstratocaster</div>
+          <div class="product-sub">Pullover Hoodie · Print on Demand</div>
+          <!-- UPDATE: replace with specific Spring hoodie listing URL -->
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+        </div>
+      </div>
+
+      <!-- Mug (Black) — live Spring link -->
+      <div class="product-card" data-type="mug">
         <div class="product-carousel">
           <div class="carousel-track">
             <img src="/personal-photos/merch/Abstrblk1.jpg" class="carousel-slide" alt="Abstratocaster Black Mug" loading="lazy">
@@ -1189,39 +787,83 @@
             <span class="carousel-dot"></span>
             <span class="carousel-dot"></span>
           </div>
+          <span class="product-type-badge">Mug</span>
         </div>
         <div class="product-info">
-          <div class="product-title">Abstratocaster Black Mug</div>
-          <div class="product-type">Print-on-Demand &middot; Ships Worldwide</div>
-          <button class="product-get-btn" onclick="window.open('https://earthstar.creator-spring.com/listing/abstratocaster-black-mug?product=1637&variation=105025','_blank','width=820,height=720,left=200,top=100')">Get It ✦</button>
+          <div class="product-title">Abstratocaster Black</div>
+          <div class="product-sub">11oz Mug · Print on Demand</div>
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/abstratocaster-black-mug?product=1637&variation=105025')">Get It ✦</button>
         </div>
       </div>
 
-      <!-- ABSTRATOCASTER WHITE MUG -->
-      <div class="product-card">
-        <div class="product-carousel">
-          <div class="carousel-track">
-            <img src="/personal-photos/merch/Abstrwht1.jpg" class="carousel-slide" alt="Abstratocaster White Mug" loading="lazy">
-            <img src="/personal-photos/merch/Abstrwht2.jpg" class="carousel-slide" alt="Abstratocaster White Mug" loading="lazy">
-            <img src="/personal-photos/merch/Abstrwht3.jpg" class="carousel-slide" alt="Abstratocaster White Mug" loading="lazy">
+      <!-- Sticker -->
+      <div class="product-card" data-type="sticker">
+        <div class="product-media">
+          <div class="product-art">
+            <div class="product-art-icon">✦</div>
+            <div class="product-art-design">Abstratocaster</div>
           </div>
-          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
-          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
-          <div class="carousel-dots">
-            <span class="carousel-dot active"></span>
-            <span class="carousel-dot"></span>
-            <span class="carousel-dot"></span>
-          </div>
+          <span class="product-type-badge">Sticker</span>
         </div>
         <div class="product-info">
-          <div class="product-title">Abstratocaster White Mug</div>
-          <div class="product-type">Print-on-Demand &middot; Ships Worldwide</div>
-          <button class="product-get-btn" onclick="window.open('https://earthstar.creator-spring.com/listing/abstratocaster-mug?product=1565&variation=104920','_blank','width=820,height=720,left=200,top=100')">Get It ✦</button>
+          <div class="product-title">Abstratocaster</div>
+          <div class="product-sub">Die Cut Sticker · Ships Worldwide</div>
+          <!-- UPDATE: replace with specific Spring sticker listing URL -->
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
         </div>
       </div>
 
-      <!-- LOAF LIFE MUG -->
-      <div class="product-card">
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       COLLECTION: LOAF LIFE
+       ════════════════════════════════════════ -->
+  <div class="collection reveal" id="col-loaf-life">
+    <div class="collection-header">
+      <div class="collection-label-tag">Collection</div>
+      <h2 class="collection-name">Loaf Life</h2>
+      <p class="collection-desc">Cats, chaos, and the sacred art of doing absolutely nothing. Spiritual loafing is a lifestyle.</p>
+      <div class="collection-rule"></div>
+    </div>
+    <div class="collection-grid">
+
+      <!-- Shirt -->
+      <div class="product-card" data-type="shirt">
+        <div class="product-media">
+          <div class="product-art">
+            <div class="product-art-icon">👕</div>
+            <div class="product-art-design">Loaf Life</div>
+          </div>
+          <span class="product-type-badge">Shirt</span>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Loaf Life</div>
+          <div class="product-sub">Unisex Tee · Print on Demand</div>
+          <!-- UPDATE: replace with specific Spring shirt listing URL -->
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+        </div>
+      </div>
+
+      <!-- Hoodie -->
+      <div class="product-card" data-type="hoodie">
+        <div class="product-media">
+          <div class="product-art">
+            <div class="product-art-icon">🧥</div>
+            <div class="product-art-design">Loaf Life</div>
+          </div>
+          <span class="product-type-badge">Hoodie</span>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Loaf Life</div>
+          <div class="product-sub">Pullover Hoodie · Print on Demand</div>
+          <!-- UPDATE: replace with specific Spring hoodie listing URL -->
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+        </div>
+      </div>
+
+      <!-- Mug — live Spring link -->
+      <div class="product-card" data-type="mug">
         <div class="product-carousel">
           <div class="carousel-track">
             <img src="/personal-photos/merch/Loaf1.jpg" class="carousel-slide" alt="Loaf Life Mug" loading="lazy">
@@ -1235,57 +877,105 @@
             <span class="carousel-dot"></span>
             <span class="carousel-dot"></span>
           </div>
+          <span class="product-type-badge">Mug</span>
         </div>
         <div class="product-info">
-          <div class="product-title">Loaf Life Mug</div>
-          <div class="product-type">Print-on-Demand &middot; Ships Worldwide</div>
-          <button class="product-get-btn" onclick="window.open('https://earthstar.creator-spring.com/listing/loaf-life-mug?product=1637&variation=105025','_blank','width=820,height=720,left=200,top=100')">Get It ✦</button>
+          <div class="product-title">Loaf Life</div>
+          <div class="product-sub">11oz Mug · Print on Demand</div>
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/loaf-life-mug?product=1637&variation=105025')">Get It ✦</button>
         </div>
       </div>
 
-    </div>
+      <!-- Sticker -->
+      <div class="product-card" data-type="sticker">
+        <div class="product-media">
+          <div class="product-art">
+            <div class="product-art-icon">✦</div>
+            <div class="product-art-design">Loaf Life</div>
+          </div>
+          <span class="product-type-badge">Sticker</span>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Loaf Life</div>
+          <div class="product-sub">Die Cut Sticker · Ships Worldwide</div>
+          <!-- UPDATE: replace with specific Spring sticker listing URL -->
+          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+        </div>
+      </div>
 
-    <div class="products-footer-row">
-      <p class="products-note">More designs coming soon. All items printed on demand and shipped directly to you.</p>
-      <a href="https://earthstar.creator-spring.com" target="_blank" rel="noopener" class="btn-full-store">View Full Store &rarr;</a>
     </div>
   </div>
 
-  <!-- PAYMENT INFO -->
-  <div class="payment-section reveal">
-    <p class="section-label">How to Pay</p>
-    <h2 class="section-title">Payment Methods</h2>
-    <div class="divider" style="margin-bottom:0"></div>
-
-    <div class="payment-methods-grid">
-
-      <!-- CREDIT CARD -->
-      <div class="payment-card">
-        <span class="payment-card-icon">💳</span>
-        <div class="payment-card-name">Credit Card</div>
-        <p class="payment-card-desc">Secure card payments via Stripe. Visa, Mastercard, Amex accepted. Standard pricing applies.</p>
-        <div class="payment-card-note">Powered by Stripe · Coming Soon</div>
-      </div>
-
-      <!-- SOLANA -->
-      <div class="payment-card crypto-card">
-        <span class="payment-card-icon">◎</span>
-        <div class="payment-card-name">Solana (SOL)</div>
-        <p class="payment-card-desc">Fast, low-fee blockchain payments. Connect your Phantom or Solflare wallet and pay in SOL.</p>
-        <span class="crypto-badge">11% Discount</span>
-        <div class="payment-card-note">Wallet connect · Coming Soon</div>
-      </div>
-
-      <!-- BITCOIN -->
-      <div class="payment-card crypto-card">
-        <span class="payment-card-icon">₿</span>
-        <div class="payment-card-name">Bitcoin (BTC)</div>
-        <p class="payment-card-desc">Pay with Bitcoin via Lightning Network or on-chain. Sovereign money for sovereign art.</p>
-        <span class="crypto-badge">11% Discount</span>
-        <div class="payment-card-note">Lightning + on-chain · Coming Soon</div>
-      </div>
-
+  <!-- ════════════════════════════════════════
+       COLLECTION: EARTHSTAR CORE (Coming Soon)
+       ════════════════════════════════════════ -->
+  <div class="collection reveal" id="col-earthstar-core">
+    <div class="collection-header">
+      <div class="collection-label-tag">Coming Soon</div>
+      <h2 class="collection-name">EarthStar Core</h2>
+      <p class="collection-desc">The original signal. Sacred geometry, cosmic identity, and the frequency of the EarthStar itself.</p>
+      <div class="collection-rule"></div>
     </div>
+    <div class="collection-grid">
+      <div class="product-card coming-soon-card" data-type="shirt">
+        <div class="product-media"><div class="product-art"><div class="product-art-icon">👕</div><div class="product-art-design">EarthStar Core</div></div><span class="product-type-badge">Shirt</span></div>
+        <div class="product-info"><div class="product-title">EarthStar Core</div><div class="product-sub">Unisex Tee</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div>
+      </div>
+      <div class="product-card coming-soon-card" data-type="hoodie">
+        <div class="product-media"><div class="product-art"><div class="product-art-icon">🧥</div><div class="product-art-design">EarthStar Core</div></div><span class="product-type-badge">Hoodie</span></div>
+        <div class="product-info"><div class="product-title">EarthStar Core</div><div class="product-sub">Pullover Hoodie</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div>
+      </div>
+      <div class="product-card coming-soon-card" data-type="mug">
+        <div class="product-media"><div class="product-art"><div class="product-art-icon">☕</div><div class="product-art-design">EarthStar Core</div></div><span class="product-type-badge">Mug</span></div>
+        <div class="product-info"><div class="product-title">EarthStar Core</div><div class="product-sub">11oz Mug</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div>
+      </div>
+      <div class="product-card coming-soon-card" data-type="sticker">
+        <div class="product-media"><div class="product-art"><div class="product-art-icon">✦</div><div class="product-art-design">EarthStar Core</div></div><span class="product-type-badge">Sticker</span></div>
+        <div class="product-info"><div class="product-title">EarthStar Core</div><div class="product-sub">Die Cut Sticker</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       COLLECTION: COEXIST OR DIE (Coming Soon)
+       ════════════════════════════════════════ -->
+  <div class="collection reveal" id="col-coexist">
+    <div class="collection-header">
+      <div class="collection-label-tag">Coming Soon</div>
+      <h2 class="collection-name">Coexist or Die</h2>
+      <p class="collection-desc">Not a bumper sticker. A warning. A prayer. A challenge to the old world.</p>
+      <div class="collection-rule"></div>
+    </div>
+    <div class="collection-grid">
+      <div class="product-card coming-soon-card" data-type="shirt"><div class="product-media"><div class="product-art"><div class="product-art-icon">👕</div><div class="product-art-design">Coexist or Die</div></div><span class="product-type-badge">Shirt</span></div><div class="product-info"><div class="product-title">Coexist or Die</div><div class="product-sub">Unisex Tee</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div></div>
+      <div class="product-card coming-soon-card" data-type="hoodie"><div class="product-media"><div class="product-art"><div class="product-art-icon">🧥</div><div class="product-art-design">Coexist or Die</div></div><span class="product-type-badge">Hoodie</span></div><div class="product-info"><div class="product-title">Coexist or Die</div><div class="product-sub">Pullover Hoodie</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div></div>
+      <div class="product-card coming-soon-card" data-type="mug"><div class="product-media"><div class="product-art"><div class="product-art-icon">☕</div><div class="product-art-design">Coexist or Die</div></div><span class="product-type-badge">Mug</span></div><div class="product-info"><div class="product-title">Coexist or Die</div><div class="product-sub">11oz Mug</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div></div>
+      <div class="product-card coming-soon-card" data-type="sticker"><div class="product-media"><div class="product-art"><div class="product-art-icon">✦</div><div class="product-art-design">Coexist or Die</div></div><span class="product-type-badge">Sticker</span></div><div class="product-info"><div class="product-title">Coexist or Die</div><div class="product-sub">Die Cut Sticker</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       COLLECTION: NEURODIVERGENT (Coming Soon)
+       ════════════════════════════════════════ -->
+  <div class="collection reveal" id="col-neurodivergent">
+    <div class="collection-header">
+      <div class="collection-label-tag">Coming Soon</div>
+      <h2 class="collection-name">Neurodivergent</h2>
+      <p class="collection-desc">Wired different. Feeling everything at full volume. These designs are for the ones who never quite fit the mold — and stopped trying to.</p>
+      <div class="collection-rule"></div>
+    </div>
+    <div class="collection-grid">
+      <div class="product-card coming-soon-card" data-type="shirt"><div class="product-media"><div class="product-art"><div class="product-art-icon">👕</div><div class="product-art-design">Neurodivergent</div></div><span class="product-type-badge">Shirt</span></div><div class="product-info"><div class="product-title">Neurodivergent</div><div class="product-sub">Unisex Tee</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div></div>
+      <div class="product-card coming-soon-card" data-type="hoodie"><div class="product-media"><div class="product-art"><div class="product-art-icon">🧥</div><div class="product-art-design">Neurodivergent</div></div><span class="product-type-badge">Hoodie</span></div><div class="product-info"><div class="product-title">Neurodivergent</div><div class="product-sub">Pullover Hoodie</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div></div>
+      <div class="product-card coming-soon-card" data-type="mug"><div class="product-media"><div class="product-art"><div class="product-art-icon">☕</div><div class="product-art-design">Neurodivergent</div></div><span class="product-type-badge">Mug</span></div><div class="product-info"><div class="product-title">Neurodivergent</div><div class="product-sub">11oz Mug</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div></div>
+      <div class="product-card coming-soon-card" data-type="sticker"><div class="product-media"><div class="product-art"><div class="product-art-icon">✦</div><div class="product-art-design">Neurodivergent</div></div><span class="product-type-badge">Sticker</span></div><div class="product-info"><div class="product-title">Neurodivergent</div><div class="product-sub">Die Cut Sticker</div><button class="product-get-btn disabled" disabled>Coming Soon</button></div></div>
+    </div>
+  </div>
+
+  <!-- STORE FOOTER ROW -->
+  <div class="store-footer-row reveal">
+    <p class="store-note">More collections dropping soon. All items printed on demand and shipped directly to you via Spring.</p>
+    <a href="https://earthstar.creator-spring.com" target="_blank" rel="noopener" class="btn-full-store">View Full Spring Store &rarr;</a>
   </div>
 
 </main>
@@ -1294,7 +984,7 @@
 <footer>
   <div>
     <div class="footer-logo">Vibration of Awesome</div>
-    <div class="footer-sub">Art Store</div>
+    <div class="footer-sub">EarthStar Art Store</div>
   </div>
   <nav class="footer-nav-links" aria-label="Footer navigation">
     <a href="/portfolio/">Portfolio</a>
@@ -1329,7 +1019,7 @@
     starsEl.appendChild(star);
   }
 
-  // Custom cursor ~ desktop only
+  // Custom cursor — desktop only
   const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
   if (!isTouchDevice) {
     const cursor = document.getElementById('cursor');
@@ -1367,10 +1057,10 @@
   // Scroll reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
 
-  // ── Product carousels ──
+  // Carousels
   document.querySelectorAll('.product-carousel').forEach(function(carousel) {
     var track  = carousel.querySelector('.carousel-track');
     var slides = carousel.querySelectorAll('.carousel-slide');
@@ -1388,14 +1078,41 @@
     dots.forEach(function(d, i) { d.addEventListener('click', function(e) { e.stopPropagation(); goTo(i); }); });
   });
 
+  // Spring popup helper
+  function openSpring(url) {
+    window.open(url, '_blank', 'width=860,height=740,left=200,top=80,scrollbars=yes');
+  }
+
+  // Collection filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.collection').forEach(col => {
+        if (filter === 'all') {
+          col.classList.remove('hidden');
+          col.querySelectorAll('.product-card').forEach(c => c.style.display = '');
+        } else {
+          const cards = col.querySelectorAll('.product-card');
+          let visible = 0;
+          cards.forEach(card => {
+            if (card.dataset.type === filter) { card.style.display = ''; visible++; }
+            else { card.style.display = 'none'; }
+          });
+          col.classList.toggle('hidden', visible === 0);
+        }
+      });
+    });
+  });
+
   // Nav scroll effect
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      nav.style.background = 'rgba(2,10,10,0.98)';
-    } else {
-      nav.style.background = 'linear-gradient(to bottom, rgba(2,10,10,0.97), transparent)';
-    }
+    nav.style.background = window.scrollY > 50
+      ? 'rgba(2,10,10,0.98)'
+      : 'linear-gradient(to bottom, rgba(2,10,10,0.97), transparent)';
   });
 </script>
 </body>
