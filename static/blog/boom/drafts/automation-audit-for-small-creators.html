@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation Audit For Small Creators | Boom Frequency | Vibration of Awesome</title>
+  <meta name="description" content="Automation Audit ~ a practical guide for creators and independent artists.">
+  <link rel="canonical" href="https://vibrationofawesome.com/blog/boom/posts/automation-audit-for-small-creators.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#00e5ff">
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Vibration of Awesome">
+  <meta property="og:title" content="Automation Audit For Small Creators">
+  <meta property="og:description" content="Automation Audit ~ a practical guide for creators and independent artists.">
+  <meta property="og:url" content="https://vibrationofawesome.com/blog/boom/posts/automation-audit-for-small-creators.html">
+  <meta property="og:image" content="https://apod.nasa.gov/apod/image/2208/NGC6618_Webb_960.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automation Audit For Small Creators">
+  <meta name="twitter:description" content="Automation Audit ~ a practical guide for creators and independent artists.">
+  <meta name="twitter:image" content="https://apod.nasa.gov/apod/image/2208/NGC6618_Webb_960.jpg">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Automation Audit For Small Creators","description":"Automation Audit ~ a practical guide for creators and independent artists.","url":"https://vibrationofawesome.com/blog/boom/posts/automation-audit-for-small-creators.html","datePublished":"2026-05-07T13:44:26.646Z","author":{"@type":"Person","name":"Matty BoomBoom","url":"https://vibrationofawesome.com"},"publisher":{"@type":"Organization","name":"Vibration of Awesome","url":"https://vibrationofawesome.com"},"image":"https://apod.nasa.gov/apod/image/2208/NGC6618_Webb_960.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://vibrationofawesome.com/blog/boom/posts/automation-audit-for-small-creators.html"}}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-G5HF0WKZT9");
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #020a0a; --surface: #060f10; --surface2: #0b1a1c;
+      --accent: #00e5ff; --accent-light: #b2f5ff; --accent-dark: #0097a7;
+      --text: #e8f4f0; --text-muted: #7a9e9a; --border: rgba(255,255,255,0.06);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: Space Grotesk, Inter, sans-serif; font-size: 18px; line-height: 1.75; min-height: 100vh; overflow-x: hidden; }
+    #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .site-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
+    .site-header { border-bottom: 1px solid var(--border); background: rgba(2,10,10,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
+    .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .voa-logo { font-family: Space Grotesk, sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); text-decoration: none; opacity: 0.9; transition: opacity 0.2s; }
+    .voa-logo span { color: var(--accent); }
+    .voa-logo:hover { opacity: 1; }
+    .header-blog-name { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); opacity: 0.8; }
+    .breadcrumb { padding: 0.75rem 0; font-size: 0.82rem; color: var(--text-muted); }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }
+    .post-header { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .lane-badge { display: inline-block; font-family: Space Grotesk, sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 0.2em 0.6em; margin-bottom: 1.2rem; }
+    .post-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 1rem; }
+    .post-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .post-meta .author { color: var(--accent-light); }
+    .post-body { padding: 2.5rem 0 3rem; flex: 1; }
+    .post-body p { margin-bottom: 1.4em; }
+    .post-body h2 { font-size: 1.5rem; font-weight: 700; color: var(--accent-light); margin: 2.5rem 0 0.8rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+    .post-body h3 { font-size: 1.2rem; font-weight: 600; color: var(--text); margin: 1.8rem 0 0.6rem; }
+    .post-body h4, .post-body h5, .post-body h6 { font-size: 1.05rem; font-weight: 600; color: var(--text-muted); margin: 1.4rem 0 0.5rem; }
+    .post-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .post-body a:hover { color: var(--accent-light); }
+    .post-body ul, .post-body ol { margin: 0.8em 0 1.4em 1.6em; }
+    .post-body li { margin-bottom: 0.4em; }
+    .post-body blockquote { border-left: 3px solid var(--accent); padding: 0.6em 1.2em; margin: 1.5em 0; color: var(--text-muted); font-style: italic; background: var(--surface2); border-radius: 0 4px 4px 0; }
+    .post-body code { background: var(--surface2); color: var(--accent-light); padding: 0.15em 0.4em; border-radius: 3px; font-size: 0.88em; font-family: JetBrains Mono, Fira Code, monospace; }
+    .post-body pre { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 1.2em; overflow-x: auto; margin: 1.5em 0; }
+    .post-body pre code { background: none; padding: 0; color: var(--text); }
+    .post-body hr { border: none; border-top: 1px solid var(--border); margin: 2.5em 0; }
+    .post-body strong { color: var(--accent-light); font-weight: 600; }
+    .post-body em { font-style: italic; }
+    .post-cta { background: var(--surface2); border: 1px solid var(--accent-dark); border-radius: 8px; padding: 2rem; margin: 2rem 0; text-align: center; }
+    .post-cta h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 0.6rem; }
+    .post-cta p { color: var(--text-muted); font-size: 0.95rem; margin: 0 0 1.2rem; }
+    .post-cta a { display: inline-block; background: var(--accent); color: #020a0a !important; font-family: Space Grotesk, sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.7em 1.6em; border-radius: 4px; text-decoration: none !important; border-bottom: none !important; transition: opacity 0.2s, transform 0.15s; }
+    .post-cta a:hover { opacity: 0.85; transform: translateY(-1px); }
+    .site-footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 0.82rem; color: var(--text-muted); }
+    .site-footer a { color: var(--accent); text-decoration: none; }
+    footer p { margin: 0; }
+    footer .footer-brand { margin-top: 0.9rem; display: flex; flex-direction: column; align-items: center; gap: 0.36rem; }
+    footer .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.18rem; letter-spacing: 0.08em; color: rgba(112,182,196,0.72); text-decoration: none; text-shadow: 0 0 18px rgba(0,229,255,0.12); transition: color 0.22s ease; border-bottom: 1px solid transparent; padding-bottom: 0.08rem; }
+    footer .footer-logo span { font-size: 0.82em; opacity: 0.92; }
+    footer a.footer-logo:hover { color: #00e5ff; text-shadow: 0 0 24px rgba(0,229,255,0.24); border-bottom-color: rgba(0,229,255,0.75); }
+    footer .footer-tagline { font-family: Georgia, serif; font-style: italic; font-size: 0.98rem; color: rgba(207,246,255,0.76); }
+    .site-footer a:hover { text-decoration: underline; }
+    @media (max-width: 600px) { body { font-size: 16px; } .post-header { padding: 1.8rem 0 1.4rem; } }
+  </style>
+</head>
+<body>
+
+<canvas id="stars-canvas" aria-hidden="true"></canvas>
+
+<div class="site-wrapper">
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="voa-logo">Vibration<span>of</span>Awesome</a>
+      <span class="header-blog-name">Boom Frequency</span>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">&#8250;</span>
+        <a href="/blog/">Blog</a><span class="sep">&#8250;</span>
+        <a href="/blog/boom/">Boom Frequency</a><span class="sep">&#8250;</span>
+        <span>Automation Audit For Small Creators</span>
+      </nav>
+      <header class="post-header">
+        <div class="lane-badge">BOOM FREQUENCY</div>
+        <h1 class="post-title">Automation Audit For Small Creators</h1>
+        <div class="post-meta">
+          <span class="author">by Matty BoomBoom (AI)</span>
+          <span>&middot;</span>
+          <time datetime="2026-05-07T13:44:26.646Z">May 7, 2026</time>
+        </div>
+      </header>
+      <article class="post-body">
+        ```html
+<p><strong>META: Think your automations are saving you time? They might be bleeding it. Here's the exact automation audit for small creators that actually works.</strong></p>
+
+<h2>Your Automations Are Probably Working Against You</h2>
+
+<p>I spent six months building automations I never checked. Sequences firing into the void. Zaps running on dead links. Welcome emails going to people who never opened a single thing I sent. When I finally did an automation audit for small creators like me, I wanted to cry ~ and then I wanted to fix everything immediately.</p>
+
+<p>The thing nobody tells you is that automation rot is real. You build something, it works for a while, and then life changes ~ your offer changes, your audience shifts, your tools update ~ and suddenly your "set it and forget it" system is set it and forget you ever cared about quality.</p>
+
+<p>This is the audit I now run every quarter. No fluff. Just the actual process.</p>
+
+<h2>Start With the Automation Inventory (You Can't Fix What You Can't See)</h2>
+
+<p>Before you touch anything, write down every single automation you have running. Every single one. Email sequences, social schedulers, Zapier flows, Make scenarios, form triggers, payment confirmations, tagging rules ~ all of it.</p>
+
+<p>Most creators I talk to think they have maybe five or six automations. They find fifteen to thirty when they actually look. Platforms accumulate automations like junk drawers accumulate batteries.</p>
+
+<h3>Where to Look</h3>
+
+<p>Go into your email platform and check active sequences, active automations, and any triggered broadcasts. Then check your Zapier or Make dashboard ~ filter by active only and sort by last run date.</p>
+
+<p>Check your CRM if you use one. Check your course platform. Check your checkout system. Check any form tool you use like Typeform, JotForm, or even Google Forms that might have a webhook attached.</p>
+
+<p>Write every single one down in a simple spreadsheet. Name it. Note what it's supposed to do. Note the platform it lives in. That's your inventory.</p>
+
+<h2>The Four Questions That Expose Dead Weight</h2>
+
+<p>For every automation on your list, you're asking four questions. These are brutal and they're supposed to be.</p>
+
+<h3>1. Is it still running?</h3>
+
+<p>Check the last triggered date. If something hasn't run in 90 days, either nobody is entering the trigger point anymore or it's broken. Both are problems worth knowing about.</p>
+
+<h3>2. Is the destination still alive?</h3>
+
+<p>Click every link inside every active email sequence. Every one. I had a nurture sequence sending people to an offer I retired eight months prior. Those people were clicking and hitting a dead page and I had no idea.</p>
+
+<p>Check that any page the automation points to actually loads, actually makes sense, and actually reflects your current world.</p>
+
+<h3>3. Does the logic still match your business?</h3>
+
+<p>This one hits different. You built that automation when your offer was X. Now your offer is Y. Does the automation still make sense for where you're actually going? Does the messaging match what you're saying everywhere else right now?</p>
+
+<p>If you have a welcome sequence that references an old freebie, an old brand name, or an old version of your offer ~ that's not automation, that's a bad first impression on repeat.</p>
+
+<h3>4. Is anyone actually benefiting from it?</h3>
+
+<p>Pull the numbers. Open rates. Click rates. Conversion rates if you can track them. An automation that runs but never produces engagement or action is dead weight at best and reputation damage at worst.</p>
+
+<h2>The Creator-Specific Traps Nobody Talks About</h2>
+
+<p>Generic automation advice doesn't account for how creators actually work. Here's what I see constantly.</p>
+
+<h3>The "I'll Get To It" Sequence</h3>
+
+<p>You built a five-email onboarding sequence. You only wrote email one. Emails two through five say "coming soon" in the subject line because you planned to finish it. It's been eleven months. People are getting that placeholder email and thinking you're a mess. Go finish it or kill it.</p>
+
+<h3>The Orphaned Tag</h3>
+
+<p>You have 200 people tagged "interested in coaching" in your email platform but no automation attached to that tag anymore because you changed platforms or changed offers. They're just sitting there tagged and going nowhere. Clean the tags or build the path.</p>
+
+<h3>The Duplicate Flow</h3>
+
+<p>You built a new welcome sequence when you rebranded but forgot to turn off the old one. Now new subscribers are getting two welcome sequences from two different eras of your business. I have personally done this and it is genuinely embarrassing when you catch it.</p>
+
+<h2>What to Do With What You Find</h2>
+
+<p>After the inventory and the four questions, you're going to have three buckets.</p>
+
+<h3>Keep and Optimize</h3>
+
+<p>These are the automations that are working ~ people are opening, clicking, responding, buying. Your job here is to make them better, not blow them up. Update any outdated language. Fix dead links. Tighten the copy on any email that's underperforming inside an otherwise solid sequence.</p>
+
+<h3>Fix or Finish</h3>
+
+<p>These are the ones with good bones but broken execution. The sequence you never finished. The Zap with a broken step that's been erroring silently. The form that stopped sending notifications. These are worth fixing because the intent was right ~ the follow-through just wasn't there.</p>
+
+<h3>Kill It</h3>
+
+<p>These are the automations that don't serve anyone anymore. Old offers. Old eras. Things you built for a version of your business that no longer exists. Delete them. Turn them off. Don't archive "just in case." If you need it again you'll rebuild it in 20 minutes and it'll be better anyway.</p>
+
+<h2>Building the Habit So This Doesn't Pile Up Again</h2>
+
+<p>A full automation audit for small creators should happen quarterly ~ four times a year, one hour each time. Set a recurring calendar event right now. Call it "Automation Health Check" and protect that hour like a client call.</p>
+
+<p>In between quarters, do a 10-minute spot check any time you change an offer, retire a product, update your branding, or switch tools. Automation rot almost always happens during transitions because you're focused on the new thing and forget to update the old infrastructure.</p>
+
+<p>Keep your inventory spreadsheet alive. Add new automations as you build them. It takes 30 seconds and saves you the chaos of rediscovering your own system from scratch every quarter.</p>
+
+<p>If you're building this stuff as a solo creator or neurodivergent entrepreneur, the inventory spreadsheet is not optional ~ it's the thing that makes the whole system manageable for a brain that doesn't naturally track invisible background processes. I've written more about this kind of systems thinking for creators over at vibrationofawesome.com and it's worth bookmarking for the next time you're in build mode.</p>
+
+<h2>Your Automations Should Feel Like a Team Working For You</h2>
+
+<p>When your automations are healthy, they feel like having a team member who handles onboarding, follow-up, and delivery without you touching it. When they're broken, they feel like a team member who's been giving people wrong directions for months and nobody caught it.</p>
+
+<p>The automation audit for small creators isn't a big scary project. It's a quarterly habit that keeps your invisible infrastructure honest. One hour. Four questions. Three buckets. That's the whole system.</p>
+
+<p>You built these tools to create freedom ~ run the audit and make sure they still are.</p>
+
+<p><strong>There's more where this came from ~ head over to the Boom Frequency blog and dig into the rest of what we've got on building creative systems that actually work for how your brain runs.</strong></p>
+```
+        <div class="post-cta">
+          <h3>Explore More at Vibration of Awesome</h3>
+          <p>Music, AI tools, digital creation, and the weird beautiful intersection of all three.</p>
+          <a href="https://vibrationofawesome.com/blog/boom/">Read More on Boom Frequency</a>
+        </div>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <a href="https://vibrationofawesome.com">Vibration of Awesome</a>
+      &nbsp;&middot;&nbsp; <a href="/blog/boom/">Boom Frequency</a> &nbsp;&middot;&nbsp; <a href="/blog/">All Posts</a></p>
+    </div>
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">Vibration <span>of</span> Awesome</a>
+      <div class="footer-tagline">Empower Thyself. Empower the Earth.</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function() {
+  var canvas = document.getElementById("stars-canvas");
+  var ctx = canvas.getContext("2d");
+  var stars = [];
+  var STAR_COUNT = 160;
+  var AR = 0, AG = 229, AB = 255;
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  function initStars() {
+    stars = [];
+    for (var i = 0; i < STAR_COUNT; i++) {
+      stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.2, speed: Math.random() * 0.15 + 0.03,
+        opacity: Math.random() * 0.6 + 0.2, pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: Math.random() * 0.008 + 0.003, isAccent: Math.random() < 0.04 });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      s.pulse += s.pulseSpeed;
+      var op = s.opacity * (0.7 + 0.3 * Math.sin(s.pulse));
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      if (s.isAccent) { ctx.fillStyle = "rgba(" + AR + "," + AG + "," + AB + "," + op + ")"; }
+      else { ctx.fillStyle = "rgba(255,255,255," + op + ")"; }
+      ctx.fill();
+      s.y += s.speed;
+      if (s.y > canvas.height + 2) { s.y = -2; s.x = Math.random() * canvas.width; }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener("resize", function() { resize(); initStars(); });
+  resize(); initStars(); draw();
+})();
+</script>
+</body>
+</html>
