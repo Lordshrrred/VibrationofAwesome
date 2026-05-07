@@ -18,6 +18,7 @@ import { spawnSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { getDraftPlan } from "./content-niches.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
@@ -32,198 +33,8 @@ function slugify(str) {
     .replace(/-+/g, "-");
 }
 
-// ── 30 posts across 5 pillars (pillar order = drip rotation order) ─────────
-const POSTS = [
-  // ── PILLAR 1 ~ Identity + Awakening ──────────────────────────────────────
-  {
-    keyword: "why I feel stuck in life",
-    topic:   "Identity + Awakening",
-    title:   "Why You Feel Stuck in Life (And What's Actually Going On)",
-    pillar:  "Identity + Awakening",
-  },
-  {
-    keyword: "how to unlock your potential",
-    topic:   "Identity + Awakening",
-    title:   "How to Unlock Your Potential When Nothing Seems to Work",
-    pillar:  "Identity + Awakening",
-  },
-  {
-    keyword: "how to become your true self",
-    topic:   "Identity + Awakening",
-    title:   "How to Become Your True Self When the World Wants You Generic",
-    pillar:  "Identity + Awakening",
-  },
-  {
-    keyword: "identity shift mindset",
-    topic:   "Identity + Awakening",
-    title:   "The Identity Shift That Changes Everything",
-    pillar:  "Identity + Awakening",
-  },
-  {
-    keyword: "how to find your purpose in life",
-    topic:   "Identity + Awakening",
-    title:   "How to Find Your Purpose When You Have No Idea What It Is",
-    pillar:  "Identity + Awakening",
-  },
-  {
-    keyword: "how to stop living in survival mode",
-    topic:   "Identity + Awakening",
-    title:   "How to Stop Living in Survival Mode for Good",
-    pillar:  "Identity + Awakening",
-  },
-
-  // ── PILLAR 2 ~ Survival Mode + Freedom ───────────────────────────────────
-  {
-    keyword: "how to get out of survival mode",
-    topic:   "Survival Mode + Freedom",
-    title:   "How to Get Out of Survival Mode and Actually Start Living",
-    pillar:  "Survival Mode + Freedom",
-  },
-  {
-    keyword: "how to stop feeling lost in life",
-    topic:   "Survival Mode + Freedom",
-    title:   "How to Stop Feeling Lost and Start Moving Forward",
-    pillar:  "Survival Mode + Freedom",
-  },
-  {
-    keyword: "how to escape the 9 to 5 mindset",
-    topic:   "Survival Mode + Freedom",
-    title:   "How to Escape the 9 to 5 Mindset Even If You Still Have a Job",
-    pillar:  "Survival Mode + Freedom",
-  },
-  {
-    keyword: "burnout and purpose",
-    topic:   "Survival Mode + Freedom",
-    title:   "Burnout Isn't the Problem ~ It's the Signal",
-    pillar:  "Survival Mode + Freedom",
-  },
-  {
-    keyword: "how to change your life completely",
-    topic:   "Survival Mode + Freedom",
-    title:   "How to Change Your Life Completely When You Don't Know Where to Begin",
-    pillar:  "Survival Mode + Freedom",
-  },
-  {
-    keyword: "how to break out of the system",
-    topic:   "Survival Mode + Freedom",
-    title:   "How to Break Out of the System Without Losing Everything",
-    pillar:  "Survival Mode + Freedom",
-  },
-
-  // ── PILLAR 3 ~ Creative Freedom + Life Design ─────────────────────────────
-  {
-    keyword: "how to build a life you actually want",
-    topic:   "Creative Freedom + Life Design",
-    title:   "How to Build a Life You Actually Want (Not the One You Settled For)",
-    pillar:  "Creative Freedom + Life Design",
-  },
-  {
-    keyword: "how to monetize creativity",
-    topic:   "Creative Freedom + Life Design",
-    title:   "How to Monetize Your Creativity Without Selling Your Soul",
-    pillar:  "Creative Freedom + Life Design",
-  },
-  {
-    keyword: "how to make money doing what you love",
-    topic:   "Creative Freedom + Life Design",
-    title:   "How to Make Money Doing What You Love ~ The Real Version",
-    pillar:  "Creative Freedom + Life Design",
-  },
-  {
-    keyword: "multiple streams of income beginner",
-    topic:   "Creative Freedom + Life Design",
-    title:   "Multiple Streams of Income for Beginners ~ Where to Actually Start",
-    pillar:  "Creative Freedom + Life Design",
-  },
-  {
-    keyword: "how to create a freedom lifestyle",
-    topic:   "Creative Freedom + Life Design",
-    title:   "How to Create a Freedom Lifestyle From Scratch",
-    pillar:  "Creative Freedom + Life Design",
-  },
-  {
-    keyword: "passive income ideas for beginners",
-    topic:   "Creative Freedom + Life Design",
-    title:   "Passive Income Ideas for Beginners That Don't Require Being Fake",
-    pillar:  "Creative Freedom + Life Design",
-  },
-
-  // ── PILLAR 4 ~ Inner Work + Energy ───────────────────────────────────────
-  {
-    keyword: "shadow work for beginners",
-    topic:   "Inner Work + Energy",
-    title:   "Shadow Work for Beginners ~ What It Actually Is and Why It Matters",
-    pillar:  "Inner Work + Energy",
-  },
-  {
-    keyword: "how to regulate your nervous system",
-    topic:   "Inner Work + Energy",
-    title:   "How to Regulate Your Nervous System When Life Feels Like Too Much",
-    pillar:  "Inner Work + Energy",
-  },
-  {
-    keyword: "how to heal emotionally",
-    topic:   "Inner Work + Energy",
-    title:   "How to Heal Emotionally When You Don't Know Where to Start",
-    pillar:  "Inner Work + Energy",
-  },
-  {
-    keyword: "nervous system regulation anxiety",
-    topic:   "Inner Work + Energy",
-    title:   "Nervous System Regulation for Anxiety ~ What Actually Helps",
-    pillar:  "Inner Work + Energy",
-  },
-  {
-    keyword: "how to feel safe in your body",
-    topic:   "Inner Work + Energy",
-    title:   "How to Feel Safe in Your Body Again",
-    pillar:  "Inner Work + Energy",
-  },
-  {
-    keyword: "why am I always anxious for no reason",
-    topic:   "Inner Work + Energy",
-    title:   "Why You're Always Anxious for No Reason (There's Always a Reason)",
-    pillar:  "Inner Work + Energy",
-  },
-
-  // ── PILLAR 5 ~ AI + Music + Creator Tools ─────────────────────────────────
-  {
-    keyword: "AI tools for musicians",
-    topic:   "AI + Music + Creator Tools",
-    title:   "The Best AI Tools for Musicians in 2026 (That Actually Work)",
-    pillar:  "AI + Music + Creator Tools",
-  },
-  {
-    keyword: "how to use AI to make music",
-    topic:   "AI + Music + Creator Tools",
-    title:   "How to Use AI to Make Music Without Losing Your Sound",
-    pillar:  "AI + Music + Creator Tools",
-  },
-  {
-    keyword: "music production for beginners",
-    topic:   "AI + Music + Creator Tools",
-    title:   "Music Production for Beginners ~ Where to Start Without Getting Lost",
-    pillar:  "AI + Music + Creator Tools",
-  },
-  {
-    keyword: "how to grow as an independent artist",
-    topic:   "AI + Music + Creator Tools",
-    title:   "How to Grow as an Independent Artist in a Noisy World",
-    pillar:  "AI + Music + Creator Tools",
-  },
-  {
-    keyword: "AI content creation tools",
-    topic:   "AI + Music + Creator Tools",
-    title:   "AI Content Creation Tools That Actually Save Time",
-    pillar:  "AI + Music + Creator Tools",
-  },
-  {
-    keyword: "how to make money as a musician",
-    topic:   "AI + Music + Creator Tools",
-    title:   "How to Make Money as a Musician Without Compromising Your Art",
-    pillar:  "AI + Music + Creator Tools",
-  },
-];
+// Draft rotation is sourced from scripts/content-niches.js.
+const POSTS = getDraftPlan();
 
 async function main() {
   const draftsDir = path.join(ROOT, "static", "blog", "boom", "drafts");
@@ -258,6 +69,7 @@ async function main() {
     const result = spawnSync("node", [
       "scripts/generate-post.js",
       "--lane",    "boom",
+      "--niche",   post.niche,
       "--keyword", post.keyword,
       "--topic",   post.topic,
       "--title",   post.title,
@@ -291,6 +103,7 @@ async function main() {
     slug:    slugify(post.title),
     title:   post.title,
     keyword: post.keyword,
+    niche:   post.niche,
     pillar:  post.pillar,
   }));
 

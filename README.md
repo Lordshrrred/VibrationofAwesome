@@ -40,7 +40,10 @@ cp .env.example .env
 node scripts/generate-post.js --lane matt --title "Why I Spent 20 Years Doing Internet Marketing Wrong"
 
 # BoomBot lane ~ SEO-optimized, Matty BoomBoom voice
-node scripts/generate-post.js --lane boom --keyword "how to use claude api for musicians" --topic "AI tools for independent artists"
+node scripts/generate-post.js --lane boom --niche ai-creator-tools --keyword "how to use claude api for musicians"
+
+# Generate for a specific EarthStar niche
+node scripts/generate-post.js --lane boom --niche self-betrayal-avoidance --keyword "how to stop betraying yourself"
 ```
 
 **What it does:**
@@ -87,20 +90,56 @@ That opens Google consent, validates the new Blogger refresh token, saves it to 
 
 The Blogger OAuth helper defaults to `http://localhost:8090/` so VLC can keep using port `8080`. If Google shows `redirect_uri_mismatch`, add `http://localhost:8090/` as an authorized redirect URI on the Google OAuth client, or set `BLOGGER_REDIRECT_PORT` in `.env` to another authorized port.
 
+### EarthStar 7-Niche Content System
+
+Boom Frequency now rotates across seven niches:
+
+1. `ai-creator-tools` - AI + Music + Creator Tools
+2. `self-betrayal-avoidance` - Self-Betrayal / Avoidance
+3. `dopamine-addiction-numbing` - Dopamine Addiction / Numbing
+4. `nervous-system-dysregulation` - Nervous System Dysregulation
+5. `misalignment-wrong-life` - Misalignment / Living the Wrong Life
+6. `direction-purpose-drift` - Lack of Direction / Purpose Drift
+7. `disconnection-inner-noise` - Disconnection from Self / Inner Noise
+
+The source of truth is `scripts/content-niches.js`. It stores each niche slug, display name, core problem, audience pain, content angle, example article topics, keyword seed phrases, tone notes, and grouped keyword research seeds.
+
+The master human-readable map is `content-strategy/niche-map.md`.
+
 ### Boom Drip Rate
 
 The current drip queue is configured for `2` Boom Frequency posts per publish run at `10:00 UTC`. The GitHub Actions drip workflow is manual-only until its schedule is re-enabled.
+
+Draft generation rotates through all seven niches from `scripts/content-niches.js`:
+
+```bash
+node scripts/generate-all-drafts.js
+```
 
 ### SEO Keyword Research
 
 ```bash
 node scripts/seo-research.js --topic "AI tools for musicians"
+node scripts/seo-research.js --niche nervous-system-dysregulation
+node scripts/seo-research.js --all-niches
 ```
 
 **What it does:**
-- Generates 20 long-tail keyword variations via Claude
+- Generates long-tail keyword variations via Claude for a topic or one niche
+- Groups keywords by intent: informational, problem-aware, solution-aware, comparison, and action/how-to
+- Identifies low-competition/high-intent blog topic candidates
 - Outputs formatted list to terminal
 - Saves results to `static/_data/topic-queue.json`
+- Saves per-niche strategy files to `content-strategy/keyword-research/`
+
+`--all-niches` writes seeded keyword research files from the local niche config and does not call Claude.
+
+### Add a Future Niche
+
+1. Add a new object to `EARTHSTAR_NICHES` in `scripts/content-niches.js`.
+2. Include the required fields: `slug`, `displayName`, `coreProblem`, `audiencePain`, `contentAngle`, `exampleArticleTopics`, `keywordSeedPhrases`, `toneNotes`, and `keywordResearch`.
+3. Run `npm run research:niches` to refresh `content-strategy/keyword-research/`.
+4. Update `content-strategy/niche-map.md` if the public strategy map should mention the niche.
 
 ---
 

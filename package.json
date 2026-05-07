@@ -12,6 +12,7 @@
     "captions": "node scripts/generate-captions.js",
     "image": "node scripts/select-image.js",
     "research": "node scripts/seo-research.js",
+    "research:niches": "node scripts/seo-research.js --all-niches",
     "sitemap": "node scripts/update-sitemap.js",
     "redirects": "node scripts/generate-legacy-redirects.js",
     "normalize-archive": "node scripts/normalize-archive-metadata.js",

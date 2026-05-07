@@ -17,6 +17,7 @@ import { spawnSync } from "child_process";
 import { updateSitemap } from "./update-sitemap.js";
 import { syndicatePost } from "./syndicate.js";
 import { fetchNasaImages, fetchForestImages, fetchBoomImages } from "./select-image.js";
+import { findNiche, getDefaultNiche, getNichePromptContext, EARTHSTAR_NICHES } from "./content-niches.js";
 
 dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
@@ -25,9 +26,9 @@ const ROOT = path.resolve(__dirname, "..");
 
 // ── CLI ARGS ──
 const argv = minimist(process.argv.slice(2), {
-  string:  ["lane", "title", "keyword", "topic", "rant"],
+  string:  ["lane", "title", "keyword", "topic", "rant", "niche"],
   boolean: ["skip-syndicate", "test-feeder-only", "draft"],
-  alias:   { l: "lane", t: "title", k: "keyword", p: "topic", r: "rant" },
+  alias:   { l: "lane", t: "title", k: "keyword", p: "topic", r: "rant", n: "niche" },
 });
 const lane = argv.lane;
 if (!lane || !["matt", "boom"].includes(lane)) {
@@ -36,8 +37,8 @@ if (!lane || !["matt", "boom"].includes(lane)) {
 if (lane === "matt" && !argv.title) {
   console.error('Error: Matt lane requires --title "Post Title"'); process.exit(1);
 }
-if (lane === "boom" && (!argv.keyword || !argv.topic)) {
-  console.error('Error: BoomBot lane requires --keyword "..." and --topic "..."'); process.exit(1);
+if (lane === "boom" && !argv.keyword) {
+  console.error('Error: BoomBot lane requires --keyword "..."'); process.exit(1);
 }
 if (!process.env.ANTHROPIC_API_KEY) {
   console.error("Error: ANTHROPIC_API_KEY not set. Copy .env.example to .env and add your key.");
@@ -47,20 +48,12 @@ if (!process.env.ANTHROPIC_API_KEY) {
 /*
   DRIP SCHEDULE ~ one post at a time, not bulk
 
-  Rotate through pillars in this order so topics
-  stay varied and don't cluster:
-  1. Identity + Awakening
-  2. AI / Music / Creator Tools
-  3. Survival Mode + Freedom
-  4. AI / Music / Creator Tools
-  5. Creative Freedom + Life Design
-  6. AI / Music / Creator Tools
-  7. Inner Work + Energy
-  8. repeat
+  DRIP ROTATION
 
-  Goal: AI/music posts every other slot to keep
-  that lane alive while the new pillars build out.
-  One post per run. Schedule externally.
+  Boom Frequency now rotates through the seven EarthStar content niches defined
+  in scripts/content-niches.js. AI + Music + Creator Tools stays intact as the
+  first niche, and the six additional EarthStar niches rotate alongside it.
+  One post per run. Schedule externally or use generate-all-drafts.js.
 */
 
 // ── SYSTEM PROMPTS ──
@@ -112,41 +105,18 @@ const BOOMBOT_SYSTEM = [
   "- Write at 8th grade reading level, short paragraphs, one idea each",
   "- Never open with \"In today's world\" or \"In this article we will\"",
   "- Never end with \"I hope this helps\"",
+  "- Do not write generic self-help",
+  "- Avoid these phrases and ideas: \"you're not broken\", \"you're not behind\", \"just believe\", generic manifestation fluff, and generic hustle culture advice",
+  "- Make every article grounded, human, specific, slightly contrarian, useful, and emotionally resonant",
+  "- Use the provided niche context as the article's spine. Do not flatten every niche into AI tools or vague personal growth.",
 ].join("\n");
 
 // ── TOPIC PILLARS & KEYWORD POOL ──────────────────────────────────────────────
-// Reference list for CLI usage. Rotate through pillars per the DRIP SCHEDULE above.
-// Usage: node scripts/generate-post.js --lane boom --keyword "<keyword>" --topic "<pillar>"
-const TOPIC_PILLARS = {
-  "Identity + Awakening": [
-    "why I feel stuck in life",
-    "how to unlock your potential",
-    "how to become your true self",
-    "identity shift mindset",
-    "how to reinvent yourself",
-  ],
-  "Survival Mode + Freedom": [
-    "how to get out of survival mode",
-    "how to stop feeling lost in life",
-    "how to escape the 9 to 5 mindset",
-    "burnout and purpose",
-  ],
-  "Creative Freedom + Life Design": [
-    "how to build a life you actually want",
-    "how to monetize creativity",
-    "how to make money doing what you love",
-    "multiple streams of income beginner",
-  ],
-  "Inner Work + Energy": [
-    "shadow work for beginners",
-    "how to regulate your nervous system",
-    "how to heal emotionally",
-    "nervous system regulation anxiety",
-  ],
-  "AI + Music + Creator Tools": [
-    // Keywords added here via: npm run research (saves to static/_data/topic-queue.json)
-  ],
-};
+// Reference list for CLI usage. Source of truth lives in scripts/content-niches.js.
+// Usage: node scripts/generate-post.js --lane boom --niche "self-betrayal-avoidance" --keyword "<keyword>"
+const TOPIC_PILLARS = Object.fromEntries(
+  EARTHSTAR_NICHES.map((niche) => [niche.displayName, niche.keywordSeedPhrases])
+);
 
 // ── HELPERS ──
 
@@ -615,6 +585,14 @@ async function main() {
 
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   let postTitle, userMessage, systemPrompt;
+  const requestedNiche = lane === "boom" && argv.niche ? findNiche(argv.niche) : null;
+  if (lane === "boom" && argv.niche && !requestedNiche) {
+    console.error('Error: Unknown --niche "' + argv.niche + '". Available niches: ' + EARTHSTAR_NICHES.map((n) => n.slug).join(", "));
+    process.exit(1);
+  }
+  const selectedNiche = lane === "boom"
+    ? (requestedNiche || findNiche(argv.topic) || getDefaultNiche())
+    : null;
 
   // Load rant file if provided via --rant path/to/rant.txt
   let rantText = "";
@@ -663,12 +641,15 @@ async function main() {
   } else {
     postTitle    = argv.keyword;
     systemPrompt = BOOMBOT_SYSTEM;
+    const nicheContext = getNichePromptContext(selectedNiche);
+    const topicContext = argv.topic || selectedNiche.displayName;
     const titleLine = argv.title
       ? "Use this exact H1 title: \"" + argv.title + "\""
       : "Make the H1 title compelling and include the keyword naturally.";
     userMessage  = [
       "Write a long-form SEO blog post targeting the long-tail keyword: \"" + argv.keyword + "\"",
-      "Broader topic context: \"" + argv.topic + "\"",
+      "Broader topic context: \"" + topicContext + "\"",
+      nicheContext,
       titleLine,
       rantInstruction,
       internalLinkingInstruction,
@@ -677,6 +658,7 @@ async function main() {
 
   console.log("\nGenerating " + (lane === "matt" ? "Forest Temple" : "Boom Frequency") + " post...");
   console.log("Title/Keyword: " + postTitle + "\n");
+  if (selectedNiche) console.log("Niche: " + selectedNiche.displayName + " (" + selectedNiche.slug + ")\n");
 
   let markdown;
   try {
@@ -762,7 +744,8 @@ async function main() {
       title: postTitle, slug, date: dateStr,
       excerpt: extractExcerpt(bodyMarkdown),
       url: "/blog/" + lane + "/posts/" + slug + ".html",
-      tags: [],
+      tags: selectedNiche ? [selectedNiche.slug] : [],
+      niche: selectedNiche ? selectedNiche.slug : undefined,
     });
     fs.writeFileSync(dataFile, JSON.stringify(posts, null, 2), "utf8");
     console.log("JSON index updated: static/_data/" + lane + "-posts.json");
@@ -802,8 +785,8 @@ async function main() {
         slug,
         lane,
         excerpt: extractExcerpt(bodyMarkdown),
-        tags: [],
-        category: argv.topic || "",
+        tags: selectedNiche ? [selectedNiche.slug] : [],
+        category: selectedNiche ? selectedNiche.displayName : (argv.topic || ""),
         sourceText: firstWords(bodyMarkdown, 700),
       });
     }
