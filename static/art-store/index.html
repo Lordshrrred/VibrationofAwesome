@@ -409,11 +409,6 @@
     margin-top: 1.8rem;
   }
 
-  /* ── COLLECTION GRID (5 cards) ── */
-  .collection-grid--5 {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
   /* ── PRODUCT CARD ── */
   .product-card {
     position: relative;
@@ -440,6 +435,7 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    object-position: center center;
     padding: 1rem;
   }
 
@@ -501,7 +497,7 @@
     overflow: hidden;
   }
   .carousel-track { display: flex; height: 100%; transition: transform 0.35s ease; will-change: transform; }
-  .carousel-slide { flex: 0 0 100%; height: 100%; object-fit: contain; padding: 1rem; box-sizing: border-box; }
+  .carousel-slide { flex: 0 0 100%; height: 100%; object-fit: contain; object-position: center center; padding: 1rem; box-sizing: border-box; }
   .carousel-btn {
     position: absolute;
     top: 50%;
@@ -618,16 +614,189 @@
   footer a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
   footer a:hover { color: var(--gold); }
 
-  /* RESPONSIVE */
-  @media (max-width: 1300px) {
-    .collection-grid--5 { grid-template-columns: repeat(3, 1fr); }
+  /* ── VOA PRODUCT MODAL ── */
+  .voa-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(2,10,10,0.9);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 8000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
   }
+  .voa-modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .voa-modal {
+    background: linear-gradient(145deg, #030f0d 0%, #001a18 100%);
+    border: 1px solid rgba(0,229,204,0.2);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.85), 0 0 80px rgba(0,229,204,0.04);
+    width: min(980px, 94vw);
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(24px);
+    transition: transform 0.35s ease;
+  }
+  .voa-modal-overlay.open .voa-modal { transform: translateY(0); }
+
+  .voa-modal-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.6rem;
+    background: linear-gradient(90deg, rgba(0,229,204,0.07) 0%, transparent 60%);
+    border-bottom: 1px solid rgba(0,229,204,0.13);
+    flex-shrink: 0;
+  }
+  .voa-modal-brand { display: flex; align-items: center; gap: 1rem; }
+  .voa-modal-logo {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 15px rgba(0,229,204,0.3);
+  }
+  .voa-modal-tag {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.6;
+    border-left: 1px solid rgba(0,229,204,0.2);
+    padding-left: 1rem;
+  }
+  .voa-modal-close {
+    background: none;
+    border: 1px solid rgba(0,229,204,0.15);
+    color: var(--muted);
+    font-size: 1rem;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    line-height: 1;
+  }
+  .voa-modal-close:hover { color: var(--gold); border-color: rgba(0,229,204,0.4); }
+
+  .voa-modal-body {
+    overflow-y: auto;
+    flex: 1;
+    padding: 2rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,229,204,0.2) transparent;
+  }
+
+  /* Shirt Picker */
+  .picker-eyebrow {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.75;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .picker-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .shirt-picker-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .shirt-option {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(0,229,204,0.1);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .shirt-option:hover { border-color: rgba(0,229,204,0.35); transform: translateY(-3px); }
+  .shirt-option .product-carousel { height: 320px; }
+  .shirt-option-info { padding: 1.1rem 1.2rem 1.3rem; border-top: 1px solid rgba(0,229,204,0.06); }
+  .shirt-option-name { font-family: 'Cinzel Decorative', serif; font-size: 0.72rem; color: var(--cream); margin-bottom: 0.2rem; }
+  .shirt-option-sub { font-family: 'Rajdhani', sans-serif; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); opacity: 0.6; margin-bottom: 1rem; }
+
+  /* Product Detail (single product modal) */
+  .product-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .product-detail .product-carousel { height: 380px; border: 1px solid rgba(0,229,204,0.1); }
+  .product-detail-info { padding-top: 0.5rem; }
+  .product-detail-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 0.6rem;
+  }
+  .product-detail-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  .product-detail-sub {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.55;
+    margin-bottom: 1.2rem;
+  }
+  .product-detail-desc {
+    font-size: 1rem;
+    font-style: italic;
+    color: rgba(168,237,228,0.65);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .product-detail-divider { width: 40px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); margin-bottom: 2rem; }
+  .product-detail-btn {
+    display: inline-block;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--deep);
+    background: var(--gold);
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s, box-shadow 0.2s;
+    font-weight: 700;
+  }
+  .product-detail-btn:hover { background: var(--gold-light); box-shadow: 0 0 30px rgba(0,229,204,0.3); }
+
+  @media (max-width: 700px) {
+    .shirt-picker-grid { grid-template-columns: 1fr; }
+    .product-detail { grid-template-columns: 1fr; }
+    .shirt-option .product-carousel { height: 260px; }
+    .product-detail .product-carousel { height: 260px; }
+    .voa-modal-body { padding: 1.2rem; }
+  }
+
+  /* RESPONSIVE */
   @media (max-width: 1100px) {
     .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
-    .collection-grid--5 { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 700px) {
-    .collection-grid--5 { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 900px) {
     main { padding: 4rem 2rem; }
@@ -750,14 +919,14 @@
       <p class="collection-desc">Abstract art meets the spirit of the electric guitar. Raw frequency made visible.</p>
       <div class="collection-rule"></div>
     </div>
-    <div class="collection-grid collection-grid--5">
+    <div class="collection-grid">
 
-      <!-- Male / Unisex Tee -->
+      <!-- SHIRTS (combined — picker modal) -->
       <div class="product-card" data-type="shirt">
         <div class="product-carousel">
           <div class="carousel-track">
-            <img src="/personal-photos/merch/Abstrar-male-tee-1.jpg" class="carousel-slide" alt="Abstratocaster Unisex Tee Front" loading="lazy">
-            <img src="/personal-photos/merch/Abstrar-male-tee-2.jpg" class="carousel-slide" alt="Abstratocaster Unisex Tee Back" loading="lazy">
+            <img src="/personal-photos/merch/Abstrar-male-tee-1.jpg" class="carousel-slide" alt="Abstratocaster Unisex Tee" loading="lazy">
+            <img src="/personal-photos/merch/Abstrar-female-tee-1.jpg" class="carousel-slide" alt="Abstratocaster Women's Tee" loading="lazy">
           </div>
           <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
           <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
@@ -765,38 +934,16 @@
             <span class="carousel-dot active"></span>
             <span class="carousel-dot"></span>
           </div>
-          <span class="product-type-badge">Tee</span>
+          <span class="product-type-badge">Shirts</span>
         </div>
         <div class="product-info">
           <div class="product-title">Abstratocaster</div>
-          <div class="product-sub">Unisex Tee · Print on Demand</div>
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/abstratocatser-crew')">Get It ✦</button>
+          <div class="product-sub">Unisex & Women's Tee · Print on Demand</div>
+          <button class="product-get-btn" onclick="openShirtPicker('abstratocaster')">Select Style ✦</button>
         </div>
       </div>
 
-      <!-- Women's / Fitted Tee -->
-      <div class="product-card" data-type="shirt">
-        <div class="product-carousel">
-          <div class="carousel-track">
-            <img src="/personal-photos/merch/Abstrar-female-tee-1.jpg" class="carousel-slide" alt="Abstratocaster Women's Tee Front" loading="lazy">
-            <img src="/personal-photos/merch/Abstrar-female-tee-2.jpg" class="carousel-slide" alt="Abstratocaster Women's Tee Back" loading="lazy">
-          </div>
-          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
-          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
-          <div class="carousel-dots">
-            <span class="carousel-dot active"></span>
-            <span class="carousel-dot"></span>
-          </div>
-          <span class="product-type-badge">Women's Tee</span>
-        </div>
-        <div class="product-info">
-          <div class="product-title">Abstratocaster</div>
-          <div class="product-sub">Women's Tee · Print on Demand</div>
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/new-abstratocaster')">Get It ✦</button>
-        </div>
-      </div>
-
-      <!-- Hoodie -->
+      <!-- HOODIE -->
       <div class="product-card" data-type="hoodie">
         <div class="product-carousel">
           <div class="carousel-track">
@@ -814,15 +961,15 @@
         <div class="product-info">
           <div class="product-title">Abstratocaster</div>
           <div class="product-sub">Pullover Hoodie · Print on Demand</div>
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/buy-abstratocaster')">Get It ✦</button>
+          <button class="product-get-btn" onclick="openProductModal('abstratocaster','hoodie')">Get It ✦</button>
         </div>
       </div>
 
-      <!-- Mug -->
+      <!-- MUG -->
       <div class="product-card" data-type="mug">
         <div class="product-carousel">
           <div class="carousel-track">
-            <img src="/personal-photos/merch/Abstrar-mug-1.jpg" class="carousel-slide" alt="Abstratocaster Mug Side" loading="lazy">
+            <img src="/personal-photos/merch/Abstrar-mug-1.jpg" class="carousel-slide" alt="Abstratocaster Mug" loading="lazy">
             <img src="/personal-photos/merch/Abstrar-mug-2.jpg" class="carousel-slide" alt="Abstratocaster Mug Front" loading="lazy">
             <img src="/personal-photos/merch/Abstrar-mug-3.jpg" class="carousel-slide" alt="Abstratocaster Mug Angle" loading="lazy">
           </div>
@@ -838,11 +985,11 @@
         <div class="product-info">
           <div class="product-title">Abstratocaster</div>
           <div class="product-sub">11oz Mug · Print on Demand</div>
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/new-abstratocaster-mug')">Get It ✦</button>
+          <button class="product-get-btn" onclick="openProductModal('abstratocaster','mug')">Get It ✦</button>
         </div>
       </div>
 
-      <!-- Sticker -->
+      <!-- STICKER -->
       <div class="product-card" data-type="sticker">
         <div class="product-media">
           <img src="/personal-photos/merch/Abstrar-sticker-1.jpg" alt="Abstratocaster Sticker" loading="lazy">
@@ -851,7 +998,7 @@
         <div class="product-info">
           <div class="product-title">Abstratocaster</div>
           <div class="product-sub">Die Cut Sticker · Ships Worldwide</div>
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/abstratocaster-2026')">Get It ✦</button>
+          <button class="product-get-btn" onclick="openProductModal('abstratocaster','sticker')">Get It ✦</button>
         </div>
       </div>
 
@@ -1039,6 +1186,20 @@
   </div>
 </footer>
 
+<!-- VOA PRODUCT MODAL -->
+<div class="voa-modal-overlay" id="voaModal" role="dialog" aria-modal="true">
+  <div class="voa-modal">
+    <div class="voa-modal-bar">
+      <div class="voa-modal-brand">
+        <span class="voa-modal-logo">VOA</span>
+        <span class="voa-modal-tag" id="voaModalTag">EarthStar Store</span>
+      </div>
+      <button class="voa-modal-close" onclick="closeVoaModal()" aria-label="Close">&#x2715;</button>
+    </div>
+    <div class="voa-modal-body" id="voaModalBody"></div>
+  </div>
+</div>
+
 <script>
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
@@ -1097,27 +1258,164 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
 
-  // Carousels
-  document.querySelectorAll('.product-carousel').forEach(function(carousel) {
-    var track  = carousel.querySelector('.carousel-track');
-    var slides = carousel.querySelectorAll('.carousel-slide');
-    var dots   = carousel.querySelectorAll('.carousel-dot');
-    var prev   = carousel.querySelector('.carousel-prev');
-    var next   = carousel.querySelector('.carousel-next');
-    var cur = 0, total = slides.length;
-    function goTo(n) {
-      cur = (n + total) % total;
-      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
-      dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
-    }
-    prev.addEventListener('click', function(e) { e.stopPropagation(); goTo(cur - 1); });
-    next.addEventListener('click', function(e) { e.stopPropagation(); goTo(cur + 1); });
-    dots.forEach(function(d, i) { d.addEventListener('click', function(e) { e.stopPropagation(); goTo(i); }); });
-  });
+  // ── CAROUSELS (pixel-based translateX — fixes partial-slide bug) ──
+  function initCarousels(scope) {
+    (scope || document).querySelectorAll('.product-carousel').forEach(function(carousel) {
+      if (carousel.dataset.carouselInit) return;
+      carousel.dataset.carouselInit = '1';
+      var track  = carousel.querySelector('.carousel-track');
+      var slides = carousel.querySelectorAll('.carousel-slide');
+      var dots   = carousel.querySelectorAll('.carousel-dot');
+      var prev   = carousel.querySelector('.carousel-prev');
+      var next   = carousel.querySelector('.carousel-next');
+      if (!track || !slides.length) return;
+      var cur = 0, total = slides.length;
+      function goTo(n) {
+        cur = (n + total) % total;
+        track.style.transform = 'translateX(-' + (cur * carousel.offsetWidth) + 'px)';
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
+      }
+      if (prev) prev.addEventListener('click', function(e) { e.stopPropagation(); goTo(cur - 1); });
+      if (next) next.addEventListener('click', function(e) { e.stopPropagation(); goTo(cur + 1); });
+      dots.forEach(function(d, i) { d.addEventListener('click', function(e) { e.stopPropagation(); goTo(i); }); });
+      window.addEventListener('resize', function() { goTo(cur); }, { passive: true });
+    });
+  }
+  initCarousels();
 
-  // Spring popup helper
-  function openSpring(url) {
-    window.open(url, '_blank', 'width=860,height=740,left=200,top=80,scrollbars=yes');
+  // ── VOA MODAL ──
+  var voaModal     = document.getElementById('voaModal');
+  var voaModalBody = document.getElementById('voaModalBody');
+  var voaModalTag  = document.getElementById('voaModalTag');
+
+  function openVoaModal(tag, html) {
+    voaModalTag.textContent = tag;
+    voaModalBody.innerHTML = html;
+    voaModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    initCarousels(voaModalBody);
+  }
+  function closeVoaModal() {
+    voaModal.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(function() { voaModalBody.innerHTML = ''; }, 350);
+  }
+  voaModal.addEventListener('click', function(e) { if (e.target === voaModal) closeVoaModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeVoaModal(); });
+
+  // ── PRODUCT DATA ──
+  var STORE = {
+    abstratocaster: {
+      label: 'Abstratocaster',
+      shirts: [
+        {
+          name: 'Unisex Tee',
+          sub: "Unisex / Men's Cut · Print on Demand",
+          images: [
+            ['/personal-photos/merch/Abstrar-male-tee-1.jpg','Front'],
+            ['/personal-photos/merch/Abstrar-male-tee-2.jpg','Back']
+          ],
+          url: 'https://earthstar.creator-spring.com/listing/abstratocatser-crew'
+        },
+        {
+          name: "Women's Tee",
+          sub: "Women's Fitted Cut · Print on Demand",
+          images: [
+            ['/personal-photos/merch/Abstrar-female-tee-1.jpg','Front'],
+            ['/personal-photos/merch/Abstrar-female-tee-2.jpg','Back']
+          ],
+          url: 'https://earthstar.creator-spring.com/listing/new-abstratocaster'
+        }
+      ],
+      hoodie: {
+        name: 'Abstratocaster Hoodie',
+        sub: 'Pullover Hoodie · Print on Demand',
+        desc: 'Heavy-blend pullover hoodie. Abstratocaster design on the front, EarthStar on the back.',
+        images: [
+          ['/personal-photos/merch/Abstrar-hoodie-1.jpg','Front'],
+          ['/personal-photos/merch/Abstrar-hoodie-2.jpg','Back']
+        ],
+        url: 'https://earthstar.creator-spring.com/listing/buy-abstratocaster'
+      },
+      mug: {
+        name: 'Abstratocaster Mug',
+        sub: '11oz Black Mug · Print on Demand',
+        desc: 'Wrap-around Abstratocaster print on an 11oz black ceramic mug. Ships worldwide.',
+        images: [
+          ['/personal-photos/merch/Abstrar-mug-1.jpg','Side'],
+          ['/personal-photos/merch/Abstrar-mug-2.jpg','Front'],
+          ['/personal-photos/merch/Abstrar-mug-3.jpg','Angle']
+        ],
+        url: 'https://earthstar.creator-spring.com/listing/new-abstratocaster-mug'
+      },
+      sticker: {
+        name: 'Abstratocaster Sticker',
+        sub: 'Die Cut Sticker · Ships Worldwide',
+        desc: 'High-quality die-cut vinyl sticker. Weather-resistant and made to last.',
+        images: [
+          ['/personal-photos/merch/Abstrar-sticker-1.jpg','Design']
+        ],
+        url: 'https://earthstar.creator-spring.com/listing/abstratocaster-2026'
+      }
+    }
+  };
+
+  function carouselHTML(images, height) {
+    var h = height || 300;
+    var slides = images.map(function(img) {
+      return '<img src="' + img[0] + '" class="carousel-slide" alt="' + img[1] + '" loading="lazy">';
+    }).join('');
+    var dots = images.map(function(_, i) {
+      return '<span class="carousel-dot' + (i === 0 ? ' active' : '') + '"></span>';
+    }).join('');
+    var controls = images.length > 1
+      ? '<button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>' +
+        '<button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>' +
+        '<div class="carousel-dots">' + dots + '</div>'
+      : '';
+    return '<div class="product-carousel" style="height:' + h + 'px">' +
+           '<div class="carousel-track">' + slides + '</div>' +
+           controls + '</div>';
+  }
+
+  // ── SHIRT PICKER MODAL ──
+  function openShirtPicker(design) {
+    var d = STORE[design];
+    if (!d) return;
+    var optionsHTML = d.shirts.map(function(v) {
+      return '<div class="shirt-option">' +
+        carouselHTML(v.images, 320) +
+        '<div class="shirt-option-info">' +
+          '<div class="shirt-option-name">' + v.name + '</div>' +
+          '<div class="shirt-option-sub">' + v.sub + '</div>' +
+          '<a href="' + v.url + '" target="_blank" rel="noopener" class="product-get-btn" style="display:block;text-align:center;text-decoration:none;">Shop on Spring ✦</a>' +
+        '</div></div>';
+    }).join('');
+    openVoaModal(d.label + ' · Shirts',
+      '<p class="picker-eyebrow">Choose Your Style</p>' +
+      '<p class="picker-title">' + d.label + '</p>' +
+      '<div class="shirt-picker-grid">' + optionsHTML + '</div>'
+    );
+  }
+
+  // ── SINGLE PRODUCT MODAL ──
+  function openProductModal(design, type) {
+    var d = STORE[design];
+    if (!d || !d[type]) return;
+    var p = d[type];
+    openVoaModal(d.label + ' · ' + p.name.split(' ').slice(-1)[0],
+      '<div class="product-detail">' +
+        '<div>' + carouselHTML(p.images, 380) + '</div>' +
+        '<div class="product-detail-info">' +
+          '<p class="product-detail-label">' + d.label + '</p>' +
+          '<h2 class="product-detail-name">' + p.name + '</h2>' +
+          '<p class="product-detail-sub">' + p.sub + '</p>' +
+          '<div class="product-detail-divider"></div>' +
+          '<p class="product-detail-desc">' + p.desc + '</p>' +
+          '<a href="' + p.url + '" target="_blank" rel="noopener" class="product-detail-btn">Shop on Spring ✦</a>' +
+        '</div>' +
+      '</div>'
+    );
   }
 
   // Collection filter
