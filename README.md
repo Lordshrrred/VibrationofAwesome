@@ -69,6 +69,14 @@ npm run check:syndication
 
 This performs non-publishing auth/config checks for the syndication engine. It does not create posts.
 
+To write stored backlink evidence into the dashboard data after syndication:
+
+```bash
+npm run verify:backlinks -- --slug post-slug
+```
+
+The verifier uses platform APIs and direct page fetches from the local machine or GitHub Actions. It does not use Netlify Functions.
+
 If Blogger reports `invalid_grant`, regenerate it:
 
 ```bash

@@ -8,6 +8,7 @@
     "generate": "node scripts/generate-post.js",
     "syndicate": "node scripts/syndicate.js",
     "check:syndication": "node scripts/check-syndication-config.js",
+    "verify:backlinks": "node scripts/verify-backlinks.js",
     "captions": "node scripts/generate-captions.js",
     "image": "node scripts/select-image.js",
     "research": "node scripts/seo-research.js",

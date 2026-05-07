@@ -130,6 +130,27 @@ function getPublicImageUrl(imageUrl) {
   return `https://vibrationofawesome.com/${imageUrl.replace(/^\/+/, "")}`;
 }
 
+function hasSourceLink(text, postUrl) {
+  if (!text || !postUrl) return false;
+  const normalizedText = String(text).toLowerCase();
+  const normalizedUrl = String(postUrl).toLowerCase();
+  const path = new URL(postUrl).pathname.replace(/\/$/, "").toLowerCase();
+  return normalizedText.includes(normalizedUrl) ||
+    normalizedText.includes(normalizedUrl.replace(/^https?:\/\//, "")) ||
+    (path && normalizedText.includes(path));
+}
+
+function ensureSourceLinks(captions, postUrl) {
+  const linkedPlatforms = ["facebook", "bluesky", "mastodon", "pinterest", "devto", "tumblr", "threads"];
+  const next = { ...captions };
+  for (const platform of linkedPlatforms) {
+    const caption = next[platform] || "";
+    if (!caption || hasSourceLink(caption, postUrl)) continue;
+    next[platform] = `${caption.trim()}\n\n${postUrl}`;
+  }
+  return next;
+}
+
 function getPublerConfig() {
   const key  = process.env.PUBLER_API_KEY;
   const wsId = process.env.PUBLER_WORKSPACE_ID;
@@ -521,15 +542,18 @@ async function postViaPubler(platform, caption, imageUrl, details = {}) {
 
   // Response may be async (job_id) ~ extract post ID if available
   let postId = postData.post?.id || postData.id;
+  let postUrl = postData.post?.post_link || postData.post_link || null;
   const jobId2 = postData.job_id;
-  if (jobId2 && !postId) {
-    const status = await pollPublerJob(jobId2, headers, BASE, 10, 2000);
+  if (jobId2 && (!postId || !postUrl)) {
+    const status = await pollPublerJob(jobId2, headers, BASE, 30, 2000);
     const failure = extractPublerFailure(status);
     if (failure) throw new Error(`Publer (${platform}): ${failure}`);
-    postId = Array.isArray(status.payload) ? status.payload[0]?.id : status.payload?.id;
+    const payload = Array.isArray(status.payload) ? status.payload[0] : status.payload;
+    postId = postId || payload?.id;
+    postUrl = postUrl || payload?.post_link || payload?.url || null;
   }
 
-  return { postId: String(postId || "queued"), postUrl: null };
+  return { postId: String(postId || "queued"), postUrl };
 }
 
 // ── Blogger (OAuth2 + Drafts API) ─────────────────────────────────────────────
@@ -858,10 +882,10 @@ export async function syndicatePost(lane, slug, options = {}) {
   let captions;
   if (options.captions) {
     console.log("Using pre-supplied captions (API bypass)...");
-    captions = options.captions;
+    captions = ensureSourceLinks(options.captions, postUrl);
   } else {
     console.log("Generating captions...");
-    captions = await generateCaptions({ ...post, lane }, anthropic);
+    captions = ensureSourceLinks(await generateCaptions({ ...post, lane }, anthropic), postUrl);
   }
 
   // ── 4. Select image ──
