@@ -18,6 +18,7 @@
 <meta name="twitter:description" content="Wearable EarthStar art. Curated designs on shirts, hoodies, mugs, and stickers.">
 <meta name="twitter:image" content="https://vibrationofawesome.com/images/eartstarart.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Rajdhani:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -84,6 +85,7 @@
     animation: twinkle var(--dur, 3s) ease-in-out infinite;
     animation-delay: var(--delay, 0s);
     opacity: 0;
+    will-change: opacity, transform;
   }
   @keyframes twinkle {
     0%, 100% { opacity: 0; transform: scale(0.5); }
@@ -689,9 +691,9 @@
     <line x1="26" y1="130" x2="474" y2="370" stroke="#00e5cc" stroke-width="0.3"/>
   </svg>
   <div class="hero-content">
-    <p class="hero-eyebrow">✦ EarthStar Art Gallery ✦</p>
-    <h1 class="hero-title">Wearable <span>Signal.</span></h1>
-    <p class="hero-sub">Not merch. Identity. Each design is a movement piece ~ choose your design, then choose your form.</p>
+    <p class="hero-eyebrow">✦ Original Works ✦</p>
+    <h1 class="hero-title">Art Store</h1>
+    <p class="hero-sub">Original works of art from the heart, mind, and soul of Matt EarthStar.</p>
   </div>
 </section>
 
@@ -1009,48 +1011,43 @@
     });
   });
 
-  // Stars
+  // Stars (60 nodes ~ compositor-friendly)
   const starsEl = document.getElementById('stars');
-  for (let i = 0; i < 120; i++) {
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < 60; i++) {
     const star = document.createElement('div');
     star.className = 'star';
     const size = Math.random() * 2 + 0.5;
     star.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--delay:${Math.random()*5}s;--brightness:${Math.random()*0.5+0.3};`;
-    starsEl.appendChild(star);
+    frag.appendChild(star);
   }
+  starsEl.appendChild(frag);
 
-  // Custom cursor ~ desktop only
-  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-  if (!isTouchDevice) {
+  // Custom cursor ~ desktop only, rAF only fires when mouse moves
+  if (!window.matchMedia('(pointer: coarse)').matches) {
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
     cursor.style.display = 'block';
     ring.style.display = 'block';
-    let rx = 0, ry = 0, cx = 0, cy = 0;
-    document.addEventListener('mousemove', e => {
-      cx = e.clientX; cy = e.clientY;
-      cursor.style.left = cx + 'px';
-      cursor.style.top = cy + 'px';
-    });
-    function animateRing() {
+    let rx = 0, ry = 0, cx = 0, cy = 0, rafPending = false;
+    function stepRing() {
+      rafPending = false;
       rx += (cx - rx) * 0.12;
       ry += (cy - ry) * 0.12;
       ring.style.left = rx + 'px';
       ring.style.top = ry + 'px';
-      requestAnimationFrame(animateRing);
+      if (Math.abs(cx - rx) > 0.3 || Math.abs(cy - ry) > 0.3) scheduleRing();
     }
-    animateRing();
+    function scheduleRing() { if (!rafPending) { rafPending = true; requestAnimationFrame(stepRing); } }
+    document.addEventListener('mousemove', e => {
+      cx = e.clientX; cy = e.clientY;
+      cursor.style.left = cx + 'px';
+      cursor.style.top = cy + 'px';
+      scheduleRing();
+    }, { passive: true });
     document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%,-50%) scale(2)';
-        ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
-        ring.style.borderColor = 'rgba(0,229,204,0.8)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-        ring.style.transform = 'translate(-50%,-50%) scale(1)';
-        ring.style.borderColor = 'rgba(0,229,204,0.4)';
-      });
+      el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2)'; ring.style.transform = 'translate(-50%,-50%) scale(1.5)'; ring.style.borderColor = 'rgba(0,229,204,0.8)'; });
+      el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.borderColor = 'rgba(0,229,204,0.4)'; });
     });
   }
 
@@ -1107,13 +1104,18 @@
     });
   });
 
-  // Nav scroll effect
+  // Nav scroll ~ throttled via rAF
   const nav = document.getElementById('mainNav');
+  let scrollRaf = false;
   window.addEventListener('scroll', () => {
-    nav.style.background = window.scrollY > 50
-      ? 'rgba(2,10,10,0.98)'
-      : 'linear-gradient(to bottom, rgba(2,10,10,0.97), transparent)';
-  });
+    if (!scrollRaf) {
+      scrollRaf = true;
+      requestAnimationFrame(() => {
+        nav.style.background = window.scrollY > 50 ? 'rgba(2,10,10,0.98)' : 'linear-gradient(to bottom, rgba(2,10,10,0.97), transparent)';
+        scrollRaf = false;
+      });
+    }
+  }, { passive: true });
 </script>
 </body>
 </html>
