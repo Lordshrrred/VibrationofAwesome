@@ -77,6 +77,8 @@ npm run blogger-token
 
 That opens Google consent, validates the new Blogger refresh token, saves it to `.env`, and updates the GitHub Actions `BLOGGER_REFRESH_TOKEN` secret when `gh` is authenticated.
 
+The Blogger OAuth helper defaults to `http://localhost:8090/` so VLC can keep using port `8080`. If Google shows `redirect_uri_mismatch`, add `http://localhost:8090/` as an authorized redirect URI on the Google OAuth client, or set `BLOGGER_REDIRECT_PORT` in `.env` to another authorized port.
+
 ### Boom Drip Rate
 
 The current drip queue is configured for `2` Boom Frequency posts per publish run at `10:00 UTC`. The GitHub Actions drip workflow is manual-only until its schedule is re-enabled.

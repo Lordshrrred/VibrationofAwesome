@@ -46,7 +46,7 @@ load_dotenv()
 # ── Config ───────────────────────────────────────────────────────────────
 CLIENT_ID      = os.environ.get('BLOGGER_CLIENT_ID', '')
 CLIENT_SECRET  = os.environ.get('BLOGGER_CLIENT_SECRET', '')
-REDIRECT_PORT  = int(os.environ.get('BLOGGER_REDIRECT_PORT', '8080'))
+REDIRECT_PORT  = int(os.environ.get('BLOGGER_REDIRECT_PORT', '8090'))
 REDIRECT_URI   = f'http://localhost:{REDIRECT_PORT}/'
 SCOPE          = 'https://www.googleapis.com/auth/blogger'
 AUTH_ENDPOINT  = 'https://accounts.google.com/o/oauth2/v2/auth'
@@ -226,7 +226,7 @@ def main():
     print()
     print(f'  {auth_url}')
     print()
-    print('Waiting for callback on http://localhost:8080 ...')
+    print(f'Waiting for callback on http://localhost:{REDIRECT_PORT} ...')
 
     # Try to open the browser; don't fail if it can't
     try:
