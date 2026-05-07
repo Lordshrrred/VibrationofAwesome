@@ -104,7 +104,9 @@ jobs:
           WORDPRESS_CATEGORY_NAMES:    ${{ secrets.WORDPRESS_CATEGORY_NAMES }}
           WORDPRESS_TAG_NAMES:         ${{ secrets.WORDPRESS_TAG_NAMES }}
           DASHBOARD_PASSWORD:          ${{ secrets.DASHBOARD_PASSWORD }}
-        run: node scripts/drip-publish.js
+        run: |
+          npm run check:syndication -- --write
+          node scripts/drip-publish.js
 
       # ── 7. Commit published posts back to repo ────────────────────────────
       - name: Commit published posts
@@ -118,6 +120,7 @@ jobs:
             static/_data/drip-queue.json \
             static/_data/syndication-log.json \
             static/_data/syndication-results.json \
+            static/_data/syndication-health.json \
             static/_data/dashboard-config.json \
             static/sitemap.xml \
             || true

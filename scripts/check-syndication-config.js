@@ -9,6 +9,7 @@
 import crypto from "crypto";
 import dotenv from "dotenv";
 import fs from "fs";
+import minimist from "minimist";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -17,8 +18,13 @@ dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "..");
+const argv = minimist(process.argv.slice(2), {
+  boolean: ["write"],
+  string: ["out"],
+});
 
 const results = [];
+let dripSnapshot = null;
 
 function pctEncode(s) {
   return encodeURIComponent(String(s))
@@ -82,6 +88,15 @@ async function main() {
   await check("drip queue", () => {
     const file = path.join(ROOT, "static", "_data", "drip-queue.json");
     const queue = JSON.parse(fs.readFileSync(file, "utf8"));
+    dripSnapshot = {
+      status: queue.status || "unknown",
+      rate: queue.drip_rate || 2,
+      time: queue.drip_time || "10:00 UTC",
+      remaining: queue.queue?.length || 0,
+      published: queue.published?.length || 0,
+      syndicate_on_publish: !!queue.syndicate_on_publish,
+      trigger_feeder_on_publish: !!queue.trigger_feeder_on_publish,
+    };
     return `status=${queue.status}, rate=${queue.drip_rate || 2}/run, time=${queue.drip_time || "10:00 UTC"}, remaining=${queue.queue?.length || 0}`;
   });
 
@@ -211,7 +226,45 @@ async function main() {
 
   const failed = results.filter(result => !result.ok);
   console.log(`\n${results.length - failed.length}/${results.length} checks passed.`);
+  if (argv.write) writeHealthFile(failed);
   if (failed.length) process.exitCode = 1;
+}
+
+function writeHealthFile(failed) {
+  const outFile = path.resolve(argv.out || path.join(ROOT, "static", "_data", "syndication-health.json"));
+  const topFix = failed.find(result => /blogger/i.test(result.name)) || failed[0] || null;
+  const health = {
+    lastChecked: new Date().toISOString(),
+    status: failed.length ? "broken" : "ok",
+    passed: results.length - failed.length,
+    failed: failed.length,
+    total: results.length,
+    topFix: topFix ? {
+      name: topFix.name,
+      detail: topFix.detail,
+      repairCommand: /blogger/i.test(topFix.name) ? "npm run blogger-token" : "npm run check:syndication -- --write",
+    } : null,
+    drip: dripSnapshot,
+    checks: results.map(result => ({
+      name: result.name,
+      ok: result.ok,
+      detail: result.detail,
+    })),
+    repairs: {
+      blogger: {
+        label: "Redo Blogger OAuth",
+        command: "npm run blogger-token",
+        appliesWhen: "Blogger token refresh fails, usually with invalid_grant or Bad Request.",
+      },
+      health: {
+        label: "Refresh dashboard health",
+        command: "npm run check:syndication -- --write",
+      },
+    },
+  };
+  fs.mkdirSync(path.dirname(outFile), { recursive: true });
+  fs.writeFileSync(outFile, `${JSON.stringify(health, null, 2)}\n`);
+  console.log(`Health written to ${path.relative(ROOT, outFile)}`);
 }
 
 main().catch(err => {

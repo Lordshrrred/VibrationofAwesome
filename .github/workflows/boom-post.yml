@@ -85,6 +85,7 @@ jobs:
           DASHBOARD_PASSWORD:             ${{ secrets.DASHBOARD_PASSWORD }}
           VOA_FEEDER_TRIGGER_TOKEN:       ${{ secrets.VOA_FEEDER_TRIGGER_TOKEN }}
         run: |
+          npm run check:syndication -- --write
           node scripts/generate-post.js \
             --lane boom \
             --keyword "${{ inputs.keyword }}" \
@@ -100,6 +101,7 @@ jobs:
             static/_data/boom-posts.json \
             static/_data/syndication-log.json \
             static/_data/syndication-results.json \
+            static/_data/syndication-health.json \
             static/_data/dashboard-config.json \
             static/sitemap.xml \
             || true

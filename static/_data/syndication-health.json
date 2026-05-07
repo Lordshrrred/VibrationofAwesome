@@ -1,0 +1,85 @@
+{
+  "lastChecked": "2026-05-07T03:54:04.856Z",
+  "status": "ok",
+  "passed": 11,
+  "failed": 0,
+  "total": 11,
+  "topFix": null,
+  "drip": {
+    "status": "paused",
+    "rate": 2,
+    "time": "10:00 UTC",
+    "remaining": 30,
+    "published": 0,
+    "syndicate_on_publish": false,
+    "trigger_feeder_on_publish": false
+  },
+  "checks": [
+    {
+      "name": "drip queue",
+      "ok": true,
+      "detail": "status=paused, rate=2/run, time=10:00 UTC, remaining=30"
+    },
+    {
+      "name": "Publer accounts",
+      "ok": true,
+      "detail": "bluesky, facebook, facebook, facebook, instagram, instagram, instagram, linkedin, mastodon, pinterest, threads, tiktok, twitter, youtube"
+    },
+    {
+      "name": "Publer Pinterest board",
+      "ok": true,
+      "detail": "1 board(s) available"
+    },
+    {
+      "name": "Bluesky auth",
+      "ok": true,
+      "detail": "unlimitedpotential.bsky.social"
+    },
+    {
+      "name": "Mastodon auth",
+      "ok": true,
+      "detail": "unlimitedpotential"
+    },
+    {
+      "name": "Facebook VOA",
+      "ok": true,
+      "detail": "Vibration of Awesome"
+    },
+    {
+      "name": "Facebook EarthStar",
+      "ok": true,
+      "detail": "Earthstarrising"
+    },
+    {
+      "name": "Dev.to auth",
+      "ok": true,
+      "detail": "earthstarrising"
+    },
+    {
+      "name": "Tumblr auth",
+      "ok": true,
+      "detail": "user ok"
+    },
+    {
+      "name": "Blogger token refresh",
+      "ok": true,
+      "detail": "token ok"
+    },
+    {
+      "name": "WordPress direct auth",
+      "ok": true,
+      "detail": "EarthStar Rising"
+    }
+  ],
+  "repairs": {
+    "blogger": {
+      "label": "Redo Blogger OAuth",
+      "command": "npm run blogger-token",
+      "appliesWhen": "Blogger token refresh fails, usually with invalid_grant or Bad Request."
+    },
+    "health": {
+      "label": "Refresh dashboard health",
+      "command": "npm run check:syndication -- --write"
+    }
+  }
+}

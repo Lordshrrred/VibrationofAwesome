@@ -106,6 +106,37 @@
     .stat-badge.gold  { background: rgba(255,179,0,0.15); color: var(--warn); border: 1px solid rgba(255,179,0,0.3); }
     .stat-badge.green { background: rgba(57,255,20,0.1);  color: var(--success); border: 1px solid rgba(57,255,20,0.25); }
     .stat-badge.red   { background: rgba(255,68,68,0.1);  color: var(--danger); border: 1px solid rgba(255,68,68,0.25); }
+    .health-panel {
+      margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 8px;
+      padding: 1rem 1.15rem; display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; background: var(--surface); box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
+    }
+    .health-panel.ok {
+      border-color: rgba(57,255,20,0.4);
+      background: linear-gradient(90deg, rgba(57,255,20,0.11), rgba(0,229,255,0.06));
+    }
+    .health-panel.broken {
+      border-color: rgba(255,68,68,0.65);
+      background: linear-gradient(90deg, rgba(255,68,68,0.18), rgba(255,179,0,0.08));
+      box-shadow: 0 0 24px rgba(255,68,68,0.1);
+    }
+    .health-panel.pending {
+      border-color: rgba(255,179,0,0.45);
+      background: linear-gradient(90deg, rgba(255,179,0,0.13), rgba(0,229,255,0.05));
+    }
+    .health-kicker { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.18rem; }
+    .health-title { font-size: 1.25rem; font-weight: 800; color: var(--text); line-height: 1.15; }
+    .health-title strong { color: var(--danger); }
+    .health-detail { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.25rem; }
+    .health-actions { display: flex; gap: 0.55rem; flex-wrap: wrap; justify-content: flex-end; }
+    .health-btn {
+      border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text);
+      font: inherit; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 0.55rem 0.75rem; border-radius: 5px; cursor: pointer; transition: all 0.2s;
+    }
+    .health-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .health-btn.danger { border-color: rgba(255,68,68,0.5); color: var(--danger); }
+    .health-btn.good { border-color: rgba(57,255,20,0.35); color: var(--success); }
 
     /* ── Section headers ── */
     .section { margin-bottom: 2.5rem; }
@@ -399,6 +430,8 @@
       .dash-main { padding: 1rem; }
       .dash-header { padding: 0.75rem 1rem; }
       .stats-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+      .health-panel { align-items: flex-start; flex-direction: column; }
+      .health-actions { justify-content: flex-start; }
       .platform-badges { flex-wrap: wrap; }
       .post-table { font-size: 0.82rem; }
       .drip-meta { gap: 1rem; }
@@ -448,6 +481,17 @@
     </header>
 
     <main class="dash-main">
+
+      <div class="health-panel pending" id="health-panel">
+        <div>
+          <div class="health-kicker">Platform Health</div>
+          <div class="health-title">Checking syndication readiness</div>
+          <div class="health-detail">Loading the latest static health snapshot.</div>
+        </div>
+        <div class="health-actions">
+          <button class="health-btn" onclick="copyDashCommand('npm run check:syndication -- --write', this)">Copy Health Check</button>
+        </div>
+      </div>
 
       <!-- ── Stats Strip ── -->
       <div class="stats-strip" id="stats-strip">
@@ -683,6 +727,7 @@ const SESSION_KEY   = "voa_dash_authed";
 const CONFIG_URL    = "/_data/dashboard-config.json";
 const LOG_URL       = "/_data/syndication-log.json";
 const RESULTS_URL   = "/_data/syndication-results.json";
+const HEALTH_URL    = "/_data/syndication-health.json";
 const DRIP_URL      = "/_data/drip-queue.json";
 const BOOM_URL      = "/_data/boom-posts.json";
 const MATT_URL      = "/_data/matt-posts.json";
@@ -764,9 +809,10 @@ document.getElementById("lock-btn").addEventListener("click", () => {
 
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const [logData, resultsDataRaw, dripData, boomPosts, mattPosts, feederPosts] = await Promise.all([
+  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts] = await Promise.all([
     fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
     fetch(RESULTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
+    fetch(HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(DRIP_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(BOOM_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(MATT_URL).then(r => r.ok ? r.json() : []).catch(() => []),
@@ -795,6 +841,7 @@ async function loadDashboard() {
       "Updated " + new Date(logData.lastUpdated).toLocaleString();
   }
 
+  renderHealth(healthData);
   renderStats(entries, resultsData, dripData);
   renderDripQueue(dripData);
   renderRecentPosts(entries, resultsData);
@@ -889,6 +936,62 @@ async function mergeWordPressStatuses(resultsData) {
     }
 
     return entry;
+  });
+}
+
+// ── Health ───────────────────────────────────────────────────────────────────
+function renderHealth(health) {
+  const panel = document.getElementById("health-panel");
+  if (!panel) return;
+
+  if (!health) {
+    panel.className = "health-panel pending";
+    panel.innerHTML = `
+      <div>
+        <div class="health-kicker">Platform Health</div>
+        <div class="health-title">No health snapshot yet</div>
+        <div class="health-detail">Run the readiness check to create the dashboard signal. This stays static and does not use Netlify.</div>
+      </div>
+      <div class="health-actions">
+        <button class="health-btn" onclick="copyDashCommand('npm run check:syndication -- --write', this)">Copy Health Check</button>
+      </div>`;
+    return;
+  }
+
+  const checks = Array.isArray(health.checks) ? health.checks : [];
+  const failed = checks.filter(check => !check.ok);
+  const isBroken = health.status === "broken" || failed.length > 0;
+  const topFix = health.topFix || failed.find(check => /blogger/i.test(check.name)) || failed[0] || null;
+  const lastChecked = health.lastChecked ? new Date(health.lastChecked).toLocaleString() : "unknown";
+  const drip = health.drip || {};
+  const dripLine = drip.status
+    ? `Drip ${drip.status} · ${drip.rate || 2}/day · ${drip.remaining ?? 0} queued · syndication ${drip.syndicate_on_publish ? "on" : "off"}`
+    : "Drip status unavailable";
+  const repairCommand = topFix?.repairCommand || (topFix && /blogger/i.test(topFix.name) ? "npm run blogger-token" : "npm run check:syndication -- --write");
+  const statusText = isBroken ? `<strong>Needs fix: ${esc(topFix?.name || "syndication")}</strong>` : "All syndication checks passing";
+  const detail = isBroken
+    ? `${esc(topFix?.detail || "One or more platform checks failed.")} · ${health.passed || 0}/${health.total || checks.length} checks passing · ${esc(dripLine)}`
+    : `${health.passed || checks.length}/${health.total || checks.length} checks passing · ${esc(dripLine)} · checked ${esc(lastChecked)}`;
+
+  panel.className = `health-panel ${isBroken ? "broken" : "ok"}`;
+  panel.innerHTML = `
+    <div>
+      <div class="health-kicker">Platform Health</div>
+      <div class="health-title">${statusText}</div>
+      <div class="health-detail">${detail}</div>
+    </div>
+    <div class="health-actions">
+      ${isBroken ? `<button class="health-btn danger" onclick="copyDashCommand('${esc(repairCommand)}', this)">Copy Fix Command</button>` : `<button class="health-btn good" onclick="copyDashCommand('npm run check:syndication -- --write', this)">Copy Health Check</button>`}
+      <button class="health-btn" onclick="copyDashCommand('npm run blogger-token', this)">Redo Blogger OAuth</button>
+    </div>`;
+}
+
+function copyDashCommand(cmd, btn) {
+  navigator.clipboard?.writeText(cmd).then(() => {
+    if (!btn) return;
+    const old = btn.textContent;
+    btn.textContent = "Copied";
+    setTimeout(() => { btn.textContent = old; }, 1800);
   });
 }
 
