@@ -416,6 +416,8 @@
     border: 1px solid rgba(0,229,204,0.1);
     overflow: hidden;
     transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
+    display: flex;
+    flex-direction: column;
   }
   .product-card:hover {
     border-color: rgba(0,229,204,0.4);
@@ -430,6 +432,7 @@
     height: 240px;
     background: #020a08;
     overflow: hidden;
+    cursor: pointer;
   }
   .product-media img {
     width: 100%;
@@ -495,6 +498,7 @@
     height: 240px;
     background: #020a08;
     overflow: hidden;
+    cursor: pointer;
   }
   .carousel-track { display: flex; height: 100%; transition: transform 0.35s ease; will-change: transform; }
   .carousel-slide { flex: 0 0 100%; height: 100%; object-fit: contain; object-position: center center; padding: 1rem; box-sizing: border-box; }
@@ -532,7 +536,11 @@
     padding: 1.2rem 1.3rem 1.4rem;
     border-top: 1px solid rgba(0,229,204,0.06);
     background: rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
+  .product-info .product-get-btn { margin-top: auto; }
   .product-title {
     font-family: 'Cinzel Decorative', serif;
     font-size: 0.75rem;
@@ -633,17 +641,26 @@
 
   .voa-modal {
     background: linear-gradient(145deg, #030f0d 0%, #001a18 100%);
-    border: 1px solid rgba(0,229,204,0.2);
-    box-shadow: 0 40px 100px rgba(0,0,0,0.85), 0 0 80px rgba(0,229,204,0.04);
+    border: 1px solid rgba(0,229,204,0.22);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.9), 0 0 120px rgba(0,229,204,0.06), inset 0 1px 0 rgba(0,229,204,0.08);
     width: min(980px, 94vw);
-    max-height: 88vh;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transform: translateY(24px);
-    transition: transform 0.35s ease;
+    transform: translateY(28px) scale(0.98);
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
   }
-  .voa-modal-overlay.open .voa-modal { transform: translateY(0); }
+  .voa-modal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,229,204,0.6), transparent);
+    z-index: 1;
+  }
+  .voa-modal-overlay.open .voa-modal { transform: translateY(0) scale(1); }
 
   .voa-modal-bar {
     display: flex;
@@ -684,6 +701,47 @@
     line-height: 1;
   }
   .voa-modal-close:hover { color: var(--gold); border-color: rgba(0,229,204,0.4); }
+
+  .voa-modal-back {
+    display: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: none;
+    border: 1px solid rgba(0,229,204,0.15);
+    padding: 0.35rem 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    margin-right: 0.5rem;
+  }
+  .voa-modal-back.visible { display: block; }
+  .voa-modal-back:hover { color: var(--gold); border-color: rgba(0,229,204,0.4); }
+
+  /* Acquire Now button in modal */
+  .acquire-btn {
+    display: block; width: 100%;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--deep);
+    background: var(--gold);
+    padding: 1rem; text-align: center; text-decoration: none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s, box-shadow 0.2s;
+    font-weight: 700; border: none; cursor: pointer;
+    margin-top: 1.8rem;
+  }
+  .acquire-btn:hover { background: var(--gold-light); box-shadow: 0 0 35px rgba(0,229,204,0.35); }
+
+  /* Checkout iframe */
+  .checkout-frame {
+    width: 100%;
+    border: none;
+    display: block;
+    height: 70vh;
+    min-height: 500px;
+  }
 
   .voa-modal-body {
     overflow-y: auto;
@@ -923,7 +981,7 @@
 
       <!-- SHIRTS (combined ~ picker modal) -->
       <div class="product-card" data-type="shirt">
-        <div class="product-carousel">
+        <div class="product-carousel" onclick="openShirtPicker('abstratocaster')" title="Click to browse styles">
           <div class="carousel-track">
             <img src="/personal-photos/merch/Abstrar-male-tee-1.jpg" class="carousel-slide" alt="Abstratocaster Unisex Tee" loading="lazy">
             <img src="/personal-photos/merch/Abstrar-female-tee-1.jpg" class="carousel-slide" alt="Abstratocaster Women's Tee" loading="lazy">
@@ -945,7 +1003,7 @@
 
       <!-- HOODIE -->
       <div class="product-card" data-type="hoodie">
-        <div class="product-carousel">
+        <div class="product-carousel" onclick="openProductModal('abstratocaster','hoodie')" title="Click to view">
           <div class="carousel-track">
             <img src="/personal-photos/merch/Abstrar-hoodie-1.jpg" class="carousel-slide" alt="Abstratocaster Hoodie Front" loading="lazy">
             <img src="/personal-photos/merch/Abstrar-hoodie-2.jpg" class="carousel-slide" alt="Abstratocaster Hoodie Back" loading="lazy">
@@ -967,7 +1025,7 @@
 
       <!-- MUG -->
       <div class="product-card" data-type="mug">
-        <div class="product-carousel">
+        <div class="product-carousel" onclick="openProductModal('abstratocaster','mug')" title="Click to view">
           <div class="carousel-track">
             <img src="/personal-photos/merch/Abstrar-mug-1.jpg" class="carousel-slide" alt="Abstratocaster Mug" loading="lazy">
             <img src="/personal-photos/merch/Abstrar-mug-2.jpg" class="carousel-slide" alt="Abstratocaster Mug Front" loading="lazy">
@@ -991,7 +1049,7 @@
 
       <!-- STICKER -->
       <div class="product-card" data-type="sticker">
-        <div class="product-media">
+        <div class="product-media" onclick="openProductModal('abstratocaster','sticker')" title="Click to view">
           <img src="/personal-photos/merch/Abstrar-sticker-1.jpg" alt="Abstratocaster Sticker" loading="lazy">
           <span class="product-type-badge">Sticker</span>
         </div>
@@ -1194,7 +1252,10 @@
         <span class="voa-modal-logo">VOA</span>
         <span class="voa-modal-tag" id="voaModalTag">EarthStar Store</span>
       </div>
-      <button class="voa-modal-close" onclick="closeVoaModal()" aria-label="Close">&#x2715;</button>
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <button class="voa-modal-back" id="voaModalBack" onclick="voaGoBack()">&#8592; Back</button>
+        <button class="voa-modal-close" onclick="closeVoaModal()" aria-label="Close">&#x2715;</button>
+      </div>
     </div>
     <div class="voa-modal-body" id="voaModalBody"></div>
   </div>
@@ -1287,10 +1348,15 @@
   var voaModal     = document.getElementById('voaModal');
   var voaModalBody = document.getElementById('voaModalBody');
   var voaModalTag  = document.getElementById('voaModalTag');
+  var voaModalBack = document.getElementById('voaModalBack');
+  var _savedHtml = null, _savedTag = null;
 
   function openVoaModal(tag, html) {
     voaModalTag.textContent = tag;
     voaModalBody.innerHTML = html;
+    voaModalBody.style.padding = '';
+    voaModalBack.classList.remove('visible');
+    _savedHtml = null; _savedTag = null;
     voaModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     initCarousels(voaModalBody);
@@ -1298,8 +1364,29 @@
   function closeVoaModal() {
     voaModal.classList.remove('open');
     document.body.style.overflow = '';
-    setTimeout(function() { voaModalBody.innerHTML = ''; }, 350);
+    voaModalBack.classList.remove('visible');
+    setTimeout(function() { voaModalBody.innerHTML = ''; _savedHtml = null; }, 400);
   }
+
+  function acquireNow(url) {
+    _savedHtml = voaModalBody.innerHTML;
+    _savedTag  = voaModalTag.textContent;
+    voaModalTag.textContent = 'EarthStar Store · Checkout';
+    voaModalBack.classList.add('visible');
+    voaModalBody.style.padding = '0';
+    voaModalBody.innerHTML = '<iframe class="checkout-frame" src="' + url + '" allow="payment *"></iframe>';
+  }
+
+  function voaGoBack() {
+    if (!_savedHtml) return;
+    voaModalBody.style.padding = '';
+    voaModalBody.innerHTML = _savedHtml;
+    voaModalTag.textContent = _savedTag;
+    voaModalBack.classList.remove('visible');
+    initCarousels(voaModalBody);
+    _savedHtml = null; _savedTag = null;
+  }
+
   voaModal.addEventListener('click', function(e) { if (e.target === voaModal) closeVoaModal(); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeVoaModal(); });
 
@@ -1388,7 +1475,7 @@
         '<div class="shirt-option-info">' +
           '<div class="shirt-option-name">' + v.name + '</div>' +
           '<div class="shirt-option-sub">' + v.sub + '</div>' +
-          '<a href="' + v.url + '" target="_blank" rel="noopener" class="product-get-btn" style="display:block;text-align:center;text-decoration:none;">Shop on Spring ✦</a>' +
+          '<button class="acquire-btn" onclick="acquireNow(\'' + v.url + '\')">Acquire Now ✦</button>' +
         '</div></div>';
     }).join('');
     openVoaModal(d.label + ' · Shirts',
@@ -1412,7 +1499,7 @@
           '<p class="product-detail-sub">' + p.sub + '</p>' +
           '<div class="product-detail-divider"></div>' +
           '<p class="product-detail-desc">' + p.desc + '</p>' +
-          '<a href="' + p.url + '" target="_blank" rel="noopener" class="product-detail-btn">Shop on Spring ✦</a>' +
+          '<button class="product-detail-btn acquire-btn" onclick="acquireNow(\'' + p.url + '\')">Acquire Now ✦</button>' +
         '</div>' +
       '</div>'
     );
