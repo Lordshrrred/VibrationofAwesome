@@ -652,6 +652,92 @@
   .faq-q { font-family: var(--ui); font-weight: 700; font-size: 0.98rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); margin-bottom: 0.75rem; }
   .faq-a { color: var(--body); font-size: 1.08rem; }
 
+  /* ── Final CTA ── */
+  .final-cta {
+    position: relative;
+    text-align: center;
+    padding: 8rem 2rem 6rem;
+    overflow: hidden;
+    border-top: 1px solid rgba(20,241,149,0.08);
+  }
+  .final-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 0%, rgba(20,241,149,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 50% 100%, rgba(139,92,246,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .final-cta-inner {
+    position: relative;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .final-cta-eyebrow {
+    font-family: var(--ui);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    opacity: 0.7;
+    margin-bottom: 1.6rem;
+  }
+  .final-cta-headline {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.06;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.01em;
+  }
+  .final-cta-headline span { color: var(--cyan); }
+  .final-cta-body {
+    font-size: 1.22rem;
+    line-height: 1.8;
+    color: var(--body);
+    margin: 0 auto 2.8rem;
+    max-width: 460px;
+  }
+  .final-cta-book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.8rem;
+    position: relative;
+  }
+  .final-cta-book::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(20,241,149,0.18) 0%, rgba(0,178,255,0.1) 40%, transparent 70%);
+    filter: blur(18px);
+    pointer-events: none;
+  }
+  .final-cta-book img {
+    position: relative;
+    z-index: 1;
+    width: 120px;
+    border-radius: 12px;
+    border: 1px solid rgba(20,241,149,0.22);
+    box-shadow:
+      0 20px 50px rgba(0,0,0,0.55),
+      0 0 36px rgba(20,241,149,0.2),
+      0 0 58px rgba(0,178,255,0.12);
+  }
+  .final-cta-free {
+    margin-top: 1rem;
+    font-family: var(--ui);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.8;
+  }
+
   /* ── Footer ── */
   .page-footer {
     max-width: 780px; margin: 0 auto; padding: 3rem 2rem 5rem; text-align: center;
@@ -893,9 +979,39 @@
     </div>
   </section>
 
+  <!-- ── FINAL CTA ── -->
+  <section class="final-cta">
+    <div class="final-cta-inner">
+      <div class="final-cta-eyebrow">✦ Last call ✦</div>
+      <h2 class="final-cta-headline">You already know<br><span>what this is.</span></h2>
+      <p class="final-cta-body">You have been on this page long enough to know it is not nothing. The guide is free. It opens immediately. There is no reason left to wait.</p>
+
+      <div class="final-cta-book">
+        <img src="../images/field-guide-cover.png" alt="A Field Guide to the Vibration of Awesome">
+      </div>
+
+      <div class="form-wrap" id="bottom-form-wrap">
+        <div id="bottom-form">
+          <div class="form-row" style="justify-content:center">
+            <input type="email" class="form-input" id="bottom-email" placeholder="Your email address" autocomplete="email">
+            <button class="form-btn" id="bottom-btn" onclick="submitForm('bottom')">I'm Ready. Send It.</button>
+          </div>
+          <div class="form-error" id="bottom-error"></div>
+        </div>
+        <div class="form-success" id="bottom-success">
+          <h3>It's yours. ✦</h3>
+          <p>The signal is open. Step in.</p>
+          <a href="#" class="download-btn" id="bottom-download-btn">Open the Field Guide →</a>
+        </div>
+      </div>
+
+      <p class="final-cta-free">Free. Instant access. No pressure after.</p>
+    </div>
+  </section>
+
   <!-- ── FOOTER ── -->
   <footer class="page-footer">
-    <div class="footer-tagline">Read the philosophy for free.<br><span>Buy the manual when you're ready to live it on purpose.</span></div>
+    <div class="footer-tagline"><span>Read the philosophy for free.</span></div>
     <div class="footer-links">
       <a href="/">Home</a>
       <a href="/blog/">Blog</a>
@@ -989,8 +1105,9 @@ async function submitForm(id) {
   } catch (err) {
     btnEl.disabled = false;
     btnEl.textContent =
-      id === 'hero' ? 'Send Me the Field Guide' :
-      id === 'mid' ? 'Unlock the Field Guide' :
+      id === 'hero'   ? 'Send Me the Field Guide' :
+      id === 'mid'    ? 'Unlock the Field Guide' :
+      id === 'bottom' ? 'I\'m Ready. Send It.' :
       'Send Me the Transmission';
     errEl.textContent = 'Something went wrong. Please try again.';
     errEl.style.display = 'block';
@@ -1025,7 +1142,7 @@ window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && bookModal?.classList.contains('is-open')) closeBookModal();
 });
 
-['hero-email','mid-email','book-email'].forEach(id => {
+['hero-email','mid-email','book-email','bottom-email'].forEach(id => {
   const el = document.getElementById(id);
   if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') submitForm(id.replace('-email','')); });
 });
