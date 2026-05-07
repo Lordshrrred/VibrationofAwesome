@@ -46,7 +46,8 @@ load_dotenv()
 # ── Config ───────────────────────────────────────────────────────────────
 CLIENT_ID      = os.environ.get('BLOGGER_CLIENT_ID', '')
 CLIENT_SECRET  = os.environ.get('BLOGGER_CLIENT_SECRET', '')
-REDIRECT_URI   = 'http://localhost:8080/'
+REDIRECT_PORT  = int(os.environ.get('BLOGGER_REDIRECT_PORT', '8080'))
+REDIRECT_URI   = f'http://localhost:{REDIRECT_PORT}/'
 SCOPE          = 'https://www.googleapis.com/auth/blogger'
 AUTH_ENDPOINT  = 'https://accounts.google.com/o/oauth2/v2/auth'
 TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token'
@@ -87,8 +88,18 @@ class _CallbackHandler(http.server.BaseHTTPRequestHandler):
         pass  # suppress server output
 
 def _wait_for_callback():
-    """Block until the browser hits localhost:8080 with a code or error."""
-    server = http.server.HTTPServer(('localhost', 8080), _CallbackHandler)
+    """Block until the browser hits localhost with a code or error."""
+    try:
+        server = http.server.HTTPServer(('127.0.0.1', REDIRECT_PORT), _CallbackHandler)
+    except OSError as e:
+        print()
+        print(f'ERROR: localhost:{REDIRECT_PORT} is already in use.')
+        print('Close the app using that port, then rerun: npm run blogger-token')
+        print()
+        print('On macOS you can identify it with:')
+        print(f'  lsof -nP -iTCP:{REDIRECT_PORT} -sTCP:LISTEN')
+        print()
+        raise
     # Keep handling requests until we get the code (ignores favicon etc.)
     while _captured_code is None and _captured_error is None:
         server.handle_request()
