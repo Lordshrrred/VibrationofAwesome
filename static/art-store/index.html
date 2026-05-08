@@ -1175,8 +1175,8 @@
       <div class="product-card" data-type="shirt">
         <div class="product-carousel" onclick="openShirtPicker('loaflife')" title="Click to browse styles">
           <div class="carousel-track">
-            <img src="/personal-photos/merch/Loaf1.jpg" class="carousel-slide" alt="Loaf Life Crew Tee" loading="lazy">
-            <img src="/personal-photos/merch/Loaf2.jpg" class="carousel-slide" alt="Loaf Life Curves Tee" loading="lazy">
+            <img src="/personal-photos/merch/LoafCrew-1.jpg" class="carousel-slide" alt="Loaf Life Crew Tee" loading="lazy">
+            <img src="/personal-photos/merch/LoafCurves-1.jpg" class="carousel-slide" alt="Loaf Life Curves Tee" loading="lazy">
           </div>
           <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
           <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
@@ -1195,8 +1195,17 @@
 
       <!-- HOODIE -->
       <div class="product-card" data-type="hoodie">
-        <div class="product-media" onclick="openProductModal('loaflife','hoodie')" title="Click to view">
-          <img src="/personal-photos/merch/Loaf1.jpg" alt="Loaf Life Hoodie" loading="lazy">
+        <div class="product-carousel" onclick="openProductModal('loaflife','hoodie')" title="Click to view">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/LoafHoodie-1.jpg" class="carousel-slide" alt="Loaf Life Hoodie Front" loading="lazy">
+            <img src="/personal-photos/merch/LoafHoodie-2.jpg" class="carousel-slide" alt="Loaf Life Hoodie Back" loading="lazy">
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+          </div>
           <span class="product-type-badge">Hoodie</span>
         </div>
         <div class="product-info">
@@ -1233,7 +1242,7 @@
       <!-- STICKER -->
       <div class="product-card" data-type="sticker">
         <div class="product-media" onclick="openProductModal('loaflife','sticker')" title="Click to view">
-          <img src="/personal-photos/merch/Loaf1.jpg" alt="Loaf Life Sticker" loading="lazy">
+          <img src="/personal-photos/merch/LoafSticker-1.jpg" alt="Loaf Life Sticker" loading="lazy">
           <span class="product-type-badge">Sticker</span>
         </div>
         <div class="product-info">
@@ -1598,7 +1607,8 @@
           name: 'Loaf Life Crew',
           sub: "Unisex / Men's Cut · Print on Demand",
           images: [
-            ['/personal-photos/merch/Loaf1.jpg','Loaf Life Design']
+            ['/personal-photos/merch/LoafCrew-1.jpg','Front'],
+            ['/personal-photos/merch/LoafCrew-2.jpg','Back']
           ],
           url: 'https://earthstar.creator-spring.com/listing/loaf-life-crew'
         },
@@ -1606,7 +1616,8 @@
           name: 'Loaf Life Curves',
           sub: "Women's Fitted Cut · Print on Demand",
           images: [
-            ['/personal-photos/merch/Loaf2.jpg','Loaf Life Design']
+            ['/personal-photos/merch/LoafCurves-1.jpg','Front'],
+            ['/personal-photos/merch/LoafCurves-2.jpg','Back']
           ],
           url: 'https://earthstar.creator-spring.com/listing/loaf-life-curves'
         }
@@ -1616,7 +1627,8 @@
         sub: 'Pullover Hoodie · Print on Demand',
         desc: 'He was being a loaf, and it was so perfectly correct it became a whole design. He\'s still a loaf. Heavy-blend pullover hoodie with the Loaf Life print on the front.',
         images: [
-          ['/personal-photos/merch/Loaf1.jpg','Loaf Life Design']
+          ['/personal-photos/merch/LoafHoodie-1.jpg','Front'],
+          ['/personal-photos/merch/LoafHoodie-2.jpg','Back']
         ],
         url: 'https://earthstar.creator-spring.com/listing/new-loaf-life-hoodie'
       },
@@ -1636,7 +1648,7 @@
         sub: 'Die Cut Sticker · Ships Worldwide',
         desc: 'A small shrine to the loaf. Still a loaf. Always a loaf. High-quality die-cut vinyl sticker, weather-resistant and made to stick.',
         images: [
-          ['/personal-photos/merch/Loaf1.jpg','Design']
+          ['/personal-photos/merch/LoafSticker-1.jpg','Design']
         ],
         url: 'https://earthstar.creator-spring.com/listing/loaf-life-sticker'
       }
