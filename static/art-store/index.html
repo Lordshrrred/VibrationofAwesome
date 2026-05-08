@@ -1520,7 +1520,7 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
 
-  // ── CAROUSELS (% translateX ~ works before layout is measured) ──
+  // ── CAROUSELS ──
   function initCarousels(scope) {
     (scope || document).querySelectorAll('.product-carousel').forEach(function(carousel) {
       if (carousel.dataset.carouselInit) return;
@@ -1532,15 +1532,27 @@
       var next   = carousel.querySelector('.carousel-next');
       if (!track || !slides.length) return;
       var cur = 0, total = slides.length;
+
+      // Stamp each slide to exactly the carousel's pixel width so
+      // integer-pixel transforms always land on a clean slide boundary.
+      function setSlideWidths() {
+        var w = carousel.offsetWidth;
+        if (!w) return;
+        slides.forEach(function(s) { s.style.flexBasis = w + 'px'; });
+      }
+
       function goTo(n) {
         cur = (n + total) % total;
-        // % of track width; each slide is 100% of carousel, so track = total * carousel
-        track.style.transform = 'translateX(-' + (cur * 100 / total) + '%)';
+        track.style.transform = 'translateX(-' + (cur * carousel.offsetWidth) + 'px)';
         dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
       }
+
+      setSlideWidths();
+
       if (prev) prev.addEventListener('click', function(e) { e.stopPropagation(); goTo(cur - 1); });
       if (next) next.addEventListener('click', function(e) { e.stopPropagation(); goTo(cur + 1); });
       dots.forEach(function(d, i) { d.addEventListener('click', function(e) { e.stopPropagation(); goTo(i); }); });
+      window.addEventListener('resize', function() { setSlideWidths(); goTo(cur); }, { passive: true });
     });
   }
   initCarousels();
