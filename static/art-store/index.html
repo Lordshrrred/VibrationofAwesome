@@ -1166,52 +1166,53 @@
     <div class="collection-header">
       <div class="collection-label-tag">Collection</div>
       <h2 class="collection-name">Loaf Life</h2>
-      <p class="collection-desc">Cats, chaos, and the sacred art of doing absolutely nothing. Spiritual loafing is a lifestyle.</p>
+      <p class="collection-desc">He was just being a loaf. That was enough. Cats, chaos, and the sacred art of doing absolutely nothing — spiritual loafing is a lifestyle, and he's still living it.</p>
       <div class="collection-rule"></div>
     </div>
     <div class="collection-grid">
 
-      <!-- Shirt -->
+      <!-- SHIRTS (combined ~ picker modal) -->
       <div class="product-card" data-type="shirt">
-        <div class="product-media">
-          <div class="product-art">
-            <div class="product-art-icon">👕</div>
-            <div class="product-art-design">Loaf Life</div>
+        <div class="product-carousel" onclick="openShirtPicker('loaflife')" title="Click to browse styles">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/Loaf1.jpg" class="carousel-slide" alt="Loaf Life Crew Tee" loading="lazy">
+            <img src="/personal-photos/merch/Loaf2.jpg" class="carousel-slide" alt="Loaf Life Curves Tee" loading="lazy">
           </div>
-          <span class="product-type-badge">Shirt</span>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+          </div>
+          <span class="product-type-badge">Shirts</span>
         </div>
         <div class="product-info">
           <div class="product-title">Loaf Life</div>
-          <div class="product-sub">Unisex Tee · Print on Demand</div>
-          <!-- UPDATE: replace with specific Spring shirt listing URL -->
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+          <div class="product-sub">Unisex &amp; Women's Tee · Print on Demand</div>
+          <button class="product-get-btn" onclick="openShirtPicker('loaflife')">Select Style ✦</button>
         </div>
       </div>
 
-      <!-- Hoodie -->
+      <!-- HOODIE -->
       <div class="product-card" data-type="hoodie">
-        <div class="product-media">
-          <div class="product-art">
-            <div class="product-art-icon">🧥</div>
-            <div class="product-art-design">Loaf Life</div>
-          </div>
+        <div class="product-media" onclick="openProductModal('loaflife','hoodie')" title="Click to view">
+          <img src="/personal-photos/merch/Loaf1.jpg" alt="Loaf Life Hoodie" loading="lazy">
           <span class="product-type-badge">Hoodie</span>
         </div>
         <div class="product-info">
           <div class="product-title">Loaf Life</div>
           <div class="product-sub">Pullover Hoodie · Print on Demand</div>
-          <!-- UPDATE: replace with specific Spring hoodie listing URL -->
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+          <button class="product-get-btn" onclick="openProductModal('loaflife','hoodie')">Get It ✦</button>
         </div>
       </div>
 
-      <!-- Mug ~ live Spring link -->
+      <!-- MUG -->
       <div class="product-card" data-type="mug">
-        <div class="product-carousel">
+        <div class="product-carousel" onclick="openProductModal('loaflife','mug')" title="Click to view">
           <div class="carousel-track">
             <img src="/personal-photos/merch/Loaf1.jpg" class="carousel-slide" alt="Loaf Life Mug" loading="lazy">
-            <img src="/personal-photos/merch/Loaf2.jpg" class="carousel-slide" alt="Loaf Life Mug" loading="lazy">
-            <img src="/personal-photos/merch/Loaf3.jpg" class="carousel-slide" alt="Loaf Life Mug" loading="lazy">
+            <img src="/personal-photos/merch/Loaf2.jpg" class="carousel-slide" alt="Loaf Life Mug Front" loading="lazy">
+            <img src="/personal-photos/merch/Loaf3.jpg" class="carousel-slide" alt="Loaf Life Mug Angle" loading="lazy">
           </div>
           <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
           <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
@@ -1225,24 +1226,20 @@
         <div class="product-info">
           <div class="product-title">Loaf Life</div>
           <div class="product-sub">11oz Mug · Print on Demand</div>
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com/listing/loaf-life-mug?product=1637&variation=105025')">Get It ✦</button>
+          <button class="product-get-btn" onclick="openProductModal('loaflife','mug')">Get It ✦</button>
         </div>
       </div>
 
-      <!-- Sticker -->
+      <!-- STICKER -->
       <div class="product-card" data-type="sticker">
-        <div class="product-media">
-          <div class="product-art">
-            <div class="product-art-icon">✦</div>
-            <div class="product-art-design">Loaf Life</div>
-          </div>
+        <div class="product-media" onclick="openProductModal('loaflife','sticker')" title="Click to view">
+          <img src="/personal-photos/merch/Loaf1.jpg" alt="Loaf Life Sticker" loading="lazy">
           <span class="product-type-badge">Sticker</span>
         </div>
         <div class="product-info">
           <div class="product-title">Loaf Life</div>
           <div class="product-sub">Die Cut Sticker · Ships Worldwide</div>
-          <!-- UPDATE: replace with specific Spring sticker listing URL -->
-          <button class="product-get-btn" onclick="openSpring('https://earthstar.creator-spring.com')">Get It ✦</button>
+          <button class="product-get-btn" onclick="openProductModal('loaflife','sticker')">Get It ✦</button>
         </div>
       </div>
 
@@ -1592,6 +1589,56 @@
           ['/personal-photos/merch/WizBiz-sticker-1.jpg','Design']
         ],
         url: 'https://earthstar.creator-spring.com/listing/official-wiz-biz-sticker'
+      }
+    },
+    loaflife: {
+      label: 'Loaf Life',
+      shirts: [
+        {
+          name: 'Loaf Life Crew',
+          sub: "Unisex / Men's Cut · Print on Demand",
+          images: [
+            ['/personal-photos/merch/Loaf1.jpg','Loaf Life Design']
+          ],
+          url: 'https://earthstar.creator-spring.com/listing/loaf-life-crew'
+        },
+        {
+          name: 'Loaf Life Curves',
+          sub: "Women's Fitted Cut · Print on Demand",
+          images: [
+            ['/personal-photos/merch/Loaf2.jpg','Loaf Life Design']
+          ],
+          url: 'https://earthstar.creator-spring.com/listing/loaf-life-curves'
+        }
+      ],
+      hoodie: {
+        name: 'Loaf Life Hoodie',
+        sub: 'Pullover Hoodie · Print on Demand',
+        desc: 'He was being a loaf, and it was so perfectly correct it became a whole design. He\'s still a loaf. Heavy-blend pullover hoodie with the Loaf Life print on the front.',
+        images: [
+          ['/personal-photos/merch/Loaf1.jpg','Loaf Life Design']
+        ],
+        url: 'https://earthstar.creator-spring.com/listing/new-loaf-life-hoodie'
+      },
+      mug: {
+        name: 'Loaf Life Mug',
+        sub: '11oz Black Mug · Print on Demand',
+        desc: 'Cats, chaos, and the sacred art of doing absolutely nothing. The perfect vessel for your morning ritual of loafing. 11oz black ceramic mug, ships worldwide.',
+        images: [
+          ['/personal-photos/merch/Loaf1.jpg','Side'],
+          ['/personal-photos/merch/Loaf2.jpg','Front'],
+          ['/personal-photos/merch/Loaf3.jpg','Angle']
+        ],
+        url: 'https://earthstar.creator-spring.com/listing/new-loaf-life-mug'
+      },
+      sticker: {
+        name: 'Loaf Life Sticker',
+        sub: 'Die Cut Sticker · Ships Worldwide',
+        desc: 'A small shrine to the loaf. Still a loaf. Always a loaf. High-quality die-cut vinyl sticker, weather-resistant and made to stick.',
+        images: [
+          ['/personal-photos/merch/Loaf1.jpg','Design']
+        ],
+        url: 'https://earthstar.creator-spring.com/listing/loaf-life-sticker'
       }
     }
   };
