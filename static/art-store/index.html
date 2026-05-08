@@ -1097,12 +1097,18 @@
         </div>
       </div>
 
-      <!-- HOODIE (placeholder ~ images coming soon) -->
+      <!-- HOODIE -->
       <div class="product-card" data-type="hoodie">
-        <div class="product-media" onclick="openProductModal('wizbiz','hoodie')" title="Click to view">
-          <div class="product-art">
-            <div class="product-art-icon">&#x1F9D9;</div>
-            <div class="product-art-design">Wiz Biz Hoodie</div>
+        <div class="product-carousel" onclick="openProductModal('wizbiz','hoodie')" title="Click to view">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/WizBiz-hoodie-2.jpg" class="carousel-slide" alt="Wiz Biz Hoodie Front" loading="lazy">
+            <img src="/personal-photos/merch/WizBiz-hoodie-1.jpg" class="carousel-slide" alt="Wiz Biz Hoodie Back" loading="lazy">
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
           </div>
           <span class="product-type-badge">Hoodie</span>
         </div>
@@ -1137,13 +1143,10 @@
         </div>
       </div>
 
-      <!-- STICKER (placeholder ~ images coming soon) -->
+      <!-- STICKER -->
       <div class="product-card" data-type="sticker">
         <div class="product-media" onclick="openProductModal('wizbiz','sticker')" title="Click to view">
-          <div class="product-art">
-            <div class="product-art-icon">✦</div>
-            <div class="product-art-design">Wiz Biz Sticker</div>
-          </div>
+          <img src="/personal-photos/merch/WizBiz-sticker-1.jpg" alt="Wiz Biz Sticker" loading="lazy">
           <span class="product-type-badge">Sticker</span>
         </div>
         <div class="product-info">
@@ -1563,8 +1566,11 @@
       hoodie: {
         name: 'Wiz Biz Hoodie',
         sub: 'Pullover Hoodie · Print on Demand',
-        desc: 'Wizards Only, Fools. Heavy-blend pullover hoodie with the Wiz Biz design front and EarthStar on the back.',
-        images: [],
+        desc: 'Wizards Only, Fools. Heavy-blend pullover hoodie with the Wiz Biz design on the front and EarthStar on the back.',
+        images: [
+          ['/personal-photos/merch/WizBiz-hoodie-2.jpg','Front'],
+          ['/personal-photos/merch/WizBiz-hoodie-1.jpg','Back']
+        ],
         url: 'https://earthstar.creator-spring.com/listing/official-wiz-biz-hoodie'
       },
       mug: {
@@ -1582,7 +1588,9 @@
         name: 'Wiz Biz Sticker',
         sub: 'Die Cut Sticker · Ships Worldwide',
         desc: 'High-quality die-cut vinyl sticker. Weather-resistant and made to last.',
-        images: [],
+        images: [
+          ['/personal-photos/merch/WizBiz-sticker-1.jpg','Design']
+        ],
         url: 'https://earthstar.creator-spring.com/listing/official-wiz-biz-sticker'
       }
     }
