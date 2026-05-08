@@ -160,6 +160,22 @@
     text-shadow: none !important;
   }
   .nav-links a.aura-link::after { display: none !important; }
+  .nav-links a.field-guide-link {
+    color: #c9a84c !important;
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    animation: fieldGlow 4s ease-in-out infinite;
+  }
+  .nav-links a.field-guide-link:hover { background: rgba(201,168,76,0.1) !important; box-shadow: 0 0 18px rgba(201,168,76,0.35); text-shadow: 0 0 8px rgba(201,168,76,0.5) !important; border-color: rgba(201,168,76,0.7) !important; }
+  .nav-links a.field-guide-link::after { display: none !important; }
+  @keyframes fieldGlow {
+    0%, 100% { border-color: rgba(201,168,76,0.28); box-shadow: none; }
+    50% { border-color: rgba(201,168,76,0.7); box-shadow: 0 0 12px rgba(201,168,76,0.18); }
+  }
 
   .hamburger {
     display: none;
@@ -565,6 +581,7 @@
       font-size: 0.85rem;
     }
     .nav-links a.aura-link { margin: 0.5rem 1.5rem; display: block; text-align: center; }
+    .nav-links a.field-guide-link { margin: 0.5rem 1.5rem; display: block; text-align: center; }
     .hero { padding: 7.8rem 1.2rem 2rem; }
     .summary { padding: 0 1.2rem 1.5rem; }
     .gallery-shell { padding: 0 1.2rem 4rem; }
@@ -588,8 +605,7 @@
   </button>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#home">Home</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/#vibration">Vibration</a></li>
+    <li><a href="/field-guide/" class="field-guide-link">Field Guide ✦</a></li>
     <li><a href="/earthstar/">EarthStar ✦</a></li>
     <li><a href="/art-store/">Art Store</a></li>
     <li><a href="/portfolio/" class="active">Portfolio</a></li>
