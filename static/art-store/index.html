@@ -750,13 +750,20 @@
   }
   .acquire-btn:hover { background: var(--gold-light); box-shadow: 0 0 35px rgba(0,229,204,0.35); }
 
-  /* Checkout iframe */
-  .checkout-frame {
+  /* Checkout iframe ~ scaled down so more of Spring fits in the popup */
+  .checkout-wrapper {
     width: 100%;
+    height: calc(90vh - 58px);
+    overflow: hidden;
+    position: relative;
+  }
+  .checkout-frame {
+    width: calc(100% / 0.72);
+    height: calc((90vh - 58px) / 0.72);
     border: none;
     display: block;
-    height: 70vh;
-    min-height: 500px;
+    transform: scale(0.72);
+    transform-origin: top left;
   }
 
   .voa-modal-body {
@@ -1291,7 +1298,7 @@
         <div class="product-carousel" onclick="openShirtPicker('wizwin')" title="Click to browse styles">
           <div class="carousel-track">
             <img src="/personal-photos/merch/WizWin-Crew-2.jpg" class="carousel-slide" alt="Wizard in the Window Crew Tee Front" loading="lazy">
-            <img src="/personal-photos/merch/WizWin-Curves-2.jpg" class="carousel-slide" alt="Wizard in the Window Curves Tee Back" loading="lazy">
+            <img src="/personal-photos/merch/WizWin-Curves-New2.jpg" class="carousel-slide" alt="Wizard in the Window Curves Tee Back" loading="lazy">
           </div>
           <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
           <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
@@ -1711,7 +1718,7 @@
     voaModalTag.textContent = 'EarthStar Store · Checkout';
     voaModalBack.classList.add('visible');
     voaModalBody.style.padding = '0';
-    voaModalBody.innerHTML = '<iframe class="checkout-frame" src="' + url + '" allow="payment *"></iframe>';
+    voaModalBody.innerHTML = '<div class="checkout-wrapper"><iframe class="checkout-frame" src="' + url + '" allow="payment *"></iframe></div>';
   }
 
   function voaGoBack() {
@@ -1853,8 +1860,8 @@
           name: 'Wizard in the Window Curves',
           sub: "Women's Fitted Cut · Print on Demand",
           images: [
-            ['/personal-photos/merch/WizWin-Curves-2.jpg','Back'],
-            ['/personal-photos/merch/WizWin-Curves-1.jpg','Front']
+            ['/personal-photos/merch/WizWin-Curves-New1.jpg','Front'],
+            ['/personal-photos/merch/WizWin-Curves-New2.jpg','Back']
           ],
           url: 'https://earthstar.creator-spring.com/listing/wizard-in-the-window-curves'
         }
