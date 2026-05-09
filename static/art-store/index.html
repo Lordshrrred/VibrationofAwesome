@@ -1275,6 +1275,111 @@
   </div>
 
   <!-- ════════════════════════════════════════
+       COLLECTION: WIZARD IN THE WINDOW
+       ════════════════════════════════════════ -->
+  <div class="collection reveal" id="col-wizard-in-the-window">
+    <div class="collection-header">
+      <div class="collection-label-tag">Collection</div>
+      <h2 class="collection-name">Wizard in the Window</h2>
+      <p class="collection-desc">Some windows look out. Some look in. The Wizard in the Window does both ~ keeper of the threshold between what is seen and what is known.</p>
+      <div class="collection-rule"></div>
+    </div>
+    <div class="collection-grid">
+
+      <!-- SHIRTS (combined ~ picker modal) -->
+      <div class="product-card" data-type="shirt">
+        <div class="product-carousel" onclick="openShirtPicker('wizwin')" title="Click to browse styles">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/WizWin-Crew-1.jpg" class="carousel-slide" alt="Wizard in the Window Crew Tee" loading="lazy">
+            <img src="/personal-photos/merch/WizWin-Curves-2.jpg" class="carousel-slide" alt="Wizard in the Window Curves Tee Back" loading="lazy">
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+          </div>
+          <span class="product-type-badge">Shirts</span>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Wizard in the Window</div>
+          <div class="product-sub">Unisex &amp; Women's Tee · Print on Demand</div>
+          <button class="product-get-btn" onclick="openShirtPicker('wizwin')">Select Style ✦</button>
+        </div>
+      </div>
+
+      <!-- HOODIE -->
+      <div class="product-card" data-type="hoodie">
+        <div class="product-carousel" onclick="openProductModal('wizwin','hoodie')" title="Click to view">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/WizWin-Hoodie-1.jpg" class="carousel-slide" alt="Wizard in the Window Hoodie Front" loading="lazy">
+            <img src="/personal-photos/merch/WizWin-Hoodie-2.jpg" class="carousel-slide" alt="Wizard in the Window Hoodie Back" loading="lazy">
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+          </div>
+          <span class="product-type-badge">Hoodie</span>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Wizard in the Window</div>
+          <div class="product-sub">Pullover Hoodie · Print on Demand</div>
+          <button class="product-get-btn" onclick="openProductModal('wizwin','hoodie')">Get It ✦</button>
+        </div>
+      </div>
+
+      <!-- MUG -->
+      <div class="product-card" data-type="mug">
+        <div class="product-carousel" onclick="openProductModal('wizwin','mug')" title="Click to view">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/WizWin-Mug-1.jpg" class="carousel-slide" alt="Wizard in the Window Mug" loading="lazy">
+            <img src="/personal-photos/merch/WizWin-Mug-2.jpg" class="carousel-slide" alt="Wizard in the Window Mug Front" loading="lazy">
+            <img src="/personal-photos/merch/WizWin-Mug-3.jpg" class="carousel-slide" alt="Wizard in the Window Mug Angle" loading="lazy">
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-dot"></span>
+          </div>
+          <span class="product-type-badge">Mug</span>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Wizard in the Window</div>
+          <div class="product-sub">11oz Mug · Print on Demand</div>
+          <button class="product-get-btn" onclick="openProductModal('wizwin','mug')">Get It ✦</button>
+        </div>
+      </div>
+
+      <!-- STICKERS (picker ~ two designs) -->
+      <div class="product-card" data-type="sticker">
+        <div class="product-carousel" onclick="openStickerPicker('wizwin')" title="Click to browse stickers">
+          <div class="carousel-track">
+            <img src="/personal-photos/merch/WizWin-Sticker-1.jpg" class="carousel-slide" alt="Wizard in the Window Sticker" loading="lazy">
+            <img src="/personal-photos/merch/WizWin-Sticker-2.jpg" class="carousel-slide" alt="Wizard in the Window Story Sticker" loading="lazy">
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+          </div>
+          <span class="product-type-badge">Stickers</span>
+        </div>
+        <div class="product-info">
+          <div class="product-title">Wizard in the Window</div>
+          <div class="product-sub">Die Cut Stickers · Ships Worldwide</div>
+          <button class="product-get-btn" onclick="openStickerPicker('wizwin')">Select Sticker ✦</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
        COLLECTION: ASCENT EARTHSTAR
        ════════════════════════════════════════ -->
   <div class="collection reveal" id="col-ascent-earthstar">
@@ -1732,6 +1837,68 @@
         url: 'https://earthstar.creator-spring.com/listing/official-wiz-biz-sticker'
       }
     },
+    wizwin: {
+      label: 'Wizard in the Window',
+      shirts: [
+        {
+          name: 'Wizard in the Window Crew',
+          sub: "Unisex / Men's Cut · Print on Demand",
+          images: [
+            ['/personal-photos/merch/WizWin-Crew-1.jpg','Front'],
+            ['/personal-photos/merch/WizWin-Crew-2.jpg','Back']
+          ],
+          url: 'https://earthstar.creator-spring.com/listing/wizard-in-the-window'
+        },
+        {
+          name: 'Wizard in the Window Curves',
+          sub: "Women's Fitted Cut · Print on Demand",
+          images: [
+            ['/personal-photos/merch/WizWin-Curves-2.jpg','Back'],
+            ['/personal-photos/merch/WizWin-Curves-1.jpg','Front']
+          ],
+          url: 'https://earthstar.creator-spring.com/listing/wizard-in-the-window-curves'
+        }
+      ],
+      hoodie: {
+        name: 'Wizard in the Window Hoodie',
+        sub: 'Pullover Hoodie · Print on Demand',
+        desc: 'The Wizard watches from the threshold. Heavy-blend pullover hoodie for those who prefer to observe from the window ~ knowing what others do not.',
+        images: [
+          ['/personal-photos/merch/WizWin-Hoodie-1.jpg','Front'],
+          ['/personal-photos/merch/WizWin-Hoodie-2.jpg','Back']
+        ],
+        url: 'https://earthstar.creator-spring.com/listing/wizard-in-the-window-hoodie'
+      },
+      mug: {
+        name: 'Wizard in the Window Mug',
+        sub: '11oz Black Mug · Print on Demand',
+        desc: 'Every morning ritual deserves a witness. The Wizard in the Window on an 11oz black ceramic mug ~ present at every threshold, every cup, every quiet moment. Ships worldwide.',
+        images: [
+          ['/personal-photos/merch/WizWin-Mug-1.jpg','Side'],
+          ['/personal-photos/merch/WizWin-Mug-2.jpg','Front'],
+          ['/personal-photos/merch/WizWin-Mug-3.jpg','Angle']
+        ],
+        url: 'https://earthstar.creator-spring.com/listing/wizard-in-the-window-mug'
+      },
+      stickers: [
+        {
+          name: 'Wizard in the Window',
+          sub: 'Die Cut Sticker · Ships Worldwide',
+          images: [
+            ['/personal-photos/merch/WizWin-Sticker-1.jpg','Design']
+          ],
+          url: 'https://earthstar.creator-spring.com/listing/wizard-in-the-window-sticker'
+        },
+        {
+          name: 'The Story Sticker',
+          sub: 'Die Cut Sticker · Ships Worldwide',
+          images: [
+            ['/personal-photos/merch/WizWin-Sticker-2.jpg','Design']
+          ],
+          url: 'https://earthstar.creator-spring.com/listing/wizard-in-the-window-story-sti'
+        }
+      ]
+    },
     ascent: {
       label: 'Ascent EarthStar',
       shirts: [
@@ -1873,6 +2040,26 @@
     }).join('');
     openVoaModal(d.label + ' · Shirts',
       '<p class="picker-eyebrow">Choose Your Style</p>' +
+      '<p class="picker-title">' + d.label + '</p>' +
+      '<div class="shirt-picker-grid">' + optionsHTML + '</div>'
+    );
+  }
+
+  // ── STICKER PICKER MODAL ──
+  function openStickerPicker(design) {
+    var d = STORE[design];
+    if (!d || !d.stickers) return;
+    var optionsHTML = d.stickers.map(function(v) {
+      return '<div class="shirt-option">' +
+        carouselHTML(v.images, 320) +
+        '<div class="shirt-option-info">' +
+          '<div class="shirt-option-name">' + v.name + '</div>' +
+          '<div class="shirt-option-sub">' + v.sub + '</div>' +
+          '<button class="acquire-btn" onclick="acquireNow(\'' + v.url + '\')">Acquire Now ✦</button>' +
+        '</div></div>';
+    }).join('');
+    openVoaModal(d.label + ' · Stickers',
+      '<p class="picker-eyebrow">Choose Your Sticker</p>' +
       '<p class="picker-title">' + d.label + '</p>' +
       '<div class="shirt-picker-grid">' + optionsHTML + '</div>'
     );
