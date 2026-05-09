@@ -229,6 +229,31 @@
   }
   .nav-links a.aura-link::after { display: none !important; }
 
+  /* Field Guide nav CTA */
+  .nav-links a.field-guide-link {
+    color: var(--deep) !important;
+    background: var(--gold);
+    padding: 0.35rem 0.9rem;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    animation: navGuidePulse 3s ease-in-out infinite;
+  }
+  .nav-links a.field-guide-link:hover {
+    background: var(--gold-light) !important;
+    box-shadow: 0 0 22px rgba(0,229,204,0.75), 0 0 50px rgba(0,229,204,0.3) !important;
+    transform: translateY(-1px);
+    text-shadow: none !important;
+  }
+  .nav-links a.field-guide-link::after { display: none !important; }
+  @keyframes navGuidePulse {
+    0%, 100% { box-shadow: 0 0 6px rgba(0,229,204,0.35); }
+    50% { box-shadow: 0 0 18px rgba(0,229,204,0.75), 0 0 36px rgba(0,229,204,0.25); }
+  }
+
   /* SECTIONS (shared) */
   section {
     position: relative;
@@ -281,21 +306,34 @@
 
   .btn-primary {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.25em;
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--deep);
-    background: var(--gold);
-    padding: 1rem 2.5rem;
+    background: linear-gradient(110deg, var(--gold) 0%, var(--gold) 35%, var(--gold-light) 50%, var(--gold) 65%, var(--gold) 100%);
+    background-size: 250% 100%;
+    background-position: 140% center;
+    padding: 1.1rem 2.8rem;
     text-decoration: none;
-    transition: all 0.3s;
+    transition: box-shadow 0.3s, transform 0.3s, background-color 0.3s;
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
     display: inline-block;
+    font-weight: 700;
+    animation: btnShimmer 3.5s ease-in-out infinite, btnGlow 2.5s ease-in-out infinite;
+  }
+  @keyframes btnShimmer {
+    0%     { background-position: 140% center; }
+    55%, 100% { background-position: -40% center; }
+  }
+  @keyframes btnGlow {
+    0%, 100% { box-shadow: 0 0 14px rgba(0,229,204,0.45), 0 4px 20px rgba(0,0,0,0.3); }
+    50%      { box-shadow: 0 0 40px rgba(0,229,204,0.9), 0 0 80px rgba(0,229,204,0.35), 0 4px 20px rgba(0,0,0,0.3); }
   }
   .btn-primary:hover {
     background: var(--gold-light);
-    box-shadow: 0 0 30px rgba(201,168,76,0.4);
-    transform: translateY(-2px);
+    background-size: 100% 100%;
+    box-shadow: 0 0 55px rgba(0,229,204,0.95), 0 0 110px rgba(0,229,204,0.45) !important;
+    transform: translateY(-3px) scale(1.03);
   }
 
   .btn-secondary {
@@ -527,6 +565,11 @@
       display: block;
       text-align: center;
     }
+    .nav-links a.field-guide-link {
+      margin: 0.5rem 1.5rem;
+      display: block;
+      text-align: center;
+    }
     section { padding: 5rem 1.5rem; }
     footer { padding: 2rem 1.5rem; grid-template-columns: 1fr; gap: 2rem; text-align: center; }
     .footer-left { text-align: center; align-items: center; }
@@ -558,8 +601,7 @@
   </button>
   <ul class="nav-links" id="navLinks">
     <li><a href="{{ $base }}#home">Home</a></li>
-    <li><a href="{{ $base }}#about">About</a></li>
-    <li><a href="{{ $base }}#vibration">Vibration</a></li>
+    <li><a href="/field-guide/" class="field-guide-link">Field Guide ✦</a></li>
     <li><a href="/earthstar/">EarthStar ✦</a></li>
     <li><a href="/art-store/">Art Store</a></li>
     <li><a href="/aura/" class="aura-link">AURA ✦</a></li>
