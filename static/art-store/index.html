@@ -875,6 +875,7 @@
     gap: 1.2rem;
   }
   .image-zoom-frame {
+    position: relative;
     background: #f5f5f7;
     border: 1px solid rgba(0,229,204,0.16);
     min-height: min(68vh, 760px);
@@ -882,12 +883,31 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    cursor: zoom-in;
   }
   .image-zoom-frame img {
     display: block;
     width: 100%;
     height: min(68vh, 760px);
     object-fit: contain;
+  }
+  .image-zoom-lens {
+    position: absolute;
+    width: min(240px, 42vw);
+    height: min(240px, 42vw);
+    border: 1px solid rgba(0,229,204,0.7);
+    box-shadow: 0 18px 60px rgba(0,0,0,0.45), 0 0 35px rgba(0,229,204,0.22);
+    background-repeat: no-repeat;
+    background-color: #f5f5f7;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+    z-index: 3;
+  }
+  .image-zoom-lens.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
   .image-zoom-actions {
     display: flex;
@@ -2071,12 +2091,46 @@
       '<div class="image-zoom-view">' +
         '<div class="image-zoom-frame">' +
           '<img src="' + escapeHtml(src) + '" alt="' + escapeHtml(label || title || 'Product image') + '">' +
+          '<div class="image-zoom-lens" aria-hidden="true"></div>' +
         '</div>' +
         '<div class="image-zoom-actions">' +
           '<div class="image-zoom-title">' + escapeHtml(title || label || 'Product image') + '</div>' +
           '<button class="acquire-btn" onclick=\'' + escapeHtml('acquireNow(' + JSON.stringify(url) + ')') + '\'>Acquire Now ✦</button>' +
         '</div>' +
       '</div>';
+    requestAnimationFrame(initImageMagnifier);
+  }
+
+  function initImageMagnifier() {
+    var frame = voaModalBody.querySelector('.image-zoom-frame');
+    if (!frame || frame.dataset.zoomInit) return;
+    var img = frame.querySelector('img');
+    var lens = frame.querySelector('.image-zoom-lens');
+    if (!img || !lens) return;
+    frame.dataset.zoomInit = '1';
+
+    var zoom = 2.6;
+    lens.style.backgroundImage = 'url("' + img.src + '")';
+
+    function updateLens(e) {
+      var imgRect = img.getBoundingClientRect();
+      var frameRect = frame.getBoundingClientRect();
+      var x = Math.max(0, Math.min(e.clientX - imgRect.left, imgRect.width));
+      var y = Math.max(0, Math.min(e.clientY - imgRect.top, imgRect.height));
+      if (e.clientX < imgRect.left || e.clientX > imgRect.right || e.clientY < imgRect.top || e.clientY > imgRect.bottom) {
+        lens.classList.remove('visible');
+        return;
+      }
+      var lensSize = lens.offsetWidth || 240;
+      lens.style.left = (e.clientX - frameRect.left) + 'px';
+      lens.style.top = (e.clientY - frameRect.top) + 'px';
+      lens.style.backgroundSize = (imgRect.width * zoom) + 'px ' + (imgRect.height * zoom) + 'px';
+      lens.style.backgroundPosition = '-' + ((x * zoom) - (lensSize / 2)) + 'px -' + ((y * zoom) - (lensSize / 2)) + 'px';
+      lens.classList.add('visible');
+    }
+
+    frame.addEventListener('pointermove', updateLens);
+    frame.addEventListener('pointerleave', function() { lens.classList.remove('visible'); });
   }
 
   function voaGoBack() {
