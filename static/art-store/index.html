@@ -870,12 +870,53 @@
   }
   .product-detail-btn:hover { background: var(--gold-light); box-shadow: 0 0 30px rgba(0,229,204,0.3); }
 
+  .image-zoom-view {
+    display: grid;
+    gap: 1.2rem;
+  }
+  .image-zoom-frame {
+    background: #f5f5f7;
+    border: 1px solid rgba(0,229,204,0.16);
+    min-height: min(68vh, 760px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .image-zoom-frame img {
+    display: block;
+    width: 100%;
+    height: min(68vh, 760px);
+    object-fit: contain;
+  }
+  .image-zoom-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .image-zoom-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(0.9rem, 1.8vw, 1.25rem);
+    color: var(--cream);
+    line-height: 1.35;
+  }
+  .image-zoom-actions .acquire-btn {
+    width: min(280px, 100%);
+    margin-top: 0;
+    flex: 0 0 auto;
+  }
+
   @media (max-width: 700px) {
     .shirt-picker-grid { grid-template-columns: 1fr; }
     .product-detail { grid-template-columns: 1fr; }
     .shirt-option .product-carousel { height: 260px; }
     .product-detail .product-carousel { height: 280px; }
     .voa-modal-body { padding: 1.2rem; }
+    .image-zoom-frame { min-height: 60vh; }
+    .image-zoom-frame img { height: 60vh; }
+    .image-zoom-actions { flex-direction: column; align-items: stretch; }
+    .image-zoom-actions .acquire-btn { width: 100%; }
   }
 
   /* RESPONSIVE */
@@ -1594,7 +1635,7 @@
       <div class="product-card" data-type="shirt">
         <div class="product-carousel" onclick="openShirtPicker('uncontrollably')" title="Click to browse styles">
           <div class="carousel-track">
-            <img src="/personal-photos/merch/UncontrollablyAwesome-Crew-1.jpg" class="carousel-slide" alt="Uncontrollably Awesome Crew Tee" loading="lazy">
+            <img src="/personal-photos/merch/UncontrollablyAwesome-Crew-2.jpg" class="carousel-slide" alt="Uncontrollably Awesome Crew Tee Front" loading="lazy">
             <img src="/personal-photos/merch/UncontrollablyAwesome-Curves-1.jpg" class="carousel-slide" alt="Uncontrollably Awesome Curves Tee" loading="lazy">
           </div>
           <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
@@ -1978,14 +2019,29 @@
   var voaModalBody = document.getElementById('voaModalBody');
   var voaModalTag  = document.getElementById('voaModalTag');
   var voaModalBack = document.getElementById('voaModalBack');
-  var _savedHtml = null, _savedTag = null;
+  var _modalStack = [];
+
+  function escapeHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, function(ch) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+    });
+  }
+
+  function pushModalState() {
+    _modalStack.push({
+      html: voaModalBody.innerHTML,
+      tag: voaModalTag.textContent,
+      padding: voaModalBody.style.padding
+    });
+    voaModalBack.classList.add('visible');
+  }
 
   function openVoaModal(tag, html) {
     voaModalTag.textContent = tag;
     voaModalBody.innerHTML = html;
     voaModalBody.style.padding = '';
     voaModalBack.classList.remove('visible');
-    _savedHtml = null; _savedTag = null;
+    _modalStack = [];
     voaModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     // Double rAF ensures modal is laid out before carousel measures anything
@@ -1997,28 +2053,42 @@
     voaModal.classList.remove('open');
     document.body.style.overflow = '';
     voaModalBack.classList.remove('visible');
-    setTimeout(function() { voaModalBody.innerHTML = ''; _savedHtml = null; }, 400);
+    setTimeout(function() { voaModalBody.innerHTML = ''; _modalStack = []; }, 400);
   }
 
   function acquireNow(url) {
-    _savedHtml = voaModalBody.innerHTML;
-    _savedTag  = voaModalTag.textContent;
+    pushModalState();
     voaModalTag.textContent = 'EarthStar Store · Checkout';
-    voaModalBack.classList.add('visible');
     voaModalBody.style.padding = '0';
     voaModalBody.innerHTML = '<div class="checkout-wrapper"><iframe class="checkout-frame" src="' + url + '" allow="payment *"></iframe></div>';
   }
 
+  function openImageZoom(src, label, url, title) {
+    pushModalState();
+    voaModalTag.textContent = label || 'Product Image';
+    voaModalBody.style.padding = '1.2rem';
+    voaModalBody.innerHTML =
+      '<div class="image-zoom-view">' +
+        '<div class="image-zoom-frame">' +
+          '<img src="' + escapeHtml(src) + '" alt="' + escapeHtml(label || title || 'Product image') + '">' +
+        '</div>' +
+        '<div class="image-zoom-actions">' +
+          '<div class="image-zoom-title">' + escapeHtml(title || label || 'Product image') + '</div>' +
+          '<button class="acquire-btn" onclick=\'' + escapeHtml('acquireNow(' + JSON.stringify(url) + ')') + '\'>Acquire Now ✦</button>' +
+        '</div>' +
+      '</div>';
+  }
+
   function voaGoBack() {
-    if (!_savedHtml) return;
-    voaModalBody.style.padding = '';
-    voaModalBody.innerHTML = _savedHtml;
-    voaModalTag.textContent = _savedTag;
-    voaModalBack.classList.remove('visible');
+    var previous = _modalStack.pop();
+    if (!previous) return;
+    voaModalBody.style.padding = previous.padding || '';
+    voaModalBody.innerHTML = previous.html;
+    voaModalTag.textContent = previous.tag;
+    voaModalBack.classList.toggle('visible', _modalStack.length > 0);
     requestAnimationFrame(function() {
       requestAnimationFrame(function() { initCarousels(voaModalBody); });
     });
-    _savedHtml = null; _savedTag = null;
   }
 
   voaModal.addEventListener('click', function(e) { if (e.target === voaModal) closeVoaModal(); });
@@ -2192,8 +2262,8 @@
           name: 'Uncontrollably Awesome Crew',
           sub: "Unisex / Men's Cut · Print on Demand",
           images: [
-            ['/personal-photos/merch/UncontrollablyAwesome-Crew-1.jpg','Front'],
-            ['/personal-photos/merch/UncontrollablyAwesome-Crew-2.jpg','Back']
+            ['/personal-photos/merch/UncontrollablyAwesome-Crew-2.jpg','Front'],
+            ['/personal-photos/merch/UncontrollablyAwesome-Crew-1.jpg','Back']
           ],
           url: 'https://earthstar.creator-spring.com/listing/uncontrollably-awesome-toure?product=2&variation=2397'
         },
@@ -2461,10 +2531,15 @@
     }
   };
 
-  function carouselHTML(images, height) {
+  function carouselHTML(images, height, productUrl, productName) {
     var h = height || 300;
     var slides = images.map(function(img) {
-      return '<img src="' + img[0] + '" class="carousel-slide" alt="' + img[1] + '" loading="lazy">';
+      var title = productName ? productName + ' · ' + img[1] : img[1];
+      var zoomCode = 'openImageZoom(' + JSON.stringify(img[0]) + ',' + JSON.stringify(title) + ',' + JSON.stringify(productUrl) + ',' + JSON.stringify(productName || title) + ')';
+      var zoom = productUrl
+        ? ' onclick=\'' + escapeHtml(zoomCode) + '\''
+        : '';
+      return '<img src="' + escapeHtml(img[0]) + '" class="carousel-slide" alt="' + escapeHtml(img[1]) + '" loading="lazy"' + zoom + '>';
     }).join('');
     var dots = images.map(function(_, i) {
       return '<span class="carousel-dot' + (i === 0 ? ' active' : '') + '"></span>';
@@ -2485,7 +2560,7 @@
     if (!d) return;
     var optionsHTML = d.shirts.map(function(v) {
       return '<div class="shirt-option">' +
-        carouselHTML(v.images, 320) +
+        carouselHTML(v.images, 320, v.url, v.name) +
         '<div class="shirt-option-info">' +
           '<div class="shirt-option-name">' + v.name + '</div>' +
           '<div class="shirt-option-sub">' + v.sub + '</div>' +
@@ -2505,7 +2580,7 @@
     if (!d || !d.stickers) return;
     var optionsHTML = d.stickers.map(function(v) {
       return '<div class="shirt-option">' +
-        carouselHTML(v.images, 320) +
+        carouselHTML(v.images, 320, v.url, v.name) +
         '<div class="shirt-option-info">' +
           '<div class="shirt-option-name">' + v.name + '</div>' +
           '<div class="shirt-option-sub">' + v.sub + '</div>' +
@@ -2525,7 +2600,7 @@
     if (!d || !d[type]) return;
     var p = d[type];
     var mediaHTML = p.images && p.images.length
-      ? '<div>' + carouselHTML(p.images, 380) + '</div>'
+      ? '<div>' + carouselHTML(p.images, 380, p.url, p.name) + '</div>'
       : '<div class="product-carousel" style="height:380px"><div class="product-art"><div class="product-art-icon">&#x1F9D9;</div><div class="product-art-design">Image coming soon</div></div></div>';
     openVoaModal(d.label + ' · ' + p.name.split(' ').slice(-1)[0],
       '<div class="product-detail">' +
