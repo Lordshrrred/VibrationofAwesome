@@ -1,9 +1,9 @@
 {
-  "lastChecked": "2026-05-14T04:12:45.580Z",
+  "lastChecked": "2026-05-14T05:31:00.371Z",
   "status": "broken",
-  "passed": 10,
-  "failed": 4,
-  "total": 14,
+  "passed": 12,
+  "failed": 1,
+  "total": 13,
   "topFix": {
     "name": "Blogger token refresh",
     "detail": "invalid_grant: Token has been expired or revoked.",
@@ -41,8 +41,8 @@
     },
     {
       "name": "Bluesky VOA auth",
-      "ok": false,
-      "detail": "missing VOA_BLUESKY_HANDLE, VOA_BLUESKY_APP_PASSWORD"
+      "ok": true,
+      "detail": "vibrationofawesome.bsky.social"
     },
     {
       "name": "Mastodon ESR auth",
@@ -51,8 +51,8 @@
     },
     {
       "name": "Mastodon VOA auth",
-      "ok": false,
-      "detail": "missing VOA_MASTODON_INSTANCE, VOA_MASTODON_ACCESS_TOKEN"
+      "ok": true,
+      "detail": "Vibrationofawesome"
     },
     {
       "name": "Facebook VOA",
@@ -70,14 +70,9 @@
       "detail": "earthstarrising"
     },
     {
-      "name": "Tumblr ESR auth",
-      "ok": true,
-      "detail": "earthstarrising user ok"
-    },
-    {
       "name": "Tumblr VOA auth",
-      "ok": false,
-      "detail": "missing VOA_TUMBLR_CONSUMER_KEY, VOA_TUMBLR_CONSUMER_SECRET, VOA_TUMBLR_TOKEN, VOA_TUMBLR_TOKEN_SECRET, VOA_TUMBLR_BLOG_NAME"
+      "ok": true,
+      "detail": "vibrationofawesome.tumblr.com user ok"
     },
     {
       "name": "Blogger token refresh",

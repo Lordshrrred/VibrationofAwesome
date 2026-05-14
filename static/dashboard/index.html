@@ -718,12 +718,10 @@ const PLATFORMS = [
   { key: "facebook_voa",       label: "FB-V",   name: "Facebook (VOA Page)",       group: "social" },
   { key: "facebook_earthstar", label: "FB-E",   name: "Facebook (EarthStar Page)", group: "social" },
   { key: "threads",            label: "Thrd",   name: "Threads",                   group: "reach"  },
-  { key: "instagram",          label: "Insta",  name: "Instagram ⓘ",              group: "reach",  tooltip: "No clickable links in Instagram posts ~ visual reach only" },
   { key: "pinterest",          label: "Pins",   name: "Pinterest",                 group: "reach"  },
   // ── Backlink Tier (always fires) ──────────────────────────────────────────
   { key: "devto",              label: "Dev",    name: "Dev.to",                    group: "backlink" },
   { key: "tumblr_voa",         label: "Tum-V",  name: "Tumblr (VOA)",              group: "backlink" },
-  { key: "tumblr_esr",         label: "Tum-E",  name: "Tumblr (EarthStar)",        group: "backlink" },
   { key: "blogger",            label: "Blog",   name: "Blogger",                   group: "backlink" },
   { key: "wordpress_earthstar",label: "WP",     name: "WordPress (EarthStarRising)",group:"backlink" },
   // ── Feeder ────────────────────────────────────────────────────────────────
@@ -734,6 +732,8 @@ const PLATFORMS = [
   { key: "mastodon",           label: "Mast",   name: "Mastodon (Legacy)",         group: "legacy"  },
   { key: "mastodon_esr",       label: "Mast-E", name: "Mastodon (ESR)",            group: "legacy"  },
   { key: "tumblr",             label: "Tumblr", name: "Tumblr (Legacy)",           group: "legacy"  },
+  { key: "tumblr_esr",         label: "Tum-E",  name: "Tumblr (EarthStar Legacy)", group: "legacy"  },
+  { key: "instagram",          label: "Insta",  name: "Instagram (Legacy)",        group: "legacy"  },
 ];
 
 // Active platforms only (excludes legacy keys from score/stats calculations)
@@ -1001,7 +1001,7 @@ function renderHealth(health) {
     </div>
     <div class="health-actions">
       ${isBroken ? `<button class="health-btn danger" onclick="copyDashCommand('${esc(repairCommand)}', this)">Copy Fix Command</button>` : `<button class="health-btn good" onclick="copyDashCommand('npm run check:syndication -- --write', this)">Copy Health Check</button>`}
-      <button class="health-btn" onclick="copyDashCommand('npm run blogger-token', this)">Redo Blogger OAuth</button>
+      <button class="health-btn" onclick="copyDashCommand('npm run blogger-token', this)">Copy Blogger OAuth Command</button>
     </div>`;
 }
 

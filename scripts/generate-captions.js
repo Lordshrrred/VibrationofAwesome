@@ -2,7 +2,7 @@
 /**
  * generate-captions.js ~ Platform-specific caption generator for vibrationofawesome.com
  *
- * Generates unique captions for 8 social platforms using Claude.
+ * Generates unique captions for syndication platforms using Claude.
  *
  * Exports: generateCaptions(post, client?)
  * CLI:     node scripts/generate-captions.js --lane [matt|boom] --slug <slug>
@@ -24,7 +24,7 @@ const ROOT       = path.resolve(__dirname, "..");
 // Ordered list of platform labels ~ order matters for the section parser
 const LABELS = [
   "FACEBOOK", "BLUESKY", "MASTODON", "PINTEREST",
-  "DEVTO", "TUMBLR", "INSTAGRAM", "THREADS",
+  "DEVTO", "TUMBLR", "THREADS",
 ];
 
 const SYSTEM_PROMPT = `You are a social media copywriter for vibrationofawesome.com.
@@ -115,8 +115,7 @@ export async function generateCaptions(post, client) {
     `PINTEREST: descriptive keyword-rich paragraph (good for search), end with 3-5 #hashtags, include URL`,
     `DEVTO: short compelling intro paragraph with a technical/AI-automation angle, suitable as a Dev.to article teaser, must mention AI or automation angle, end with URL`,
     `TUMBLR: creative, aesthetic, slightly poetic, 2-4 sentences, then 5-8 #hashtags on a new line separated from the caption`,
-    `INSTAGRAM: visual and inspiring, 1-2 punchy sentences MAX (no hashtags in caption body), then on a separate new line: 5-8 relevant #hashtags`,
-    `THREADS: conversational and punchy, under 500 chars total including hashtags, 2-3 #hashtags at end`,
+    `THREADS: write an original compact mini-thread for Threads in one publishable text block under 500 chars total. Format exactly as "1/3 ...", blank line, "2/3 ...", blank line, "3/3 ...". It must feel like three connected thoughts, not a caption. Put the URL only in 3/3. Use zero hashtags unless one is genuinely useful.`,
   ].join("\n");
 
   const msg = await anthropic.messages.create({

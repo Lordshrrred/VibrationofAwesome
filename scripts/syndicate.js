@@ -105,6 +105,12 @@ function hasTumblrConfig(prefix = "") {
   return Boolean(cfg.consumerKey && cfg.consumerSecret && cfg.token && cfg.tokenSecret && cfg.blogName);
 }
 
+function getTumblrPublicBase(blogName) {
+  const clean = String(blogName || "").replace(/^https?:\/\//i, "").replace(/\/.*$/, "").replace(/\/+$/, "");
+  if (!clean) return null;
+  return clean.includes(".") ? `https://${clean}` : `https://${clean}.tumblr.com`;
+}
+
 function getBlueskyConfig(prefix = "ESR") {
   const p = `${prefix}_`;
   return {
@@ -195,8 +201,21 @@ function hasSourceLink(text, postUrl) {
     (path && normalizedText.includes(path));
 }
 
+function truncatePreservingUrl(text, maxLength = 500) {
+  const value = String(text || "").trim();
+  if (value.length <= maxLength) return value;
+
+  const urls = value.match(/https?:\/\/\S+|(?:vibrationofawesome\.com|www\.vibrationofawesome\.com)\/\S+/gi) || [];
+  const url = urls[urls.length - 1];
+  if (!url || url.length >= maxLength - 20) return value.slice(0, maxLength - 3).trimEnd() + "...";
+
+  const withoutUrl = value.replace(url, "").replace(/\s+/g, " ").trim();
+  const room = maxLength - url.length - 2;
+  return `${withoutUrl.slice(0, room - 3).trimEnd()}...\n${url}`;
+}
+
 function ensureSourceLinks(captions, postUrl) {
-  const linkedPlatforms = ["facebook", "bluesky", "mastodon", "pinterest", "devto", "tumblr", "threads"];
+  const linkedPlatforms = ["facebook", "bluesky", "mastodon", "pinterest", "devto", "tumblr"];
   const next = { ...captions };
   for (const platform of linkedPlatforms) {
     const caption = next[platform] || "";
@@ -482,7 +501,7 @@ async function postToMastodon(caption, prefix = "ESR") {
       "Content-Type":  "application/json",
       Authorization:   `Bearer ${token}`,
     },
-    body: JSON.stringify({ status: caption.slice(0, 500), visibility: "public" }),
+    body: JSON.stringify({ status: truncatePreservingUrl(caption, 500), visibility: "public" }),
   });
   const data = await resp.json();
   if (!resp.ok) throw new Error(`Mastodon: ${data.error || resp.status}`);
@@ -580,9 +599,10 @@ async function postToTumblr(caption, tags, prefix = "ESR") {
     throw new Error(`Tumblr: ${data.errors?.[0]?.detail || data.meta?.msg || resp.status}`);
   }
   const postId = data.response?.id_string || data.response?.id;
+  const publicBase = getTumblrPublicBase(blogName);
   return {
     postId:  String(postId || ""),
-    postUrl: `https://${blogName}.tumblr.com/post/${postId}`,
+    postUrl: `${publicBase}/post/${postId}`,
   };
 }
 
@@ -1008,7 +1028,7 @@ export async function syndicatePost(lane, slug, options = {}) {
     effectivePlatforms = [...BACKLINK_TIER, ...socialPlatforms];
   }
 
-  // ── 6. Extract hashtags from tumblr/instagram captions ──
+  // ── 6. Extract hashtags from tumblr captions ──
   function extractHashtags(text) {
     return (text.match(/#\w+/g) || []).map(t => t.slice(1));
   }
@@ -1050,7 +1070,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   if (hasMastodonConfig("VOA"))  console.log(`  mastodon_voa  → ${getMastodonConfig("VOA").instance}`);
   if (process.env.META_PAGE_ID_VOA) console.log(`  facebook_voa  → page:${process.env.META_PAGE_ID_VOA}`);
   console.log("\n[accounts] Backlink tier (always active):");
-  console.log("  devto / tumblr_voa / tumblr_esr / blogger / wordpress_earthstar");
+  console.log("  devto / tumblr_voa / blogger / wordpress_earthstar");
   if (hasBlueskyConfig("ESR"))  console.log(`\n[accounts] ESR crossover (suppressed by default): bluesky_esr @${getBlueskyConfig("ESR").handle}`);
   if (hasMastodonConfig("ESR")) console.log(`[accounts] ESR crossover (suppressed by default): mastodon_esr ${getMastodonConfig("ESR").instance}`);
   console.log();
@@ -1115,11 +1135,7 @@ export async function syndicatePost(lane, slug, options = {}) {
     }),
     `board:"${pinterestBoardName}"`);
 
-  // Instagram via Publer ~ VOA Instagram, creator/earthstar content only
-  await attempt("instagram", () =>
-    postViaPubler("instagram", captions.instagram, imageUrl));
-
-  // Threads via Publer
+  // Threads via Publer ~ text-first mini-thread content
   await attempt("threads", () =>
     postViaPubler("threads", captions.threads, null));
 
@@ -1163,17 +1179,6 @@ export async function syndicatePost(lane, slug, options = {}) {
   } else {
     console.warn("  ~ tumblr_voa: VOA_TUMBLR_* env vars not set");
     results.tumblr_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
-  }
-
-  // ESR Tumblr ~ additional cross-domain backlink coverage (separate subdomain = separate indexed domain)
-  // This is intentional SEO infrastructure, not audience-channel crossover.
-  if (hasTumblrConfig("ESR")) {
-    await attempt("tumblr_esr", () =>
-      postToTumblr(captions.tumblr, extractHashtags(captions.tumblr), "ESR"),
-      `${process.env.ESR_TUMBLR_BLOG_NAME || "esr-tumblr"} [backlink]`);
-  } else {
-    console.warn("  ~ tumblr_esr: ESR_TUMBLR_* env vars not set");
-    results.tumblr_esr = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 
   // Blogger (auto-publish ~ AI-generated related article inspired by source)
@@ -1257,17 +1262,18 @@ if (isCli) {
       dev:  "devto",
       wp:   "wordpress_earthstar",
       wordpress: "wordpress_earthstar",
-      bluesky: "bluesky_esr",
-      bsky: "bluesky_esr",
+      bluesky: "bluesky_voa",
+      bsky: "bluesky_voa",
+      bskyvoa: "bluesky_voa",
       bskye: "bluesky_esr",
       bskyv: "bluesky_voa",
-      mastodon: "mastodon_esr",
-      mast: "mastodon_esr",
+      mastodon: "mastodon_voa",
+      mast: "mastodon_voa",
+      mastvoa: "mastodon_voa",
       maste: "mastodon_esr",
       mastv: "mastodon_voa",
-      tumblr: "tumblr_esr",
-      t: "tumblr_esr",
-      tesr: "tumblr_esr",
+      tumblr: "tumblr_voa",
+      t: "tumblr_voa",
       tvoa: "tumblr_voa",
     };
     const platformFilter = argv.platforms

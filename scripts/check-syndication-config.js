@@ -168,7 +168,7 @@ async function main() {
   await check("Publer accounts", async () => {
     publerAccounts = extractAccounts(await publerJson("/accounts"));
     const providers = publerAccounts.map(a => a.provider).filter(Boolean);
-    for (const provider of ["pinterest", "instagram", "threads"]) {
+    for (const provider of ["pinterest", "threads"]) {
       if (!providers.includes(provider)) throw new Error(`missing ${provider} account`);
     }
     return providers.join(", ");
@@ -240,7 +240,7 @@ async function main() {
     return data.username || "user ok";
   });
 
-  for (const prefix of ["ESR", "VOA"]) {
+  for (const prefix of ["VOA"]) {
     await check(`Tumblr ${prefix} auth`, async () => {
       const cfg = requireTumblrConfig(prefix);
       const url = "https://api.tumblr.com/v2/user/info";

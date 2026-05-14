@@ -36,7 +36,6 @@ const DATA_DIR   = path.join(ROOT, "static", "_data");
  */
 export const BACKLINK_TIER = [
   "devto",
-  "tumblr_esr",
   "tumblr_voa",
   "blogger",
   "wordpress_earthstar",
@@ -60,7 +59,6 @@ export const ALL_SOCIAL = [
   "mastodon_voa",
   "facebook_voa",
   "facebook_earthstar",
-  "instagram",
   "threads",
   "pinterest",
 ];
@@ -137,9 +135,8 @@ export function detectContentType(post) {
  *   mastodon_voa      ~ VOA Mastodon, all content types
  *   facebook_voa      ~ VOA Facebook page, most content types
  *   facebook_earthstar ~ approved for earthstar content only (mission crossover)
- *   instagram         ~ creator/earthstar only (video engine primary)
  *   pinterest         ~ evergreen/visual content only (skip philosophy + nervous-system)
- *   threads           ~ all content types, high spam tolerance
+ *   threads           ~ all content types, text-first mini-thread
  *
  * TODO (crossover v2): to add ESR Bluesky/Mastodon for specific content
  * types, add a crossover flag here rather than adding them to ALL_SOCIAL.
@@ -151,7 +148,6 @@ const SOCIAL_ROUTING = {
     "facebook_voa",
     "pinterest",
     "threads",
-    "instagram",
   ],
   philosophy: [
     "bluesky_voa",
@@ -197,7 +193,7 @@ export function getSocialPlatforms(contentType) {
 
 const SUPPRESS_REASONS = {
   facebook_earthstar: "video engine primary ~ EarthStar content only",
-  instagram:          "video engine primary ~ creator content only",
+  instagram:          "video engine only ~ removed from VOA blog syndication",
   pinterest:          "visual/evergreen platform ~ skip philosophy and nervous-system",
   // ESR accounts are EarthStar Command territory, not VOA blog defaults
   bluesky_esr:        "EarthStar Command account ~ not VOA blog default",
