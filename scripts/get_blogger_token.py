@@ -50,6 +50,7 @@ REDIRECT_PORT  = int(os.environ.get('BLOGGER_REDIRECT_PORT', '8090'))
 REDIRECT_URI   = os.environ.get('BLOGGER_REDIRECT_URI', f'http://localhost:{REDIRECT_PORT}/').strip()
 LOGIN_HINT     = os.environ.get('BLOGGER_LOGIN_HINT', 'vibrationofawesome@gmail.com').strip()
 OAUTH_BROWSER  = os.environ.get('BLOGGER_OAUTH_BROWSER', 'Safari').strip()
+GOOGLE_CLOUD_OAUTH_URL = 'https://console.cloud.google.com/apis/credentials'
 SCOPE          = 'https://www.googleapis.com/auth/blogger'
 AUTH_ENDPOINT  = 'https://accounts.google.com/o/oauth2/v2/auth'
 TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token'
@@ -72,8 +73,15 @@ class _CallbackHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(200)
         elif 'error' in params:
             _captured_error = params.get('error', ['unknown'])[0]
-            msg = f'Authorization failed: {_captured_error}'.encode()
-            body = b'<h1>' + msg + b'</h1><p>You can close this tab.</p>'
+            msg = (
+                f'<h1>Authorization failed: {_captured_error}</h1>'
+                f'<p>If this says redirect_uri_mismatch, add this exact Authorized redirect URI '
+                f'to the Google OAuth client:</p>'
+                f'<p><code>{REDIRECT_URI}</code></p>'
+                f'<p>Google Cloud credentials: '
+                f'<a href="{GOOGLE_CLOUD_OAUTH_URL}">{GOOGLE_CLOUD_OAUTH_URL}</a></p>'
+            ).encode()
+            body = msg
             self.send_response(400)
         else:
             # Ignore favicon / other noise
@@ -250,8 +258,15 @@ def main():
     print(f'Target Google account: {LOGIN_HINT or "(choose manually)"}')
     print(f'Redirect URI: {REDIRECT_URI}')
     print()
-    print('If Google says redirect_uri_mismatch, add that exact Redirect URI')
-    print('to the OAuth client in Google Cloud, then rerun this command.')
+    print('If Google says redirect_uri_mismatch, this is not an account/login problem.')
+    print('It means the Google OAuth client is missing this exact Authorized redirect URI:')
+    print()
+    print(f'  {REDIRECT_URI}')
+    print()
+    print('Fix path:')
+    print(f'  {GOOGLE_CLOUD_OAUTH_URL}')
+    print('  APIs & Services -> Credentials -> your Blogger OAuth client')
+    print('  Authorized redirect URIs -> Add URI -> paste the exact value above')
     print()
     print('If the wrong Google account appears, choose "Use another account"')
     print(f'and sign in as {LOGIN_HINT or "the Blogger owner account"}.')
