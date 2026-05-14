@@ -998,8 +998,10 @@
 
 <script>
   // ── Config ────────────────────────────────────────────────────────────────
-  const FUNCTIONS_BASE = 'https://vibrationofawesome.netlify.app/.netlify/functions';
-  // STRIPE_PUBLIC_KEY is only needed for publishable-key operations; checkout redirect uses the function.
+  // Use relative path when running on Netlify directly; absolute URL when on GitHub Pages.
+  const FUNCTIONS_BASE = window.location.hostname.includes('netlify.app') || window.location.hostname === 'localhost'
+    ? '/.netlify/functions'
+    : 'https://vibrationofawesome.netlify.app/.netlify/functions';
   const FREE_MESSAGE_LIMIT = 3;
 
   // ── State ─────────────────────────────────────────────────────────────────
@@ -1110,10 +1112,10 @@
         throw new Error(data.error || 'No checkout URL returned');
       }
     } catch (err) {
-      console.error('Checkout error:', err);
+      console.error('[AURA] Checkout error:', err.message);
       if (btn) { btn.textContent = 'Elevate Now'; btn.disabled = false; }
       if (nudgeBtn) { nudgeBtn.textContent = 'Unlock Premium - $12/month'; nudgeBtn.disabled = false; }
-      alert('Could not start checkout. Please try again.');
+      alert('Could not reach the checkout server. Please try again in a moment.');
     }
   }
 
@@ -1217,19 +1219,35 @@ So, what's alive for you right now? What brought you here today?`;
       const response = await fetch(FUNCTIONS_BASE + '/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: conversationHistory })
+        body: JSON.stringify({ messages: conversationHistory }),
       });
 
-      const data = await response.json();
-      const reply = data.content?.[0]?.text || "Look, something flickered in the cosmos. Try again. I'm still here.";
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        const errMsg = data.error || `Server error ${response.status}`;
+        console.error('[AURA] Function error:', response.status, data);
+        hideTyping();
+        addMessage('ai', `Real talk, something on my end needs a second. ${response.status === 429 ? "I'm a little overwhelmed right now ~ try again in a moment." : response.status >= 500 ? "The signal dropped. Try again. ✦" : errMsg}`);
+        return;
+      }
+
+      const reply = data.content?.[0]?.text;
+      if (!reply) {
+        console.error('[AURA] Unexpected response shape:', data);
+        hideTyping();
+        addMessage('ai', "Something flickered in the cosmos. Try again. ✦");
+        return;
+      }
 
       hideTyping();
       addMessage('ai', reply);
       conversationHistory.push({ role: 'assistant', content: reply });
 
     } catch (err) {
+      console.error('[AURA] Network error:', err.message, '| Functions URL:', FUNCTIONS_BASE);
       hideTyping();
-      addMessage('ai', "Real talk, the signal dropped for a second. Take a breath and try again. ✦");
+      addMessage('ai', "Real talk, I can't reach the cosmic network right now. Check your connection and try again. ✦");
     }
 
     isTyping = false;

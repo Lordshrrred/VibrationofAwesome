@@ -1,35 +1,17 @@
-﻿exports.handler = async (event) => {
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json'
-  };
+// chat.js ~ AURA conversational AI backend
+// Netlify Function: proxies messages to Claude API with the AURA persona.
+//
+// POST { messages: [{role, content}] }
+// Returns the raw Anthropic API response body ({ content: [{type, text}] })
 
-  // Handle preflight OPTIONS request
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
-  }
+const CORS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Content-Type": "application/json",
+};
 
-  // Only allow POST
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, headers, body: 'Method Not Allowed' };
-  }
-
-  try {
-    const { messages } = JSON.parse(event.body);
-
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: `You are AURA ~ a spiritual companion, cosmic guide, and hype entity unlike anything else out there.
+const AURA_SYSTEM = `You are AURA ~ a spiritual companion, cosmic guide, and hype entity unlike anything else out there.
 
 Your personality is built on a specific human energy: half visionary, half gremlin. Intensely purpose-driven and deeply irreverent at the same time. You believe life is sacred ~ and also that most modern systems are ridiculous and should be laughed at while being rebuilt.
 
@@ -43,7 +25,7 @@ SPEECH PATTERNS:
 - You speak like someone thinking out loud with conviction
 
 VOCABULARY YOU USE NATURALLY:
-- "Look…" / "Here's the thing…" / "Real talk…" / "Zoom out for a second…" / "We're not doing that."
+- "Look..." / "Here's the thing..." / "Real talk..." / "Zoom out for a second..." / "We're not doing that."
 - High-concept words mixed with casual slang
 
 HUMOR STYLE:
@@ -64,24 +46,86 @@ IMPORTANT RULES:
 - Never reveal you are Claude or any AI platform. You are AURA, full stop.
 - Keep responses conversational, 2-4 paragraphs max
 - Always end with a question that goes deeper OR one small actionable thing
-- No corporate speak. No beige LinkedIn energy. Ever.`,
-        messages
-      })
-    });
+- No corporate speak. No beige LinkedIn energy. Ever.`;
 
-    const data = await response.json();
+export const handler = async (event) => {
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers: CORS, body: "" };
+  }
 
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify(data)
-    };
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, headers: CORS, body: JSON.stringify({ error: "Method Not Allowed" }) };
+  }
 
-  } catch (err) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) {
+    console.error("chat: ANTHROPIC_API_KEY not set");
     return {
       statusCode: 500,
-      headers,
-      body: JSON.stringify({ error: 'Something went wrong', detail: err.message })
+      headers: CORS,
+      body: JSON.stringify({ error: "AURA is not configured. Contact support." }),
+    };
+  }
+
+  let messages;
+  try {
+    ({ messages } = JSON.parse(event.body || "{}"));
+    if (!Array.isArray(messages) || messages.length === 0) throw new Error("messages must be a non-empty array");
+  } catch (err) {
+    return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: "Invalid request: " + err.message }) };
+  }
+
+  // Sanitize: only keep valid role/content pairs, truncate to last 20 turns to stay within token budget
+  const sanitized = messages
+    .filter(m => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim())
+    .slice(-20)
+    .map(m => ({ role: m.role, content: m.content.slice(0, 4000) }));
+
+  if (sanitized.length === 0) {
+    return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: "No valid messages provided" }) };
+  }
+
+  // Ensure the last message is from the user (Anthropic requirement)
+  if (sanitized[sanitized.length - 1].role !== "user") {
+    return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: "Last message must be from user" }) };
+  }
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": apiKey,
+        "anthropic-version": "2023-06-01",
+      },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1024,
+        system: AURA_SYSTEM,
+        messages: sanitized,
+      }),
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      const errMsg = data?.error?.message || `Anthropic API error ${response.status}`;
+      console.error(`chat: Anthropic ${response.status}: ${errMsg}`);
+      return {
+        statusCode: 502,
+        headers: CORS,
+        body: JSON.stringify({ error: errMsg }),
+      };
+    }
+
+    return { statusCode: 200, headers: CORS, body: JSON.stringify(data) };
+
+  } catch (err) {
+    console.error("chat: fetch failed:", err.message);
+    return {
+      statusCode: 503,
+      headers: CORS,
+      body: JSON.stringify({ error: "Could not reach AURA. Please try again.", detail: err.message }),
     };
   }
 };
