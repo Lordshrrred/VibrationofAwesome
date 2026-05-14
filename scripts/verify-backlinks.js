@@ -47,6 +47,18 @@ function mark(platform, status, details = {}) {
   return next;
 }
 
+function firstNonEmpty(...values) {
+  return values.find(v => typeof v === "string" && v.trim()) || null;
+}
+
+function getTumblrConfig(prefix = "ESR") {
+  const p = `${prefix}_`;
+  return {
+    consumerKey: firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`], prefix === "ESR" ? process.env.TUMBLR_CONSUMER_KEY : null),
+    blogName:    firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`], prefix === "ESR" ? process.env.TUMBLR_BLOG_NAME : null),
+  };
+}
+
 async function fetchText(url) {
   const resp = await fetch(url, {
     headers: { "User-Agent": "VOA backlink verifier (+https://vibrationofawesome.com)" },
@@ -119,10 +131,14 @@ async function verifyMastodon(platform, sourceUrl) {
   return containsSource(JSON.stringify(data), sourceUrl);
 }
 
-async function verifyTumblr(platform, sourceUrl) {
+async function verifyTumblr(platform, sourceUrl, prefix = "ESR") {
   const postId = platform.url?.match(/\/post\/(\d+)/)?.[1];
-  if (!postId || !process.env.TUMBLR_CONSUMER_KEY) return null;
-  const apiUrl = `https://api.tumblr.com/v2/blog/${process.env.TUMBLR_BLOG_NAME}/posts?id=${postId}&api_key=${process.env.TUMBLR_CONSUMER_KEY}`;
+  const cfg = getTumblrConfig(prefix);
+  const blogName = platform.url
+    ? new URL(platform.url).hostname.replace(/\.tumblr\.com$/i, "")
+    : cfg.blogName;
+  if (!postId || !cfg.consumerKey || !blogName) return null;
+  const apiUrl = `https://api.tumblr.com/v2/blog/${blogName}/posts?id=${postId}&api_key=${cfg.consumerKey}`;
   const resp = await fetch(apiUrl);
   const data = await resp.json().catch(() => ({}));
   return containsSource(JSON.stringify(data), sourceUrl);
@@ -156,7 +172,8 @@ async function verifyPlatform(entry, key, platform, logEntry, publerAccounts) {
   let confirmed = null;
   if (key === "facebook_voa" || key === "facebook_earthstar") confirmed = await verifyFacebook(key, platform, sourceUrl);
   if (key === "mastodon") confirmed = await verifyMastodon(platform, sourceUrl);
-  if (key === "tumblr") confirmed = await verifyTumblr(platform, sourceUrl);
+  if (key === "tumblr" || key === "tumblr_esr") confirmed = await verifyTumblr(platform, sourceUrl, "ESR");
+  if (key === "tumblr_voa") confirmed = await verifyTumblr(platform, sourceUrl, "VOA");
   if (confirmed === true) return mark(platform, "confirmed", { backlink_method: `${key}_api` });
 
   if (platform.url) {

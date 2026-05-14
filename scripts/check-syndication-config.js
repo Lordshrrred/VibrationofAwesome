@@ -55,6 +55,34 @@ function hasEnv(...keys) {
   if (missing.length) throw new Error(`missing ${missing.join(", ")}`);
 }
 
+function firstNonEmpty(...values) {
+  return values.find(v => typeof v === "string" && v.trim()) || null;
+}
+
+function getTumblrConfig(prefix) {
+  const p = `${prefix}_`;
+  return {
+    label: prefix,
+    consumerKey:    firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`], prefix === "ESR" ? process.env.TUMBLR_CONSUMER_KEY : null),
+    consumerSecret: firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_SECRET`], prefix === "ESR" ? process.env.TUMBLR_CONSUMER_SECRET : null),
+    token:          firstNonEmpty(process.env[`${p}TUMBLR_TOKEN`], prefix === "ESR" ? process.env.TUMBLR_TOKEN : null),
+    tokenSecret:    firstNonEmpty(process.env[`${p}TUMBLR_TOKEN_SECRET`], prefix === "ESR" ? process.env.TUMBLR_TOKEN_SECRET : null),
+    blogName:       firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`], prefix === "ESR" ? process.env.TUMBLR_BLOG_NAME : null),
+  };
+}
+
+function requireTumblrConfig(prefix) {
+  const cfg = getTumblrConfig(prefix);
+  const missing = [];
+  if (!cfg.consumerKey) missing.push(`${prefix}_TUMBLR_CONSUMER_KEY`);
+  if (!cfg.consumerSecret) missing.push(`${prefix}_TUMBLR_CONSUMER_SECRET`);
+  if (!cfg.token) missing.push(`${prefix}_TUMBLR_TOKEN`);
+  if (!cfg.tokenSecret) missing.push(`${prefix}_TUMBLR_TOKEN_SECRET`);
+  if (!cfg.blogName) missing.push(`${prefix}_TUMBLR_BLOG_NAME`);
+  if (missing.length) throw new Error(`missing ${missing.join(", ")}`);
+  return cfg;
+}
+
 async function check(name, fn) {
   try {
     const detail = await fn();
@@ -172,25 +200,27 @@ async function main() {
     return data.username || "user ok";
   });
 
-  await check("Tumblr auth", async () => {
-    hasEnv("TUMBLR_CONSUMER_KEY", "TUMBLR_CONSUMER_SECRET", "TUMBLR_TOKEN", "TUMBLR_TOKEN_SECRET", "TUMBLR_BLOG_NAME");
-    const url = "https://api.tumblr.com/v2/user/info";
-    const resp = await fetch(url, {
-      headers: {
-        Authorization: buildOAuthHeader({
-          method: "GET",
-          url,
-          consumerKey: process.env.TUMBLR_CONSUMER_KEY,
-          consumerSecret: process.env.TUMBLR_CONSUMER_SECRET,
-          token: process.env.TUMBLR_TOKEN,
-          tokenSecret: process.env.TUMBLR_TOKEN_SECRET,
-        }),
-      },
+  for (const prefix of ["ESR", "VOA"]) {
+    await check(`Tumblr ${prefix} auth`, async () => {
+      const cfg = requireTumblrConfig(prefix);
+      const url = "https://api.tumblr.com/v2/user/info";
+      const resp = await fetch(url, {
+        headers: {
+          Authorization: buildOAuthHeader({
+            method: "GET",
+            url,
+            consumerKey: cfg.consumerKey,
+            consumerSecret: cfg.consumerSecret,
+            token: cfg.token,
+            tokenSecret: cfg.tokenSecret,
+          }),
+        },
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || data.meta?.status >= 400) throw new Error(data.meta?.msg || `HTTP ${resp.status}`);
+      return `${cfg.blogName} user ok`;
     });
-    const data = await resp.json().catch(() => ({}));
-    if (!resp.ok || data.meta?.status >= 400) throw new Error(data.meta?.msg || `HTTP ${resp.status}`);
-    return "user ok";
-  });
+  }
 
   await check("Blogger token refresh", async () => {
     hasEnv("BLOGGER_CLIENT_ID", "BLOGGER_CLIENT_SECRET", "BLOGGER_REFRESH_TOKEN", "BLOGGER_BLOG_ID");

@@ -78,6 +78,23 @@ function firstNonEmpty(...values) {
   return values.find(v => typeof v === "string" && v.trim()) || null;
 }
 
+function getTumblrConfig(prefix = "") {
+  const p = prefix ? `${prefix}_` : "";
+  return {
+    label: prefix || "TUMBLR",
+    consumerKey:    firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`], prefix === "ESR" ? process.env.TUMBLR_CONSUMER_KEY : null),
+    consumerSecret: firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_SECRET`], prefix === "ESR" ? process.env.TUMBLR_CONSUMER_SECRET : null),
+    token:          firstNonEmpty(process.env[`${p}TUMBLR_TOKEN`], prefix === "ESR" ? process.env.TUMBLR_TOKEN : null),
+    tokenSecret:    firstNonEmpty(process.env[`${p}TUMBLR_TOKEN_SECRET`], prefix === "ESR" ? process.env.TUMBLR_TOKEN_SECRET : null),
+    blogName:       firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`], prefix === "ESR" ? process.env.TUMBLR_BLOG_NAME : null),
+  };
+}
+
+function hasTumblrConfig(prefix = "") {
+  const cfg = getTumblrConfig(prefix);
+  return Boolean(cfg.consumerKey && cfg.consumerSecret && cfg.token && cfg.tokenSecret && cfg.blogName);
+}
+
 async function fetchPublerJson(url, options = {}, attempts = 3) {
   let lastResponse = null;
   for (let attempt = 0; attempt < attempts; attempt++) {
@@ -454,17 +471,13 @@ async function postToDevTo(postTitle, caption, postUrl, tags) {
 }
 
 /** Post to Tumblr using OAuth 1.0a (legacy /post endpoint with form body) */
-async function postToTumblr(caption, tags) {
-  const consumerKey    = process.env.TUMBLR_CONSUMER_KEY;
-  const consumerSecret = process.env.TUMBLR_CONSUMER_SECRET;
-  const token          = process.env.TUMBLR_TOKEN;
-  const tokenSecret    = process.env.TUMBLR_TOKEN_SECRET;
-  const blogName       = process.env.TUMBLR_BLOG_NAME;
+async function postToTumblr(caption, tags, prefix = "ESR") {
+  const { consumerKey, consumerSecret, token, tokenSecret, blogName, label } = getTumblrConfig(prefix);
 
   if (!consumerKey || !consumerSecret || !token || !tokenSecret) {
-    throw new Error("One or more TUMBLR_* env vars not set");
+    throw new Error(`One or more ${label}_TUMBLR_* env vars not set`);
   }
-  if (!blogName) throw new Error("TUMBLR_BLOG_NAME not set");
+  if (!blogName) throw new Error(`${label}_TUMBLR_BLOG_NAME not set`);
 
   // Legacy /post endpoint (form-encoded) ~ the NPF /posts endpoint returns 8001
   const url        = `https://api.tumblr.com/v2/blog/${blogName}/post`;
@@ -948,9 +961,23 @@ export async function syndicatePost(lane, slug, options = {}) {
   await attempt("devto", () =>
     postToDevTo(post.title, captions.devto, postUrl, post.tags));
 
-  // Tumblr
-  await attempt("tumblr", () =>
-    postToTumblr(captions.tumblr, extractHashtags(captions.tumblr)));
+  // Tumblr EarthStar Rising
+  if (hasTumblrConfig("ESR")) {
+    await attempt("tumblr_esr", () =>
+      postToTumblr(captions.tumblr, extractHashtags(captions.tumblr), "ESR"));
+  } else {
+    console.warn("  ~ tumblr_esr: ESR_TUMBLR_* env vars not set");
+    results.tumblr_esr = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+  }
+
+  // Tumblr Vibration of Awesome
+  if (hasTumblrConfig("VOA")) {
+    await attempt("tumblr_voa", () =>
+      postToTumblr(captions.tumblr, extractHashtags(captions.tumblr), "VOA"));
+  } else {
+    console.warn("  ~ tumblr_voa: VOA_TUMBLR_* env vars not set");
+    results.tumblr_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+  }
 
   // Instagram via Publer
   await attempt("instagram", () =>
@@ -1041,6 +1068,10 @@ if (isCli) {
       dev:  "devto",
       wp:   "wordpress_earthstar",
       wordpress: "wordpress_earthstar",
+      tumblr: "tumblr_esr",
+      t: "tumblr_esr",
+      tesr: "tumblr_esr",
+      tvoa: "tumblr_voa",
     };
     const platformFilter = argv.platforms
       ? argv.platforms.split(",").map(s => {

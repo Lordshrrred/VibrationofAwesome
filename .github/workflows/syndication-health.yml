@@ -45,6 +45,16 @@ jobs:
           TUMBLR_TOKEN:                ${{ secrets.TUMBLR_TOKEN }}
           TUMBLR_TOKEN_SECRET:         ${{ secrets.TUMBLR_TOKEN_SECRET }}
           TUMBLR_BLOG_NAME:            ${{ secrets.TUMBLR_BLOG_NAME }}
+          ESR_TUMBLR_CONSUMER_KEY:     ${{ secrets.ESR_TUMBLR_CONSUMER_KEY }}
+          ESR_TUMBLR_CONSUMER_SECRET:  ${{ secrets.ESR_TUMBLR_CONSUMER_SECRET }}
+          ESR_TUMBLR_TOKEN:            ${{ secrets.ESR_TUMBLR_TOKEN }}
+          ESR_TUMBLR_TOKEN_SECRET:     ${{ secrets.ESR_TUMBLR_TOKEN_SECRET }}
+          ESR_TUMBLR_BLOG_NAME:        ${{ secrets.ESR_TUMBLR_BLOG_NAME }}
+          VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
+          VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
+          VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}
+          VOA_TUMBLR_TOKEN_SECRET:     ${{ secrets.VOA_TUMBLR_TOKEN_SECRET }}
+          VOA_TUMBLR_BLOG_NAME:        ${{ secrets.VOA_TUMBLR_BLOG_NAME }}
           PUBLER_API_KEY:              ${{ secrets.PUBLER_API_KEY }}
           PUBLER_WORKSPACE_ID:         ${{ secrets.PUBLER_WORKSPACE_ID }}
           BLOGGER_CLIENT_ID:           ${{ secrets.BLOGGER_CLIENT_ID }}
