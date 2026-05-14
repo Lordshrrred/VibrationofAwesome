@@ -41,6 +41,13 @@ import minimist  from "minimist";
 
 import { generateCaptions } from "./generate-captions.js";
 import { selectImage }      from "./select-image.js";
+import {
+  BACKLINK_TIER,
+  detectContentType,
+  getSocialPlatforms,
+  logPolicyDecision,
+  getNextCTA,
+} from "./lib/policy.js";
 
 dotenv.config({ override: true });
 
@@ -934,17 +941,48 @@ export async function syndicatePost(lane, slug, options = {}) {
   const image   = await selectImage(keyword);
   const imageUrl = getPublicImageUrl(image?.url || null);
 
-  // ── 5. Extract hashtags from tumblr/instagram captions ──
+  // ── 5. Apply syndication policy ──
+  //
+  // Backlink tier (devto, tumblr, blogger, wordpress) always runs ~ no filtering.
+  // Social platforms are routed by content type unless the caller explicitly
+  // sets options.platforms (user choice wins) or options.allSocial (full blast).
+  //
+  // Override flags:
+  //   options.allSocial   = true  → skip policy, post to all social platforms
+  //   options.platforms   = [...] → explicit list, policy not applied
+  //   options.bloggerOnly = true  → existing behaviour unchanged
+
+  let effectivePlatforms = null; // null = attempt() uses its own existing logic
+
+  if (!options.bloggerOnly && !options.platforms && !options.allSocial) {
+    const contentType    = detectContentType({ ...post, lane });
+    const socialPlatforms = getSocialPlatforms(contentType);
+    const cta            = getNextCTA(lane);
+
+    logPolicyDecision({ ...post, lane }, contentType, socialPlatforms, `${cta.label} ~ ${cta.url}`);
+
+    // effectivePlatforms = backlink tier (always) + policy-filtered social
+    effectivePlatforms = [...BACKLINK_TIER, ...socialPlatforms];
+  }
+
+  // ── 6. Extract hashtags from tumblr/instagram captions ──
   function extractHashtags(text) {
     return (text.match(/#\w+/g) || []).map(t => t.slice(1));
   }
 
-  // ── 6. Post to each platform ──
+  // ── 7. Post to each platform ──
   const results = {};
 
   async function attempt(platform, fn) {
     if (options.bloggerOnly && platform !== "blogger") return;
     if (options.platforms && !options.platforms.includes(platform)) return;
+    // Policy filter: skip social platforms not approved for this content type.
+    // Backlink tier platforms are always included in effectivePlatforms.
+    if (effectivePlatforms && !effectivePlatforms.includes(platform)) {
+      console.log(`  ~ ${platform}: skipped by social policy`);
+      results[platform] = { success: false, postId: null, postUrl: null, error: "skipped by social policy", skipped: true };
+      return;
+    }
     try {
       const r = await fn();
       console.log(`  ✓ ${platform}${r.postUrl ? ` → ${r.postUrl}` : ""}`);
@@ -1064,7 +1102,7 @@ export async function syndicatePost(lane, slug, options = {}) {
     return postToWordPressDirect(article, imageUrl);
   });
 
-  // ── 7. Build log entry ──
+  // ── 8. Build log entry ──
   const entry = {
     id:          String(Date.now()),
     timestamp:   new Date().toISOString(),
@@ -1078,13 +1116,13 @@ export async function syndicatePost(lane, slug, options = {}) {
     platforms:   results,
   };
 
-  // ── 8. Write log + dashboard config ──
+  // ── 9. Write log + dashboard config ──
   const log = loadLog();
   saveLog(log, entry);
   writeDashboardConfig();
   saveResults(slug, post.title, lane, postUrl, results);
 
-  // ── 9. Summary ──
+  // ── 10. Summary ──
   const succeeded = Object.values(results).filter(r => r.success).length;
   const total     = Object.keys(results).length;
   console.log(`\nSyndication complete: ${succeeded}/${total} platforms succeeded.`);
@@ -1104,7 +1142,7 @@ if (isCli) {
 
   const argv = minimist(process.argv.slice(2), {
     string:  ["lane", "slug", "keyword", "platforms"],
-    boolean: ["blogger-only", "force", "verbose"],
+    boolean: ["blogger-only", "force", "verbose", "all-social"],
     alias:   { l: "lane", s: "slug", k: "keyword", p: "platforms" },
   });
 
@@ -1146,6 +1184,7 @@ if (isCli) {
     await syndicatePost(argv.lane, argv.slug, {
       keyword:     argv.keyword,
       bloggerOnly: argv["blogger-only"],
+      allSocial:   argv["all-social"],
       platforms:   platformFilter,
     });
   } catch (err) {
