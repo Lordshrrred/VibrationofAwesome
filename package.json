@@ -20,6 +20,7 @@
     "fb-token": "node scripts/get-facebook-token.js",
     "pinterest-token": "node scripts/get-pinterest-token.js",
     "blogger-token": "python3 scripts/get_blogger_token.py",
+    "blogger-backfill": "node scripts/backfill-blogger.js",
     "wordpress-token": "python3 scripts/get-wordpress-oauth-token.py",
     "pinterest-demo": "node scripts/pinterest-standard-access-demo.js",
     "syndicate:wordpress-backlog": "node scripts/backfill-wordpress-direct.js"

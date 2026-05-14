@@ -754,6 +754,7 @@ const FEEDER_POSTS_URL = "https://lordshrrred.github.io/VOA_Feeder/blog/posts.js
 const FEEDER_SUFFIXES = ["-signal", "-shift", "-insight", "-guide"];
 const WORDPRESS_SITE_URL = "https://earthstarrisingsun.wordpress.com";
 const WORDPRESS_POSTS_API = "https://public-api.wordpress.com/rest/v1.1/sites/earthstarrisingsun.wordpress.com/posts?number=100";
+const BACKLINK_API_URL = "/api/backlinks";
 const VERIFY_CACHE  = "voa_url_verify_cache_v4"; // v4: free browser-side checks, no Netlify function usage
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
 
@@ -1315,7 +1316,7 @@ function renderMatrix(results) {
         const extra = s.backlink_confirmed ? " · backlink confirmed" : s.backlink_status ? ` · backlink ${s.backlink_status}` : "";
         const tip = successTip(name, tooltip, s.url, entry.voa_url, extra);
         const onclick = getOpenAttrs(s.url, entry.voa_url);
-        return `<td><div class="mat-cell mat-ok" title="${esc(tip)}" ${onclick} data-verify="${esc(s.url||"")}" data-key="${key}">✓</div></td>`;
+        return `<td><div class="mat-cell mat-ok" title="${esc(tip)}" ${onclick} data-verify="${esc(s.url||"")}" data-key="${key}" data-slug="${esc(entry.slug)}">✓</div></td>`;
       } else if (s.status === "pending") {
         return `<td><div class="mat-cell mat-pend" title="${esc(name + ": trigger fired, waiting for post")}">⏳</div></td>`;
       } else if (s.status === "skipped" || s.skipped) {
@@ -1355,6 +1356,7 @@ function renderMatrix(results) {
 
   // Kick off live URL verification
   verifyMatrixUrls();
+  verifyBacklinksWithBackend(results);
 }
 
 // ── Live URL Verification ─────────────────────────────────────────────────────
@@ -1451,6 +1453,47 @@ function updateMatrixCell(cell, live) {
     cell.classList.remove("mat-ok");
     cell.onclick = null;
     cell.style.cursor = "default";
+  }
+}
+
+async function verifyBacklinksWithBackend(results) {
+  const checks = [];
+  for (const entry of results) {
+    for (const [key, platform] of Object.entries(entry.syndication || {})) {
+      if (!(BACKLINK_KEYS.has(key) || key === "feeder")) continue;
+      if (platform.status !== "success") continue;
+      if (platform.backlink_confirmed) continue;
+      checks.push({ slug: entry.slug, platform: key, url: platform.url || "" });
+    }
+  }
+  if (!checks.length) return;
+
+  try {
+    const res = await fetch(BACKLINK_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ checks }),
+    });
+    if (!res.ok) return;
+    const data = await res.json();
+    for (const [slug, row] of Object.entries(data?.slugs || {})) {
+      for (const [key, result] of Object.entries(row || {})) {
+        const cell = document.querySelector(`[data-slug="${CSS.escape(slug)}"][data-key="${CSS.escape(key)}"]`);
+        if (!cell || result?.verified !== true) continue;
+        cell.innerHTML = "✓";
+        cell.classList.remove("mat-pend", "mat-fail");
+        cell.classList.add("mat-ok");
+        const recovered = result.recovered_live ? " · recovered live URL" : "";
+        cell.title = `${cell.title || PLATFORM_MAP[key]?.name || key} · backlink confirmed${recovered}`;
+        if (result.url) {
+          cell.setAttribute("data-verify", result.url);
+          cell.onclick = () => window.open(result.url, "_blank");
+          cell.style.cursor = "pointer";
+        }
+      }
+    }
+  } catch (_) {
+    // GitHub Pages/local static previews do not expose /api/backlinks.
   }
 }
 

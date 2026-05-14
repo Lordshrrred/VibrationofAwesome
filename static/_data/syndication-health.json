@@ -1,14 +1,10 @@
 {
-  "lastChecked": "2026-05-14T15:17:39.480Z",
-  "status": "broken",
-  "passed": 11,
-  "failed": 1,
+  "lastChecked": "2026-05-14T20:50:34.838Z",
+  "status": "ok",
+  "passed": 12,
+  "failed": 0,
   "total": 12,
-  "topFix": {
-    "name": "Blogger token refresh",
-    "detail": "invalid_grant: Token has been expired or revoked.",
-    "repairCommand": "npm run blogger-token"
-  },
+  "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
@@ -71,8 +67,8 @@
     },
     {
       "name": "Blogger token refresh",
-      "ok": false,
-      "detail": "invalid_grant: Token has been expired or revoked."
+      "ok": true,
+      "detail": "token ok"
     },
     {
       "name": "WordPress direct auth",
