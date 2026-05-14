@@ -88,7 +88,7 @@ npm run blogger-token
 
 That opens Google consent, validates the new Blogger refresh token, saves it to `.env`, and updates the GitHub Actions `BLOGGER_REFRESH_TOKEN` secret when `gh` is authenticated.
 
-The Blogger OAuth helper defaults to `http://localhost:8090/` so VLC can keep using port `8080`. If Google shows `redirect_uri_mismatch`, add `http://localhost:8090/` as an authorized redirect URI on the Google OAuth client, or set `BLOGGER_REDIRECT_PORT` in `.env` to another authorized port.
+The Blogger OAuth helper opens Safari by default on macOS so the correct Google account can stay isolated from Brave. To use another browser, set `BLOGGER_OAUTH_BROWSER` in `.env`, for example `BLOGGER_OAUTH_BROWSER="Google Chrome"`. It defaults to `http://localhost:8090/` so VLC can keep using port `8080`. If Google shows `redirect_uri_mismatch`, add `http://localhost:8090/` as an authorized redirect URI on the Google OAuth client, or set `BLOGGER_REDIRECT_PORT` in `.env` to another authorized port.
 
 ### EarthStar 7-Niche Content System
 

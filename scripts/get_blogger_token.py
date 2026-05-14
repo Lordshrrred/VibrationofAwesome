@@ -49,6 +49,7 @@ CLIENT_SECRET  = os.environ.get('BLOGGER_CLIENT_SECRET', '')
 REDIRECT_PORT  = int(os.environ.get('BLOGGER_REDIRECT_PORT', '8090'))
 REDIRECT_URI   = os.environ.get('BLOGGER_REDIRECT_URI', f'http://localhost:{REDIRECT_PORT}/').strip()
 LOGIN_HINT     = os.environ.get('BLOGGER_LOGIN_HINT', 'vibrationofawesome@gmail.com').strip()
+OAUTH_BROWSER  = os.environ.get('BLOGGER_OAUTH_BROWSER', 'Safari').strip()
 SCOPE          = 'https://www.googleapis.com/auth/blogger'
 AUTH_ENDPOINT  = 'https://accounts.google.com/o/oauth2/v2/auth'
 TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token'
@@ -211,6 +212,25 @@ def sync_github_secret(refresh_token):
         print('GitHub Secret not updated ~ gh CLI not installed.')
         return False
 
+def open_auth_url(auth_url):
+    """Open OAuth URL in the requested browser, Safari by default on macOS."""
+    if OAUTH_BROWSER and sys.platform == 'darwin':
+        try:
+            subprocess.run(
+                ['open', '-a', OAUTH_BROWSER, auth_url],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                check=True,
+            )
+            return True
+        except Exception:
+            print(f'Could not open {OAUTH_BROWSER}; falling back to the default browser.')
+
+    try:
+        return webbrowser.open(auth_url)
+    except Exception:
+        return False
+
 # ── Main ──────────────────────────────────────────────────────────────────
 
 def main():
@@ -226,6 +246,7 @@ def main():
     print('=' * 70)
     print()
     print('Opening authorization URL in your browser...')
+    print(f'Browser: {OAUTH_BROWSER or "system default"}')
     print(f'Target Google account: {LOGIN_HINT or "(choose manually)"}')
     print(f'Redirect URI: {REDIRECT_URI}')
     print()
@@ -242,10 +263,7 @@ def main():
     print(f'Waiting for callback on http://localhost:{REDIRECT_PORT} ...')
 
     # Try to open the browser; don't fail if it can't
-    try:
-        webbrowser.open(auth_url)
-    except Exception:
-        pass
+    open_auth_url(auth_url)
 
     _wait_for_callback()
 
