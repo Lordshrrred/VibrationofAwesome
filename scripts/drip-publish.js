@@ -38,10 +38,21 @@ const argv = minimist(process.argv.slice(2), {
   boolean: ["dry-run"],
 });
 
+// ── PUBLISH RATE CONFIG ────────────────────────────────────────────────────────
+// Phase One: 2 posts/day via cron in drip-posts.yml (9am ET + 6pm ET UTC)
+// Each cron run publishes drip_rate posts (currently 1, set in drip-queue.json)
+//
+// To scale to 3/day: add a 3rd cron '0 18 * * *' to drip-posts.yml
+// To scale to 4/day: add a 4th cron '0 2  * * *' to drip-posts.yml
+// To publish more per run: increase drip_rate in static/_data/drip-queue.json
+// ──────────────────────────────────────────────────────────────────────────────
+
 const QUEUE_FILE = path.join(ROOT, "static", "_data", "drip-queue.json");
 const DRAFTS_DIR = path.join(ROOT, "static", "blog", "boom", "drafts");
 const POSTS_DIR  = path.join(ROOT, "static", "blog", "boom", "posts");
 const DATA_FILE  = path.join(ROOT, "static", "_data", "boom-posts.json");
+const LOCK_FILE  = path.join(ROOT, "static", "_data", "drip-publish.lock");
+const LOCK_TTL_MS = 10 * 60 * 1000; // 10 minutes
 
 // Extract first paragraph text from rendered HTML for the excerpt
 function extractExcerptFromHtml(html) {
@@ -63,6 +74,23 @@ function extractSourceTextFromHtml(html) {
 }
 
 async function main() {
+  // ── Lock file ~ prevent concurrent execution ─────────────────────────────
+  // GitHub Actions concurrency group handles workflow-level protection.
+  // This lock handles the rare case of local multi-invocation.
+  if (fs.existsSync(LOCK_FILE)) {
+    const lockAge = Date.now() - new Date(fs.readFileSync(LOCK_FILE, "utf8").trim()).getTime();
+    if (lockAge < LOCK_TTL_MS) {
+      console.log(`[lock] Another drip-publish is running (lock age: ${Math.round(lockAge / 1000)}s). Exiting safely.`);
+      process.exit(0);
+    }
+    console.log(`[lock] Stale lock found (${Math.round(lockAge / 1000)}s old). Proceeding.`);
+  }
+  fs.mkdirSync(path.dirname(LOCK_FILE), { recursive: true });
+  fs.writeFileSync(LOCK_FILE, new Date().toISOString(), "utf8");
+  const releaseLock = () => { try { fs.unlinkSync(LOCK_FILE); } catch (_) {} };
+  process.on("exit",   releaseLock);
+  process.on("SIGINT", () => { releaseLock(); process.exit(1); });
+
   // ── Read queue ──────────────────────────────────────────────────────────
   if (!fs.existsSync(QUEUE_FILE)) {
     console.error("Error: drip-queue.json not found.");
@@ -77,6 +105,16 @@ async function main() {
     console.error("Error reading drip-queue.json:", err.message);
     process.exit(1);
   }
+
+  // ── Startup visibility log ───────────────────────────────────────────────
+  console.log("\n╔═ [drip] Drip Publish ~ Phase One ══════════════════");
+  console.log(`║  Status:       ${queue.status}`);
+  console.log(`║  Queue:        ${queue.queue.length} post(s) remaining`);
+  console.log(`║  Published:    ${(queue.published || []).length} post(s) total`);
+  console.log(`║  Rate:         ${queue.drip_rate || 2} post(s) per run`);
+  console.log(`║  Syndicate:    ${queue.syndicate_on_publish}`);
+  console.log(`║  Feeder:       ${queue.trigger_feeder_on_publish}`);
+  console.log("╚════════════════════════════════════════════════════\n");
 
   // ── Pause check ─────────────────────────────────────────────────────────
   if (queue.status === "paused") {
@@ -132,6 +170,13 @@ async function main() {
 
     if (!fs.existsSync(draftFile)) {
       console.error(`  ✗ Draft not found: ${item.slug}.html ~ skipping`);
+      continue;
+    }
+
+    // Collision guard ~ never overwrite an already-published post
+    if (fs.existsSync(postFile)) {
+      console.warn(`  ~ Collision guard: ${item.slug} already exists in posts/. Removing from queue without re-publishing.`);
+      publishedSlugs.push(item.slug);
       continue;
     }
 

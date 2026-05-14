@@ -1,10 +1,32 @@
 name: Drip Publish ~ Boom Frequency
 
+# ── PUBLISH RATE CONFIG ────────────────────────────────────────────────────────
+# Phase One: 2 posts/day
+#   Morning:  9:00 AM ET  (13:00 UTC)
+#   Evening:  6:00 PM ET  (22:00 UTC)
+#
+# Each run publishes drip_rate posts (set in static/_data/drip-queue.json).
+# drip_rate is currently 1 so each cron run = 1 post.
+#
+# To scale to 3/day: add a third cron at  '0 18 * * *' (2pm ET)
+# To scale to 4/day: add a fourth cron at '0 2  * * *' (10pm ET)
+# ──────────────────────────────────────────────────────────────────────────────
+
 on:
-  workflow_dispatch:         # Manual trigger only ~ auto-schedule DISABLED
+  schedule:
+    - cron: '0 13 * * *'    # 9:00 AM ET  (UTC-4 EDT)  ~ morning publish
+    - cron: '0 22 * * *'    # 6:00 PM ET  (UTC-4 EDT)  ~ evening publish
+  workflow_dispatch:          # Manual trigger for testing or emergency publish
+
+# Prevent two drip runs from overlapping (e.g. slow run + next scheduled run).
+# 'queue' waits for the first to finish rather than cancelling it.
+concurrency:
+  group: drip-publish
+  cancel-in-progress: false
 
 permissions:
-  contents: write
+  contents: write     # commit + push published posts
+  actions:  write     # trigger hugo.yml deploy after publish
 
 jobs:
   drip:
@@ -38,50 +60,58 @@ jobs:
         run: |
           if [ ! -f "static/_data/drip-queue.json" ]; then
             echo "status=missing" >> $GITHUB_OUTPUT
+            echo "remaining=0"   >> $GITHUB_OUTPUT
             echo "drip-queue.json not found ~ skipping."
           else
-            STATUS=$(node -e "const q=JSON.parse(require('fs').readFileSync('static/_data/drip-queue.json','utf8')); console.log(q.status);")
-            REMAINING=$(node -e "const q=JSON.parse(require('fs').readFileSync('static/_data/drip-queue.json','utf8')); console.log(q.queue.length);")
-            echo "status=$STATUS" >> $GITHUB_OUTPUT
+            STATUS=$(node -e "
+              const q = JSON.parse(require('fs').readFileSync('static/_data/drip-queue.json','utf8'));
+              console.log(q.status);
+            ")
+            REMAINING=$(node -e "
+              const q = JSON.parse(require('fs').readFileSync('static/_data/drip-queue.json','utf8'));
+              console.log(q.queue.length);
+            ")
+            echo "status=$STATUS"       >> $GITHUB_OUTPUT
             echo "remaining=$REMAINING" >> $GITHUB_OUTPUT
-            echo "Drip queue status: $STATUS | Posts remaining: $REMAINING"
+            echo "Drip queue ~ status: $STATUS | posts remaining: $REMAINING"
           fi
 
-      # ── 5. Exit early if paused or empty ─────────────────────────────────
+      # ── 5. Exit safely if paused or empty ────────────────────────────────
       - name: Exit if paused or empty
-        if: steps.queue_status.outputs.status == 'paused' || steps.queue_status.outputs.status == 'missing' || steps.queue_status.outputs.remaining == '0'
+        if: |
+          steps.queue_status.outputs.status == 'paused' ||
+          steps.queue_status.outputs.status == 'missing' ||
+          steps.queue_status.outputs.remaining == '0'
         run: |
           STATUS="${{ steps.queue_status.outputs.status }}"
           REMAINING="${{ steps.queue_status.outputs.remaining }}"
-          if [ "$STATUS" = "paused" ]; then
-            echo "Drip queue is paused ~ exiting. Run activate-drip.js to start publishing."
-          elif [ "$STATUS" = "missing" ]; then
-            echo "drip-queue.json not found ~ exiting."
-          elif [ "$REMAINING" = "0" ]; then
-            echo "Queue is empty ~ all 30 posts published!"
+          if   [ "$STATUS" = "paused"  ]; then echo "Queue is paused ~ no posts published.  Run activate-drip.js to resume."
+          elif [ "$STATUS" = "missing" ]; then echo "drip-queue.json not found ~ exiting safely."
+          elif [ "$REMAINING" = "0"    ]; then echo "Queue is empty ~ all posts published!"
           fi
           exit 0
 
-      # ── 6. Publish next posts ─────────────────────────────────────────────
-      - name: Publish next drip posts
+      # ── 6. Publish next post(s) from drip queue ──────────────────────────
+      - name: Publish next drip post(s)
+        id: publish
         if: steps.queue_status.outputs.status == 'active' && steps.queue_status.outputs.remaining != '0'
         env:
           ANTHROPIC_API_KEY:           ${{ secrets.ANTHROPIC_API_KEY }}
           VOA_FEEDER_TRIGGER_TOKEN:    ${{ secrets.VOA_FEEDER_TRIGGER_TOKEN }}
           NASA_API_KEY:                ${{ secrets.NASA_API_KEY }}
           PEXELS_API_KEY:              ${{ secrets.PEXELS_API_KEY }}
-          BLUESKY_HANDLE:              ${{ secrets.BLUESKY_HANDLE }}
-          BLUESKY_APP_PASSWORD:        ${{ secrets.BLUESKY_APP_PASSWORD }}
           ESR_BLUESKY_HANDLE:          ${{ secrets.ESR_BLUESKY_HANDLE }}
           ESR_BLUESKY_APP_PASSWORD:    ${{ secrets.ESR_BLUESKY_APP_PASSWORD }}
           VOA_BLUESKY_HANDLE:          ${{ secrets.VOA_BLUESKY_HANDLE }}
           VOA_BLUESKY_APP_PASSWORD:    ${{ secrets.VOA_BLUESKY_APP_PASSWORD }}
-          MASTODON_INSTANCE:           ${{ secrets.MASTODON_INSTANCE }}
-          MASTODON_ACCESS_TOKEN:       ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          BLUESKY_HANDLE:              ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD:        ${{ secrets.BLUESKY_APP_PASSWORD }}
           ESR_MASTODON_INSTANCE:       ${{ secrets.ESR_MASTODON_INSTANCE }}
           ESR_MASTODON_ACCESS_TOKEN:   ${{ secrets.ESR_MASTODON_ACCESS_TOKEN }}
           VOA_MASTODON_INSTANCE:       ${{ secrets.VOA_MASTODON_INSTANCE }}
           VOA_MASTODON_ACCESS_TOKEN:   ${{ secrets.VOA_MASTODON_ACCESS_TOKEN }}
+          MASTODON_INSTANCE:           ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCESS_TOKEN:       ${{ secrets.MASTODON_ACCESS_TOKEN }}
           META_APP_ID:                 ${{ secrets.META_APP_ID }}
           META_APP_SECRET:             ${{ secrets.META_APP_SECRET }}
           META_USER_TOKEN:             ${{ secrets.META_USER_TOKEN }}
@@ -128,6 +158,7 @@ jobs:
 
       # ── 7. Commit published posts back to repo ────────────────────────────
       - name: Commit published posts
+        id: commit
         if: steps.queue_status.outputs.status == 'active' && steps.queue_status.outputs.remaining != '0'
         run: |
           git config user.name  "github-actions[bot]"
@@ -139,9 +170,27 @@ jobs:
             static/_data/syndication-log.json \
             static/_data/syndication-results.json \
             static/_data/syndication-health.json \
+            static/_data/cta-rotation-state.json \
             static/_data/dashboard-config.json \
             static/sitemap.xml \
             || true
-          git diff --staged --quiet \
-            || git commit -m "Drip publish: $(date -u '+%Y-%m-%d') [automated]"
-          git push
+          if git diff --staged --quiet; then
+            echo "nothing_committed=true" >> $GITHUB_OUTPUT
+            echo "Nothing new to commit."
+          else
+            git commit -m "Drip publish: $(date -u '+%Y-%m-%d %H:%M UTC') [automated]"
+            git push
+            echo "nothing_committed=false" >> $GITHUB_OUTPUT
+          fi
+
+      # ── 8. Trigger Hugo deploy ────────────────────────────────────────────
+      # GITHUB_TOKEN pushes do not trigger on:push in other workflows.
+      # We explicitly fire hugo.yml via workflow_dispatch so posts go live.
+      - name: Trigger Hugo deploy
+        if: |
+          steps.queue_status.outputs.status == 'active' &&
+          steps.queue_status.outputs.remaining != '0' &&
+          steps.commit.outputs.nothing_committed != 'true'
+        run: gh workflow run hugo.yml --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

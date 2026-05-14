@@ -15,7 +15,12 @@ on:
         default: ''
 
 permissions:
-  contents: write
+  contents: write     # commit + push generated post
+  actions:  write     # trigger hugo.yml deploy after publish
+
+concurrency:
+  group: boom-generate
+  cancel-in-progress: false
 
 jobs:
   generate:
@@ -111,6 +116,7 @@ jobs:
 
       # ── 5. Commit generated post back to repo ─────────────────────────────
       - name: Commit generated post
+        id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -120,9 +126,24 @@ jobs:
             static/_data/syndication-log.json \
             static/_data/syndication-results.json \
             static/_data/syndication-health.json \
+            static/_data/cta-rotation-state.json \
             static/_data/dashboard-config.json \
             static/sitemap.xml \
             || true
-          git diff --staged --quiet \
-            || git commit -m "Boom post: ${{ inputs.keyword }} [automated]"
-          git push
+          if git diff --staged --quiet; then
+            echo "nothing_committed=true" >> $GITHUB_OUTPUT
+            echo "Nothing new to commit."
+          else
+            git commit -m "Boom post: ${{ inputs.keyword }} [automated]"
+            git push
+            echo "nothing_committed=false" >> $GITHUB_OUTPUT
+          fi
+
+      # ── 6. Trigger Hugo deploy ─────────────────────────────────────────────
+      # GITHUB_TOKEN pushes do not trigger on:push in other workflows.
+      # We explicitly fire hugo.yml via workflow_dispatch so posts go live.
+      - name: Trigger Hugo deploy
+        if: steps.commit.outputs.nothing_committed != 'true'
+        run: gh workflow run hugo.yml --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

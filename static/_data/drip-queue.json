@@ -1,9 +1,9 @@
 {
-  "status": "paused",
-  "drip_rate": 2,
-  "drip_time": "10:00 UTC",
-  "syndicate_on_publish": false,
-  "trigger_feeder_on_publish": false,
+  "status": "active",
+  "drip_rate": 1,
+  "drip_time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
+  "syndicate_on_publish": true,
+  "trigger_feeder_on_publish": true,
   "queue": [
     {
       "slug": "why-you-feel-stuck-in-life-and-whats-actually-going-on",
@@ -600,5 +600,8 @@
       "pillar": "AI + Creator Tools"
     }
   ],
-  "published": []
+  "published": [],
+  "_phase": "phase-one",
+  "_posts_per_day": 2,
+  "_scale_notes": "To scale to 3/day: add 0 18 * * * cron to drip-posts.yml. To scale to 4/day: add a 4th cron. Keep drip_rate: 1."
 }
