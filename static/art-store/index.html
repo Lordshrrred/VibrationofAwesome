@@ -197,13 +197,13 @@
   /* HERO */
   .store-hero {
     position: relative;
-    min-height: 55vh;
+    min-height: 42vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     overflow: hidden;
-    padding-top: 5rem;
+    padding-top: 4.5rem;
   }
 
   .hero-bg {
@@ -272,8 +272,8 @@
     position: relative;
     z-index: 1;
     max-width: 1200px;
-    margin: 2rem auto 0;
-    padding: 0 4rem;
+    margin: 3rem auto 0;
+    padding: 0;
   }
   .portfolio-invite-card {
     display: grid;
@@ -281,9 +281,9 @@
     gap: 1.5rem;
     align-items: center;
     border: 1px solid rgba(0,229,204,0.16);
-    background: linear-gradient(135deg, rgba(0,26,24,0.88), rgba(2,10,10,0.94));
-    padding: 1.4rem 1.5rem;
-    box-shadow: 0 22px 50px rgba(0,0,0,0.22);
+    background: linear-gradient(135deg, rgba(0,26,24,0.58), rgba(2,10,10,0.84));
+    padding: 1rem 1.2rem;
+    box-shadow: 0 14px 36px rgba(0,0,0,0.18);
   }
   .portfolio-invite-label {
     font-family: 'Rajdhani', sans-serif;
@@ -292,15 +292,15 @@
     text-transform: uppercase;
     color: var(--gold);
     opacity: 0.85;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.4rem;
   }
   .portfolio-invite h2 {
     font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(1.15rem, 2vw, 1.65rem);
+    font-size: clamp(0.95rem, 1.6vw, 1.25rem);
     color: var(--cream);
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.2rem;
   }
-  .portfolio-invite p { color: rgba(208,255,248,0.74); font-size: 1rem; line-height: 1.75; }
+  .portfolio-invite p { color: rgba(208,255,248,0.62); font-size: 0.9rem; line-height: 1.55; }
   .portfolio-invite-btn {
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.76rem;
@@ -308,7 +308,7 @@
     text-transform: uppercase;
     color: var(--deep);
     background: var(--gold);
-    padding: 1rem 1.3rem;
+    padding: 0.75rem 1.05rem;
     text-decoration: none;
     white-space: nowrap;
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
@@ -320,7 +320,7 @@
   main {
     position: relative;
     z-index: 1;
-    padding: 5rem 4rem;
+    padding: 3rem 4rem 5rem;
     max-width: 1200px;
     margin: 0 auto;
   }
@@ -874,40 +874,59 @@
     display: grid;
     gap: 1.2rem;
   }
+  .image-zoom-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.95fr);
+    gap: 1rem;
+    align-items: stretch;
+  }
   .image-zoom-frame {
     position: relative;
     background: #f5f5f7;
     border: 1px solid rgba(0,229,204,0.16);
-    min-height: min(68vh, 760px);
+    min-height: min(66vh, 720px);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    cursor: zoom-in;
+    cursor: crosshair;
   }
   .image-zoom-frame img {
     display: block;
     width: 100%;
-    height: min(68vh, 760px);
+    height: min(66vh, 720px);
     object-fit: contain;
   }
-  .image-zoom-lens {
-    position: absolute;
-    width: min(240px, 42vw);
-    height: min(240px, 42vw);
-    border: 1px solid rgba(0,229,204,0.7);
-    box-shadow: 0 18px 60px rgba(0,0,0,0.45), 0 0 35px rgba(0,229,204,0.22);
-    background-repeat: no-repeat;
+  .image-zoom-pane {
+    min-height: min(66vh, 720px);
     background-color: #f5f5f7;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid rgba(0,229,204,0.24);
+    box-shadow: inset 0 0 0 1px rgba(2,10,10,0.05), 0 24px 70px rgba(0,0,0,0.35);
+    overflow: hidden;
+    opacity: 0.88;
+    transition: opacity 0.12s ease, border-color 0.12s ease;
+  }
+  .image-zoom-pane.active {
+    opacity: 1;
+    border-color: rgba(0,229,204,0.55);
+  }
+  .image-zoom-focus {
+    position: absolute;
+    width: min(32%, 180px);
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(0,229,204,0.62);
+    background: rgba(0,229,204,0.08);
+    box-shadow: 0 0 24px rgba(0,229,204,0.16);
     pointer-events: none;
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.96);
-    transition: opacity 0.12s ease, transform 0.12s ease;
-    z-index: 3;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.1s ease;
   }
-  .image-zoom-lens.visible {
+  .image-zoom-focus.visible {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
   }
   .image-zoom-actions {
     display: flex;
@@ -933,8 +952,11 @@
     .shirt-option .product-carousel { height: 260px; }
     .product-detail .product-carousel { height: 280px; }
     .voa-modal-body { padding: 1.2rem; }
+    .image-zoom-layout { grid-template-columns: 1fr; }
     .image-zoom-frame { min-height: 60vh; }
     .image-zoom-frame img { height: 60vh; }
+    .image-zoom-pane { display: none; }
+    .image-zoom-focus { display: none; }
     .image-zoom-actions { flex-direction: column; align-items: stretch; }
     .image-zoom-actions .acquire-btn { width: 100%; }
   }
@@ -945,7 +967,7 @@
   }
   @media (max-width: 900px) {
     main { padding: 4rem 2rem; }
-    .portfolio-invite { padding: 0 2rem; }
+    .portfolio-invite { padding: 0; }
     .portfolio-invite-card { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
@@ -966,8 +988,8 @@
     .nav-links a { display: block; padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(0,229,204,0.05); font-size: 0.85rem; }
     .nav-links a.aura-link { margin: 0.5rem 1.5rem; display: block; text-align: center; }
     .nav-links a.field-guide-link { margin: 0.5rem 1.5rem; display: block; text-align: center; }
-    .store-hero { min-height: 45vh; }
-    .portfolio-invite { padding: 0 1.5rem; }
+    .store-hero { min-height: 36vh; padding-top: 3.5rem; }
+    .portfolio-invite { padding: 0; }
     footer { padding: 2rem 1.5rem; grid-template-columns: 1fr; text-align: center; }
     .footer-right { text-align: center; }
     .filter-bar { gap: 0.4rem; margin-bottom: 2.5rem; }
@@ -1020,18 +1042,6 @@
     <p class="hero-eyebrow">✦ Original Works ✦</p>
     <h1 class="hero-title">Art Store</h1>
     <p class="hero-sub">Original works of art from the heart, mind, and soul of Matt EarthStar.</p>
-  </div>
-</section>
-
-<!-- PORTFOLIO ARCHIVE INVITE -->
-<section class="portfolio-invite">
-  <div class="portfolio-invite-card reveal">
-    <div>
-      <div class="portfolio-invite-label">Beyond the Store</div>
-      <h2>Curious about the original jewelry work?</h2>
-      <p>The portfolio holds the deeper archive: older wraps, one-off experiments, and pieces that shaped the signal long before they became products.</p>
-    </div>
-    <a href="/portfolio/" class="portfolio-invite-btn">Explore Portfolio</a>
   </div>
 </section>
 
@@ -1903,6 +1913,18 @@
     <a href="https://earthstar.creator-spring.com" target="_blank" rel="noopener" class="btn-full-store">View Full Spring Store &rarr;</a>
   </div>
 
+  <!-- PORTFOLIO ARCHIVE INVITE -->
+  <section class="portfolio-invite">
+    <div class="portfolio-invite-card reveal">
+      <div>
+        <div class="portfolio-invite-label">Archive</div>
+        <h2>Original jewelry work</h2>
+        <p>Older wraps, one-off experiments, and pieces that shaped the signal before they became products.</p>
+      </div>
+      <a href="/portfolio/" class="portfolio-invite-btn">Explore Portfolio</a>
+    </div>
+  </section>
+
 </main>
 
 <!-- FOOTER -->
@@ -2089,9 +2111,12 @@
     voaModalBody.style.padding = '1.2rem';
     voaModalBody.innerHTML =
       '<div class="image-zoom-view">' +
-        '<div class="image-zoom-frame">' +
-          '<img src="' + escapeHtml(src) + '" alt="' + escapeHtml(label || title || 'Product image') + '">' +
-          '<div class="image-zoom-lens" aria-hidden="true"></div>' +
+        '<div class="image-zoom-layout">' +
+          '<div class="image-zoom-frame">' +
+            '<img src="' + escapeHtml(src) + '" alt="' + escapeHtml(label || title || 'Product image') + '">' +
+            '<div class="image-zoom-focus" aria-hidden="true"></div>' +
+          '</div>' +
+          '<div class="image-zoom-pane" aria-hidden="true"></div>' +
         '</div>' +
         '<div class="image-zoom-actions">' +
           '<div class="image-zoom-title">' + escapeHtml(title || label || 'Product image') + '</div>' +
@@ -2105,32 +2130,55 @@
     var frame = voaModalBody.querySelector('.image-zoom-frame');
     if (!frame || frame.dataset.zoomInit) return;
     var img = frame.querySelector('img');
-    var lens = frame.querySelector('.image-zoom-lens');
-    if (!img || !lens) return;
+    var pane = voaModalBody.querySelector('.image-zoom-pane');
+    var focus = frame.querySelector('.image-zoom-focus');
+    if (!img || !pane || !focus) return;
     frame.dataset.zoomInit = '1';
 
-    var zoom = 2.6;
-    lens.style.backgroundImage = 'url("' + img.src + '")';
+    var zoom = 2.9;
+    pane.style.backgroundImage = 'url("' + img.src + '")';
 
-    function updateLens(e) {
+    function setRestingZoom() {
       var imgRect = img.getBoundingClientRect();
+      if (!imgRect.width || !imgRect.height) return;
+      pane.style.backgroundSize = (imgRect.width * zoom) + 'px ' + (imgRect.height * zoom) + 'px';
+      pane.style.backgroundPosition = 'center';
+    }
+
+    function updateZoom(e) {
+      var imgRect = img.getBoundingClientRect();
+      if (e.clientX < imgRect.left || e.clientX > imgRect.right || e.clientY < imgRect.top || e.clientY > imgRect.bottom) {
+        pane.classList.remove('active');
+        focus.classList.remove('visible');
+        return;
+      }
+
       var frameRect = frame.getBoundingClientRect();
       var x = Math.max(0, Math.min(e.clientX - imgRect.left, imgRect.width));
       var y = Math.max(0, Math.min(e.clientY - imgRect.top, imgRect.height));
-      if (e.clientX < imgRect.left || e.clientX > imgRect.right || e.clientY < imgRect.top || e.clientY > imgRect.bottom) {
-        lens.classList.remove('visible');
-        return;
-      }
-      var lensSize = lens.offsetWidth || 240;
-      lens.style.left = (e.clientX - frameRect.left) + 'px';
-      lens.style.top = (e.clientY - frameRect.top) + 'px';
-      lens.style.backgroundSize = (imgRect.width * zoom) + 'px ' + (imgRect.height * zoom) + 'px';
-      lens.style.backgroundPosition = '-' + ((x * zoom) - (lensSize / 2)) + 'px -' + ((y * zoom) - (lensSize / 2)) + 'px';
-      lens.classList.add('visible');
+      var paneRect = pane.getBoundingClientRect();
+      var bgW = imgRect.width * zoom;
+      var bgH = imgRect.height * zoom;
+      var bgX = Math.max(paneRect.width - bgW, Math.min(0, paneRect.width / 2 - x * zoom));
+      var bgY = Math.max(paneRect.height - bgH, Math.min(0, paneRect.height / 2 - y * zoom));
+
+      focus.style.left = (e.clientX - frameRect.left) + 'px';
+      focus.style.top = (e.clientY - frameRect.top) + 'px';
+      focus.classList.add('visible');
+      pane.style.backgroundSize = bgW + 'px ' + bgH + 'px';
+      pane.style.backgroundPosition = bgX + 'px ' + bgY + 'px';
+      pane.classList.add('active');
     }
 
-    frame.addEventListener('pointermove', updateLens);
-    frame.addEventListener('pointerleave', function() { lens.classList.remove('visible'); });
+    if (img.complete) setRestingZoom();
+    else img.addEventListener('load', setRestingZoom, { once: true });
+    frame.addEventListener('pointermove', updateZoom);
+    frame.addEventListener('pointerleave', function() {
+      pane.classList.remove('active');
+      focus.classList.remove('visible');
+      setRestingZoom();
+    });
+    window.addEventListener('resize', setRestingZoom, { passive: true });
   }
 
   function voaGoBack() {
