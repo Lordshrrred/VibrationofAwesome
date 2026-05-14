@@ -324,6 +324,31 @@
     max-width: 1200px;
     margin: 0 auto;
   }
+  main.product-filtered {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.4rem;
+    align-items: start;
+  }
+  main.product-filtered .store-section-header,
+  main.product-filtered .filter-bar,
+  main.product-filtered .store-footer-row,
+  main.product-filtered .portfolio-invite {
+    grid-column: 1 / -1;
+  }
+  main.product-filtered .collection {
+    display: contents;
+  }
+  main.product-filtered .collection.hidden {
+    display: none;
+  }
+  main.product-filtered .collection-header {
+    display: none;
+  }
+  main.product-filtered .collection-grid {
+    display: contents;
+    margin-top: 0;
+  }
 
   .section-label {
     font-family: 'Rajdhani', sans-serif;
@@ -964,6 +989,7 @@
   /* RESPONSIVE */
   @media (max-width: 1100px) {
     .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    main.product-filtered { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
   }
   @media (max-width: 900px) {
     main { padding: 4rem 2rem; }
@@ -972,6 +998,7 @@
   }
   @media (max-width: 600px) {
     .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    main.product-filtered { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
     .product-media, .product-carousel { height: 180px; }
     #mainNav { padding: 1.2rem 1.5rem; position: relative; flex-wrap: wrap; }
     .hamburger { display: flex; }
@@ -997,6 +1024,7 @@
   }
   @media (max-width: 400px) {
     .collection-grid { grid-template-columns: 1fr; }
+    main.product-filtered { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -1046,12 +1074,12 @@
 </section>
 
 <!-- MAIN STORE -->
-<main>
+<main id="storeMain">
 
   <!-- SECTION HEADER -->
-  <div class="reveal">
-    <p class="section-label">Shop by Design</p>
-    <h2 class="section-title">The Collections</h2>
+  <div class="reveal store-section-header">
+    <p class="section-label" id="storeSectionLabel">Shop by Design</p>
+    <h2 class="section-title" id="storeSectionTitle">The Collections</h2>
     <div class="divider"></div>
   </div>
 
@@ -2721,11 +2749,24 @@
 
   // Collection filter
   const filterBtns = document.querySelectorAll('.filter-btn');
+  const storeMain = document.getElementById('storeMain');
+  const storeSectionLabel = document.getElementById('storeSectionLabel');
+  const storeSectionTitle = document.getElementById('storeSectionTitle');
+  const productFilterTitles = {
+    shirt: 'All Shirts',
+    hoodie: 'All Hoodies',
+    mug: 'All Mugs',
+    sticker: 'All Stickers'
+  };
   filterBtns.forEach(btn => {
     btn.addEventListener('click', function() {
       filterBtns.forEach(b => b.classList.remove('active'));
       this.classList.add('active');
       const filter = this.dataset.filter;
+      const productMode = filter !== 'all';
+      storeMain.classList.toggle('product-filtered', productMode);
+      storeSectionLabel.textContent = productMode ? 'Shop by Product' : 'Shop by Design';
+      storeSectionTitle.textContent = productMode ? productFilterTitles[filter] : 'The Collections';
       document.querySelectorAll('.collection').forEach(col => {
         if (filter === 'all') {
           col.classList.remove('hidden');
@@ -2739,6 +2780,9 @@
           });
           col.classList.toggle('hidden', visible === 0);
         }
+      });
+      requestAnimationFrame(function() {
+        window.dispatchEvent(new Event('resize'));
       });
     });
   });
