@@ -151,7 +151,7 @@
       window.location.hostname === "localhost" ||
       window.location.hostname === "127.0.0.1"
     ) {
-      return normalizeApiBase(window.location.origin + "/.netlify/functions");
+      return normalizeApiBase(window.location.origin + "/api");
     }
     return "";
   }

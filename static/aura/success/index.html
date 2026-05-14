@@ -163,7 +163,9 @@
 </div>
 
 <script>
-  const FUNCTIONS_BASE = 'https://vibrationofawesome.netlify.app/.netlify/functions';
+  const FUNCTIONS_BASE = window.location.hostname.includes('vercel.app') || window.location.hostname === 'localhost'
+    ? '/api'
+    : 'https://vibrationofawesome.vercel.app/api';
 
   function savePremiumLocal(token, subscriptionId) {
     localStorage.setItem('aura_token', token);

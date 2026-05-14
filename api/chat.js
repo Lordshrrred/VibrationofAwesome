@@ -1,15 +1,5 @@
-// chat.js ~ AURA conversational AI backend
-// Netlify Function: proxies messages to Claude API with the AURA persona.
-//
+// api/chat.js ~ AURA conversational AI backend
 // POST { messages: [{role, content}] }
-// Returns the raw Anthropic API response body ({ content: [{type, text}] })
-
-const CORS = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "Content-Type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Content-Type": "application/json",
-};
 
 const AURA_SYSTEM = `You are AURA ~ a spiritual companion, cosmic guide, and hype entity unlike anything else out there.
 
@@ -48,46 +38,35 @@ IMPORTANT RULES:
 - Always end with a question that goes deeper OR one small actionable thing
 - No corporate speak. No beige LinkedIn energy. Ever.`;
 
-export const handler = async (event) => {
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 200, headers: CORS, body: "" };
-  }
+function setCors(res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+}
 
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, headers: CORS, body: JSON.stringify({ error: "Method Not Allowed" }) };
-  }
+export default async function handler(req, res) {
+  setCors(res);
+  if (req.method === "OPTIONS") return res.status(200).end();
+  if (req.method !== "POST") return res.status(405).json({ error: "Method Not Allowed" });
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     console.error("chat: ANTHROPIC_API_KEY not set");
-    return {
-      statusCode: 500,
-      headers: CORS,
-      body: JSON.stringify({ error: "AURA is not configured. Contact support." }),
-    };
+    return res.status(500).json({ error: "AURA is not configured." });
   }
 
-  let messages;
-  try {
-    ({ messages } = JSON.parse(event.body || "{}"));
-    if (!Array.isArray(messages) || messages.length === 0) throw new Error("messages must be a non-empty array");
-  } catch (err) {
-    return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: "Invalid request: " + err.message }) };
+  const { messages } = req.body || {};
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return res.status(400).json({ error: "messages must be a non-empty array" });
   }
 
-  // Sanitize: only keep valid role/content pairs, truncate to last 20 turns to stay within token budget
   const sanitized = messages
     .filter(m => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim())
     .slice(-20)
     .map(m => ({ role: m.role, content: m.content.slice(0, 4000) }));
 
-  if (sanitized.length === 0) {
-    return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: "No valid messages provided" }) };
-  }
-
-  // Ensure the last message is from the user (Anthropic requirement)
-  if (sanitized[sanitized.length - 1].role !== "user") {
-    return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: "Last message must be from user" }) };
+  if (!sanitized.length || sanitized[sanitized.length - 1].role !== "user") {
+    return res.status(400).json({ error: "Last message must be from user" });
   }
 
   try {
@@ -107,25 +86,15 @@ export const handler = async (event) => {
     });
 
     const data = await response.json().catch(() => ({}));
-
     if (!response.ok) {
-      const errMsg = data?.error?.message || `Anthropic API error ${response.status}`;
-      console.error(`chat: Anthropic ${response.status}: ${errMsg}`);
-      return {
-        statusCode: 502,
-        headers: CORS,
-        body: JSON.stringify({ error: errMsg }),
-      };
+      const msg = data?.error?.message || `Anthropic error ${response.status}`;
+      console.error(`chat: Anthropic ${response.status}: ${msg}`);
+      return res.status(502).json({ error: msg });
     }
 
-    return { statusCode: 200, headers: CORS, body: JSON.stringify(data) };
-
+    return res.status(200).json(data);
   } catch (err) {
     console.error("chat: fetch failed:", err.message);
-    return {
-      statusCode: 503,
-      headers: CORS,
-      body: JSON.stringify({ error: "Could not reach AURA. Please try again.", detail: err.message }),
-    };
+    return res.status(503).json({ error: "Could not reach AURA. Please try again." });
   }
-};
+}

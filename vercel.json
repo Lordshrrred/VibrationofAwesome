@@ -1,9 +1,6 @@
 {
   "functions": {
-    "api/capture-email.js": {
-      "maxDuration": 10
-    },
-    "api/backlinks.js": {
+    "api/**": {
       "maxDuration": 30
     }
   }
