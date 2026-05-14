@@ -19,7 +19,7 @@ permissions:
   actions:  write     # trigger hugo.yml deploy after publish
 
 concurrency:
-  group: boom-generate
+  group: voa-publish-and-syndicate
   cancel-in-progress: false
 
 jobs:

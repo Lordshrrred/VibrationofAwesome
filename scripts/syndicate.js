@@ -60,6 +60,9 @@ const ROOT       = path.resolve(__dirname, "..");
 const LOG_FILE     = path.join(ROOT, "static", "_data", "syndication-log.json");
 const RESULTS_FILE = path.join(ROOT, "static", "_data", "syndication-results.json");
 const CACHE_DIR    = path.join(ROOT, ".cache");
+const LOCK_DIR     = path.join(CACHE_DIR, "syndication.lock");
+const LOCK_STALE_MS = Number(process.env.SYNDICATION_LOCK_STALE_MS || 45 * 60 * 1000);
+const LOCK_WAIT_MS  = Number(process.env.SYNDICATION_LOCK_WAIT_MS || 60 * 60 * 1000);
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -82,6 +85,59 @@ function pctEncode(s) {
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function readLockInfo() {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(LOCK_DIR, "owner.json"), "utf8"));
+  } catch (_) {
+    return null;
+  }
+}
+
+function isLockStale(info) {
+  const createdAt = Date.parse(info?.createdAt || "");
+  return !createdAt || Date.now() - createdAt > LOCK_STALE_MS;
+}
+
+async function acquireSyndicationLock(label) {
+  fs.mkdirSync(CACHE_DIR, { recursive: true });
+  const startedAt = Date.now();
+  const owner = {
+    label,
+    pid: process.pid,
+    createdAt: new Date().toISOString(),
+  };
+
+  while (true) {
+    try {
+      fs.mkdirSync(LOCK_DIR);
+      fs.writeFileSync(path.join(LOCK_DIR, "owner.json"), JSON.stringify(owner, null, 2), "utf8");
+      console.log(`  [lock] Syndication lock acquired for ${label}.`);
+      return () => {
+        try {
+          fs.rmSync(LOCK_DIR, { recursive: true, force: true });
+          console.log(`  [lock] Syndication lock released for ${label}.`);
+        } catch (_) { /* lock already gone */ }
+      };
+    } catch (err) {
+      if (err.code !== "EEXIST") throw err;
+
+      const info = readLockInfo();
+      if (isLockStale(info)) {
+        console.warn(`  [lock] Removing stale syndication lock from ${info?.label || "unknown owner"}.`);
+        fs.rmSync(LOCK_DIR, { recursive: true, force: true });
+        continue;
+      }
+
+      if (Date.now() - startedAt > LOCK_WAIT_MS) {
+        throw new Error(`Timed out waiting for syndication lock held by ${info?.label || "another process"}`);
+      }
+
+      console.log(`  [lock] Another syndication run is active (${info?.label || "unknown"}). Waiting 30s...`);
+      await sleep(30_000);
+    }
+  }
 }
 
 function firstNonEmpty(...values) {
@@ -958,6 +1014,11 @@ function writeDashboardConfig() {
  * @returns {Promise<object>} Log entry with per-platform results
  */
 export async function syndicatePost(lane, slug, options = {}) {
+  const releaseLock = options.skipLock
+    ? () => {}
+    : await acquireSyndicationLock(`${lane}:${slug}`);
+
+  try {
   // ── 1. Load post metadata ──
   const dataFile = path.join(ROOT, "static", "_data", `${lane}-posts.json`);
   if (!fs.existsSync(dataFile)) throw new Error(`Data file not found: ${dataFile}`);
@@ -1219,6 +1280,9 @@ export async function syndicatePost(lane, slug, options = {}) {
   console.log(`Results saved → static/_data/syndication-results.json\n`);
 
   return entry;
+  } finally {
+    releaseLock();
+  }
 }
 
 // ── CLI entry point ───────────────────────────────────────────────────────────

@@ -18,10 +18,11 @@ on:
     - cron: '0 22 * * *'    # 6:00 PM ET  (UTC-4 EDT)  ~ evening publish
   workflow_dispatch:          # Manual trigger for testing or emergency publish
 
-# Prevent two drip runs from overlapping (e.g. slow run + next scheduled run).
-# 'queue' waits for the first to finish rather than cancelling it.
+# Prevent any VOA publishing/syndication run from overlapping.
+# Boom manual generation and drip publishing share this queue because they both
+# post to the same platform accounts and can trigger the feeder repo.
 concurrency:
-  group: drip-publish
+  group: voa-publish-and-syndicate
   cancel-in-progress: false
 
 permissions:
