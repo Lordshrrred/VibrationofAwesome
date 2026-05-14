@@ -43,13 +43,20 @@ export const BACKLINK_TIER = [
 ];
 
 /**
- * All social platforms known to the blog engine.
- * Used to compute the suppressed set for logging.
+ * VOA-owned social platforms the blog engine may post to.
+ * ESR (EarthStar Rising) accounts are NOT listed here ~
+ * they belong to the EarthStar Command engine.
+ *
+ * facebook_earthstar is intentionally included here because the EarthStar
+ * page also carries VOA-adjacent mission content and is approved for
+ * selective VOA blog crossover (earthstar content type only).
+ *
+ * TODO (crossover v2): if VOA posts should ever crosspost to ESR Bluesky
+ * or ESR Mastodon, add a dedicated crossover flag to the policy routing
+ * rather than adding them back to ALL_SOCIAL.
  */
 export const ALL_SOCIAL = [
-  "bluesky_esr",
   "bluesky_voa",
-  "mastodon_esr",
   "mastodon_voa",
   "facebook_voa",
   "facebook_earthstar",
@@ -121,45 +128,53 @@ export function detectContentType(post) {
 /**
  * Social platform routing by content type.
  *
- * Design principles (see syndication-policy-v1.md for full rationale):
- *   facebook_earthstar ~ EarthStar content only (video engine owns this page)
- *   instagram          ~ creator/earthstar only (video engine primary)
- *   pinterest          ~ evergreen/visual content only (skip philosophy + nervous-system)
- *   bluesky + mastodon ~ all content types (open platforms, philosophical community)
- *   threads            ~ all content types (high spam tolerance)
- *   facebook_voa       ~ all except suppressed-by-type content
+ * VOA blog routes ONLY to VOA-owned social accounts by default.
+ * ESR (EarthStar Rising) accounts ~ bluesky_esr, mastodon_esr ~ are owned
+ * by the EarthStar Command engine and are NOT included here.
+ *
+ * Platform notes:
+ *   bluesky_voa       ~ VOA Bluesky, all content types
+ *   mastodon_voa      ~ VOA Mastodon, all content types
+ *   facebook_voa      ~ VOA Facebook page, most content types
+ *   facebook_earthstar ~ approved for earthstar content only (mission crossover)
+ *   instagram         ~ creator/earthstar only (video engine primary)
+ *   pinterest         ~ evergreen/visual content only (skip philosophy + nervous-system)
+ *   threads           ~ all content types, high spam tolerance
+ *
+ * TODO (crossover v2): to add ESR Bluesky/Mastodon for specific content
+ * types, add a crossover flag here rather than adding them to ALL_SOCIAL.
  */
 const SOCIAL_ROUTING = {
   creator: [
-    "bluesky_esr", "bluesky_voa",
-    "mastodon_esr", "mastodon_voa",
+    "bluesky_voa",
+    "mastodon_voa",
     "facebook_voa",
     "pinterest",
     "threads",
     "instagram",
   ],
   philosophy: [
-    "bluesky_esr", "bluesky_voa",
-    "mastodon_esr", "mastodon_voa",
+    "bluesky_voa",
+    "mastodon_voa",
     "facebook_voa",
     "threads",
   ],
   "nervous-system": [
-    "bluesky_esr", "bluesky_voa",
-    "mastodon_esr", "mastodon_voa",
+    "bluesky_voa",
+    "mastodon_voa",
     "facebook_voa",
     "threads",
   ],
   earthstar: [
-    "bluesky_esr", "bluesky_voa",
-    "mastodon_esr", "mastodon_voa",
+    "bluesky_voa",
+    "mastodon_voa",
     "facebook_voa", "facebook_earthstar",
     "pinterest",
     "threads",
   ],
   general: [
-    "bluesky_esr", "bluesky_voa",
-    "mastodon_esr", "mastodon_voa",
+    "bluesky_voa",
+    "mastodon_voa",
     "facebook_voa",
     "pinterest",
     "threads",
@@ -184,10 +199,124 @@ const SUPPRESS_REASONS = {
   facebook_earthstar: "video engine primary ~ EarthStar content only",
   instagram:          "video engine primary ~ creator content only",
   pinterest:          "visual/evergreen platform ~ skip philosophy and nervous-system",
+  // ESR accounts are EarthStar Command territory, not VOA blog defaults
+  bluesky_esr:        "EarthStar Command account ~ not VOA blog default",
+  mastodon_esr:       "EarthStar Command account ~ not VOA blog default",
 };
 
 function getSuppressionReason(platform) {
   return SUPPRESS_REASONS[platform] || "content type routing";
+}
+
+// ─────────────────────────────────────────────────────────────────
+// PINTEREST BOARD ROUTING
+// ─────────────────────────────────────────────────────────────────
+
+/**
+ * VOA Pinterest board map.
+ * Keys are stable board identifiers; values are the human-readable board names
+ * exactly as they appear in the VOA Pinterest account.
+ *
+ * Board IDs are resolved at runtime via PUBLER_PINTEREST_BOARD_<KEY>_ID env vars
+ * or the Publer media-options API fallback.
+ *
+ * To add a new board: add an entry here and set the corresponding env var.
+ */
+export const PINTEREST_BOARDS = {
+  "vibration-of-awesome":     "Vibration of Awesome",       // safe fallback board
+  "nervous-system-reset":     "Nervous System Reset",
+  "dopamine-detox":           "Dopamine Detox",
+  "conscious-creator-tools":  "Conscious Creator Tools",
+  "earthstar":                "EarthStar",
+  "field-guide":              "Field Guide",
+  "purpose-and-direction":    "Purpose and Direction",
+  "flow-state":               "Flow State",
+};
+
+/** Default board when no specific match is found */
+const PINTEREST_DEFAULT_BOARD = "vibration-of-awesome";
+
+/**
+ * Rule-based board selection. Deterministic, no AI.
+ *
+ * Priority order:
+ *   1. Niche slug (most specific)
+ *   2. Tag keyword signals
+ *   3. Content type
+ *   4. Lane default
+ *   5. PINTEREST_DEFAULT_BOARD fallback
+ *
+ * @param {object} post - Post metadata { niche?, tags?, lane?, title? }
+ * @returns {string} Board key from PINTEREST_BOARDS
+ */
+export function selectPinterestBoard(post) {
+  const niche = (post.niche || "").toLowerCase();
+  const tags  = (post.tags || []).map(t => String(t).toLowerCase());
+  const title = (post.title || "").toLowerCase();
+
+  // 1. Niche-based rules (highest specificity)
+  if (niche === "nervous-system-dysregulation" || niche === "dopamine-addiction-numbing") {
+    if (niche === "dopamine-addiction-numbing") return "dopamine-detox";
+    return "nervous-system-reset";
+  }
+  if (niche === "ai-creator-tools") return "conscious-creator-tools";
+  if (niche === "direction-purpose-drift")  return "purpose-and-direction";
+  if (niche === "disconnection-inner-noise") return "flow-state";
+  // Philosophy niches map to the main VOA board
+  if (["self-betrayal-avoidance", "misalignment-wrong-life"].includes(niche)) {
+    return "vibration-of-awesome";
+  }
+
+  // 2. Tag-based signals
+  if (tags.some(t => ["dopamine", "dopamine-detox", "addiction", "numbing"].includes(t))) {
+    return "dopamine-detox";
+  }
+  if (tags.some(t => ["nervous-system", "anxiety", "dysregulation", "adhd", "neurodivergent", "healing"].includes(t))) {
+    return "nervous-system-reset";
+  }
+  if (tags.some(t => ["ai", "tools", "automation", "workflow", "creator", "music", "production"].includes(t))) {
+    return "conscious-creator-tools";
+  }
+  if (tags.some(t => ["earthstar", "earth-star", "sacred-geometry", "empower"].includes(t))) {
+    return "earthstar";
+  }
+  if (tags.some(t => ["field-guide", "guide", "ebook", "download"].includes(t))) {
+    return "field-guide";
+  }
+  if (tags.some(t => ["purpose", "direction", "calling", "clarity", "drift"].includes(t))) {
+    return "purpose-and-direction";
+  }
+  if (tags.some(t => ["flow", "flow-state", "deep-work", "focus", "presence"].includes(t))) {
+    return "flow-state";
+  }
+
+  // 3. Title keyword signals
+  if (/dopamine|addiction|numb/.test(title))          return "dopamine-detox";
+  if (/nervous system|anxiety|adhd|dysregulation/.test(title)) return "nervous-system-reset";
+  if (/ai tool|workflow|automat|creator tool/.test(title)) return "conscious-creator-tools";
+  if (/earthstar|earth.?star/.test(title))            return "earthstar";
+  if (/field guide/.test(title))                      return "field-guide";
+  if (/purpose|direction|calling/.test(title))        return "purpose-and-direction";
+  if (/flow state|deep work|focus/.test(title))       return "flow-state";
+
+  // 4. Content type fallback
+  const ct = detectContentType(post);
+  if (ct === "creator")       return "conscious-creator-tools";
+  if (ct === "nervous-system") return "nervous-system-reset";
+  if (ct === "earthstar")     return "earthstar";
+
+  // 5. Safe default
+  return PINTEREST_DEFAULT_BOARD;
+}
+
+/**
+ * Log the selected Pinterest board with routing reason.
+ * @param {string} boardKey   - Key from PINTEREST_BOARDS
+ * @param {string} reason     - Human-readable reason for selection
+ */
+export function logPinterestBoard(boardKey, reason) {
+  const name = PINTEREST_BOARDS[boardKey] || boardKey;
+  console.log(`  [pinterest-board] Selected: "${name}" (${reason})`);
 }
 
 // ─────────────────────────────────────────────────────────────────

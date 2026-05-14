@@ -47,6 +47,9 @@ import {
   getSocialPlatforms,
   logPolicyDecision,
   getNextCTA,
+  selectPinterestBoard,
+  logPinterestBoard,
+  PINTEREST_BOARDS,
 } from "./lib/policy.js";
 
 dotenv.config({ override: true });
@@ -280,9 +283,19 @@ async function getPublerAccountId(platform, headers, baseUrl = "https://app.publ
   return match.id;
 }
 
-async function getPublerPinterestBoardId(accountId, headers, baseUrl = "https://app.publer.com/api/v1") {
+async function getPublerPinterestBoardId(accountId, headers, baseUrl = "https://app.publer.com/api/v1", boardKey = null, boardName = null) {
+  // 1. Per-board env var: PUBLER_PINTEREST_BOARD_{KEY}_ID (hyphens become underscores)
+  if (boardKey) {
+    const perBoardEnv = `PUBLER_PINTEREST_BOARD_${boardKey.replace(/-/g, "_").toUpperCase()}_ID`;
+    if (process.env[perBoardEnv]?.trim()) {
+      console.log(`  [pinterest] Board ID from ${perBoardEnv}`);
+      return process.env[perBoardEnv].trim();
+    }
+  }
+
+  // 2. Default env var fallback before hitting the API
   const configured = process.env.PUBLER_PINTEREST_BOARD_ID || process.env.PINTEREST_BOARD_ID;
-  if (configured?.trim()) return configured.trim();
+  if (configured?.trim() && !boardName) return configured.trim();
 
   const workspaceId = process.env.PUBLER_WORKSPACE_ID;
   if (!workspaceId) throw new Error("PUBLER_WORKSPACE_ID not set");
@@ -294,6 +307,20 @@ async function getPublerPinterestBoardId(accountId, headers, baseUrl = "https://
   const rows = Array.isArray(data) ? data : Array.isArray(data.data) ? data.data : [];
   const row = rows.find(item => item.id === accountId) || rows[0] || {};
   const boards = row.albums || row.boards || [];
+
+  // 3. Name-match against boards from Publer API
+  if (boardName) {
+    const normalise = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
+    const byName = boards.find(b => normalise(b.name || b.title || "") === normalise(boardName));
+    if (byName?.id) {
+      console.log(`  [pinterest] Board matched by name "${boardName}" → id:${byName.id}`);
+      return byName.id;
+    }
+    console.warn(`  [pinterest] Board "${boardName}" not found in Publer; falling back to default`);
+  }
+
+  // 4. Default env var or first board
+  if (configured?.trim()) return configured.trim();
   const board = boards.find(item => item.type === "pinterest") || boards[0];
   if (!board?.id) throw new Error("PUBLER_PINTEREST_BOARD_ID not set and no Pinterest board found in Publer");
   return board.id;
@@ -560,7 +587,11 @@ async function postViaPubler(platform, caption, imageUrl, details = {}) {
 
   const accountTarget = { id: accountId };
   if (platform === "pinterest") {
-    accountTarget.album_id = await getPublerPinterestBoardId(accountId, headers, BASE);
+    accountTarget.album_id = await getPublerPinterestBoardId(
+      accountId, headers, BASE,
+      details.pinterestBoardKey || null,
+      details.pinterestBoardName || null,
+    );
   }
 
   // ── Step 2: publish immediately via /posts/schedule/publish ──────────────
@@ -973,7 +1004,13 @@ export async function syndicatePost(lane, slug, options = {}) {
   // ── 7. Post to each platform ──
   const results = {};
 
-  async function attempt(platform, fn) {
+  /**
+   * Attempt to post to a platform, applying policy + explicit platform filters.
+   * @param {string}   platform     - Platform key (used in results map)
+   * @param {Function} fn           - Async function that performs the post
+   * @param {string}   [accountLabel] - Human-readable account identity for logging
+   */
+  async function attempt(platform, fn, accountLabel = null) {
     if (options.bloggerOnly && platform !== "blogger") return;
     if (options.platforms && !options.platforms.includes(platform)) return;
     // Policy filter: skip social platforms not approved for this content type.
@@ -985,7 +1022,8 @@ export async function syndicatePost(lane, slug, options = {}) {
     }
     try {
       const r = await fn();
-      console.log(`  ✓ ${platform}${r.postUrl ? ` → ${r.postUrl}` : ""}`);
+      const acct = accountLabel ? ` [${accountLabel}]` : "";
+      console.log(`  ✓ ${platform}${acct}${r.postUrl ? ` → ${r.postUrl}` : ""}`);
       results[platform] = { success: true, postId: r.postId || null, postUrl: r.postUrl || null, error: null };
     } catch (err) {
       console.error(`  ✗ ${platform}: ${err.message}`);
@@ -993,93 +1031,138 @@ export async function syndicatePost(lane, slug, options = {}) {
     }
   }
 
-  // Bluesky EarthStar Rising
-  if (hasBlueskyConfig("ESR")) {
-    await attempt("bluesky_esr", () =>
-      postToBluesky(captions.bluesky, postUrl, post.title, post.excerpt, "ESR"));
-  } else {
-    console.warn("  ~ bluesky_esr: ESR_BLUESKY_* env vars not set");
-    results.bluesky_esr = { success: false, postId: null, postUrl: null, error: "env vars not set" };
-  }
+  // ── Account identity summary ───────────────────────────────────────────────
+  // Shown before attempts so CI logs clearly confirm which accounts are targeted.
+  console.log("\n[accounts] VOA social destinations:");
+  if (hasBlueskyConfig("VOA"))   console.log(`  bluesky_voa   → @${getBlueskyConfig("VOA").handle}`);
+  if (hasMastodonConfig("VOA"))  console.log(`  mastodon_voa  → ${getMastodonConfig("VOA").instance}`);
+  if (process.env.META_PAGE_ID_VOA) console.log(`  facebook_voa  → page:${process.env.META_PAGE_ID_VOA}`);
+  console.log("\n[accounts] Backlink tier (always active):");
+  console.log("  devto / tumblr_voa / tumblr_esr / blogger / wordpress_earthstar");
+  if (hasBlueskyConfig("ESR"))  console.log(`\n[accounts] ESR crossover (suppressed by default): bluesky_esr @${getBlueskyConfig("ESR").handle}`);
+  if (hasMastodonConfig("ESR")) console.log(`[accounts] ESR crossover (suppressed by default): mastodon_esr ${getMastodonConfig("ESR").instance}`);
+  console.log();
 
-  // Bluesky Vibration of Awesome
+  // ── Pinterest board selection ──────────────────────────────────────────────
+  const pinterestBoardKey = selectPinterestBoard({ ...post, lane });
+  const pinterestBoardName = PINTEREST_BOARDS[pinterestBoardKey] || pinterestBoardKey;
+  logPinterestBoard(pinterestBoardKey, `niche:${post.niche || "none"}, content-type:${detectContentType({ ...post, lane })}`);
+
+  // ── VOA Social platforms ───────────────────────────────────────────────────
+
+  // VOA Bluesky ~ primary VOA blog destination
   if (hasBlueskyConfig("VOA")) {
+    const voaBskyHandle = getBlueskyConfig("VOA").handle;
     await attempt("bluesky_voa", () =>
-      postToBluesky(captions.bluesky, postUrl, post.title, post.excerpt, "VOA"));
+      postToBluesky(captions.bluesky, postUrl, post.title, post.excerpt, "VOA"),
+      `@${voaBskyHandle}`);
   } else {
     console.warn("  ~ bluesky_voa: VOA_BLUESKY_* env vars not set");
     results.bluesky_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 
-  // Mastodon EarthStar Rising
-  if (hasMastodonConfig("ESR")) {
-    await attempt("mastodon_esr", () =>
-      postToMastodon(captions.mastodon, "ESR"));
-  } else {
-    console.warn("  ~ mastodon_esr: ESR_MASTODON_* env vars not set");
-    results.mastodon_esr = { success: false, postId: null, postUrl: null, error: "env vars not set" };
-  }
-
-  // Mastodon Vibration of Awesome
+  // VOA Mastodon ~ primary VOA blog destination
   if (hasMastodonConfig("VOA")) {
+    const voaMastInstance = getMastodonConfig("VOA").instance;
     await attempt("mastodon_voa", () =>
-      postToMastodon(captions.mastodon, "VOA"));
+      postToMastodon(captions.mastodon, "VOA"),
+      voaMastInstance);
   } else {
     console.warn("  ~ mastodon_voa: VOA_MASTODON_* env vars not set");
     results.mastodon_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 
-  // Facebook VOA
+  // Facebook VOA ~ primary VOA blog destination
   if (process.env.META_PAGE_ID_VOA && process.env.META_PAGE_TOKEN_VOA) {
     await attempt("facebook_voa", () =>
-      postToFacebookPage(process.env.META_PAGE_ID_VOA, process.env.META_PAGE_TOKEN_VOA, captions.facebook, postUrl));
+      postToFacebookPage(process.env.META_PAGE_ID_VOA, process.env.META_PAGE_TOKEN_VOA, captions.facebook, postUrl),
+      `page:${process.env.META_PAGE_ID_VOA}`);
   } else {
     console.warn("  ~ facebook_voa: META_PAGE_ID_VOA or META_PAGE_TOKEN_VOA not set");
     results.facebook_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 
-  // Facebook EarthStar
+  // Facebook EarthStar ~ approved crossover for earthstar content type only
+  // Policy routing suppresses this for non-earthstar content automatically.
   if (process.env.META_PAGE_ID_EARTHSTAR && process.env.META_PAGE_TOKEN_EARTHSTAR) {
     await attempt("facebook_earthstar", () =>
-      postToFacebookPage(process.env.META_PAGE_ID_EARTHSTAR, process.env.META_PAGE_TOKEN_EARTHSTAR, captions.facebook, postUrl));
+      postToFacebookPage(process.env.META_PAGE_ID_EARTHSTAR, process.env.META_PAGE_TOKEN_EARTHSTAR, captions.facebook, postUrl),
+      `page:${process.env.META_PAGE_ID_EARTHSTAR}`);
   } else {
     console.warn("  ~ facebook_earthstar: META_PAGE_ID_EARTHSTAR or META_PAGE_TOKEN_EARTHSTAR not set");
     results.facebook_earthstar = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 
-  // Pinterest via Publer
+  // Pinterest via Publer ~ VOA Pinterest account, board selected by policy
   await attempt("pinterest", () =>
-    postViaPubler("pinterest", captions.pinterest, imageUrl, { title: post.title, url: postUrl }));
+    postViaPubler("pinterest", captions.pinterest, imageUrl, {
+      title:               post.title,
+      url:                 postUrl,
+      pinterestBoardKey:   pinterestBoardKey,
+      pinterestBoardName:  pinterestBoardName,
+    }),
+    `board:"${pinterestBoardName}"`);
 
-  // Dev.to
-  await attempt("devto", () =>
-    postToDevTo(post.title, captions.devto, postUrl, post.tags));
-
-  // Tumblr EarthStar Rising
-  if (hasTumblrConfig("ESR")) {
-    await attempt("tumblr_esr", () =>
-      postToTumblr(captions.tumblr, extractHashtags(captions.tumblr), "ESR"));
-  } else {
-    console.warn("  ~ tumblr_esr: ESR_TUMBLR_* env vars not set");
-    results.tumblr_esr = { success: false, postId: null, postUrl: null, error: "env vars not set" };
-  }
-
-  // Tumblr Vibration of Awesome
-  if (hasTumblrConfig("VOA")) {
-    await attempt("tumblr_voa", () =>
-      postToTumblr(captions.tumblr, extractHashtags(captions.tumblr), "VOA"));
-  } else {
-    console.warn("  ~ tumblr_voa: VOA_TUMBLR_* env vars not set");
-    results.tumblr_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
-  }
-
-  // Instagram via Publer
+  // Instagram via Publer ~ VOA Instagram, creator/earthstar content only
   await attempt("instagram", () =>
     postViaPubler("instagram", captions.instagram, imageUrl));
 
   // Threads via Publer
   await attempt("threads", () =>
     postViaPubler("threads", captions.threads, null));
+
+  // ── ESR crossover platforms (suppressed by default via policy routing) ─────
+  // These are EarthStar Command accounts. The policy filter already suppresses
+  // them unless options.allSocial is true or they are added to SOCIAL_ROUTING.
+  // TODO (crossover v2): to enable selective ESR crossover for specific content
+  // types, update SOCIAL_ROUTING in policy.js rather than enabling here globally.
+
+  // ESR Bluesky ~ EarthStar Command account, suppressed by default for VOA blog
+  if (hasBlueskyConfig("ESR")) {
+    const esrBskyHandle = getBlueskyConfig("ESR").handle;
+    await attempt("bluesky_esr", () =>
+      postToBluesky(captions.bluesky, postUrl, post.title, post.excerpt, "ESR"),
+      `@${esrBskyHandle} [ESR crossover]`);
+  } else {
+    results.bluesky_esr = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+  }
+
+  // ESR Mastodon ~ EarthStar Command account, suppressed by default for VOA blog
+  if (hasMastodonConfig("ESR")) {
+    const esrMastInstance = getMastodonConfig("ESR").instance;
+    await attempt("mastodon_esr", () =>
+      postToMastodon(captions.mastodon, "ESR"),
+      `${esrMastInstance} [ESR crossover]`);
+  } else {
+    results.mastodon_esr = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+  }
+
+  // ── Backlink tier (always on, policy does not suppress these) ─────────────
+
+  // Dev.to ~ canonical URL + DoFollow, high-DA tech platform
+  await attempt("devto", () =>
+    postToDevTo(post.title, captions.devto, postUrl, post.tags));
+
+  // VOA Tumblr ~ primary Tumblr backlink destination
+  if (hasTumblrConfig("VOA")) {
+    await attempt("tumblr_voa", () =>
+      postToTumblr(captions.tumblr, extractHashtags(captions.tumblr), "VOA"),
+      process.env.VOA_TUMBLR_BLOG_NAME || "voa-tumblr");
+  } else {
+    console.warn("  ~ tumblr_voa: VOA_TUMBLR_* env vars not set");
+    results.tumblr_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+  }
+
+  // ESR Tumblr ~ additional cross-domain backlink coverage (separate subdomain = separate indexed domain)
+  // This is intentional SEO infrastructure, not audience-channel crossover.
+  if (hasTumblrConfig("ESR")) {
+    await attempt("tumblr_esr", () =>
+      postToTumblr(captions.tumblr, extractHashtags(captions.tumblr), "ESR"),
+      `${process.env.ESR_TUMBLR_BLOG_NAME || "esr-tumblr"} [backlink]`);
+  } else {
+    console.warn("  ~ tumblr_esr: ESR_TUMBLR_* env vars not set");
+    results.tumblr_esr = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+  }
 
   // Blogger (auto-publish ~ AI-generated related article inspired by source)
   await attempt("blogger", async () => {
