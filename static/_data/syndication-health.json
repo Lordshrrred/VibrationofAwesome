@@ -1,44 +1,58 @@
 {
-  "lastChecked": "2026-05-13T15:14:33.010Z",
-  "status": "ok",
-  "passed": 11,
-  "failed": 0,
-  "total": 11,
-  "topFix": null,
+  "lastChecked": "2026-05-14T04:12:45.580Z",
+  "status": "broken",
+  "passed": 10,
+  "failed": 4,
+  "total": 14,
+  "topFix": {
+    "name": "Blogger token refresh",
+    "detail": "invalid_grant: Token has been expired or revoked.",
+    "repairCommand": "npm run blogger-token"
+  },
   "drip": {
-    "status": "paused",
-    "rate": 2,
-    "time": "10:00 UTC",
+    "status": "active",
+    "rate": 1,
+    "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
     "remaining": 99,
     "published": 0,
-    "syndicate_on_publish": false,
-    "trigger_feeder_on_publish": false
+    "syndicate_on_publish": true,
+    "trigger_feeder_on_publish": true
   },
   "checks": [
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=paused, rate=2/run, time=10:00 UTC, remaining=99"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=99"
     },
     {
       "name": "Publer accounts",
       "ok": true,
-      "detail": "bluesky, facebook, facebook, facebook, instagram, instagram, instagram, linkedin, mastodon, pinterest, threads, tiktok, twitter, youtube"
+      "detail": "bluesky, bluesky, facebook, facebook, facebook, instagram, instagram, instagram, linkedin, mastodon, mastodon, pinterest, pinterest, threads, tiktok, twitter, youtube"
     },
     {
       "name": "Publer Pinterest board",
       "ok": true,
-      "detail": "1 board(s) available"
+      "detail": "33 board(s) available"
     },
     {
-      "name": "Bluesky auth",
+      "name": "Bluesky ESR auth",
       "ok": true,
       "detail": "unlimitedpotential.bsky.social"
     },
     {
-      "name": "Mastodon auth",
+      "name": "Bluesky VOA auth",
+      "ok": false,
+      "detail": "missing VOA_BLUESKY_HANDLE, VOA_BLUESKY_APP_PASSWORD"
+    },
+    {
+      "name": "Mastodon ESR auth",
       "ok": true,
       "detail": "unlimitedpotential"
+    },
+    {
+      "name": "Mastodon VOA auth",
+      "ok": false,
+      "detail": "missing VOA_MASTODON_INSTANCE, VOA_MASTODON_ACCESS_TOKEN"
     },
     {
       "name": "Facebook VOA",
@@ -56,14 +70,19 @@
       "detail": "earthstarrising"
     },
     {
-      "name": "Tumblr auth",
+      "name": "Tumblr ESR auth",
       "ok": true,
-      "detail": "user ok"
+      "detail": "earthstarrising user ok"
+    },
+    {
+      "name": "Tumblr VOA auth",
+      "ok": false,
+      "detail": "missing VOA_TUMBLR_CONSUMER_KEY, VOA_TUMBLR_CONSUMER_SECRET, VOA_TUMBLR_TOKEN, VOA_TUMBLR_TOKEN_SECRET, VOA_TUMBLR_BLOG_NAME"
     },
     {
       "name": "Blogger token refresh",
-      "ok": true,
-      "detail": "token ok"
+      "ok": false,
+      "detail": "invalid_grant: Token has been expired or revoked."
     },
     {
       "name": "WordPress direct auth",
