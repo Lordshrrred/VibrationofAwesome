@@ -706,27 +706,40 @@
 })();
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-// FV = facebook_voa (Facebook VOA page), FE = facebook_earthstar (Facebook EarthStar page)
+// group: "social"   = VOA social accounts (policy-routed; may be suppressed by content type)
+// group: "backlink" = backlink tier (always fires, never suppressed by policy)
+// group: "reach"    = reach/visual platforms (policy-routed)
+// group: "feeder"   = VOA Feeder (triggered separately, not via syndicate.js directly)
+// group: "legacy"   = old keys kept for historical log display; not used by current engine
 const PLATFORMS = [
-  { key: "bluesky",            label: "Bsky",   name: "Bluesky (Legacy)" },
-  { key: "bluesky_esr",        label: "Bsky-E", name: "Bluesky (EarthStar Rising)" },
-  { key: "bluesky_voa",        label: "Bsky-V", name: "Bluesky (VOA)" },
-  { key: "mastodon",           label: "Mast",   name: "Mastodon (Legacy)" },
-  { key: "mastodon_esr",       label: "Mast-E", name: "Mastodon (EarthStar Rising)" },
-  { key: "mastodon_voa",       label: "Mast-V", name: "Mastodon (VOA)" },
-  { key: "facebook_voa",       label: "FB-V",   name: "Facebook (VOA Page)" },
-  { key: "facebook_earthstar", label: "FB-E",   name: "Facebook (EarthStar Page)" },
-  { key: "devto",              label: "Dev",    name: "Dev.to" },
-  { key: "tumblr",             label: "Tumblr", name: "Tumblr (Legacy)" },
-  { key: "tumblr_esr",         label: "Tum-E",  name: "Tumblr (EarthStar Rising)" },
-  { key: "tumblr_voa",         label: "Tum-V",  name: "Tumblr (VOA)" },
-  { key: "blogger",            label: "Blog",   name: "Blogger" },
-  { key: "wordpress_earthstar",label: "WP",     name: "WordPress (EarthStarRising)" },
-  { key: "pinterest",          label: "Pins",   name: "Pinterest" },
-  { key: "instagram",          label: "Insta",  name: "Instagram ⓘ", tooltip: "No clickable links in Instagram posts ~ visual reach only" },
-  { key: "threads",            label: "Thrd",   name: "Threads" },
-  { key: "feeder",             label: "Feeder", name: "VOA Feeder" },
+  // ── VOA Social ────────────────────────────────────────────────────────────
+  { key: "bluesky_voa",        label: "Bsky-V", name: "Bluesky (VOA)",             group: "social" },
+  { key: "mastodon_voa",       label: "Mast-V", name: "Mastodon (VOA)",            group: "social" },
+  { key: "facebook_voa",       label: "FB-V",   name: "Facebook (VOA Page)",       group: "social" },
+  { key: "facebook_earthstar", label: "FB-E",   name: "Facebook (EarthStar Page)", group: "social" },
+  { key: "threads",            label: "Thrd",   name: "Threads",                   group: "reach"  },
+  { key: "instagram",          label: "Insta",  name: "Instagram ⓘ",              group: "reach",  tooltip: "No clickable links in Instagram posts ~ visual reach only" },
+  { key: "pinterest",          label: "Pins",   name: "Pinterest",                 group: "reach"  },
+  // ── Backlink Tier (always fires) ──────────────────────────────────────────
+  { key: "devto",              label: "Dev",    name: "Dev.to",                    group: "backlink" },
+  { key: "tumblr_voa",         label: "Tum-V",  name: "Tumblr (VOA)",              group: "backlink" },
+  { key: "tumblr_esr",         label: "Tum-E",  name: "Tumblr (EarthStar)",        group: "backlink" },
+  { key: "blogger",            label: "Blog",   name: "Blogger",                   group: "backlink" },
+  { key: "wordpress_earthstar",label: "WP",     name: "WordPress (EarthStarRising)",group:"backlink" },
+  // ── Feeder ────────────────────────────────────────────────────────────────
+  { key: "feeder",             label: "Feeder", name: "VOA Feeder",                group: "feeder"  },
+  // ── Legacy keys (old log entries only) ───────────────────────────────────
+  { key: "bluesky",            label: "Bsky",   name: "Bluesky (Legacy)",          group: "legacy"  },
+  { key: "bluesky_esr",        label: "Bsky-E", name: "Bluesky (ESR)",             group: "legacy"  },
+  { key: "mastodon",           label: "Mast",   name: "Mastodon (Legacy)",         group: "legacy"  },
+  { key: "mastodon_esr",       label: "Mast-E", name: "Mastodon (ESR)",            group: "legacy"  },
+  { key: "tumblr",             label: "Tumblr", name: "Tumblr (Legacy)",           group: "legacy"  },
 ];
+
+// Active platforms only (excludes legacy keys from score/stats calculations)
+const ACTIVE_PLATFORMS = PLATFORMS.filter(p => p.group !== "legacy");
+// Backlink tier keys for backlink health calculation
+const BACKLINK_KEYS = new Set(PLATFORMS.filter(p => p.group === "backlink").map(p => p.key));
 const PLATFORM_MAP = Object.fromEntries(PLATFORMS.map(p => [p.key, p]));
 
 const SESSION_KEY   = "voa_dash_authed";
@@ -1032,19 +1045,20 @@ function renderStats(entries, results, drip) {
 
   // Platforms Active ~ add feeder once it has at least one success
   const feederHasSuccess = results.some(r => r.syndication?.feeder?.status === "success");
-  const baseCount = PLATFORMS.length - 1; // all except feeder
-  const activeCount = feederHasSuccess ? PLATFORMS.length : baseCount;
+  const baseCount = ACTIVE_PLATFORMS.filter(p => p.group !== "feeder").length;
+  const activeCount = feederHasSuccess ? ACTIVE_PLATFORMS.length : baseCount;
   document.getElementById("stat-platforms").textContent = activeCount;
   document.getElementById("stat-platforms-sub").textContent = feederHasSuccess
-    ? "Bsky·Mast·FB-V·FB-E·Dev·Tumblr·Blog·WP·Pins·Insta·Thrd·Feeder"
-    : "Bsky·Mast·FB-V·FB-E·Dev·Tumblr·Blog·WP·Pins·Insta·Thrd";
+    ? "Social·Backlinks·Reach·Feeder"
+    : "Bsky-V·Mast-V·FB·Dev·Tumblr·Blog·WP·Pins·Thrd·Insta";
 
-  // Backlink health card
+  // Backlink health card ~ only count backlink-tier platforms (the ones that always fire)
   if (results.length > 0) {
     let total = 0, ok = 0;
     for (const r of results) {
-      for (const s of Object.values(r.syndication || {})) {
-        if (s.status !== "success" || s.backlink_status === "not_applicable") continue;
+      for (const [key, s] of Object.entries(r.syndication || {})) {
+        if (!BACKLINK_KEYS.has(key)) continue;
+        if (s.status !== "success") continue;
         total++;
         if (s.backlink_confirmed) ok++;
       }
@@ -1052,11 +1066,14 @@ function renderStats(entries, results, drip) {
     const pct = total > 0 ? Math.round((ok / total) * 100) : 0;
     document.getElementById("stat-backlink").textContent = pct + "%";
     const cls = pct >= 64 ? "green" : pct >= 36 ? "gold" : "red";
-    const avg = results.length > 0
-      ? (results.reduce((s,r) => s + Object.values(r.syndication||{}).filter(x=>x.backlink_confirmed).length, 0) / results.length).toFixed(1)
+    const backlinksPerPost = results.length > 0
+      ? (results.reduce((sum, r) => {
+          return sum + Object.entries(r.syndication || {})
+            .filter(([k, s]) => BACKLINK_KEYS.has(k) && s.status === "success").length;
+        }, 0) / results.length).toFixed(1)
       : "~";
     document.getElementById("stat-backlink-badge").innerHTML =
-      `<span class="stat-badge ${cls}">avg ${avg}/${activeCount}</span>`;
+      `<span class="stat-badge ${cls}">avg ${backlinksPerPost}/${BACKLINK_KEYS.size}</span>`;
   }
 }
 
@@ -1203,7 +1220,9 @@ function renderRecentPosts(entries, resultsData) {
   const rows = entries.slice(0, 12).map(entry => {
     const livePlatforms = resultsBySlug[entry.postSlug] || {};
     const platforms = entry.platforms || {};
-    const badges = PLATFORMS.map(({ key, label, name, tooltip }) => {
+    const badges = ACTIVE_PLATFORMS.map(({ key, label, name, tooltip, group }) => {
+      // Legacy group entries shown only if data exists for them
+      if (group === "legacy" && !livePlatforms[key] && !platforms[key]) return "";
       const canonical = livePlatforms[key];
       if (canonical) {
         if (canonical.status === "success") {
@@ -1215,6 +1234,9 @@ function renderRecentPosts(entries, resultsData) {
         if (canonical.status === "pending") {
           return `<span class="badge badge-pend" title="${esc(name + ": trigger fired, waiting for post")}">⏳ ${label}</span>`;
         }
+        if (canonical.status === "skipped" || canonical.skipped) {
+          return `<span class="badge badge-skip" title="${esc(name + ": skipped by content policy")}">~ ${label}</span>`;
+        }
         return `<span class="badge badge-fail" title="${esc(name + ": ✗ " + (canonical.error || "failed"))}">✗ ${label}</span>`;
       }
       const r = platforms[key];
@@ -1223,9 +1245,11 @@ function renderRecentPosts(entries, resultsData) {
         const tip = successTip(name, tooltip, r.postUrl, entry.postUrl);
         const onclick = getOpenAttrs(r.postUrl, entry.postUrl);
         return `<span class="badge badge-ok" title="${esc(tip)}" ${onclick}>✓ ${label}</span>`;
-      } else {
-        return `<span class="badge badge-fail" title="${esc(name + ": ✗ " + (r.error || "failed"))}">✗ ${label}</span>`;
       }
+      if (r.skipped) {
+        return `<span class="badge badge-skip" title="${esc(name + ": skipped by content policy")}">~ ${label}</span>`;
+      }
+      return `<span class="badge badge-fail" title="${esc(name + ": ✗ " + (r.error || "failed"))}">✗ ${label}</span>`;
     }).join("");
 
     const date   = new Date(entry.timestamp).toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" });
@@ -1255,16 +1279,35 @@ function renderMatrix(results) {
     return;
   }
 
-  // Build header
-  const platHeaders = PLATFORMS.map(p =>
-    `<th title="${p.name}${p.tooltip ? " · " + p.tooltip : ""}">${p.label}${p.tooltip ? " ⓘ" : ""}</th>`
-  ).join("");
+  // Build header with group labels
+  const GROUP_LABELS = { social: "Social", reach: "Reach", backlink: "Backlink Tier", feeder: "Feeder", legacy: "" };
+  let lastGroup = null;
+  const platHeaders = ACTIVE_PLATFORMS.map(p => {
+    const groupBorder = (p.group !== lastGroup && lastGroup !== null)
+      ? ' style="border-left:1px solid rgba(0,229,204,0.18)"' : "";
+    lastGroup = p.group;
+    return `<th title="${GROUP_LABELS[p.group] || ""}: ${p.name}${p.tooltip ? " ~ " + p.tooltip : ""}"${groupBorder}>${p.label}${p.tooltip ? " ⓘ" : ""}</th>`;
+  }).join("");
+
+  // Group span headers
+  const groupSpans = [];
+  let gi = 0;
+  while (gi < ACTIVE_PLATFORMS.length) {
+    const g = ACTIVE_PLATFORMS[gi].group;
+    let count = 0;
+    while (gi + count < ACTIVE_PLATFORMS.length && ACTIVE_PLATFORMS[gi + count].group === g) count++;
+    const label = GROUP_LABELS[g] || "";
+    const border = groupSpans.length > 0 ? ' style="border-left:1px solid rgba(0,229,204,0.18)"' : "";
+    groupSpans.push(`<th colspan="${count}" style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);padding-bottom:0.1rem;text-align:center"${border}>${label}</th>`);
+    gi += count;
+  }
+  const groupHeaderRow = `<tr><th colspan="2"></th>${groupSpans.join("")}<th></th></tr>`;
 
   // Build rows
   const rows = results.map(entry => {
     const syn = entry.syndication || {};
     let successCount = 0;
-    const cells = PLATFORMS.map(({ key, name, tooltip }) => {
+    const cells = ACTIVE_PLATFORMS.map(({ key, name, tooltip, group }) => {
       const s = syn[key];
       if (!s) return `<td><div class="mat-cell mat-skip" title="${name}: not attempted">~</div></td>`;
       if (s.status === "success") {
@@ -1275,12 +1318,14 @@ function renderMatrix(results) {
         return `<td><div class="mat-cell mat-ok" title="${esc(tip)}" ${onclick} data-verify="${esc(s.url||"")}" data-key="${key}">✓</div></td>`;
       } else if (s.status === "pending") {
         return `<td><div class="mat-cell mat-pend" title="${esc(name + ": trigger fired, waiting for post")}">⏳</div></td>`;
+      } else if (s.status === "skipped" || s.skipped) {
+        return `<td><div class="mat-cell mat-skip" title="${esc(name + ": skipped by content policy")}">~</div></td>`;
       } else {
         return `<td><div class="mat-cell mat-fail" title="${esc(name + ": ✗ " + (s.error || "failed"))}">✗</div></td>`;
       }
     }).join("");
 
-    const total = PLATFORMS.length;
+    const total = ACTIVE_PLATFORMS.filter(p => p.group !== "legacy").length;
     const scoreCls = successCount >= 7 ? "score-green" : successCount >= 4 ? "score-yellow" : "score-red";
     const scoreBtn = `<span class="score-badge ${scoreCls}" onclick="showUrlModal(${JSON.stringify(JSON.stringify(entry))})" title="Click to see all URLs">${successCount}/${total}</span>`;
 
@@ -1295,12 +1340,15 @@ function renderMatrix(results) {
 
   wrap.innerHTML = `<div class="matrix-wrap">
     <table class="matrix-table">
-      <thead><tr>
-        <th class="col-title">Post</th>
-        <th class="col-date">Date</th>
-        ${platHeaders}
-        <th title="Platforms confirmed / total">Score</th>
-      </tr></thead>
+      <thead>
+        ${groupHeaderRow}
+        <tr>
+          <th class="col-title">Post</th>
+          <th class="col-date">Date</th>
+          ${platHeaders}
+          <th title="Platforms confirmed / total">Score</th>
+        </tr>
+      </thead>
       <tbody>${rows}</tbody>
     </table>
   </div>`;

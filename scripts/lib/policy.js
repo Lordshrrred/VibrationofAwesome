@@ -222,18 +222,30 @@ function getSuppressionReason(platform) {
  *
  * To add a new board: add an entry here and set the corresponding env var.
  */
+/**
+ * VOA Pinterest strategy boards.
+ * Keys are stable env-var slugs; values are the board names exactly as
+ * they appear in the VOA Pinterest account (used for name-match fallback).
+ *
+ * Routing priority in getPublerPinterestBoardId():
+ *   1. PUBLER_PINTEREST_BOARD_{KEY}_ID env var (fastest, no API call)
+ *   2. Name-match from Publer media-options API
+ *   3. PUBLER_PINTEREST_BOARD_DEFAULT_ID env var
+ *   4. Hard-coded "Vibration of Awesome" board ID (641129765641663037)
+ */
 export const PINTEREST_BOARDS = {
-  "vibration-of-awesome":     "Vibration of Awesome",       // safe fallback board
-  "nervous-system-reset":     "Nervous System Reset",
-  "dopamine-detox":           "Dopamine Detox",
-  "conscious-creator-tools":  "Conscious Creator Tools",
-  "earthstar":                "EarthStar",
-  "field-guide":              "Field Guide",
-  "purpose-and-direction":    "Purpose and Direction",
-  "flow-state":               "Flow State",
+  "purpose-and-direction":  "Purpose and Direction",
+  "dopamine-detox":         "Dopamine Detox",
+  "nervous-system-reset":   "Nervous System Reset",
+  "conscious-creator-tools":"Conscious Creator Tools",
+  "field-guide":            "Field Guide",
+  "earthstar":              "EarthStar",
+  "empower-thyself":        "Empower Thyself",
+  // fallback board ~ always present on the VOA account
+  "vibration-of-awesome":   "Vibration of Awesome",
 };
 
-/** Default board when no specific match is found */
+/** Default board key when no specific rule matches */
 const PINTEREST_DEFAULT_BOARD = "vibration-of-awesome";
 
 /**
@@ -267,7 +279,7 @@ export function selectPinterestBoard(post) {
     return "vibration-of-awesome";
   }
 
-  // 2. Tag-based signals
+  // 2. Tag-based signals (priority: dopamine > nervous-system > creator > earthstar > empower > field-guide > purpose)
   if (tags.some(t => ["dopamine", "dopamine-detox", "addiction", "numbing"].includes(t))) {
     return "dopamine-detox";
   }
@@ -277,8 +289,11 @@ export function selectPinterestBoard(post) {
   if (tags.some(t => ["ai", "tools", "automation", "workflow", "creator", "music", "production"].includes(t))) {
     return "conscious-creator-tools";
   }
-  if (tags.some(t => ["earthstar", "earth-star", "sacred-geometry", "empower"].includes(t))) {
+  if (tags.some(t => ["earthstar", "earth-star", "sacred-geometry"].includes(t))) {
     return "earthstar";
+  }
+  if (tags.some(t => ["empower", "empower-thyself", "sovereignty", "self-mastery", "initiation"].includes(t))) {
+    return "empower-thyself";
   }
   if (tags.some(t => ["field-guide", "guide", "ebook", "download"].includes(t))) {
     return "field-guide";
@@ -286,24 +301,21 @@ export function selectPinterestBoard(post) {
   if (tags.some(t => ["purpose", "direction", "calling", "clarity", "drift"].includes(t))) {
     return "purpose-and-direction";
   }
-  if (tags.some(t => ["flow", "flow-state", "deep-work", "focus", "presence"].includes(t))) {
-    return "flow-state";
-  }
 
   // 3. Title keyword signals
-  if (/dopamine|addiction|numb/.test(title))          return "dopamine-detox";
-  if (/nervous system|anxiety|adhd|dysregulation/.test(title)) return "nervous-system-reset";
-  if (/ai tool|workflow|automat|creator tool/.test(title)) return "conscious-creator-tools";
-  if (/earthstar|earth.?star/.test(title))            return "earthstar";
-  if (/field guide/.test(title))                      return "field-guide";
-  if (/purpose|direction|calling/.test(title))        return "purpose-and-direction";
-  if (/flow state|deep work|focus/.test(title))       return "flow-state";
+  if (/dopamine|addiction|numb/.test(title))                          return "dopamine-detox";
+  if (/nervous system|anxiety|adhd|dysregulation/.test(title))        return "nervous-system-reset";
+  if (/ai tool|workflow|automat|creator tool/.test(title))            return "conscious-creator-tools";
+  if (/earthstar|earth.?star/.test(title))                            return "earthstar";
+  if (/empower|sovereignty|self.?master|initiation/.test(title))      return "empower-thyself";
+  if (/field guide/.test(title))                                      return "field-guide";
+  if (/purpose|direction|calling/.test(title))                        return "purpose-and-direction";
 
   // 4. Content type fallback
   const ct = detectContentType(post);
-  if (ct === "creator")       return "conscious-creator-tools";
+  if (ct === "creator")        return "conscious-creator-tools";
   if (ct === "nervous-system") return "nervous-system-reset";
-  if (ct === "earthstar")     return "earthstar";
+  if (ct === "earthstar")      return "earthstar";
 
   // 5. Safe default
   return PINTEREST_DEFAULT_BOARD;

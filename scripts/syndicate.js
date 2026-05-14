@@ -319,10 +319,20 @@ async function getPublerPinterestBoardId(accountId, headers, baseUrl = "https://
     console.warn(`  [pinterest] Board "${boardName}" not found in Publer; falling back to default`);
   }
 
-  // 4. Default env var or first board
+  // 4. PUBLER_PINTEREST_BOARD_DEFAULT_ID explicit default
+  const defaultId = process.env.PUBLER_PINTEREST_BOARD_DEFAULT_ID?.trim();
+  if (defaultId) {
+    console.log(`  [pinterest] Using PUBLER_PINTEREST_BOARD_DEFAULT_ID`);
+    return defaultId;
+  }
+
+  // 5. Legacy PUBLER_PINTEREST_BOARD_ID or first board in Publer
   if (configured?.trim()) return configured.trim();
-  const board = boards.find(item => item.type === "pinterest") || boards[0];
-  if (!board?.id) throw new Error("PUBLER_PINTEREST_BOARD_ID not set and no Pinterest board found in Publer");
+  // Hard-coded "Vibration of Awesome" board as last-resort fallback
+  const VOA_BOARD_ID = "641129765641663037";
+  const board = boards.find(b => b.id === VOA_BOARD_ID) || boards.find(item => item.type === "pinterest") || boards[0];
+  if (!board?.id) throw new Error("No Pinterest board found in Publer and no PUBLER_PINTEREST_BOARD_DEFAULT_ID set");
+  console.log(`  [pinterest] Using fallback board: "${board.name || board.id}"`);
   return board.id;
 }
 
@@ -857,18 +867,20 @@ function saveResults(slug, title, lane, voaUrl, platforms) {
   const existingEntry = idx >= 0 ? results[idx] : null;
   const existingSyndication = existingEntry?.syndication || {};
 
-  // Build syndication map: { platformKey: { status, url, timestamp, error? } }
+  // Build syndication map: { platformKey: { status, url, timestamp, error?, skipped? } }
   const timestamp = new Date().toISOString();
   const syndication = { ...existingSyndication };
   for (const [key, r] of Object.entries(platforms)) {
     const next = {
       ...(existingSyndication[key] || {}),
-      status:    r.success ? "success" : "failed",
+      status:    r.success ? "success" : (r.skipped ? "skipped" : "failed"),
       url:       r.postUrl || null,
       timestamp,
     };
     if (r.error) next.error = r.error;
     else delete next.error;
+    if (r.skipped) next.skipped = true;
+    else delete next.skipped;
     syndication[key] = next;
   }
 
