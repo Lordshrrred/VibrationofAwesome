@@ -1,8 +1,8 @@
 {
-  "lastChecked": "2026-05-14T05:31:00.371Z",
+  "lastChecked": "2026-05-14T14:40:56.962Z",
   "status": "broken",
-  "passed": 12,
-  "failed": 1,
+  "passed": 11,
+  "failed": 2,
   "total": 13,
   "topFix": {
     "name": "Blogger token refresh",
@@ -71,8 +71,8 @@
     },
     {
       "name": "Tumblr VOA auth",
-      "ok": true,
-      "detail": "vibrationofawesome.tumblr.com user ok"
+      "ok": false,
+      "detail": "missing VOA_TUMBLR_CONSUMER_KEY, VOA_TUMBLR_CONSUMER_SECRET, VOA_TUMBLR_TOKEN, VOA_TUMBLR_TOKEN_SECRET, VOA_TUMBLR_BLOG_NAME"
     },
     {
       "name": "Blogger token refresh",
