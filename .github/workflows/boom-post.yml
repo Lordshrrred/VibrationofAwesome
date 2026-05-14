@@ -51,8 +51,16 @@ jobs:
           PEXELS_API_KEY:                 ${{ secrets.PEXELS_API_KEY }}
           BLUESKY_HANDLE:                 ${{ secrets.BLUESKY_HANDLE }}
           BLUESKY_APP_PASSWORD:           ${{ secrets.BLUESKY_APP_PASSWORD }}
+          ESR_BLUESKY_HANDLE:             ${{ secrets.ESR_BLUESKY_HANDLE }}
+          ESR_BLUESKY_APP_PASSWORD:       ${{ secrets.ESR_BLUESKY_APP_PASSWORD }}
+          VOA_BLUESKY_HANDLE:             ${{ secrets.VOA_BLUESKY_HANDLE }}
+          VOA_BLUESKY_APP_PASSWORD:       ${{ secrets.VOA_BLUESKY_APP_PASSWORD }}
           MASTODON_INSTANCE:              ${{ secrets.MASTODON_INSTANCE }}
           MASTODON_ACCESS_TOKEN:          ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          ESR_MASTODON_INSTANCE:          ${{ secrets.ESR_MASTODON_INSTANCE }}
+          ESR_MASTODON_ACCESS_TOKEN:      ${{ secrets.ESR_MASTODON_ACCESS_TOKEN }}
+          VOA_MASTODON_INSTANCE:          ${{ secrets.VOA_MASTODON_INSTANCE }}
+          VOA_MASTODON_ACCESS_TOKEN:      ${{ secrets.VOA_MASTODON_ACCESS_TOKEN }}
           META_APP_ID:                    ${{ secrets.META_APP_ID }}
           META_APP_SECRET:                ${{ secrets.META_APP_SECRET }}
           META_USER_TOKEN:                ${{ secrets.META_USER_TOKEN }}

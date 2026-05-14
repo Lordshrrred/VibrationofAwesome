@@ -708,8 +708,12 @@
 // ── Constants ─────────────────────────────────────────────────────────────────
 // FV = facebook_voa (Facebook VOA page), FE = facebook_earthstar (Facebook EarthStar page)
 const PLATFORMS = [
-  { key: "bluesky",            label: "Bsky",   name: "Bluesky" },
-  { key: "mastodon",           label: "Mast",   name: "Mastodon" },
+  { key: "bluesky",            label: "Bsky",   name: "Bluesky (Legacy)" },
+  { key: "bluesky_esr",        label: "Bsky-E", name: "Bluesky (EarthStar Rising)" },
+  { key: "bluesky_voa",        label: "Bsky-V", name: "Bluesky (VOA)" },
+  { key: "mastodon",           label: "Mast",   name: "Mastodon (Legacy)" },
+  { key: "mastodon_esr",       label: "Mast-E", name: "Mastodon (EarthStar Rising)" },
+  { key: "mastodon_voa",       label: "Mast-V", name: "Mastodon (VOA)" },
   { key: "facebook_voa",       label: "FB-V",   name: "Facebook (VOA Page)" },
   { key: "facebook_earthstar", label: "FB-E",   name: "Facebook (EarthStar Page)" },
   { key: "devto",              label: "Dev",    name: "Dev.to" },

@@ -83,6 +83,42 @@ function requireTumblrConfig(prefix) {
   return cfg;
 }
 
+function getBlueskyConfig(prefix) {
+  const p = `${prefix}_`;
+  return {
+    label: prefix,
+    handle: firstNonEmpty(process.env[`${p}BLUESKY_HANDLE`], prefix === "ESR" ? process.env.BLUESKY_HANDLE : null),
+    password: firstNonEmpty(process.env[`${p}BLUESKY_APP_PASSWORD`], prefix === "ESR" ? process.env.BLUESKY_APP_PASSWORD : null),
+  };
+}
+
+function requireBlueskyConfig(prefix) {
+  const cfg = getBlueskyConfig(prefix);
+  const missing = [];
+  if (!cfg.handle) missing.push(`${prefix}_BLUESKY_HANDLE`);
+  if (!cfg.password) missing.push(`${prefix}_BLUESKY_APP_PASSWORD`);
+  if (missing.length) throw new Error(`missing ${missing.join(", ")}`);
+  return cfg;
+}
+
+function getMastodonConfig(prefix) {
+  const p = `${prefix}_`;
+  return {
+    label: prefix,
+    instance: firstNonEmpty(process.env[`${p}MASTODON_INSTANCE`], prefix === "ESR" ? process.env.MASTODON_INSTANCE : null),
+    token: firstNonEmpty(process.env[`${p}MASTODON_ACCESS_TOKEN`], prefix === "ESR" ? process.env.MASTODON_ACCESS_TOKEN : null),
+  };
+}
+
+function requireMastodonConfig(prefix) {
+  const cfg = getMastodonConfig(prefix);
+  const missing = [];
+  if (!cfg.instance) missing.push(`${prefix}_MASTODON_INSTANCE`);
+  if (!cfg.token) missing.push(`${prefix}_MASTODON_ACCESS_TOKEN`);
+  if (missing.length) throw new Error(`missing ${missing.join(", ")}`);
+  return cfg;
+}
+
 async function check(name, fn) {
   try {
     const detail = await fn();
@@ -148,33 +184,37 @@ async function main() {
     return `${boards.length} board(s) available`;
   });
 
-  await check("Bluesky auth", async () => {
-    hasEnv("BLUESKY_HANDLE", "BLUESKY_APP_PASSWORD");
-    const resp = await fetch("https://bsky.social/xrpc/com.atproto.server.createSession", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        identifier: process.env.BLUESKY_HANDLE,
-        password: process.env.BLUESKY_APP_PASSWORD,
-      }),
+  for (const prefix of ["ESR", "VOA"]) {
+    await check(`Bluesky ${prefix} auth`, async () => {
+      const cfg = requireBlueskyConfig(prefix);
+      const resp = await fetch("https://bsky.social/xrpc/com.atproto.server.createSession", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          identifier: cfg.handle,
+          password: cfg.password,
+        }),
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok) throw new Error(data.message || `HTTP ${resp.status}`);
+      return data.handle || "session ok";
     });
-    const data = await resp.json().catch(() => ({}));
-    if (!resp.ok) throw new Error(data.message || `HTTP ${resp.status}`);
-    return data.handle || "session ok";
-  });
+  }
 
-  await check("Mastodon auth", async () => {
-    hasEnv("MASTODON_INSTANCE", "MASTODON_ACCESS_TOKEN");
-    const instance = process.env.MASTODON_INSTANCE.startsWith("http")
-      ? process.env.MASTODON_INSTANCE.replace(/\/+$/, "")
-      : `https://${process.env.MASTODON_INSTANCE.replace(/\/+$/, "")}`;
-    const resp = await fetch(`${instance}/api/v1/accounts/verify_credentials`, {
-      headers: { Authorization: `Bearer ${process.env.MASTODON_ACCESS_TOKEN}` },
+  for (const prefix of ["ESR", "VOA"]) {
+    await check(`Mastodon ${prefix} auth`, async () => {
+      const cfg = requireMastodonConfig(prefix);
+      const instance = cfg.instance.startsWith("http")
+        ? cfg.instance.replace(/\/+$/, "")
+        : `https://${cfg.instance.replace(/\/+$/, "")}`;
+      const resp = await fetch(`${instance}/api/v1/accounts/verify_credentials`, {
+        headers: { Authorization: `Bearer ${cfg.token}` },
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok) throw new Error(data.error || `HTTP ${resp.status}`);
+      return data.acct || "account ok";
     });
-    const data = await resp.json().catch(() => ({}));
-    if (!resp.ok) throw new Error(data.error || `HTTP ${resp.status}`);
-    return data.acct || "account ok";
-  });
+  }
 
   for (const [label, idKey, tokenKey] of [
     ["Facebook VOA", "META_PAGE_ID_VOA", "META_PAGE_TOKEN_VOA"],

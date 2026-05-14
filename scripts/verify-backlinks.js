@@ -171,7 +171,7 @@ async function verifyPlatform(entry, key, platform, logEntry, publerAccounts) {
 
   let confirmed = null;
   if (key === "facebook_voa" || key === "facebook_earthstar") confirmed = await verifyFacebook(key, platform, sourceUrl);
-  if (key === "mastodon") confirmed = await verifyMastodon(platform, sourceUrl);
+  if (key === "mastodon" || key === "mastodon_esr" || key === "mastodon_voa") confirmed = await verifyMastodon(platform, sourceUrl);
   if (key === "tumblr" || key === "tumblr_esr") confirmed = await verifyTumblr(platform, sourceUrl, "ESR");
   if (key === "tumblr_voa") confirmed = await verifyTumblr(platform, sourceUrl, "VOA");
   if (confirmed === true) return mark(platform, "confirmed", { backlink_method: `${key}_api` });

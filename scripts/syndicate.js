@@ -95,6 +95,34 @@ function hasTumblrConfig(prefix = "") {
   return Boolean(cfg.consumerKey && cfg.consumerSecret && cfg.token && cfg.tokenSecret && cfg.blogName);
 }
 
+function getBlueskyConfig(prefix = "ESR") {
+  const p = `${prefix}_`;
+  return {
+    label: prefix,
+    handle: firstNonEmpty(process.env[`${p}BLUESKY_HANDLE`], prefix === "ESR" ? process.env.BLUESKY_HANDLE : null),
+    password: firstNonEmpty(process.env[`${p}BLUESKY_APP_PASSWORD`], prefix === "ESR" ? process.env.BLUESKY_APP_PASSWORD : null),
+  };
+}
+
+function hasBlueskyConfig(prefix = "ESR") {
+  const cfg = getBlueskyConfig(prefix);
+  return Boolean(cfg.handle && cfg.password);
+}
+
+function getMastodonConfig(prefix = "ESR") {
+  const p = `${prefix}_`;
+  return {
+    label: prefix,
+    instance: firstNonEmpty(process.env[`${p}MASTODON_INSTANCE`], prefix === "ESR" ? process.env.MASTODON_INSTANCE : null),
+    token: firstNonEmpty(process.env[`${p}MASTODON_ACCESS_TOKEN`], prefix === "ESR" ? process.env.MASTODON_ACCESS_TOKEN : null),
+  };
+}
+
+function hasMastodonConfig(prefix = "ESR") {
+  const cfg = getMastodonConfig(prefix);
+  return Boolean(cfg.instance && cfg.token);
+}
+
 async function fetchPublerJson(url, options = {}, attempts = 3) {
   let lastResponse = null;
   for (let attempt = 0; attempt < attempts; attempt++) {
@@ -347,10 +375,9 @@ async function getLongLivedToken(label, shortToken) {
 // ── Platform post functions ───────────────────────────────────────────────────
 
 /** Post to Bluesky using AT Protocol */
-async function postToBluesky(caption, postUrl, postTitle, postExcerpt) {
-  const handle   = process.env.BLUESKY_HANDLE;
-  const password = process.env.BLUESKY_APP_PASSWORD;
-  if (!handle || !password) throw new Error("BLUESKY_HANDLE or BLUESKY_APP_PASSWORD not set");
+async function postToBluesky(caption, postUrl, postTitle, postExcerpt, prefix = "ESR") {
+  const { handle, password, label } = getBlueskyConfig(prefix);
+  if (!handle || !password) throw new Error(`${label}_BLUESKY_HANDLE or ${label}_BLUESKY_APP_PASSWORD not set`);
 
   const base = "https://bsky.social/xrpc";
 
@@ -397,10 +424,11 @@ async function postToBluesky(caption, postUrl, postTitle, postExcerpt) {
 }
 
 /** Post to Mastodon */
-async function postToMastodon(caption) {
-  let instance = (process.env.MASTODON_INSTANCE || "").replace(/\/+$/, "");
-  const token  = process.env.MASTODON_ACCESS_TOKEN;
-  if (!instance || !token) throw new Error("MASTODON_INSTANCE or MASTODON_ACCESS_TOKEN not set");
+async function postToMastodon(caption, prefix = "ESR") {
+  const cfg = getMastodonConfig(prefix);
+  let instance = (cfg.instance || "").replace(/\/+$/, "");
+  const token  = cfg.token;
+  if (!instance || !token) throw new Error(`${cfg.label}_MASTODON_INSTANCE or ${cfg.label}_MASTODON_ACCESS_TOKEN not set`);
   // Ensure https:// scheme ~ users often store just "mastodon.social"
   if (!instance.startsWith("http")) instance = `https://${instance}`;
 
@@ -927,13 +955,41 @@ export async function syndicatePost(lane, slug, options = {}) {
     }
   }
 
-  // Bluesky
-  await attempt("bluesky", () =>
-    postToBluesky(captions.bluesky, postUrl, post.title, post.excerpt));
+  // Bluesky EarthStar Rising
+  if (hasBlueskyConfig("ESR")) {
+    await attempt("bluesky_esr", () =>
+      postToBluesky(captions.bluesky, postUrl, post.title, post.excerpt, "ESR"));
+  } else {
+    console.warn("  ~ bluesky_esr: ESR_BLUESKY_* env vars not set");
+    results.bluesky_esr = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+  }
 
-  // Mastodon
-  await attempt("mastodon", () =>
-    postToMastodon(captions.mastodon));
+  // Bluesky Vibration of Awesome
+  if (hasBlueskyConfig("VOA")) {
+    await attempt("bluesky_voa", () =>
+      postToBluesky(captions.bluesky, postUrl, post.title, post.excerpt, "VOA"));
+  } else {
+    console.warn("  ~ bluesky_voa: VOA_BLUESKY_* env vars not set");
+    results.bluesky_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+  }
+
+  // Mastodon EarthStar Rising
+  if (hasMastodonConfig("ESR")) {
+    await attempt("mastodon_esr", () =>
+      postToMastodon(captions.mastodon, "ESR"));
+  } else {
+    console.warn("  ~ mastodon_esr: ESR_MASTODON_* env vars not set");
+    results.mastodon_esr = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+  }
+
+  // Mastodon Vibration of Awesome
+  if (hasMastodonConfig("VOA")) {
+    await attempt("mastodon_voa", () =>
+      postToMastodon(captions.mastodon, "VOA"));
+  } else {
+    console.warn("  ~ mastodon_voa: VOA_MASTODON_* env vars not set");
+    results.mastodon_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+  }
 
   // Facebook VOA
   if (process.env.META_PAGE_ID_VOA && process.env.META_PAGE_TOKEN_VOA) {
@@ -1068,6 +1124,14 @@ if (isCli) {
       dev:  "devto",
       wp:   "wordpress_earthstar",
       wordpress: "wordpress_earthstar",
+      bluesky: "bluesky_esr",
+      bsky: "bluesky_esr",
+      bskye: "bluesky_esr",
+      bskyv: "bluesky_voa",
+      mastodon: "mastodon_esr",
+      mast: "mastodon_esr",
+      maste: "mastodon_esr",
+      mastv: "mastodon_voa",
       tumblr: "tumblr_esr",
       t: "tumblr_esr",
       tesr: "tumblr_esr",
