@@ -46,9 +46,8 @@ export const BACKLINK_TIER = [
  * ESR (EarthStar Rising) accounts are NOT listed here ~
  * they belong to the EarthStar Command engine.
  *
- * facebook_earthstar is intentionally included here because the EarthStar
- * page also carries VOA-adjacent mission content and is approved for
- * selective VOA blog crossover (earthstar content type only).
+ * Facebook EarthStar is intentionally excluded from VOA blog routing.
+ * ESR/Facebook video strategy will be wired through the ESR engine later.
  *
  * TODO (crossover v2): if VOA posts should ever crosspost to ESR Bluesky
  * or ESR Mastodon, add a dedicated crossover flag to the policy routing
@@ -58,7 +57,6 @@ export const ALL_SOCIAL = [
   "bluesky_voa",
   "mastodon_voa",
   "facebook_voa",
-  "facebook_earthstar",
   "threads",
   "pinterest",
 ];
@@ -134,7 +132,6 @@ export function detectContentType(post) {
  *   bluesky_voa       ~ VOA Bluesky, all content types
  *   mastodon_voa      ~ VOA Mastodon, all content types
  *   facebook_voa      ~ VOA Facebook page, most content types
- *   facebook_earthstar ~ approved for earthstar content only (mission crossover)
  *   pinterest         ~ evergreen/visual content only (skip philosophy + nervous-system)
  *   threads           ~ all content types, text-first mini-thread
  *
@@ -164,7 +161,7 @@ const SOCIAL_ROUTING = {
   earthstar: [
     "bluesky_voa",
     "mastodon_voa",
-    "facebook_voa", "facebook_earthstar",
+    "facebook_voa",
     "pinterest",
     "threads",
   ],

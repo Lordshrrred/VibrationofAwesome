@@ -1,9 +1,9 @@
 {
-  "lastChecked": "2026-05-14T14:40:56.962Z",
+  "lastChecked": "2026-05-14T15:17:39.480Z",
   "status": "broken",
   "passed": 11,
-  "failed": 2,
-  "total": 13,
+  "failed": 1,
+  "total": 12,
   "topFix": {
     "name": "Blogger token refresh",
     "detail": "invalid_grant: Token has been expired or revoked.",
@@ -60,19 +60,14 @@
       "detail": "Vibration of Awesome"
     },
     {
-      "name": "Facebook EarthStar",
-      "ok": true,
-      "detail": "Earthstarrising"
-    },
-    {
       "name": "Dev.to auth",
       "ok": true,
       "detail": "earthstarrising"
     },
     {
       "name": "Tumblr VOA auth",
-      "ok": false,
-      "detail": "missing VOA_TUMBLR_CONSUMER_KEY, VOA_TUMBLR_CONSUMER_SECRET, VOA_TUMBLR_TOKEN, VOA_TUMBLR_TOKEN_SECRET, VOA_TUMBLR_BLOG_NAME"
+      "ok": true,
+      "detail": "vibrationofawesome.tumblr.com user ok"
     },
     {
       "name": "Blogger token refresh",

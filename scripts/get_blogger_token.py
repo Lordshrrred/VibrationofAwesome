@@ -47,7 +47,8 @@ load_dotenv()
 CLIENT_ID      = os.environ.get('BLOGGER_CLIENT_ID', '')
 CLIENT_SECRET  = os.environ.get('BLOGGER_CLIENT_SECRET', '')
 REDIRECT_PORT  = int(os.environ.get('BLOGGER_REDIRECT_PORT', '8090'))
-REDIRECT_URI   = f'http://localhost:{REDIRECT_PORT}/'
+REDIRECT_URI   = os.environ.get('BLOGGER_REDIRECT_URI', f'http://localhost:{REDIRECT_PORT}/').strip()
+LOGIN_HINT     = os.environ.get('BLOGGER_LOGIN_HINT', 'vibrationofawesome@gmail.com').strip()
 SCOPE          = 'https://www.googleapis.com/auth/blogger'
 AUTH_ENDPOINT  = 'https://accounts.google.com/o/oauth2/v2/auth'
 TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token'
@@ -114,8 +115,11 @@ def build_auth_url():
         'response_type': 'code',
         'scope':         SCOPE,
         'access_type':   'offline',
-        'prompt':        'consent',   # force refresh_token on every auth
+        'prompt':        'consent select_account',   # force refresh_token and account picker
+        'include_granted_scopes': 'true',
     }
+    if LOGIN_HINT:
+        params['login_hint'] = LOGIN_HINT
     return AUTH_ENDPOINT + '?' + urllib.parse.urlencode(params)
 
 def exchange_code(auth_code):
@@ -222,7 +226,16 @@ def main():
     print('=' * 70)
     print()
     print('Opening authorization URL in your browser...')
-    print('If it does not open automatically, paste this URL into Edge:')
+    print(f'Target Google account: {LOGIN_HINT or "(choose manually)"}')
+    print(f'Redirect URI: {REDIRECT_URI}')
+    print()
+    print('If Google says redirect_uri_mismatch, add that exact Redirect URI')
+    print('to the OAuth client in Google Cloud, then rerun this command.')
+    print()
+    print('If the wrong Google account appears, choose "Use another account"')
+    print(f'and sign in as {LOGIN_HINT or "the Blogger owner account"}.')
+    print()
+    print('If it does not open automatically, paste this URL into your browser:')
     print()
     print(f'  {auth_url}')
     print()

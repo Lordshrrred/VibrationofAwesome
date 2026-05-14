@@ -1114,17 +1114,6 @@ export async function syndicatePost(lane, slug, options = {}) {
     results.facebook_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 
-  // Facebook EarthStar ~ approved crossover for earthstar content type only
-  // Policy routing suppresses this for non-earthstar content automatically.
-  if (process.env.META_PAGE_ID_EARTHSTAR && process.env.META_PAGE_TOKEN_EARTHSTAR) {
-    await attempt("facebook_earthstar", () =>
-      postToFacebookPage(process.env.META_PAGE_ID_EARTHSTAR, process.env.META_PAGE_TOKEN_EARTHSTAR, captions.facebook, postUrl),
-      `page:${process.env.META_PAGE_ID_EARTHSTAR}`);
-  } else {
-    console.warn("  ~ facebook_earthstar: META_PAGE_ID_EARTHSTAR or META_PAGE_TOKEN_EARTHSTAR not set");
-    results.facebook_earthstar = { success: false, postId: null, postUrl: null, error: "env vars not set" };
-  }
-
   // Pinterest via Publer ~ VOA Pinterest account, board selected by policy
   await attempt("pinterest", () =>
     postViaPubler("pinterest", captions.pinterest, imageUrl, {
@@ -1257,7 +1246,6 @@ if (isCli) {
     // Expand short aliases to internal platform names
     const PLATFORM_ALIASES = {
       fbv:  "facebook_voa",
-      fbe:  "facebook_earthstar",
       fb:   "facebook_voa",
       dev:  "devto",
       wp:   "wordpress_earthstar",

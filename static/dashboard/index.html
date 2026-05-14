@@ -107,9 +107,9 @@
     .stat-badge.green { background: rgba(57,255,20,0.1);  color: var(--success); border: 1px solid rgba(57,255,20,0.25); }
     .stat-badge.red   { background: rgba(255,68,68,0.1);  color: var(--danger); border: 1px solid rgba(255,68,68,0.25); }
     .health-panel {
-      margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 8px;
-      padding: 1rem 1.15rem; display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem; background: var(--surface); box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
+      margin-bottom: 0.8rem; border: 1px solid var(--border); border-radius: 8px;
+      padding: 0.65rem 0.8rem; display: flex; align-items: center; justify-content: space-between;
+      gap: 0.8rem; background: var(--surface); box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
     }
     .health-panel.ok {
       border-color: rgba(57,255,20,0.4);
@@ -118,21 +118,21 @@
     .health-panel.broken {
       border-color: rgba(255,68,68,0.65);
       background: linear-gradient(90deg, rgba(255,68,68,0.18), rgba(255,179,0,0.08));
-      box-shadow: 0 0 24px rgba(255,68,68,0.1);
+      box-shadow: 0 0 16px rgba(255,68,68,0.08);
     }
     .health-panel.pending {
       border-color: rgba(255,179,0,0.45);
       background: linear-gradient(90deg, rgba(255,179,0,0.13), rgba(0,229,255,0.05));
     }
     .health-kicker { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.18rem; }
-    .health-title { font-size: 1.25rem; font-weight: 800; color: var(--text); line-height: 1.15; }
+    .health-title { font-size: 0.98rem; font-weight: 800; color: var(--text); line-height: 1.15; }
     .health-title strong { color: var(--danger); }
-    .health-detail { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.25rem; }
+    .health-detail { font-size: 0.76rem; color: var(--text-muted); margin-top: 0.2rem; }
     .health-actions { display: flex; gap: 0.55rem; flex-wrap: wrap; justify-content: flex-end; }
     .health-btn {
       border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text);
       font: inherit; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
-      padding: 0.55rem 0.75rem; border-radius: 5px; cursor: pointer; transition: all 0.2s;
+      padding: 0.45rem 0.6rem; border-radius: 5px; cursor: pointer; transition: all 0.2s;
     }
     .health-btn:hover { border-color: var(--accent); color: var(--accent); }
     .health-btn.danger { border-color: rgba(255,68,68,0.5); color: var(--danger); }
@@ -512,7 +512,7 @@
         <div class="stat-card">
           <div class="stat-label">Platforms Active</div>
           <div class="stat-value" id="stat-platforms">~</div>
-          <div class="stat-sub" id="stat-platforms-sub" style="font-size:0.7rem">Bsky·Mast·FB-V·FB-E·Dev·Tumblr·Blog·Pins·Insta·Thrd</div>
+          <div class="stat-sub" id="stat-platforms-sub" style="font-size:0.7rem">Bsky·Mast·FB-V·Dev·Tumblr·Blog·Pins·Thrd</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Drip Queue</div>
@@ -716,7 +716,6 @@ const PLATFORMS = [
   { key: "bluesky_voa",        label: "Bsky-V", name: "Bluesky (VOA)",             group: "social" },
   { key: "mastodon_voa",       label: "Mast-V", name: "Mastodon (VOA)",            group: "social" },
   { key: "facebook_voa",       label: "FB-V",   name: "Facebook (VOA Page)",       group: "social" },
-  { key: "facebook_earthstar", label: "FB-E",   name: "Facebook (EarthStar Page)", group: "social" },
   { key: "threads",            label: "Thrd",   name: "Threads",                   group: "reach"  },
   { key: "pinterest",          label: "Pins",   name: "Pinterest",                 group: "reach"  },
   // ── Backlink Tier (always fires) ──────────────────────────────────────────
@@ -731,6 +730,7 @@ const PLATFORMS = [
   { key: "bluesky_esr",        label: "Bsky-E", name: "Bluesky (ESR)",             group: "legacy"  },
   { key: "mastodon",           label: "Mast",   name: "Mastodon (Legacy)",         group: "legacy"  },
   { key: "mastodon_esr",       label: "Mast-E", name: "Mastodon (ESR)",            group: "legacy"  },
+  { key: "facebook_earthstar", label: "FB-E",   name: "Facebook (EarthStar Legacy)",group:"legacy"  },
   { key: "tumblr",             label: "Tumblr", name: "Tumblr (Legacy)",           group: "legacy"  },
   { key: "tumblr_esr",         label: "Tum-E",  name: "Tumblr (EarthStar Legacy)", group: "legacy"  },
   { key: "instagram",          label: "Insta",  name: "Instagram (Legacy)",        group: "legacy"  },

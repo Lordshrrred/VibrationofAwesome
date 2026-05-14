@@ -218,7 +218,6 @@ async function main() {
 
   for (const [label, idKey, tokenKey] of [
     ["Facebook VOA", "META_PAGE_ID_VOA", "META_PAGE_TOKEN_VOA"],
-    ["Facebook EarthStar", "META_PAGE_ID_EARTHSTAR", "META_PAGE_TOKEN_EARTHSTAR"],
   ]) {
     await check(label, async () => {
       hasEnv(idKey, tokenKey);
