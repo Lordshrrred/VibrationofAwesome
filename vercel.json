@@ -1,4 +1,10 @@
 {
+  "framework": "hugo",
+  "buildCommand": "hugo --minify",
+  "outputDirectory": "public",
+  "env": {
+    "HUGO_VERSION": "0.160.0"
+  },
   "functions": {
     "api/**": {
       "maxDuration": 30
