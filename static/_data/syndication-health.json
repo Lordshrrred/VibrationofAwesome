@@ -1,10 +1,14 @@
 {
-  "lastChecked": "2026-05-14T20:50:34.838Z",
-  "status": "ok",
-  "passed": 12,
-  "failed": 0,
+  "lastChecked": "2026-05-15T04:17:51.743Z",
+  "status": "broken",
+  "passed": 11,
+  "failed": 1,
   "total": 12,
-  "topFix": null,
+  "topFix": {
+    "name": "Tumblr VOA auth",
+    "detail": "missing VOA_TUMBLR_CONSUMER_KEY, VOA_TUMBLR_CONSUMER_SECRET, VOA_TUMBLR_TOKEN, VOA_TUMBLR_TOKEN_SECRET, VOA_TUMBLR_BLOG_NAME",
+    "repairCommand": "npm run check:syndication -- --write"
+  },
   "drip": {
     "status": "active",
     "rate": 1,
@@ -23,7 +27,7 @@
     {
       "name": "Publer accounts",
       "ok": true,
-      "detail": "bluesky, bluesky, facebook, facebook, facebook, instagram, instagram, instagram, linkedin, mastodon, mastodon, pinterest, pinterest, threads, tiktok, twitter, youtube"
+      "detail": "bluesky, bluesky, facebook, facebook, facebook, instagram, instagram, instagram, instagram, linkedin, mastodon, mastodon, pinterest, pinterest, threads, threads, tiktok, twitter, youtube"
     },
     {
       "name": "Publer Pinterest board",
@@ -62,8 +66,8 @@
     },
     {
       "name": "Tumblr VOA auth",
-      "ok": true,
-      "detail": "vibrationofawesome.tumblr.com user ok"
+      "ok": false,
+      "detail": "missing VOA_TUMBLR_CONSUMER_KEY, VOA_TUMBLR_CONSUMER_SECRET, VOA_TUMBLR_TOKEN, VOA_TUMBLR_TOKEN_SECRET, VOA_TUMBLR_BLOG_NAME"
     },
     {
       "name": "Blogger token refresh",
