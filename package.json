@@ -25,7 +25,9 @@
     "pinterest-demo": "node scripts/pinterest-standard-access-demo.js",
     "syndicate:wordpress-backlog": "node scripts/backfill-wordpress-direct.js",
     "setup:stripe": "node scripts/setup-stripe.js",
-    "push:vercel-env": "node scripts/push-env-to-vercel.js"
+    "push:vercel-env": "node scripts/push-env-to-vercel.js",
+    "visuals:build": "node scripts/lib/build-visual-prompts.js",
+    "visuals:review": "node scripts/lib/build-visual-prompts.js --review"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
