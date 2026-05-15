@@ -141,9 +141,9 @@ async function main() {
   console.log(`Tax mode:    ${price.tax_behavior || "(dashboard default)"}`);
   console.log(`\nNext steps:`);
   console.log("1. Add STRIPE_PUBLIC_KEY to .env (pk_test_...)");
-  console.log("2. Set up Stripe webhook pointing to your Netlify function");
+  console.log("2. Set up a Stripe webhook at: https://dashboard.stripe.com/webhooks");
   console.log("3. Add STRIPE_WEBHOOK_SECRET to .env (whsec_...)");
-  console.log("   Webhook URL: https://vibrationofawesome.netlify.app/.netlify/functions/stripe-webhook");
+  console.log("   Webhook URL: https://vibrationofawesome.vercel.app/api/stripe-webhook");
   console.log("   Events: checkout.session.completed, customer.subscription.deleted, customer.subscription.updated, invoice.payment_failed");
   console.log("4. If you want Stripe Tax, set STRIPE_ENABLE_AUTOMATIC_TAX=true and configure registrations/business address in Stripe Tax settings.\n");
 }

@@ -23,7 +23,9 @@
     "blogger-backfill": "node scripts/backfill-blogger.js",
     "wordpress-token": "python3 scripts/get-wordpress-oauth-token.py",
     "pinterest-demo": "node scripts/pinterest-standard-access-demo.js",
-    "syndicate:wordpress-backlog": "node scripts/backfill-wordpress-direct.js"
+    "syndicate:wordpress-backlog": "node scripts/backfill-wordpress-direct.js",
+    "setup:stripe": "node scripts/setup-stripe.js",
+    "push:vercel-env": "node scripts/push-env-to-vercel.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

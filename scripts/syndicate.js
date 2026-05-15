@@ -39,8 +39,9 @@ import path      from "path";
 import fs        from "fs";
 import minimist  from "minimist";
 
-import { generateCaptions } from "./generate-captions.js";
-import { selectImage }      from "./select-image.js";
+import { generateCaptions }       from "./generate-captions.js";
+import { selectImage }             from "./select-image.js";
+import { generatePinterestImage }  from "./generate-pinterest-image.js";
 import {
   BACKLINK_TIER,
   detectContentType,
@@ -1029,6 +1030,30 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   const postUrl = `https://vibrationofawesome.com${post.url}`;
 
+  // ── 1b. Load existing syndication results for per-platform deduplication ──
+  // attempt() uses this to skip platforms that already succeeded for this slug.
+  // Prevents Dev.to canonical URL duplicates, Tumblr reposts, etc.
+  // Override with options.force = true to re-run all platforms regardless.
+  let existingSyndicationForSlug = {};
+  try {
+    if (fs.existsSync(RESULTS_FILE)) {
+      const existingResults = JSON.parse(fs.readFileSync(RESULTS_FILE, "utf8"));
+      if (Array.isArray(existingResults)) {
+        const existingEntry = existingResults.find(e => e.slug === slug);
+        existingSyndicationForSlug = existingEntry?.syndication || {};
+      }
+    }
+  } catch (_) { /* no existing results ~ start fresh */ }
+
+  if (Object.keys(existingSyndicationForSlug).length > 0) {
+    const already = Object.entries(existingSyndicationForSlug)
+      .filter(([, v]) => v.status === "success")
+      .map(([k]) => k);
+    if (already.length > 0) {
+      console.log(`[dedup] ${already.length} platform(s) already syndicated for this slug ~ will skip unless --force`);
+    }
+  }
+
   // ── 2. Extract plain-text body excerpt ──
   // Try both conventions: slug.html and slug/index.html
   let htmlFile = path.join(ROOT, "static", "blog", lane, "posts", `${slug}.html`);
@@ -1060,10 +1085,19 @@ export async function syndicatePost(lane, slug, options = {}) {
     captions = ensureSourceLinks(await generateCaptions({ ...post, lane }, anthropic), postUrl);
   }
 
-  // ── 4. Select image ──
+  // ── 4. Select images ──
+  // Pinterest: try Ideogram AI-generated image first; fall back to Pexels.
+  // All other platforms: use Pexels.
   const keyword = options.keyword || (post.tags || [])[0] || post.title;
   const image   = await selectImage(keyword);
   const imageUrl = getPublicImageUrl(image?.url || null);
+
+  // Pinterest image: AI-generated (Ideogram) when key is set, else same Pexels image
+  let pinterestImageUrl = imageUrl;
+  if (!options.bloggerOnly) {
+    const ideogramUrl = await generatePinterestImage({ ...post, lane }, anthropic);
+    if (ideogramUrl) pinterestImageUrl = ideogramUrl;
+  }
 
   // ── 5. Apply syndication policy ──
   //
@@ -1106,6 +1140,20 @@ export async function syndicatePost(lane, slug, options = {}) {
   async function attempt(platform, fn, accountLabel = null) {
     if (options.bloggerOnly && platform !== "blogger") return;
     if (options.platforms && !options.platforms.includes(platform)) return;
+
+    // Deduplication: skip if this platform already has a success for this slug.
+    // Prevents Dev.to canonical-URL errors, Tumblr reposts, double FB posts, etc.
+    // Pass options.force = true (or --force CLI flag) to bypass.
+    if (!options.force) {
+      const prev = existingSyndicationForSlug[platform];
+      if (prev?.status === "success") {
+        const dest = prev.url ? ` → ${prev.url}` : "";
+        console.log(`  ~ ${platform}: already syndicated${dest} ~ pass --force to re-run`);
+        results[platform] = { success: true, postId: prev.postId || null, postUrl: prev.url || null, skipped: true, error: "already syndicated" };
+        return;
+      }
+    }
+
     // Policy filter: skip social platforms not approved for this content type.
     // Backlink tier platforms are always included in effectivePlatforms.
     if (effectivePlatforms && !effectivePlatforms.includes(platform)) {
@@ -1175,9 +1223,9 @@ export async function syndicatePost(lane, slug, options = {}) {
     results.facebook_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 
-  // Pinterest via Publer ~ VOA Pinterest account, board selected by policy
+  // Pinterest via Publer ~ AI-generated image (Ideogram) when available, else Pexels
   await attempt("pinterest", () =>
-    postViaPubler("pinterest", captions.pinterest, imageUrl, {
+    postViaPubler("pinterest", captions.pinterest, pinterestImageUrl, {
       title:               post.title,
       url:                 postUrl,
       pinterestBoardKey:   pinterestBoardKey,
@@ -1339,6 +1387,7 @@ if (isCli) {
       bloggerOnly: argv["blogger-only"],
       allSocial:   argv["all-social"],
       platforms:   platformFilter,
+      force:       argv.force,  // --force bypasses per-platform dedup
     });
   } catch (err) {
     console.error("Fatal:", err.message);
