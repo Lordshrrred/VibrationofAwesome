@@ -51,6 +51,7 @@ import {
   selectPinterestBoard,
   logPinterestBoard,
   PINTEREST_BOARDS,
+  publerAccountOwnership,
 } from "./lib/policy.js";
 
 dotenv.config({ override: true });
@@ -1172,17 +1173,57 @@ export async function syndicatePost(lane, slug, options = {}) {
     }
   }
 
-  // ── Account identity summary ───────────────────────────────────────────────
-  // Shown before attempts so CI logs clearly confirm which accounts are targeted.
-  console.log("\n[accounts] VOA social destinations:");
-  if (hasBlueskyConfig("VOA"))   console.log(`  bluesky_voa   → @${getBlueskyConfig("VOA").handle}`);
-  if (hasMastodonConfig("VOA"))  console.log(`  mastodon_voa  → ${getMastodonConfig("VOA").instance}`);
-  if (process.env.META_PAGE_ID_VOA) console.log(`  facebook_voa  → page:${process.env.META_PAGE_ID_VOA}`);
-  console.log("\n[accounts] Backlink tier (always active):");
-  console.log("  devto / tumblr_voa / blogger / wordpress_earthstar");
-  if (hasBlueskyConfig("ESR"))  console.log(`\n[accounts] ESR crossover (suppressed by default): bluesky_esr @${getBlueskyConfig("ESR").handle}`);
-  if (hasMastodonConfig("ESR")) console.log(`[accounts] ESR crossover (suppressed by default): mastodon_esr ${getMastodonConfig("ESR").instance}`);
-  console.log();
+  // ── Account identity + routing summary ────────────────────────────────────
+  // Printed before every run so CI logs confirm exactly which accounts are
+  // targeted, content type detected, and which social destinations are active.
+  const contentTypeForLog = detectContentType({ ...post, lane });
+  const socialForLog = effectivePlatforms
+    ? effectivePlatforms.filter(p => !BACKLINK_TIER.includes(p))
+    : getSocialPlatforms(contentTypeForLog);
+  const suppressedForLog = [...new Set([
+    ...["bluesky_voa","mastodon_voa","facebook_voa","threads","pinterest","instagram","facebook_earthstar"]
+      .filter(p => !socialForLog.includes(p) && !BACKLINK_TIER.includes(p)),
+    "bluesky_esr", "mastodon_esr",
+  ])];
+
+  console.log("\n╔═ [routing] Syndication destinations ═══════════════");
+  console.log(`║  Post:         "${post.title.slice(0,55)}"`);
+  console.log(`║  Lane:         ${lane}`);
+  console.log(`║  Content type: ${contentTypeForLog}`);
+  console.log("║");
+  console.log("║  VOA social (policy-routed):");
+  if (hasBlueskyConfig("VOA"))    console.log(`║    bluesky_voa   → @${getBlueskyConfig("VOA").handle}`);
+  if (hasMastodonConfig("VOA"))   console.log(`║    mastodon_voa  → ${getMastodonConfig("VOA").instance} [VOA]`);
+  if (process.env.META_PAGE_ID_VOA) console.log(`║    facebook_voa  → page:${process.env.META_PAGE_ID_VOA} [VOA]`);
+  {
+    const tOwn = publerAccountOwnership("threads");
+    const tId  = process.env.PUBLER_THREADS_ACCOUNT_ID || "(auto)";
+    console.log(`║    threads       → Publer:${tId.slice(0,16)}... [${tOwn}]`);
+  }
+  {
+    const iOwn = publerAccountOwnership("instagram");
+    const iId  = process.env.PUBLER_INSTAGRAM_ACCOUNT_ID || "(auto)";
+    console.log(`║    instagram     → Publer:${iId.slice(0,16)}... [${iOwn}]`);
+  }
+  {
+    const pOwn = publerAccountOwnership("pinterest");
+    const pId  = process.env.PUBLER_PINTEREST_ACCOUNT_ID || "(auto)";
+    console.log(`║    pinterest     → Publer:${pId.slice(0,16)}... [${pOwn}]`);
+  }
+  console.log("║");
+  console.log("║  Backlink tier (always active, not policy-filtered):");
+  console.log("║    devto · tumblr_voa · blogger · wordpress_earthstar");
+  if (suppressedForLog.length) {
+    console.log("║");
+    console.log("║  Suppressed this run:");
+    suppressedForLog.forEach(p => {
+      const reason = p === "bluesky_esr" || p === "mastodon_esr"
+        ? "EarthStar Command account ~ not VOA blog default"
+        : `content type: ${contentTypeForLog}`;
+      console.log(`║    ~ ${p} (${reason})`);
+    });
+  }
+  console.log("╚══════════════════════════════════════════════════\n");
 
   // ── Pinterest board selection ──────────────────────────────────────────────
   const pinterestBoardKey = selectPinterestBoard({ ...post, lane });
@@ -1233,9 +1274,23 @@ export async function syndicatePost(lane, slug, options = {}) {
     }),
     `board:"${pinterestBoardName}"`);
 
-  // Threads via Publer ~ text-first mini-thread content
-  await attempt("threads", () =>
-    postViaPubler("threads", captions.threads, null));
+  // VOA Threads via Publer ~ native 3-part mini-thread format, text only
+  {
+    const threadsOwnership = publerAccountOwnership("threads");
+    await attempt("threads", () =>
+      postViaPubler("threads", captions.threads, null),
+      `[${threadsOwnership}]`);
+  }
+
+  // VOA Instagram via Publer ~ visual content only (creator, philosophy, earthstar)
+  // Uses Ideogram-generated image when available, falls back to Pexels.
+  // Requires PUBLER_INSTAGRAM_ACCOUNT_ID pointing to VOA Instagram account.
+  {
+    const instaOwnership = publerAccountOwnership("instagram");
+    await attempt("instagram", () =>
+      postViaPubler("instagram", captions.instagram, pinterestImageUrl),
+      `[${instaOwnership}]`);
+  }
 
   // ── ESR crossover platforms (suppressed by default via policy routing) ─────
   // These are EarthStar Command accounts. The policy filter already suppresses

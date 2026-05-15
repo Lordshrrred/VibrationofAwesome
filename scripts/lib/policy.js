@@ -26,6 +26,33 @@ const ROOT       = path.resolve(__dirname, "..", "..");
 const DATA_DIR   = path.join(ROOT, "static", "_data");
 
 // ─────────────────────────────────────────────────────────────────
+// PUBLER ACCOUNT OWNERSHIP
+// ─────────────────────────────────────────────────────────────────
+
+/**
+ * Expected Publer account IDs for VOA-owned accounts.
+ * Used by syndicate.js to log whether the configured account ID
+ * matches the known VOA account or an unexpected (ESR/other) account.
+ * Update these if accounts are disconnected and reconnected in Publer.
+ */
+export const PUBLER_VOA_ACCOUNT_IDS = {
+  instagram: "6a0698ee1f0e47d9f3f18a43",  // VOA Instagram
+  threads:   "6a069b7979cc0b32f3235166",  // VOA Threads
+  pinterest: "6a052b620ce3c7cac0c7ebac",  // VOA Pinterest (@awesomevibe)
+};
+
+/**
+ * Return "VOA", "ESR", or "unknown" for a given Publer platform
+ * based on the env var currently configured.
+ */
+export function publerAccountOwnership(platform) {
+  const id = (process.env[`PUBLER_${platform.toUpperCase()}_ACCOUNT_ID`] || "").trim();
+  if (!id) return "auto-detect";
+  if (PUBLER_VOA_ACCOUNT_IDS[platform] === id) return "VOA";
+  return "unknown ~ verify PUBLER_" + platform.toUpperCase() + "_ACCOUNT_ID";
+}
+
+// ─────────────────────────────────────────────────────────────────
 // PLATFORM TIERS
 // ─────────────────────────────────────────────────────────────────
 
@@ -59,6 +86,7 @@ export const ALL_SOCIAL = [
   "facebook_voa",
   "threads",
   "pinterest",
+  "instagram",
 ];
 
 // ─────────────────────────────────────────────────────────────────
@@ -145,25 +173,30 @@ const SOCIAL_ROUTING = {
     "facebook_voa",
     "pinterest",
     "threads",
+    "instagram",       // creator/AI/tools content is Instagram-native
   ],
   philosophy: [
     "bluesky_voa",
     "mastodon_voa",
     "facebook_voa",
     "threads",
+    "instagram",       // philosophical/identity content resonates on Instagram
   ],
   "nervous-system": [
     "bluesky_voa",
     "mastodon_voa",
     "facebook_voa",
     "threads",
+    // no instagram ~ nervous-system content skews clinical, not visual
+    // no pinterest ~ audience mode mismatch
   ],
   earthstar: [
     "bluesky_voa",
     "mastodon_voa",
-    "facebook_voa",
+    "facebook_voa", "facebook_earthstar",
     "pinterest",
     "threads",
+    "instagram",       // EarthStar content is inherently visual/cosmic
   ],
   general: [
     "bluesky_voa",
@@ -171,6 +204,7 @@ const SOCIAL_ROUTING = {
     "facebook_voa",
     "pinterest",
     "threads",
+    // no instagram ~ general/unclassified content not worth a visual slot
   ],
 };
 
@@ -189,8 +223,8 @@ export function getSocialPlatforms(contentType) {
 // ─────────────────────────────────────────────────────────────────
 
 const SUPPRESS_REASONS = {
-  facebook_earthstar: "video engine primary ~ EarthStar content only",
-  instagram:          "video engine only ~ removed from VOA blog syndication",
+  facebook_earthstar: "EarthStar crossover ~ earthstar content type only",
+  instagram:          "visual/selective ~ creator, philosophy, earthstar content only",
   pinterest:          "visual/evergreen platform ~ skip philosophy and nervous-system",
   // ESR accounts are EarthStar Command territory, not VOA blog defaults
   bluesky_esr:        "EarthStar Command account ~ not VOA blog default",

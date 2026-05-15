@@ -2,7 +2,7 @@
 
 **Status:** Active  
 **Engine:** VOA Blog + EarthStar Command (dual-engine)  
-**Last updated:** 2026-05-09  
+**Last updated:** 2026-05-15  
 
 This document is the source of truth for how VOA blog content and EarthStar Command video
 content share platforms without triggering spam signals, algorithmic suppression, or audience
@@ -21,14 +21,20 @@ on the same day. These are defaults, not hard locks.
 | Dev.to | VOA Blog | ~ | Yes (always) | No |
 | Blogger | VOA Blog | ~ | Yes (always) | No |
 | WordPress (EarthStarRising) | VOA Blog | ~ | Yes (always) | No |
-| Tumblr (ESR + VOA) | VOA Blog | ~ | Yes (always) | No |
-| Facebook VOA | VOA Blog | Both | Yes | Rarely |
-| Facebook EarthStar | EarthStar Command | VOA (earthstar content only) | Limited | Yes |
-| Bluesky (ESR + VOA) | Both | ~ | Yes | Yes |
-| Mastodon (ESR + VOA) | Both | ~ | Yes | Yes |
-| Threads | Both | ~ | Yes | Yes |
-| Pinterest | Both | ~ | Yes (evergreen) | Yes |
-| Instagram | EarthStar Command | VOA (creator content only) | Limited | Yes |
+| Tumblr VOA | VOA Blog | ~ | Yes (always ~ backlink tier) | No |
+| Tumblr ESR | VOA Blog (backlink) | EarthStar | Yes (always ~ backlink tier) | No |
+| Facebook VOA | VOA Blog | ~ | Yes (selective) | Rarely |
+| Facebook EarthStar | EarthStar Command | VOA (earthstar only) | Limited | Yes |
+| Bluesky VOA | VOA Blog | ~ | Yes | No |
+| Bluesky ESR | EarthStar Command | ~ | No (suppressed by default) | Yes |
+| Mastodon VOA | VOA Blog | ~ | Yes | No |
+| Mastodon ESR | EarthStar Command | ~ | No (suppressed by default) | Yes |
+| Threads VOA | VOA Blog | ~ | Yes (native thread format) | ~ |
+| Threads ESR | EarthStar Command | ~ | No (separate account) | Yes |
+| Pinterest VOA (@awesomevibe) | VOA Blog | ~ | Yes (evergreen, board-routed) | ~ |
+| Pinterest ESR | EarthStar Command | ~ | No (separate account) | Yes |
+| Instagram VOA | VOA Blog | ~ | Yes (creator/philosophy/earthstar only) | ~ |
+| Instagram ESR | EarthStar Command | ~ | No (separate account) | Yes |
 
 ---
 
@@ -108,18 +114,20 @@ shared platforms.
 - Max: 5 posts/day per account
 
 ### Threads
-- Both engines
-- Fast-moving, high spam tolerance
-- Blog posts: all content types
-- Video posts: yes
-- Max: 4 posts/day total across engines
+- **VOA Threads** (Publer ID: `6a069b7979cc0b32f3235166`) and **ESR Threads** are separate accounts
+- VOA blog engine posts to **VOA Threads only**
+- Content format: **native 3-part mini-thread** (1/3 ~ 2/3 ~ 3/3), not a link dump
+- Each part is a connected thought; URL appears only in 3/3
+- Max: 4 posts/day total across both engines
 
 ### Instagram
-- EarthStar Command primary
-- Reels ecosystem favors video content
-- Blog posts: creator content only (not philosophy, not nervous-system)
-- Video posts: yes (primary)
-- Max: 2 posts/day total across engines
+- **VOA Instagram** (Publer ID: `6a0698ee1f0e47d9f3f18a43`) and **ESR Instagram** are separate accounts
+- VOA blog engine posts to **VOA Instagram only**
+- Content format: visual-first caption, scroll-stopping hook, no clickable URL in caption, 6-8 hashtags
+- Image: Ideogram-generated when available, falls back to Pexels article image
+- Blog posts: **creator, philosophy, earthstar content only** ~ not nervous-system, not general
+- Video posts: EarthStar Command primary (Reels)
+- Max: 2 posts/day total across both engines
 
 ### Pinterest
 - Both engines, staggered
@@ -152,30 +160,51 @@ Blog content is routed to social platforms based on detected content type.
 
 ### Content Type: `creator`
 AI tools, creator workflow, music, automation, building.
-Social: Bluesky (both), Mastodon (both), Facebook VOA, Pinterest, Threads, Instagram
+Social: Bluesky VOA, Mastodon VOA, Facebook VOA, Pinterest VOA, Threads VOA, **Instagram VOA**
 
 ### Content Type: `philosophy`
 Mindset, awareness, consciousness, personal reflection, purpose.
-Social: Bluesky (both), Mastodon (both), Facebook VOA, Threads
-Skip: Pinterest, Instagram, Facebook EarthStar
+Social: Bluesky VOA, Mastodon VOA, Facebook VOA, Threads VOA, **Instagram VOA**
+Skip: Pinterest (audience mode mismatch), Facebook EarthStar, nervous-system content
 
 ### Content Type: `nervous-system`
 ADHD, anxiety, dopamine, neurodivergent, regulation, healing.
-Social: Bluesky (both), Mastodon (both), Facebook VOA, Threads
-Skip: Pinterest, Instagram, Facebook EarthStar
+Social: Bluesky VOA, Mastodon VOA, Facebook VOA, Threads VOA
+Skip: Pinterest (audience mode mismatch), Instagram (clinical tone, not visual-native), Facebook EarthStar
 
 ### Content Type: `earthstar`
 EarthStar Initiative, sacred geometry, cosmic identity, empowerment.
-Social: Bluesky (both), Mastodon (both), Facebook VOA, Facebook EarthStar, Pinterest, Threads
+Social: Bluesky VOA, Mastodon VOA, Facebook VOA, Facebook EarthStar, Pinterest VOA, Threads VOA, **Instagram VOA**
 
 ### Content Type: `general`
 Unclassified or mixed content.
-Social: Bluesky (both), Mastodon (both), Facebook VOA, Pinterest, Threads
-Skip: Instagram, Facebook EarthStar
+Social: Bluesky VOA, Mastodon VOA, Facebook VOA, Pinterest VOA, Threads VOA
+Skip: Instagram (unclassified content not worth a visual slot), Facebook EarthStar
 
 ---
 
-## 7. Anti-Spam Rules
+## 7. Visual Generation Strategy
+
+### Ideogram ~ Pinterest and Instagram
+
+When `IDEOGRAM_API_KEY` is set, the blog engine generates an AI image for each syndication run.
+
+- **Model:** V_2_TURBO (speed + cost); swap to V_2 for maximum quality
+- **Format:** ASPECT_10_16 portrait (1000x1600px), DESIGN style, magic prompt ON
+- **Prompt:** Claude Haiku generates a Pinterest-optimized visual prompt from post title/excerpt
+- **Routing:** Image is used for both Pinterest and Instagram if both are being syndicated
+- **Storage:** Images are NOT saved locally; Publer fetches the ephemeral Ideogram URL during the same run
+- **Fallback:** If Ideogram fails or key is missing, Pexels stock photo is used instead
+
+### Image Rules
+- Never pin the same image twice to the same Pinterest board
+- Instagram images should feel emotional and visual, not informational
+- Pinterest images should be keyword-rich, evergreen, and save-worthy
+- Do not use images for Threads (text-only platform for VOA blog content)
+
+---
+
+## 8. Anti-Spam Rules
 
 1. **No same URL twice** to the same platform within 48 hours.
 2. **No same CTA link** in consecutive posts to the same platform. Rotate.
@@ -188,7 +217,7 @@ Skip: Instagram, Facebook EarthStar
 
 ---
 
-## 8. CTA Rotation Philosophy
+## 9. CTA Rotation Philosophy
 
 Every post should not point to the same destination. Rotating CTAs:
 
@@ -217,7 +246,7 @@ Rotation state is tracked per lane in `static/_data/cta-rotation-state.json`.
 
 ---
 
-## 9. Daily Platform Quotas (Both Engines Combined)
+## 10. Daily Platform Quotas (Both Engines Combined)
 
 These are safe limits before platform suppression risk increases.
 
@@ -239,7 +268,7 @@ These are safe limits before platform suppression risk increases.
 
 ---
 
-## 10. Minimum Cooldown Windows
+## 11. Minimum Cooldown Windows
 
 Minimum time between posts to the same platform from any engine.
 
@@ -256,7 +285,7 @@ Minimum time between posts to the same platform from any engine.
 
 ---
 
-## 11. Time Staggering
+## 12. Time Staggering
 
 - Blog posts: prefer morning window (7am~10am local)
 - Video posts: prefer evening window (5pm~8pm local)
@@ -265,7 +294,7 @@ Minimum time between posts to the same platform from any engine.
 
 ---
 
-## 12. Future Orchestration Notes
+## 13. Future Orchestration Notes
 
 These are not implemented in v1. They are documented for v2 planning.
 

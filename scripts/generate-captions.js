@@ -24,7 +24,7 @@ const ROOT       = path.resolve(__dirname, "..");
 // Ordered list of platform labels ~ order matters for the section parser
 const LABELS = [
   "FACEBOOK", "BLUESKY", "MASTODON", "PINTEREST",
-  "DEVTO", "TUMBLR", "THREADS",
+  "DEVTO", "TUMBLR", "THREADS", "INSTAGRAM",
 ];
 
 const SYSTEM_PROMPT = `You are a social media copywriter for vibrationofawesome.com.
@@ -116,6 +116,7 @@ export async function generateCaptions(post, client) {
     `DEVTO: short compelling intro paragraph with a technical/AI-automation angle, suitable as a Dev.to article teaser, must mention AI or automation angle, end with URL`,
     `TUMBLR: creative, aesthetic, slightly poetic, 2-4 sentences, then 5-8 #hashtags on a new line separated from the caption`,
     `THREADS: write an original compact mini-thread for Threads in one publishable text block under 500 chars total. Format exactly as "1/3 ...", blank line, "2/3 ...", blank line, "3/3 ...". It must feel like three connected thoughts, not a caption. Put the URL only in 3/3. Use zero hashtags unless one is genuinely useful.`,
+    `INSTAGRAM: write a visual-first Instagram caption. First line is the scroll-stopping hook (max 125 chars ~ make someone feel something, not just read something). Then 1-2 short sentences of supporting context. Do NOT include any URLs (Instagram captions do not support clickable links). End with 6-8 relevant #hashtags on a new line. Total caption before hashtags: under 300 chars. Match the emotional tone of the post ~ raw, honest, or cosmic depending on the content.`,
   ].join("\n");
 
   const msg = await anthropic.messages.create({
