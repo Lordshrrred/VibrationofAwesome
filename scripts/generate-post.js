@@ -715,7 +715,25 @@ async function main() {
       console.warn("No boom images found ~ post will have no inline images.");
     }
   }
-  const slug = slugify(postTitle);
+  // Deduplicate slug: if a file with this slug already exists in posts/ or drafts/,
+  // append -2, -3 etc. rather than silently overwriting it with different content.
+  const baseSlug = slugify(postTitle);
+  let slug = baseSlug;
+  {
+    const postsDir  = path.join(ROOT, "static", "blog", lane, "posts");
+    const draftsDir = path.join(ROOT, "static", "blog", lane, "drafts");
+    let attempt = 1;
+    while (
+      fs.existsSync(path.join(postsDir,  slug + ".html")) ||
+      fs.existsSync(path.join(draftsDir, slug + ".html"))
+    ) {
+      attempt++;
+      slug = `${baseSlug}-${attempt}`;
+    }
+    if (slug !== baseSlug) {
+      console.warn(`[slug] "${baseSlug}" already exists ~ using "${slug}" to avoid overwriting existing content.`);
+    }
+  }
 
   // In --draft mode: save to drafts/, skip JSON index, sitemap, syndication, feeder
   const isDraft   = !!argv.draft && lane === "boom";

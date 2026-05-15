@@ -138,6 +138,26 @@
     .health-btn.danger { border-color: rgba(255,68,68,0.5); color: var(--danger); }
     .health-btn.good { border-color: rgba(57,255,20,0.35); color: var(--success); }
 
+    /* ── OAuth token alert chips ── */
+    #token-alerts { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.8rem; }
+    .token-chip {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
+      border: 1px solid rgba(255,179,0,0.5);
+      background: rgba(255,179,0,0.07);
+      color: var(--warn); border-radius: 5px;
+      padding: 0.3rem 0.55rem; white-space: nowrap;
+    }
+    .token-chip button {
+      font: inherit; font-size: 0.68rem; font-weight: 800;
+      background: rgba(255,179,0,0.15); color: var(--warn);
+      border: 1px solid rgba(255,179,0,0.35); border-radius: 3px;
+      padding: 0.15rem 0.45rem; cursor: pointer; transition: background 0.2s;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .token-chip button:hover { background: rgba(255,179,0,0.28); }
+    .token-chip button.copied { background: rgba(57,255,20,0.2); color: var(--success); border-color: rgba(57,255,20,0.35); }
+
     /* ── Section headers ── */
     .section { margin-bottom: 2.5rem; }
     .section-header {
@@ -481,6 +501,8 @@
     </header>
 
     <main class="dash-main">
+
+      <div id="token-alerts"></div>
 
       <div class="health-panel pending" id="health-panel">
         <div>
@@ -861,6 +883,7 @@ async function loadDashboard() {
       "Updated " + new Date(logData.lastUpdated).toLocaleString();
   }
 
+  renderTokenAlerts(resultsData);
   renderHealth(healthData);
   renderStats(entries, resultsData, dripData);
   renderDripQueue(dripData);
@@ -960,6 +983,60 @@ async function mergeWordPressStatuses(resultsData) {
 }
 
 // ── Health ───────────────────────────────────────────────────────────────────
+// ── OAuth token alert chips ───────────────────────────────────────────────────
+// Scans recent syndication results for token-expired errors and shows a small
+// per-platform chip with a copy button for the refresh command.
+const TOKEN_REFRESH_COMMANDS = {
+  facebook_voa:       "npm run fb-token",
+  facebook_earthstar: "npm run fb-token",
+  blogger:            "npm run blogger-token",
+  wordpress_earthstar:"npm run wordpress-token",
+  pinterest:          "npm run pinterest-token",
+};
+const TOKEN_EXPIRED_PATTERNS = [
+  /session has expired/i,
+  /token.*expired/i,
+  /expired.*token/i,
+  /access.*token.*invalid/i,
+  /invalid.*access.*token/i,
+  /re-?auth/i,
+];
+
+function renderTokenAlerts(results) {
+  const wrap = document.getElementById("token-alerts");
+  if (!wrap) return;
+
+  // Scan most-recent 10 results for token error patterns
+  const expired = new Map(); // platformKey → { label, cmd }
+  for (const entry of (results || []).slice(0, 10)) {
+    for (const [key, s] of Object.entries(entry.syndication || {})) {
+      if (s.status !== "failed" || !s.error) continue;
+      if (!TOKEN_EXPIRED_PATTERNS.some(re => re.test(s.error))) continue;
+      if (expired.has(key)) continue;
+      const cmd = TOKEN_REFRESH_COMMANDS[key];
+      if (!cmd) continue;
+      const label = PLATFORM_MAP[key]?.label || key;
+      expired.set(key, { label, cmd });
+    }
+  }
+
+  if (expired.size === 0) { wrap.innerHTML = ""; return; }
+
+  wrap.innerHTML = [...expired.entries()].map(([, { label, cmd }]) => `
+    <span class="token-chip">
+      ⚠ ${label} token expired
+      <button onclick="copyTokenCmd('${esc(cmd)}', this)">${esc(cmd)}</button>
+    </span>`).join("");
+}
+
+function copyTokenCmd(cmd, btn) {
+  navigator.clipboard?.writeText(cmd).then(() => {
+    btn.textContent = "Copied ✓";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = cmd; btn.classList.remove("copied"); }, 2000);
+  });
+}
+
 function renderHealth(health) {
   const panel = document.getElementById("health-panel");
   if (!panel) return;
