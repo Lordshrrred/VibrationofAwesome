@@ -765,22 +765,24 @@ const BACKLINK_API_URL = "/api/backlinks";
 const VERIFY_CACHE  = "voa_url_verify_cache_v4"; // v4: free browser-side checks, no Netlify function usage
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
 
-function getOpenTarget(primaryUrl, fallbackUrl) {
-  return primaryUrl || fallbackUrl || "";
+function getOpenTarget(primaryUrl) {
+  // Only return a target if we have the actual platform post URL.
+  // Do NOT fall back to the VOA blog post ~ the row title already links there.
+  return (primaryUrl && primaryUrl.startsWith("http")) ? primaryUrl : "";
 }
 
-function getOpenAttrs(primaryUrl, fallbackUrl) {
-  const target = getOpenTarget(primaryUrl, fallbackUrl);
+function getOpenAttrs(platformUrl) {
+  const target = getOpenTarget(platformUrl);
   if (!target) return "";
   return `onclick="window.open('${esc(target)}','_blank')" style="cursor:pointer" tabindex="0" role="link"`;
 }
 
-function successTip(name, tooltip, primaryUrl, fallbackUrl, extra = "") {
-  const target = getOpenTarget(primaryUrl, fallbackUrl);
-  const suffix = primaryUrl ? "" : (target ? " · opens source post" : "");
+function successTip(name, tooltip, platformUrl, extra = "") {
+  const target = getOpenTarget(platformUrl);
+  const suffix = target ? ` → ${target}` : " · posted (no direct link ~ click title to view blog post)";
   return tooltip
-    ? `${name}: ✓ · ${tooltip}${suffix}${extra}`
-    : `${name}: ✓${target ? " → " + target : ""}${suffix}${extra}`;
+    ? `${name}: ✓ · ${tooltip}${extra}`
+    : `${name}: ✓${suffix}${extra}`;
 }
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
@@ -1324,8 +1326,8 @@ function renderRecentPosts(entries, resultsData) {
       if (canonical) {
         if (canonical.status === "success") {
           const extra = canonical.backlink_confirmed ? " · backlink confirmed" : canonical.backlink_status ? ` · backlink ${canonical.backlink_status}` : "";
-          const tip = successTip(name, tooltip, canonical.url, entry.postUrl, extra);
-          const onclick = getOpenAttrs(canonical.url, entry.postUrl);
+          const tip = successTip(name, tooltip, canonical.url, extra);
+          const onclick = getOpenAttrs(canonical.url);
           return `<span class="badge badge-ok" title="${esc(tip)}" ${onclick}>✓ ${label}</span>`;
         }
         if (canonical.status === "pending") {
@@ -1339,8 +1341,8 @@ function renderRecentPosts(entries, resultsData) {
       const r = platforms[key];
       if (!r) return `<span class="badge badge-skip" title="${name}: not attempted">~ ${label}</span>`;
       if (r.success) {
-        const tip = successTip(name, tooltip, r.postUrl, entry.postUrl);
-        const onclick = getOpenAttrs(r.postUrl, entry.postUrl);
+        const tip = successTip(name, tooltip, r.postUrl);
+        const onclick = getOpenAttrs(r.postUrl);
         return `<span class="badge badge-ok" title="${esc(tip)}" ${onclick}>✓ ${label}</span>`;
       }
       if (r.skipped) {
@@ -1417,8 +1419,8 @@ function renderMatrix(results) {
       if (s.status === "success") {
         successCount++;
         const extra = s.backlink_confirmed ? " · backlink confirmed" : s.backlink_status ? ` · backlink ${s.backlink_status}` : "";
-        const tip = successTip(name, tooltip, s.url, entry.voa_url, extra);
-        const onclick = getOpenAttrs(s.url, entry.voa_url);
+        const tip = successTip(name, tooltip, s.url, extra);
+        const onclick = getOpenAttrs(s.url);
         return `<td><div class="mat-cell mat-ok" title="${esc(tip)}" ${onclick} data-verify="${esc(s.url||"")}" data-key="${key}" data-slug="${esc(entry.slug)}">✓</div></td>`;
       } else if (s.status === "pending") {
         return `<td><div class="mat-cell mat-pend" title="${esc(name + ": trigger fired, waiting for post")}">⏳</div></td>`;
