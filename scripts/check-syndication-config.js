@@ -63,11 +63,11 @@ function getTumblrConfig(prefix) {
   const p = `${prefix}_`;
   return {
     label: prefix,
-    consumerKey:    firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`], prefix === "ESR" ? process.env.TUMBLR_CONSUMER_KEY : null),
-    consumerSecret: firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_SECRET`], prefix === "ESR" ? process.env.TUMBLR_CONSUMER_SECRET : null),
-    token:          firstNonEmpty(process.env[`${p}TUMBLR_TOKEN`], prefix === "ESR" ? process.env.TUMBLR_TOKEN : null),
-    tokenSecret:    firstNonEmpty(process.env[`${p}TUMBLR_TOKEN_SECRET`], prefix === "ESR" ? process.env.TUMBLR_TOKEN_SECRET : null),
-    blogName:       firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`], prefix === "ESR" ? process.env.TUMBLR_BLOG_NAME : null),
+    consumerKey:    firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`], process.env.TUMBLR_CONSUMER_KEY),
+    consumerSecret: firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_SECRET`], process.env.TUMBLR_CONSUMER_SECRET),
+    token:          firstNonEmpty(process.env[`${p}TUMBLR_TOKEN`], process.env.TUMBLR_TOKEN),
+    tokenSecret:    firstNonEmpty(process.env[`${p}TUMBLR_TOKEN_SECRET`], process.env.TUMBLR_TOKEN_SECRET),
+    blogName:       firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`], process.env.TUMBLR_BLOG_NAME),
   };
 }
 
