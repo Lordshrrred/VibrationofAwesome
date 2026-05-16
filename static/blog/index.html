@@ -149,7 +149,8 @@
       try{
         var r=await fetch(url);if(!r.ok)throw 0;
         var posts=await r.json();if(!posts||!posts.length)throw 0;
-        el.innerHTML=posts.slice(0,3).map(function(p){return "<div class=\"recent-post-item\"><a href=\""+p.url+"\" class=\"recent-post-title\">"+p.title+"</a><span class=\"recent-post-date\">"+fmtDate(p.date)+"</span></div>";}).join("");
+        var sorted=posts.slice().sort(function(a,b){return new Date(b.date)-new Date(a.date);});
+        el.innerHTML=sorted.slice(0,8).map(function(p){return "<div class=\"recent-post-item\"><a href=\""+p.url+"\" class=\"recent-post-title\">"+p.title+"</a><span class=\"recent-post-date\">"+fmtDate(p.date)+"</span></div>";}).join("");
       }catch(e){el.innerHTML="<div class=\"posts-coming-soon\">Posts coming soon...</div>";}
     }
     loadPosts("/_data/matt-posts.json","matt-posts","/blog/matt/posts/");
