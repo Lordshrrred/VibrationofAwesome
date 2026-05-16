@@ -385,6 +385,8 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push('        <div style="height:2rem;"></div>');
     H.push('        <div class="voa-ebook-cta" data-placement="end-of-post" data-blog-slug="' + slug + '"></div>');
     H.push('        <script src="/js/ebook-cta.js"><\/script>');
+    H.push('        <div data-art-store-whisper data-blog-slug="' + slug + '"></div>');
+    H.push('        <script src="/js/art-store-whisper.js"><\/script>');
     H.push("      </article>");
     H.push("    </div>");
   } else {
@@ -409,6 +411,8 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push('        <div style="height:1rem;"></div>');
     H.push('        <div data-ebook-cta data-placement="end-of-post" data-blog-slug="' + slug + '"></div>');
     H.push('        <script src="/js/ebook-cta.js"><\/script>');
+    H.push('        <div data-art-store-whisper data-blog-slug="' + slug + '"></div>');
+    H.push('        <script src="/js/art-store-whisper.js"><\/script>');
     H.push("      </article>");
     H.push("    </div>");
   }
