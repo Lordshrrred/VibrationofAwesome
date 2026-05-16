@@ -6,12 +6,6 @@
   "trigger_feeder_on_publish": true,
   "queue": [
     {
-      "slug": "why-you-feel-stuck-in-life-and-whats-actually-going-on",
-      "title": "Why You Feel Stuck in Life (And What's Actually Going On)",
-      "keyword": "why I feel stuck in life",
-      "pillar": "Identity + Awakening"
-    },
-    {
       "slug": "how-to-unlock-your-potential-when-nothing-seems-to-work",
       "title": "How to Unlock Your Potential When Nothing Seems to Work",
       "keyword": "how to unlock your potential",
@@ -600,7 +594,15 @@
       "pillar": "AI + Creator Tools"
     }
   ],
-  "published": [],
+  "published": [
+    {
+      "slug": "why-you-feel-stuck-in-life-and-whats-actually-going-on",
+      "title": "Why You Feel Stuck in Life (And What's Actually Going On)",
+      "keyword": "why I feel stuck in life",
+      "pillar": "Identity + Awakening",
+      "published_at": "2026-05-16T14:24:47.140Z"
+    }
+  ],
   "_phase": "phase-one",
   "_posts_per_day": 2,
   "_scale_notes": "To scale to 3/day: add 0 18 * * * cron to drip-posts.yml. To scale to 4/day: add a 4th cron. Keep drip_rate: 1."
