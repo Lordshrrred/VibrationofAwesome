@@ -55,7 +55,7 @@
     .quickstart-primary { color:#041110; background:#22c06a; box-shadow:0 0 22px rgba(34,192,106,0.18); }
     .quickstart-secondary { color:#00e5ff; border:1px solid rgba(0,229,255,0.34); background:rgba(0,229,255,0.07); }
     .quickstart-tertiary { color:#ffb300; border:1px solid rgba(255,179,0,0.34); background:rgba(255,179,0,0.07); }
-    .cards { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    .cards { display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start; }
     @media (max-width:700px) { .quickstart { grid-template-columns:1fr; } .cards { grid-template-columns:1fr; } nav .lane-links { display:none; } }
     .card { border-radius:12px; padding:2rem; display:flex; flex-direction:column; gap:1.2rem; position:relative; overflow:hidden; transition:transform 0.3s,box-shadow 0.3s; cursor:pointer; }
     .card:hover { transform:translateY(-4px); }
@@ -79,7 +79,7 @@
     .card-boom .recent-post-title:hover { color:#00e5ff; }
     .recent-post-date { font-size:0.75rem; color:#4a9e96; font-weight:500; }
     .posts-coming-soon { font-size:0.85rem; color:rgba(208,255,248,0.35); font-style:italic; padding:0.5rem 0; }
-    .card-cta { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-top:auto; padding-top:1rem; text-decoration:none; }
+    .card-cta { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-top:1.25rem; padding-top:0.75rem; border-top:1px solid rgba(255,255,255,0.06); text-decoration:none; }
     .card-matt .card-cta { color:#ffb300; }
     .card-boom .card-cta { color:#00e5ff; }
     footer { position:relative; z-index:1; text-align:center; padding:2rem; font-size:0.8rem; color:#4a9e96; border-top:1px solid rgba(0,229,204,0.08); }
