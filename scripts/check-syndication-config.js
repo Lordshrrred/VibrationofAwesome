@@ -225,7 +225,18 @@ async function main() {
       const resp = await fetch(`https://graph.facebook.com/v19.0/${process.env[idKey]}?${qs}`);
       const data = await resp.json().catch(() => ({}));
       if (!resp.ok || data.error) throw new Error(data.error?.message || `HTTP ${resp.status}`);
-      return data.name || data.id || "page ok";
+      // Surface token expiry date from .cache/fb-tokens.json if available
+      let expiryNote = "";
+      try {
+        const cacheFile = new URL("../.cache/fb-tokens.json", import.meta.url).pathname;
+        const cache = JSON.parse(fs.readFileSync(cacheFile, "utf8"));
+        const entry = Object.values(cache)[0];
+        if (entry?.expiresAt) {
+          const expDate = new Date(entry.expiresAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+          expiryNote = ` · expires ${expDate}`;
+        }
+      } catch (_) {}
+      return (data.name || data.id || "page ok") + expiryNote;
     });
   }
 

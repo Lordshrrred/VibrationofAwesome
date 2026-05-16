@@ -159,6 +159,9 @@ Your job is to extract the EMOTIONAL and SYMBOLIC core of blog posts and return 
 Rules:
 - Never illustrate the literal topic. "Dopamine detox" does not mean a phone. Find the emotional truth beneath.
 - Text overlays must feel like something you would stop to re-read. 5-8 words for Pinterest, max 3 for Instagram.
+- CRITICAL for text overlays: NO apostrophes, NO contractions, NO curly quotes, NO quotation marks of any kind.
+  Write "youre" not "you're". Write "dont" not "don't". Write "its" not "it's".
+  Plain words only. Ideogram cannot render apostrophes or smart quotes cleanly ~ they cause garbled text.
 - Sacred diagrams are NOT spiritual art. They are consciousness schematics, dimensional maps, future-civilization manuals.
   Think: technical manual meets cosmic cartography. Every element serves the diagram, nothing decorative.
 - All output must be valid JSON only. No preamble. No markdown fences.`;

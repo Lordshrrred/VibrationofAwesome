@@ -1,14 +1,10 @@
 {
-  "lastChecked": "2026-05-16T04:02:33.172Z",
-  "status": "broken",
-  "passed": 11,
-  "failed": 1,
+  "lastChecked": "2026-05-16T04:24:15.345Z",
+  "status": "ok",
+  "passed": 12,
+  "failed": 0,
   "total": 12,
-  "topFix": {
-    "name": "Tumblr VOA auth",
-    "detail": "missing VOA_TUMBLR_CONSUMER_KEY, VOA_TUMBLR_CONSUMER_SECRET, VOA_TUMBLR_TOKEN, VOA_TUMBLR_TOKEN_SECRET, VOA_TUMBLR_BLOG_NAME",
-    "repairCommand": "npm run check:syndication -- --write"
-  },
+  "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
@@ -57,7 +53,7 @@
     {
       "name": "Facebook VOA",
       "ok": true,
-      "detail": "Vibration of Awesome"
+      "detail": "Vibration of Awesome · expires Jul 13, 2026"
     },
     {
       "name": "Dev.to auth",
@@ -66,8 +62,8 @@
     },
     {
       "name": "Tumblr VOA auth",
-      "ok": false,
-      "detail": "missing VOA_TUMBLR_CONSUMER_KEY, VOA_TUMBLR_CONSUMER_SECRET, VOA_TUMBLR_TOKEN, VOA_TUMBLR_TOKEN_SECRET, VOA_TUMBLR_BLOG_NAME"
+      "ok": true,
+      "detail": "vibrationofawesome.tumblr.com user ok"
     },
     {
       "name": "Blogger token refresh",

@@ -69,9 +69,9 @@ export const VISUAL_TYPES = {
   pinterest: {
     label:       "Pinterest",
     aspect:      "ASPECT_10_16",
-    model:       "V_2_TURBO",
+    model:       "V_2",           // V_2 over TURBO: significantly better text rendering
     style:       "DESIGN",
-    magic:       "ON",
+    magic:       "OFF",           // OFF: magic prompt rewrites our overlay text and causes garbling
     description: "10:16 portrait, bold graphic, text overlay, board-aware search optimization",
   },
   instagram: {
@@ -119,12 +119,43 @@ const EARTHSTAR_PALETTE = {
   surface: "#080d18",  // dark blue-black
 };
 
+// ── Text overlay sanitizer ─────────────────────────────────────────────────────
+// Ideogram garbles apostrophes, smart/curly quotes, and contractions.
+// This strips them out and returns a clean uppercase phrase safe for rendering.
+function sanitizeOverlay(text) {
+  if (!text) return "";
+  return text
+    // Expand common contractions before stripping apostrophes
+    .replace(/don['']t/gi, "dont")
+    .replace(/you['']re/gi, "youre")
+    .replace(/you['']ve/gi, "youve")
+    .replace(/it['']s/gi, "its")
+    .replace(/that['']s/gi, "thats")
+    .replace(/there['']s/gi, "theres")
+    .replace(/they['']re/gi, "theyre")
+    .replace(/we['']re/gi, "were")
+    .replace(/what['']s/gi, "whats")
+    .replace(/can['']t/gi, "cant")
+    .replace(/won['']t/gi, "wont")
+    .replace(/i['']ve/gi, "ive")
+    .replace(/i['']m/gi, "im")
+    // Strip any remaining smart quotes, curly quotes, apostrophes, and stray punctuation
+    .replace(/[''""„"«»‹›]/g, "")
+    .replace(/'/g, "")
+    .replace(/"/g, "")
+    // Strip parentheses and brackets
+    .replace(/[()[\]{}]/g, "")
+    // Collapse multiple spaces
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 // ── Prompt builders ────────────────────────────────────────────────────────────
 
 function buildPinterestPrompt(intelligence, contentType, boardKey) {
   const boardDir  = BOARD_VISUAL_DIRECTION[boardKey] || BOARD_VISUAL_DIRECTION["vibration-of-awesome"];
   const sceneDir  = CONTENT_TYPE_SCENE[contentType] || CONTENT_TYPE_SCENE.general;
-  const overlay   = intelligence.platformTextOverlays?.pinterest || "";
+  const overlay   = sanitizeOverlay(intelligence.platformTextOverlays?.pinterest || "");
   const metaphor  = intelligence.visualMetaphor || "";
   const tension   = intelligence.emotionalTension || "";
 
@@ -142,8 +173,8 @@ function buildPinterestPrompt(intelligence, contentType, boardKey) {
     `Light source is ${contentType === "earthstar" ? "prismatic and refractive, multi-directional" : "interior ~ soft teal bioluminescence from within a single element"}.`,
     // Explicit palette (policy §3 rule 5)
     `Color palette: ${colorNote}. Primary accent ${VOA_PALETTE.accent}, background ${VOA_PALETTE.deep}.`,
-    // Text overlay (always present for Pinterest)
-    overlay ? `Bold text overlay reads: "${overlay}".` : "",
+    // Text overlay (always present for Pinterest) ~ uppercase for clean Ideogram rendering
+    overlay ? `Bold uppercase text overlay reads: "${overlay.toUpperCase()}". Render text with clean crisp edges, no distortion, no garbling.` : "",
     // Style direction
     `Painterly cinematic render, DESIGN style. No human faces. No identifiable people. No warm golden-hour tones.`,
     // Avoid directive
@@ -157,7 +188,7 @@ function buildPinterestPrompt(intelligence, contentType, boardKey) {
 
 function buildInstagramPrompt(intelligence, contentType) {
   const sceneDir  = CONTENT_TYPE_SCENE[contentType] || CONTENT_TYPE_SCENE.general;
-  const overlay   = intelligence.platformTextOverlays?.instagram || "";
+  const overlay   = sanitizeOverlay(intelligence.platformTextOverlays?.instagram || "");
   const metaphor  = intelligence.visualMetaphor || "";
   const symbols   = (intelligence.symbolicImagery || []).slice(0, 2).join("; ");
 

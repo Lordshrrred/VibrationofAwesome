@@ -106,37 +106,8 @@
     .stat-badge.gold  { background: rgba(255,179,0,0.15); color: var(--warn); border: 1px solid rgba(255,179,0,0.3); }
     .stat-badge.green { background: rgba(57,255,20,0.1);  color: var(--success); border: 1px solid rgba(57,255,20,0.25); }
     .stat-badge.red   { background: rgba(255,68,68,0.1);  color: var(--danger); border: 1px solid rgba(255,68,68,0.25); }
-    .health-panel {
-      margin-bottom: 0.8rem; border: 1px solid var(--border); border-radius: 8px;
-      padding: 0.65rem 0.8rem; display: flex; align-items: center; justify-content: space-between;
-      gap: 0.8rem; background: var(--surface); box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
-    }
-    .health-panel.ok {
-      border-color: rgba(57,255,20,0.4);
-      background: linear-gradient(90deg, rgba(57,255,20,0.11), rgba(0,229,255,0.06));
-    }
-    .health-panel.broken {
-      border-color: rgba(255,68,68,0.65);
-      background: linear-gradient(90deg, rgba(255,68,68,0.18), rgba(255,179,0,0.08));
-      box-shadow: 0 0 16px rgba(255,68,68,0.08);
-    }
-    .health-panel.pending {
-      border-color: rgba(255,179,0,0.45);
-      background: linear-gradient(90deg, rgba(255,179,0,0.13), rgba(0,229,255,0.05));
-    }
-    .health-kicker { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.18rem; }
-    .health-title { font-size: 0.98rem; font-weight: 800; color: var(--text); line-height: 1.15; }
-    .health-title strong { color: var(--danger); }
-    .health-detail { font-size: 0.76rem; color: var(--text-muted); margin-top: 0.2rem; }
-    .health-actions { display: flex; gap: 0.55rem; flex-wrap: wrap; justify-content: flex-end; }
-    .health-btn {
-      border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text);
-      font: inherit; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
-      padding: 0.45rem 0.6rem; border-radius: 5px; cursor: pointer; transition: all 0.2s;
-    }
-    .health-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .health-btn.danger { border-color: rgba(255,68,68,0.5); color: var(--danger); }
-    .health-btn.good { border-color: rgba(57,255,20,0.35); color: var(--success); }
+    /* health-panel replaced by inline chips in token-status-bar */
+    .health-panel { display: none !important; }
 
     /* ── OAuth token status bar ── */
     .token-status-bar {
@@ -474,8 +445,6 @@
       .dash-main { padding: 1rem; }
       .dash-header { padding: 0.75rem 1rem; }
       .stats-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
-      .health-panel { align-items: flex-start; flex-direction: column; }
-      .health-actions { justify-content: flex-start; }
       .platform-badges { flex-wrap: wrap; }
       .post-table { font-size: 0.82rem; }
       .drip-meta { gap: 1rem; }
@@ -526,17 +495,8 @@
 
     <main class="dash-main">
 
-      <div class="token-status-bar" id="token-alerts"></div>
-
-      <div class="health-panel pending" id="health-panel">
-        <div>
-          <div class="health-kicker">Platform Health</div>
-          <div class="health-title">Checking syndication readiness</div>
-          <div class="health-detail">Loading the latest static health snapshot.</div>
-        </div>
-        <div class="health-actions">
-          <button class="health-btn" onclick="copyDashCommand('npm run check:syndication -- --write', this)">Copy Health Check</button>
-        </div>
+      <div class="token-status-bar" id="token-alerts">
+        <span id="health-chips"></span>
       </div>
 
       <!-- ── Stats Strip ── -->
@@ -907,7 +867,7 @@ async function loadDashboard() {
       "Updated " + new Date(logData.lastUpdated).toLocaleString();
   }
 
-  renderTokenAlerts(resultsData);
+  renderTokenAlerts(resultsData, healthData);
   renderHealth(healthData);
   renderStats(entries, resultsData, dripData);
   renderDripQueue(dripData);
@@ -1066,20 +1026,32 @@ function getTokenStatusMap(results) {
   return statusMap;
 }
 
-function renderTokenStatus(results) {
+function renderTokenStatus(results, health) {
   const wrap = document.getElementById("token-alerts");
   if (!wrap) return;
-  renderTokenStatus._last = () => renderTokenStatus(results);
+  renderTokenStatus._last = () => renderTokenStatus(results, health);
+
+  // Build a lookup of health check details by name for expiry info
+  const healthDetails = {};
+  for (const c of (health?.checks || [])) healthDetails[c.name] = c.detail || "";
 
   const statusMap  = getTokenStatusMap(results);
   const toRender   = TOKEN_PLATFORMS.filter(p => statusMap[p.key]);
 
-  if (toRender.length === 0) { wrap.innerHTML = ""; return; }
+  if (toRender.length === 0) { wrap.innerHTML = "<span id='health-chips'></span>"; return; }
 
   const chips = toRender.map(({ key, label, cmd }) => {
     const info = statusMap[key];
     if (info.state === "ok") {
-      return `<span class="tok ok" title="${label}: token valid">✓ ${label}</span>`;
+      // For Facebook, pull expiry date from health check detail
+      let title = `${label}: token valid`;
+      let extra = "";
+      if (key === "facebook_voa") {
+        const detail = healthDetails["Facebook VOA"] || "";
+        const m = detail.match(/expires\s+([A-Za-z]+\s+\d+,\s+\d+)/i);
+        if (m) { extra = ` <span style="opacity:0.55;font-size:0.65rem">exp ${m[1]}</span>`; title += ` · ${m[0]}`; }
+      }
+      return `<span class="tok ok" title="${esc(title)}">✓ ${label}${extra}</span>`;
     }
     if (info.state === "warn" && !isTokenDismissed(key)) {
       const safeCmd = esc(cmd);
@@ -1089,15 +1061,15 @@ function renderTokenStatus(results) {
         <button class="tok-dismiss" title="Dismiss for 12h" onclick="dismissToken('${esc(key)}')">✕</button>
       </span>`;
     }
-    return ""; // ok_fail (non-token error) or dismissed warn: don't show
+    return "";
   }).join("");
 
+  const existing = document.getElementById("health-chips");
   wrap.innerHTML = chips
-    ? `<span class="token-status-label">Tokens</span>${chips}`
-    : "";
+    ? `<span class="token-status-label">Tokens</span>${chips}<span id="health-chips"></span>`
+    : `<span id="health-chips"></span>`;
 }
-// expose for renderTokenAlerts call site compatibility
-function renderTokenAlerts(results) { renderTokenStatus(results); }
+function renderTokenAlerts(results, health) { renderTokenStatus(results, health); }
 
 function copyTokCmd(cmd, btn) {
   navigator.clipboard?.writeText(cmd).then(() => {
@@ -1109,48 +1081,27 @@ function copyTokCmd(cmd, btn) {
 }
 
 function renderHealth(health) {
-  const panel = document.getElementById("health-panel");
-  if (!panel) return;
-
-  if (!health) {
-    panel.className = "health-panel pending";
-    panel.innerHTML = `
-      <div>
-        <div class="health-kicker">Platform Health</div>
-        <div class="health-title">No health snapshot yet</div>
-        <div class="health-detail">Run the readiness check to create the dashboard signal. This stays static and does not use Netlify.</div>
-      </div>
-      <div class="health-actions">
-        <button class="health-btn" onclick="copyDashCommand('npm run check:syndication -- --write', this)">Run Health Check</button>
-      </div>`;
-    return;
-  }
+  // Health failures appear as inline chips in the token bar, not a separate panel.
+  // The #health-panel div is hidden via CSS; we inject chips into #health-chips.
+  const chipWrap = document.getElementById("health-chips");
+  if (!chipWrap) return;
+  chipWrap.innerHTML = "";
+  if (!health) return;
 
   const checks = Array.isArray(health.checks) ? health.checks : [];
-  const failed = checks.filter(check => !check.ok);
-  const isBroken = health.status === "broken" || failed.length > 0;
-  const topFix = health.topFix || failed.find(check => /blogger/i.test(check.name)) || failed[0] || null;
-  const lastChecked = health.lastChecked ? new Date(health.lastChecked).toLocaleString() : "unknown";
-  const drip = health.drip || {};
-  const dripLine = drip.status
-    ? `Drip ${drip.status} · ${drip.rate || 2}/day · ${drip.remaining ?? 0} queued · syndication ${drip.syndicate_on_publish ? "on" : "off"}`
-    : "Drip status unavailable";
-  const repairCommand = topFix?.repairCommand || (topFix && /blogger/i.test(topFix.name) ? "npm run blogger-token" : "npm run check:syndication -- --write");
-  const statusText = isBroken ? `<strong>Needs fix: ${esc(topFix?.name || "syndication")}</strong>` : "All syndication checks passing";
-  const detail = isBroken
-    ? `${esc(topFix?.detail || "One or more platform checks failed.")} · ${health.passed || 0}/${health.total || checks.length} checks passing · ${esc(dripLine)}`
-    : `${health.passed || checks.length}/${health.total || checks.length} checks passing · ${esc(dripLine)} · checked ${esc(lastChecked)}`;
+  const failed  = checks.filter(c => !c.ok);
+  if (failed.length === 0) return; // all passing ~ show nothing
 
-  panel.className = `health-panel ${isBroken ? "broken" : "ok"}`;
-  panel.innerHTML = `
-    <div>
-      <div class="health-kicker">Platform Health</div>
-      <div class="health-title">${statusText}</div>
-      <div class="health-detail">${detail}</div>
-    </div>
-    <div class="health-actions">
-      ${isBroken ? `<button class="health-btn danger" onclick="copyDashCommand('${esc(repairCommand)}', this)">Copy Fix Command</button>` : `<button class="health-btn good" onclick="copyDashCommand('npm run check:syndication -- --write', this)">Copy Health Check</button>`}
-    </div>`;
+  for (const f of failed) {
+    const cmd     = esc(f.repairCommand || (/blogger/i.test(f.name) ? "npm run blogger-token" : "npm run check:syndication -- --write"));
+    const label   = esc(f.name || "check");
+    const detail  = esc(f.detail || "check failed");
+    const chip    = document.createElement("span");
+    chip.className = "tok warn";
+    chip.title     = detail;
+    chip.innerHTML = `⚠ ${label} <button onclick="copyTokCmd('${cmd}',this)">${cmd}</button>`;
+    chipWrap.appendChild(chip);
+  }
 }
 
 function copyDashCommand(cmd, btn) {
