@@ -18,6 +18,7 @@ import { updateSitemap } from "./update-sitemap.js";
 import { syndicatePost } from "./syndicate.js";
 import { fetchNasaImages, fetchForestImages, fetchBoomImages } from "./select-image.js";
 import { findNiche, getDefaultNiche, getNichePromptContext, EARTHSTAR_NICHES } from "./content-niches.js";
+import { getNextCTA, detectContentType } from "./lib/policy.js";
 
 dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
@@ -81,8 +82,7 @@ const BOOMBOT_SYSTEM = [
   "abundance-minded outliers ready to reinvent themselves.",
   "Write in a voice that is helpful, slightly eccentric, and real ~ never corporate,",
   "never generic. Include H2 and H3 subheadings, a meta description on the first line",
-  "(format: META: your description here), and a CTA at the end pointing readers to",
-  "vibrationofawesome.com and the Field Guide at vibrationofawesome.com/field-guide/",
+  "(format: META: your description here).",
   "Return raw markdown only.",
   "Never use em dashes in your output. Use tildes, hyphens, commas, or restructure the sentence instead.",
   "",
@@ -173,7 +173,7 @@ function stripMeta(markdown) {
 }
 
 /** Build complete post HTML. Uses string array join to avoid template-literal/quoting issues. */
-function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroImageUrl) {
+function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, cta) {
   const isMatt      = lane === "matt";
   const accent      = isMatt ? "#ffb300" : "#00e5ff";
   const accentLight = isMatt ? "#ffe082" : "#b2f5ff";
@@ -377,7 +377,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push('        <div class="post-cta">');
     H.push("          <h3>Explore More at Vibration of Awesome</h3>");
     H.push("          <p>Music, AI tools, digital creation, and the weird beautiful intersection of all three.</p>");
-    H.push('          <a href="https://vibrationofawesome.com/field-guide/">Start with the Field Guide</a>');
+    H.push('          <a href="' + (cta ? cta.url : "https://vibrationofawesome.com/field-guide/") + '">' + (cta ? cta.text : "Start with the Field Guide") + '</a>');
     H.push("        </div>");
     H.push('        <div style="height:2rem;"></div>');
     H.push('        <div class="voa-photo-rotator" data-folder="matt" data-mode="signature"></div>');
@@ -634,10 +634,17 @@ async function main() {
       ].join("\n")
     : "";
 
+  // Determine content-type-aware CTA for this post
+  const ctaNicheSlug   = selectedNiche ? selectedNiche.slug : undefined;
+  const ctaContentType = detectContentType({ lane, niche: ctaNicheSlug, tags: ctaNicheSlug ? [ctaNicheSlug] : [] });
+  const selectedCTA    = getNextCTA(lane, ctaContentType);
+  const ctaInstruction = `\n---\nCTA: End the post with a single benefit-forward call-to-action that feels natural to the content. Link text: "${selectedCTA.text}". URL: ${selectedCTA.url}. Do not add author bio or generic sign-off.\n---`;
+  console.log("[CTA] " + selectedCTA.id + " ~ " + selectedCTA.url);
+
   if (lane === "matt") {
     postTitle    = argv.title;
     systemPrompt = MATT_SYSTEM;
-    userMessage  = "Write a full blog post with the title: \"" + argv.title + "\"" + rantInstruction + internalLinkingInstruction;
+    userMessage  = "Write a full blog post with the title: \"" + argv.title + "\"" + rantInstruction + internalLinkingInstruction + ctaInstruction;
   } else {
     postTitle    = argv.keyword;
     systemPrompt = BOOMBOT_SYSTEM;
@@ -653,6 +660,7 @@ async function main() {
       titleLine,
       rantInstruction,
       internalLinkingInstruction,
+      ctaInstruction,
     ].join("\n");
   }
 
@@ -747,7 +755,7 @@ async function main() {
 
   const dateStr = new Date().toISOString();
   const heroImageUrl = (inlineImages && inlineImages.length > 0) ? inlineImages[0].url : null;
-  fs.writeFileSync(outputFile, buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription, heroImageUrl), "utf8");
+  fs.writeFileSync(outputFile, buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, selectedCTA), "utf8");
   console.log((isDraft ? "[DRAFT] " : "") + "Post saved: /blog/" + lane + "/" + outputSub + "/" + slug + ".html");
 
   if (!isDraft) {

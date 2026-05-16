@@ -408,7 +408,7 @@ export function logPolicyDecision(post, contentType, socialPlatforms, suggestedC
 
 /**
  * CTA pool ~ rotates to avoid link fatigue and repetitive patterns.
- * Field Guide is the primary CTA but should not appear in every post.
+ * See syndication-policy-v1.md §9 for matching guidelines.
  */
 const CTA_POOL = [
   {
@@ -443,14 +443,24 @@ const CTA_POOL = [
   },
 ];
 
+// Content-type-appropriate CTA subsets (from §9 of syndication-policy-v1.md)
+const CTA_BY_TYPE = {
+  creator:        ["blog", "field-guide", "aura"],
+  philosophy:     ["field-guide", "aura", "blog"],
+  "nervous-system": ["aura", "field-guide", "blog"],
+  earthstar:      ["earthstar", "art-store", "field-guide"],
+  general:        ["field-guide", "blog", "aura", "art-store", "earthstar"],
+};
+
 /**
- * Get the next CTA from the rotation pool.
+ * Get the next CTA from the rotation pool, biased toward content-type-appropriate options.
  * Rotation state is persisted per lane in static/_data/cta-rotation-state.json.
  *
- * @param {string} lane - "matt" or "boom" (separate rotation index per lane)
+ * @param {string} lane        - "matt" or "boom" (separate rotation index per lane)
+ * @param {string} contentType - Optional; narrows pool to type-appropriate CTAs
  * @returns {{ id: string, label: string, url: string, text: string }}
  */
-export function getNextCTA(lane = "boom") {
+export function getNextCTA(lane = "boom", contentType = "general") {
   const stateFile = path.join(DATA_DIR, "cta-rotation-state.json");
   let state = {};
 
@@ -460,9 +470,12 @@ export function getNextCTA(lane = "boom") {
     }
   } catch (_) { /* start fresh */ }
 
-  const key     = `last_${lane}`;
+  const allowedIds = CTA_BY_TYPE[contentType] || CTA_BY_TYPE.general;
+  const pool       = CTA_POOL.filter(c => allowedIds.includes(c.id));
+
+  const key     = `last_${lane}_${contentType}`;
   const lastIdx = typeof state[key] === "number" ? state[key] : -1;
-  const nextIdx = (lastIdx + 1) % CTA_POOL.length;
+  const nextIdx = (lastIdx + 1) % pool.length;
 
   state[key]        = nextIdx;
   state.lastUpdated = new Date().toISOString();
@@ -474,7 +487,7 @@ export function getNextCTA(lane = "boom") {
     console.warn(`[policy] Could not save CTA rotation state: ${err.message}`);
   }
 
-  return CTA_POOL[nextIdx];
+  return pool[nextIdx];
 }
 
 // ─────────────────────────────────────────────────────────────────

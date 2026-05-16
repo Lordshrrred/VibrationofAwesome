@@ -1116,7 +1116,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   if (!options.bloggerOnly && !options.platforms && !options.allSocial) {
     const contentType    = detectContentType({ ...post, lane });
     const socialPlatforms = getSocialPlatforms(contentType);
-    const cta            = getNextCTA(lane);
+    const cta            = getNextCTA(lane, contentType);
 
     logPolicyDecision({ ...post, lane }, contentType, socialPlatforms, `${cta.label} ~ ${cta.url}`);
 
