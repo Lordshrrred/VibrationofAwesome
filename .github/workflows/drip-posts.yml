@@ -180,6 +180,7 @@ jobs:
             echo "Nothing new to commit."
           else
             git commit -m "Drip publish: $(date -u '+%Y-%m-%d %H:%M UTC') [automated]"
+            git pull --rebase origin main
             git push
             echo "nothing_committed=false" >> $GITHUB_OUTPUT
           fi
