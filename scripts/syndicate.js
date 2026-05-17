@@ -63,8 +63,11 @@ const LOG_FILE     = path.join(ROOT, "static", "_data", "syndication-log.json");
 const RESULTS_FILE = path.join(ROOT, "static", "_data", "syndication-results.json");
 const CACHE_DIR    = path.join(ROOT, ".cache");
 const LOCK_DIR     = path.join(CACHE_DIR, "syndication.lock");
-const LOCK_STALE_MS = Number(process.env.SYNDICATION_LOCK_STALE_MS || 45 * 60 * 1000);
-const LOCK_WAIT_MS  = Number(process.env.SYNDICATION_LOCK_WAIT_MS || 60 * 60 * 1000);
+const LOCK_STALE_MS      = Number(process.env.SYNDICATION_LOCK_STALE_MS || 45 * 60 * 1000);
+const LOCK_WAIT_MS       = Number(process.env.SYNDICATION_LOCK_WAIT_MS  || 60 * 60 * 1000);
+const PLATFORM_TIMEOUT_MS = Number(process.env.PLATFORM_TIMEOUT_MS     || 90_000); // 90 s per platform
+
+const IMAGE_REGISTRY_FILE = path.join(ROOT, "static", "_data", "image-registry.json");
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -87,6 +90,42 @@ function pctEncode(s) {
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Race a promise against a hard timeout.
+ * Throws Error(`Timed out after Ns`) if the timeout fires first.
+ */
+function withTimeout(promise, ms, label) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(
+      () => reject(new Error(`Timed out after ${Math.round(ms / 1000)}s`)),
+      ms,
+    );
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
+
+/**
+ * Append one entry to the image registry (static/_data/image-registry.json).
+ * Never throws — registry writes are best-effort.
+ */
+function recordImageUsage(entry) {
+  try {
+    let registry = [];
+    if (fs.existsSync(IMAGE_REGISTRY_FILE)) {
+      registry = JSON.parse(fs.readFileSync(IMAGE_REGISTRY_FILE, "utf8"));
+      if (!Array.isArray(registry)) registry = [];
+    }
+    registry.unshift({ ...entry, timestamp: new Date().toISOString() });
+    // Keep last 500 entries
+    if (registry.length > 500) registry = registry.slice(0, 500);
+    fs.mkdirSync(path.dirname(IMAGE_REGISTRY_FILE), { recursive: true });
+    fs.writeFileSync(IMAGE_REGISTRY_FILE, JSON.stringify(registry, null, 2), "utf8");
+  } catch (err) {
+    console.warn(`  [image-registry] Write failed: ${err.message}`);
+  }
 }
 
 function readLockInfo() {
@@ -1112,11 +1151,41 @@ export async function syndicatePost(lane, slug, options = {}) {
   const image   = await selectImage(keyword);
   const imageUrl = getPublicImageUrl(image?.url || null);
 
+  // Record Pexels image selection in registry
+  if (imageUrl) {
+    recordImageUsage({
+      post_slug:       slug,
+      source:          image?.source || "pexels",
+      url:             imageUrl,
+      local_path:      null,
+      platforms_used:  ["bluesky_voa", "mastodon_voa", "facebook_voa", "instagram"],
+      pinterest_board: null,
+      ideogram_prompt: null,
+    });
+  }
+
   // Pinterest image: AI-generated (Ideogram) when key is set, else same Pexels image
   let pinterestImageUrl = imageUrl;
+  let ideogramPromptUsed = null;
   if (!options.bloggerOnly) {
     const ideogramUrl = await generatePinterestImage({ ...post, lane }, anthropic);
-    if (ideogramUrl) pinterestImageUrl = ideogramUrl;
+    if (ideogramUrl) {
+      pinterestImageUrl = ideogramUrl;
+      ideogramPromptUsed = ideogramUrl; // prompt is logged in generate-pinterest-image.js console output
+    }
+  }
+
+  // Record Pinterest image in registry (Ideogram or Pexels fallback)
+  if (pinterestImageUrl) {
+    recordImageUsage({
+      post_slug:       slug,
+      source:          ideogramPromptUsed ? "ideogram" : (image?.source || "pexels"),
+      url:             pinterestImageUrl,
+      local_path:      null,
+      platforms_used:  ["pinterest"],
+      pinterest_board: null, // filled in after board selection below
+      ideogram_prompt: ideogramPromptUsed ? "(see console log)" : null,
+    });
   }
 
   // ── 5. Apply syndication policy ──
@@ -1182,12 +1251,13 @@ export async function syndicatePost(lane, slug, options = {}) {
       return;
     }
     try {
-      const r = await fn();
+      const r = await withTimeout(fn(), PLATFORM_TIMEOUT_MS, platform);
       const acct = accountLabel ? ` [${accountLabel}]` : "";
       console.log(`  ✓ ${platform}${acct}${r.postUrl ? ` → ${r.postUrl}` : ""}`);
       results[platform] = { success: true, postId: r.postId || null, postUrl: r.postUrl || null, error: null };
     } catch (err) {
-      console.error(`  ✗ ${platform}: ${err.message}`);
+      const isTimeout = /timed out after/i.test(err.message);
+      console.error(`  ✗ ${platform}: ${err.message}${isTimeout ? " [TIMEOUT — next platform unblocked]" : ""}`);
       results[platform] = { success: false, postId: null, postUrl: null, error: err.message };
     }
   }
@@ -1248,6 +1318,19 @@ export async function syndicatePost(lane, slug, options = {}) {
   const pinterestBoardKey = selectPinterestBoard({ ...post, lane });
   const pinterestBoardName = PINTEREST_BOARDS[pinterestBoardKey] || pinterestBoardKey;
   logPinterestBoard(pinterestBoardKey, `niche:${post.niche || "none"}, content-type:${detectContentType({ ...post, lane })}`);
+
+  // Backfill pinterest_board into the registry entry we wrote above
+  if (pinterestImageUrl) {
+    recordImageUsage({
+      post_slug:       slug,
+      source:          ideogramPromptUsed ? "ideogram" : (image?.source || "pexels"),
+      url:             pinterestImageUrl,
+      local_path:      null,
+      platforms_used:  ["pinterest"],
+      pinterest_board: pinterestBoardKey,
+      ideogram_prompt: ideogramPromptUsed ? "(see console log)" : null,
+    });
+  }
 
   // ── VOA Social platforms ───────────────────────────────────────────────────
 

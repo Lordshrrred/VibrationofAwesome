@@ -47,12 +47,14 @@ const argv = minimist(process.argv.slice(2), {
 // To publish more per run: increase drip_rate in static/_data/drip-queue.json
 // ──────────────────────────────────────────────────────────────────────────────
 
-const QUEUE_FILE = path.join(ROOT, "static", "_data", "drip-queue.json");
-const DRAFTS_DIR = path.join(ROOT, "static", "blog", "boom", "drafts");
-const POSTS_DIR  = path.join(ROOT, "static", "blog", "boom", "posts");
-const DATA_FILE  = path.join(ROOT, "static", "_data", "boom-posts.json");
-const LOCK_FILE  = path.join(ROOT, "static", "_data", "drip-publish.lock");
+const QUEUE_FILE  = path.join(ROOT, "static", "_data", "drip-queue.json");
+const DRAFTS_DIR  = path.join(ROOT, "static", "blog", "boom", "drafts");
+const POSTS_DIR   = path.join(ROOT, "static", "blog", "boom", "posts");
+const DATA_FILE   = path.join(ROOT, "static", "_data", "boom-posts.json");
+const LOCK_FILE   = path.join(ROOT, "static", "_data", "drip-publish.lock");
+const HEALTH_FILE = path.join(ROOT, "static", "_data", "syndication-health.json");
 const LOCK_TTL_MS = 10 * 60 * 1000; // 10 minutes
+const QUEUE_WARN_THRESHOLD = 30;     // warn when fewer than this many drafts remain
 
 // Extract first paragraph text from rendered HTML for the excerpt
 function extractExcerptFromHtml(html) {
@@ -107,14 +109,41 @@ async function main() {
   }
 
   // ── Startup visibility log ───────────────────────────────────────────────
+  const queueRemaining = queue.queue.length;
+  const dripsPerDay = 2; // two cron runs per day (9am + 6pm ET)
+  const daysRemaining = Math.floor(queueRemaining / dripsPerDay);
+
   console.log("\n╔═ [drip] Drip Publish ~ Phase One ══════════════════");
   console.log(`║  Status:       ${queue.status}`);
-  console.log(`║  Queue:        ${queue.queue.length} post(s) remaining`);
+  console.log(`║  Queue:        ${queueRemaining} post(s) remaining (~${daysRemaining} day(s) of runway)`);
   console.log(`║  Published:    ${(queue.published || []).length} post(s) total`);
   console.log(`║  Rate:         ${queue.drip_rate || 2} post(s) per run`);
   console.log(`║  Syndicate:    ${queue.syndicate_on_publish}`);
   console.log(`║  Feeder:       ${queue.trigger_feeder_on_publish}`);
   console.log("╚════════════════════════════════════════════════════\n");
+
+  // ── Queue depletion warning ──────────────────────────────────────────────
+  if (queueRemaining < QUEUE_WARN_THRESHOLD) {
+    console.warn(`\n⚠  [queue] WARNING: Only ${queueRemaining} draft(s) remain in the drip queue.`);
+    console.warn(`   At ~${dripsPerDay} posts/day that is roughly ${daysRemaining} day(s) of runway.`);
+    console.warn(`   Run: node scripts/generate-all-drafts.js to replenish the queue.\n`);
+
+    // Write depletion warning into health file so dashboard/monitoring can surface it
+    try {
+      let health = {};
+      if (fs.existsSync(HEALTH_FILE)) {
+        health = JSON.parse(fs.readFileSync(HEALTH_FILE, "utf8"));
+      }
+      health.queue_warning = {
+        level:        queueRemaining === 0 ? "critical" : "warning",
+        queue_remaining: queueRemaining,
+        days_remaining:  daysRemaining,
+        checked_at:   new Date().toISOString(),
+        message:      `Queue has ${queueRemaining} post(s) left (~${daysRemaining} days). Replenish with generate-all-drafts.js.`,
+      };
+      fs.writeFileSync(HEALTH_FILE, JSON.stringify(health, null, 2), "utf8");
+    } catch (_) { /* health file write is best-effort */ }
+  }
 
   // ── Pause check ─────────────────────────────────────────────────────────
   if (queue.status === "paused") {

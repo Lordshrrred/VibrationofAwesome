@@ -47,6 +47,31 @@ const RETRYABLE_PLATFORMS = new Set([
   "instagram",
 ]);
 
+/**
+ * Classify a failure error message into one of four categories:
+ *
+ *   transient  — network glitch, rate limit, server error — safe to retry
+ *   auth       — expired/invalid token or permission error — retrying wastes calls;
+ *                a human needs to refresh the token first
+ *   permanent  — duplicate post, canonical URL taken, content policy rejection —
+ *                retrying will never succeed; mark done or skip
+ *   unknown    — unrecognised error — retry once cautiously
+ */
+function classifyFailure(errorMsg) {
+  const msg = String(errorMsg || "").toLowerCase();
+
+  if (/canonical url has already been taken|duplicate|already.?exists|content.?policy|spam|prohibited/i.test(msg)) {
+    return "permanent";
+  }
+  if (/token|expired|invalid.?token|unauthorized|401|403|permission|oauth|refresh|session.?has.?expired|access denied/i.test(msg)) {
+    return "auth";
+  }
+  if (/timeout|timed out|econnreset|etimedout|enotfound|network|rate.?limit|429|502|503|504|5\d\d/i.test(msg)) {
+    return "transient";
+  }
+  return "unknown";
+}
+
 function loadResults() {
   try {
     if (!fs.existsSync(RESULTS_FILE)) return [];
@@ -62,13 +87,32 @@ function recentCutoff() {
 }
 
 function getFailedPlatforms(syndication) {
-  return Object.entries(syndication || {})
+  const entries = Object.entries(syndication || {})
     .filter(([platform, v]) =>
       RETRYABLE_PLATFORMS.has(platform) &&
       v.status === "failed" &&
       !v.skipped
-    )
-    .map(([platform]) => platform);
+    );
+
+  const retryable = [];
+  for (const [platform, v] of entries) {
+    const category = classifyFailure(v.error);
+    if (category === "permanent") {
+      console.log(`  [retry] ${platform}: PERMANENT failure ("${v.error}") ~ skipping, will not retry`);
+      continue;
+    }
+    if (category === "auth") {
+      console.log(`  [retry] ${platform}: AUTH failure ("${v.error}") ~ skipping, token refresh required`);
+      continue;
+    }
+    if (category === "transient") {
+      console.log(`  [retry] ${platform}: transient failure ~ will retry`);
+    } else {
+      console.log(`  [retry] ${platform}: unknown failure ("${v.error}") ~ will retry once`);
+    }
+    retryable.push(platform);
+  }
+  return retryable;
 }
 
 async function main() {
