@@ -615,7 +615,26 @@ async function postToDevTo(postTitle, caption, postUrl, tags) {
     }),
   });
   const data = await resp.json();
-  if (!resp.ok) throw new Error(`Dev.to: ${data.error || JSON.stringify(data.errors) || resp.status}`);
+  if (!resp.ok) {
+    const errMsg = data.error || JSON.stringify(data.errors) || String(resp.status);
+    // "Canonical url has already been taken" means the post is already live on dev.to
+    // from a previous run whose commit was lost. Treat as success so it never retries.
+    if (/canonical url has already been taken/i.test(errMsg)) {
+      console.log(`  [devto] Post already exists on dev.to (canonical URL taken) ~ marking as success`);
+      // Try to find the existing article URL by searching dev.to
+      const searchResp = await fetch(
+        `https://dev.to/api/articles?username=earthstarrising&per_page=50`,
+        { headers: { "api-key": key } }
+      ).catch(() => null);
+      if (searchResp?.ok) {
+        const articles = await searchResp.json().catch(() => []);
+        const match = articles.find(a => a.canonical_url === postUrl || a.url?.includes(postUrl));
+        if (match) return { postId: String(match.id), postUrl: match.url };
+      }
+      return { postId: "already-exists", postUrl: null };
+    }
+    throw new Error(`Dev.to: ${errMsg}`);
+  }
   return { postId: String(data.id), postUrl: data.url };
 }
 
