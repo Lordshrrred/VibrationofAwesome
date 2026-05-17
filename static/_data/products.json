@@ -7,7 +7,7 @@
     "price": 0,
     "type": "free",
     "landing_page": "/field-guide/",
-    "download_function": "/.netlify/functions/deliver-ebook",
+    "download_function": "/api/deliver-ebook",
     "product_param": "free",
     "file_name": "field-guide.pdf"
   },
@@ -20,7 +20,7 @@
     "currency": "usd",
     "type": "one_time",
     "landing_page": "/user-manual/",
-    "download_function": "/.netlify/functions/deliver-ebook",
+    "download_function": "/api/deliver-ebook",
     "product_param": "paid",
     "file_name": "user-manual.pdf",
     "stripe_price_id": "STRIPE_PRICE_ID_USER_MANUAL",

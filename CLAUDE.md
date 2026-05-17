@@ -136,6 +136,9 @@ Portfolio does NOT appear on any nav except the art store page. When generating 
 - Run `node scripts/patch-draft-posts.js` after any template change to backfill existing drafts
 - Run `node scripts/backfill-art-store-whisper.js` to add the whisper to posts that predate it
 
+### /admin/ CMS (legacy/optional — do not break, do not prioritize)
+`static/admin/config.yml` is a Netlify CMS (Decap CMS) config that enables a git-backed post editor at `/admin/`. It references `vibrationofawesome.netlify.app` as the auth domain and is marked **legacy/optional**. The primary post editor is the VOA Post Studio backed by `api/editor-login.js` + `api/editor-save.js`. Do not delete `static/admin/`, but do not prioritize fixing or extending it either. If you touch the admin CMS, update the `site_domain` in `static/admin/config.yml` to the correct Vercel URL.
+
 ### Art store page (DO NOT flag as 404)
 `/art-store/` IS a live page. It exists at `static/art-store/index.html` and is served by GitHub Pages as `vibrationofawesome.com/art-store/`. Do not remove the `art-store` CTA from policy.js. Do not flag it as missing. It is a static directory page, not a Hugo-rendered page — that is why it does not appear in `content/`.
 
@@ -192,18 +195,27 @@ Do not wait for the queue to hit zero. Replenish proactively when the warning fi
 
 ---
 
-## IMAGE REGISTRY
+## IMAGE REGISTRIES (two systems — do not confuse)
 
-All images selected or generated during syndication are logged to `static/_data/image-registry.json`. Each entry tracks:
-- `post_slug` — which VOA post the image was generated for
-- `source` — `ideogram`, `pexels`, or `local`
-- `url` — public image URL (or local path for local images)
-- `platforms_used` — which platforms this image was sent to
-- `pinterest_board` — board key if Pinterest was a destination
-- `ideogram_prompt` — the prompt used (if Ideogram)
-- `timestamp` — ISO 8601
+There are two image registries in `static/_data/`. They serve different purposes and must NOT be merged until the full visual OS (System B) is wired to live syndication.
 
-Use this registry to audit image duplication across posts. Do not delete entries; they are a permanent record.
+### `image-registry.json` — System A (live, automated syndication)
+Written by `syndicate.js → recordImageUsage()` after each Pexels selection or Ideogram generation during a drip-publish run. Lightweight audit log.
+- `post_slug`, `source` (ideogram/pexels/local), `url`, `platforms_used`, `pinterest_board`, `ideogram_prompt`, `timestamp`
+- Capped at 500 entries (rolling)
+
+### `visual-registry.json` — System B (future canonical visual OS, manual only)
+Written by `scripts/lib/build-visual-prompts.js --generate`. Not created yet — appears on first `--generate` run. Stores all 4 visual types per post: `pinterest`, `instagram`, `sacred_diagram`, `field_guide_artifact`.
+- Richer schema including per-type Ideogram prompts, dimensions, style, board
+- This is the intended long-term registry once System B is wired to live syndication
+
+### Visual system direction
+- **Now**: System A is live. `generate-pinterest-image.js` runs automatically in drip/syndication.
+- **Future**: System B (`build-visual-prompts.js`) becomes canonical when safely wired to the pipeline.
+- **Shared calendar**: When built, should reference `visual-registry.json` (System B) as the visual asset source.
+- **Do not merge or delete either file** until System B is live and tested end-to-end.
+
+See `shared-config/visual-generation-policy-v1.md` for the full pipeline status note and brand guidelines.
 
 ---
 

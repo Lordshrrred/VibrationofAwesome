@@ -19,19 +19,11 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getDraftPlan } from "./content-niches.js";
+import { slugify } from "./lib/utils.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 const ROOT       = path.resolve(__dirname, "..");
-
-// Same slugify logic as generate-post.js ~ keep in sync
-function slugify(str) {
-  return str.toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
-}
 
 // Draft rotation is sourced from scripts/content-niches.js.
 const POSTS = getDraftPlan();

@@ -1,10 +1,43 @@
 # Visual Generation Policy v1
 ## Ideogram ~ VOA Blog + EarthStar Rising
 
-**Status:** Active  
+**Status:** Active (brand rules) / Partially implemented (pipeline)
 **Engine:** VOA Blog syndication (Pinterest + Instagram)  
-**Last updated:** 2026-05-15  
-**Applies to:** `scripts/generate-pinterest-image.js` and any future image generation modules  
+**Last updated:** 2026-05-17  
+**Applies to:** `scripts/generate-pinterest-image.js` and `scripts/lib/build-visual-prompts.js`
+
+---
+
+## PIPELINE STATUS (read this before touching visual generation code)
+
+There are **two visual generation systems** in this repo. Do NOT merge them accidentally.
+
+### System A — Lightweight live pipeline (currently active in automated syndication)
+
+**File:** `scripts/generate-pinterest-image.js`  
+**Triggered by:** `syndicate.js` on every drip-publish run  
+**What it generates:** One Ideogram image per post, Pinterest portrait (10:16), DESIGN style  
+**Storage:** Image URL passed directly to Publer; NOT saved locally; captured in `static/_data/image-registry.json`  
+**Status:** This is the live system. Do not disable or replace it without testing the full drip pipeline.
+
+### System B — Richer visual OS (future canonical direction, NOT yet wired to live syndication)
+
+**Files:** `scripts/lib/build-visual-prompts.js` + `scripts/lib/visual-intelligence.js`  
+**Triggered by:** Manual CLI only (`npm run visuals:build -- --lane boom --slug <slug>`)  
+**What it generates:** 4 visual types per post: `pinterest`, `instagram`, `sacred_diagram`, `field_guide_artifact`  
+**Storage:** `static/_data/visual-registry.json` (created on first `--generate` run)  
+**Status:** Implemented but NOT wired into drip/syndication. This is the long-term canonical visual OS.
+
+### Direction
+
+System B is the intended future. System A will remain active until System B is safely wired into the drip pipeline and tested end-to-end. The shared calendar architecture (future) should reference visual assets from System B's `visual-registry.json`.
+
+To avoid confusion:
+- `image-registry.json` = System A output (live syndication asset audit)
+- `visual-registry.json` = System B output (richer visual OS, manual for now)
+- Do not consolidate these files until System B is wired to live syndication
+
+---
 
 This document defines the visual rules for AI-generated images used in VOA blog syndication.
 It is the source of truth for Ideogram prompt construction, aesthetic direction, and

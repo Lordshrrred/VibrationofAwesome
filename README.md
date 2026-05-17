@@ -1,6 +1,6 @@
 # Vibration of Awesome
 
-**vibrationofawesome.com** ~ Hugo static site deployed via GitHub Pages, with Netlify retained for serverless/functions workflows.
+**vibrationofawesome.com** ~ Hugo static site deployed via GitHub Pages. Serverless functions (`/api/*`) are hosted on Vercel.
 
 Roots in the Earth, Crown in the Stars. The Future is Ours.
 
@@ -78,7 +78,7 @@ To write stored backlink evidence into the dashboard data after syndication:
 npm run verify:backlinks -- --slug post-slug
 ```
 
-The verifier uses platform APIs and direct page fetches from the local machine or GitHub Actions. It does not use Netlify Functions.
+The verifier uses platform APIs and direct page fetches from the local machine or GitHub Actions.
 
 If Blogger reports `invalid_grant`, regenerate it:
 
@@ -161,16 +161,26 @@ node scripts/seo-research.js --all-niches
 
 ## Deployment
 
-GitHub Actions deploys the Hugo site to GitHub Pages on push to `main`.
+**Static site**: GitHub Actions builds Hugo on every push to `main` and deploys to GitHub Pages (`vibrationofawesome.com`). See `.github/workflows/hugo.yml`.
 
-Netlify remains useful for serverless functions and any future authenticated admin hosting.
+**Serverless functions (`/api/*`)**: Hosted on Vercel. Auto-deploys via Vercel dashboard webhook on push to `main`. No GitHub Actions step needed for Vercel — it watches the repo directly.
 
-### Environment Variables Required
+**Admin CMS (`/admin/`)**: Netlify CMS config exists at `static/admin/config.yml` but is marked legacy/optional. The primary post editor is the VOA Post Studio backed by `api/editor-login.js` + `api/editor-save.js`.
+
+### Key Secrets (GitHub Actions)
 
 ```
-NETLIFY_AUTH_TOKEN    → In GitHub repo secrets (for Actions deploy)
-NETLIFY_SITE_ID       → In GitHub repo secrets
+ANTHROPIC_API_KEY      → Claude API for post generation and captions
+VOA_FEEDER_TRIGGER_TOKEN → GitHub PAT to fire VOA_Feeder workflow
+PUBLER_API_KEY         → Publer for Instagram / Threads / Pinterest
+DEVTO_API_KEY          → Dev.to backlink posting
+TUMBLR_*               → Tumblr OAuth 1.0a credentials
+BLOGGER_REFRESH_TOKEN  → Blogger OAuth2 refresh token
+WORDPRESS_OAUTH2_TOKEN → WordPress.com direct API token
+META_PAGE_ID_VOA, META_PAGE_TOKEN_VOA → Facebook VOA page
 ```
+
+See `.env.example` for the full list.
 
 ---
 

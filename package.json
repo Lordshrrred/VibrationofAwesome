@@ -15,14 +15,11 @@
     "research:niches": "node scripts/seo-research.js --all-niches",
     "sitemap": "node scripts/update-sitemap.js",
     "redirects": "node scripts/generate-legacy-redirects.js",
-    "normalize-archive": "node scripts/normalize-archive-metadata.js",
-    "archive-og": "node scripts/add-archive-og-images.js",
     "fb-token": "node scripts/get-facebook-token.js",
     "pinterest-token": "node scripts/get-pinterest-token.js",
     "blogger-token": "python3 scripts/get_blogger_token.py",
     "blogger-backfill": "node scripts/backfill-blogger.js",
     "wordpress-token": "python3 scripts/get-wordpress-oauth-token.py",
-    "pinterest-demo": "node scripts/pinterest-standard-access-demo.js",
     "syndicate:wordpress-backlog": "node scripts/backfill-wordpress-direct.js",
     "setup:stripe": "node scripts/setup-stripe.js",
     "push:vercel-env": "node scripts/push-env-to-vercel.js",
@@ -36,7 +33,6 @@
     "marked": "^12.0.0",
     "minimist": "^1.2.8",
     "open": "^11.0.0",
-    "stripe": "^20.4.1",
-    "twitter-api-v2": "^1.17.2"
+    "stripe": "^20.4.1"
   }
 }

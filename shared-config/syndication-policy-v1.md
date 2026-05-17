@@ -22,7 +22,7 @@ on the same day. These are defaults, not hard locks.
 | Blogger | VOA Blog | ~ | Yes (always) | No |
 | WordPress (EarthStarRising) | VOA Blog | ~ | Yes (always) | No |
 | Tumblr VOA | VOA Blog | ~ | Yes (always ~ backlink tier) | No |
-| Tumblr ESR | VOA Blog (backlink) | EarthStar | Yes (always ~ backlink tier) | No |
+| Tumblr ESR | NOT ACTIVE | ~ | No (wired in quota table only, not in live syndication) | No |
 | Facebook VOA | VOA Blog | ~ | Yes (selective) | Rarely |
 | Facebook EarthStar | EarthStar Command | VOA (earthstar only) | Limited | Yes |
 | Bluesky VOA | VOA Blog | ~ | Yes | No |
@@ -33,7 +33,7 @@ on the same day. These are defaults, not hard locks.
 | Threads ESR | EarthStar Command | ~ | No (separate account) | Yes |
 | Pinterest VOA (@awesomevibe) | VOA Blog | ~ | Yes (evergreen, board-routed) | ~ |
 | Pinterest ESR | EarthStar Command | ~ | No (separate account) | Yes |
-| Instagram VOA | VOA Blog | ~ | Yes (creator/philosophy/earthstar only) | ~ |
+| Instagram VOA | VOA Blog | ~ | Yes (all content types — early growth routing) | ~ |
 | Instagram ESR | EarthStar Command | ~ | No (separate account) | Yes |
 
 ---
@@ -51,16 +51,22 @@ They exist to:
 **These always receive every blog post. No throttling. No filtering. No cooldowns.**
 
 ```
-devto              ~ canonical tag, DoFollow, high-DA tech platform
-tumblr_esr         ~ indexed, DoFollow, aesthetic content network
+devto              ~ canonical tag, DoFollow, high-DA tech platform (VOA canonical URL set)
 tumblr_voa         ~ indexed, DoFollow, VOA brand continuity
 blogger            ~ Google-owned, fast indexing, DoFollow
 wordpress_earthstar ~ WordPress.com indexed, DoFollow, EarthStarRising brand
 ```
 
-The content sent to these platforms is always **original AI-generated articles** inspired by
-the source post. Not copy-paste. Not excerpts. Fresh content with a natural backlink to VOA.
-This is intentional ~ it avoids duplicate content penalties while building the backlink graph.
+**Note on Tumblr ESR:** `tumblr_esr` appears in the quota tables for planning purposes but is **NOT wired into live syndication** in `syndicate.js`. Only `tumblr_voa` is actively posted to. If you add Tumblr ESR to the live pipeline, update this document and the backlink tier list in `scripts/lib/policy.js`.
+
+The content sent to these platforms is always **original AI-generated companion articles** inspired by the source post ~ never copy-paste, never excerpts. Each companion article must:
+
+1. Have a **unique title** (not identical to the VOA source post)
+2. Have a **unique body** (AI-generated from the source, not excerpted from it)
+3. Include **one natural backlink** to the original VOA post
+4. Set a **canonical URL** pointing to VOA where the platform supports it (Dev.to does; Blogger and WordPress do not)
+
+The VOA canonical post is always the primary source. All companion and backlink content is derivative by design but must be substantially different to avoid duplicate content penalties.
 
 ---
 
@@ -169,8 +175,10 @@ Skip: Pinterest (audience mode mismatch), Facebook EarthStar, nervous-system con
 
 ### Content Type: `nervous-system`
 ADHD, anxiety, dopamine, neurodivergent, regulation, healing.
-Social: Bluesky VOA, Mastodon VOA, Facebook VOA, Threads VOA
-Skip: Pinterest (audience mode mismatch), Instagram (clinical tone, not visual-native), Facebook EarthStar
+Social: Bluesky VOA, Mastodon VOA, Facebook VOA, Pinterest VOA, Threads VOA, Instagram VOA
+Skip: Facebook EarthStar
+Note: Instagram and Pinterest now included during early-growth phase (consistency over best-fit).
+Revisit suppression rules when account has engagement data to guide decisions.
 
 ### Content Type: `earthstar`
 EarthStar Initiative, sacred geometry, cosmic identity, empowerment.
@@ -178,8 +186,9 @@ Social: Bluesky VOA, Mastodon VOA, Facebook VOA, Facebook EarthStar, Pinterest V
 
 ### Content Type: `general`
 Unclassified or mixed content.
-Social: Bluesky VOA, Mastodon VOA, Facebook VOA, Pinterest VOA, Threads VOA
-Skip: Instagram (unclassified content not worth a visual slot), Facebook EarthStar
+Social: Bluesky VOA, Mastodon VOA, Facebook VOA, Pinterest VOA, Threads VOA, Instagram VOA
+Skip: Facebook EarthStar
+Note: Instagram included during early-growth phase. Revisit when engagement data is available.
 
 ---
 

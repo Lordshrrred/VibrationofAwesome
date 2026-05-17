@@ -20,6 +20,7 @@ import { fetchNasaImages, fetchForestImages, fetchBoomImages } from "./select-im
 import { findNiche, getDefaultNiche, getNichePromptContext, EARTHSTAR_NICHES } from "./content-niches.js";
 import { getNextCTA, detectContentType } from "./lib/policy.js";
 import { getDifferentiationContext, getClusterContext, recordGeneration } from "./lib/generation-memory.js";
+import { slugify, firstWords } from "./lib/utils.js";
 
 dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
@@ -138,11 +139,6 @@ function buildExistingPostsList() {
   return lines.join("\n");
 }
 
-/** Convert title to URL-safe slug */
-function slugify(str) {
-  return str.toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-").replace(/-+/g, "-");
-}
-
 /** Extract first real paragraph (skip headings/META/rules), truncate at 150 chars */
 function extractExcerpt(markdown) {
   const lines = markdown.split("\n").filter((l) => l.trim() !== "");
@@ -152,10 +148,6 @@ function extractExcerpt(markdown) {
     return t.slice(0, 150);
   }
   return "";
-}
-
-function firstWords(text, count) {
-  return String(text || "").split(/\s+/).filter(Boolean).slice(0, count).join(" ");
 }
 
 /** Strip META: line from BoomBot output. Returns { metaDescription, cleanMarkdown } */

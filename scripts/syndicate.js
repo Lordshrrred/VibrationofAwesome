@@ -53,6 +53,7 @@ import {
   PINTEREST_BOARDS,
   publerAccountOwnership,
 } from "./lib/policy.js";
+import { firstWords } from "./lib/utils.js";
 
 dotenv.config({ override: true });
 
@@ -74,11 +75,6 @@ const IMAGE_REGISTRY_FILE = path.join(ROOT, "static", "_data", "image-registry.j
 /** Strip HTML tags, collapse whitespace */
 function stripHtml(html) {
   return html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-}
-
-/** First N words of a string */
-function firstWords(str, n) {
-  return str.split(/\s+/).slice(0, n).join(" ");
 }
 
 /** RFC 3986 percent-encode (for OAuth 1.0a) */
