@@ -4,6 +4,9 @@ name: Netlify Functions (disabled - Netlify deploys via dashboard integration)
 # keeping vibrationofawesome.netlify.app alive for the AURA serverless function.
 # The primary site (vibrationofawesome.com) is now served by GitHub Pages.
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   workflow_dispatch: # manual trigger only ~ no longer fires on push
 
@@ -12,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
           fetch-depth: 0
@@ -24,9 +27,9 @@ jobs:
           extended: true
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Enforce no em dashes
         run: node scripts/check-no-emdash.js

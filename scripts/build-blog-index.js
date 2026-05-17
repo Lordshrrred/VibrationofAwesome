@@ -1,8 +1,12 @@
 /**
  * build-blog-index.js
- * Reads static/_data/matt-posts.json and bakes the posts list directly
- * into static/blog/matt/index.html ~ no runtime fetch needed.
- * Run this whenever matt-posts.json changes.
+ *
+ * Manual maintenance utility for the Forest Temple index.
+ * Invocation: `npm run build:matt-index`
+ * Purpose: read `static/_data/matt-posts.json` and bake the post list into
+ * `static/blog/matt/index.html` so the page needs no runtime fetch.
+ * Workflow status: safe to run when Matt post metadata changes; not called by
+ * active publish/drip workflows.
  */
 import fs from 'fs';
 import path from 'path';

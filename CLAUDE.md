@@ -201,6 +201,13 @@ Do not wait for the queue to hit zero. Replenish proactively when the warning fi
 
 ---
 
+## Visual Architecture ~ System A vs System B
+
+- **System A** is the live lightweight syndication layer. `generate-pinterest-image.js` supports the current automated post flow, and `image-registry.json` records those live asset decisions.
+- **System B** is the future multi-asset visual ecosystem. `build-visual-prompts.js` prepares richer per-post visual sets and writes `visual-registry.json`, but it remains manual/future-facing today.
+- The coexistence is intentional: System A keeps current publishing stable while System B is developed without changing runtime behavior.
+- Eventual migration path: shared calendar/orchestration work should read approved System B assets first, then only replace the live System A path after end-to-end validation.
+
 ## IMAGE REGISTRIES (two systems ~ do not confuse)
 
 There are two image registries in `static/_data/`. They serve different purposes and must NOT be merged until the full visual OS (System B) is wired to live syndication.

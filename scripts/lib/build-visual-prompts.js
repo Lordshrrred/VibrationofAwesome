@@ -2,6 +2,17 @@
 /**
  * build-visual-prompts.js
  *
+ * VISUAL SYSTEM B ~ future-facing multi-asset visual ecosystem.
+ * This manual/future path builds richer per-post visual sets and writes them to
+ * `static/_data/visual-registry.json`. It does not participate in live drip or
+ * syndication today; System A in `scripts/generate-pinterest-image.js` remains
+ * the production path until System B is safely integrated and tested.
+ *
+ * Both systems intentionally exist at once so the richer visual architecture can
+ * be designed without destabilizing live publishing.
+ * TODO(orchestration): when shared calendar orchestration is introduced, wire
+ * approved System B assets into that layer without replacing System A first.
+ *
  * Visual derivation orchestrator for VOA blog posts.
  *
  * Phase 1: generation + storage only. Does NOT auto-post.

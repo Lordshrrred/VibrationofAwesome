@@ -1,6 +1,15 @@
 /**
  * generate-pinterest-image.js
  *
+ * VISUAL SYSTEM A ~ live lightweight syndication visuals.
+ * This is the production path currently used by syndication/drip publishing:
+ * it generates the one-off Pinterest/Instagram asset needed for the live post
+ * flow, and `syndicate.js` records usage in `static/_data/image-registry.json`.
+ *
+ * System B lives separately in `scripts/lib/build-visual-prompts.js`. Both
+ * systems intentionally coexist while the richer future visual ecosystem is
+ * prepared without changing the live syndication path.
+ *
  * Generates a Pinterest-optimized image using the Ideogram API.
  * Falls back silently to null if IDEOGRAM_API_KEY is not set, so
  * the rest of syndication continues with a Pexels image instead.
