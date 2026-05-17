@@ -175,6 +175,7 @@ jobs:
             static/_data/syndication-log.json \
             static/_data/syndication-results.json \
             static/_data/syndication-health.json \
+            static/_data/image-registry.json \
             static/_data/cta-rotation-state.json \
             static/_data/dashboard-config.json \
             static/sitemap.xml \
@@ -241,6 +242,7 @@ jobs:
           git add \
             static/_data/syndication-log.json \
             static/_data/syndication-results.json \
+            static/_data/image-registry.json \
             || true
           if git diff --staged --quiet; then
             echo "nothing_committed=true" >> $GITHUB_OUTPUT

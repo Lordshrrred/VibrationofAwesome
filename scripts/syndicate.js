@@ -1380,7 +1380,7 @@ export async function syndicatePost(lane, slug, options = {}) {
       `[${threadsOwnership}]`);
   }
 
-  // VOA Instagram via Publer ~ visual content only (creator, philosophy, earthstar)
+  // VOA Instagram via Publer ~ all content types during early-growth routing.
   // Uses Ideogram-generated image when available, falls back to Pexels.
   // Requires PUBLER_INSTAGRAM_ACCOUNT_ID pointing to VOA Instagram account.
   {
