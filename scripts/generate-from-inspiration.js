@@ -23,7 +23,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const PDF_FOLDER   = path.resolve(process.env.HOME, 'Documents/EarthStarVOA/AI-Advantage-Resources 4 Blog Engine');
+const PDF_FOLDER   = path.resolve(process.env.HOME, 'Library/Mobile Documents/com~apple~CloudDocs/Documents/EarthStarVOA/AI-Advantage-Resources 4 Blog Engine');
 const DRAFTS_DIR   = path.resolve(ROOT, 'static/blog/boom/drafts');
 const QUEUE_FILE   = path.resolve(ROOT, 'static/_data/drip-queue.json');
 const BATCH_SIZE   = 5;
@@ -51,15 +51,31 @@ function delay(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
 
-/** "16 - custom-gpts-build-your-first-one.pdf" → "Custom Gpts Build Your First One" */
+/** "16 - custom-gpts-build-your-first-one.pdf" → "How to Build Your First Custom GPT" */
 function filenameToRawTopic(filename) {
   let name = filename.replace(/\.pdf$/i, '');
   // strip leading number + separator (e.g. "16 - " or "16. " or "16- ")
   name = name.replace(/^\d+\s*[-\.]\s*/, '');
+  // strip "hotw-" prefix (stands for "how-to workflow" series)
+  name = name.replace(/^hotw-/i, '');
   // hyphens/underscores → spaces
   name = name.replace(/[-_]+/g, ' ').trim();
   // title-case each word
-  return name.replace(/\b\w/g, c => c.toUpperCase());
+  name = name.replace(/\b\w/g, c => c.toUpperCase());
+  // fix known acronyms and tool names
+  name = name
+    .replace(/\bAi\b/g, 'AI')
+    .replace(/\bLlm\b/g, 'LLM')
+    .replace(/\bChatgpt\b/g, 'ChatGPT')
+    .replace(/\bGpt\b/g, 'GPT')
+    .replace(/\bNotebooklm\b/g, 'NotebookLM')
+    .replace(/\bElevenlabs\b/g, 'ElevenLabs')
+    .replace(/\bHeygen\b/g, 'HeyGen')
+    .replace(/\bReplit\b/g, 'Replit')
+    .replace(/\bSop\b/g, 'SOP')
+    .replace(/\bDms\b/g, 'DMs')
+    .replace(/\bDean[''s]*\s+Top/g, 'Top AI');  // strip trainer name, keep topic intent
+  return name;
 }
 
 /** Keyword phrase → URL slug */
