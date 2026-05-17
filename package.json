@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "check:emdash": "node scripts/check-no-emdash.js",
+    "build:matt-index": "node scripts/build-blog-index.js",
     "generate": "node scripts/generate-post.js",
     "syndicate": "node scripts/syndicate.js",
     "check:syndication": "node scripts/check-syndication-config.js",

@@ -105,7 +105,7 @@ function withTimeout(promise, ms, label) {
 
 /**
  * Append one entry to the image registry (static/_data/image-registry.json).
- * Never throws — registry writes are best-effort.
+ * Never throws ~ registry writes are best-effort.
  */
 function recordImageUsage(entry) {
   try {
@@ -1253,7 +1253,7 @@ export async function syndicatePost(lane, slug, options = {}) {
       results[platform] = { success: true, postId: r.postId || null, postUrl: r.postUrl || null, error: null };
     } catch (err) {
       const isTimeout = /timed out after/i.test(err.message);
-      console.error(`  ✗ ${platform}: ${err.message}${isTimeout ? " [TIMEOUT — next platform unblocked]" : ""}`);
+      console.error(`  ✗ ${platform}: ${err.message}${isTimeout ? " [TIMEOUT ~ next platform unblocked]" : ""}`);
       results[platform] = { success: false, postId: null, postUrl: null, error: err.message };
     }
   }

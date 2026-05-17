@@ -12,6 +12,7 @@ import fs from "fs";
 import minimist from "minimist";
 import path from "path";
 import { fileURLToPath } from "url";
+import { PUBLER_VOA_ACCOUNT_IDS } from "./lib/policy.js";
 
 dotenv.config({ override: true });
 
@@ -148,6 +149,23 @@ function extractAccounts(data) {
   return Array.isArray(data) ? data : Array.isArray(data.data) ? data.data : [];
 }
 
+function requireConfiguredVoaPublerAccount(accounts, provider, expectedUsername) {
+  const envKey = `PUBLER_${provider.toUpperCase()}_ACCOUNT_ID`;
+  hasEnv(envKey);
+  const configuredId = process.env[envKey].trim();
+  const expectedId = PUBLER_VOA_ACCOUNT_IDS[provider];
+  if (configuredId !== expectedId) {
+    throw new Error(`${envKey} is not the known VOA ${provider} account`);
+  }
+
+  const account = accounts.find(row => row.id === configuredId && row.provider === provider);
+  if (!account) throw new Error(`configured VOA ${provider} account not visible in Publer`);
+  if (account.username !== expectedUsername) {
+    throw new Error(`configured VOA ${provider} account resolves to ${account.username || "unknown"}`);
+  }
+  return `${account.username} (${account.id})`;
+}
+
 async function main() {
   await check("drip queue", () => {
     const file = path.join(ROOT, "static", "_data", "drip-queue.json");
@@ -183,6 +201,14 @@ async function main() {
     if (!boards.length) throw new Error("no Pinterest boards returned");
     return `${boards.length} board(s) available`;
   });
+
+  await check("Publer VOA Instagram account", () =>
+    requireConfiguredVoaPublerAccount(publerAccounts, "instagram", "vibrationofawesome")
+  );
+
+  await check("Publer VOA Threads account", () =>
+    requireConfiguredVoaPublerAccount(publerAccounts, "threads", "@vibrationofawesome")
+  );
 
   for (const prefix of ["ESR", "VOA"]) {
     await check(`Bluesky ${prefix} auth`, async () => {

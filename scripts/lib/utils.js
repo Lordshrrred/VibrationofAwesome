@@ -1,5 +1,5 @@
 /**
- * utils.js — Shared utility functions for VOA scripts
+ * utils.js ~ Shared utility functions for VOA scripts
  *
  * Canonical implementations of functions that were previously duplicated
  * across generate-post.js, generate-all-drafts.js, and syndicate.js.

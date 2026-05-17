@@ -163,7 +163,7 @@ node scripts/seo-research.js --all-niches
 
 **Static site**: GitHub Actions builds Hugo on every push to `main` and deploys to GitHub Pages (`vibrationofawesome.com`). See `.github/workflows/hugo.yml`.
 
-**Serverless functions (`/api/*`)**: Hosted on Vercel. Auto-deploys via Vercel dashboard webhook on push to `main`. No GitHub Actions step needed for Vercel — it watches the repo directly.
+**Serverless functions (`/api/*`)**: Hosted on Vercel. Auto-deploys via Vercel dashboard webhook on push to `main`. No GitHub Actions step needed for Vercel ~ it watches the repo directly.
 
 **Admin CMS (`/admin/`)**: Netlify CMS config exists at `static/admin/config.yml` but is marked legacy/optional. The primary post editor is the VOA Post Studio backed by `api/editor-login.js` + `api/editor-save.js`.
 

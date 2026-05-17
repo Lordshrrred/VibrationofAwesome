@@ -34,7 +34,7 @@ const isDryRun = process.argv.includes("--dry-run");
 
 // Platforms that can safely be retried without creating duplicates.
 // Dev.to is excluded because it rejects posts with duplicate canonical URLs
-// even when the first post actually succeeded — we handle that case separately.
+// even when the first post actually succeeded ~ we handle that case separately.
 const RETRYABLE_PLATFORMS = new Set([
   "pinterest",
   "tumblr_voa",
@@ -50,12 +50,12 @@ const RETRYABLE_PLATFORMS = new Set([
 /**
  * Classify a failure error message into one of four categories:
  *
- *   transient  — network glitch, rate limit, server error — safe to retry
- *   auth       — expired/invalid token or permission error — retrying wastes calls;
+ *   transient  ~ network glitch, rate limit, server error ~ safe to retry
+ *   auth       ~ expired/invalid token or permission error ~ retrying wastes calls;
  *                a human needs to refresh the token first
- *   permanent  — duplicate post, canonical URL taken, content policy rejection —
+ *   permanent  ~ duplicate post, canonical URL taken, content policy rejection ~
  *                retrying will never succeed; mark done or skip
- *   unknown    — unrecognised error — retry once cautiously
+ *   unknown    ~ unrecognised error ~ retry once cautiously
  */
 function classifyFailure(errorMsg) {
   const msg = String(errorMsg || "").toLowerCase();

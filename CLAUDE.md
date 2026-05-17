@@ -62,7 +62,7 @@ Hugo watches `content/posts/*.md` and renders with `layouts/` templates. The `hu
 
 ### Hosting
 - **GitHub Pages**: Static site (built by Hugo workflow on every push to main)
-- **Vercel**: Serverless functions only (`/api/*`) — AURA chat, Stripe checkout, backlink verification
+- **Vercel**: Serverless functions only (`/api/*`) ~ AURA chat, Stripe checkout, backlink verification
 - Vercel project ID: `prj_guDrrflKSY3FwVbmFMNyQRZyTwI9`
 - Vercel org ID: `team_YNP01D3hmpGWSbkZOSV8l0O0`
 
@@ -77,10 +77,10 @@ Copy `.env.example` to `.env`. Required keys:
 
 ## AGENT STANDING ORDERS
 
-### Always wire it up — never ask Matt to do it manually
+### Always wire it up ~ never ask Matt to do it manually
 Matt's explicit preference: **if something can be done programmatically, do it without asking**. This applies to:
 
-- **Vercel env vars** — use the Vercel API directly. `VERCEL_TOKEN` and project ID are in `.env` / `.vercel/project.json`. Push like this:
+- **Vercel env vars** ~ use the Vercel API directly. `VERCEL_TOKEN` and project ID are in `.env` / `.vercel/project.json`. Push like this:
   ```js
   // Push a single env var to Vercel (all environments)
   const resp = await fetch(`https://api.vercel.com/v10/projects/prj_guDrrflKSY3FwVbmFMNyQRZyTwI9/env`, {
@@ -92,38 +92,43 @@ Matt's explicit preference: **if something can be done programmatically, do it w
   ```
   Or use the existing script: `npm run push:vercel-env` (pushes all .env vars to Vercel).
 
-- **GitHub Actions secrets** — use `gh secret set KEY --body "value"`. Never ask Matt to go to the GitHub UI.
+- **GitHub Actions secrets** ~ use `gh secret set KEY --body "value"`. Never ask Matt to go to the GitHub UI.
   ```bash
   gh secret set PUBLER_INSTAGRAM_ACCOUNT_ID --body "6a0698ee1f0e47d9f3f18a43"
   ```
 
-- **Stripe product/price setup** — run `node scripts/setup-stripe.js`. It creates the product, saves the price ID to `.env`, and outputs next steps.
+- **Stripe product/price setup** ~ run `node scripts/setup-stripe.js`. It creates the product, saves the price ID to `.env`, and outputs next steps.
 
-- **Health checks** — run `node scripts/check-syndication-config.js --write` locally, commit the result. Don't wait for CI to do it.
+- **Health checks** ~ run `node scripts/check-syndication-config.js --write` locally, commit the result. Don't wait for CI to do it.
 
-- **Syndication retries** — run `node scripts/retry-failed-syndication.js`. Don't ask Matt to manually re-run platforms.
+- **Syndication retries** ~ run `node scripts/retry-failed-syndication.js`. Don't ask Matt to manually re-run platforms.
 
-- **Hugo deploys** — triggered automatically on every push to main. To force one: `gh workflow run hugo.yml --ref main`.
+- **Hugo deploys** ~ triggered automatically on every push to main. To force one: `gh workflow run hugo.yml --ref main`.
 
-- **Drip workflow** — to test a drip run: `gh workflow run drip-posts.yml --ref main`.
+- **Drip workflow** ~ to test a drip run: `gh workflow run drip-posts.yml --ref main`.
 
-### Key account IDs (VOA — do not confuse with ESR accounts)
+### Key account IDs (VOA ~ do not confuse with ESR accounts)
 ```
 PUBLER_INSTAGRAM_ACCOUNT_ID = 6a0698ee1f0e47d9f3f18a43   (VOA Instagram @vibrationofawesome)
 PUBLER_THREADS_ACCOUNT_ID   = 6a069b7979cc0b32f3235166   (VOA Threads @vibrationofawesome)
 PUBLER_PINTEREST_ACCOUNT_ID = 6a052b620ce3c7cac0c7ebac   (VOA Pinterest @awesomevibe)
 PUBLER_PINTEREST_BOARD_ID   = 641129765641663037           (Vibration of Awesome board)
 ```
-ESR accounts exist in Publer but are NOT used by the VOA blog engine. If an account ID looks like `673d...`, it is ESR — verify before using.
+ESR accounts exist in Publer but are NOT used by the VOA blog engine. If an account ID looks like `673d...`, it is ESR ~ verify before using.
 
 ### Facebook token expiry
 Facebook page tokens expire every ~60 days. Current expiry: **Jul 13, 2026**. The dashboard FB-V chip shows the expiry date. When expired, run `npm run fb-token` locally and commit the updated `.cache/fb-tokens.json`.
 
 ### Tumblr env var fallback
-Both `syndicate.js` and `check-syndication-config.js` fall back to generic `TUMBLR_*` env vars for all prefixes (VOA/ESR). GitHub Actions only needs `TUMBLR_CONSUMER_KEY`, `TUMBLR_CONSUMER_SECRET`, `TUMBLR_TOKEN`, `TUMBLR_TOKEN_SECRET`, `TUMBLR_BLOG_NAME` — no `VOA_TUMBLR_*` variants needed.
+Both `syndicate.js` and `check-syndication-config.js` fall back to generic `TUMBLR_*` env vars for all prefixes (VOA/ESR). GitHub Actions only needs `TUMBLR_CONSUMER_KEY`, `TUMBLR_CONSUMER_SECRET`, `TUMBLR_TOKEN`, `TUMBLR_TOKEN_SECRET`, `TUMBLR_BLOG_NAME` ~ no `VOA_TUMBLR_*` variants needed.
 
 ### Dev.to canonical URL handling
-If Dev.to returns "canonical url has already been taken", treat it as **success** — the post is already live from a previous run whose commit was lost. The code in `syndicate.js` handles this automatically.
+If Dev.to returns "canonical url has already been taken", treat it as **success** ~ the post is already live from a previous run whose commit was lost. The code in `syndicate.js` handles this automatically.
+
+### Historical syndication warnings ~ resolved, do not treat as current without fresh evidence
+- **Blogger OAuth**: `syndication-log.json` contains historical Blogger failures from **Mar 24, 2026**. Live checks on **May 17, 2026** show `Blogger token refresh: token ok`, and recent Blogger successes exist on **May 14-16, 2026**. Do not run `npm run blogger-token` unless the current health check fails.
+- **Publer Instagram/Threads 404s**: `syndication-log.json` contains a historical Publer `404` entry from **Mar 13, 2026**. Live checks on **May 17, 2026** confirm the VOA Instagram ID resolves to `vibrationofawesome` and the VOA Threads ID resolves to `@vibrationofawesome`; recent successful syndication exists for both platforms after that date. Treat the old `404` as stale unless a fresh run reproduces it.
+- **Rule for logs**: old `syndication-log.json` errors are historical evidence, not present-tense health. Check `static/_data/syndication-health.json`, current env wiring, and recent results before escalating.
 
 ### Nav bar order (all pages)
 Standard order: **Field Guide ✦ · Art Store · AURA ✦ · EarthStar ✦ · Blog**
@@ -135,12 +140,13 @@ Portfolio does NOT appear on any nav except the art store page. When generating 
 - Every post gets the art store whisper widget (`data-art-store-whisper`) after the ebook CTA
 - Run `node scripts/patch-draft-posts.js` after any template change to backfill existing drafts
 - Run `node scripts/backfill-art-store-whisper.js` to add the whisper to posts that predate it
+- `scripts/build-blog-index.js` is a maintenance utility for `static/blog/matt/index.html`; run `npm run build:matt-index` after changing `static/_data/matt-posts.json`.
 
-### /admin/ CMS (legacy/optional — do not break, do not prioritize)
+### /admin/ CMS (legacy/optional ~ do not break, do not prioritize)
 `static/admin/config.yml` is a Netlify CMS (Decap CMS) config that enables a git-backed post editor at `/admin/`. It references `vibrationofawesome.netlify.app` as the auth domain and is marked **legacy/optional**. The primary post editor is the VOA Post Studio backed by `api/editor-login.js` + `api/editor-save.js`. Do not delete `static/admin/`, but do not prioritize fixing or extending it either. If you touch the admin CMS, update the `site_domain` in `static/admin/config.yml` to the correct Vercel URL.
 
 ### Art store page (DO NOT flag as 404)
-`/art-store/` IS a live page. It exists at `static/art-store/index.html` and is served by GitHub Pages as `vibrationofawesome.com/art-store/`. Do not remove the `art-store` CTA from policy.js. Do not flag it as missing. It is a static directory page, not a Hugo-rendered page — that is why it does not appear in `content/`.
+`/art-store/` IS a live page. It exists at `static/art-store/index.html` and is served by GitHub Pages as `vibrationofawesome.com/art-store/`. Do not remove the `art-store` CTA from policy.js. Do not flag it as missing. It is a static directory page, not a Hugo-rendered page ~ that is why it does not appear in `content/`.
 
 ---
 
@@ -155,10 +161,10 @@ This system publishes content across 15+ platforms. Duplication is a spam risk, 
 | Main VOA post | Canonical source. Unique slug, unique title, unique body. |
 | Blogger companion | AI-generated fresh article. **Unique title required.** Different angle, not a rewrite. Links back to VOA. |
 | WordPress companion | AI-generated fresh article. **Unique title required.** Distinct from both VOA and Blogger versions. Links back to VOA. |
-| Dev.to post | Same title as VOA (acceptable — canonical URL is set to VOA, preventing duplicate indexing). Body is Claude-generated caption, not the article body. |
+| Dev.to post | Same title as VOA (acceptable ~ canonical URL is set to VOA, preventing duplicate indexing). Body is Claude-generated caption, not the article body. |
 | Tumblr post | Claude-generated caption text only. Not the article body. Links back to VOA. |
 | VOA Feeder companion | AI-generated fresh article with deterministic slug suffix (`-signal`, `-shift`, `-insight`, `-guide`). Unique title. Not a rewrite. |
-| Social captions | Claude generates **unique, platform-native copy** for each platform — Facebook, Bluesky, Mastodon, Pinterest, Threads, Instagram. Never copy-paste the same caption across platforms. |
+| Social captions | Claude generates **unique, platform-native copy** for each platform ~ Facebook, Bluesky, Mastodon, Pinterest, Threads, Instagram. Never copy-paste the same caption across platforms. |
 
 ### Slug rules
 - VOA slug: `how-to-reinvent-yourself`
@@ -189,23 +195,23 @@ Every backlink platform article must:
 
 The drip queue has ~98 posts of runway (as of 2026-05-17). At 1 post/run × 2 runs/day = ~2 posts/day = ~49 days. When queue drops below 30 posts, `drip-publish.js` logs a warning. When queue is empty, publishing stops silently.
 
-**To replenish**: `node scripts/generate-all-drafts.js` — generates a new batch of boom drafts and adds them to the queue.
+**To replenish**: `node scripts/generate-all-drafts.js` ~ generates a new batch of boom drafts and adds them to the queue.
 
 Do not wait for the queue to hit zero. Replenish proactively when the warning fires.
 
 ---
 
-## IMAGE REGISTRIES (two systems — do not confuse)
+## IMAGE REGISTRIES (two systems ~ do not confuse)
 
 There are two image registries in `static/_data/`. They serve different purposes and must NOT be merged until the full visual OS (System B) is wired to live syndication.
 
-### `image-registry.json` — System A (live, automated syndication)
+### `image-registry.json` ~ System A (live, automated syndication)
 Written by `syndicate.js → recordImageUsage()` after each Pexels selection or Ideogram generation during a drip-publish run. Lightweight audit log.
 - `post_slug`, `source` (ideogram/pexels/local), `url`, `platforms_used`, `pinterest_board`, `ideogram_prompt`, `timestamp`
 - Capped at 500 entries (rolling)
 
-### `visual-registry.json` — System B (future canonical visual OS, manual only)
-Written by `scripts/lib/build-visual-prompts.js --generate`. Not created yet — appears on first `--generate` run. Stores all 4 visual types per post: `pinterest`, `instagram`, `sacred_diagram`, `field_guide_artifact`.
+### `visual-registry.json` ~ System B (future canonical visual OS, manual only)
+Written by `scripts/lib/build-visual-prompts.js --generate`. Not created yet ~ appears on first `--generate` run. Stores all 4 visual types per post: `pinterest`, `instagram`, `sacred_diagram`, `field_guide_artifact`.
 - Richer schema including per-type Ideogram prompts, dimensions, style, board
 - This is the intended long-term registry once System B is wired to live syndication
 
@@ -224,10 +230,10 @@ See `shared-config/visual-generation-policy-v1.md` for the full pipeline status 
 VOA is building long-term topical authority across 10 semantic clusters. Each cluster is a distinct territory with a pillar topic, supporting angles, related niches, and natural Pinterest board destinations.
 
 ### Cluster system files
-- `static/_data/topic-clusters.json` — full cluster definitions (pillar, supporting angles, related niches, content type, Pinterest board)
-- `static/_data/generation-memory.json` — rolling registry of recent hooks, titles, narrative structures, emotional arcs, opening styles (capped at 30 each)
-- `static/_data/demand-signals.json` — scaffolded for future performance analytics (currently empty)
-- `scripts/lib/generation-memory.js` — reads memory before generation, writes after
+- `static/_data/topic-clusters.json` ~ full cluster definitions (pillar, supporting angles, related niches, content type, Pinterest board)
+- `static/_data/generation-memory.json` ~ rolling registry of recent hooks, titles, narrative structures, emotional arcs, opening styles (capped at 30 each)
+- `static/_data/demand-signals.json` ~ scaffolded for future performance analytics (currently empty)
+- `scripts/lib/generation-memory.js` ~ reads memory before generation, writes after
 
 ### The 10 clusters
 
@@ -314,7 +320,7 @@ Syndication is NOT copy-paste distribution. Each platform receives a **transform
 The direction is: **transform content into platform-native variants, not suppress it.**
 
 Instead of:
-> "nervous-system content is too clinical for Instagram — suppress"
+> "nervous-system content is too clinical for Instagram ~ suppress"
 
 Move toward:
 > "nervous-system content on Instagram = atmospheric image or grounding quote card + minimal emotional caption"
@@ -335,9 +341,9 @@ VOA Instagram (`@vibrationofawesome`) and VOA Threads (`@vibrationofawesome`) ar
 
 **Current rule**: ALL content types now route to both Instagram and Threads.
 
-**Only suppression remaining**: Pinterest is still suppressed for `philosophy` content type (discovery/intent mismatch — philosophy posts don't get saved or reshared on Pinterest the way tools/wellness content does).
+**Only suppression remaining**: Pinterest is still suppressed for `philosophy` content type (discovery/intent mismatch ~ philosophy posts don't get saved or reshared on Pinterest the way tools/wellness content does).
 
-**When to revisit**: When Instagram has meaningful engagement data (>5k followers or 3+ months of post history), reintroduce content-type filtering based on actual engagement signal — not assumptions.
+**When to revisit**: When Instagram has meaningful engagement data (>5k followers or 3+ months of post history), reintroduce content-type filtering based on actual engagement signal ~ not assumptions.
 
 **ESR accounts are unaffected**: This routing change applies ONLY to VOA Instagram and VOA Threads. ESR accounts remain suppressed by default for VOA blog posts.
 
@@ -368,17 +374,17 @@ Before the next generation, `getDifferentiationContext()` reads this memory and 
 
 Future Boom Frequency posts must vary across:
 
-1. **Opening style** — rotate through: question, blunt statement, personal story, scene-setting, counter-intuitive claim, mystery/information-gap, social proof/counter-claim, direct reader address, reveal/answer-first
-2. **Narrative structure** — rotate through: flowing narrative, moderate sections, heavily sectioned, list-driven, narrative with blockquote, argument-style
-3. **Emotional arc** — rotate through: pain → insight → action, certainty → doubt → clarity, curiosity → revelation → commitment, frustration → acceptance → move, neutral → concrete action
-4. **Title cadence** — avoid repeating "How to X When Y", "Why X Doesn't Work", "The X Guide to Y" in back-to-back posts
-5. **CTA pattern** — the CTA rotation in `policy.js` already handles this; do not hardcode the same CTA in generation prompts
+1. **Opening style** ~ rotate through: question, blunt statement, personal story, scene-setting, counter-intuitive claim, mystery/information-gap, social proof/counter-claim, direct reader address, reveal/answer-first
+2. **Narrative structure** ~ rotate through: flowing narrative, moderate sections, heavily sectioned, list-driven, narrative with blockquote, argument-style
+3. **Emotional arc** ~ rotate through: pain → insight → action, certainty → doubt → clarity, curiosity → revelation → commitment, frustration → acceptance → move, neutral → concrete action
+4. **Title cadence** ~ avoid repeating "How to X When Y", "Why X Doesn't Work", "The X Guide to Y" in back-to-back posts
+5. **CTA pattern** ~ the CTA rotation in `policy.js` already handles this; do not hardcode the same CTA in generation prompts
 
 The BOOMBOT_SYSTEM prompt already encodes tone rules. The differentiation context layer (from generation-memory.js) adds the *recent history* awareness that prevents Claude from defaulting to its most common patterns.
 
 ---
 
-## SHARED CALENDAR ARCHITECTURE (FUTURE — DO NOT BUILD YET)
+## SHARED CALENDAR ARCHITECTURE (FUTURE ~ DO NOT BUILD YET)
 
 When the shared calendar is built, it will be the single source of truth for all scheduled and published content across VOA and ESR. Schema stub for reference:
 

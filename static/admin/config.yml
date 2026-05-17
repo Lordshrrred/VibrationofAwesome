@@ -1,3 +1,6 @@
+# Legacy/optional Decap CMS config for /admin/.
+# The primary editor is VOA Post Studio; keep this inert config for compatibility,
+# but do not prioritize Netlify auth work unless /admin/ is actively used again.
 local_backend: true
 
 backend:

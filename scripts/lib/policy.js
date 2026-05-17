@@ -160,7 +160,7 @@ export function detectContentType(post) {
  *   bluesky_voa  ~ VOA Bluesky, all content types
  *   mastodon_voa ~ VOA Mastodon, all content types
  *   facebook_voa ~ VOA Facebook page, all content types
- *   pinterest    ~ visual/evergreen content (skip philosophy — discovery mismatch)
+ *   pinterest    ~ visual/evergreen content (skip philosophy ~ discovery mismatch)
  *   threads      ~ all content types, text-first mini-thread
  *   instagram    ~ all content types while accounts are in early growth phase.
  *                  Consistency matters more than "best fit" for new accounts.
@@ -176,7 +176,7 @@ export function detectContentType(post) {
  *   fit. All content types now include both platforms. The only remaining suppression
  *   rule is Pinterest for philosophy content (discovery/intent mismatch is real).
  *   When Instagram has meaningful engagement data, reintroduce type-based filtering
- *   informed by actual signal — not assumptions.
+ *   informed by actual signal ~ not assumptions.
  */
 const SOCIAL_ROUTING = {
   creator: [
