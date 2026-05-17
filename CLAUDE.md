@@ -207,6 +207,165 @@ Use this registry to audit image duplication across posts. Do not delete entries
 
 ---
 
+## TOPICAL AUTHORITY SYSTEM
+
+VOA is building long-term topical authority across 10 semantic clusters. Each cluster is a distinct territory with a pillar topic, supporting angles, related niches, and natural Pinterest board destinations.
+
+### Cluster system files
+- `static/_data/topic-clusters.json` — full cluster definitions (pillar, supporting angles, related niches, content type, Pinterest board)
+- `static/_data/generation-memory.json` — rolling registry of recent hooks, titles, narrative structures, emotional arcs, opening styles (capped at 30 each)
+- `static/_data/demand-signals.json` — scaffolded for future performance analytics (currently empty)
+- `scripts/lib/generation-memory.js` — reads memory before generation, writes after
+
+### The 10 clusters
+
+| Key | Display Name | Content Type | Pinterest Board |
+|---|---|---|---|
+| `ai-creator-tools` | AI Creator Tools | creator | conscious-creator-tools |
+| `nervous-system-creativity` | Nervous System & Creativity | nervous-system | nervous-system-reset |
+| `dopamine-attention` | Dopamine & Attention | nervous-system | dopamine-detox |
+| `authentic-self-expression` | Authentic Self-Expression | philosophy | vibration-of-awesome |
+| `creator-automation` | Creator Automation | creator | conscious-creator-tools |
+| `spiritual-productivity` | Spiritual Productivity | philosophy | purpose-and-direction |
+| `purpose-direction` | Purpose & Direction | philosophy | purpose-and-direction |
+| `building-life-that-fits` | Building a Life That Feels Like Yours | philosophy | empower-thyself |
+| `emotional-regulation` | Emotional Regulation | nervous-system | nervous-system-reset |
+| `consciousness-technology` | Consciousness & Technology | earthstar | earthstar |
+
+### How clusters are used in generation
+
+```bash
+# Generate with explicit cluster context
+node scripts/generate-post.js --lane boom --keyword "..." --cluster ai-creator-tools
+
+# Cluster is auto-detected from niche if not provided
+node scripts/generate-post.js --lane boom --niche ai-creator-tools --keyword "..."
+```
+
+When a `--cluster` or `--niche` is provided:
+1. `generate-post.js` loads the cluster definition from `topic-clusters.json`
+2. Injects the cluster pillar + supporting angles into the generation prompt (so Claude knows what territory we're in)
+3. Loads `generation-memory.js` to get recent hooks/titles/structures for this niche
+4. Injects the differentiation context ("avoid these recent patterns")
+5. After generation, records the new post's hook, title, arc, and opening style to `generation-memory.json`
+
+### Internal link scaffolding (v1)
+`buildExistingPostsList()` in `generate-post.js` already provides Claude with a list of published posts for internal linking. Future enhancement: filter by cluster membership so Claude naturally links related posts within the same topical territory.
+
+Posts have a `cluster` field in `{lane}-posts.json` metadata as of this pass. This enables future cluster-aware internal link suggestions.
+
+---
+
+## COMPANION ECOSYSTEM ARCHITECTURE
+
+Every VOA post generates a content ecosystem. Each piece in the ecosystem has a distinct role:
+
+```
+VOA canonical post (primary)
+├── Feeder companion article (SEO backlink ~ distinct angle, unique title)
+├── Blogger companion article (SEO backlink ~ distinct angle, unique title)
+├── WordPress companion article (SEO backlink ~ distinct angle, unique title)
+├── Dev.to post (same title + canonical URL ~ not a duplicate by design)
+├── Tumblr post (Claude caption ~ text post, not an article)
+│
+├── Platform-native social transformations
+│   ├── Bluesky VOA (single punchy thought, under 300 chars)
+│   ├── Mastodon VOA (contextual 2-3 sentences + hashtags)
+│   ├── Facebook VOA (conversational question + link)
+│   ├── Threads VOA (original mini-thread, 3-part format)
+│   ├── Instagram VOA (visual hook + emotional context, no link)
+│   └── Pinterest VOA (Ideogram AI image + keyword-rich description + board)
+│
+└── Future: ESR crossover (ESR-voice caption for philosophy/earthstar content types)
+```
+
+### Platform transformation philosophy
+
+Syndication is NOT copy-paste distribution. Each platform receives a **transformation** of the source content, not a copy of it.
+
+| Platform | Transformation type | Voice | URL in post? |
+|---|---|---|---|
+| Feeder | Companion article (distinct angle) | Matt EarthStar voice | Yes (backlink) |
+| Blogger | Companion article (distinct angle) | Matt EarthStar voice | Yes (backlink) |
+| WordPress | Companion article (distinct angle) | EarthStarRising voice | Yes (backlink) |
+| Dev.to | Article teaser (unique body, same title + canonical URL) | Technical/creator angle | Yes (canonical) |
+| Tumblr | Text post (Claude-generated caption, aesthetic tone) | Matt/BoomBot mix | Yes |
+| Bluesky | Single thought (≤300 chars, zero hashtags) | Direct | Yes |
+| Mastodon | Contextual 2-3 sentences + 2-3 hashtags | Thoughtful | Yes |
+| Facebook | Conversational 2-3 sentences + question | Conversational | Yes |
+| Threads | 3-part native mini-thread (1/3, 2/3, 3/3) | Reflective | Yes (in 3/3) |
+| Instagram | Visual hook + emotional context + hashtags | Raw/cosmic | No (no clickable links) |
+| Pinterest | AI-generated image (Ideogram) + keyword description + board | Evergreen/visual | Yes |
+
+### Future transformation direction (do not implement yet)
+
+The direction is: **transform content into platform-native variants, not suppress it.**
+
+Instead of:
+> "nervous-system content is too clinical for Instagram — suppress"
+
+Move toward:
+> "nervous-system content on Instagram = atmospheric image or grounding quote card + minimal emotional caption"
+
+Platform-specific transformation variants to build when the time comes:
+- **Instagram weak visual-fit** → quote card / atmospheric still / abstract visual + short emotional caption
+- **Threads weak video-fit** → native conversational text transformation, not a caption
+- **Facebook weak engagement-fit** → shorter reflective post, not a link-dump
+- **Pinterest weak board-fit** → reroute to `vibration-of-awesome` board rather than suppress entirely
+
+This direction is documented here so future architecture does not hardcode assumptions that prevent it.
+
+---
+
+## INSTAGRAM + THREADS ROUTING PHILOSOPHY
+
+VOA Instagram (`@vibrationofawesome`) and VOA Threads (`@vibrationofawesome`) are **early-growth accounts**. During this phase, posting consistency and brand familiarity matter more than optimal content-type fit.
+
+**Current rule**: ALL content types now route to both Instagram and Threads.
+
+**Only suppression remaining**: Pinterest is still suppressed for `philosophy` content type (discovery/intent mismatch — philosophy posts don't get saved or reshared on Pinterest the way tools/wellness content does).
+
+**When to revisit**: When Instagram has meaningful engagement data (>5k followers or 3+ months of post history), reintroduce content-type filtering based on actual engagement signal — not assumptions.
+
+**ESR accounts are unaffected**: This routing change applies ONLY to VOA Instagram and VOA Threads. ESR accounts remain suppressed by default for VOA blog posts.
+
+---
+
+## GENERATION MEMORY SYSTEM
+
+Every time `generate-post.js` creates a post, it records the post's:
+- Opening hook (first substantive sentence)
+- Title
+- Narrative structure (e.g. "numbered-list with subheadings", "flowing narrative")
+- Emotional arc (e.g. "pain-open → insight → hope + action close")
+- Opening style (e.g. "question opening", "personal story opening")
+
+This record is stored in `static/_data/generation-memory.json` (rolling window of 30 per category).
+
+Before the next generation, `getDifferentiationContext()` reads this memory and injects a "DIFFERENTIATION CONTEXT" block into the Claude prompt, listing recent patterns to avoid. This prevents:
+- Same title cadence repeating ("How to X When Y")
+- Same opening style recurring ("If you're...")
+- Same emotional arc ("pain → insight → action") dominating every post
+- Same narrative structure ("6+ H2 sections") becoming the default
+
+**Memory is per-niche**: the differentiation context is filtered by the current niche/cluster so cross-niche variation doesn't create false constraints.
+
+---
+
+## SEMANTIC DIFFERENTIATION RULES (BAKED INTO GENERATION)
+
+Future Boom Frequency posts must vary across:
+
+1. **Opening style** — rotate through: question, blunt statement, personal story, scene-setting, counter-intuitive claim, mystery/information-gap, social proof/counter-claim, direct reader address, reveal/answer-first
+2. **Narrative structure** — rotate through: flowing narrative, moderate sections, heavily sectioned, list-driven, narrative with blockquote, argument-style
+3. **Emotional arc** — rotate through: pain → insight → action, certainty → doubt → clarity, curiosity → revelation → commitment, frustration → acceptance → move, neutral → concrete action
+4. **Title cadence** — avoid repeating "How to X When Y", "Why X Doesn't Work", "The X Guide to Y" in back-to-back posts
+5. **CTA pattern** — the CTA rotation in `policy.js` already handles this; do not hardcode the same CTA in generation prompts
+
+The BOOMBOT_SYSTEM prompt already encodes tone rules. The differentiation context layer (from generation-memory.js) adds the *recent history* awareness that prevents Claude from defaulting to its most common patterns.
+
+---
+
 ## SHARED CALENDAR ARCHITECTURE (FUTURE — DO NOT BUILD YET)
 
 When the shared calendar is built, it will be the single source of truth for all scheduled and published content across VOA and ESR. Schema stub for reference:

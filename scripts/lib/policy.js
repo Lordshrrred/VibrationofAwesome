@@ -157,14 +157,26 @@ export function detectContentType(post) {
  * by the EarthStar Command engine and are NOT included here.
  *
  * Platform notes:
- *   bluesky_voa       ~ VOA Bluesky, all content types
- *   mastodon_voa      ~ VOA Mastodon, all content types
- *   facebook_voa      ~ VOA Facebook page, most content types
- *   pinterest         ~ evergreen/visual content only (skip philosophy + nervous-system)
- *   threads           ~ all content types, text-first mini-thread
+ *   bluesky_voa  ~ VOA Bluesky, all content types
+ *   mastodon_voa ~ VOA Mastodon, all content types
+ *   facebook_voa ~ VOA Facebook page, all content types
+ *   pinterest    ~ visual/evergreen content (skip philosophy — discovery mismatch)
+ *   threads      ~ all content types, text-first mini-thread
+ *   instagram    ~ all content types while accounts are in early growth phase.
+ *                  Consistency matters more than "best fit" for new accounts.
+ *                  Revisit suppression rules when the account has >5k followers
+ *                  and engagement data is available to guide decisions.
  *
- * TODO (crossover v2): to add ESR Bluesky/Mastodon for specific content
+ * ESR account crossover (v2): to add ESR Bluesky/Mastodon for specific content
  * types, add a crossover flag here rather than adding them to ALL_SOCIAL.
+ *
+ * INSTAGRAM/THREADS ROUTING PHILOSOPHY (early growth):
+ *   VOA Instagram and VOA Threads are early-growth accounts. During this phase,
+ *   posting consistency and brand familiarity matter more than perfect content-type
+ *   fit. All content types now include both platforms. The only remaining suppression
+ *   rule is Pinterest for philosophy content (discovery/intent mismatch is real).
+ *   When Instagram has meaningful engagement data, reintroduce type-based filtering
+ *   informed by actual signal — not assumptions.
  */
 const SOCIAL_ROUTING = {
   creator: [
@@ -173,22 +185,23 @@ const SOCIAL_ROUTING = {
     "facebook_voa",
     "pinterest",
     "threads",
-    "instagram",       // creator/AI/tools content is Instagram-native
+    "instagram",
   ],
   philosophy: [
     "bluesky_voa",
     "mastodon_voa",
     "facebook_voa",
     "threads",
-    "instagram",       // philosophical/identity content resonates on Instagram
+    "instagram",
+    // no pinterest ~ philosophy content is not a discovery/save use case
   ],
   "nervous-system": [
     "bluesky_voa",
     "mastodon_voa",
     "facebook_voa",
+    "pinterest",       // nervous-system content performs on wellness-focused boards
     "threads",
-    // no instagram ~ nervous-system content skews clinical, not visual
-    // no pinterest ~ audience mode mismatch
+    "instagram",       // early-growth: post consistently, refine later with data
   ],
   earthstar: [
     "bluesky_voa",
@@ -196,7 +209,7 @@ const SOCIAL_ROUTING = {
     "facebook_voa", "facebook_earthstar",
     "pinterest",
     "threads",
-    "instagram",       // EarthStar content is inherently visual/cosmic
+    "instagram",
   ],
   general: [
     "bluesky_voa",
@@ -204,7 +217,7 @@ const SOCIAL_ROUTING = {
     "facebook_voa",
     "pinterest",
     "threads",
-    // no instagram ~ general/unclassified content not worth a visual slot
+    "instagram",       // early-growth: include instagram until data says otherwise
   ],
 };
 
@@ -224,11 +237,12 @@ export function getSocialPlatforms(contentType) {
 
 const SUPPRESS_REASONS = {
   facebook_earthstar: "EarthStar crossover ~ earthstar content type only",
-  instagram:          "visual/selective ~ creator, philosophy, earthstar content only",
-  pinterest:          "visual/evergreen platform ~ skip philosophy and nervous-system",
+  pinterest:          "visual/evergreen platform ~ skip philosophy (discovery intent mismatch)",
   // ESR accounts are EarthStar Command territory, not VOA blog defaults
   bluesky_esr:        "EarthStar Command account ~ not VOA blog default",
   mastodon_esr:       "EarthStar Command account ~ not VOA blog default",
+  // NOTE: instagram is no longer suppressed for any content type during early-growth phase.
+  // Reinstate type-based suppression once engagement data justifies it.
 };
 
 function getSuppressionReason(platform) {

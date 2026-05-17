@@ -1,0 +1,200 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Topical authority clusters for Vibration of Awesome. Each cluster is a semantic territory the site is building authority in. Posts belong to one primary cluster and optionally reference related clusters. Used for internal linking, content strategy, and future demand-signal feedback.",
+    "usage": "Assign posts a 'cluster' field matching a cluster key. Future internal-link suggestions will surface related posts within the same cluster.",
+    "lastUpdated": "2026-05-17"
+  },
+  "clusters": [
+    {
+      "key": "ai-creator-tools",
+      "displayName": "AI Creator Tools",
+      "pillar": "How AI changes creative workflows for independent artists, musicians, and solo operators — without stripping out the human signal.",
+      "relatedNiches": ["ai-creator-tools"],
+      "supportingAngles": [
+        "Specific tools and workflows for musicians",
+        "AI content systems for solo creators",
+        "Automating repetitive creator tasks without losing voice",
+        "Skeptical takes on overhyped AI tools",
+        "Building an AI workflow that protects artistic identity",
+        "The cost of not using AI when your competitors do",
+        "AI as collaborator vs AI as replacement"
+      ],
+      "relatedClusters": ["creator-automation", "spiritual-productivity", "authentic-self-expression"],
+      "pinterestBoards": ["conscious-creator-tools"],
+      "contentType": "creator",
+      "notes": "Practical and skeptical. Never a SaaS landing page. The creator's voice and taste must stay at the center."
+    },
+    {
+      "key": "nervous-system-creativity",
+      "displayName": "Nervous System & Creativity",
+      "pillar": "How nervous system dysregulation silently blocks creativity, output, and clarity — and what regulated bodies actually produce.",
+      "relatedNiches": ["nervous-system-dysregulation", "disconnection-inner-noise"],
+      "supportingAngles": [
+        "Why motivation advice fails when your body is in alarm state",
+        "Somatic practices for creative unblocking",
+        "The link between overstimulation and creative paralysis",
+        "Rest as a creative strategy, not surrender",
+        "How anxiety steals creative bandwidth",
+        "Sensory environments that support deep work",
+        "Nervous system safety as prerequisite for flow states"
+      ],
+      "relatedClusters": ["dopamine-attention", "emotional-regulation", "authentic-self-expression"],
+      "pinterestBoards": ["nervous-system-reset"],
+      "contentType": "nervous-system",
+      "notes": "Calm and grounded tone. Regulation comes before performance. Not medical advice."
+    },
+    {
+      "key": "dopamine-attention",
+      "displayName": "Dopamine & Attention",
+      "pillar": "How cheap dopamine habits silently destroy momentum, focus, and self-trust — and how to reclaim command of your attention.",
+      "relatedNiches": ["dopamine-addiction-numbing"],
+      "supportingAngles": [
+        "Late-night scrolling and its hidden costs",
+        "The shame loop behind cheap dopamine",
+        "Reclaiming masculine or feminine energy from numbing habits",
+        "Dopamine detox approaches that are not extreme or performative",
+        "What happens to creativity when your reward system is hijacked",
+        "Replacing cheap stimulation with meaningful output",
+        "The identity shift required to change an attention habit"
+      ],
+      "relatedClusters": ["nervous-system-creativity", "emotional-regulation", "authentic-self-expression"],
+      "pinterestBoards": ["dopamine-detox"],
+      "contentType": "nervous-system",
+      "notes": "Blunt about costs. Avoid moral panic and purity culture. Energy and self-command framing."
+    },
+    {
+      "key": "authentic-self-expression",
+      "displayName": "Authentic Self-Expression",
+      "pillar": "What it costs to suppress who you actually are — and what becomes possible when you stop performing a version of yourself designed for approval.",
+      "relatedNiches": ["self-betrayal-avoidance", "misalignment-wrong-life", "disconnection-inner-noise"],
+      "supportingAngles": [
+        "The gap between the person you show and the person you are",
+        "How self-betrayal shows up in creative work",
+        "Voice, vision, and not flattening yourself for the algorithm",
+        "Approval-seeking as a content strategy problem",
+        "Reconnecting to your actual creative signal",
+        "When your creative output stops feeling like you",
+        "Specificity as the antidote to generic self-expression"
+      ],
+      "relatedClusters": ["ai-creator-tools", "purpose-direction", "building-life-that-fits"],
+      "pinterestBoards": ["vibration-of-awesome", "empower-thyself"],
+      "contentType": "philosophy",
+      "notes": "Subtle and emotionally precise. Not permission-based cheerleading."
+    },
+    {
+      "key": "creator-automation",
+      "displayName": "Creator Automation",
+      "pillar": "Building systems that let a solo creator operate at scale without burning out, losing their voice, or becoming a content machine.",
+      "relatedNiches": ["ai-creator-tools"],
+      "supportingAngles": [
+        "Drip systems and editorial calendars for solos",
+        "When to automate vs when to stay hands-on",
+        "Content systems that protect creative energy",
+        "Distribution automation without sacrificing authenticity",
+        "AI as a force multiplier for a single-person brand",
+        "The difference between leverage and abdication",
+        "Building a publishing engine that feels like you"
+      ],
+      "relatedClusters": ["ai-creator-tools", "spiritual-productivity", "building-life-that-fits"],
+      "pinterestBoards": ["conscious-creator-tools"],
+      "contentType": "creator",
+      "notes": "Systems thinking for independent operators. Never hustle culture. Never 'work smarter not harder' clichés."
+    },
+    {
+      "key": "spiritual-productivity",
+      "displayName": "Spiritual Productivity",
+      "pillar": "What it looks like to do meaningful work without sacrificing inner peace, spiritual alignment, or personal truth in the name of hustle.",
+      "relatedNiches": ["direction-purpose-drift", "disconnection-inner-noise", "misalignment-wrong-life"],
+      "supportingAngles": [
+        "Aligning daily work with what actually matters",
+        "Morning routines that emerge from inner state rather than productivity lists",
+        "Sacred rhythms vs optimized schedules",
+        "When 'productive' is a form of avoidance",
+        "Energy management over time management",
+        "The spiritual cost of doing work you hate",
+        "How presence changes the quality of creative output"
+      ],
+      "relatedClusters": ["purpose-direction", "authentic-self-expression", "building-life-that-fits"],
+      "pinterestBoards": ["purpose-and-direction", "empower-thyself"],
+      "contentType": "philosophy",
+      "notes": "Not yoga-retreat spirituality. Practical, grounded, and personally honest."
+    },
+    {
+      "key": "purpose-direction",
+      "displayName": "Purpose & Direction",
+      "pillar": "Finding a real direction — not a motivational poster version of purpose — and committing before you feel ready.",
+      "relatedNiches": ["direction-purpose-drift"],
+      "supportingAngles": [
+        "Why waiting for clarity is itself a choice",
+        "Purpose as a built thing, not a discovered one",
+        "The difference between a calling and a comfortable fantasy",
+        "Committing to a direction you cannot yet see the end of",
+        "How drift happens and how to interrupt it",
+        "Rebuilding a life around what you actually believe",
+        "What 'finding your purpose' gets wrong"
+      ],
+      "relatedClusters": ["building-life-that-fits", "spiritual-productivity", "authentic-self-expression"],
+      "pinterestBoards": ["purpose-and-direction"],
+      "contentType": "philosophy",
+      "notes": "Anti-fantasy, practical, and clarifying. Move readers toward one specific commitment."
+    },
+    {
+      "key": "building-life-that-fits",
+      "displayName": "Building a Life That Feels Like Yours",
+      "pillar": "The slow, honest, often uncomfortable process of constructing a life that actually fits who you are — not who you were supposed to be.",
+      "relatedNiches": ["misalignment-wrong-life", "direction-purpose-drift", "self-betrayal-avoidance"],
+      "supportingAngles": [
+        "Recognising the gap between the life you have and the one you want",
+        "Small honest moves over dramatic reinvention",
+        "Designing a life around energy, not just income",
+        "The cost of optimising for the wrong things for too long",
+        "What alignment actually feels like day-to-day",
+        "Letting go of a version of yourself you have outgrown",
+        "Building slowly, without burning everything down"
+      ],
+      "relatedClusters": ["purpose-direction", "authentic-self-expression", "spiritual-productivity"],
+      "pinterestBoards": ["vibration-of-awesome", "empower-thyself"],
+      "contentType": "philosophy",
+      "notes": "Subtle, honest, and specific. Do not push dramatic life-quitting. Honest experiments over impulsive escape."
+    },
+    {
+      "key": "emotional-regulation",
+      "displayName": "Emotional Regulation",
+      "pillar": "The real work of managing internal states — not suppressing emotion, but processing it so it does not run the show.",
+      "relatedNiches": ["nervous-system-dysregulation", "dopamine-addiction-numbing", "disconnection-inner-noise"],
+      "supportingAngles": [
+        "Emotional regulation vs emotional suppression",
+        "What happens to decision-making when emotions are unregulated",
+        "Practical techniques that are not meditation-app generic",
+        "Anger, grief, and shame as creative fuel rather than creative blocks",
+        "How regulated emotions improve relationships and creative output",
+        "The embodied dimension of emotional intelligence",
+        "When emotional dysregulation looks like personality"
+      ],
+      "relatedClusters": ["nervous-system-creativity", "dopamine-attention", "building-life-that-fits"],
+      "pinterestBoards": ["nervous-system-reset"],
+      "contentType": "nervous-system",
+      "notes": "Calm, specific, and practical. Not therapy-speak or oversimplified wellness advice."
+    },
+    {
+      "key": "consciousness-technology",
+      "displayName": "Consciousness & Technology",
+      "pillar": "What it means to be a conscious human being navigating a technological moment that was not designed with your inner life in mind.",
+      "relatedNiches": ["ai-creator-tools", "disconnection-inner-noise", "direction-purpose-drift"],
+      "supportingAngles": [
+        "AI and the question of what is authentically human",
+        "Technology as a mirror for consciousness",
+        "What attention means in an attention economy",
+        "The spiritual implications of machine intelligence",
+        "Using technology in service of awareness rather than distraction",
+        "What presence means when the world is always on",
+        "EarthStar philosophy and the technological moment"
+      ],
+      "relatedClusters": ["ai-creator-tools", "authentic-self-expression", "spiritual-productivity"],
+      "pinterestBoards": ["earthstar", "conscious-creator-tools"],
+      "contentType": "earthstar",
+      "notes": "Cosmic and grounded simultaneously. The EarthStar frequency. No techno-utopianism or techno-pessimism."
+    }
+  ]
+}

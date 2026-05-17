@@ -1,0 +1,14 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
+    "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
+  },
+  "lastUpdated": null,
+  "recentHooks": [],
+  "recentTitles": [],
+  "recentNarrativeStructures": [],
+  "recentEmotionalArcs": [],
+  "recentOpeningStyles": [],
+  "recentCTAPatterns": []
+}

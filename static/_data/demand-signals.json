@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Performance signal scaffold for future analytics feedback loops. Currently empty — data will be populated when engagement collection is implemented. Structure matches the future analytics layer described in the EarthStar OS architecture notes in CLAUDE.md.",
+    "status": "scaffolded",
+    "implementWhen": "After shared calendar is built and engagement collection script is running.",
+    "lastUpdated": null
+  },
+  "topClusters": [],
+  "topEmotionalTones": [],
+  "topHookTypes": [],
+  "topPlatforms": [],
+  "topPinterestBoards": [],
+  "clusterPerformance": {},
+  "platformEngagement": {
+    "bluesky_voa":       { "impressions": null, "engagements": null, "lastChecked": null },
+    "mastodon_voa":      { "impressions": null, "engagements": null, "lastChecked": null },
+    "facebook_voa":      { "impressions": null, "engagements": null, "lastChecked": null },
+    "pinterest":         { "saves": null, "impressions": null, "lastChecked": null },
+    "instagram":         { "reach": null, "engagements": null, "lastChecked": null },
+    "threads":           { "views": null, "replies": null, "lastChecked": null },
+    "devto":             { "views": null, "reactions": null, "lastChecked": null },
+    "tumblr_voa":        { "notes": null, "lastChecked": null },
+    "blogger":           { "pageviews": null, "lastChecked": null },
+    "wordpress_earthstar": { "pageviews": null, "lastChecked": null }
+  },
+  "contentTypePerformance": {
+    "creator":        { "avgEngagement": null, "postCount": 0 },
+    "philosophy":     { "avgEngagement": null, "postCount": 0 },
+    "nervous-system": { "avgEngagement": null, "postCount": 0 },
+    "earthstar":      { "avgEngagement": null, "postCount": 0 },
+    "general":        { "avgEngagement": null, "postCount": 0 }
+  }
+}

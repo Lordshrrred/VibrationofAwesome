@@ -19,6 +19,7 @@ import { syndicatePost } from "./syndicate.js";
 import { fetchNasaImages, fetchForestImages, fetchBoomImages } from "./select-image.js";
 import { findNiche, getDefaultNiche, getNichePromptContext, EARTHSTAR_NICHES } from "./content-niches.js";
 import { getNextCTA, detectContentType } from "./lib/policy.js";
+import { getDifferentiationContext, getClusterContext, recordGeneration } from "./lib/generation-memory.js";
 
 dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
@@ -27,9 +28,9 @@ const ROOT = path.resolve(__dirname, "..");
 
 // ── CLI ARGS ──
 const argv = minimist(process.argv.slice(2), {
-  string:  ["lane", "title", "keyword", "topic", "rant", "niche"],
+  string:  ["lane", "title", "keyword", "topic", "rant", "niche", "cluster"],
   boolean: ["skip-syndicate", "test-feeder-only", "draft"],
-  alias:   { l: "lane", t: "title", k: "keyword", p: "topic", r: "rant", n: "niche" },
+  alias:   { l: "lane", t: "title", k: "keyword", p: "topic", r: "rant", n: "niche", c: "cluster" },
 });
 const lane = argv.lane;
 if (!lane || !["matt", "boom"].includes(lane)) {
@@ -645,10 +646,24 @@ async function main() {
   const ctaInstruction = `\n---\nCTA: End the post with a single benefit-forward call-to-action that feels natural to the content. Link text: "${selectedCTA.text}". URL: ${selectedCTA.url}. Do not add author bio or generic sign-off.\n---`;
   console.log("[CTA] " + selectedCTA.id + " ~ " + selectedCTA.url);
 
+  // Load generation memory to build semantic differentiation context
+  const clusterKey = argv.cluster || (selectedNiche ? selectedNiche.slug : null);
+  const differentiationContext = getDifferentiationContext(ctaNicheSlug, 10) || "";
+  const clusterContext         = getClusterContext(clusterKey) || "";
+  if (differentiationContext) console.log("[memory] Differentiation context loaded (recent patterns will be avoided).");
+  if (clusterContext)         console.log("[cluster] Cluster context loaded: " + clusterKey);
+
   if (lane === "matt") {
     postTitle    = argv.title;
     systemPrompt = MATT_SYSTEM;
-    userMessage  = "Write a full blog post with the title: \"" + argv.title + "\"" + rantInstruction + internalLinkingInstruction + ctaInstruction;
+    userMessage  = [
+      "Write a full blog post with the title: \"" + argv.title + "\"",
+      rantInstruction,
+      internalLinkingInstruction,
+      clusterContext,
+      differentiationContext,
+      ctaInstruction,
+    ].join("\n");
   } else {
     postTitle    = argv.keyword;
     systemPrompt = BOOMBOT_SYSTEM;
@@ -664,6 +679,8 @@ async function main() {
       titleLine,
       rantInstruction,
       internalLinkingInstruction,
+      clusterContext,
+      differentiationContext,
       ctaInstruction,
     ].join("\n");
   }
@@ -747,6 +764,16 @@ async function main() {
     }
   }
 
+  // Record generation into rolling memory registry for future differentiation
+  recordGeneration({
+    slug,
+    title:        postTitle,
+    niche:        selectedNiche ? selectedNiche.slug : null,
+    cluster:      clusterKey,
+    markdownBody: bodyMarkdown,
+  });
+  console.log("[memory] Generation recorded to generation-memory.json.");
+
   // In --draft mode: save to drafts/, skip JSON index, sitemap, syndication, feeder
   const isDraft   = !!argv.draft && lane === "boom";
   const outputSub = isDraft ? "drafts" : "posts";
@@ -771,11 +798,14 @@ async function main() {
       catch (_) { posts = []; }
     }
     posts.unshift({
-      title: postTitle, slug, date: dateStr,
+      title:   postTitle,
+      slug,
+      date:    dateStr,
       excerpt: extractExcerpt(bodyMarkdown),
-      url: "/blog/" + lane + "/posts/" + slug + ".html",
-      tags: selectedNiche ? [selectedNiche.slug] : [],
-      niche: selectedNiche ? selectedNiche.slug : undefined,
+      url:     "/blog/" + lane + "/posts/" + slug + ".html",
+      tags:    selectedNiche ? [selectedNiche.slug] : [],
+      niche:   selectedNiche ? selectedNiche.slug : undefined,
+      cluster: clusterKey || undefined,
     });
     fs.writeFileSync(dataFile, JSON.stringify(posts, null, 2), "utf8");
     console.log("JSON index updated: static/_data/" + lane + "-posts.json");
