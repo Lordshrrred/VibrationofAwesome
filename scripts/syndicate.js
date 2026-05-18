@@ -1141,14 +1141,11 @@ export async function syndicatePost(lane, slug, options = {}) {
     captions = ensureSourceLinks(await generateCaptions({ ...post, lane }, anthropic), postUrl);
   }
 
-  // ── 4. Select images ──
-  // Pinterest: try Ideogram AI-generated image first; fall back to Pexels.
-  // All other platforms: use Pexels.
+  // ── 4. Pexels image (text-first platforms) ────────────────────────────────
   const keyword = options.keyword || (post.tags || [])[0] || post.title;
   const image   = await selectImage(keyword);
   const imageUrl = getPublicImageUrl(image?.url || null);
 
-  // Record Pexels image in registry (used for Bluesky, Mastodon, Facebook — not Instagram which gets its own)
   if (imageUrl) {
     recordImageUsage({
       post_slug:       slug,
@@ -1158,34 +1155,11 @@ export async function syndicatePost(lane, slug, options = {}) {
       platforms_used:  ["bluesky_voa", "mastodon_voa", "facebook_voa"],
       pinterest_board: null,
       ideogram_prompt: null,
+      reused:          false,
     });
   }
 
-  // Pinterest image: AI-generated (Ideogram) when key is set, else same Pexels image
-  let pinterestImageUrl = imageUrl;
-  let ideogramPromptUsed = null;
-  if (!options.bloggerOnly) {
-    const ideogramUrl = await generatePinterestImage({ ...post, lane }, anthropic);
-    if (ideogramUrl) {
-      pinterestImageUrl = ideogramUrl;
-      ideogramPromptUsed = ideogramUrl; // prompt is logged in generate-pinterest-image.js console output
-    }
-  }
-
-  // Record Pinterest image in registry (Ideogram or Pexels fallback)
-  if (pinterestImageUrl) {
-    recordImageUsage({
-      post_slug:       slug,
-      source:          ideogramPromptUsed ? "ideogram" : (image?.source || "pexels"),
-      url:             pinterestImageUrl,
-      local_path:      null,
-      platforms_used:  ["pinterest"],
-      pinterest_board: null, // filled in after board selection below
-      ideogram_prompt: ideogramPromptUsed ? "(see console log)" : null,
-    });
-  }
-
-  // ── 5. Apply syndication policy ──
+  // ── 5. Apply syndication policy (moved before image generation) ────────────
   //
   // Backlink tier (devto, tumblr, blogger, wordpress) always runs ~ no filtering.
   // Social platforms are routed by content type unless the caller explicitly
@@ -1197,16 +1171,100 @@ export async function syndicatePost(lane, slug, options = {}) {
   //   options.bloggerOnly = true  → existing behaviour unchanged
 
   let effectivePlatforms = null; // null = attempt() uses its own existing logic
+  const contentType = detectContentType({ ...post, lane });
 
   if (!options.bloggerOnly && !options.platforms && !options.allSocial) {
-    const contentType    = detectContentType({ ...post, lane });
     const socialPlatforms = getSocialPlatforms(contentType);
-    const cta            = getNextCTA(lane, contentType);
-
+    const cta             = getNextCTA(lane, contentType);
     logPolicyDecision({ ...post, lane }, contentType, socialPlatforms, `${cta.label} ~ ${cta.url}`);
-
-    // effectivePlatforms = backlink tier (always) + policy-filtered social
     effectivePlatforms = [...BACKLINK_TIER, ...socialPlatforms];
+  }
+
+  // ── 4b. Ideogram visual strategy — ship-time, cost-controlled ────────────
+  //
+  // Pre-flight check: determine which visual platforms will actually post
+  // (considering policy routing + dedup state) BEFORE spending on Ideogram.
+  // This prevents generating paid images for platforms that will be skipped.
+  //
+  // Shared asset: if BOTH Pinterest and Instagram will post, generate ONE square
+  // image and reuse it for both — saving one ~$0.02 Ideogram call per post.
+  // When only Pinterest is active: portrait (10:16) for optimal Pinterest performance.
+  // When only Instagram is active: square (1:1) via archetype system.
+  // When neither is active: Ideogram is skipped entirely.
+  //
+  // Retry dedup: checks image-registry.json before calling Ideogram. If a recent
+  // entry exists for this slug + platform, reuses the existing URL (no new call).
+
+  function platformWillPost(platform) {
+    if (options.bloggerOnly) return false;
+    if (options.platforms) return options.platforms.includes(platform);
+    if (options.allSocial) return options.force || existingSyndicationForSlug[platform]?.status !== "success";
+    if (effectivePlatforms && !effectivePlatforms.includes(platform)) return false;
+    return options.force || existingSyndicationForSlug[platform]?.status !== "success";
+  }
+
+  function findRecentVisual(platform, maxAgeHours = 48) {
+    try {
+      if (!fs.existsSync(IMAGE_REGISTRY_FILE)) return null;
+      const registry = JSON.parse(fs.readFileSync(IMAGE_REGISTRY_FILE, "utf8"));
+      const cutoff   = Date.now() - maxAgeHours * 3_600_000;
+      return registry.find(e =>
+        e.post_slug === slug &&
+        Array.isArray(e.platforms_used) && e.platforms_used.includes(platform) &&
+        new Date(e.timestamp || 0).getTime() > cutoff &&
+        e.url && e.source?.startsWith("ideogram")
+      ) || null;
+    } catch (_) { return null; }
+  }
+
+  const willPostPinterest = platformWillPost("pinterest");
+  const willPostInstagram = platformWillPost("instagram");
+
+  let pinterestImageUrl = imageUrl;  // default: Pexels fallback
+  let instagramImageUrl = imageUrl;  // default: Pexels fallback
+  let instagramVisual   = null;
+  let pinterestVisual   = null;      // only set when Pinterest-only portrait is generated
+  let isSharedVisual    = false;
+  let reusedPinterest   = false;
+  let reusedInstagram   = false;
+
+  if (!options.bloggerOnly) {
+
+    // Check registry for recent visuals before generating (retry dedup)
+    const cachedInstagram = willPostInstagram  ? findRecentVisual("instagram") : null;
+    const cachedPinterest = willPostPinterest  ? findRecentVisual("pinterest") : null;
+
+    if (cachedInstagram) console.log(`  [visual] Reusing cached Instagram image (age < 48h): ${cachedInstagram.url.slice(0, 60)}...`);
+    if (cachedPinterest) console.log(`  [visual] Reusing cached Pinterest image (age < 48h): ${cachedPinterest.url.slice(0, 60)}...`);
+
+    const needInstagram = willPostInstagram && !cachedInstagram;
+    const needPinterest = willPostPinterest && !cachedPinterest;
+
+    if (needInstagram && needPinterest) {
+      // SHARED ASSET: generate one square image for both — saves one Ideogram call
+      console.log("  [visual] Strategy: SHARED (Pinterest + Instagram) → one square image");
+      instagramVisual = await generateInstagramVisual({ ...post, lane }, anthropic, contentType);
+      if (instagramVisual?.url) {
+        pinterestImageUrl = instagramVisual.url;
+        instagramImageUrl = instagramVisual.url;
+        isSharedVisual    = true;
+        console.log(`  [visual] ✓ Shared asset: ${instagramVisual.archetypeLabel} — serving both platforms`);
+      }
+    } else if (needInstagram) {
+      console.log("  [visual] Strategy: INSTAGRAM ONLY → square archetype image");
+      instagramVisual = await generateInstagramVisual({ ...post, lane }, anthropic, contentType);
+      if (instagramVisual?.url) instagramImageUrl = instagramVisual.url;
+    } else if (needPinterest) {
+      console.log("  [visual] Strategy: PINTEREST ONLY → portrait image");
+      pinterestVisual = await generatePinterestImage({ ...post, lane }, anthropic);
+      if (pinterestVisual?.url) pinterestImageUrl = pinterestVisual.url;
+    } else if (!willPostInstagram && !willPostPinterest) {
+      console.log("  [visual] Strategy: NO VISUAL PLATFORMS ACTIVE → Ideogram skipped");
+    }
+
+    // Apply cached visuals (retry dedup — reuse existing registry entries)
+    if (cachedInstagram) { instagramImageUrl = cachedInstagram.url; reusedInstagram = true; }
+    if (cachedPinterest) { pinterestImageUrl = cachedPinterest.url; reusedPinterest = true; }
   }
 
   // ── 6. Extract hashtags from tumblr captions ──
@@ -1262,10 +1320,9 @@ export async function syndicatePost(lane, slug, options = {}) {
   // ── Account identity + routing summary ────────────────────────────────────
   // Printed before every run so CI logs confirm exactly which accounts are
   // targeted, content type detected, and which social destinations are active.
-  const contentTypeForLog = detectContentType({ ...post, lane });
   const socialForLog = effectivePlatforms
     ? effectivePlatforms.filter(p => !BACKLINK_TIER.includes(p))
-    : getSocialPlatforms(contentTypeForLog);
+    : getSocialPlatforms(contentType);
   const suppressedForLog = [...new Set([
     ...["bluesky_voa","mastodon_voa","facebook_voa","threads","pinterest","instagram","facebook_earthstar"]
       .filter(p => !socialForLog.includes(p) && !BACKLINK_TIER.includes(p)),
@@ -1275,7 +1332,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   console.log("\n╔═ [routing] Syndication destinations ═══════════════");
   console.log(`║  Post:         "${post.title.slice(0,55)}"`);
   console.log(`║  Lane:         ${lane}`);
-  console.log(`║  Content type: ${contentTypeForLog}`);
+  console.log(`║  Content type: ${contentType}`);
   console.log("║");
   console.log("║  VOA social (policy-routed):");
   if (hasBlueskyConfig("VOA"))    console.log(`║    bluesky_voa   → @${getBlueskyConfig("VOA").handle}`);
@@ -1305,58 +1362,61 @@ export async function syndicatePost(lane, slug, options = {}) {
     suppressedForLog.forEach(p => {
       const reason = p === "bluesky_esr" || p === "mastodon_esr"
         ? "EarthStar Command account ~ not VOA blog default"
-        : `content type: ${contentTypeForLog}`;
+        : `content type: ${contentType}`;
       console.log(`║    ~ ${p} (${reason})`);
     });
   }
   console.log("╚══════════════════════════════════════════════════\n");
 
   // ── Pinterest board selection ──────────────────────────────────────────────
-  const pinterestBoardKey = selectPinterestBoard({ ...post, lane });
+  const pinterestBoardKey  = selectPinterestBoard({ ...post, lane });
   const pinterestBoardName = PINTEREST_BOARDS[pinterestBoardKey] || pinterestBoardKey;
-  logPinterestBoard(pinterestBoardKey, `niche:${post.niche || "none"}, content-type:${detectContentType({ ...post, lane })}`);
+  logPinterestBoard(pinterestBoardKey, `niche:${post.niche || "none"}, content-type:${contentType}`);
 
-  // Backfill pinterest_board into the registry entry we wrote above
+  // ── Image registry — consolidated entries for visual platforms ────────────
+  // Pinterest entry (includes shared-asset metadata when both platforms share one image)
   if (pinterestImageUrl) {
+    const pVisual = isSharedVisual ? instagramVisual : pinterestVisual;
     recordImageUsage({
-      post_slug:       slug,
-      source:          ideogramPromptUsed ? "ideogram" : (image?.source || "pexels"),
-      url:             pinterestImageUrl,
-      local_path:      null,
-      platforms_used:  ["pinterest"],
-      pinterest_board: pinterestBoardKey,
-      ideogram_prompt: ideogramPromptUsed ? "(see console log)" : null,
+      post_slug:                slug,
+      source:                   pVisual ? "ideogram" : (image?.source || "pexels"),
+      url:                      pinterestImageUrl,
+      local_path:               null,
+      platforms_used:           isSharedVisual ? ["pinterest", "instagram"] : ["pinterest"],
+      pinterest_board:          pinterestBoardKey,
+      ideogram_prompt:          pVisual?.prompt || null,
+      prompt_hash:              pVisual?.promptHash || null,
+      model:                    pVisual?.model || null,
+      style:                    pVisual?.style || null,
+      is_shared_asset:          isSharedVisual,
+      reused:                   reusedPinterest,
+      instagram_archetype:      instagramVisual?.archetype || null,
+      instagram_archetype_label:instagramVisual?.archetypeLabel || null,
+      instagram_palette:        instagramVisual?.palette || null,
+      instagram_emotional_tone: instagramVisual?.emotionalTone || null,
     });
   }
 
-  // ── Instagram visual generation ────────────────────────────────────────────
-  // Generate an archetype-specific Ideogram image for Instagram (1:1 square).
-  // Separate from Pinterest (10:16 portrait) — different aspect ratio, different
-  // archetype system, different visual intent. This keeps the Instagram feed
-  // feeling like a curated editorial ecosystem rather than a repost automation.
-  // Falls back to pinterestImageUrl if Ideogram is unavailable or generation fails.
-  const contentTypeForInsta = detectContentType({ ...post, lane });
-  let instagramVisual = null;
-  if (!options.bloggerOnly) {
-    instagramVisual = await generateInstagramVisual({ ...post, lane }, anthropic, contentTypeForInsta);
-  }
-  const instagramImageUrl = instagramVisual?.url || pinterestImageUrl;
-
-  // Record Instagram visual in image registry with archetype metadata
-  if (instagramImageUrl) {
+  // Instagram-only entry (skipped when asset is shared — already recorded above)
+  if (!isSharedVisual && instagramImageUrl) {
     recordImageUsage({
       post_slug:                slug,
-      source:                   instagramVisual ? "ideogram" : (ideogramPromptUsed ? "ideogram" : (image?.source || "pexels")),
+      source:                   instagramVisual ? "ideogram" : (image?.source || "pexels"),
       url:                      instagramImageUrl,
       local_path:               null,
       platforms_used:           ["instagram"],
       pinterest_board:          null,
       ideogram_prompt:          instagramVisual?.prompt || null,
+      prompt_hash:              instagramVisual?.promptHash || null,
+      model:                    instagramVisual?.model || null,
+      style:                    instagramVisual?.style || null,
+      is_shared_asset:          false,
+      reused:                   reusedInstagram,
       instagram_archetype:      instagramVisual?.archetype || null,
       instagram_archetype_label:instagramVisual?.archetypeLabel || null,
       instagram_palette:        instagramVisual?.palette || null,
       instagram_emotional_tone: instagramVisual?.emotionalTone || null,
-      instagram_asset_type:     instagramVisual ? "archetype-visual" : "fallback-from-pinterest",
+      instagram_asset_type:     instagramVisual ? "archetype-visual" : "fallback",
     });
   }
 

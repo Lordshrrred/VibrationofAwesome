@@ -14,20 +14,20 @@
  * Falls back silently to null if IDEOGRAM_API_KEY is not set, so
  * the rest of syndication continues with a Pexels image instead.
  *
- * Ideogram API docs: https://api.ideogram.ai/docs
- * Get a key at:      https://ideogram.ai/manage-api
+ * Model and style are configurable via env vars:
+ *   IDEOGRAM_DEFAULT_MODEL  (default: V_2_TURBO — fast + affordable for automated runs)
+ *   IDEOGRAM_DEFAULT_STYLE  (default: DESIGN — bold graphic, good for Pinterest)
  *
  * Usage:
  *   import { generatePinterestImage } from "./generate-pinterest-image.js";
- *   const url = await generatePinterestImage(post, anthropic);  // returns URL or null
+ *   const result = await generatePinterestImage(post, anthropic);
+ *   // result: { url, model, style, promptHash } | null
  */
 
-/**
- * Ask Claude Haiku for a Pinterest-optimized Ideogram prompt.
- * Uses Haiku for speed + cost: this is a brief creative task.
- */
+import crypto from "crypto";
+
 async function buildIdeogramPrompt(post, anthropic) {
-  const tags = (post.tags || []).slice(0, 6).join(", ");
+  const tags    = (post.tags || []).slice(0, 6).join(", ");
   const excerpt = (post.excerpt || "").slice(0, 300);
 
   const msg = await anthropic.messages.create({
@@ -57,12 +57,12 @@ Respond with ONLY the image prompt text, nothing else.`,
 }
 
 /**
- * Generate a Pinterest image via Ideogram and return the image URL.
- * Returns null (with a log message) if the API key is missing or generation fails.
+ * Generate a Pinterest portrait image via Ideogram.
+ * Returns a result object on success, null on failure or missing key.
  *
- * @param {object}    post       - Post metadata { title, excerpt, tags }
- * @param {Anthropic} anthropic  - Anthropic client for prompt generation
- * @returns {Promise<string|null>} Public image URL or null
+ * @param {object}    post      - Post metadata { title, excerpt, tags }
+ * @param {Anthropic} anthropic - Anthropic client for prompt generation
+ * @returns {Promise<{url: string, model: string, style: string, promptHash: string}|null>}
  */
 export async function generatePinterestImage(post, anthropic) {
   const apiKey = process.env.IDEOGRAM_API_KEY;
@@ -71,25 +71,26 @@ export async function generatePinterestImage(post, anthropic) {
     return null;
   }
 
+  const model = process.env.IDEOGRAM_DEFAULT_MODEL || "V_2_TURBO";
+  const style = process.env.IDEOGRAM_DEFAULT_STYLE || "DESIGN";
+
   try {
-    console.log("  [ideogram] Generating Pinterest image...");
+    console.log(`  [ideogram] Generating Pinterest portrait (${model}/${style})...`);
 
     const prompt = await buildIdeogramPrompt(post, anthropic);
-    console.log(`  [ideogram] Prompt: ${prompt.slice(0, 100)}${prompt.length > 100 ? "..." : ""}`);
+    const promptHash = crypto.createHash("sha256").update(prompt).digest("hex").slice(0, 12);
+    console.log(`  [ideogram] Prompt hash: ${promptHash}  "${prompt.slice(0, 80)}${prompt.length > 80 ? "..." : ""}"`);
 
     const resp = await fetch("https://api.ideogram.ai/generate", {
-      method: "POST",
-      headers: {
-        "Api-Key":       apiKey,
-        "Content-Type":  "application/json",
-      },
-      body: JSON.stringify({
+      method:  "POST",
+      headers: { "Api-Key": apiKey, "Content-Type": "application/json" },
+      body:    JSON.stringify({
         image_request: {
           prompt,
-          aspect_ratio:         "ASPECT_10_16",  // ~1000x1600px, Pinterest portrait standard
-          model:                "V_2_TURBO",      // fast + affordable; swap to "V_2" for max quality
-          style_type:           "DESIGN",         // bold, graphic ~ works well for Pinterest
-          magic_prompt_option:  "ON",             // Ideogram enhances the prompt further
+          aspect_ratio:        "ASPECT_10_16", // ~1000×1600px, Pinterest portrait standard
+          model,
+          style_type:          style,
+          magic_prompt_option: "ON",
         },
       }),
     });
@@ -102,14 +103,14 @@ export async function generatePinterestImage(post, anthropic) {
       return null;
     }
 
-    const imageUrl = data.data?.[0]?.url;
-    if (!imageUrl) {
+    const url = data.data?.[0]?.url;
+    if (!url) {
       console.warn("  [ideogram] No image URL returned ~ falling back to Pexels");
       return null;
     }
 
-    console.log(`  [ideogram] Image ready: ${imageUrl}`);
-    return imageUrl;
+    console.log(`  [ideogram] Pinterest image ready: ${url}`);
+    return { url, model, style, promptHash, aspectRatio: "ASPECT_10_16" };
 
   } catch (err) {
     console.warn(`  [ideogram] Failed: ${err.message} ~ falling back to Pexels`);

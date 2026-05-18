@@ -31,7 +31,9 @@
     "threads:history": "node scripts/preview-threads.js --history",
     "instagram:preview": "node scripts/preview-instagram.js",
     "instagram:audit": "node scripts/preview-instagram.js --feed-audit",
-    "instagram:archetypes": "node scripts/preview-instagram.js --archetypes"
+    "instagram:archetypes": "node scripts/preview-instagram.js --archetypes",
+    "visuals:cost": "node scripts/visual-cost-report.js",
+    "visuals:cost:30": "node scripts/visual-cost-report.js --days 30"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

@@ -23,6 +23,7 @@
  *   // result: { url, archetype, archetypeLabel, palette, emotionalCluster, prompt } | null
  */
 
+import crypto from "crypto";
 import { INSTAGRAM_ARCHETYPES, getInstagramArchetype, selectInstagramArchetype } from "./lib/instagram-archetypes.js";
 import { getRecentInstagramArchetypes, recordInstagramArchetype } from "./lib/generation-memory.js";
 
@@ -95,6 +96,11 @@ export async function generateInstagramVisual(post, anthropic, contentType = nul
     const prompt = await buildInstagramPrompt(post, archetype, anthropic);
     console.log(`  [instagram-visual] Prompt: ${prompt.slice(0, 90)}${prompt.length > 90 ? "..." : ""}`);
 
+    const model = process.env.IDEOGRAM_DEFAULT_MODEL || "V_2_TURBO";
+    const promptHash = crypto.createHash("sha256").update(prompt).digest("hex").slice(0, 12);
+
+    console.log(`  [instagram-visual] Prompt hash: ${promptHash}  "${prompt.slice(0, 80)}${prompt.length > 80 ? "..." : ""}"`);
+
     // Call Ideogram API (1:1 square, Instagram standard)
     const resp = await fetch("https://api.ideogram.ai/generate", {
       method:  "POST",
@@ -103,8 +109,8 @@ export async function generateInstagramVisual(post, anthropic, contentType = nul
         image_request: {
           prompt,
           aspect_ratio:        "ASPECT_1_1",           // Instagram square 1080×1080px
-          model:               "V_2_TURBO",             // fast + affordable
-          style_type:          archetype.ideogramStyle, // varies by archetype
+          model,                                        // from IDEOGRAM_DEFAULT_MODEL env var
+          style_type:          archetype.ideogramStyle, // varies by archetype for visual variety
           magic_prompt_option: "ON",                    // Ideogram enhances further
         },
       }),
@@ -146,6 +152,10 @@ export async function generateInstagramVisual(post, anthropic, contentType = nul
       emotionalTone:    archetype.emotionalTone,
       emotionalCluster: archetype.emotionalCluster,
       prompt,
+      promptHash,
+      model,
+      style:            archetype.ideogramStyle,
+      aspectRatio:      "ASPECT_1_1",
     };
   } catch (err) {
     console.warn(`  [instagram-visual] Failed: ${err.message} ~ falling back to Pinterest image`);
