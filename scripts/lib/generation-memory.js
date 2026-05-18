@@ -215,6 +215,48 @@ export function recordGeneration({ slug, title, niche, cluster, markdownBody }) 
   }
 }
 
+// ── Threads format memory ─────────────────────────────────────────────────────
+
+/**
+ * Return the N most recent Threads format records.
+ * Each entry: { slug, format, cadenceProfile, density, openerStyle, closerStyle, timestamp }
+ *
+ * @param {number} [limit=30]
+ * @returns {Array}
+ */
+export function getRecentThreadsFormats(limit = 30) {
+  const memory = loadMemory();
+  return (memory.recentThreadsFormats || []).slice(0, limit);
+}
+
+/**
+ * Record a Threads format selection for future monotony detection.
+ * Best-effort: never throws.
+ *
+ * @param {object} opts
+ * @param {string} opts.slug
+ * @param {string} opts.format         - format.id from THREADS_FORMATS
+ * @param {string} opts.cadenceProfile
+ * @param {string} opts.density
+ * @param {string} opts.openerStyle
+ * @param {string} opts.closerStyle
+ */
+export function recordThreadsFormat({ slug, format, cadenceProfile, density, openerStyle, closerStyle }) {
+  try {
+    const memory = loadMemory();
+    const timestamp = new Date().toISOString();
+    if (!Array.isArray(memory.recentThreadsFormats)) memory.recentThreadsFormats = [];
+    memory.recentThreadsFormats.unshift({ slug, format, cadenceProfile, density, openerStyle, closerStyle, timestamp });
+    if (memory.recentThreadsFormats.length > MAX_ENTRIES) memory.recentThreadsFormats.length = MAX_ENTRIES;
+    memory.lastUpdated = timestamp;
+    fs.mkdirSync(path.dirname(MEMORY_FILE), { recursive: true });
+    fs.writeFileSync(MEMORY_FILE, JSON.stringify(memory, null, 2), "utf8");
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
 // ── Heuristic extractors ──────────────────────────────────────────────────────
 
 function extractHook(markdown) {

@@ -14,6 +14,14 @@ import { fileURLToPath } from "url";
 import path from "path";
 import fs from "fs";
 import minimist from "minimist";
+import {
+  THREADS_FORMATS,
+  getThreadsFormat,
+  buildThreadsInstruction,
+  selectThreadsFormat,
+  analyzeFormatMonotony,
+} from "./lib/threads-formats.js";
+import { getRecentThreadsFormats, recordThreadsFormat } from "./lib/generation-memory.js";
 
 dotenv.config({ override: true });
 
@@ -240,7 +248,7 @@ function buildUserContent(post, postUrl, laneLabel, threadsInstruction = VOA_THR
   ].join("\n");
 }
 
-async function reviseThreadsCaption(post, currentThread, analysis, anthropic, postUrl, laneLabel) {
+async function reviseThreadsCaption(post, currentThread, analysis, anthropic, postUrl, laneLabel, threadsInstruction = VOA_THREADS_INSTRUCTION) {
   const msg = await anthropic.messages.create({
     model:      "claude-sonnet-4-6",
     max_tokens: 1200,
@@ -258,7 +266,7 @@ async function reviseThreadsCaption(post, currentThread, analysis, anthropic, po
         `Current issues: ${analysis.issues.join(", ")}.`,
         `Detected anti-patterns: ${analysis.antiPatterns.join(", ") || "none"}.`,
         `Current metrics: avg section length ${analysis.averageSectionLength}, density ${analysis.conversationalDensityScore}, paragraph variance ${analysis.paragraphVarianceScore}, sentence rhythm variance ${analysis.sentenceRhythmVariance}.`,
-        VOA_THREADS_INSTRUCTION,
+        threadsInstruction,
         "Return exactly one labeled section in this form and nothing else:",
         "THREADS:",
         "",
@@ -275,11 +283,14 @@ async function reviseThreadsCaption(post, currentThread, analysis, anthropic, po
 /**
  * Generate platform-specific captions for a blog post.
  *
- * @param {object} post - { title, excerpt, url, tags, lane }
+ * @param {object} post    - { title, excerpt, url, tags, lane, slug?, niche? }
  * @param {Anthropic} [client] - Optional pre-created Anthropic client
- * @returns {Promise<object>} Captions keyed by platform (facebook, bluesky, mastodon, etc.)
+ * @param {object} [options]
+ * @param {string} [options.threadsFormat] - Force a specific format ID (skips auto-select)
+ * @param {string} [options.contentType]   - Content type hint for format affinity ("creator" etc.)
+ * @returns {Promise<object>} Captions keyed by platform. Includes `_threads` metadata object.
  */
-export async function generateCaptions(post, client) {
+export async function generateCaptions(post, client, options = {}) {
   const anthropic = client || new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   const postUrl   = post.url.startsWith("http")
     ? post.url
@@ -288,7 +299,33 @@ export async function generateCaptions(post, client) {
     ? "From the Forest Temple (raw personal blog by Matt EarthStar)"
     : "Boom Frequency (AI/creator-tools blog by Matty BoomBoom)";
 
-  const userContent = buildUserContent(post, postUrl, laneLabel);
+  // ── Select Threads format ────────────────────────────────────────────────────
+  const recentFormats = getRecentThreadsFormats(15);
+
+  let selectedFormat;
+  if (options.threadsFormat) {
+    selectedFormat = getThreadsFormat(options.threadsFormat);
+    if (!selectedFormat) {
+      console.warn(`[threads] Unknown format "${options.threadsFormat}" — falling back to auto-select`);
+      selectedFormat = selectThreadsFormat(recentFormats, options.contentType);
+    }
+  } else {
+    selectedFormat = selectThreadsFormat(recentFormats, options.contentType);
+  }
+
+  console.log(`[threads] Format: ${selectedFormat.label} (${selectedFormat.cadenceProfile} / ${selectedFormat.density})`);
+
+  // Check for monotony and surface warnings to logs (non-blocking)
+  if (recentFormats.length >= 2) {
+    const { warnings, summary } = analyzeFormatMonotony(recentFormats);
+    if (warnings.length > 0) {
+      console.warn(`[threads-monotony] ${summary}`);
+      warnings.forEach(w => console.warn(`  ⚠ ${w}`));
+    }
+  }
+
+  const threadsInstruction = buildThreadsInstruction(selectedFormat);
+  const userContent = buildUserContent(post, postUrl, laneLabel, threadsInstruction);
 
   const msg = await anthropic.messages.create({
     model:      "claude-sonnet-4-6",
@@ -298,17 +335,44 @@ export async function generateCaptions(post, client) {
   });
 
   const captions = parseCaptions(msg.content[0].text);
-  let threadsAnalysis = analyzeThreadsCaption(captions.threads);
-  for (let attempt = 0; !threadsAnalysis.ok && attempt < 3; attempt++) {
-    captions.threads = await reviseThreadsCaption(
-      post,
-      captions.threads,
-      threadsAnalysis,
-      anthropic,
-      postUrl,
-      laneLabel,
-    );
-    threadsAnalysis = analyzeThreadsCaption(captions.threads);
+
+  // ── Quality revision loop (skip for single-post mode — different analysis rules) ──
+  if (selectedFormat.mode !== "single") {
+    let threadsAnalysis = analyzeThreadsCaption(captions.threads);
+    for (let attempt = 0; !threadsAnalysis.ok && attempt < 3; attempt++) {
+      captions.threads = await reviseThreadsCaption(
+        post,
+        captions.threads,
+        threadsAnalysis,
+        anthropic,
+        postUrl,
+        laneLabel,
+        threadsInstruction,
+      );
+      threadsAnalysis = analyzeThreadsCaption(captions.threads);
+    }
+  }
+
+  // ── Attach format metadata ───────────────────────────────────────────────────
+  captions._threads = {
+    format:         selectedFormat.id,
+    label:          selectedFormat.label,
+    cadenceProfile: selectedFormat.cadenceProfile,
+    density:        selectedFormat.density,
+    sectionRange:   selectedFormat.sectionRange,
+    mode:           selectedFormat.mode,
+  };
+
+  // ── Record format for future monotony detection ──────────────────────────────
+  if (post.slug) {
+    recordThreadsFormat({
+      slug:           post.slug,
+      format:         selectedFormat.id,
+      cadenceProfile: selectedFormat.cadenceProfile,
+      density:        selectedFormat.density,
+      openerStyle:    selectedFormat.openerStyle,
+      closerStyle:    selectedFormat.closerStyle,
+    });
   }
 
   return captions;
