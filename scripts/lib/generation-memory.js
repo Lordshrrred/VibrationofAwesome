@@ -215,6 +215,48 @@ export function recordGeneration({ slug, title, niche, cluster, markdownBody }) 
   }
 }
 
+// ── Instagram archetype memory ────────────────────────────────────────────────
+
+/**
+ * Return the N most recent Instagram archetype records.
+ * Each entry: { slug, archetype, archetypeLabel, palette, emotionalTone, emotionalCluster, timestamp }
+ *
+ * @param {number} [limit=20]
+ * @returns {Array}
+ */
+export function getRecentInstagramArchetypes(limit = 20) {
+  const memory = loadMemory();
+  return (memory.recentInstagramArchetypes || []).slice(0, limit);
+}
+
+/**
+ * Record an Instagram archetype selection for future monotony detection.
+ * Best-effort: never throws.
+ *
+ * @param {object} opts
+ * @param {string} opts.slug
+ * @param {string} opts.archetype
+ * @param {string} opts.archetypeLabel
+ * @param {string} opts.palette
+ * @param {string} opts.emotionalTone
+ * @param {string} opts.emotionalCluster
+ */
+export function recordInstagramArchetype({ slug, archetype, archetypeLabel, palette, emotionalTone, emotionalCluster }) {
+  try {
+    const memory = loadMemory();
+    const timestamp = new Date().toISOString();
+    if (!Array.isArray(memory.recentInstagramArchetypes)) memory.recentInstagramArchetypes = [];
+    memory.recentInstagramArchetypes.unshift({ slug, archetype, archetypeLabel, palette, emotionalTone, emotionalCluster, timestamp });
+    if (memory.recentInstagramArchetypes.length > MAX_ENTRIES) memory.recentInstagramArchetypes.length = MAX_ENTRIES;
+    memory.lastUpdated = timestamp;
+    fs.mkdirSync(path.dirname(MEMORY_FILE), { recursive: true });
+    fs.writeFileSync(MEMORY_FILE, JSON.stringify(memory, null, 2), "utf8");
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
 // ── Threads format memory ─────────────────────────────────────────────────────
 
 /**

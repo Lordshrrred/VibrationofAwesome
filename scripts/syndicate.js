@@ -42,6 +42,7 @@ import minimist  from "minimist";
 import { generateCaptions }       from "./generate-captions.js";
 import { selectImage }             from "./select-image.js";
 import { generatePinterestImage }  from "./generate-pinterest-image.js";
+import { generateInstagramVisual }  from "./generate-instagram-visual.js";
 import {
   BACKLINK_TIER,
   detectContentType,
@@ -1147,14 +1148,14 @@ export async function syndicatePost(lane, slug, options = {}) {
   const image   = await selectImage(keyword);
   const imageUrl = getPublicImageUrl(image?.url || null);
 
-  // Record Pexels image selection in registry
+  // Record Pexels image in registry (used for Bluesky, Mastodon, Facebook — not Instagram which gets its own)
   if (imageUrl) {
     recordImageUsage({
       post_slug:       slug,
       source:          image?.source || "pexels",
       url:             imageUrl,
       local_path:      null,
-      platforms_used:  ["bluesky_voa", "mastodon_voa", "facebook_voa", "instagram"],
+      platforms_used:  ["bluesky_voa", "mastodon_voa", "facebook_voa"],
       pinterest_board: null,
       ideogram_prompt: null,
     });
@@ -1328,6 +1329,37 @@ export async function syndicatePost(lane, slug, options = {}) {
     });
   }
 
+  // ── Instagram visual generation ────────────────────────────────────────────
+  // Generate an archetype-specific Ideogram image for Instagram (1:1 square).
+  // Separate from Pinterest (10:16 portrait) — different aspect ratio, different
+  // archetype system, different visual intent. This keeps the Instagram feed
+  // feeling like a curated editorial ecosystem rather than a repost automation.
+  // Falls back to pinterestImageUrl if Ideogram is unavailable or generation fails.
+  const contentTypeForInsta = detectContentType({ ...post, lane });
+  let instagramVisual = null;
+  if (!options.bloggerOnly) {
+    instagramVisual = await generateInstagramVisual({ ...post, lane }, anthropic, contentTypeForInsta);
+  }
+  const instagramImageUrl = instagramVisual?.url || pinterestImageUrl;
+
+  // Record Instagram visual in image registry with archetype metadata
+  if (instagramImageUrl) {
+    recordImageUsage({
+      post_slug:                slug,
+      source:                   instagramVisual ? "ideogram" : (ideogramPromptUsed ? "ideogram" : (image?.source || "pexels")),
+      url:                      instagramImageUrl,
+      local_path:               null,
+      platforms_used:           ["instagram"],
+      pinterest_board:          null,
+      ideogram_prompt:          instagramVisual?.prompt || null,
+      instagram_archetype:      instagramVisual?.archetype || null,
+      instagram_archetype_label:instagramVisual?.archetypeLabel || null,
+      instagram_palette:        instagramVisual?.palette || null,
+      instagram_emotional_tone: instagramVisual?.emotionalTone || null,
+      instagram_asset_type:     instagramVisual ? "archetype-visual" : "fallback-from-pinterest",
+    });
+  }
+
   // ── VOA Social platforms ───────────────────────────────────────────────────
 
   // VOA Bluesky ~ primary VOA blog destination
@@ -1380,14 +1412,17 @@ export async function syndicatePost(lane, slug, options = {}) {
       `[${threadsOwnership}]`);
   }
 
-  // VOA Instagram via Publer ~ all content types during early-growth routing.
-  // Uses Ideogram-generated image when available, falls back to Pexels.
+  // VOA Instagram via Publer ~ archetype-based visual for every post.
+  // Archetype selected via anti-monotony rotation (instagram-archetypes.js).
+  // Image: archetype-specific Ideogram (1:1 square) when IDEOGRAM_API_KEY is set,
+  // else falls back to pinterestImageUrl (Pexels or Pinterest Ideogram image).
   // Requires PUBLER_INSTAGRAM_ACCOUNT_ID pointing to VOA Instagram account.
   {
     const instaOwnership = publerAccountOwnership("instagram");
+    const archetypeLabel = instagramVisual?.archetypeLabel || "pexels-fallback";
     await attempt("instagram", () =>
-      postViaPubler("instagram", captions.instagram, pinterestImageUrl),
-      `[${instaOwnership}]`);
+      postViaPubler("instagram", captions.instagram, instagramImageUrl),
+      `[${instaOwnership}] visual:${archetypeLabel}`);
   }
 
   // ── ESR crossover platforms (suppressed by default via policy routing) ─────

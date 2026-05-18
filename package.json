@@ -28,7 +28,10 @@
     "visuals:review": "node scripts/lib/build-visual-prompts.js --review",
     "threads:preview": "node scripts/preview-threads.js",
     "threads:formats": "node scripts/preview-threads.js --formats",
-    "threads:history": "node scripts/preview-threads.js --history"
+    "threads:history": "node scripts/preview-threads.js --history",
+    "instagram:preview": "node scripts/preview-instagram.js",
+    "instagram:audit": "node scripts/preview-instagram.js --feed-audit",
+    "instagram:archetypes": "node scripts/preview-instagram.js --archetypes"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
