@@ -43,7 +43,19 @@ Return ONLY the labeled sections in exact order with no preamble or commentary.`
 
 const LEGACY_THREADS_INSTRUCTION = `THREADS: write an original compact mini-thread for Threads in one publishable text block under 500 chars total. Format exactly as "1/3 ...", blank line, "2/3 ...", blank line, "3/3 ...". It must feel like three connected thoughts, not a caption. Put the URL only in 3/3. Use zero hashtags unless one is genuinely useful.`;
 
-const VOA_THREADS_INSTRUCTION = `THREADS: write an original native Threads mini-essay, usually 3 to 5 numbered parts in one publishable text block. Target 650-1000 chars total, with 1200 chars as a hard ceiling. Use the natural denominator for the chosen length, such as "1/4", "2/4", etc. Each part should carry real development, usually 1-3 short paragraphs rather than isolated quote-card fragments. Open with a strong human hook, build the thought through the middle, and end with a satisfying insight plus the URL only in the final part. Keep it conversational, emotionally intelligent, and specific. Vary sentence rhythm and section openings. Avoid generic self-help language, fake profundity, repetitive syntax, "watch this video", and hashtags unless one is genuinely useful.`;
+const VOA_THREADS_INSTRUCTION = `THREADS: write an original native Threads mini-essay, usually 3 to 5 numbered parts in one publishable text block. Target 650-1000 chars total, with 1200 chars as a hard ceiling. Use the natural denominator for the chosen length, such as "1/4", "2/4", etc. The thread itself must feel complete without needing the link. Write in first person or direct observation only: never refer to Matt in third person, never mention "this article", "this post", "this write-up", or introduce the link like marketing copy. Each part should carry connected development, usually 1-3 short paragraphs rather than isolated quote-card fragments. Let section lengths vary naturally. Open with a strong human hook, build the thought through the middle, and end with a satisfying insight; place the URL only in the final part without "read more" energy. Keep it conversational, emotionally intelligent, specific, grounded, and slightly raw. Vary sentence rhythm and section openings. Avoid generic self-help language, fake profundity, repetitive syntax, "watch this video", guru cadence, and hashtags unless one is genuinely useful.`;
+
+const THREADS_ANTI_PATTERNS = [
+  { label: "Matt/Matty", regex: /\bmatty?\b/i },
+  { label: "this article", regex: /\bthis article\b/i },
+  { label: "this post", regex: /\bthis post\b/i },
+  { label: "this write-up", regex: /\bthis write[- ]up\b/i },
+  { label: "read more", regex: /\bread more\b/i },
+  { label: "wrote about", regex: /\bwrote about\b/i },
+  { label: "talks about", regex: /\btalks about\b/i },
+  { label: "in this piece", regex: /\bin this piece\b/i },
+  { label: "here's what", regex: /\bhere['’]s what\b/i },
+];
 
 // ── Parser ────────────────────────────────────────────────────────────────────
 
@@ -109,16 +121,68 @@ function openingSignature(text) {
     .join(" ") || "";
 }
 
+function splitSentences(text) {
+  return stripThreadPrefix(text)
+    .replace(/https?:\/\/\S+/g, "")
+    .split(/(?<=[.!?])\s+/)
+    .map(sentence => sentence.trim())
+    .filter(Boolean);
+}
+
+function paragraphCount(text) {
+  return stripThreadPrefix(text)
+    .split(/\n\s*\n/)
+    .map(paragraph => paragraph.trim())
+    .filter(Boolean)
+    .length;
+}
+
+function detectAntiPatterns(text) {
+  return THREADS_ANTI_PATTERNS
+    .filter(({ regex }) => regex.test(text))
+    .map(({ label }) => label);
+}
+
+function standardDeviation(values) {
+  if (values.length === 0) return 0;
+  const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+  const variance = values.reduce((sum, value) => sum + ((value - mean) ** 2), 0) / values.length;
+  return Math.sqrt(variance);
+}
+
 export function analyzeThreadsCaption(text) {
   const parts = splitThreadParts(text);
   const totalChars = String(text || "").length;
   const numbering = parts.map(part => part.match(/^(\d+)\/(\d+)\s/)).filter(Boolean);
   const denominators = new Set(numbering.map(match => Number(match[2])));
   const sectionBodies = parts.map(part => stripThreadPrefix(part).replace(/https?:\/\/\S+/g, "").trim());
+  const sectionLengths = sectionBodies.map(body => body.length);
+  const sectionSentenceCounts = sectionBodies.map(body => countSentences(body));
+  const sectionParagraphCounts = parts.map(paragraphCount);
   const thinSections = sectionBodies.filter(body => body.length < 90);
   const developedSections = sectionBodies.filter(body => countSentences(body) >= 2);
   const openings = parts.map(openingSignature).filter(Boolean);
   const repeatedOpenings = openings.length - new Set(openings).size;
+  const allSentences = sectionBodies.flatMap(splitSentences);
+  const sentenceLengths = allSentences.map(sentence => sentence.split(/\s+/).filter(Boolean).length);
+  const averageSectionLength = sectionLengths.length
+    ? Math.round(sectionLengths.reduce((sum, value) => sum + value, 0) / sectionLengths.length)
+    : 0;
+  const averageSentencesPerSection = sectionSentenceCounts.length
+    ? Number((sectionSentenceCounts.reduce((sum, value) => sum + value, 0) / sectionSentenceCounts.length).toFixed(2))
+    : 0;
+  const multiThoughtSections = sectionSentenceCounts.filter(count => count >= 2).length;
+  const oneLineSections = sectionParagraphCounts.filter((paragraphs, index) =>
+    paragraphs <= 1 && sectionSentenceCounts[index] <= 1
+  ).length;
+  const sentenceRhythmVariance = Number(standardDeviation(sentenceLengths).toFixed(2));
+  const paragraphVarianceScore = Number(standardDeviation(sectionParagraphCounts).toFixed(2));
+  const conversationalDensityScore = Number((
+    (averageSentencesPerSection * 0.45) +
+    ((averageSectionLength / 100) * 0.35) +
+    ((multiThoughtSections / Math.max(parts.length, 1)) * 2 * 0.20)
+  ).toFixed(2));
+  const antiPatterns = detectAntiPatterns(text);
   const issues = [];
 
   if (parts.length < 3 || parts.length > 5) issues.push("expected 3-5 numbered parts");
@@ -130,13 +194,25 @@ export function analyzeThreadsCaption(text) {
   if (thinSections.length > 0) issues.push(`${thinSections.length} thin section(s)`);
   if (developedSections.length < 2) issues.push("insufficient section development");
   if (repeatedOpenings > 0) issues.push("repeated section openings");
+  if (antiPatterns.length > 0) issues.push(`anti-patterns: ${antiPatterns.join(", ")}`);
+  if (oneLineSections > 1) issues.push("excessive one-line sections");
+  if (averageSectionLength < 150) issues.push("low average section depth");
+  if (conversationalDensityScore < 2.35) issues.push("low conversational density");
+  if (sentenceRhythmVariance < 3 && allSentences.length >= 5) issues.push("repeated sentence rhythm");
 
   return {
     totalChars,
     partCount: parts.length,
+    averageSectionLength,
+    averageSentencesPerSection,
     thinSectionCount: thinSections.length,
     developedSectionCount: developedSections.length,
+    oneLineSectionCount: oneLineSections,
     repeatedOpenings,
+    antiPatterns,
+    conversationalDensityScore,
+    paragraphVarianceScore,
+    sentenceRhythmVariance,
     issues,
     ok: issues.length === 0,
   };
@@ -180,6 +256,8 @@ async function reviseThreadsCaption(post, currentThread, analysis, anthropic, po
         "",
         "Revise ONLY the Threads copy below.",
         `Current issues: ${analysis.issues.join(", ")}.`,
+        `Detected anti-patterns: ${analysis.antiPatterns.join(", ") || "none"}.`,
+        `Current metrics: avg section length ${analysis.averageSectionLength}, density ${analysis.conversationalDensityScore}, paragraph variance ${analysis.paragraphVarianceScore}, sentence rhythm variance ${analysis.sentenceRhythmVariance}.`,
         VOA_THREADS_INSTRUCTION,
         "Return exactly one labeled section in this form and nothing else:",
         "THREADS:",
@@ -221,7 +299,7 @@ export async function generateCaptions(post, client) {
 
   const captions = parseCaptions(msg.content[0].text);
   let threadsAnalysis = analyzeThreadsCaption(captions.threads);
-  for (let attempt = 0; !threadsAnalysis.ok && attempt < 2; attempt++) {
+  for (let attempt = 0; !threadsAnalysis.ok && attempt < 3; attempt++) {
     captions.threads = await reviseThreadsCaption(
       post,
       captions.threads,
@@ -254,7 +332,26 @@ if (isCli) {
   if (!fs.existsSync(dataFile)) { console.error(`No data file: ${dataFile}`); process.exit(1); }
 
   const posts = JSON.parse(fs.readFileSync(dataFile, "utf8"));
-  const post  = posts.find(p => p.slug === argv.slug);
+  let post  = posts.find(p => p.slug === argv.slug);
+  if (!post && argv.lane === "boom") {
+    const queueFile = path.join(ROOT, "static", "_data", "drip-queue.json");
+    const draftFile = path.join(ROOT, "static", "blog", "boom", "drafts", `${argv.slug}.html`);
+    const queue = fs.existsSync(queueFile)
+      ? JSON.parse(fs.readFileSync(queueFile, "utf8"))
+      : { queue: [] };
+    const queued = (queue.queue || []).find(item => item.slug === argv.slug);
+    if (queued && fs.existsSync(draftFile)) {
+      const html = fs.readFileSync(draftFile, "utf8");
+      const paragraph = html.match(/<p[^>]*>([\s\S]*?)<\/p>/i)?.[1] || "";
+      post = {
+        title: queued.title,
+        slug: queued.slug,
+        excerpt: paragraph.replace(/<[^>]+>/g, "").trim().slice(0, 300),
+        url: `/blog/boom/posts/${queued.slug}.html`,
+        tags: [],
+      };
+    }
+  }
   if (!post) { console.error(`Post "${argv.slug}" not found in ${dataFile}`); process.exit(1); }
 
   if (argv["threads-preview"]) {
