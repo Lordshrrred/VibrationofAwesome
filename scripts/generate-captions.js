@@ -22,6 +22,7 @@ import {
   analyzeFormatMonotony,
 } from "./lib/threads-formats.js";
 import { getRecentThreadsFormats, recordThreadsFormat } from "./lib/generation-memory.js";
+import { applySoftCtas } from "./lib/soft-cta.js";
 
 dotenv.config({ override: true });
 
@@ -306,7 +307,7 @@ export async function generateCaptions(post, client, options = {}) {
   if (options.threadsFormat) {
     selectedFormat = getThreadsFormat(options.threadsFormat);
     if (!selectedFormat) {
-      console.warn(`[threads] Unknown format "${options.threadsFormat}" — falling back to auto-select`);
+      console.warn(`[threads] Unknown format "${options.threadsFormat}" ~ falling back to auto-select`);
       selectedFormat = selectThreadsFormat(recentFormats, options.contentType);
     }
   } else {
@@ -334,9 +335,9 @@ export async function generateCaptions(post, client, options = {}) {
     messages:   [{ role: "user", content: userContent }],
   });
 
-  const captions = parseCaptions(msg.content[0].text);
+  let captions = parseCaptions(msg.content[0].text);
 
-  // ── Quality revision loop (skip for single-post mode — different analysis rules) ──
+  // Quality revision loop (skip for single-post mode ~ different analysis rules)
   if (selectedFormat.mode !== "single") {
     let threadsAnalysis = analyzeThreadsCaption(captions.threads);
     for (let attempt = 0; !threadsAnalysis.ok && attempt < 3; attempt++) {
@@ -352,6 +353,8 @@ export async function generateCaptions(post, client, options = {}) {
       threadsAnalysis = analyzeThreadsCaption(captions.threads);
     }
   }
+
+  captions = applySoftCtas(captions, { slug: post.slug });
 
   // ── Attach format metadata ───────────────────────────────────────────────────
   captions._threads = {
