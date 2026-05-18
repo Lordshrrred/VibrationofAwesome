@@ -41,6 +41,10 @@ Never use the long dash character in your output. Use hyphens, commas, or restru
 
 Return ONLY the labeled sections in exact order with no preamble or commentary.`;
 
+const LEGACY_THREADS_INSTRUCTION = `THREADS: write an original compact mini-thread for Threads in one publishable text block under 500 chars total. Format exactly as "1/3 ...", blank line, "2/3 ...", blank line, "3/3 ...". It must feel like three connected thoughts, not a caption. Put the URL only in 3/3. Use zero hashtags unless one is genuinely useful.`;
+
+const VOA_THREADS_INSTRUCTION = `THREADS: write an original native Threads mini-essay, usually 3 to 5 numbered parts in one publishable text block. Target 650-1000 chars total, with 1200 chars as a hard ceiling. Use the natural denominator for the chosen length, such as "1/4", "2/4", etc. Each part should carry real development, usually 1-3 short paragraphs rather than isolated quote-card fragments. Open with a strong human hook, build the thought through the middle, and end with a satisfying insight plus the URL only in the final part. Keep it conversational, emotionally intelligent, and specific. Vary sentence rhythm and section openings. Avoid generic self-help language, fake profundity, repetitive syntax, "watch this video", and hashtags unless one is genuinely useful.`;
+
 // ── Parser ────────────────────────────────────────────────────────────────────
 
 /**
@@ -81,6 +85,113 @@ function parseCaptions(text) {
   return result;
 }
 
+function splitThreadParts(text) {
+  return String(text || "")
+    .split(/\n\s*\n(?=\d+\/\d+\s)/)
+    .map(part => part.trim())
+    .filter(Boolean);
+}
+
+function stripThreadPrefix(part) {
+  return part.replace(/^\d+\/\d+\s*/, "").trim();
+}
+
+function countSentences(text) {
+  return (text.match(/[.!?](?:["')\]]+)?(?=\s|$)/g) || []).length;
+}
+
+function openingSignature(text) {
+  return stripThreadPrefix(text)
+    .replace(/https?:\/\/\S+/g, "")
+    .toLowerCase()
+    .match(/[a-z0-9']+/g)
+    ?.slice(0, 2)
+    .join(" ") || "";
+}
+
+export function analyzeThreadsCaption(text) {
+  const parts = splitThreadParts(text);
+  const totalChars = String(text || "").length;
+  const numbering = parts.map(part => part.match(/^(\d+)\/(\d+)\s/)).filter(Boolean);
+  const denominators = new Set(numbering.map(match => Number(match[2])));
+  const sectionBodies = parts.map(part => stripThreadPrefix(part).replace(/https?:\/\/\S+/g, "").trim());
+  const thinSections = sectionBodies.filter(body => body.length < 90);
+  const developedSections = sectionBodies.filter(body => countSentences(body) >= 2);
+  const openings = parts.map(openingSignature).filter(Boolean);
+  const repeatedOpenings = openings.length - new Set(openings).size;
+  const issues = [];
+
+  if (parts.length < 3 || parts.length > 5) issues.push("expected 3-5 numbered parts");
+  if (numbering.length !== parts.length || denominators.size !== 1 || [...denominators][0] !== parts.length) {
+    issues.push("inconsistent numbering");
+  }
+  if (totalChars < 600) issues.push("under 600 chars");
+  if (totalChars > 1200) issues.push("over 1200 chars");
+  if (thinSections.length > 0) issues.push(`${thinSections.length} thin section(s)`);
+  if (developedSections.length < 2) issues.push("insufficient section development");
+  if (repeatedOpenings > 0) issues.push("repeated section openings");
+
+  return {
+    totalChars,
+    partCount: parts.length,
+    thinSectionCount: thinSections.length,
+    developedSectionCount: developedSections.length,
+    repeatedOpenings,
+    issues,
+    ok: issues.length === 0,
+  };
+}
+
+function buildUserContent(post, postUrl, laneLabel, threadsInstruction = VOA_THREADS_INSTRUCTION) {
+  return [
+    `Title: ${post.title}`,
+    `URL: ${postUrl}`,
+    `Excerpt: ${(post.excerpt || "").slice(0, 300)}`,
+    `Lane: ${laneLabel}`,
+    `Tags: ${(post.tags || []).join(", ")}`,
+    "",
+    "Generate captions for each platform below. Follow every tone rule exactly.",
+    "Include the URL naturally in each caption unless noted otherwise.",
+    "",
+    `FACEBOOK: conversational tone, 2-3 sentences, end with a genuine question to spark comments, include the URL`,
+    `BLUESKY: punchy single thought or sentence, under 300 chars total including URL, zero hashtags`,
+    `MASTODON: thoughtful and contextual, 2-3 sentences, end with 2-3 relevant #hashtags`,
+    `PINTEREST: descriptive keyword-rich paragraph (good for search), end with 3-5 #hashtags, include URL`,
+    `DEVTO: short compelling intro paragraph with a technical/AI-automation angle, suitable as a Dev.to article teaser, must mention AI or automation angle, end with URL`,
+    `TUMBLR: creative, aesthetic, slightly poetic, 2-4 sentences, then 5-8 #hashtags on a new line separated from the caption`,
+    threadsInstruction,
+    `INSTAGRAM: write a visual-first Instagram caption. First line is the scroll-stopping hook (max 125 chars ~ make someone feel something, not just read something). Then 1-2 short sentences of supporting context. Do NOT include any URLs (Instagram captions do not support clickable links). End with 6-8 relevant #hashtags on a new line. Total caption before hashtags: under 300 chars. Match the emotional tone of the post ~ raw, honest, or cosmic depending on the content.`,
+  ].join("\n");
+}
+
+async function reviseThreadsCaption(post, currentThread, analysis, anthropic, postUrl, laneLabel) {
+  const msg = await anthropic.messages.create({
+    model:      "claude-sonnet-4-6",
+    max_tokens: 1200,
+    system:     SYSTEM_PROMPT,
+    messages:   [{
+      role: "user",
+      content: [
+        `Title: ${post.title}`,
+        `URL: ${postUrl}`,
+        `Excerpt: ${(post.excerpt || "").slice(0, 300)}`,
+        `Lane: ${laneLabel}`,
+        `Tags: ${(post.tags || []).join(", ")}`,
+        "",
+        "Revise ONLY the Threads copy below.",
+        `Current issues: ${analysis.issues.join(", ")}.`,
+        VOA_THREADS_INSTRUCTION,
+        "Return exactly one labeled section in this form and nothing else:",
+        "THREADS:",
+        "",
+        currentThread,
+      ].join("\n"),
+    }],
+  });
+
+  return parseCaptions(`${msg.content[0].text}\nINSTAGRAM:`).threads;
+}
+
 // ── Main export ───────────────────────────────────────────────────────────────
 
 /**
@@ -99,25 +210,7 @@ export async function generateCaptions(post, client) {
     ? "From the Forest Temple (raw personal blog by Matt EarthStar)"
     : "Boom Frequency (AI/creator-tools blog by Matty BoomBoom)";
 
-  const userContent = [
-    `Title: ${post.title}`,
-    `URL: ${postUrl}`,
-    `Excerpt: ${(post.excerpt || "").slice(0, 300)}`,
-    `Lane: ${laneLabel}`,
-    `Tags: ${(post.tags || []).join(", ")}`,
-    "",
-    "Generate captions for each platform below. Follow every tone rule exactly.",
-    "Include the URL naturally in each caption unless noted otherwise.",
-    "",
-    `FACEBOOK: conversational tone, 2-3 sentences, end with a genuine question to spark comments, include the URL`,
-    `BLUESKY: punchy single thought or sentence, under 300 chars total including URL, zero hashtags`,
-    `MASTODON: thoughtful and contextual, 2-3 sentences, end with 2-3 relevant #hashtags`,
-    `PINTEREST: descriptive keyword-rich paragraph (good for search), end with 3-5 #hashtags, include URL`,
-    `DEVTO: short compelling intro paragraph with a technical/AI-automation angle, suitable as a Dev.to article teaser, must mention AI or automation angle, end with URL`,
-    `TUMBLR: creative, aesthetic, slightly poetic, 2-4 sentences, then 5-8 #hashtags on a new line separated from the caption`,
-    `THREADS: write an original compact mini-thread for Threads in one publishable text block under 500 chars total. Format exactly as "1/3 ...", blank line, "2/3 ...", blank line, "3/3 ...". It must feel like three connected thoughts, not a caption. Put the URL only in 3/3. Use zero hashtags unless one is genuinely useful.`,
-    `INSTAGRAM: write a visual-first Instagram caption. First line is the scroll-stopping hook (max 125 chars ~ make someone feel something, not just read something). Then 1-2 short sentences of supporting context. Do NOT include any URLs (Instagram captions do not support clickable links). End with 6-8 relevant #hashtags on a new line. Total caption before hashtags: under 300 chars. Match the emotional tone of the post ~ raw, honest, or cosmic depending on the content.`,
-  ].join("\n");
+  const userContent = buildUserContent(post, postUrl, laneLabel);
 
   const msg = await anthropic.messages.create({
     model:      "claude-sonnet-4-6",
@@ -126,7 +219,21 @@ export async function generateCaptions(post, client) {
     messages:   [{ role: "user", content: userContent }],
   });
 
-  return parseCaptions(msg.content[0].text);
+  const captions = parseCaptions(msg.content[0].text);
+  let threadsAnalysis = analyzeThreadsCaption(captions.threads);
+  for (let attempt = 0; !threadsAnalysis.ok && attempt < 2; attempt++) {
+    captions.threads = await reviseThreadsCaption(
+      post,
+      captions.threads,
+      threadsAnalysis,
+      anthropic,
+      postUrl,
+      laneLabel,
+    );
+    threadsAnalysis = analyzeThreadsCaption(captions.threads);
+  }
+
+  return captions;
 }
 
 // ── CLI entry point ───────────────────────────────────────────────────────────
@@ -137,7 +244,7 @@ if (isCli) {
     console.error("Error: ANTHROPIC_API_KEY not set."); process.exit(1);
   }
 
-  const argv = minimist(process.argv.slice(2), { string: ["lane", "slug"] });
+  const argv = minimist(process.argv.slice(2), { string: ["lane", "slug"], boolean: ["threads-preview"] });
   if (!argv.lane || !["matt", "boom"].includes(argv.lane) || !argv.slug) {
     console.error("Usage: node scripts/generate-captions.js --lane [matt|boom] --slug <post-slug>");
     process.exit(1);
@@ -150,7 +257,37 @@ if (isCli) {
   const post  = posts.find(p => p.slug === argv.slug);
   if (!post) { console.error(`Post "${argv.slug}" not found in ${dataFile}`); process.exit(1); }
 
-  console.log(`\nGenerating captions for: ${post.title}\n`);
-  const captions = await generateCaptions({ ...post, lane: argv.lane });
-  console.log(JSON.stringify(captions, null, 2));
+  if (argv["threads-preview"]) {
+    const previewPost = { ...post, lane: argv.lane };
+    const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+    const postUrl = previewPost.url.startsWith("http")
+      ? previewPost.url
+      : `https://vibrationofawesome.com${previewPost.url}`;
+    const laneLabel = previewPost.lane === "matt"
+      ? "From the Forest Temple (raw personal blog by Matt EarthStar)"
+      : "Boom Frequency (AI/creator-tools blog by Matty BoomBoom)";
+    const legacyMsg = await anthropic.messages.create({
+      model:      "claude-sonnet-4-6",
+      max_tokens: 2048,
+      system:     SYSTEM_PROMPT,
+      messages:   [{ role: "user", content: buildUserContent(previewPost, postUrl, laneLabel, LEGACY_THREADS_INSTRUCTION) }],
+    });
+    const currentVersion = parseCaptions(legacyMsg.content[0].text).threads;
+    const upgradedVersion = (await generateCaptions(previewPost, anthropic)).threads;
+    console.log(JSON.stringify({
+      title: previewPost.title,
+      current: {
+        text: currentVersion,
+        analysis: analyzeThreadsCaption(currentVersion),
+      },
+      upgraded: {
+        text: upgradedVersion,
+        analysis: analyzeThreadsCaption(upgradedVersion),
+      },
+    }, null, 2));
+  } else {
+    console.log(`\nGenerating captions for: ${post.title}\n`);
+    const captions = await generateCaptions({ ...post, lane: argv.lane });
+    console.log(JSON.stringify(captions, null, 2));
+  }
 }
