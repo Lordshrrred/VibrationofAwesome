@@ -87,6 +87,7 @@ export async function generatePinterestImage(post, anthropic) {
       body:    JSON.stringify({
         image_request: {
           prompt,
+          num_images:          1,              // explicit — never generate more than one
           aspect_ratio:        "ASPECT_10_16", // ~1000×1600px, Pinterest portrait standard
           model,
           style_type:          style,

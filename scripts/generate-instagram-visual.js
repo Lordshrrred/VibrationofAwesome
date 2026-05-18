@@ -108,7 +108,8 @@ export async function generateInstagramVisual(post, anthropic, contentType = nul
       body:    JSON.stringify({
         image_request: {
           prompt,
-          aspect_ratio:        "ASPECT_1_1",           // Instagram square 1080×1080px
+          num_images:          1,                       // explicit — never generate more than one
+          aspect_ratio:        "ASPECT_1_1",            // Instagram square 1080×1080px
           model,                                        // from IDEOGRAM_DEFAULT_MODEL env var
           style_type:          archetype.ideogramStyle, // varies by archetype for visual variety
           magic_prompt_option: "ON",                    // Ideogram enhances further
