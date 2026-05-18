@@ -531,8 +531,16 @@ async function getLongLivedToken(label, shortToken) {
 
 // ── Platform post functions ───────────────────────────────────────────────────
 
+async function fetchRemoteImage(imageUrl) {
+  const resp = await fetch(imageUrl);
+  if (!resp.ok) throw new Error(`Image fetch failed: ${resp.status}`);
+  const contentType = resp.headers.get("content-type") || "image/jpeg";
+  const bytes = new Uint8Array(await resp.arrayBuffer());
+  return { bytes, contentType };
+}
+
 /** Post to Bluesky using AT Protocol */
-async function postToBluesky(caption, postUrl, postTitle, postExcerpt, prefix = "ESR") {
+async function postToBluesky(caption, postUrl, postTitle, postExcerpt, prefix = "ESR", imageUrl = null) {
   const { handle, password, label } = getBlueskyConfig(prefix);
   if (!handle || !password) throw new Error(`${label}_BLUESKY_HANDLE or ${label}_BLUESKY_APP_PASSWORD not set`);
 
@@ -549,12 +557,30 @@ async function postToBluesky(caption, postUrl, postTitle, postExcerpt, prefix = 
 
   const { accessJwt, did } = session;
 
-  // Build post record with external link embed
+  let imageEmbed = null;
+  if (imageUrl) {
+    const { bytes, contentType } = await fetchRemoteImage(imageUrl);
+    const blobResp = await fetch(`${base}/com.atproto.repo.uploadBlob`, {
+      method:  "POST",
+      headers: { "Content-Type": contentType, Authorization: `Bearer ${accessJwt}` },
+      body:    bytes,
+    });
+    const blobData = await blobResp.json();
+    if (!blobResp.ok || !blobData.blob) {
+      throw new Error(`Bluesky image upload failed: ${blobData.message || blobResp.status}`);
+    }
+    imageEmbed = {
+      $type: "app.bsky.embed.images",
+      images: [{ alt: postTitle || "VOA post visual", image: blobData.blob }],
+    };
+  }
+
+  // Image-native when a visual is available; otherwise preserve external link preview.
   const record = {
     $type:     "app.bsky.feed.post",
     text:      caption.slice(0, 300),
     createdAt: new Date().toISOString(),
-    embed: {
+    embed: imageEmbed || {
       $type:    "app.bsky.embed.external",
       external: {
         uri:         postUrl,
@@ -581,7 +607,7 @@ async function postToBluesky(caption, postUrl, postTitle, postExcerpt, prefix = 
 }
 
 /** Post to Mastodon */
-async function postToMastodon(caption, prefix = "ESR") {
+async function postToMastodon(caption, prefix = "ESR", imageUrl = null, imageAlt = "") {
   const cfg = getMastodonConfig(prefix);
   let instance = (cfg.instance || "").replace(/\/+$/, "");
   const token  = cfg.token;
@@ -589,13 +615,35 @@ async function postToMastodon(caption, prefix = "ESR") {
   // Ensure https:// scheme ~ users often store just "mastodon.social"
   if (!instance.startsWith("http")) instance = `https://${instance}`;
 
+  let mediaIds = [];
+  if (imageUrl) {
+    const { bytes, contentType } = await fetchRemoteImage(imageUrl);
+    const form = new FormData();
+    form.append("file", new Blob([bytes], { type: contentType }), "voa-social-visual");
+    if (imageAlt) form.append("description", imageAlt.slice(0, 1500));
+    const mediaResp = await fetch(`${instance}/api/v2/media`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+      body: form,
+    });
+    const mediaData = await mediaResp.json();
+    if (!mediaResp.ok || !mediaData.id) {
+      throw new Error(`Mastodon media upload failed: ${mediaData.error || mediaResp.status}`);
+    }
+    mediaIds = [mediaData.id];
+  }
+
   const resp = await fetch(`${instance}/api/v1/statuses`, {
     method:  "POST",
     headers: {
       "Content-Type":  "application/json",
       Authorization:   `Bearer ${token}`,
     },
-    body: JSON.stringify({ status: truncatePreservingUrl(caption, 500), visibility: "public" }),
+    body: JSON.stringify({
+      status: truncatePreservingUrl(caption, 500),
+      visibility: "public",
+      ...(mediaIds.length ? { media_ids: mediaIds } : {}),
+    }),
   });
   const data = await resp.json();
   if (!resp.ok) throw new Error(`Mastodon: ${data.error || resp.status}`);
@@ -1141,23 +1189,10 @@ export async function syndicatePost(lane, slug, options = {}) {
     captions = ensureSourceLinks(await generateCaptions({ ...post, lane }, anthropic), postUrl);
   }
 
-  // ── 4. Pexels image (text-first platforms) ────────────────────────────────
+  // ── 4. Fallback image selection for visual platforms ──────────────────────
   const keyword = options.keyword || (post.tags || [])[0] || post.title;
   const image   = await selectImage(keyword);
   const imageUrl = getPublicImageUrl(image?.url || null);
-
-  if (imageUrl) {
-    recordImageUsage({
-      post_slug:       slug,
-      source:          image?.source || "pexels",
-      url:             imageUrl,
-      local_path:      null,
-      platforms_used:  ["bluesky_voa", "mastodon_voa", "facebook_voa"],
-      pinterest_board: null,
-      ideogram_prompt: null,
-      reused:          false,
-    });
-  }
 
   // ── 5. Apply syndication policy (moved before image generation) ────────────
   //
@@ -1265,6 +1300,22 @@ export async function syndicatePost(lane, slug, options = {}) {
     // Apply cached visuals (retry dedup — reuse existing registry entries)
     if (cachedInstagram) { instagramImageUrl = cachedInstagram.url; reusedInstagram = true; }
     if (cachedPinterest) { pinterestImageUrl = cachedPinterest.url; reusedPinterest = true; }
+  }
+
+  function reusedFromFor(url, preferredPlatform) {
+    return url === imageUrl && image?.localPath ? "local" : preferredPlatform;
+  }
+
+  const socialVisualReuse = willPostInstagram && instagramImageUrl
+    ? { url: instagramImageUrl, reusedFrom: reusedFromFor(instagramImageUrl, "instagram") }
+    : willPostPinterest && pinterestImageUrl
+      ? { url: pinterestImageUrl, reusedFrom: reusedFromFor(pinterestImageUrl, "pinterest") }
+      : { url: null, reusedFrom: image?.localPath ? "local" : "none" };
+
+  if (socialVisualReuse.url) {
+    console.log(`  [visual-reuse] VOA Bluesky/Mastodon will reuse ${socialVisualReuse.reusedFrom} visual: ${socialVisualReuse.url.slice(0, 72)}...`);
+  } else {
+    console.log("  [visual-reuse] No Pinterest/Instagram visual available for VOA Bluesky/Mastodon; preserving text/link behavior.");
   }
 
   // ── 6. Extract hashtags from tumblr captions ──
@@ -1377,12 +1428,16 @@ export async function syndicatePost(lane, slug, options = {}) {
   // Pinterest entry (includes shared-asset metadata when both platforms share one image)
   if (pinterestImageUrl) {
     const pVisual = isSharedVisual ? instagramVisual : pinterestVisual;
+    const reusedByVoaTextSocial = Boolean(socialVisualReuse.url && socialVisualReuse.url === pinterestImageUrl);
     recordImageUsage({
       post_slug:                slug,
       source:                   pVisual ? "ideogram" : (image?.source || "pexels"),
       url:                      pinterestImageUrl,
       local_path:               null,
-      platforms_used:           isSharedVisual ? ["pinterest", "instagram"] : ["pinterest"],
+      platforms_used:           [
+        ...(isSharedVisual ? ["pinterest", "instagram"] : ["pinterest"]),
+        ...(reusedByVoaTextSocial ? ["bluesky_voa", "mastodon_voa"] : []),
+      ],
       pinterest_board:          pinterestBoardKey,
       ideogram_prompt:          pVisual?.prompt || null,
       prompt_hash:              pVisual?.promptHash || null,
@@ -1390,6 +1445,7 @@ export async function syndicatePost(lane, slug, options = {}) {
       style:                    pVisual?.style || null,
       is_shared_asset:          isSharedVisual,
       reused:                   reusedPinterest,
+      reused_from:              reusedByVoaTextSocial ? socialVisualReuse.reusedFrom : "none",
       instagram_archetype:      instagramVisual?.archetype || null,
       instagram_archetype_label:instagramVisual?.archetypeLabel || null,
       instagram_palette:        instagramVisual?.palette || null,
@@ -1399,12 +1455,16 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   // Instagram-only entry (skipped when asset is shared — already recorded above)
   if (!isSharedVisual && instagramImageUrl) {
+    const reusedByVoaTextSocial = Boolean(socialVisualReuse.url && socialVisualReuse.url === instagramImageUrl);
     recordImageUsage({
       post_slug:                slug,
       source:                   instagramVisual ? "ideogram" : (image?.source || "pexels"),
       url:                      instagramImageUrl,
       local_path:               null,
-      platforms_used:           ["instagram"],
+      platforms_used:           [
+        "instagram",
+        ...(reusedByVoaTextSocial ? ["bluesky_voa", "mastodon_voa"] : []),
+      ],
       pinterest_board:          null,
       ideogram_prompt:          instagramVisual?.prompt || null,
       prompt_hash:              instagramVisual?.promptHash || null,
@@ -1412,6 +1472,7 @@ export async function syndicatePost(lane, slug, options = {}) {
       style:                    instagramVisual?.style || null,
       is_shared_asset:          false,
       reused:                   reusedInstagram,
+      reused_from:              reusedByVoaTextSocial ? socialVisualReuse.reusedFrom : "none",
       instagram_archetype:      instagramVisual?.archetype || null,
       instagram_archetype_label:instagramVisual?.archetypeLabel || null,
       instagram_palette:        instagramVisual?.palette || null,
@@ -1426,7 +1487,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   if (hasBlueskyConfig("VOA")) {
     const voaBskyHandle = getBlueskyConfig("VOA").handle;
     await attempt("bluesky_voa", () =>
-      postToBluesky(captions.bluesky, postUrl, post.title, post.excerpt, "VOA"),
+      postToBluesky(captions.bluesky, postUrl, post.title, post.excerpt, "VOA", socialVisualReuse.url),
       `@${voaBskyHandle}`);
   } else {
     console.warn("  ~ bluesky_voa: VOA_BLUESKY_* env vars not set");
@@ -1437,7 +1498,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   if (hasMastodonConfig("VOA")) {
     const voaMastInstance = getMastodonConfig("VOA").instance;
     await attempt("mastodon_voa", () =>
-      postToMastodon(captions.mastodon, "VOA"),
+      postToMastodon(captions.mastodon, "VOA", socialVisualReuse.url, post.title),
       voaMastInstance);
   } else {
     console.warn("  ~ mastodon_voa: VOA_MASTODON_* env vars not set");
