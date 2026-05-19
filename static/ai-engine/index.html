@@ -860,12 +860,12 @@ function BookSparks(canvas) {
     };
   }
 
-  var BASE_COUNT = 8; // sparse is the goal
+  var BASE_COUNT = 12;
   resize();
 
   (function frame() {
     requestAnimationFrame(frame);
-    var target = hovered ? 12 : BASE_COUNT;
+    var target = hovered ? 18 : BASE_COUNT;
     while (particles.length < target) particles.push(spawn());
 
     ctx.clearRect(0, 0, W, H);
@@ -880,7 +880,7 @@ function BookSparks(canvas) {
       var t     = p.life / p.maxLife;
       // gentle fade in / hold / fade out, capped at low opacity
       var fade  = t < 0.15 ? t / 0.15 : t > 0.75 ? (1 - t) / 0.25 : 1;
-      var maxOp = hovered ? 0.28 : 0.14; // very restrained
+      var maxOp = hovered ? 0.45 : 0.22;
       var alpha = fade * maxOp;
       var col   = p.isTeal
         ? 'rgba(0,229,204,' + alpha + ')'
