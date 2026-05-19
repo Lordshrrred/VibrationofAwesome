@@ -144,6 +144,47 @@ function replaceFooter(html) {
   return html.replace(/<\/body>/, `${footer}\n\n</body>`);
 }
 
+function getSocialImage(html) {
+  const og = html.match(/<meta property="og:image" content="([^"]+)"/i);
+  if (og && og[1]) return og[1];
+  const twitter = html.match(/<meta name="twitter:image" content="([^"]+)"/i);
+  return twitter && twitter[1] ? twitter[1] : "";
+}
+
+function ensureBoomHeroHeader(html) {
+  const image = getSocialImage(html);
+  if (!image) return html;
+
+  let out = html;
+  const heroRule = `.post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:11rem 4rem 3.75rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('${image}') center/cover no-repeat; }`;
+
+  out = out.replace(/\.post-header\s*\{\s*padding:\s*2\.5rem\s+0\s+2rem;\s*border-bottom:\s*1px\s+solid\s+var\(--border\);\s*\}/g, heroRule);
+  out = out.replace(/\.post-header\s*\{\s*padding:2\.5rem\s+0\s+2rem;\s*border-bottom:1px\s+solid\s+var\(--border\);\s*\}/g, heroRule);
+  out = out.replace(/\.post-header\s*\{[^}]*background[^}]*url\(['"][^'"]+['"]\)[^}]*\}/, heroRule);
+
+  if (!out.includes(".post-header-inner")) {
+    out = out.replace(/<\/style>/, [
+      "    .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; width:100%; }",
+      "    .post-header > *:not(.ev-art) { position:relative; z-index:1; }",
+      "    .ev-art { position:absolute; inset:0; z-index:0; opacity:0.35; pointer-events:none; }",
+      "</style>",
+    ].join("\n"));
+  } else if (!out.includes(".post-header > *:not(.ev-art)")) {
+    out = out.replace(/<\/style>/, [
+      "    .post-header > *:not(.ev-art) { position:relative; z-index:1; }",
+      "    .ev-art { position:absolute; inset:0; z-index:0; opacity:0.35; pointer-events:none; }",
+      "</style>",
+    ].join("\n"));
+  }
+
+  out = out.replace(/<header class="post-header">\s*([\s\S]*?)\s*<\/header>/, (match, inner) => {
+    if (inner.includes("post-header-inner")) return match;
+    return `<header class="post-header">\n        <div class="post-header-inner">\n${inner.trim()}\n        </div>\n      </header>`;
+  });
+
+  return out;
+}
+
 function ensureScript(html, scriptTag) {
   if (html.includes(scriptTag)) return html;
   if (html.includes('<script src="/js/voa-nav.js" defer></script>')) {
@@ -173,6 +214,7 @@ export function normalizeBoomHtml(html, { slug = "", title = "", keyword = "", n
   let out = html;
   out = removeLegacyVisuals(out);
   out = removeLegacyBottom(out);
+  out = ensureBoomHeroHeader(out);
   out = insertSoftMention(out, target);
   const bottom = buildCurrentBottom(slug, target);
   if (out.includes("</article>")) {

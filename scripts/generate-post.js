@@ -755,8 +755,12 @@ async function main() {
       console.warn("No forest images found ~ post will have no inline images.");
     }
   } else {
-    console.log("Selecting 1 boom local image for hero art...");
-    inlineImages = fetchBoomImages(1);
+    console.log("Selecting 1 NASA image for Boom hero art...");
+    inlineImages = await fetchNasaImages(1);
+    if (inlineImages.length === 0) {
+      console.warn("NASA hero unavailable ~ falling back to local boom image.");
+      inlineImages = fetchBoomImages(1);
+    }
     if (inlineImages.length > 0) {
       console.log("Boom hero image selected: " + inlineImages.map(function(i) { return i.title || path.basename(i.url); }).join(", "));
     } else {
