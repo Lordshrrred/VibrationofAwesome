@@ -46,11 +46,11 @@ function buildBoomNavHtml(title) {
     '      <li><a href="/">Home</a></li>',
     '      <li><a href="/blog/">Blog</a></li>',
     '      <li><a href="/blog/boom/" class="active">Boom Frequency</a></li>',
-    '      <li><a href="/aura/" class="nav-aura-link">AURA &#10022;</a></li>',
-    '      <li><a href="/earthstar/">EarthStar &#10022;</a></li>',
-    '      <li><a href="/art-store/">Art Store</a></li>',
     '      <li><a href="/field-guide/" class="nav-guide-link">Free Guide &#10022;</a></li>',
     '      <li><a href="/ai-engine/" class="nav-ai-link">AI Engine</a></li>',
+    '      <li><a href="/art-store/">Art Store</a></li>',
+    '      <li><a href="/aura/" class="nav-aura-link">AURA &#10022;</a></li>',
+    '      <li><a href="/earthstar/">EarthStar &#10022;</a></li>',
     "    </ul>",
     "  </div>",
     '  <div class="site-nav-breadcrumb">',
@@ -68,9 +68,12 @@ function buildBoomNavHtml(title) {
 }
 
 function injectBoomNav(html, title) {
-  if (html.includes('class="site-nav site-nav--boom"')) return html;
-
   let out = html;
+
+  // Strip any existing Boom nav (so order changes are re-applied on every run)
+  out = out.replace(/<nav class="site-nav site-nav--boom">[\s\S]*?<\/nav>\s*<script>function toggleSiteNav[\s\S]*?<\/script>/g, "");
+  // Also strip the BOOM_NAV_CSS if already injected (to avoid duplicates)
+  out = out.replace(/\n\/\* Boom Site Nav \*\/[\s\S]*?@media\(max-width:768px\)\{[\s\S]*?\}\n/g, "");
 
   // Remove old site-header block
   out = out.replace(/<header class="site-header">[\s\S]*?<\/header>\s*/g, "");
