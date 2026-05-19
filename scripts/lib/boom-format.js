@@ -1,6 +1,108 @@
 export const FIELD_GUIDE_URL = "https://vibrationofawesome.com/field-guide/";
 export const AI_ENGINE_URL = "https://vibrationofawesome.com/ai-engine/";
 
+const BOOM_NAV_CSS = `
+/* Boom Site Nav */
+nav.site-nav{display:block;padding:0;position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(2,10,10,0.97);border-bottom:1px solid rgba(0,229,204,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.site-nav-main{display:flex;align-items:center;justify-content:space-between;gap:1.15rem;min-height:62px;padding:1.1rem 3rem;border-bottom:1px solid rgba(0,229,204,0.06);}
+a.site-nav-logo{font-family:'Space Grotesk',sans-serif;font-size:1rem;color:#00e5cc;text-decoration:none;letter-spacing:0.15em;font-weight:700;text-shadow:0 0 14px rgba(0,229,204,0.18);}
+.site-nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;justify-content:flex-end;flex:1 1 auto;min-width:0;}
+.site-nav-links a{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(208,255,248,0.5);text-decoration:none;transition:color 0.2s;white-space:nowrap;}
+.site-nav-links a:hover,.site-nav-links a.active{color:#00e5cc;}
+.site-nav-links a.nav-aura-link{color:rgba(0,229,204,0.9);border:1px solid rgba(0,229,204,0.28);padding:0.22rem 0.6rem;border-radius:2px;}
+.site-nav-links a.nav-guide-link{color:#22c06a;border:1px solid rgba(34,192,106,0.35);padding:0.25rem 0.7rem;border-radius:2px;}
+.site-nav-links a.nav-ai-link{color:rgba(0,229,204,0.8);border:1px solid rgba(0,229,204,0.18);padding:0.2rem 0.52rem;border-radius:3px;}
+.site-nav-breadcrumb{display:flex;align-items:center;gap:0.4rem;min-height:30px;padding:0.22rem 3rem;}
+.site-nav-breadcrumb a{font-family:'Space Grotesk',sans-serif;font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(208,255,248,0.3);text-decoration:none;}
+.site-nav-breadcrumb a:hover{color:#00e5cc;}
+.site-nav-breadcrumb .nav-sep{font-size:0.58rem;color:rgba(208,255,248,0.18);}
+.site-nav-breadcrumb .nav-current{font-family:'Space Grotesk',sans-serif;font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:rgba(208,255,248,0.4);max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.site-nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+.site-nav-hamburger span{display:block;width:22px;height:2px;background:rgba(208,255,248,0.55);border-radius:1px;}
+@media(max-width:900px){
+  .site-nav-hamburger{display:flex;}
+  .site-nav-links{display:none;position:fixed;top:92px;left:0;right:0;background:rgba(2,10,10,0.99);flex-direction:column;gap:0;padding:1rem 0 1.5rem;border-bottom:1px solid rgba(0,229,204,0.12);}
+  .site-nav-links.open{display:flex;}
+  .site-nav-links li{width:100%;}
+  .site-nav-links a{display:block;padding:0.65rem 3rem;}
+  .site-nav-breadcrumb{padding:0.3rem 1.5rem;}
+}
+@media(max-width:768px){
+  .site-nav-main{padding:0.9rem 1.5rem;min-height:52px;}
+  .post-header{min-height:26rem;padding:9rem 1.5rem 3rem;}
+}
+`;
+
+function buildBoomNavHtml(title) {
+  const safeTitle = escapeAttr(title || "");
+  return [
+    '<nav class="site-nav site-nav--boom">',
+    '  <div class="site-nav-main">',
+    '    <a href="/" class="site-nav-logo">VOA</a>',
+    '    <button class="site-nav-hamburger" id="siteNavHamburger" onclick="toggleSiteNav()" aria-label="Menu">',
+    '      <span></span><span></span><span></span>',
+    "    </button>",
+    '    <ul class="site-nav-links" id="siteNavLinks">',
+    '      <li><a href="/">Home</a></li>',
+    '      <li><a href="/blog/">Blog</a></li>',
+    '      <li><a href="/blog/boom/" class="active">Boom Frequency</a></li>',
+    '      <li><a href="/aura/" class="nav-aura-link">AURA &#10022;</a></li>',
+    '      <li><a href="/earthstar/">EarthStar &#10022;</a></li>',
+    '      <li><a href="/art-store/">Art Store</a></li>',
+    '      <li><a href="/field-guide/" class="nav-guide-link">Free Guide &#10022;</a></li>',
+    '      <li><a href="/ai-engine/" class="nav-ai-link">AI Engine</a></li>',
+    "    </ul>",
+    "  </div>",
+    '  <div class="site-nav-breadcrumb">',
+    '    <a href="/">VOA</a>',
+    '    <span class="nav-sep">/</span>',
+    '    <a href="/blog/">Blog</a>',
+    '    <span class="nav-sep">/</span>',
+    '    <a href="/blog/boom/">Boom Frequency</a>',
+    '    <span class="nav-sep">/</span>',
+    `    <span class="nav-current">${safeTitle}</span>`,
+    "  </div>",
+    "</nav>",
+    '<script>function toggleSiteNav(){var l=document.getElementById("siteNavLinks");if(l)l.classList.toggle("open");}</script>',
+  ].join("\n");
+}
+
+function injectBoomNav(html, title) {
+  if (html.includes('class="site-nav site-nav--boom"')) return html;
+
+  let out = html;
+
+  // Remove old site-header block
+  out = out.replace(/<header class="site-header">[\s\S]*?<\/header>\s*/g, "");
+  // Remove old breadcrumb nav inside .container
+  out = out.replace(/<nav class="breadcrumb"[^>]*>[\s\S]*?<\/nav>\s*/g, "");
+
+  // Strip old nav-related CSS rules from the <style> block
+  out = out.replace(/\s*\.site-header\s*\{[^}]*\}/g, "");
+  out = out.replace(/\s*\.site-header\s+\.container\s*\{[^}]*\}/g, "");
+  out = out.replace(/\s*\.voa-logo\s*\{[^}]*\}/g, "");
+  out = out.replace(/\s*\.voa-logo\s+span\s*\{[^}]*\}/g, "");
+  out = out.replace(/\s*\.voa-logo:hover\s*\{[^}]*\}/g, "");
+  out = out.replace(/\s*\.header-blog-name\s*\{[^}]*\}/g, "");
+  out = out.replace(/\s*\.breadcrumb\s*\{[^}]*\}/g, "");
+  out = out.replace(/\s*\.breadcrumb\s+a\s*\{[^}]*\}/g, "");
+  out = out.replace(/\s*\.breadcrumb\s+a:hover\s*\{[^}]*\}/g, "");
+  out = out.replace(/\s*\.breadcrumb\s+\.sep\s*\{[^}]*\}/g, "");
+
+  // Inject nav CSS before </style>
+  out = out.replace("</style>", `${BOOM_NAV_CSS}</style>`);
+
+  // Insert nav HTML: after stars-canvas if present, else after <body>
+  const nav = buildBoomNavHtml(title);
+  if (out.includes('id="stars-canvas"')) {
+    out = out.replace(/(<canvas[^>]+id="stars-canvas"[^>]*><\/canvas>)/, `$1\n\n${nav}`);
+  } else {
+    out = out.replace(/<body>/, `<body>\n\n${nav}`);
+  }
+
+  return out;
+}
+
 const AI_PATTERN = /\b(ai|claude|chatgpt|openai|perplexity|notebooklm|api|automation|automated|tool|tools|prompt|prompts|workflow|creator|creators|musician|musicians|music|faceless|lead magnet|content|spreadsheet|coworking|taxes|deep research)\b/i;
 const FIELD_GUIDE_PATTERN = /\b(identity|potential|spiritual|self|growth|mindset|survival|stuck|lost|burnout|anxiety|nervous system|abundance|purpose|reinvent|escape|freedom|healing|creative life|love|mental overload)\b/i;
 
@@ -280,6 +382,7 @@ export function normalizeBoomHtml(html, { slug = "", title = "", keyword = "", n
   out = removeLegacyVisuals(out);
   out = removeLegacyBottom(out);
   out = ensureBoomHeroHeader(out);
+  out = injectBoomNav(out, title);
   out = fixAnchorText(out);
   out = insertSoftMention(out, target, slug);
   const bottom = buildCurrentBottom(slug, target);

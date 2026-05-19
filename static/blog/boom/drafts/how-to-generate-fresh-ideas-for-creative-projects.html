@@ -49,16 +49,6 @@
     #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
     .site-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
     .container { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
-    .site-header { border-bottom: 1px solid var(--border); background: rgba(2,10,10,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
-    .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .voa-logo { font-family: Space Grotesk, sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); text-decoration: none; opacity: 0.9; transition: opacity 0.2s; }
-    .voa-logo span { color: var(--accent); }
-    .voa-logo:hover { opacity: 1; }
-    .header-blog-name { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); opacity: 0.8; }
-    .breadcrumb { padding: 0.75rem 0; font-size: 0.82rem; color: var(--text-muted); }
-    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    .breadcrumb a:hover { color: var(--accent); }
-    .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }
     .post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:12rem 4rem 4rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('https://apod.nasa.gov/apod/image/2310/ngc1232b_vlt_960.jpg') center/cover no-repeat; }
     .lane-badge { display: inline-block; font-family: Space Grotesk, sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 0.2em 0.6em; margin-bottom: 1.2rem; }
     .post-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 1rem; }
@@ -100,27 +90,74 @@ footer .footer-meta, .site-footer .footer-meta { display: block; width: 100%; ma
 footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-right: auto; text-align: center; }
 footer .footer-meta a, .site-footer .footer-meta a { color: var(--accent, var(--cyan, var(--amber, #00e5ff))) !important; text-decoration: none; border-bottom: 1px solid rgba(0,229,255,0.28); }
 footer .footer-meta a:hover, .site-footer .footer-meta a:hover { color: var(--accent-light, var(--cyan, var(--amber, #7ef2ff))) !important; border-bottom-color: currentColor; }
+
+/* Boom Site Nav */
+nav.site-nav{display:block;padding:0;position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(2,10,10,0.97);border-bottom:1px solid rgba(0,229,204,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.site-nav-main{display:flex;align-items:center;justify-content:space-between;gap:1.15rem;min-height:62px;padding:1.1rem 3rem;border-bottom:1px solid rgba(0,229,204,0.06);}
+a.site-nav-logo{font-family:'Space Grotesk',sans-serif;font-size:1rem;color:#00e5cc;text-decoration:none;letter-spacing:0.15em;font-weight:700;text-shadow:0 0 14px rgba(0,229,204,0.18);}
+.site-nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;justify-content:flex-end;flex:1 1 auto;min-width:0;}
+.site-nav-links a{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(208,255,248,0.5);text-decoration:none;transition:color 0.2s;white-space:nowrap;}
+.site-nav-links a:hover,.site-nav-links a.active{color:#00e5cc;}
+.site-nav-links a.nav-aura-link{color:rgba(0,229,204,0.9);border:1px solid rgba(0,229,204,0.28);padding:0.22rem 0.6rem;border-radius:2px;}
+.site-nav-links a.nav-guide-link{color:#22c06a;border:1px solid rgba(34,192,106,0.35);padding:0.25rem 0.7rem;border-radius:2px;}
+.site-nav-links a.nav-ai-link{color:rgba(0,229,204,0.8);border:1px solid rgba(0,229,204,0.18);padding:0.2rem 0.52rem;border-radius:3px;}
+.site-nav-breadcrumb{display:flex;align-items:center;gap:0.4rem;min-height:30px;padding:0.22rem 3rem;}
+.site-nav-breadcrumb a{font-family:'Space Grotesk',sans-serif;font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(208,255,248,0.3);text-decoration:none;}
+.site-nav-breadcrumb a:hover{color:#00e5cc;}
+.site-nav-breadcrumb .nav-sep{font-size:0.58rem;color:rgba(208,255,248,0.18);}
+.site-nav-breadcrumb .nav-current{font-family:'Space Grotesk',sans-serif;font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:rgba(208,255,248,0.4);max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.site-nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+.site-nav-hamburger span{display:block;width:22px;height:2px;background:rgba(208,255,248,0.55);border-radius:1px;}
+@media(max-width:900px){
+  .site-nav-hamburger{display:flex;}
+  .site-nav-links{display:none;position:fixed;top:92px;left:0;right:0;background:rgba(2,10,10,0.99);flex-direction:column;gap:0;padding:1rem 0 1.5rem;border-bottom:1px solid rgba(0,229,204,0.12);}
+  .site-nav-links.open{display:flex;}
+  .site-nav-links li{width:100%;}
+  .site-nav-links a{display:block;padding:0.65rem 3rem;}
+  .site-nav-breadcrumb{padding:0.3rem 1.5rem;}
+}
+@media(max-width:768px){
+  .site-nav-main{padding:0.9rem 1.5rem;min-height:52px;}
+  .post-header{min-height:26rem;padding:9rem 1.5rem 3rem;}
+}
 </style>
 </head>
 <body>
 
 <canvas id="stars-canvas" aria-hidden="true"></canvas>
 
+<nav class="site-nav site-nav--boom">
+  <div class="site-nav-main">
+    <a href="/" class="site-nav-logo">VOA</a>
+    <button class="site-nav-hamburger" id="siteNavHamburger" onclick="toggleSiteNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="site-nav-links" id="siteNavLinks">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/blog/boom/" class="active">Boom Frequency</a></li>
+      <li><a href="/aura/" class="nav-aura-link">AURA &#10022;</a></li>
+      <li><a href="/earthstar/">EarthStar &#10022;</a></li>
+      <li><a href="/art-store/">Art Store</a></li>
+      <li><a href="/field-guide/" class="nav-guide-link">Free Guide &#10022;</a></li>
+      <li><a href="/ai-engine/" class="nav-ai-link">AI Engine</a></li>
+    </ul>
+  </div>
+  <div class="site-nav-breadcrumb">
+    <a href="/">VOA</a>
+    <span class="nav-sep">/</span>
+    <a href="/blog/">Blog</a>
+    <span class="nav-sep">/</span>
+    <a href="/blog/boom/">Boom Frequency</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">How To Generate Fresh Ideas For Creative Projects</span>
+  </div>
+</nav>
+<script>function toggleSiteNav(){var l=document.getElementById("siteNavLinks");if(l)l.classList.toggle("open");}</script>
+
 <div class="site-wrapper">
-  <header class="site-header">
-    <div class="container">
-      <a href="/" class="voa-logo">Vibration<span>of</span>Awesome</a>
-      <span class="header-blog-name">Boom Frequency</span>
-    </div>
-  </header>
   <main>
     <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Home</a><span class="sep">&#8250;</span>
-        <a href="/blog/">Blog</a><span class="sep">&#8250;</span>
-        <a href="/blog/boom/">Boom Frequency</a><span class="sep">&#8250;</span>
-        <span>How To Generate Fresh Ideas For Creative Projects</span>
-      </nav>
       <header class="post-header">
         <div class="post-header-inner">
 <div class="lane-badge">BOOM FREQUENCY</div>
