@@ -182,16 +182,24 @@ function escapeAttr(value) {
 function buildCurrentBottom(slug, target) {
   const safeSlug = escapeAttr(slug);
   const isAI = target && target.primary === "ai-engine";
-  return [
-    '<div style="height:1rem;"></div>',
-    '<div class="voa-photo-rotator" data-folder="boombot" data-mode="signature"></div>',
-    '<script src="/js/photo-rotator.js"></script>',
-    '<div style="height:1rem;"></div>',
-    isAI ? `      <div data-ai-engine-cta data-blog-slug="${safeSlug}"></div>` : `      <div data-ebook-cta data-placement="end-of-post" data-blog-slug="${safeSlug}"></div>`,
-    isAI ? '      <script src="/js/ai-engine-cta.js"></script>' : '      <script src="/js/ebook-cta.js?v=4d2b383"></script>',
-    `        <div data-art-store-whisper data-blog-slug="${safeSlug}"></div>`,
-    '        <script src="/js/art-store-whisper.js"></script>',
-  ].filter(Boolean).join("\n");
+  const lines = [];
+  // For AI posts: AI Engine CTA appears BEFORE the signature (conclusion offer)
+  if (isAI) {
+    lines.push(`      <div data-ai-engine-cta data-blog-slug="${safeSlug}"></div>`);
+    lines.push('      <script src="/js/ai-engine-cta.js"></script>');
+    lines.push('<div style="height:1rem;"></div>');
+  }
+  // Signature block
+  lines.push('<div style="height:1rem;"></div>');
+  lines.push('<div class="voa-photo-rotator" data-folder="boombot" data-mode="signature"></div>');
+  lines.push('<script src="/js/photo-rotator.js"></script>');
+  lines.push('<div style="height:1rem;"></div>');
+  // Universal bottom: ALWAYS Field Guide regardless of post type
+  lines.push(`      <div data-ebook-cta data-placement="end-of-post" data-blog-slug="${safeSlug}"></div>`);
+  lines.push('      <script src="/js/ebook-cta.js?v=4d2b383"></script>');
+  lines.push(`        <div data-art-store-whisper data-blog-slug="${safeSlug}"></div>`);
+  lines.push('        <script src="/js/art-store-whisper.js"></script>');
+  return lines.join("\n");
 }
 
 function buildFooter() {
@@ -268,6 +276,8 @@ function removeLegacyBottom(html) {
   out = out.replace(/\s*<script src="\/js\/photo-rotator\.js"[^>]*><\/script>\s*/g, "\n");
   out = out.replace(/\s*<div data-ai-nudge[^>]*><\/div>\s*/g, "\n");
   out = out.replace(/\s*<script src="\/js\/ai-engine-nudge\.js"[^>]*><\/script>\s*/g, "\n");
+  out = out.replace(/\s*<div data-ai-engine-cta[^>]*><\/div>\s*/g, "\n");
+  out = out.replace(/\s*<script src="\/js\/ai-engine-cta\.js"[^>]*><\/script>\s*/g, "\n");
   out = out.replace(/\s*<div (?:class="voa-ebook-cta"|data-ebook-cta)[^>]*><\/div>\s*/g, "\n");
   out = out.replace(/\s*<script src="\/js\/ebook-cta\.js[^"]*"[^>]*><\/script>\s*/g, "\n");
   out = out.replace(/\s*<div data-art-store-whisper[^>]*><\/div>\s*/g, "\n");
