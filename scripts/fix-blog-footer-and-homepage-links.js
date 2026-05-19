@@ -19,6 +19,8 @@ const FOOTER_FIX = [
   "footer, .site-footer { text-align: center; width: 100%; }",
   "footer .footer-meta, .site-footer .footer-meta { display: block; width: 100%; margin-left: auto; margin-right: auto; text-align: center; }",
   "footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-right: auto; text-align: center; }",
+  "footer .footer-meta a, .site-footer .footer-meta a { color: var(--accent, var(--cyan, var(--amber, #00e5ff))) !important; text-decoration: none; border-bottom: 1px solid rgba(0,229,255,0.28); }",
+  "footer .footer-meta a:hover, .site-footer .footer-meta a:hover { color: var(--accent-light, var(--cyan, var(--amber, #7ef2ff))) !important; border-bottom-color: currentColor; }",
 ].join("\n");
 
 function walk(dir) {
@@ -32,7 +34,9 @@ function walk(dir) {
 }
 
 function addFooterFix(html) {
-  if (html.includes("Blog footer alignment repair")) return html;
+  if (html.includes("Blog footer alignment repair")) {
+    return html.replace(/\/\* Blog footer alignment repair \*\/[\s\S]*?footer \.footer-brand, \.site-footer \.footer-brand \{[^}]*\}(?:\s*footer \.footer-meta a, \.site-footer \.footer-meta a \{[^}]*\})?(?:\s*footer \.footer-meta a:hover, \.site-footer \.footer-meta a:hover \{[^}]*\})?/, FOOTER_FIX.trim());
+  }
   return html.replace("</style>", `${FOOTER_FIX}\n</style>`);
 }
 

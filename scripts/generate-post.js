@@ -277,12 +277,12 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push("    .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }");
   }
   if (!isMatt && heroImageUrl) {
-    H.push("    .post-header { position:relative; z-index:1; overflow:hidden; min-height:31rem; display:flex; align-items:flex-end; padding:11rem 4rem 3.75rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background: linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
+    H.push("    .post-header { position:relative; z-index:1; overflow:hidden; min-height:31rem; display:flex; align-items:flex-end; padding:12rem 4rem 4rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background: linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('" + heroImageUrl + "') center/cover no-repeat; }");
     H.push("    .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; width:100%; }");
     H.push("    .post-header > *:not(.ev-art) { position:relative; z-index:1; }");
     H.push("    .ev-art { position:absolute; inset:0; z-index:0; opacity:0.35; pointer-events:none; }");
   } else if (!isMatt) {
-    H.push("    .post-header { position:relative; overflow:hidden; min-height:31rem; display:flex; align-items:flex-end; padding:11rem 4rem 3.75rem; border-bottom:1px solid rgba(0,229,255,0.16); }");
+    H.push("    .post-header { position:relative; overflow:hidden; min-height:31rem; display:flex; align-items:flex-end; padding:12rem 4rem 4rem; border-bottom:1px solid rgba(0,229,255,0.16); }");
     H.push("    .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; }");
     H.push("    .post-header > *:not(.ev-art) { position:relative; z-index:1; }");
     H.push("    .ev-art { position:absolute; inset:0; z-index:0; opacity:0.35; pointer-events:none; }");
@@ -344,6 +344,8 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    footer, .site-footer { text-align: center; width: 100%; }");
   H.push("    footer .footer-meta, .site-footer .footer-meta { display: block; width: 100%; margin-left: auto; margin-right: auto; text-align: center; }");
   H.push("    footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-right: auto; text-align: center; }");
+  H.push("    footer .footer-meta a, .site-footer .footer-meta a { color: var(--accent, var(--cyan, var(--amber, #00e5ff))) !important; text-decoration: none; border-bottom: 1px solid rgba(" + accentR + "," + accentG + "," + accentB + ",0.28); }");
+  H.push("    footer .footer-meta a:hover, .site-footer .footer-meta a:hover { color: var(--accent-light, var(--cyan, var(--amber, #7ef2ff))) !important; border-bottom-color: currentColor; }");
   if (!isMatt) {
     H.push("    @media (max-width: 768px) { body { font-size: 16px; } .post-header { padding: 10rem 1.5rem 3rem; } }");
   } else {

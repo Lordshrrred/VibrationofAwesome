@@ -235,7 +235,7 @@ function buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg }) {
     .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
     .breadcrumb a:hover { color: var(--accent); }
     .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }
-    .post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:11rem 4rem 3.75rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('${nasaImg}') center/cover no-repeat; }
+    .post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:12rem 4rem 4rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('${nasaImg}') center/cover no-repeat; }
     .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; width:100%; }
     .post-header > *:not(.ev-art) { position:relative; z-index:1; }
     .ev-art { position:absolute; inset:0; z-index:0; opacity:0.35; pointer-events:none; }
@@ -270,8 +270,10 @@ function buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg }) {
     footer, .site-footer { text-align: center; width: 100%; }
     footer .footer-meta, .site-footer .footer-meta { display: block; width: 100%; margin-left: auto; margin-right: auto; text-align: center; }
     footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-right: auto; text-align: center; }
+    footer .footer-meta a, .site-footer .footer-meta a { color: var(--accent, var(--cyan, var(--amber, #00e5ff))) !important; text-decoration: none; border-bottom: 1px solid rgba(0,229,255,0.28); }
+    footer .footer-meta a:hover, .site-footer .footer-meta a:hover { color: var(--accent-light, var(--cyan, var(--amber, #7ef2ff))) !important; border-bottom-color: currentColor; }
     .site-footer a:hover { text-decoration: underline; }
-    @media (max-width: 600px) { body { font-size: 16px; } .post-header { padding: 1.8rem 0 1.4rem; } }
+    @media (max-width: 768px) { body { font-size: 16px; } .post-header { padding: 10rem 1.5rem 3rem; } }
   </style>
 </head>
 <body>
