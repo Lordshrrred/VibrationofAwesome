@@ -417,6 +417,18 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push('        <div class="voa-photo-rotator" data-folder="boombot" data-mode="signature"></div>');
     H.push('        <script src="/js/photo-rotator.js"><\/script>');
     H.push('        <div style="height:1rem;"></div>');
+    // AI Engine nudge for creator/AI content type posts
+    const isAIContent = ctaContentType === 'creator' ||
+      (argv.keyword || '').toLowerCase().includes('ai') ||
+      (argv.keyword || '').toLowerCase().includes('chatgpt') ||
+      (argv.keyword || '').toLowerCase().includes('claude') ||
+      (argv.keyword || '').toLowerCase().includes('automation') ||
+      (ctaNicheSlug || '').includes('ai') ||
+      (ctaNicheSlug || '').includes('creator');
+    if (isAIContent) {
+      H.push('        <div data-ai-nudge data-blog-slug="' + slug + '"></div>');
+      H.push('        <script src="/js/ai-engine-nudge.js" defer><\/script>');
+    }
     H.push('        <div data-ebook-cta data-placement="end-of-post" data-blog-slug="' + slug + '"></div>');
     H.push('        <script src="/js/ebook-cta.js"><\/script>');
     H.push('        <div data-art-store-whisper data-blog-slug="' + slug + '"></div>');
