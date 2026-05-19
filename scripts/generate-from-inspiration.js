@@ -267,6 +267,9 @@ function buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg }) {
     footer .footer-logo span { font-size: 0.82em; opacity: 0.92; }
     footer a.footer-logo:hover { color: #00e5ff; text-shadow: 0 0 24px rgba(0,229,255,0.24); border-bottom-color: rgba(0,229,255,0.75); }
     footer .footer-tagline { font-family: Georgia, serif; font-style: italic; font-size: 0.98rem; color: rgba(207,246,255,0.76); }
+    footer, .site-footer { text-align: center; width: 100%; }
+    footer .footer-meta, .site-footer .footer-meta { display: block; width: 100%; margin-left: auto; margin-right: auto; text-align: center; }
+    footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-right: auto; text-align: center; }
     .site-footer a:hover { text-decoration: underline; }
     @media (max-width: 600px) { body { font-size: 16px; } .post-header { padding: 1.8rem 0 1.4rem; } }
   </style>

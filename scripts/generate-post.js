@@ -341,6 +341,9 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .site-footer .footer-logo span { font-size: 0.82em; opacity: 0.92; }");
   H.push("    .site-footer a.footer-logo:hover { color: " + footerLogoHover + "; text-shadow: 0 0 24px rgba(" + accentR + "," + accentG + "," + accentB + ",0.24); text-decoration: none !important; transform: translateY(-1px); border-bottom-color: rgba(" + accentR + "," + accentG + "," + accentB + ",0.75); }");
   H.push("    .site-footer .footer-tagline { font-family: " + fontFamily + "; font-style: italic; font-size: 0.98rem; letter-spacing: 0.01em; color: " + footerTaglineColor + "; font-weight: " + (isMatt ? "600" : "400") + "; }");
+  H.push("    footer, .site-footer { text-align: center; width: 100%; }");
+  H.push("    footer .footer-meta, .site-footer .footer-meta { display: block; width: 100%; margin-left: auto; margin-right: auto; text-align: center; }");
+  H.push("    footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-right: auto; text-align: center; }");
   if (!isMatt) {
     H.push("    @media (max-width: 768px) { body { font-size: 16px; } .post-header { padding: 10rem 1.5rem 3rem; } }");
   } else {

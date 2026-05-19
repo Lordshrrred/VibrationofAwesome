@@ -104,6 +104,18 @@ function buildFooter() {
   ].join("\n");
 }
 
+function ensureFooterCentering(html) {
+  if (html.includes("Blog footer alignment repair")) return html;
+  const css = [
+    "",
+    "/* Blog footer alignment repair */",
+    "footer, .site-footer { text-align: center; width: 100%; }",
+    "footer .footer-meta, .site-footer .footer-meta { display: block; width: 100%; margin-left: auto; margin-right: auto; text-align: center; }",
+    "footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-right: auto; text-align: center; }",
+  ].join("\n");
+  return html.replace("</style>", `${css}\n</style>`);
+}
+
 function buildSoftMention(target) {
   if (target && target.primary === "ai-engine") {
     return `<p>If you are building your own creative system around this, the <a href="${AI_ENGINE_URL}">AI Engine guide</a> goes deeper into using AI as a creative exoskeleton instead of another productivity costume.</p>`;
@@ -223,6 +235,7 @@ export function normalizeBoomHtml(html, { slug = "", title = "", keyword = "", n
     out = out.replace(/<footer/, `${bottom}\n\n<footer`);
   }
   out = replaceFooter(out);
+  out = ensureFooterCentering(out);
   out = ensureScript(out, '<script src="/js/announcement-bar.js"></script>');
   out = ensureScript(out, '<script src="/js/earthstar-visual.js"></script>');
   out = out.replace(/\n{4,}/g, "\n\n\n");
