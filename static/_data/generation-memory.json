@@ -4,13 +4,51 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": null,
+  "lastUpdated": "2026-05-19T02:44:45.251Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
   "recentEmotionalArcs": [],
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
-  "recentThreadsFormats": [],
-  "recentInstagramArchetypes": []
+  "recentThreadsFormats": [
+    {
+      "slug": "the-best-ai-tools-for-musicians-in-2026-that-actually-work",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-05-19T02:44:31.557Z"
+    },
+    {
+      "slug": "how-to-unlock-your-potential-when-nothing-seems-to-work",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-05-19T02:41:04.632Z"
+    }
+  ],
+  "recentInstagramArchetypes": [
+    {
+      "slug": "the-best-ai-tools-for-musicians-in-2026-that-actually-work",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-05-19T02:44:45.251Z"
+    },
+    {
+      "slug": "how-to-unlock-your-potential-when-nothing-seems-to-work",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-05-19T02:41:17.768Z"
+    }
+  ]
 }

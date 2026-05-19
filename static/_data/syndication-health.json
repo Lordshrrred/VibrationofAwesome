@@ -1,20 +1,16 @@
 {
-  "lastChecked": "2026-05-18T15:56:49.999Z",
-  "status": "broken",
-  "passed": 12,
-  "failed": 2,
+  "lastChecked": "2026-05-19T02:47:48.018Z",
+  "status": "ok",
+  "passed": 14,
+  "failed": 0,
   "total": 14,
-  "topFix": {
-    "name": "Publer VOA Instagram account",
-    "detail": "missing PUBLER_INSTAGRAM_ACCOUNT_ID",
-    "repairCommand": "npm run check:syndication -- --write"
-  },
+  "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
     "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
-    "remaining": 98,
-    "published": 1,
+    "remaining": 96,
+    "published": 3,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -22,7 +18,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=98"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=96"
     },
     {
       "name": "Publer accounts",
@@ -36,13 +32,13 @@
     },
     {
       "name": "Publer VOA Instagram account",
-      "ok": false,
-      "detail": "missing PUBLER_INSTAGRAM_ACCOUNT_ID"
+      "ok": true,
+      "detail": "vibrationofawesome (6a0698ee1f0e47d9f3f18a43)"
     },
     {
       "name": "Publer VOA Threads account",
-      "ok": false,
-      "detail": "missing PUBLER_THREADS_ACCOUNT_ID"
+      "ok": true,
+      "detail": "@vibrationofawesome (6a069b7979cc0b32f3235166)"
     },
     {
       "name": "Bluesky ESR auth",
@@ -67,7 +63,7 @@
     {
       "name": "Facebook VOA",
       "ok": true,
-      "detail": "Vibration of Awesome"
+      "detail": "Vibration of Awesome · expires Jul 13, 2026"
     },
     {
       "name": "Dev.to auth",
@@ -77,7 +73,7 @@
     {
       "name": "Tumblr VOA auth",
       "ok": true,
-      "detail": "earthstarrising user ok"
+      "detail": "vibrationofawesome.tumblr.com user ok"
     },
     {
       "name": "Blogger token refresh",
