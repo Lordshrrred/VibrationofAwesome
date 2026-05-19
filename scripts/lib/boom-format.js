@@ -76,16 +76,14 @@ function escapeAttr(value) {
 
 function buildCurrentBottom(slug, target) {
   const safeSlug = escapeAttr(slug);
-  const includeAiNudge = target && target.primary === "ai-engine";
+  const isAI = target && target.primary === "ai-engine";
   return [
     '<div style="height:1rem;"></div>',
     '<div class="voa-photo-rotator" data-folder="boombot" data-mode="signature"></div>',
     '<script src="/js/photo-rotator.js"></script>',
     '<div style="height:1rem;"></div>',
-    includeAiNudge ? `      <div data-ai-nudge data-blog-slug="${safeSlug}"></div>` : "",
-    includeAiNudge ? '      <script src="/js/ai-engine-nudge.js" defer></script>' : "",
-    `      <div data-ebook-cta data-placement="end-of-post" data-blog-slug="${safeSlug}"></div>`,
-    '<script src="/js/ebook-cta.js?v=4d2b383"></script>',
+    isAI ? `      <div data-ai-engine-cta data-blog-slug="${safeSlug}"></div>` : `      <div data-ebook-cta data-placement="end-of-post" data-blog-slug="${safeSlug}"></div>`,
+    isAI ? '      <script src="/js/ai-engine-cta.js"></script>' : '      <script src="/js/ebook-cta.js?v=4d2b383"></script>',
     `        <div data-art-store-whisper data-blog-slug="${safeSlug}"></div>`,
     '        <script src="/js/art-store-whisper.js"></script>',
   ].filter(Boolean).join("\n");
@@ -105,22 +103,56 @@ function buildFooter() {
 }
 
 function ensureFooterCentering(html) {
-  if (html.includes("Blog footer alignment repair")) return html;
   const css = [
     "",
     "/* Blog footer alignment repair */",
     "footer, .site-footer { text-align: center; width: 100%; }",
     "footer .footer-meta, .site-footer .footer-meta { display: block; width: 100%; margin-left: auto; margin-right: auto; text-align: center; }",
     "footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-right: auto; text-align: center; }",
+    "footer .footer-meta a, .site-footer .footer-meta a { color: var(--accent, var(--cyan, var(--amber, #00e5ff))) !important; text-decoration: none; border-bottom: 1px solid rgba(0,229,255,0.28); }",
+    "footer .footer-meta a:hover, .site-footer .footer-meta a:hover { color: var(--accent-light, var(--cyan, var(--amber, #7ef2ff))) !important; border-bottom-color: currentColor; }",
   ].join("\n");
+  if (html.includes("Blog footer alignment repair")) {
+    return html.replace(/\/\* Blog footer alignment repair \*\/[\s\S]*?footer \.footer-meta a:hover, \.site-footer \.footer-meta a:hover \{[^}]*\}/, css.trim());
+  }
   return html.replace("</style>", `${css}\n</style>`);
 }
 
-function buildSoftMention(target) {
+const AI_SOFT_MENTIONS = [
+  `<p>If you are building your own creative system around this, the <a href="${AI_ENGINE_URL}">AI Engine guide</a> goes deeper into using AI as a creative exoskeleton instead of another productivity costume.</p>`,
+  `<p>The <a href="${AI_ENGINE_URL}">AI Engine guide</a> is where this gets practical: a grounded system for using these tools without losing your creative center.</p>`,
+  `<p>If you want the full map, the <a href="${AI_ENGINE_URL}">AI Engine guide</a> lays out the tools, the system, and the mindset that holds it all together.</p>`,
+  `<p>There is a way to use AI that amplifies your voice instead of replacing it. The <a href="${AI_ENGINE_URL}">AI Engine guide</a> is the framework for that.</p>`,
+  `<p>For the deeper system behind what this post is pointing at, the <a href="${AI_ENGINE_URL}">AI Engine guide</a> walks through how to wire these tools into your actual creative life.</p>`,
+  `<p>The <a href="${AI_ENGINE_URL}">AI Engine guide</a> is the companion piece here: less theory, more working system for creators who want AI to extend them, not flatten them.</p>`,
+  `<p>If this landed, the <a href="${AI_ENGINE_URL}">AI Engine guide</a> is the next step: a practical creative OS built around staying human while using the tools.</p>`,
+  `<p>Building a creative workflow with AI is harder than the hype makes it look. The <a href="${AI_ENGINE_URL}">AI Engine guide</a> is the honest, grounded version of that process.</p>`,
+];
+
+const FG_SOFT_MENTIONS = [
+  `<p>If this is the kind of inner work you are doing right now, the <a href="${FIELD_GUIDE_URL}">VOA Field Guide</a> is the deeper map for turning that signal into a way of living.</p>`,
+  `<p>The <a href="${FIELD_GUIDE_URL}">Field Guide</a> is built for exactly this kind of moment: when you know something has to shift but you are not sure where to start.</p>`,
+  `<p>If you want a grounded framework for the work this post is pointing at, the <a href="${FIELD_GUIDE_URL}">Field Guide</a> is where that lives.</p>`,
+  `<p>There is a longer version of this conversation in the <a href="${FIELD_GUIDE_URL}">Field Guide</a>, including the tools and the practices that make the shift sustainable.</p>`,
+  `<p>The <a href="${FIELD_GUIDE_URL}">Field Guide</a> covers the terrain between where you are and where you are trying to go, with more honesty than most self-help allows.</p>`,
+  `<p>For the deeper system behind what this post is pointing at, the <a href="${FIELD_GUIDE_URL}">Field Guide</a> offers the framework and the practices to make it real.</p>`,
+  `<p>If this resonated, the <a href="${FIELD_GUIDE_URL}">Field Guide</a> is the next layer: a map for the kind of reinvention that actually holds.</p>`,
+  `<p>The <a href="${FIELD_GUIDE_URL}">Field Guide</a> exists for people who are done with surface-level self-help and ready for the version that actually costs something.</p>`,
+];
+
+function hashSlug(slug) {
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
+  return h;
+}
+
+function buildSoftMention(target, slug) {
   if (target && target.primary === "ai-engine") {
-    return `<p>If you are building your own creative system around this, the <a href="${AI_ENGINE_URL}">AI Engine guide</a> goes deeper into using AI as a creative exoskeleton instead of another productivity costume.</p>`;
+    const idx = hashSlug(slug || "") % AI_SOFT_MENTIONS.length;
+    return AI_SOFT_MENTIONS[idx];
   }
-  return `<p>If this is the kind of inner work you are doing right now, the <a href="${FIELD_GUIDE_URL}">VOA Field Guide</a> is the deeper map for turning that signal into a way of living.</p>`;
+  const idx = hashSlug(slug || "") % FG_SOFT_MENTIONS.length;
+  return FG_SOFT_MENTIONS[idx];
 }
 
 function removeLegacyBottom(html) {
@@ -168,11 +200,12 @@ function ensureBoomHeroHeader(html) {
   if (!image) return html;
 
   let out = html;
-  const heroRule = `.post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:11rem 4rem 3.75rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('${image}') center/cover no-repeat; }`;
+  const heroRule = `.post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:12rem 4rem 4rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('${image}') center/cover no-repeat; }`;
 
   out = out.replace(/\.post-header\s*\{\s*padding:\s*2\.5rem\s+0\s+2rem;\s*border-bottom:\s*1px\s+solid\s+var\(--border\);\s*\}/g, heroRule);
   out = out.replace(/\.post-header\s*\{\s*padding:2\.5rem\s+0\s+2rem;\s*border-bottom:1px\s+solid\s+var\(--border\);\s*\}/g, heroRule);
   out = out.replace(/\.post-header\s*\{[^}]*background[^}]*url\(['"][^'"]+['"]\)[^}]*\}/, heroRule);
+  out = out.replace(/@media \(max-width: 600px\) \{ body \{ font-size: 16px; \} \.post-header \{ padding: 1\.8rem 0 1\.4rem; \} \}/g, "@media (max-width: 768px) { body { font-size: 16px; } .post-header { padding: 10rem 1.5rem 3rem; } }");
 
   if (!out.includes(".post-header-inner")) {
     out = out.replace(/<\/style>/, [
@@ -205,13 +238,33 @@ function ensureScript(html, scriptTag) {
   return html.replace(/<\/body>/, `${scriptTag}\n</body>`);
 }
 
-function insertSoftMention(html, target) {
+function fixAnchorText(html) {
+  return html
+    .replace(
+      /<a\s+href="https:\/\/vibrationofawesome\.com\/field-guide\/"[^>]*>Vibration of Awesome\/field-guide\/<\/a>/gi,
+      `<a href="${FIELD_GUIDE_URL}">Field Guide</a>`,
+    )
+    .replace(
+      /<a\s+href="https:\/\/vibrationofawesome\.com\/field-guide\/"[^>]*>vibrationofawesome\.com\/field-guide\/<\/a>/gi,
+      `<a href="${FIELD_GUIDE_URL}">Field Guide</a>`,
+    )
+    .replace(
+      /<a\s+href="https:\/\/vibrationofawesome\.com\/ai-engine\/"[^>]*>Vibration of Awesome\/ai-engine\/<\/a>/gi,
+      `<a href="${AI_ENGINE_URL}">AI Engine guide</a>`,
+    )
+    .replace(
+      /<a\s+href="https:\/\/vibrationofawesome\.com\/ai-engine\/"[^>]*>vibrationofawesome\.com\/ai-engine\/<\/a>/gi,
+      `<a href="${AI_ENGINE_URL}">AI Engine guide</a>`,
+    );
+}
+
+function insertSoftMention(html, target, slug) {
   const primaryUrl = target && target.primary === "ai-engine" ? AI_ENGINE_URL : FIELD_GUIDE_URL;
   const articleMatch = html.match(/<article class="post-body">([\s\S]*?)<\/article>/);
   const scope = articleMatch ? articleMatch[1] : html;
   if (scope.includes(primaryUrl)) return html;
 
-  const mention = buildSoftMention(target);
+  const mention = buildSoftMention(target, slug);
   if (/<hr>\s*<\/article>/.test(html)) {
     return html.replace(/<hr>\s*<\/article>/, `<hr>\n${mention}\n</article>`);
   }
@@ -227,7 +280,8 @@ export function normalizeBoomHtml(html, { slug = "", title = "", keyword = "", n
   out = removeLegacyVisuals(out);
   out = removeLegacyBottom(out);
   out = ensureBoomHeroHeader(out);
-  out = insertSoftMention(out, target);
+  out = fixAnchorText(out);
+  out = insertSoftMention(out, target, slug);
   const bottom = buildCurrentBottom(slug, target);
   if (out.includes("</article>")) {
     out = out.replace(/<\/article>/, `${bottom}\n      </article>`);

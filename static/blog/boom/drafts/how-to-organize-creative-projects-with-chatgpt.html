@@ -59,7 +59,7 @@
     .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
     .breadcrumb a:hover { color: var(--accent); }
     .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.4; }
-    .post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:11rem 4rem 3.75rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('https://apod.nasa.gov/apod/image/2311/Pillars_Webb_960.jpg') center/cover no-repeat; }
+    .post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:12rem 4rem 4rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('https://apod.nasa.gov/apod/image/2311/Pillars_Webb_960.jpg') center/cover no-repeat; }
     .lane-badge { display: inline-block; font-family: Space Grotesk, sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 0.2em 0.6em; margin-bottom: 1.2rem; }
     .post-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 1rem; }
     .post-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
@@ -89,7 +89,7 @@
     footer a.footer-logo:hover { color: #00e5ff; text-shadow: 0 0 24px rgba(0,229,255,0.24); border-bottom-color: rgba(0,229,255,0.75); }
     footer .footer-tagline { font-family: Georgia, serif; font-style: italic; font-size: 0.98rem; color: rgba(207,246,255,0.76); }
     .site-footer a:hover { text-decoration: underline; }
-    @media (max-width: 600px) { body { font-size: 16px; } .post-header { padding: 1.8rem 0 1.4rem; } }
+    @media (max-width: 768px) { body { font-size: 16px; } .post-header { padding: 10rem 1.5rem 3rem; } }
       .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; width:100%; }
     .post-header > *:not(.ev-art) { position:relative; z-index:1; }
     .ev-art { position:absolute; inset:0; z-index:0; opacity:0.35; pointer-events:none; }
@@ -98,6 +98,8 @@
 footer, .site-footer { text-align: center; width: 100%; }
 footer .footer-meta, .site-footer .footer-meta { display: block; width: 100%; margin-left: auto; margin-right: auto; text-align: center; }
 footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-right: auto; text-align: center; }
+footer .footer-meta a, .site-footer .footer-meta a { color: var(--accent, var(--cyan, var(--amber, #00e5ff))) !important; text-decoration: none; border-bottom: 1px solid rgba(0,229,255,0.28); }
+footer .footer-meta a:hover, .site-footer .footer-meta a:hover { color: var(--accent-light, var(--cyan, var(--amber, #7ef2ff))) !important; border-bottom-color: currentColor; }
 </style>
 </head>
 <body>
@@ -225,14 +227,14 @@ footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-rig
 <p>Want more on using AI to run your creative life without losing your mind or your voice? Come hang out at the Boom Frequency blog for more real talk on making it work.</p>
 ```
 <p>If you are building your own creative system around this, the <a href="https://vibrationofawesome.com/ai-engine/">AI Engine guide</a> goes deeper into using AI as a creative exoskeleton instead of another productivity costume.</p>
+<div data-ai-engine-cta data-blog-slug="how-to-organize-creative-projects-with-chatgpt"></div>
+      <script src="/js/ai-engine-cta.js"></script>
 <div style="height:1rem;"></div>
 <div class="voa-photo-rotator" data-folder="boombot" data-mode="signature"></div>
 <script src="/js/photo-rotator.js"></script>
 <div style="height:1rem;"></div>
-      <div data-ai-nudge data-blog-slug="how-to-organize-creative-projects-with-chatgpt"></div>
-      <script src="/js/ai-engine-nudge.js" defer></script>
-      <div data-ebook-cta data-placement="end-of-post" data-blog-slug="how-to-organize-creative-projects-with-chatgpt"></div>
-<script src="/js/ebook-cta.js?v=4d2b383"></script>
+      <div data-ai-engine-cta data-blog-slug="how-to-organize-creative-projects-with-chatgpt"></div>
+      <script src="/js/ai-engine-cta.js"></script>
         <div data-art-store-whisper data-blog-slug="how-to-organize-creative-projects-with-chatgpt"></div>
         <script src="/js/art-store-whisper.js"></script>
       </article>
