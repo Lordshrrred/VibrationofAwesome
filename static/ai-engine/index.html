@@ -1310,7 +1310,8 @@ body {
            headers: { 'Content-Type': 'application/json' },
            body: JSON.stringify({ fields: { email } })
          })
-      2. Add the MailerLite universal snippet before </body>:
+      2. Add the MailerLite universal snippet before <script src="/js/voa-nav.js" defer></script>
+</body>:
          <script src="https://assets.mailerlite.com/js/universal.js"></script>
          <script>ml('account', 'YOUR_ACCOUNT_ID');</script>
       3. Remove this comment block.
@@ -1577,5 +1578,6 @@ document.getElementById('capture-email')?.addEventListener('keydown', e => {
 <script src="https://assets.mailerlite.com/js/universal.js"></script>
 <script>ml('account', 'YOUR_MAILERLITE_ACCOUNT_ID');</script>
 -->
+<script src="/js/voa-nav.js" defer></script>
 </body>
 </html>

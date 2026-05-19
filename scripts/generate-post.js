@@ -479,7 +479,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   if (!isMatt) {
     H.push('  <script src="/js/earthstar-visual.js"><\/script>');
   }
-  H.push("</body>");
+  H.push('<script src="/js/voa-nav.js" defer></script>');H.push("</body>");
   H.push("</html>");
   return H.join("\n");
 }
