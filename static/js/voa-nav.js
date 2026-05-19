@@ -1,5 +1,5 @@
 /**
- * voa-nav.js — VOA unified AI Engine nav injector
+ * voa-nav.js ~ VOA unified AI Engine nav injector
  *
  * Ensures the "AI Engine" link appears in every nav bar across the site,
  * regardless of which nav pattern the page uses. Safe to load on every page:
@@ -100,7 +100,7 @@
     if (afterEl) {
       afterEl.parentNode.insertBefore(li, afterEl.nextSibling);
     } else {
-      // No field guide link — prepend
+      // No field guide link ~ prepend
       ul.insertBefore(li, ul.firstChild);
     }
   }
@@ -165,7 +165,7 @@
       return;
     }
 
-    // Strategy 7: first <nav> found — last resort
+    // Strategy 7: first <nav> found ~ last resort
     var firstNav = document.querySelector('nav');
     if (firstNav) { injectInline(firstNav); }
   }

@@ -15,8 +15,8 @@
  * the rest of syndication continues with a Pexels image instead.
  *
  * Model and style are configurable via env vars:
- *   IDEOGRAM_DEFAULT_MODEL  (default: V_2_TURBO — fast + affordable for automated runs)
- *   IDEOGRAM_DEFAULT_STYLE  (default: DESIGN — bold graphic, good for Pinterest)
+ *   IDEOGRAM_DEFAULT_MODEL  (default: V_2_TURBO ~ fast + affordable for automated runs)
+ *   IDEOGRAM_DEFAULT_STYLE  (default: DESIGN ~ bold graphic, good for Pinterest)
  *
  * Usage:
  *   import { generatePinterestImage } from "./generate-pinterest-image.js";
@@ -87,7 +87,7 @@ export async function generatePinterestImage(post, anthropic) {
       body:    JSON.stringify({
         image_request: {
           prompt,
-          num_images:          1,              // explicit — never generate more than one
+          num_images:          1,              // explicit ~ never generate more than one
           aspect_ratio:        "ASPECT_10_16", // ~1000×1600px, Pinterest portrait standard
           model,
           style_type:          style,

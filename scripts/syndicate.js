@@ -1215,14 +1215,14 @@ export async function syndicatePost(lane, slug, options = {}) {
     effectivePlatforms = [...BACKLINK_TIER, ...socialPlatforms];
   }
 
-  // ── 4b. Ideogram visual strategy — ship-time, cost-controlled ────────────
+  // ── 4b. Ideogram visual strategy ~ ship-time, cost-controlled ────────────
   //
   // Pre-flight check: determine which visual platforms will actually post
   // (considering policy routing + dedup state) BEFORE spending on Ideogram.
   // This prevents generating paid images for platforms that will be skipped.
   //
   // Shared asset: if BOTH Pinterest and Instagram will post, generate ONE square
-  // image and reuse it for both — saving one ~$0.02 Ideogram call per post.
+  // image and reuse it for both ~ saving one ~$0.02 Ideogram call per post.
   // When only Pinterest is active: portrait (10:16) for optimal Pinterest performance.
   // When only Instagram is active: square (1:1) via archetype system.
   // When neither is active: Ideogram is skipped entirely.
@@ -1276,14 +1276,14 @@ export async function syndicatePost(lane, slug, options = {}) {
     const needPinterest = willPostPinterest && !cachedPinterest;
 
     if (needInstagram && needPinterest) {
-      // SHARED ASSET: generate one square image for both — saves one Ideogram call
+      // SHARED ASSET: generate one square image for both ~ saves one Ideogram call
       console.log("  [visual] Strategy: SHARED (Pinterest + Instagram) → one square image");
       instagramVisual = await generateInstagramVisual({ ...post, lane }, anthropic, contentType);
       if (instagramVisual?.url) {
         pinterestImageUrl = instagramVisual.url;
         instagramImageUrl = instagramVisual.url;
         isSharedVisual    = true;
-        console.log(`  [visual] ✓ Shared asset: ${instagramVisual.archetypeLabel} — serving both platforms`);
+        console.log(`  [visual] ✓ Shared asset: ${instagramVisual.archetypeLabel} ~ serving both platforms`);
       }
     } else if (needInstagram) {
       console.log("  [visual] Strategy: INSTAGRAM ONLY → square archetype image");
@@ -1297,7 +1297,7 @@ export async function syndicatePost(lane, slug, options = {}) {
       console.log("  [visual] Strategy: NO VISUAL PLATFORMS ACTIVE → Ideogram skipped");
     }
 
-    // Apply cached visuals (retry dedup — reuse existing registry entries)
+    // Apply cached visuals (retry dedup ~ reuse existing registry entries)
     if (cachedInstagram) { instagramImageUrl = cachedInstagram.url; reusedInstagram = true; }
     if (cachedPinterest) { pinterestImageUrl = cachedPinterest.url; reusedPinterest = true; }
   }
@@ -1424,7 +1424,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   const pinterestBoardName = PINTEREST_BOARDS[pinterestBoardKey] || pinterestBoardKey;
   logPinterestBoard(pinterestBoardKey, `niche:${post.niche || "none"}, content-type:${contentType}`);
 
-  // ── Image registry — consolidated entries for visual platforms ────────────
+  // ── Image registry ~ consolidated entries for visual platforms ────────────
   // Pinterest entry (includes shared-asset metadata when both platforms share one image)
   if (pinterestImageUrl) {
     const pVisual = isSharedVisual ? instagramVisual : pinterestVisual;
@@ -1453,7 +1453,7 @@ export async function syndicatePost(lane, slug, options = {}) {
     });
   }
 
-  // Instagram-only entry (skipped when asset is shared — already recorded above)
+  // Instagram-only entry (skipped when asset is shared ~ already recorded above)
   if (!isSharedVisual && instagramImageUrl) {
     const reusedByVoaTextSocial = Boolean(socialVisualReuse.url && socialVisualReuse.url === instagramImageUrl);
     recordImageUsage({

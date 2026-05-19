@@ -1,5 +1,5 @@
 /**
- * threads-formats.js — VOA Threads native variety system
+ * threads-formats.js ~ VOA Threads native variety system
  *
  * Defines 8 structural archetypes for VOA Threads content. Each format has
  * distinct cadence, section count, opening style, and closing approach.
@@ -38,8 +38,8 @@ export const THREADS_FORMATS = [
     openerStyle:    "grounded-observation",
     closerStyle:    "quiet-wisdom",
     description:    "Layered, thoughtful, emotionally intelligent. The current strongest baseline.",
-    structuralNote: "3-4 sections. Each section deepens the thought rather than pivoting. Dense but not heavy — the kind of thing someone reads twice.",
-    instruction: `Write a reflective mini-essay thread. Use 3-4 numbered sections (1/N through N/N, where N matches the actual count). Target 650-950 chars total. Opens with a grounded observation from lived experience. Each section deepens the central thought — no pivoting to a new idea. Section lengths can vary; let the thought breathe. Closes with quiet earned insight, not a summary, not a CTA. Dense but not heavy.`,
+    structuralNote: "3-4 sections. Each section deepens the thought rather than pivoting. Dense but not heavy ~ the kind of thing someone reads twice.",
+    instruction: `Write a reflective mini-essay thread. Use 3-4 numbered sections (1/N through N/N, where N matches the actual count). Target 650-950 chars total. Opens with a grounded observation from lived experience. Each section deepens the central thought ~ no pivoting to a new idea. Section lengths can vary; let the thought breathe. Closes with quiet earned insight, not a summary, not a CTA. Dense but not heavy.`,
   },
 
   {
@@ -52,8 +52,8 @@ export const THREADS_FORMATS = [
     openerStyle:    "conceptual-paradox",
     closerStyle:    "open-question",
     description:    "Conceptual, slow-paced, idea-driven. May end without resolution.",
-    structuralNote: "2-3 sections. Opens with a conceptual statement or a useful paradox. Unhurried — ideas accumulate. Can end with an unresolved question rather than a clean answer.",
-    instruction: `Write a philosophical observation thread. Use 2-3 numbered sections (1/N through N/N). Target 550-850 chars total. Opens with a conceptual statement or a productive paradox that creates thinking space. Pacing is unhurried — each section adds a layer of meaning rather than rushing toward conclusion. May close with an unresolved question rather than a resolution. That incompleteness is intentional.`,
+    structuralNote: "2-3 sections. Opens with a conceptual statement or a useful paradox. Unhurried ~ ideas accumulate. Can end with an unresolved question rather than a clean answer.",
+    instruction: `Write a philosophical observation thread. Use 2-3 numbered sections (1/N through N/N). Target 550-850 chars total. Opens with a conceptual statement or a productive paradox that creates thinking space. Pacing is unhurried ~ each section adds a layer of meaning rather than rushing toward conclusion. May close with an unresolved question rather than a resolution. That incompleteness is intentional.`,
   },
 
   {
@@ -67,7 +67,7 @@ export const THREADS_FORMATS = [
     closerStyle:    "invitation",
     description:    "Artistic, identity-oriented, emotionally honest. For creator/AI/music content.",
     structuralNote: "2-3 sections. Opens with a creative truth or identity confession. Language can be slightly lyrical but stays grounded. Closes with an invitation or a quiet affirmation of the creative path.",
-    instruction: `Write a creative identity reflection thread. Use 2-3 numbered sections (1/N through N/N). Target 550-800 chars total. Centered on creative identity, the creator experience, or what it means to build something real. Opens with a personal truth or creative confession. Language can be slightly lyrical but stays grounded and specific. Closes with something that feels like an invitation — a door held open rather than a conclusion shut.`,
+    instruction: `Write a creative identity reflection thread. Use 2-3 numbered sections (1/N through N/N). Target 550-800 chars total. Centered on creative identity, the creator experience, or what it means to build something real. Opens with a personal truth or creative confession. Language can be slightly lyrical but stays grounded and specific. Closes with something that feels like an invitation ~ a door held open rather than a conclusion shut.`,
   },
 
   {
@@ -80,8 +80,8 @@ export const THREADS_FORMATS = [
     openerStyle:    "contradiction",
     closerStyle:    "earned-realization",
     description:    "Opens with contradiction or honest tension. Unfolds into an emotionally satisfying realization.",
-    structuralNote: "3-4 sections. Opens with a contradiction or an impossible-feeling statement. Middle sections sit in the tension without rushing to resolve. Final section delivers a reframe that feels earned — satisfying without being tidy.",
-    instruction: `Write a tension-revelation thread. Use 3-4 numbered sections (1/N through N/N). Target 650-950 chars total. Opens with a contradiction, impossible-feeling statement, or honest tension. The middle sections live in the tension without rushing to resolve it. The final section delivers a realization or reframe that feels earned — emotionally satisfying without being tidy or preachy. The resolution should surprise slightly.`,
+    structuralNote: "3-4 sections. Opens with a contradiction or an impossible-feeling statement. Middle sections sit in the tension without rushing to resolve. Final section delivers a reframe that feels earned ~ satisfying without being tidy.",
+    instruction: `Write a tension-revelation thread. Use 3-4 numbered sections (1/N through N/N). Target 650-950 chars total. Opens with a contradiction, impossible-feeling statement, or honest tension. The middle sections live in the tension without rushing to resolve it. The final section delivers a realization or reframe that feels earned ~ emotionally satisfying without being tidy or preachy. The resolution should surprise slightly.`,
   },
 
   {
@@ -94,8 +94,8 @@ export const THREADS_FORMATS = [
     openerStyle:    "mid-conversation",
     closerStyle:    "natural-landing",
     description:    "Natural spoken cadence. Sounds like a real person thinking out loud.",
-    structuralNote: "2-4 sections (shorter sections fine — not every section needs equal weight). Sounds like mid-conversation. Looser structure. Can end where the thought naturally lands, not where it's polished to end.",
-    instruction: `Write a conversational reflection thread. Use 2-4 sections (shorter sections are fine; not every section needs to carry equal weight). Target 500-850 chars total. Sounds like a real person thinking out loud mid-conversation. Less formal structure — let sections be uneven in length if that's where the thought goes. Can end where the thought naturally lands rather than where it's polished to land. The looseness is part of it.`,
+    structuralNote: "2-4 sections (shorter sections fine ~ not every section needs equal weight). Sounds like mid-conversation. Looser structure. Can end where the thought naturally lands, not where it's polished to end.",
+    instruction: `Write a conversational reflection thread. Use 2-4 sections (shorter sections are fine; not every section needs to carry equal weight). Target 500-850 chars total. Sounds like a real person thinking out loud mid-conversation. Less formal structure ~ let sections be uneven in length if that's where the thought goes. Can end where the thought naturally lands rather than where it's polished to land. The looseness is part of it.`,
   },
 
   {
@@ -108,8 +108,8 @@ export const THREADS_FORMATS = [
     openerStyle:    "direct",
     closerStyle:    "resonant",
     description:    "Shorter but meaningfully complete. Not a shallow quote post.",
-    structuralNote: "1-2 sections only. Dense meaning in compact form — not a quote card, not a teaser. If 2 sections, the second deepens the first. May omit URL if 1 section and the URL feels forced.",
-    instruction: `Write a short native insight. Use 1-2 sections only (use "1/1" for a single section or "1/2" and "2/2" for two). Target 300-550 chars total. Not a shallow quote post — a complete, meaningful thought that doesn't need more space. Dense meaning in compact form. The kind of thing that makes someone stop scrolling without trying to. If 2 sections, the second deepens the first. If 1 section, it stands fully on its own. May omit the URL if a single section and adding it would feel forced.`,
+    structuralNote: "1-2 sections only. Dense meaning in compact form ~ not a quote card, not a teaser. If 2 sections, the second deepens the first. May omit URL if 1 section and the URL feels forced.",
+    instruction: `Write a short native insight. Use 1-2 sections only (use "1/1" for a single section or "1/2" and "2/2" for two). Target 300-550 chars total. Not a shallow quote post ~ a complete, meaningful thought that doesn't need more space. Dense meaning in compact form. The kind of thing that makes someone stop scrolling without trying to. If 2 sections, the second deepens the first. If 1 section, it stands fully on its own. May omit the URL if a single section and adding it would feel forced.`,
   },
 
   {
@@ -122,8 +122,8 @@ export const THREADS_FORMATS = [
     openerStyle:    "strong-declarative",
     closerStyle:    "worldview-shift",
     description:    "Strong worldview energy. Decisive, emotionally charged, still human.",
-    structuralNote: "3-4 sections. Opens with a declarative statement reflecting a genuine belief. Not aggressive — decisive. The voice of someone who has thought this through and arrived somewhere real. Builds across sections. Closes with something that shifts how the reader sees the topic.",
-    instruction: `Write a manifesto / conviction style thread. Use 3-4 numbered sections (1/N through N/N). Target 650-950 chars total. Opens with a strong declarative statement reflecting a genuine belief. The tone is decisive and emotionally charged — not aggressive, but the voice of someone who has actually thought this through. Pacing builds across sections. Closes with something that shifts how the reader sees the topic, not just a summary of what was said.`,
+    structuralNote: "3-4 sections. Opens with a declarative statement reflecting a genuine belief. Not aggressive ~ decisive. The voice of someone who has thought this through and arrived somewhere real. Builds across sections. Closes with something that shifts how the reader sees the topic.",
+    instruction: `Write a manifesto / conviction style thread. Use 3-4 numbered sections (1/N through N/N). Target 650-950 chars total. Opens with a strong declarative statement reflecting a genuine belief. The tone is decisive and emotionally charged ~ not aggressive, but the voice of someone who has actually thought this through. Pacing builds across sections. Closes with something that shifts how the reader sees the topic, not just a summary of what was said.`,
   },
 
   {
@@ -137,7 +137,7 @@ export const THREADS_FORMATS = [
     closerStyle:    "complete",
     description:    "Not every concept requires a numbered thread. One cohesive post with depth.",
     structuralNote: "One post, no 1/N numbering. Must feel complete rather than truncated. Any tone. Up to 450 chars including URL.",
-    instruction: `Write a single native Threads post. NOT a numbered thread — no 1/N formatting at all. One cohesive piece of writing that stands fully on its own. Up to 450 characters total including the URL. Any tone, any structure. Must feel complete rather than like a truncated thread or a caption. Include the URL naturally in the text — not as a trailing footnote.`,
+    instruction: `Write a single native Threads post. NOT a numbered thread ~ no 1/N formatting at all. One cohesive piece of writing that stands fully on its own. Up to 450 characters total including the URL. Any tone, any structure. Must feel complete rather than like a truncated thread or a caption. Include the URL naturally in the text ~ not as a trailing footnote.`,
   },
 ];
 
@@ -226,7 +226,7 @@ export function analyzeFormatMonotony(recentFormats = []) {
   if (recent.length < 2) {
     return {
       warnings,
-      summary: "Insufficient history — fewer than 2 Threads posts recorded.",
+      summary: "Insufficient history ~ fewer than 2 Threads posts recorded.",
       recentSnapshot: buildSnapshot(recent),
     };
   }
@@ -276,14 +276,14 @@ export function analyzeFormatMonotony(recentFormats = []) {
       return fmt?.mode || "thread";
     });
     if (!modes.includes("single")) {
-      warnings.push(`MODE MONOTONY: no "single-native-post" in last 6 generations — consider mixing in standalone posts`);
+      warnings.push(`MODE MONOTONY: no "single-native-post" in last 6 generations ~ consider mixing in standalone posts`);
     }
   }
 
   return {
     warnings,
     summary: warnings.length === 0
-      ? "Good variety — no monotony patterns detected."
+      ? "Good variety ~ no monotony patterns detected."
       : `${warnings.length} monotony pattern(s) detected.`,
     recentSnapshot: buildSnapshot(recent),
   };

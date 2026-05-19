@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * preview-instagram.js — VOA Instagram visual ecosystem audit + preview
+ * preview-instagram.js ~ VOA Instagram visual ecosystem audit + preview
  *
- * Simulates and audits the VOA Instagram feed — no API calls required for
+ * Simulates and audits the VOA Instagram feed ~ no API calls required for
  * the audit modes. Shows archetype selection, visual variety analysis, palette
  * distribution, emotional tone cadence, and content-type mapping.
  *
@@ -107,11 +107,11 @@ function loadPost(slug) {
 
 function showArchetypeLibrary() {
   console.log("\n" + b(cy("VOA INSTAGRAM VISUAL ARCHETYPE LIBRARY")) + "\n" + hr("═"));
-  console.log(dim(`  A living consciousness magazine — not a quote-card machine.\n`));
+  console.log(dim(`  A living consciousness magazine ~ not a quote-card machine.\n`));
 
   for (const arch of INSTAGRAM_ARCHETYPES) {
-    const paletteGroup = Object.entries(PALETTE_GROUPS).find(([, ids]) => ids.includes(arch.id))?.[0] || "—";
-    const emoGroup     = Object.entries(EMOTIONAL_CLUSTERS).find(([, ids]) => ids.includes(arch.id))?.[0] || "—";
+    const paletteGroup = Object.entries(PALETTE_GROUPS).find(([, ids]) => ids.includes(arch.id))?.[0] || "~";
+    const emoGroup     = Object.entries(EMOTIONAL_CLUSTERS).find(([, ids]) => ids.includes(arch.id))?.[0] || "~";
     console.log(`\n${b(arch.label)} ${dim(`[${arch.id}]`)}`);
     console.log(`  Style: ${cy(arch.ideogramStyle)}   Palette: ${yw(arch.palette)}   Tone: ${mg(arch.emotionalTone)}`);
     console.log(`  Palette group: ${dim(paletteGroup)}   Emotional cluster: ${dim(emoGroup)}`);
@@ -141,7 +141,7 @@ function showHistory() {
     const e   = recent[i];
     const arch = getInstagramArchetype(e.archetype);
     const ts  = e.timestamp ? new Date(e.timestamp).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "?";
-    console.log(`  ${dim(String(i + 1).padStart(2))}. ${b(arch?.label || e.archetype)} ${dim(`— ${e.palette} / ${e.emotionalTone}`)}   ${dim(ts)} ${dim(e.slug ? `— ${e.slug.slice(0, 40)}` : "")}`);
+    console.log(`  ${dim(String(i + 1).padStart(2))}. ${b(arch?.label || e.archetype)} ${dim(`~ ${e.palette} / ${e.emotionalTone}`)}   ${dim(ts)} ${dim(e.slug ? `~ ${e.slug.slice(0, 40)}` : "")}`);
   }
 
   const { warnings, summary, diversity } = analyzeInstagramMonotony(recent);
@@ -193,14 +193,14 @@ function simulateFeed(posts, startingHistory = []) {
 function showFeedAudit(count = 30) {
   const posts = loadPosts(count);
   if (posts.length === 0) {
-    console.log(rd("No posts found — run the drip publish first to build boom-posts.json."));
+    console.log(rd("No posts found ~ run the drip publish first to build boom-posts.json."));
     return;
   }
 
   const liveHistory = getRecentInstagramArchetypes(15);
   const feed        = simulateFeed(posts, liveHistory);
 
-  console.log("\n" + b(cy(`VOA INSTAGRAM FEED AUDIT — ${posts.length} POSTS`)) + "\n" + hr("═"));
+  console.log("\n" + b(cy(`VOA INSTAGRAM FEED AUDIT ~ ${posts.length} POSTS`)) + "\n" + hr("═"));
   console.log(dim("  Simulation of archetype selection for recent and upcoming posts.\n"));
 
   // Per-post breakdown
@@ -263,12 +263,12 @@ function showFeedAudit(count = 30) {
   }
 
   // ── Cadence health ──────────────────────────────────────────────────────────
-  console.log(b("\n  CADENCE HEALTH — PALETTE SEQUENCE\n"));
+  console.log(b("\n  CADENCE HEALTH ~ PALETTE SEQUENCE\n"));
   const paletteSeq = feed.slice(0, 12).map(f => f.paletteGroup.slice(0, 12).padEnd(14));
   console.log("  " + paletteSeq.join(" "));
 
   const emoSeq = feed.slice(0, 12).map(f => f.emoCluster.slice(0, 12).padEnd(14));
-  console.log(b("\n  CADENCE HEALTH — EMOTIONAL SEQUENCE\n"));
+  console.log(b("\n  CADENCE HEALTH ~ EMOTIONAL SEQUENCE\n"));
   console.log("  " + emoSeq.join(" "));
 
   // ── Monotony warnings ──────────────────────────────────────────────────────
@@ -286,8 +286,8 @@ function showFeedAudit(count = 30) {
   const coveragePct     = Math.round((uniqueArchCount / INSTAGRAM_ARCHETYPES.length) * 100);
   const coverageHealth  = coveragePct >= 75 ? gr("Excellent") : coveragePct >= 50 ? yw("Good") : rd("Needs variety");
 
-  console.log(b(`\n  SUMMARY — ${total} POSTS\n`));
-  console.log(`  Archetype coverage:    ${uniqueArchCount}/${INSTAGRAM_ARCHETYPES.length} used (${coveragePct}%) — ${coverageHealth}`);
+  console.log(b(`\n  SUMMARY ~ ${total} POSTS\n`));
+  console.log(`  Archetype coverage:    ${uniqueArchCount}/${INSTAGRAM_ARCHETYPES.length} used (${coveragePct}%) ~ ${coverageHealth}`);
   console.log(`  Palette variety:       ${Object.keys(paletteCounts).length}/4 groups`);
   console.log(`  Emotional variety:     ${Object.keys(emoCounts).length}/4 clusters`);
   console.log(`  Monotony warnings:     ${warnings.length === 0 ? gr("none") : yw(warnings.length)}`);
@@ -358,7 +358,7 @@ async function main() {
 
   if (argv.help) {
     console.log(`
-${b("preview-instagram.js")} — VOA Instagram visual ecosystem audit
+${b("preview-instagram.js")} ~ VOA Instagram visual ecosystem audit
 
 ${b("Modes (no API calls):")}
   --archetypes           List all 8 visual archetypes with descriptions

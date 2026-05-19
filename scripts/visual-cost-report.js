@@ -33,7 +33,7 @@ function main() {
   const cutoff = Date.now() - days * 86_400_000;
 
   if (!fs.existsSync(REGISTRY)) {
-    console.log("No image-registry.json found — nothing to report.");
+    console.log("No image-registry.json found ~ nothing to report.");
     return;
   }
 

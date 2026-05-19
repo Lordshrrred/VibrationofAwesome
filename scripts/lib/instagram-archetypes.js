@@ -1,5 +1,5 @@
 /**
- * instagram-archetypes.js — VOA Instagram visual ecosystem
+ * instagram-archetypes.js ~ VOA Instagram visual ecosystem
  *
  * Defines 8 distinct visual archetypes for VOA Instagram content.
  * Each archetype has its own palette, layout, Ideogram style, and emotional DNA.
@@ -44,7 +44,7 @@ export const INSTAGRAM_ARCHETYPES = [
     contentTypeAffinity: ["earthstar", "philosophy", "nervous-system"],
     description:         "Full painterly scene. Cinematic lighting. Liminal space. Minimal or no text. Emotionally evocative and wordless.",
     visualDNA:           "A threshold moment. Human in a vast environment. Bioluminescent quality. Deep time aesthetic. The moment before something shifts. Ancient textures: water, stone, deep forest, coastline.",
-    promptGuidance:      "Prioritize: liminal atmosphere, painterly quality, cinematic lighting from within the subject, solitary but not lonely. Minimal text overlay — let the image speak. No stock photo feeling.",
+    promptGuidance:      "Prioritize: liminal atmosphere, painterly quality, cinematic lighting from within the subject, solitary but not lonely. Minimal text overlay ~ let the image speak. No stock photo feeling.",
     avoidWith:           ["nervous-system-atmospheric"], // both painterly, give space between
   },
   {
@@ -237,7 +237,7 @@ export function analyzeInstagramMonotony(recentArchetypes = []) {
   if (recent.length < 2) {
     return {
       warnings,
-      summary:   "Insufficient history — fewer than 2 Instagram posts recorded.",
+      summary:   "Insufficient history ~ fewer than 2 Instagram posts recorded.",
       diversity: buildDiversityReport(recent),
     };
   }
@@ -276,14 +276,14 @@ export function analyzeInstagramMonotony(recentArchetypes = []) {
   if (recent.length >= 2) {
     const currentArch = getInstagramArchetype(recent[0]?.archetype);
     if (currentArch?.avoidWith?.includes(recent[1]?.archetype)) {
-      warnings.push(`PAIRING VIOLATION: "${recent[0].archetype}" immediately followed "${recent[1].archetype}" — these pair poorly`);
+      warnings.push(`PAIRING VIOLATION: "${recent[0].archetype}" immediately followed "${recent[1].archetype}" ~ these pair poorly`);
     }
   }
 
   return {
     warnings,
     summary:   warnings.length === 0
-      ? "Good variety — no monotony patterns detected."
+      ? "Good variety ~ no monotony patterns detected."
       : `${warnings.length} monotony pattern(s) detected.`,
     diversity: buildDiversityReport(recent),
   };

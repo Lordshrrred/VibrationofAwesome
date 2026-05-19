@@ -345,7 +345,7 @@ async function callIdeogram(visualType, promptData) {
     body: JSON.stringify({
       image_request: {
         prompt,
-        num_images:           1,              // explicit — never generate more than one
+        num_images:           1,              // explicit ~ never generate more than one
         aspect_ratio:         params.aspect,
         model:                params.model,
         style_type:           params.style,

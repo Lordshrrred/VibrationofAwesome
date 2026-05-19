@@ -4,7 +4,7 @@
  * Generates Instagram-optimized visuals for VOA using the Ideogram API.
  * Each post receives a deliberately chosen archetype (one of 8 visual identities)
  * selected using anti-repetition logic to ensure the feed reads as a living,
- * varied philosophical visual ecosystem — not a uniform repost machine.
+ * varied philosophical visual ecosystem ~ not a uniform repost machine.
  *
  * Archetype selection: recency-penalized rotation from instagram-archetypes.js
  * Anti-monotony: palette group, emotional cluster, and avoidWith rules
@@ -12,7 +12,7 @@
  *   Caller falls back to pinterestImageUrl (Pexels/Pinterest Ideogram).
  *
  * Visual format:
- *   - ASPECT_1_1 (1080×1080px square — Instagram standard)
+ *   - ASPECT_1_1 (1080×1080px square ~ Instagram standard)
  *   - V_2_TURBO model by default (~$0.02/image)
  *   - Archetype-specific style (DESIGN, REALISTIC, or AUTO)
  *   - Magic prompt ON (Ideogram enhances the base prompt)
@@ -31,7 +31,7 @@ import { getRecentInstagramArchetypes, recordInstagramArchetype } from "./lib/ge
 
 /**
  * Ask Claude Haiku to build an archetype-specific Ideogram prompt for Instagram.
- * Haiku is used for speed + cost — this is a brief creative task.
+ * Haiku is used for speed + cost ~ this is a brief creative task.
  */
 async function buildInstagramPrompt(post, archetype, anthropic) {
   const tags    = (post.tags || []).slice(0, 5).join(", ");
@@ -58,7 +58,7 @@ RULES:
 - Emotionally resonant and visually premium
 - No stock photo energy. No motivational poster energy. No hustle culture visuals.
 - No faces or identifiable people (evergreen reach)
-- Square composition (1:1 — Instagram standard)
+- Square composition (1:1 ~ Instagram standard)
 - The tone of someone who has been through real things and emerged with unusual clarity
 
 Respond with ONLY the Ideogram prompt text. No explanation. No preamble.`,
@@ -108,7 +108,7 @@ export async function generateInstagramVisual(post, anthropic, contentType = nul
       body:    JSON.stringify({
         image_request: {
           prompt,
-          num_images:          1,                       // explicit — never generate more than one
+          num_images:          1,                       // explicit ~ never generate more than one
           aspect_ratio:        "ASPECT_1_1",            // Instagram square 1080×1080px
           model,                                        // from IDEOGRAM_DEFAULT_MODEL env var
           style_type:          archetype.ideogramStyle, // varies by archetype for visual variety

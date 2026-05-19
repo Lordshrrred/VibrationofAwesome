@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * preview-threads.js — VOA Threads variety system preview tool
+ * preview-threads.js ~ VOA Threads variety system preview tool
  *
  * Shows format selection, cadence profiles, density scores, and monotony analysis
  * for VOA Threads posts. Generates real samples from queued or published posts.
@@ -95,7 +95,7 @@ function showHistory() {
     const fmt = getThreadsFormat(e.format);
     const label = fmt ? fmt.label : e.format;
     const ts = e.timestamp ? new Date(e.timestamp).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "?";
-    console.log(`  ${dim(String(i + 1).padStart(2, " "))}. ${b(label)} ${dim(`(${e.cadenceProfile} / ${e.density})`)}   ${dim(ts)} — ${dim(e.slug || "")}`);
+    console.log(`  ${dim(String(i + 1).padStart(2, " "))}. ${b(label)} ${dim(`(${e.cadenceProfile} / ${e.density})`)}   ${dim(ts)} ~ ${dim(e.slug || "")}`);
   }
 
   const { warnings, summary, recentSnapshot } = analyzeFormatMonotony(recent);
@@ -217,7 +217,7 @@ async function main() {
 
   if (argv.help) {
     console.log(`
-${b("preview-threads.js")} — VOA Threads variety system preview
+${b("preview-threads.js")} ~ VOA Threads variety system preview
 
 ${b("Usage:")}
   node scripts/preview-threads.js                          Show format library + recent history
@@ -271,7 +271,7 @@ ${THREADS_FORMATS.map(f => `  ${f.id.padEnd(30)} ${dim(f.label)}`).join("\n")}
 
   // ── Generation modes (require API key) ────────────────────────────────────
   if (!process.env.ANTHROPIC_API_KEY) {
-    console.error(rd("Error: ANTHROPIC_API_KEY not set — required for generation modes."));
+    console.error(rd("Error: ANTHROPIC_API_KEY not set ~ required for generation modes."));
     process.exit(1);
   }
 
