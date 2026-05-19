@@ -18,17 +18,13 @@ const TARGETS = [
   "static",
 ];
 
+// Only check written copy ~ HTML, Markdown, plain text.
+// Code files (.js, .py, .toml, .yaml, .json, etc.) are exempt:
+// em dashes in code comments and doc strings are fine.
 const TEXT_EXTENSIONS = new Set([
-  ".csv",
   ".html",
-  ".js",
-  ".json",
   ".md",
-  ".py",
-  ".toml",
   ".txt",
-  ".yaml",
-  ".yml",
 ]);
 
 const offenders = [];
