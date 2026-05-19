@@ -18,6 +18,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import 'dotenv/config';
+import { AI_ENGINE_URL, FIELD_GUIDE_URL, normalizeBoomHtml } from './lib/boom-format.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -158,8 +159,9 @@ HARD RULES:
 ~ First line must be exactly:
   META: [compelling meta description under 160 chars]
 ~ Use the target keyword naturally in the first paragraph, at least 2 H2s, and the conclusion
-~ Mention vibrationofawesome.com once naturally as a related resource ~ make it feel organic
-~ End with a genuine CTA to read more at the blog
+~ Mention the AI Engine guide naturally 1-2 times as the primary deeper resource: ${AI_ENGINE_URL}
+~ Mention the VOA Field Guide only if it genuinely fits as a softer secondary resource: ${FIELD_GUIDE_URL}
+~ End with a genuine CTA to go deeper with the AI Engine guide
 ~ 900-1200 words
 ~ Return clean HTML body content only ~ no html/head/body wrapper tags
 ~ No reference to AI Advantage, any course, any trainer, any program ~ ever`,
@@ -254,11 +256,6 @@ function buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg }) {
     .post-body hr { border: none; border-top: 1px solid var(--border); margin: 2.5em 0; }
     .post-body strong { color: var(--accent-light); font-weight: 600; }
     .post-body em { font-style: italic; }
-    .post-cta { background: var(--surface2); border: 1px solid var(--accent-dark); border-radius: 8px; padding: 2rem; margin: 2rem 0; text-align: center; }
-    .post-cta h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 0.6rem; }
-    .post-cta p { color: var(--text-muted); font-size: 0.95rem; margin: 0 0 1.2rem; }
-    .post-cta a { display: inline-block; background: var(--accent); color: #020a0a !important; font-family: Space Grotesk, sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.7em 1.6em; border-radius: 4px; text-decoration: none !important; border-bottom: none !important; transition: opacity 0.2s, transform 0.15s; }
-    .post-cta a:hover { opacity: 0.85; transform: translateY(-1px); }
     .site-footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 0.82rem; color: var(--text-muted); }
     .site-footer a { color: var(--accent); text-decoration: none; }
     footer p { margin: 0; }
@@ -301,11 +298,6 @@ function buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg }) {
       </header>
       <article class="post-body">
         ${body}
-        <div class="post-cta">
-          <h3>Explore More at Vibration of Awesome</h3>
-          <p>Music, AI tools, digital creation, and the weird beautiful intersection of all three.</p>
-          <a href="https://vibrationofawesome.com/blog/boom/">Read More on Boom Frequency</a>
-        </div>
       </article>
     </div>
   </main>
@@ -458,7 +450,10 @@ async function main() {
         const title = keyword.replace(/\b\w/g, c => c.toUpperCase());
 
         // Build and save HTML
-        const html = buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg });
+        const html = normalizeBoomHtml(
+          buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg }),
+          { slug, title, keyword, niche: 'ai-creator-tools' }
+        );
         const draftPath = path.join(DRAFTS_DIR, `${slug}.html`);
         fs.writeFileSync(draftPath, html, 'utf8');
         console.log(`[${idx}/${total}] ✓ Saved: static/blog/boom/drafts/${slug}.html`);

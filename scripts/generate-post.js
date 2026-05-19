@@ -21,6 +21,7 @@ import { findNiche, getDefaultNiche, getNichePromptContext, EARTHSTAR_NICHES } f
 import { getNextCTA, detectContentType } from "./lib/policy.js";
 import { getDifferentiationContext, getClusterContext, recordGeneration } from "./lib/generation-memory.js";
 import { slugify, firstWords } from "./lib/utils.js";
+import { buildBoomCtaInstruction, getBoomConversionTarget, normalizeBoomHtml } from "./lib/boom-format.js";
 
 dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
@@ -306,17 +307,19 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .post-body pre { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 1.2em; overflow-x: auto; margin: 1.5em 0; }");
   H.push("    .post-body pre code { background: none; padding: 0; color: var(--text); }");
   H.push("    .post-body hr { border: none; border-top: 1px solid var(--border); margin: 2.5em 0; }");
-  H.push("    .nasa-img-wrap { margin: 2.8rem -1rem; overflow: hidden; border-radius: 3px; }");
-  H.push("    .nasa-img-wrap img { display: block; width: 100%; height: 300px; object-fit: cover; filter: brightness(0.82) saturate(1.15); box-shadow: 0 0 50px rgba(" + accentR + "," + accentG + "," + accentB + ",0.18), 0 6px 30px rgba(0,0,0,0.6); transition: filter 0.4s; }");
-  H.push("    .nasa-img-wrap img:hover { filter: brightness(0.92) saturate(1.2); }");
-  H.push("    @media (max-width: 600px) { .nasa-img-wrap { margin: 2rem -0.5rem; } .nasa-img-wrap img { height: 200px; } }");
   H.push("    .post-body strong { color: var(--accent-light); font-weight: 600; }");
   H.push("    .post-body em { font-style: italic; }");
-  H.push("    .post-cta { background: var(--surface2); border: 1px solid var(--accent-dark); border-radius: 8px; padding: 2rem; margin: 2rem 0; text-align: center; }");
-  H.push("    .post-cta h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 0.6rem; }");
-  H.push("    .post-cta p { color: var(--text-muted); font-size: 0.95rem; margin: 0 0 1.2rem; }");
-  H.push("    .post-cta a { display: inline-block; background: var(--accent); color: #020a0a !important; font-family: Space Grotesk, sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.7em 1.6em; border-radius: 4px; text-decoration: none !important; border-bottom: none !important; transition: opacity 0.2s, transform 0.15s; }");
-  H.push("    .post-cta a:hover { opacity: 0.85; transform: translateY(-1px); }");
+  if (isMatt) {
+    H.push("    .nasa-img-wrap { margin: 2.8rem -1rem; overflow: hidden; border-radius: 3px; }");
+    H.push("    .nasa-img-wrap img { display: block; width: 100%; height: 300px; object-fit: cover; filter: brightness(0.82) saturate(1.15); box-shadow: 0 0 50px rgba(" + accentR + "," + accentG + "," + accentB + ",0.18), 0 6px 30px rgba(0,0,0,0.6); transition: filter 0.4s; }");
+    H.push("    .nasa-img-wrap img:hover { filter: brightness(0.92) saturate(1.2); }");
+    H.push("    @media (max-width: 600px) { .nasa-img-wrap { margin: 2rem -0.5rem; } .nasa-img-wrap img { height: 200px; } }");
+    H.push("    .post-cta { background: var(--surface2); border: 1px solid var(--accent-dark); border-radius: 8px; padding: 2rem; margin: 2rem 0; text-align: center; }");
+    H.push("    .post-cta h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 0.6rem; }");
+    H.push("    .post-cta p { color: var(--text-muted); font-size: 0.95rem; margin: 0 0 1.2rem; }");
+    H.push("    .post-cta a { display: inline-block; background: var(--accent); color: #020a0a !important; font-family: Space Grotesk, sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.7em 1.6em; border-radius: 4px; text-decoration: none !important; border-bottom: none !important; transition: opacity 0.2s, transform 0.15s; }");
+    H.push("    .post-cta a:hover { opacity: 0.85; transform: translateY(-1px); }");
+  }
   H.push("    .header-nav { display: flex; align-items: center; gap: 0.2rem; }");
   H.push("    .header-nav a { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(232,244,240,0.52); text-decoration: none; padding: 0.3rem 0.55rem; border-radius: 4px; transition: color 0.2s, background 0.2s; white-space: nowrap; }");
   H.push("    .header-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }");
@@ -418,13 +421,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
     H.push('        <script src="/js/photo-rotator.js"><\/script>');
     H.push('        <div style="height:1rem;"></div>');
     // AI Engine nudge for creator/AI content type posts
-    const isAIContent = ctaContentType === 'creator' ||
-      (argv.keyword || '').toLowerCase().includes('ai') ||
-      (argv.keyword || '').toLowerCase().includes('chatgpt') ||
-      (argv.keyword || '').toLowerCase().includes('claude') ||
-      (argv.keyword || '').toLowerCase().includes('automation') ||
-      (ctaNicheSlug || '').includes('ai') ||
-      (ctaNicheSlug || '').includes('creator');
+    const isAIContent = cta && cta.primary === 'ai-engine';
     if (isAIContent) {
       H.push('        <div data-ai-nudge data-blog-slug="' + slug + '"></div>');
       H.push('        <script src="/js/ai-engine-nudge.js" defer><\/script>');
@@ -661,8 +658,12 @@ async function main() {
   // Determine content-type-aware CTA for this post
   const ctaNicheSlug   = selectedNiche ? selectedNiche.slug : undefined;
   const ctaContentType = detectContentType({ lane, niche: ctaNicheSlug, tags: ctaNicheSlug ? [ctaNicheSlug] : [] });
-  const selectedCTA    = getNextCTA(lane, ctaContentType);
-  const ctaInstruction = `\n---\nCTA: End the post with a single benefit-forward call-to-action that feels natural to the content. Link text: "${selectedCTA.text}". URL: ${selectedCTA.url}. Do not add author bio or generic sign-off.\n---`;
+  const selectedCTA    = lane === "boom"
+    ? getBoomConversionTarget({ title: argv.title, keyword: argv.keyword, niche: ctaNicheSlug })
+    : getNextCTA(lane, ctaContentType);
+  const ctaInstruction = lane === "boom"
+    ? buildBoomCtaInstruction(selectedCTA)
+    : `\n---\nCTA: End the post with a single benefit-forward call-to-action that feels natural to the content. Link text: "${selectedCTA.text}". URL: ${selectedCTA.url}. Do not add author bio or generic sign-off.\n---`;
   console.log("[CTA] " + selectedCTA.id + " ~ " + selectedCTA.url);
 
   // Load generation memory to build semantic differentiation context
@@ -740,8 +741,8 @@ async function main() {
   if (h1Match) postTitle = h1Match[1].trim();
   const bodyMarkdown = cleanMarkdown.replace(/^#\s+.+$/m, "").trim();
 
-  // Fetch 3 inline images and inject at 25%, 50%, 75% through the body
-  // Matt lane → forest photos; BoomBot lane → local boom images (static/images/boom/)
+  // Matt keeps inline forest photos. Boom uses one NASA/space hero plus the
+  // floating EarthStar vector body system, so no inline body images are added.
   let bodyHtml = marked.parse(bodyMarkdown);
   let inlineImages = [];
   if (lane === "matt") {
@@ -754,13 +755,12 @@ async function main() {
       console.warn("No forest images found ~ post will have no inline images.");
     }
   } else {
-    console.log("Selecting 3 boom local images for inline art...");
-    inlineImages = fetchBoomImages(3);
+    console.log("Selecting 1 boom local image for hero art...");
+    inlineImages = fetchBoomImages(1);
     if (inlineImages.length > 0) {
-      bodyHtml = injectNasaImages(bodyHtml, inlineImages);
-      console.log("Boom images injected: " + inlineImages.map(function(i) { return i.title || path.basename(i.url); }).join(", "));
+      console.log("Boom hero image selected: " + inlineImages.map(function(i) { return i.title || path.basename(i.url); }).join(", "));
     } else {
-      console.warn("No boom images found ~ post will have no inline images.");
+      console.warn("No boom images found ~ post will rely on the vector body system.");
     }
   }
   // Deduplicate slug: if a file with this slug already exists in posts/ or drafts/,
@@ -805,7 +805,11 @@ async function main() {
 
   const dateStr = new Date().toISOString();
   const heroImageUrl = (inlineImages && inlineImages.length > 0) ? inlineImages[0].url : null;
-  fs.writeFileSync(outputFile, buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, selectedCTA), "utf8");
+  let outputHtml = buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, selectedCTA);
+  if (lane === "boom") {
+    outputHtml = normalizeBoomHtml(outputHtml, { slug, title: postTitle, keyword: argv.keyword, niche: ctaNicheSlug });
+  }
+  fs.writeFileSync(outputFile, outputHtml, "utf8");
   console.log((isDraft ? "[DRAFT] " : "") + "Post saved: /blog/" + lane + "/" + outputSub + "/" + slug + ".html");
 
   if (!isDraft) {
