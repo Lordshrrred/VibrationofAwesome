@@ -507,12 +507,12 @@
       '  animation:ev-float 9s ease-in-out infinite;',
       '}',
       '.post-hero, .post-header { overflow:hidden; }',
-      // Lower opacity for .post-header (boom posts ~ text readability)
-      '.post-header .ev-art.ev-visible { opacity:0.52; }',
+      // Slightly softer than .post-hero on boom posts due to dark bg overlay
+      '.post-header .ev-art.ev-visible { opacity:0.85; }',
       '@media(max-width:768px){',
       '  .ev-art { justify-content:center; align-items:center; padding:0; }',
       '  .ev-art.ev-visible { opacity:0.4; }',
-      '  .post-header .ev-art.ev-visible { opacity:0.25; }',
+      '  .post-header .ev-art.ev-visible { opacity:0.45; }',
       '  .ev-art svg { width:min(240px,65%); }',
       '}',
 

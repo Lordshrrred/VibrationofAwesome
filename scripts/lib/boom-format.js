@@ -29,7 +29,7 @@ a.site-nav-logo{font-family:'Space Grotesk',sans-serif;font-size:1rem;color:#00e
 }
 @media(max-width:768px){
   .site-nav-main{padding:0.9rem 1.5rem;min-height:52px;}
-  .post-header{min-height:26rem;padding:9rem 1.5rem 3rem;}
+  .post-header{min-height:26.5rem;padding:10rem 1.5rem 3rem;}
 }
 `;
 
@@ -315,7 +315,7 @@ function ensureBoomHeroHeader(html) {
   if (!image) return html;
 
   let out = html;
-  const heroRule = `.post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:12rem 4rem 4rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('${image}') center/cover no-repeat; }`;
+  const heroRule = `.post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:11rem 4rem 3.75rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('${image}') center/cover no-repeat; }`;
 
   out = out.replace(/\.post-header\s*\{\s*padding:\s*2\.5rem\s+0\s+2rem;\s*border-bottom:\s*1px\s+solid\s+var\(--border\);\s*\}/g, heroRule);
   out = out.replace(/\.post-header\s*\{\s*padding:2\.5rem\s+0\s+2rem;\s*border-bottom:1px\s+solid\s+var\(--border\);\s*\}/g, heroRule);
