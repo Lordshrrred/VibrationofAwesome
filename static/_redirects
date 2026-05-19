@@ -1,2 +1,4 @@
-# Netlify redirects
-# Add any custom redirects here
+# Redirects (GitHub Pages serves this via Hugo; Netlify/Vercel honour it natively)
+# Permanent rename: ai-voa → ai-engine
+/ai-voa/         /ai-engine/      301
+/ai-voa          /ai-engine/      301
