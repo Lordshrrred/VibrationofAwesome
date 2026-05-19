@@ -254,6 +254,31 @@
     50% { box-shadow: 0 0 18px rgba(0,229,204,0.75), 0 0 36px rgba(0,229,204,0.25); }
   }
 
+  /* AI VOA nav link — circuit hex accent, teal */
+  .nav-links a.ai-voa-link {
+    color: rgba(0,229,204,0.75);
+    border: 1px solid rgba(0,229,204,0.18);
+    padding: 0.28rem 0.7rem;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    background: rgba(0,229,204,0.04);
+    animation: navCyberPulse 4s ease-in-out infinite;
+  }
+  .nav-links a.ai-voa-link:hover {
+    color: var(--gold);
+    background: rgba(0,229,204,0.08) !important;
+    border-color: rgba(0,229,204,0.34);
+    text-shadow: none !important;
+  }
+  .nav-links a.ai-voa-link::after { display: none !important; }
+  .nav-hex { width: 10px; height: 10px; flex-shrink: 0; opacity: 0.8; }
+  @keyframes navCyberPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,204,0); }
+    50%       { box-shadow: 0 0 0 2px rgba(0,229,204,0.08); }
+  }
+
   /* SECTIONS (shared) */
   section {
     position: relative;
@@ -570,6 +595,12 @@
       display: block;
       text-align: center;
     }
+    .nav-links a.ai-voa-link {
+      margin: 0.5rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
     section { padding: 5rem 1.5rem; }
     footer { padding: 2rem 1.5rem; grid-template-columns: 1fr; gap: 2rem; text-align: center; }
     .footer-left { text-align: center; align-items: center; }
@@ -602,6 +633,13 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="{{ $base }}#home">Home</a></li>
     <li><a href="/field-guide/" class="field-guide-link">Field Guide ✦</a></li>
+    <li><a href="/ai-voa/" class="ai-voa-link">AI VOA
+      <svg class="nav-hex" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <polygon points="6,0.8 10.4,3.3 10.4,8.5 6,11 1.6,8.5 1.6,3.3" stroke="currentColor" stroke-width="0.9"/>
+        <circle cx="6" cy="5.9" r="1.3" fill="currentColor"/>
+        <line x1="6" y1="0.8" x2="6" y2="3.2" stroke="currentColor" stroke-width="0.7" opacity="0.6"/>
+      </svg>
+    </a></li>
     <li><a href="/art-store/">Art Store</a></li>
     <li><a href="/aura/" class="aura-link">AURA ✦</a></li>
     <li><a href="/earthstar/">EarthStar ✦</a></li>
