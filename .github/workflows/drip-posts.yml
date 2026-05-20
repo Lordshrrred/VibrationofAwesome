@@ -168,18 +168,20 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add \
+          # Stage every generated artifact from the clean Actions runner.
+          # A previous explicit-only list missed one generated file, leaving
+          # the tree dirty and causing `git pull --rebase` to fail after the
+          # post had already syndicated.
+          git add -A \
             static/blog/boom/posts/ \
-            static/_data/boom-posts.json \
-            static/_data/drip-queue.json \
-            static/_data/syndication-log.json \
-            static/_data/syndication-results.json \
-            static/_data/syndication-health.json \
-            static/_data/image-registry.json \
-            static/_data/cta-rotation-state.json \
-            static/_data/dashboard-config.json \
+            static/_data/ \
             static/sitemap.xml \
             || true
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::warning::Unexpected generated changes remain outside standard drip paths; staging all runner changes before rebase."
+            git status --short
+            git add -A
+          fi
           if git diff --staged --quiet; then
             echo "nothing_committed=true" >> $GITHUB_OUTPUT
             echo "Nothing new to commit."
@@ -239,11 +241,12 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add \
-            static/_data/syndication-log.json \
-            static/_data/syndication-results.json \
-            static/_data/image-registry.json \
-            || true
+          git add -A static/_data/ static/sitemap.xml || true
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::warning::Retry left generated changes outside standard data paths; staging all runner changes before rebase."
+            git status --short
+            git add -A
+          fi
           if git diff --staged --quiet; then
             echo "nothing_committed=true" >> $GITHUB_OUTPUT
             echo "No retry updates to commit."
