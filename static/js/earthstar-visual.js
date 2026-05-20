@@ -498,7 +498,7 @@
       '.ev-art {',
       '  position:absolute; inset:0; pointer-events:none; overflow:hidden;',
       '  display:flex; align-items:flex-start; justify-content:flex-end;',
-      '  padding:5.75rem 4% 0 0; z-index:0;',
+      '  padding:92px 4% 0 0; z-index:0;',
       '  opacity:0; transition:opacity 0.8s ease;',
       '}',
       '.ev-art.ev-visible { opacity:1; }',

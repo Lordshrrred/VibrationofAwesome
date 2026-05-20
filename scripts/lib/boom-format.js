@@ -70,10 +70,35 @@ function buildBoomNavHtml(title) {
 function injectBoomNav(html, title) {
   let out = html;
 
-  // Strip any existing Boom nav (so order changes are re-applied on every run)
+  // Strip any existing Boom nav HTML
   out = out.replace(/<nav class="site-nav site-nav--boom">[\s\S]*?<\/nav>\s*<script>function toggleSiteNav[\s\S]*?<\/script>/g, "");
-  // Also strip the BOOM_NAV_CSS if already injected (to avoid duplicates)
-  out = out.replace(/\n\/\* Boom Site Nav \*\/[\s\S]*?@media\(max-width:768px\)\{[\s\S]*?\}\n/g, "");
+
+  // Strip BOOM_NAV_CSS using landmark-based approach (avoids nested-brace regex failures)
+  const CSS_MARKER = "/* Boom Site Nav */";
+  const markerPos = out.indexOf(CSS_MARKER);
+  if (markerPos !== -1) {
+    const styleEnd = out.indexOf("</style>", markerPos);
+    if (styleEnd !== -1) {
+      out = out.slice(0, markerPos) + out.slice(styleEnd);
+    }
+  }
+
+  // Remove orphaned .post-header rules left by prior broken strip attempts.
+  // These end up as desktop-level CSS and override the hero sizing.
+  out = out.replace(/[ \t]*\.post-header\{min-height:\d+(?:\.\d+)?rem;padding:\d+(?:\.\d+)?rem[^}]*\}[ \t]*\n?/g, "");
+  // Remove stray closing braces those orphaned rules left behind
+  out = out.replace(/^[ \t]*\}[ \t]*\n/gm, (match, offset) => {
+    // Only remove if this } appears before </style> and is not inside a known rule
+    const beforeMatch = out.slice(0, offset);
+    const inStyle = beforeMatch.includes("<style") && !beforeMatch.includes("</style>");
+    if (!inStyle) return match;
+    // Check it's not closing a legit @media or rule (no unmatched { before it in style block)
+    const styleStart = beforeMatch.lastIndexOf("<style");
+    const styleChunk = beforeMatch.slice(styleStart);
+    const opens = (styleChunk.match(/\{/g) || []).length;
+    const closes = (styleChunk.match(/\}/g) || []).length;
+    return closes >= opens ? "" : match; // stray } (more closes than opens) → remove
+  });
 
   // Remove old site-header block
   out = out.replace(/<header class="site-header">[\s\S]*?<\/header>\s*/g, "");
