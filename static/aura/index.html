@@ -998,7 +998,7 @@
 
 <script>
   // ── Config ────────────────────────────────────────────────────────────────
-  // Use relative /api when running on Vercel directly; absolute URL when on GitHub Pages.
+  // Use relative /api on production (Vercel); absolute URL on localhost.
   const FUNCTIONS_BASE = window.location.hostname.includes('vercel.app') || window.location.hostname === 'localhost'
     ? '/api'
     : 'https://vibrationofawesome.vercel.app/api';

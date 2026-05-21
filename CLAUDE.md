@@ -55,14 +55,15 @@ Each post is generated as standalone HTML and indexed in `static/_data/[lane]-po
 99 pre-generated boom posts live in `static/blog/boom/drafts/`. `drip-publish.js` moves one per run from drafts → posts, updates `boom-posts.json`, and syndicates. Runs at 9am ET (self-help post) and 6pm ET (AI/creator post) via `.github/workflows/drip-posts.yml`. Auto-retry for failed platforms runs after each publish.
 
 ### Hugo Site
-Hugo watches `content/posts/*.md` and renders with `layouts/` templates. The `hugo.toml` has `unsafe = true` for goldmark to allow raw HTML in markdown. Deployed to GitHub Pages via `.github/workflows/hugo.yml` on push to main.
+Hugo watches `content/posts/*.md` and renders with `layouts/` templates. The `hugo.toml` has `unsafe = true` for goldmark to allow raw HTML in markdown. Deployed via Vercel (auto-deploys on push to main via GitHub webhook).
 
 ### AURA Chatbot (Serverless)
 `api/chat.js` is a Vercel serverless function (ESM) that proxies to Claude Sonnet API with the AURA system prompt. The chatbot UI lives at `/aura/`. Stripe checkout and subscription verification live in `api/create-checkout.js` and `api/verify-subscription.js`.
 
 ### Hosting
-- **GitHub Pages**: Static site (built by Hugo workflow on every push to main)
-- **Vercel**: Serverless functions only (`/api/*`) ~ AURA chat, Stripe checkout, backlink verification
+- **Vercel**: Static site + serverless functions (`/api/*`) ~ AURA chat, Stripe checkout, backlink verification. Auto-deploys on push to main via GitHub webhook.
+- **Cloudflare**: DNS, SSL, front door. Both `vibrationofawesome.com` and `www` route to Vercel.
+- **GitHub**: Source control only. GitHub Pages is retired.
 - Vercel project ID: `prj_guDrrflKSY3FwVbmFMNyQRZyTwI9`
 - Vercel org ID: `team_YNP01D3hmpGWSbkZOSV8l0O0`
 
@@ -146,7 +147,7 @@ Portfolio does NOT appear on any nav except the art store page. When generating 
 `static/admin/config.yml` is a Netlify CMS (Decap CMS) config that enables a git-backed post editor at `/admin/`. It references `vibrationofawesome.netlify.app` as the auth domain and is marked **legacy/optional**. The primary post editor is the VOA Post Studio backed by `api/editor-login.js` + `api/editor-save.js`. Do not delete `static/admin/`, but do not prioritize fixing or extending it either. If you touch the admin CMS, update the `site_domain` in `static/admin/config.yml` to the correct Vercel URL.
 
 ### Art store page (DO NOT flag as 404)
-`/art-store/` IS a live page. It exists at `static/art-store/index.html` and is served by GitHub Pages as `vibrationofawesome.com/art-store/`. Do not remove the `art-store` CTA from policy.js. Do not flag it as missing. It is a static directory page, not a Hugo-rendered page ~ that is why it does not appear in `content/`.
+`/art-store/` IS a live page. It exists at `static/art-store/index.html` and is served by Vercel as `vibrationofawesome.com/art-store/`. Do not remove the `art-store` CTA from policy.js. Do not flag it as missing. It is a static directory page, not a Hugo-rendered page ~ that is why it does not appear in `content/`.
 
 ---
 

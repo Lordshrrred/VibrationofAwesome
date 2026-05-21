@@ -1,6 +1,6 @@
 # Vibration of Awesome
 
-**vibrationofawesome.com** ~ Hugo static site deployed via GitHub Pages. Serverless functions (`/api/*`) are hosted on Vercel.
+**vibrationofawesome.com** ~ Hugo static site deployed via Vercel. Serverless functions (`/api/*`) are also hosted on Vercel.
 
 Roots in the Earth, Crown in the Stars. The Future is Ours.
 
@@ -161,7 +161,7 @@ node scripts/seo-research.js --all-niches
 
 ## Deployment
 
-**Static site**: GitHub Actions builds Hugo on every push to `main` and deploys to GitHub Pages (`vibrationofawesome.com`). See `.github/workflows/hugo.yml`.
+**Static site**: Vercel auto-deploys Hugo on every push to `main` via its GitHub webhook integration. `vibrationofawesome.com` and `www.vibrationofawesome.com` both resolve through Cloudflare to Vercel. `.github/workflows/hugo.yml` exists as a manual build-check only (no automatic trigger).
 
 **Serverless functions (`/api/*`)**: Hosted on Vercel. Auto-deploys via Vercel dashboard webhook on push to `main`. No GitHub Actions step needed for Vercel ~ it watches the repo directly.
 
@@ -200,7 +200,7 @@ hugo server -D
 - `/admin/` is the custom branded editor.
 - Existing posts load into the left-hand library and open into the edit surface on click.
 - The preferred save path is now a tiny backend broker that accepts the same dashboard password, opens a short-lived editor session, and commits to GitHub server-side.
-- GitHub remains the source of truth for content, but GitHub Pages alone still cannot safely hold write credentials in the browser.
+- GitHub remains the source of truth for content, but static hosting alone cannot safely hold write credentials in the browser.
 - If the backend is not configured, the editor can still fall back to a browser-side GitHub token for local/admin use.
 
 ---
