@@ -1,13 +1,13 @@
 {
-  "lastChecked": "2026-05-21T15:52:00.540Z",
+  "lastChecked": "2026-05-21T16:20:36.743Z",
   "status": "broken",
-  "passed": 11,
-  "failed": 3,
+  "passed": 12,
+  "failed": 2,
   "total": 14,
   "topFix": {
-    "name": "Publer VOA Instagram account",
-    "detail": "missing PUBLER_INSTAGRAM_ACCOUNT_ID",
-    "repairCommand": "npm run check:syndication -- --write"
+    "name": "Blogger token refresh",
+    "detail": "invalid_grant: Token has been expired or revoked.",
+    "repairCommand": "npm run blogger-token"
   },
   "drip": {
     "status": "active",
@@ -36,13 +36,13 @@
     },
     {
       "name": "Publer VOA Instagram account",
-      "ok": false,
-      "detail": "missing PUBLER_INSTAGRAM_ACCOUNT_ID"
+      "ok": true,
+      "detail": "vibrationofawesome (6a0698ee1f0e47d9f3f18a43)"
     },
     {
       "name": "Publer VOA Threads account",
-      "ok": false,
-      "detail": "missing PUBLER_THREADS_ACCOUNT_ID"
+      "ok": true,
+      "detail": "@vibrationofawesome (6a069b7979cc0b32f3235166)"
     },
     {
       "name": "Bluesky ESR auth",
@@ -81,8 +81,8 @@
     },
     {
       "name": "Blogger token refresh",
-      "ok": true,
-      "detail": "token ok"
+      "ok": false,
+      "detail": "invalid_grant: Token has been expired or revoked."
     },
     {
       "name": "WordPress direct auth",
