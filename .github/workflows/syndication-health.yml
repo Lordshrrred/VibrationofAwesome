@@ -55,16 +55,6 @@ jobs:
           META_PAGE_ID_EARTHSTAR:      ${{ secrets.META_PAGE_ID_EARTHSTAR }}
           META_PAGE_TOKEN_EARTHSTAR:   ${{ secrets.META_PAGE_TOKEN_EARTHSTAR }}
           DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
-          TUMBLR_CONSUMER_KEY:         ${{ secrets.TUMBLR_CONSUMER_KEY }}
-          TUMBLR_CONSUMER_SECRET:      ${{ secrets.TUMBLR_CONSUMER_SECRET }}
-          TUMBLR_TOKEN:                ${{ secrets.TUMBLR_TOKEN }}
-          TUMBLR_TOKEN_SECRET:         ${{ secrets.TUMBLR_TOKEN_SECRET }}
-          TUMBLR_BLOG_NAME:            ${{ secrets.TUMBLR_BLOG_NAME }}
-          ESR_TUMBLR_CONSUMER_KEY:     ${{ secrets.ESR_TUMBLR_CONSUMER_KEY }}
-          ESR_TUMBLR_CONSUMER_SECRET:  ${{ secrets.ESR_TUMBLR_CONSUMER_SECRET }}
-          ESR_TUMBLR_TOKEN:            ${{ secrets.ESR_TUMBLR_TOKEN }}
-          ESR_TUMBLR_TOKEN_SECRET:     ${{ secrets.ESR_TUMBLR_TOKEN_SECRET }}
-          ESR_TUMBLR_BLOG_NAME:        ${{ secrets.ESR_TUMBLR_BLOG_NAME }}
           VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
           VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
           VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}

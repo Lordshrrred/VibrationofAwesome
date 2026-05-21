@@ -217,18 +217,25 @@ function firstNonEmpty(...values) {
 
 function getTumblrConfig(prefix = "") {
   const p = prefix ? `${prefix}_` : "";
+  const allowLegacyFallback = !prefix;
   return {
     label: prefix || "TUMBLR",
-    consumerKey:    firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`], process.env.TUMBLR_CONSUMER_KEY),
-    consumerSecret: firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_SECRET`], process.env.TUMBLR_CONSUMER_SECRET),
-    token:          firstNonEmpty(process.env[`${p}TUMBLR_TOKEN`], process.env.TUMBLR_TOKEN),
-    tokenSecret:    firstNonEmpty(process.env[`${p}TUMBLR_TOKEN_SECRET`], process.env.TUMBLR_TOKEN_SECRET),
-    blogName:       firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`], process.env.TUMBLR_BLOG_NAME),
+    consumerKey:    allowLegacyFallback ? firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`], process.env.TUMBLR_CONSUMER_KEY) : firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`]),
+    consumerSecret: allowLegacyFallback ? firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_SECRET`], process.env.TUMBLR_CONSUMER_SECRET) : firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_SECRET`]),
+    token:          allowLegacyFallback ? firstNonEmpty(process.env[`${p}TUMBLR_TOKEN`], process.env.TUMBLR_TOKEN) : firstNonEmpty(process.env[`${p}TUMBLR_TOKEN`]),
+    tokenSecret:    allowLegacyFallback ? firstNonEmpty(process.env[`${p}TUMBLR_TOKEN_SECRET`], process.env.TUMBLR_TOKEN_SECRET) : firstNonEmpty(process.env[`${p}TUMBLR_TOKEN_SECRET`]),
+    blogName:       allowLegacyFallback ? firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`], process.env.TUMBLR_BLOG_NAME) : firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`]),
   };
+}
+
+function isVoaTumblrBlog(blogName) {
+  const clean = String(blogName || "").replace(/^https?:\/\//i, "").replace(/\/.*$/, "").replace(/\.tumblr\.com$/i, "").toLowerCase();
+  return clean === "vibrationofawesome";
 }
 
 function hasTumblrConfig(prefix = "") {
   const cfg = getTumblrConfig(prefix);
+  if (prefix === "VOA" && !isVoaTumblrBlog(cfg.blogName)) return false;
   return Boolean(cfg.consumerKey && cfg.consumerSecret && cfg.token && cfg.tokenSecret && cfg.blogName);
 }
 
@@ -756,8 +763,11 @@ async function postToDevTo(postTitle, caption, postUrl, tags) {
 }
 
 /** Post to Tumblr using OAuth 1.0a (legacy /post endpoint with form body) */
-async function postToTumblr(caption, tags, prefix = "ESR", sourceUrl = "", sourceTitle = "") {
+async function postToTumblr(caption, tags, prefix = "VOA", sourceUrl = "", sourceTitle = "") {
   const { consumerKey, consumerSecret, token, tokenSecret, blogName, label } = getTumblrConfig(prefix);
+  if (prefix !== "VOA" || !isVoaTumblrBlog(blogName)) {
+    throw new Error(`Tumblr posting is restricted to VOA only; refused ${label}:${blogName || "missing blog"}`);
+  }
 
   if (!consumerKey || !consumerSecret || !token || !tokenSecret) {
     throw new Error(`One or more ${label}_TUMBLR_* env vars not set`);

@@ -519,7 +519,6 @@ const DAILY_QUOTAS = {
   bluesky_esr:         5,
   bluesky_voa:         5,
   pinterest:          10,
-  tumblr_esr:         10,
   tumblr_voa:         10,
   devto:               1,
   blogger:             1,
@@ -537,7 +536,6 @@ const COOLDOWN_HOURS = {
   bluesky_esr:        2,
   bluesky_voa:        2,
   pinterest:          2,
-  tumblr_esr:         1,
   tumblr_voa:         1,
 };
 

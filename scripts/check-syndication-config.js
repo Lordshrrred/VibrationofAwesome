@@ -64,12 +64,17 @@ function getTumblrConfig(prefix) {
   const p = `${prefix}_`;
   return {
     label: prefix,
-    consumerKey:    firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`], process.env.TUMBLR_CONSUMER_KEY),
-    consumerSecret: firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_SECRET`], process.env.TUMBLR_CONSUMER_SECRET),
-    token:          firstNonEmpty(process.env[`${p}TUMBLR_TOKEN`], process.env.TUMBLR_TOKEN),
-    tokenSecret:    firstNonEmpty(process.env[`${p}TUMBLR_TOKEN_SECRET`], process.env.TUMBLR_TOKEN_SECRET),
-    blogName:       firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`], process.env.TUMBLR_BLOG_NAME),
+    consumerKey:    firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`]),
+    consumerSecret: firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_SECRET`]),
+    token:          firstNonEmpty(process.env[`${p}TUMBLR_TOKEN`]),
+    tokenSecret:    firstNonEmpty(process.env[`${p}TUMBLR_TOKEN_SECRET`]),
+    blogName:       firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`]),
   };
+}
+
+function isVoaTumblrBlog(blogName) {
+  const clean = String(blogName || "").replace(/^https?:\/\//i, "").replace(/\/.*$/, "").replace(/\.tumblr\.com$/i, "").toLowerCase();
+  return clean === "vibrationofawesome";
 }
 
 function requireTumblrConfig(prefix) {
@@ -81,6 +86,9 @@ function requireTumblrConfig(prefix) {
   if (!cfg.tokenSecret) missing.push(`${prefix}_TUMBLR_TOKEN_SECRET`);
   if (!cfg.blogName) missing.push(`${prefix}_TUMBLR_BLOG_NAME`);
   if (missing.length) throw new Error(`missing ${missing.join(", ")}`);
+  if (prefix === "VOA" && !isVoaTumblrBlog(cfg.blogName)) {
+    throw new Error(`VOA_TUMBLR_BLOG_NAME must be vibrationofawesome, got ${cfg.blogName}`);
+  }
   return cfg;
 }
 
