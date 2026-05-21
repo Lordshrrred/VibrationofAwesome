@@ -192,7 +192,110 @@ jobs:
             echo "nothing_committed=false" >> $GITHUB_OUTPUT
           fi
 
-      # ── 8. Retry any platforms that failed during this run ───────────────────
+      # ── 8. Deploy money-site post before any off-site syndication ────────────
+      - name: Trigger Hugo deploy for money-site post
+        if: |
+          steps.queue_status.outputs.status == 'active' &&
+          steps.queue_status.outputs.remaining != '0' &&
+          steps.commit.outputs.nothing_committed != 'true'
+        run: gh workflow run hugo.yml --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify live URL then syndicate
+        id: post_live
+        if: |
+          steps.queue_status.outputs.status == 'active' &&
+          steps.queue_status.outputs.remaining != '0' &&
+          steps.commit.outputs.nothing_committed != 'true'
+        env:
+          LIVE_CHECK_ATTEMPTS:          30
+          LIVE_CHECK_INTERVAL_MS:       20000
+          ANTHROPIC_API_KEY:           ${{ secrets.ANTHROPIC_API_KEY }}
+          VOA_FEEDER_TRIGGER_TOKEN:    ${{ secrets.VOA_FEEDER_TRIGGER_TOKEN }}
+          NASA_API_KEY:                ${{ secrets.NASA_API_KEY }}
+          PEXELS_API_KEY:              ${{ secrets.PEXELS_API_KEY }}
+          ESR_BLUESKY_HANDLE:          ${{ secrets.ESR_BLUESKY_HANDLE }}
+          ESR_BLUESKY_APP_PASSWORD:    ${{ secrets.ESR_BLUESKY_APP_PASSWORD }}
+          VOA_BLUESKY_HANDLE:          ${{ secrets.VOA_BLUESKY_HANDLE }}
+          VOA_BLUESKY_APP_PASSWORD:    ${{ secrets.VOA_BLUESKY_APP_PASSWORD }}
+          BLUESKY_HANDLE:              ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD:        ${{ secrets.BLUESKY_APP_PASSWORD }}
+          ESR_MASTODON_INSTANCE:       ${{ secrets.ESR_MASTODON_INSTANCE }}
+          ESR_MASTODON_ACCESS_TOKEN:   ${{ secrets.ESR_MASTODON_ACCESS_TOKEN }}
+          VOA_MASTODON_INSTANCE:       ${{ secrets.VOA_MASTODON_INSTANCE }}
+          VOA_MASTODON_ACCESS_TOKEN:   ${{ secrets.VOA_MASTODON_ACCESS_TOKEN }}
+          MASTODON_INSTANCE:           ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCESS_TOKEN:       ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          META_APP_ID:                 ${{ secrets.META_APP_ID }}
+          META_APP_SECRET:             ${{ secrets.META_APP_SECRET }}
+          META_USER_TOKEN:             ${{ secrets.META_USER_TOKEN }}
+          META_PAGE_ID_VOA:            ${{ secrets.META_PAGE_ID_VOA }}
+          META_PAGE_TOKEN_VOA:         ${{ secrets.META_PAGE_TOKEN_VOA }}
+          META_PAGE_ID_EARTHSTAR:      ${{ secrets.META_PAGE_ID_EARTHSTAR }}
+          META_PAGE_TOKEN_EARTHSTAR:   ${{ secrets.META_PAGE_TOKEN_EARTHSTAR }}
+          META_PAGE_ID_RUZINDLA:       ${{ secrets.META_PAGE_ID_RUZINDLA }}
+          META_PAGE_TOKEN_RUZINDLA:    ${{ secrets.META_PAGE_TOKEN_RUZINDLA }}
+          DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
+          TUMBLR_CONSUMER_KEY:         ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET:      ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_TOKEN:                ${{ secrets.TUMBLR_TOKEN }}
+          TUMBLR_TOKEN_SECRET:         ${{ secrets.TUMBLR_TOKEN_SECRET }}
+          TUMBLR_BLOG_NAME:            ${{ secrets.TUMBLR_BLOG_NAME }}
+          ESR_TUMBLR_CONSUMER_KEY:     ${{ secrets.ESR_TUMBLR_CONSUMER_KEY }}
+          ESR_TUMBLR_CONSUMER_SECRET:  ${{ secrets.ESR_TUMBLR_CONSUMER_SECRET }}
+          ESR_TUMBLR_TOKEN:            ${{ secrets.ESR_TUMBLR_TOKEN }}
+          ESR_TUMBLR_TOKEN_SECRET:     ${{ secrets.ESR_TUMBLR_TOKEN_SECRET }}
+          ESR_TUMBLR_BLOG_NAME:        ${{ secrets.ESR_TUMBLR_BLOG_NAME }}
+          VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
+          VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
+          VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}
+          VOA_TUMBLR_TOKEN_SECRET:     ${{ secrets.VOA_TUMBLR_TOKEN_SECRET }}
+          VOA_TUMBLR_BLOG_NAME:        ${{ secrets.VOA_TUMBLR_BLOG_NAME }}
+          PUBLER_API_KEY:              ${{ secrets.PUBLER_API_KEY }}
+          PUBLER_WORKSPACE_ID:         ${{ secrets.PUBLER_WORKSPACE_ID }}
+          PUBLER_PINTEREST_ACCOUNT_ID: ${{ secrets.PUBLER_PINTEREST_ACCOUNT_ID }}
+          PUBLER_PINTEREST_BOARD_ID:   ${{ secrets.PUBLER_PINTEREST_BOARD_ID }}
+          PUBLER_INSTAGRAM_ACCOUNT_ID: ${{ secrets.PUBLER_INSTAGRAM_ACCOUNT_ID }}
+          PUBLER_THREADS_ACCOUNT_ID:   ${{ secrets.PUBLER_THREADS_ACCOUNT_ID }}
+          BLOGGER_CLIENT_ID:           ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET:       ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN:       ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID:             ${{ secrets.BLOGGER_BLOG_ID }}
+          WORDPRESS_OAUTH2_TOKEN:      ${{ secrets.WORDPRESS_OAUTH2_TOKEN }}
+          WORDPRESS_BLOG:              ${{ secrets.WORDPRESS_BLOG }}
+          WORDPRESS_CATEGORY_NAMES:    ${{ secrets.WORDPRESS_CATEGORY_NAMES }}
+          WORDPRESS_TAG_NAMES:         ${{ secrets.WORDPRESS_TAG_NAMES }}
+          DASHBOARD_PASSWORD:          ${{ secrets.DASHBOARD_PASSWORD }}
+          IDEOGRAM_API_KEY:            ${{ secrets.IDEOGRAM_API_KEY }}
+        run: node scripts/post-live-syndicate.js
+
+      - name: Commit post-live syndication results
+        id: post_live_commit
+        if: |
+          steps.queue_status.outputs.status == 'active' &&
+          steps.queue_status.outputs.remaining != '0' &&
+          steps.commit.outputs.nothing_committed != 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A static/_data/ static/sitemap.xml || true
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::warning::Post-live syndication left generated changes outside standard data paths; staging all runner changes before rebase."
+            git status --short
+            git add -A
+          fi
+          if git diff --staged --quiet; then
+            echo "nothing_committed=true" >> $GITHUB_OUTPUT
+            echo "No post-live syndication updates to commit."
+          else
+            git commit -m "Update post-live syndication results [automated]"
+            git pull --rebase origin main
+            git push
+            echo "nothing_committed=false" >> $GITHUB_OUTPUT
+          fi
+
+      # ── 9. Retry any platforms that failed during this run ───────────────────
       # Runs after the first commit so the results file is available.
       # Dedup logic in syndicate.js prevents duplicate posts.
       # Dev.to is excluded from retries (canonical URL already taken = success).
@@ -234,7 +337,7 @@ jobs:
           WORDPRESS_BLOG:              ${{ secrets.WORDPRESS_BLOG }}
         run: node scripts/retry-failed-syndication.js
 
-      # ── 9. Commit retry results ───────────────────────────────────────────────
+      # ── 10. Commit retry results ───────────────────────────────────────────────
       - name: Commit retry results
         id: retry_commit
         if: steps.queue_status.outputs.status == 'active' && steps.queue_status.outputs.remaining != '0'
@@ -257,7 +360,7 @@ jobs:
             echo "nothing_committed=false" >> $GITHUB_OUTPUT
           fi
 
-      # ── 10. Trigger Hugo deploy ───────────────────────────────────────────────
+      # ── 11. Trigger final Hugo deploy for updated status data ─────────────────
       # GITHUB_TOKEN pushes do not trigger on:push in other workflows.
       # We explicitly fire hugo.yml via workflow_dispatch so posts go live.
       - name: Trigger Hugo deploy

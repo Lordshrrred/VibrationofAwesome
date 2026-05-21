@@ -11,9 +11,12 @@
  *   3. Copies each draft from static/blog/boom/drafts/ to static/blog/boom/posts/
  *   4. Adds each to boom-posts.json with the publish timestamp
  *   5. Regenerates sitemap.xml
- *   6. If trigger_feeder_on_publish: fires GitHub repository_dispatch to feeder repo
- *   7. If syndicate_on_publish: runs syndicate.js for each post
- *   8. Updates drip-queue.json (moves slugs from queue → published)
+ *   6. Updates drip-queue.json (moves slugs from queue → published)
+ *   7. Writes drip-last-published.json for the post-live syndication gate
+ *
+ * IMPORTANT: this script does not syndicate. Money site first, always.
+ * .github/workflows/drip-posts.yml deploys the post, verifies the live URL,
+ * then runs scripts/post-live-syndicate.js.
  *
  * Usage:
  *   node scripts/drip-publish.js                  ~ publish next drip_rate posts
@@ -23,7 +26,6 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { spawnSync } from "child_process";
 import minimist from "minimist";
 import dotenv from "dotenv";
 import { updateSitemap } from "./update-sitemap.js";
@@ -53,6 +55,7 @@ const POSTS_DIR   = path.join(ROOT, "static", "blog", "boom", "posts");
 const DATA_FILE   = path.join(ROOT, "static", "_data", "boom-posts.json");
 const LOCK_FILE   = path.join(ROOT, "static", "_data", "drip-publish.lock");
 const HEALTH_FILE = path.join(ROOT, "static", "_data", "syndication-health.json");
+const LAST_PUBLISHED_FILE = path.join(ROOT, "static", "_data", "drip-last-published.json");
 const LOCK_TTL_MS = 10 * 60 * 1000; // 10 minutes
 const QUEUE_WARN_THRESHOLD = 30;     // warn when fewer than this many drafts remain
 
@@ -61,18 +64,6 @@ function extractExcerptFromHtml(html) {
   const match = html.match(/<p[^>]*>([\s\S]*?)<\/p>/);
   if (!match) return "";
   return match[1].replace(/<[^>]+>/g, "").trim().slice(0, 150);
-}
-
-function extractSourceTextFromHtml(html) {
-  return String(html || "")
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .split(/\s+/)
-    .slice(0, 700)
-    .join(" ");
 }
 
 async function main() {
@@ -252,65 +243,19 @@ async function main() {
   fs.writeFileSync(QUEUE_FILE, JSON.stringify(queue, null, 2), "utf8");
   console.log(`  ✓ Queue updated: ${queue.queue.length} remaining, ${queue.published.length} published`);
 
-  // ── Feeder trigger ───────────────────────────────────────────────────────
-  if (queue.trigger_feeder_on_publish) {
-    const token = process.env.VOA_FEEDER_TRIGGER_TOKEN;
-    if (!token) {
-      console.log("  [feeder] VOA_FEEDER_TRIGGER_TOKEN not set ~ skipping");
-    } else {
-      for (const item of justPublished) {
-        const postUrl = "https://vibrationofawesome.com/blog/boom/posts/" + item.slug + ".html";
-        const postHtmlPath = path.join(POSTS_DIR, item.slug + ".html");
-        const postHtml = fs.existsSync(postHtmlPath) ? fs.readFileSync(postHtmlPath, "utf8") : "";
-        try {
-          const resp = await fetch(
-            "https://api.github.com/repos/Lordshrrred/VOA_Feeder/dispatches",
-            {
-              method:  "POST",
-              headers: {
-                Authorization:  `token ${token}`,
-                Accept:         "application/vnd.github.v3+json",
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                event_type:     "voa-post-published",
-                client_payload: {
-                  voa_post_url:     postUrl,
-                  voa_post_title:   item.title,
-                  voa_post_keyword: item.keyword || "",
-                  voa_post_slug:    item.slug,
-                  voa_post_lane:    "boom",
-                  voa_post_excerpt: extractExcerptFromHtml(postHtml),
-                  voa_post_tags:    Array.isArray(item.tags) ? item.tags.join(", ") : "",
-                  voa_post_category: item.topic || item.category || "",
-                  voa_post_source_text: extractSourceTextFromHtml(postHtml),
-                },
-              }),
-            }
-          );
-          if (resp.status === 204) {
-            console.log(`  [feeder] ✓ Triggered: ${item.slug}`);
-          } else {
-            console.warn(`  [feeder] ✗ HTTP ${resp.status} for: ${item.slug}`);
-          }
-        } catch (err) {
-          console.warn(`  [feeder] ✗ ${err.message}`);
-        }
-      }
-    }
-  }
-
-  // ── Syndication ──────────────────────────────────────────────────────────
-  if (queue.syndicate_on_publish) {
-    for (const item of justPublished) {
-      console.log(`\n  Syndicating: ${item.slug}...`);
-      const args = ["scripts/syndicate.js", "--lane", "boom", "--slug", item.slug];
-      if (item.keyword) args.push("--keyword", item.keyword);
-      const r = spawnSync("node", args, { stdio: "inherit", cwd: ROOT });
-      if (r.error) console.error("  Syndication error:", r.error.message);
-      else if (r.status !== 0) console.warn(`  Syndication exited ${r.status}`);
-    }
-  }
+  const postLiveManifest = {
+    created_at: new Date().toISOString(),
+    lane: "boom",
+    syndicate_on_publish: !!queue.syndicate_on_publish,
+    trigger_feeder_on_publish: !!queue.trigger_feeder_on_publish,
+    items: justPublished.map(item => ({
+      ...item,
+      url: "https://vibrationofawesome.com/blog/boom/posts/" + item.slug + ".html",
+    })),
+  };
+  fs.writeFileSync(LAST_PUBLISHED_FILE, JSON.stringify(postLiveManifest, null, 2), "utf8");
+  console.log(`  ✓ Post-live manifest written: static/_data/drip-last-published.json`);
+  console.log("  ✓ Money site first gate armed: syndication waits for live URL verification.");
 
   console.log(`\n✓ Drip publish complete. ${queue.queue.length} post(s) remaining.\n`);
 }
