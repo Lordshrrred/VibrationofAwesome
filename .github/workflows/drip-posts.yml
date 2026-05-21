@@ -177,20 +177,15 @@ jobs:
             echo "Nothing new to commit."
           else
             git commit -m "Drip publish: $(date -u '+%Y-%m-%d %H:%M UTC') [automated]"
-            git pull --rebase origin main
+            git fetch origin main
+            git merge --no-edit -X ours origin/main
             git push
             echo "nothing_committed=false" >> $GITHUB_OUTPUT
           fi
 
-      # ── 8. Deploy money-site post before any off-site syndication ────────────
-      - name: Trigger Hugo deploy for money-site post
-        if: |
-          steps.queue_status.outputs.status == 'active' &&
-          steps.queue_status.outputs.remaining != '0' &&
-          steps.commit.outputs.nothing_committed != 'true'
-        run: gh workflow run hugo.yml --ref main
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # ── 8. Wait for Vercel to pick up the push and go live ───────────────────
+      # Vercel auto-deploys on every push via its GitHub App integration.
+      # No hugo.yml trigger needed (GitHub Pages retired; Vercel is the only host).
 
       - name: Verify live URL then syndicate
         id: post_live
@@ -270,7 +265,8 @@ jobs:
             echo "No post-live syndication updates to commit."
           else
             git commit -m "Update post-live syndication results [automated]"
-            git pull --rebase origin main
+            git fetch origin main
+            git merge --no-edit -X ours origin/main
             git push
             echo "nothing_committed=false" >> $GITHUB_OUTPUT
           fi
@@ -335,19 +331,8 @@ jobs:
             echo "No retry updates to commit."
           else
             git commit -m "Update syndication health [automated]"
-            git pull --rebase origin main
+            git fetch origin main
+            git merge --no-edit -X ours origin/main
             git push
             echo "nothing_committed=false" >> $GITHUB_OUTPUT
           fi
-
-      # ── 11. Trigger final Hugo deploy for updated status data ─────────────────
-      # GITHUB_TOKEN pushes do not trigger on:push in other workflows.
-      # We explicitly fire hugo.yml via workflow_dispatch so posts go live.
-      - name: Trigger Hugo deploy
-        if: |
-          steps.queue_status.outputs.status == 'active' &&
-          steps.queue_status.outputs.remaining != '0' &&
-          steps.commit.outputs.nothing_committed != 'true'
-        run: gh workflow run hugo.yml --ref main
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

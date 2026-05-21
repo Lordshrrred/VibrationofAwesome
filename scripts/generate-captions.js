@@ -242,7 +242,7 @@ function buildUserContent(post, postUrl, laneLabel, threadsInstruction = VOA_THR
     `BLUESKY: punchy single thought or sentence, under 300 chars total including URL, zero hashtags`,
     `MASTODON: thoughtful and contextual, 2-3 sentences, end with 2-3 relevant #hashtags`,
     `PINTEREST: descriptive keyword-rich paragraph (good for search), end with 3-5 #hashtags, include URL`,
-    `DEVTO: short compelling intro paragraph with a technical/AI-automation angle, suitable as a Dev.to article teaser, must mention AI or automation angle, end with URL`,
+    `DEVTO: short compelling intro paragraph with a technical/AI-automation angle, suitable as a Dev.to article teaser, must mention AI or automation angle. Do not include a raw URL; the syndication layer adds the clickable source link.`,
     `TUMBLR: creative, aesthetic, slightly poetic, 2-4 sentences, then 5-8 #hashtags on a new line separated from the caption. Do not include a raw URL; the syndication layer adds the clickable source link.`,
     threadsInstruction,
     `INSTAGRAM: write a visual-first Instagram caption. First line is the scroll-stopping hook (max 125 chars ~ make someone feel something, not just read something). Then 1-2 short sentences of supporting context. Do NOT include any URLs (Instagram captions do not support clickable links). End with 6-8 relevant #hashtags on a new line. Total caption before hashtags: under 300 chars. Match the emotional tone of the post ~ raw, honest, or cosmic depending on the content.`,

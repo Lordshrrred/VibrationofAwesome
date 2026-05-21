@@ -111,6 +111,35 @@ function buildTumblrBody(caption, sourceUrl, sourceTitle = "") {
   return paragraphs.join("\n");
 }
 
+function escapeRegExp(text) {
+  return String(text || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function removeRawUrlText(text, sourceUrl) {
+  const cleanUrl = String(sourceUrl || "").trim();
+  if (!cleanUrl) return String(text || "").trim();
+  const noProtocol = cleanUrl.replace(/^https?:\/\//i, "");
+  return String(text || "")
+    .replace(new RegExp(escapeRegExp(cleanUrl), "g"), "")
+    .replace(new RegExp(escapeRegExp(noProtocol), "g"), "")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function labelRawSourceAnchors(html, sourceUrl, sourceTitle = "") {
+  const cleanUrl = String(sourceUrl || "").trim();
+  if (!cleanUrl) return String(html || "");
+  const noProtocol = cleanUrl.replace(/^https?:\/\//i, "");
+  const label = sourceTitle
+    ? `the original Vibration of Awesome piece, ${sourceTitle}`
+    : "the original Vibration of Awesome piece";
+  return String(html || "").replace(
+    new RegExp(`<a\\s+href=["']${escapeRegExp(cleanUrl)}["']\\s*>\\s*(?:${escapeRegExp(cleanUrl)}|${escapeRegExp(noProtocol)})\\s*<\\/a>`, "gi"),
+    `<a href="${cleanUrl}">${escapeHtml(label)}</a>`
+  );
+}
+
 /** RFC 3986 percent-encode (for OAuth 1.0a) */
 function pctEncode(s) {
   return encodeURIComponent(String(s))
@@ -718,8 +747,9 @@ async function postToDevTo(postTitle, caption, postUrl, tags) {
     .slice(0, 4);
   if (safeTags.length === 0) safeTags.push("ai", "creators");
 
+  const cleanCaption = removeRawUrlText(caption, postUrl);
   const bodyMarkdown = [
-    caption,
+    cleanCaption,
     "",
     `---`,
     `*Originally published at [vibrationofawesome.com](${postUrl})*`,
@@ -968,7 +998,8 @@ EXCERPT: [1-2 sentence excerpt]
 
 Requirements:
 - 600-900 words
-- Include one natural backlink to the original source using this exact URL: ${sourceUrl}
+- Include one natural backlink to the original source as a labeled HTML anchor: <a href="${sourceUrl}">the original Vibration of Awesome piece</a>
+- Do not use the raw URL as visible link text
 - Keep the HTML body clean with no wrappers, classes, styles, scripts, or markdown fences
 - The title must be distinct from the source title
 - The excerpt should be compelling and specific`,
@@ -986,7 +1017,7 @@ Requirements:
     .replace(/^EXCERPT:\s*.+$/m, "")
     .trim();
 
-  return { title, excerpt, html };
+  return { title, excerpt, html: labelRawSourceAnchors(html, sourceUrl, sourceTitle) };
 }
 
 async function postToWordPressDirect(article, imageUrl = null) {

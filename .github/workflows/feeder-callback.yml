@@ -52,6 +52,11 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add static/_data/syndication-results.json
-          git diff --staged --quiet || git commit -m "Record feeder callback [automated]"
-          git pull --rebase origin main
-          git push
+          if git diff --staged --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "Record feeder callback [automated]"
+            git fetch origin main
+            git merge --no-edit -X ours origin/main
+            git push
+          fi
