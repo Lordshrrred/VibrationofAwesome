@@ -12,7 +12,9 @@ permissions:
   contents: write
 
 concurrency:
-  group: voa-feeder-callback
+  # Shares the drip publish lock so feeder result commits cannot race
+  # drip-posts.yml while it is committing syndication-results.json.
+  group: voa-publish-and-syndicate
   cancel-in-progress: false
 
 jobs:

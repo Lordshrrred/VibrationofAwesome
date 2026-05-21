@@ -78,6 +78,39 @@ function stripHtml(html) {
   return html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
+function escapeHtml(text) {
+  return String(text || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function buildTumblrBody(caption, sourceUrl, sourceTitle = "") {
+  const cleanUrl = String(sourceUrl || "").trim();
+  const cleaned = String(caption || "")
+    .replace(new RegExp(cleanUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"), "")
+    .replace(/#\w+/g, "")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  const paragraphs = cleaned
+    .split(/\n{2,}/)
+    .map(part => part.trim())
+    .filter(Boolean)
+    .map(part => `<p>${escapeHtml(part).replace(/\n/g, "<br>")}</p>`);
+
+  if (cleanUrl) {
+    const label = sourceTitle
+      ? `Read the full piece: ${sourceTitle}`
+      : "Read the full piece on Vibration of Awesome";
+    paragraphs.push(`<p><a href="${escapeHtml(cleanUrl)}">${escapeHtml(label)}</a></p>`);
+  }
+
+  return paragraphs.join("\n");
+}
+
 /** RFC 3986 percent-encode (for OAuth 1.0a) */
 function pctEncode(s) {
   return encodeURIComponent(String(s))
@@ -723,7 +756,7 @@ async function postToDevTo(postTitle, caption, postUrl, tags) {
 }
 
 /** Post to Tumblr using OAuth 1.0a (legacy /post endpoint with form body) */
-async function postToTumblr(caption, tags, prefix = "ESR") {
+async function postToTumblr(caption, tags, prefix = "ESR", sourceUrl = "", sourceTitle = "") {
   const { consumerKey, consumerSecret, token, tokenSecret, blogName, label } = getTumblrConfig(prefix);
 
   if (!consumerKey || !consumerSecret || !token || !tokenSecret) {
@@ -735,7 +768,7 @@ async function postToTumblr(caption, tags, prefix = "ESR") {
   const url        = `https://api.tumblr.com/v2/blog/${blogName}/post`;
   const bodyParams = {
     type: "text",
-    body: caption,
+    body: buildTumblrBody(caption, sourceUrl, sourceTitle),
     tags: (tags || []).slice(0, 30).join(","),
   };
 
@@ -1581,7 +1614,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   // VOA Tumblr ~ primary Tumblr backlink destination
   if (hasTumblrConfig("VOA")) {
     await attempt("tumblr_voa", () =>
-      postToTumblr(captions.tumblr, extractHashtags(captions.tumblr), "VOA"),
+      postToTumblr(captions.tumblr, extractHashtags(captions.tumblr), "VOA", postUrl, post.title),
       process.env.VOA_TUMBLR_BLOG_NAME || "voa-tumblr");
   } else {
     console.warn("  ~ tumblr_voa: VOA_TUMBLR_* env vars not set");

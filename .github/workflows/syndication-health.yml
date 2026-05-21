@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: voa-publish-and-syndicate
+  cancel-in-progress: false
+
 jobs:
   health:
     runs-on: ubuntu-latest
