@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-21T16:25:46.570Z",
+  "lastUpdated": "2026-05-21T23:06:49.820Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-05-21T23:06:35.390Z"
+    },
     {
       "slug": "the-identity-shift-that-changes-everything",
       "format": "manifesto-conviction",
@@ -50,6 +59,15 @@
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-05-21T23:06:49.820Z"
+    },
     {
       "slug": "the-identity-shift-that-changes-everything",
       "archetype": "nervous-system-atmospheric",
