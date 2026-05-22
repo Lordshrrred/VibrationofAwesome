@@ -6,8 +6,8 @@
         "hooks": [
           {
             "type": "command",
-            "statusMessage": "Checking staged PDFs for metadata...",
-            "command": "cmd=$(jq -r '.tool_input.command'); if echo \"$cmd\" | grep -qE '^git commit'; then pdfs=$(git -C /Users/matt/Repos/VibrationofAwesome diff --cached --name-only 2>/dev/null | grep -i '\\.pdf$' || true); if [ -n \"$pdfs\" ]; then while IFS= read -r f; do full=\"/Users/matt/Repos/VibrationofAwesome/$f\"; exiftool -Author='Matt EarthStar' -Creator='Vibration of Awesome' -Producer='Vibration of Awesome' -overwrite_original \"$full\" 2>/dev/null && git -C /Users/matt/Repos/VibrationofAwesome add \"$f\" 2>/dev/null; done <<< \"$pdfs\"; fi; fi"
+            "statusMessage": "Checking staged PDFs for privacy...",
+            "command": "cmd=$(jq -r '.tool_input.command'); if echo \"$cmd\" | grep -qE '^git commit'; then REPO=/Users/matt/Repos/VibrationofAwesome; pdfs=$(git -C \"$REPO\" diff --cached --name-only 2>/dev/null | grep -i '\\.pdf$' || true); if [ -n \"$pdfs\" ]; then full_paths=$(echo \"$pdfs\" | while IFS= read -r f; do echo \"$REPO/$f\"; done); bash \"$REPO/scripts/scrub-pdf-metadata.sh\" $full_paths && echo \"$pdfs\" | while IFS= read -r f; do git -C \"$REPO\" add \"$f\" 2>/dev/null; done; fi; fi"
           }
         ]
       }

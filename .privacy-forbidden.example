@@ -1,0 +1,23 @@
+# .privacy-forbidden.example
+#
+# Copy this file to .privacy-forbidden.local and fill in your real private values.
+# .privacy-forbidden.local is gitignored and must NEVER be committed.
+#
+# One forbidden string per line. Blank lines and lines starting with # are ignored.
+# These strings will be searched in PDF metadata and body text.
+# When a match is found the script reports the file but does NOT print the term itself.
+#
+# ── Private legal name ────────────────────────────────────────────────────────
+PRIVATE_LEGAL_NAME_HERE
+#
+# ── Private email address ─────────────────────────────────────────────────────
+PRIVATE_EMAIL_HERE
+#
+# ── Old GitHub username (if private) ─────────────────────────────────────────
+OLD_USERNAME_HERE
+#
+# ── Local machine / hostname ──────────────────────────────────────────────────
+LOCAL_MACHINE_NAME_HERE
+#
+# ── Any other private identifier ─────────────────────────────────────────────
+# Add one per line below this comment.

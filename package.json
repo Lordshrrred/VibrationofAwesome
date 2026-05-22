@@ -33,7 +33,10 @@
     "instagram:audit": "node scripts/preview-instagram.js --feed-audit",
     "instagram:archetypes": "node scripts/preview-instagram.js --archetypes",
     "visuals:cost": "node scripts/visual-cost-report.js",
-    "visuals:cost:30": "node scripts/visual-cost-report.js --days 30"
+    "visuals:cost:30": "node scripts/visual-cost-report.js --days 30",
+    "pdf:scrub": "bash scripts/scrub-pdf-metadata.sh",
+    "pdf:check": "bash scripts/check-pdf-privacy.sh",
+    "privacy:check": "bash scripts/check-pdf-privacy.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

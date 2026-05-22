@@ -1,0 +1,40 @@
+name: PDF Privacy Check
+
+on:
+  push:
+    paths:
+      - '**.pdf'
+      - 'config/pdf-metadata.json'
+      - 'scripts/scrub-pdf-metadata.sh'
+      - 'scripts/check-pdf-privacy.sh'
+  pull_request:
+    paths:
+      - '**.pdf'
+
+jobs:
+  pdf-privacy:
+    name: Check PDF metadata and privacy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq exiftool poppler-utils
+
+      - name: Make scripts executable
+        run: chmod +x scripts/scrub-pdf-metadata.sh scripts/check-pdf-privacy.sh
+
+      - name: Write private forbidden terms from secret (if available)
+        if: ${{ secrets.PDF_PRIVACY_FORBIDDEN_TERMS != '' }}
+        env:
+          PDF_PRIVACY_FORBIDDEN_TERMS: ${{ secrets.PDF_PRIVACY_FORBIDDEN_TERMS }}
+        run: |
+          printf '%s\n' "$PDF_PRIVACY_FORBIDDEN_TERMS" > .privacy-forbidden.local
+          echo "Private terms loaded from secret (not printed)"
+
+      - name: Run PDF privacy check
+        run: bash scripts/check-pdf-privacy.sh
