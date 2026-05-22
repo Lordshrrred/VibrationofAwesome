@@ -35,6 +35,7 @@
     "instagram:archetypes": "node scripts/preview-instagram.js --archetypes",
     "visuals:cost": "node scripts/visual-cost-report.js",
     "visuals:cost:30": "node scripts/visual-cost-report.js --days 30",
+    "orchestration:export": "node scripts/lib/orchestration-export.js",
     "pdf:scrub": "bash scripts/scrub-pdf-metadata.sh",
     "pdf:check": "bash scripts/check-pdf-privacy.sh",
     "privacy:check": "bash scripts/check-pdf-privacy.sh"

@@ -1,0 +1,169 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "description": "Machine-readable schema for the VOA orchestration state export. Consumed by EarthStar Command orchestration layer.",
+    "source_file":   "static/_data/orchestration-state.json",
+    "endpoint":      "/api/orchestration-state",
+    "generated_by":  "scripts/lib/orchestration-export.js",
+    "stability":     "read-only export — no runtime behavior is altered by this schema"
+  },
+  "root": {
+    "schema_version": { "type": "string", "example": "1.0" },
+    "generated_at":   { "type": "ISO8601", "description": "When this state was compiled" },
+    "source":         { "type": "string",  "example": "vibrationofawesome.com" },
+    "publishing":     { "$ref": "#/sections/publishing" },
+    "syndication":    { "$ref": "#/sections/syndication" },
+    "visuals":        { "$ref": "#/sections/visuals" },
+    "clusters":       { "$ref": "#/sections/clusters" },
+    "generation":     { "$ref": "#/sections/generation" },
+    "timeline":       { "$ref": "#/sections/timeline" }
+  },
+  "sections": {
+    "publishing": {
+      "description": "Drip queue state, recent publishes, occupied dates, and cadence metadata",
+      "queue": {
+        "lane":                   { "type": "string",  "values": ["boom", "matt"] },
+        "draft_count":            { "type": "integer", "description": "Posts remaining in drafts folder" },
+        "draft_slugs":            { "type": "string[]","description": "Slug list of queued drafts" },
+        "runway_days":            { "type": "integer", "description": "Estimated days of content remaining at current cadence" },
+        "runway_status":          { "type": "string",  "values": ["healthy", "warning", "empty"] },
+        "warning_threshold":      { "type": "integer", "description": "Draft count below which warning fires" },
+        "cadence_posts_per_day":  { "type": "integer" },
+        "schedule_windows":       { "type": "string[]","description": "Named publish time slots" }
+      },
+      "recent_publishes": {
+        "type": "array",
+        "item_fields": {
+          "slug":         "string",
+          "title":        "string",
+          "lane":         "boom | matt",
+          "date":         "ISO8601",
+          "url":          "string",
+          "tags":         "string[]",
+          "cluster":      "string | null",
+          "content_type": "string | null"
+        }
+      },
+      "occupied_dates":          { "type": "string[]", "description": "ISO dates that have at least one published post" },
+      "next_estimated_window":   { "type": "string",   "description": "ISO date of next expected publish" },
+      "published_counts":        { "boom": "integer",  "matt": "integer", "total": "integer" }
+    },
+    "syndication": {
+      "description": "Per-post platform syndication status, retry backlog, and coverage rates",
+      "platforms": {
+        "type": "string[]",
+        "values": ["feeder", "bluesky_voa", "mastodon_voa", "facebook_voa", "pinterest", "threads", "instagram", "devto", "tumblr_voa", "blogger", "wordpress_earthstar"]
+      },
+      "per_post": {
+        "type": "array",
+        "item_fields": {
+          "slug":             "string",
+          "title":            "string",
+          "lane":             "string",
+          "date":             "string",
+          "publish_status":   "complete | partial | pending",
+          "platform_statuses": {
+            "description": "Keyed by platform name",
+            "value_fields": {
+              "status":    "success | failed | not_attempted",
+              "timestamp": "ISO8601 | null",
+              "url":       "string | null"
+            }
+          },
+          "success_count": "integer",
+          "failed_count":  "integer"
+        }
+      },
+      "retry_backlog": {
+        "type": "array",
+        "item_fields": { "slug": "string", "platform": "string", "timestamp": "ISO8601 | null" }
+      },
+      "platform_coverage": {
+        "description": "Keyed by platform name",
+        "value_fields": { "successes": "integer", "failures": "integer", "total": "integer" }
+      },
+      "summary": {
+        "total_posts":           "integer",
+        "fully_syndicated":      "integer",
+        "partial":               "integer",
+        "pending":               "integer",
+        "retry_backlog_count":   "integer"
+      }
+    },
+    "visuals": {
+      "description": "Image registry state, reuse statistics, source breakdown",
+      "registry_count":  { "type": "integer" },
+      "registry_entries": {
+        "type": "array",
+        "item_fields": {
+          "post_slug":       "string",
+          "source":          "ideogram | pexels | local | boom | unknown",
+          "asset_type":      "string | null",
+          "platforms_used":  "string[]",
+          "pinterest_board": "string | null",
+          "reused":          "boolean",
+          "reused_from":     "string | null",
+          "timestamp":       "ISO8601"
+        }
+      },
+      "reuse_stats": {
+        "total_entries": "integer",
+        "reused_count":  "integer",
+        "reuse_rate":    "float 0–1"
+      },
+      "source_breakdown": { "description": "source_name → count" },
+      "generation_counts": { "ideogram": "integer" },
+      "platform_usage":   { "description": "platform_name → usage_count" }
+    },
+    "clusters": {
+      "description": "Topical authority cluster definitions, post assignments, and saturation counts",
+      "cluster_count": { "type": "integer" },
+      "definitions": {
+        "description": "Keyed by cluster key",
+        "value_fields": {
+          "key":               "string",
+          "display_name":      "string",
+          "content_type":      "creator | philosophy | nervous-system | earthstar | general",
+          "pillar":            "string",
+          "supporting_angles": "string[]",
+          "related_clusters":  "string[]",
+          "pinterest_boards":  "string[]"
+        }
+      },
+      "post_to_cluster":       { "description": "slug → cluster key (only for posts that carry a cluster field)" },
+      "saturation":            { "description": "cluster key → published post count" },
+      "unassigned_post_count": { "type": "integer", "description": "Posts with no cluster field set" }
+    },
+    "generation": {
+      "description": "Rolling generation memory: recent patterns used in content creation (differentiation context)",
+      "last_updated":              { "type": "string" },
+      "recent_hooks":              { "type": "string[]" },
+      "recent_titles":             { "type": "string[]" },
+      "recent_structures":         { "type": "string[]" },
+      "recent_arcs":               { "type": "string[]" },
+      "recent_opening_styles":     { "type": "string[]" },
+      "recent_cta_patterns":       { "type": "string[]" },
+      "recent_threads_formats":    { "type": "string[]" },
+      "recent_instagram_archetypes": { "type": "string[]" },
+      "window_size":               { "type": "integer", "description": "Max entries per category (rolling)" }
+    },
+    "timeline": {
+      "description": "Unified temporal view: cadence density, runway, retry backlog, next windows",
+      "as_of":                  { "type": "ISO8601" },
+      "next_estimated_window":  { "type": "string", "description": "ISO date of next expected publish" },
+      "queue_runway_days":      { "type": "integer" },
+      "queue_runway_status":    { "type": "string", "values": ["healthy", "warning", "empty"] },
+      "occupied_dates":         { "type": "string[]" },
+      "retry_backlog_count":    { "type": "integer" },
+      "cadence_density": {
+        "posts_last_7_days":  "integer",
+        "posts_last_14_days": "integer",
+        "posts_last_30_days": "integer"
+      },
+      "recent_publish_history": {
+        "type": "array",
+        "item_fields": { "slug": "string", "lane": "string", "date": "string" }
+      }
+    }
+  }
+}
