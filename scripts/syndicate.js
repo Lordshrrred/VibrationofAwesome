@@ -55,6 +55,7 @@ import {
   publerAccountOwnership,
 } from "./lib/policy.js";
 import { firstWords } from "./lib/utils.js";
+import { refreshOrchestration } from "./lib/refresh-orchestration.js";
 
 dotenv.config({ override: true });
 
@@ -1772,6 +1773,8 @@ if (isCli) {
       platforms:   platformFilter,
       force:       argv.force,  // --force bypasses per-platform dedup
     });
+    // Refresh orchestration state — fire-and-forget, never blocks syndication
+    await refreshOrchestration("syndication");
   } catch (err) {
     console.error("Fatal:", err.message);
     process.exit(1);

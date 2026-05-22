@@ -28,6 +28,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import minimist from "minimist";
 import dotenv from "dotenv";
+import { refreshOrchestration } from "./lib/refresh-orchestration.js";
 import { updateSitemap } from "./update-sitemap.js";
 
 dotenv.config({ override: true });
@@ -258,6 +259,9 @@ async function main() {
   console.log("  ✓ Money site first gate armed: syndication waits for live URL verification.");
 
   console.log(`\n✓ Drip publish complete. ${queue.queue.length} post(s) remaining.\n`);
+
+  // Refresh orchestration state — fire-and-forget, never blocks publish
+  await refreshOrchestration("drip_publish");
 }
 
 main().catch(err => { console.error(err); process.exit(1); });

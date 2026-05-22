@@ -21,6 +21,7 @@ import path        from "path";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
 import dotenv      from "dotenv";
+import { refreshOrchestration } from "./lib/refresh-orchestration.js";
 
 dotenv.config({ override: true });
 
@@ -184,6 +185,9 @@ async function main() {
   }
 
   console.log(`\n[retry] Done. Retried ${retried} slug(s).`);
+
+  // Refresh orchestration state — fire-and-forget, never blocks retry
+  await refreshOrchestration("retry");
 }
 
 main().catch(err => { console.error(err); process.exit(1); });

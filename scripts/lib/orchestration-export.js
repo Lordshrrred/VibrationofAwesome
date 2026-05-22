@@ -340,14 +340,27 @@ export function buildOrchestrationState() {
 // ── CLI entry ─────────────────────────────────────────────────────────────────
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const state      = buildOrchestrationState();
-  const outPath    = join(DATA_DIR, "orchestration-state.json");
-  const json       = JSON.stringify(state, null, 2);
+  const t0       = Date.now();
+  const exportAt = new Date().toISOString();
+  const state    = buildOrchestrationState();
+  const duration = Date.now() - t0;
+
+  // Freshness metadata — written by CLI; refresh-orchestration.js writes its own
+  state._freshness = {
+    last_export_at:      exportAt,
+    source_event:        "manual",
+    export_duration_ms:  duration,
+    schema_version:      state.schema_version,
+    stale_after_minutes: 60,
+  };
+
+  const outPath  = join(DATA_DIR, "orchestration-state.json");
+  const json     = JSON.stringify(state, null, 2);
 
   writeFileSync(outPath, json, "utf8");
 
   const kb = (Buffer.byteLength(json, "utf8") / 1024).toFixed(1);
-  console.log(`[orchestration-export] Written to static/_data/orchestration-state.json (${kb}KB)`);
+  console.log(`[orchestration-export] Written to static/_data/orchestration-state.json (${kb}KB, ${duration}ms)`);
   console.log(`  published posts:   ${state.publishing.published_counts.total}`);
   console.log(`  drafts in queue:   ${state.publishing.queue.draft_count} (~${state.publishing.queue.runway_days}d runway)`);
   console.log(`  syndication rows:  ${state.syndication.summary.total_posts}`);

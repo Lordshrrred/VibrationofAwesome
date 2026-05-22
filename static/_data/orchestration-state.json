@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-05-22T16:21:14.767Z",
+  "generated_at": "2026-05-22T22:55:40.364Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -117,6 +117,16 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "title": "How to Find Your Purpose When You Have No Idea What It Is",
+        "lane": "boom",
+        "date": "2026-05-22T15:52:38.954Z",
+        "url": "/blog/boom/posts/how-to-find-your-purpose-when-you-have-no-idea-what-it-is.html",
+        "tags": [],
+        "cluster": null,
+        "content_type": null
+      },
       {
         "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
         "title": "Music Production for Beginners ~ Where to Start Without Getting Lost",
@@ -344,22 +354,10 @@
         ],
         "cluster": null,
         "content_type": null
-      },
-      {
-        "slug": "vibration-of-awesome",
-        "title": "The Vibration of Awesome",
-        "lane": "matt",
-        "date": "2016-05-20",
-        "url": "/blog/matt/posts/vibration-of-awesome/",
-        "tags": [
-          "archive",
-          "legacy"
-        ],
-        "cluster": null,
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-05-22",
       "2026-05-21",
       "2026-05-20",
       "2026-05-19",
@@ -386,11 +384,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-05-22",
+    "next_estimated_window": "2026-05-23",
     "published_counts": {
-      "boom": 12,
+      "boom": 13,
       "matt": 18,
-      "total": 30
+      "total": 31
     }
   },
   "syndication": {
@@ -408,6 +406,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "title": "How to Find Your Purpose When You Have No Idea What It Is",
+        "lane": "boom",
+        "date": "2026-05-22",
+        "publish_status": "complete",
+        "platform_statuses": {
+          "feeder": {
+            "status": "success",
+            "timestamp": "2026-05-22T15:54:32.667Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-find-your-purpose-when-you-have-no-idea-what-it-is-shift.html"
+          },
+          "bluesky_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "facebook_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "pinterest": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "threads": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "instagram": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "devto": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "tumblr_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "blogger": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          }
+        },
+        "success_count": 1,
+        "failed_count": 0
+      },
       {
         "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
         "title": "Music Production for Beginners ~ Where to Start Without Getting Lost",
@@ -1204,72 +1268,111 @@
     "retry_backlog": [],
     "platform_coverage": {
       "feeder": {
-        "successes": 12,
+        "successes": 13,
         "failures": 0,
-        "total": 12
+        "total": 13
       },
       "bluesky_voa": {
         "successes": 9,
         "failures": 0,
-        "total": 12
+        "total": 13
       },
       "mastodon_voa": {
         "successes": 9,
         "failures": 0,
-        "total": 12
+        "total": 13
       },
       "facebook_voa": {
         "successes": 9,
         "failures": 0,
-        "total": 12
+        "total": 13
       },
       "pinterest": {
         "successes": 9,
         "failures": 0,
-        "total": 12
+        "total": 13
       },
       "threads": {
         "successes": 9,
         "failures": 0,
-        "total": 12
+        "total": 13
       },
       "instagram": {
         "successes": 7,
         "failures": 0,
-        "total": 12
+        "total": 13
       },
       "devto": {
         "successes": 9,
         "failures": 0,
-        "total": 12
+        "total": 13
       },
       "tumblr_voa": {
         "successes": 9,
         "failures": 0,
-        "total": 12
+        "total": 13
       },
       "blogger": {
         "successes": 9,
         "failures": 0,
-        "total": 12
+        "total": 13
       },
       "wordpress_earthstar": {
         "successes": 9,
         "failures": 0,
-        "total": 12
+        "total": 13
       }
     },
     "summary": {
-      "total_posts": 12,
-      "fully_syndicated": 12,
+      "total_posts": 13,
+      "fully_syndicated": 13,
       "partial": 0,
       "pending": 0,
       "retry_backlog_count": 0
     }
   },
   "visuals": {
-    "registry_count": 8,
+    "registry_count": 11,
     "registry_entries": [
+      {
+        "post_slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "source": "boom",
+        "asset_type": "fallback",
+        "platforms_used": [
+          "instagram"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "none",
+        "timestamp": "2026-05-22T15:56:44.556Z"
+      },
+      {
+        "post_slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "source": "boom",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest"
+        ],
+        "pinterest_board": "purpose-and-direction",
+        "reused": false,
+        "reused_from": "none",
+        "timestamp": "2026-05-22T15:56:44.556Z"
+      },
+      {
+        "post_slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "purpose-and-direction",
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-05-22T15:54:27.934Z"
+      },
       {
         "post_slug": "music-production-for-beginners-where-to-start-without-getting-lost",
         "source": "boom",
@@ -1380,22 +1483,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 8,
+      "total_entries": 11,
       "reused_count": 0,
       "reuse_rate": 0
     },
     "source_breakdown": {
-      "boom": 4,
-      "ideogram": 4
+      "boom": 6,
+      "ideogram": 5
     },
     "generation_counts": {
-      "ideogram": 4
+      "ideogram": 5
     },
     "platform_usage": {
-      "instagram": 6,
-      "pinterest": 6,
-      "bluesky_voa": 4,
-      "mastodon_voa": 4
+      "instagram": 8,
+      "pinterest": 8,
+      "bluesky_voa": 5,
+      "mastodon_voa": 5
     }
   },
   "clusters": {
@@ -1649,10 +1752,10 @@
       "emotional-regulation": 0,
       "consciousness-technology": 0
     },
-    "unassigned_post_count": 30
+    "unassigned_post_count": 31
   },
   "generation": {
-    "last_updated": "2026-05-21T23:09:42.725Z",
+    "last_updated": "2026-05-22T15:56:44.554Z",
     "recent_hooks": [],
     "recent_titles": [],
     "recent_structures": [],
@@ -1660,6 +1763,24 @@
     "recent_opening_styles": [],
     "recent_cta_patterns": [],
     "recent_threads_formats": [
+      {
+        "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "format": "short-native-insight",
+        "cadenceProfile": "compact",
+        "density": "light",
+        "openerStyle": "direct",
+        "closerStyle": "resonant",
+        "timestamp": "2026-05-22T15:56:44.554Z"
+      },
+      {
+        "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "format": "philosophical-observation",
+        "cadenceProfile": "contemplative",
+        "density": "medium-dense",
+        "openerStyle": "conceptual-paradox",
+        "closerStyle": "open-question",
+        "timestamp": "2026-05-22T15:54:13.355Z"
+      },
       {
         "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
         "format": "creative-identity-reflection",
@@ -1717,6 +1838,15 @@
     ],
     "recent_instagram_archetypes": [
       {
+        "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "archetype": "field-guide-aesthetic",
+        "archetypeLabel": "Field Guide Aesthetic",
+        "palette": "warm-archive",
+        "emotionalTone": "quiet-discovery",
+        "emotionalCluster": "grounded",
+        "timestamp": "2026-05-22T15:54:27.933Z"
+      },
+      {
         "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
         "archetype": "premium-quote-card",
         "archetypeLabel": "Premium Quote Card",
@@ -1756,11 +1886,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-05-22T16:21:14.767Z",
-    "next_estimated_window": "2026-05-22",
+    "as_of": "2026-05-22T22:55:40.364Z",
+    "next_estimated_window": "2026-05-23",
     "queue_runway_days": 49,
     "queue_runway_status": "healthy",
     "occupied_dates": [
+      "2026-05-22",
       "2026-05-21",
       "2026-05-20",
       "2026-05-19",
@@ -1789,11 +1920,16 @@
     ],
     "retry_backlog_count": 0,
     "cadence_density": {
-      "posts_last_7_days": 8,
-      "posts_last_14_days": 11,
-      "posts_last_30_days": 11
+      "posts_last_7_days": 9,
+      "posts_last_14_days": 12,
+      "posts_last_30_days": 12
     },
     "recent_publish_history": [
+      {
+        "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "lane": "boom",
+        "date": "2026-05-22T15:52:38.954Z"
+      },
       {
         "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
         "lane": "boom",
@@ -1838,12 +1974,14 @@
         "slug": "how-to-use-claude-api-for-musicians",
         "lane": "boom",
         "date": "2026-05-15T03:41:02.236Z"
-      },
-      {
-        "slug": "how-to-reinvent-yourself-the-radical-truth-about-identity-shifts-nobody-talks-about",
-        "lane": "boom",
-        "date": "2026-05-15T03:38:59.563Z"
       }
     ]
+  },
+  "_freshness": {
+    "last_export_at": "2026-05-22T22:55:40.361Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 2,
+    "schema_version": "1.0",
+    "stale_after_minutes": 60
   }
 }

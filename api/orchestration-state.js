@@ -21,8 +21,10 @@ import { readFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const STATE_FILE = join(__dirname, "..", "static", "_data", "orchestration-state.json");
+const __dirname    = dirname(fileURLToPath(import.meta.url));
+const STATE_FILE   = join(__dirname, "..", "static", "_data", "orchestration-state.json");
+const HEALTH_FILE  = join(__dirname, "..", "static", "_data", "orchestration-health.json");
+const STALE_MINUTES = 60;
 
 const CORS = {
   "Access-Control-Allow-Origin":  "*",
@@ -64,23 +66,48 @@ export default function handler(req, res) {
     return send(res, 500, { error: "Failed to parse orchestration state" });
   }
 
+  // Compute freshness / stale status at serve time
+  const freshness    = state._freshness ?? {};
+  const exportedAt   = freshness.last_export_at ?? state.generated_at;
+  const ageMinutes   = exportedAt
+    ? (Date.now() - new Date(exportedAt).getTime()) / 60000
+    : null;
+  const isStale      = ageMinutes !== null && ageMinutes > STALE_MINUTES;
+
+  // Load health file if present
+  let health = null;
+  try {
+    if (existsSync(HEALTH_FILE)) health = JSON.parse(readFileSync(HEALTH_FILE, "utf8"));
+  } catch { /* health is optional */ }
+
+  const meta = {
+    schema_version:  state.schema_version,
+    generated_at:    state.generated_at,
+    source:          state.source,
+    freshness: {
+      ...freshness,
+      age_minutes:        ageMinutes !== null ? +ageMinutes.toFixed(1) : null,
+      is_stale:           isStale,
+      stale_after_minutes: STALE_MINUTES,
+    },
+    health,
+  };
+
   const section = req.query?.section;
+
+  if (section === "health") {
+    return send(res, 200, { ...meta, data: health });
+  }
 
   if (section) {
     if (!VALID_SECTIONS.has(section)) {
       return send(res, 400, {
-        error:    `Unknown section: ${section}`,
-        valid:    [...VALID_SECTIONS],
+        error: `Unknown section: ${section}`,
+        valid: [...VALID_SECTIONS, "health"],
       });
     }
-    return send(res, 200, {
-      schema_version: state.schema_version,
-      generated_at:   state.generated_at,
-      source:         state.source,
-      section,
-      data:           state[section],
-    });
+    return send(res, 200, { ...meta, section, data: state[section] });
   }
 
-  return send(res, 200, state);
+  return send(res, 200, { ...state, _meta: meta });
 }
