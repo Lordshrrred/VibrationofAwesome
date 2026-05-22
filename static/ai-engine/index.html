@@ -976,8 +976,8 @@ document.querySelectorAll('[data-opens-modal]').forEach(function (el) {
 });
 
 // ── Shared form submission ────────────────────────────────────────────────
-var CAPTURE_API = window.VOA_CAPTURE_EMAIL_URL || 'https://vibrationofawesome-mailer.vercel.app/api/capture-email';
-var PDF_URL = '../downloads/VOA_AI_Creative_Exoskeleton.pdf';
+var CAPTURE_API = window.VOA_CAPTURE_EMAIL_URL || '/api/capture-email';
+var PDF_URL = '../downloads/voa-ai.pdf';
 
 function showFormSuccess(id, downloadUrl) {
   var form    = document.getElementById(id + '-form');

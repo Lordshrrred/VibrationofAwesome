@@ -33,6 +33,9 @@ function getMailerLiteGroupId(list) {
       process.env.ML_USER_MANUAL_WAITLIST_GROUP_ID ||
       "";
   }
+  if (list === "ai_exoskeleton") {
+    return process.env.MAILERLITE_VOA_AI_GROUP_ID || "";
+  }
   return process.env.MAILERLITE_FIELD_GUIDE_GROUP_ID ||
     process.env.MAILERLITE_GROUP_ID ||
     process.env.ML_GROUP_ID ||
@@ -45,6 +48,7 @@ function getMailerLiteGroupName(list) {
       process.env.MAILERLITE_WAITLIST_GROUP_NAME ||
       "VOA User Manual Waiting List";
   }
+  if (list === "ai_exoskeleton") return "VOA AI Exoskeleton";
   return process.env.MAILERLITE_FIELD_GUIDE_GROUP_NAME || "VOA Field Guide";
 }
 
@@ -142,11 +146,15 @@ export default async function handler(req, res) {
   }
 
   const fieldGuidePath = process.env.FIELD_GUIDE_DOWNLOAD_PATH || "/downloads/voa-field-guide.pdf";
+  const downloadUrl =
+    signupList === "ai_exoskeleton" ? "/downloads/voa-ai.pdf" :
+    signupList === "field_guide"    ? fieldGuidePath :
+    "/field-guide/";
   send(res, 200, {
     success: true,
     token,
     list: signupList,
-    download_url: signupList === "field_guide" ? fieldGuidePath : "/field-guide/",
+    download_url: downloadUrl,
     analytics_events: ["ebook_optin_submit", "ebook_optin_success"],
   });
 }
