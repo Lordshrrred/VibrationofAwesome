@@ -1,8 +1,8 @@
 {
-  "lastChecked": "2026-05-22T04:35:47.286Z",
+  "lastChecked": "2026-05-22T15:22:48.351Z",
   "status": "broken",
-  "passed": 10,
-  "failed": 4,
+  "passed": 9,
+  "failed": 5,
   "total": 14,
   "topFix": {
     "name": "Blogger token refresh",
@@ -61,8 +61,8 @@
     },
     {
       "name": "Mastodon VOA auth",
-      "ok": true,
-      "detail": "Vibrationofawesome"
+      "ok": false,
+      "detail": "HTTP 503"
     },
     {
       "name": "Facebook VOA",
