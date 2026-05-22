@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-21T23:09:42.725Z",
+  "lastUpdated": "2026-05-22T15:56:44.554Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,24 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-05-22T15:56:44.554Z"
+    },
+    {
+      "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-05-22T15:54:13.355Z"
+    },
     {
       "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
       "format": "creative-identity-reflection",
@@ -68,6 +86,15 @@
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-05-22T15:54:27.933Z"
+    },
     {
       "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
       "archetype": "premium-quote-card",
