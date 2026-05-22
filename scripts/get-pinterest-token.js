@@ -3,21 +3,14 @@
  * get-pinterest-token.js ~ Fresh Pinterest OAuth with correct scopes
  *
  * Pinterest requires explicit OAuth authorization for boards:write and pins:write.
- * The existing token in .env is missing these scopes and cannot be upgraded ~
- * you must go through a fresh authorization flow.
- *
- * Flow:
- *   1. Open browser to Pinterest OAuth dialog with correct scopes
- *   2. User approves the requested permissions
- *   3. Callback received on localhost:9877
- *   4. Exchange code → access token + refresh token
- *   5. Print the env var lines to paste into .env
- *   6. Optionally list boards so you can set PINTEREST_BOARD_ID correctly
  *
  * Usage:
- *   node scripts/get-pinterest-token.js
+ *   node scripts/get-pinterest-token.js --account ESR   (EarthStar Rising account)
+ *   node scripts/get-pinterest-token.js --account VOA   (Vibration of Awesome account)
+ *   node scripts/get-pinterest-token.js                 (defaults to ESR)
  *
- * Prerequisites: PINTEREST_APP_ID and PINTEREST_APP_SECRET must be set in .env
+ * Reads:  {PREFIX}_PINTEREST_APP_ID and {PREFIX}_PINTEREST_APP_SECRET from .env
+ * Output: paste {PREFIX}_PINTEREST_ACCESS_TOKEN and {PREFIX}_PINTEREST_REFRESH_TOKEN into .env
  *
  * Pinterest Developer Console:
  *   https://developers.pinterest.com/apps/
@@ -36,13 +29,23 @@ dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 
-const APP_ID     = process.env.PINTEREST_APP_ID;
-const APP_SECRET = process.env.PINTEREST_APP_SECRET;
-const PORT       = 9877;
-const REDIRECT   = `http://localhost:${PORT}/callback`;
+const args    = process.argv.slice(2);
+const accIdx  = args.indexOf("--account");
+const ACCOUNT = (accIdx !== -1 ? args[accIdx + 1] : "ESR").toUpperCase();
+
+if (!["ESR", "VOA"].includes(ACCOUNT)) {
+  console.error(`Unknown account: ${ACCOUNT}. Use --account ESR or --account VOA`);
+  process.exit(1);
+}
+
+const PREFIX   = ACCOUNT;
+const APP_ID   = process.env[`${PREFIX}_PINTEREST_APP_ID`];
+const APP_SECRET = process.env[`${PREFIX}_PINTEREST_APP_SECRET`];
+const PORT     = 9877;
+const REDIRECT = `http://localhost:${PORT}/callback`;
 
 if (!APP_ID || !APP_SECRET) {
-  console.error("Error: PINTEREST_APP_ID and PINTEREST_APP_SECRET must be set in .env");
+  console.error(`Error: ${PREFIX}_PINTEREST_APP_ID and ${PREFIX}_PINTEREST_APP_SECRET must be set in .env`);
   process.exit(1);
 }
 
@@ -65,7 +68,7 @@ const authUrl =
   `&scope=${encodeURIComponent(SCOPES)}` +
   `&state=${STATE}`;
 
-console.log("\n=== Pinterest OAuth Token Refresh ===");
+console.log(`\n=== Pinterest OAuth Token Refresh [${PREFIX}] ===`);
 console.log("IMPORTANT: Make sure your Pinterest app has this redirect URI registered:");
 console.log(`  ${REDIRECT}`);
 console.log("  → Go to https://developers.pinterest.com/apps/ → your app → Edit → Add redirect URI\n");
@@ -148,11 +151,11 @@ const server = http.createServer(async (req, res) => {
     console.log("\n═══════════════════════════════════════════════");
     console.log("  PASTE THESE INTO YOUR .env FILE:");
     console.log("═══════════════════════════════════════════════\n");
-    console.log(`PINTEREST_ACCESS_TOKEN=${accessToken}`);
-    if (refreshToken) console.log(`PINTEREST_REFRESH_TOKEN=${refreshToken}`);
+    console.log(`${PREFIX}_PINTEREST_ACCESS_TOKEN=${accessToken}`);
+    if (refreshToken) console.log(`${PREFIX}_PINTEREST_REFRESH_TOKEN=${refreshToken}`);
     console.log();
-    console.log("# Set PINTEREST_BOARD_ID to the board ID from the list above.");
-    console.log(`# Current value: ${process.env.PINTEREST_BOARD_ID || "(not set)"}`);
+    console.log(`# Set ${PREFIX}_PINTEREST_BOARD_ID to the board ID from the list above.`);
+    console.log(`# Current value: ${process.env[`${PREFIX}_PINTEREST_BOARD_ID`] || "(not set)"}`);
     console.log("\n═══════════════════════════════════════════════\n");
 
     // Verify the token has the required write scopes
