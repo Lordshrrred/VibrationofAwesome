@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Checking staged PDFs for metadata...",
+            "command": "cmd=$(jq -r '.tool_input.command'); if echo \"$cmd\" | grep -qE '^git commit'; then pdfs=$(git -C /Users/matt/Repos/VibrationofAwesome diff --cached --name-only 2>/dev/null | grep -i '\\.pdf$' || true); if [ -n \"$pdfs\" ]; then while IFS= read -r f; do full=\"/Users/matt/Repos/VibrationofAwesome/$f\"; exiftool -Author='Matt EarthStar' -Creator='Vibration of Awesome' -Producer='Vibration of Awesome' -overwrite_original \"$full\" 2>/dev/null && git -C /Users/matt/Repos/VibrationofAwesome add \"$f\" 2>/dev/null; done <<< \"$pdfs\"; fi; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
