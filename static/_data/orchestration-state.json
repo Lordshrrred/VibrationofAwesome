@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-05-22T23:07:00.539Z",
+  "generated_at": "2026-05-22T23:07:24.384Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -452,7 +452,7 @@
           },
           "tumblr_voa": {
             "status": "failed",
-            "timestamp": "2026-05-22T23:07:00.536Z",
+            "timestamp": "2026-05-22T23:07:24.370Z",
             "url": null
           },
           "blogger": {
@@ -1332,7 +1332,7 @@
       {
         "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
         "platform": "tumblr_voa",
-        "timestamp": "2026-05-22T23:07:00.536Z"
+        "timestamp": "2026-05-22T23:07:24.370Z"
       },
       {
         "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
@@ -1406,8 +1406,32 @@
     }
   },
   "visuals": {
-    "registry_count": 12,
+    "registry_count": 14,
     "registry_entries": [
+      {
+        "post_slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
+        "source": "boom",
+        "asset_type": "fallback",
+        "platforms_used": [
+          "instagram"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "none",
+        "timestamp": "2026-05-22T23:07:24.365Z"
+      },
+      {
+        "post_slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
+        "source": "boom",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest"
+        ],
+        "pinterest_board": "vibration-of-awesome",
+        "reused": false,
+        "reused_from": "none",
+        "timestamp": "2026-05-22T23:07:24.365Z"
+      },
       {
         "post_slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
         "source": "ideogram",
@@ -1572,20 +1596,20 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 12,
+      "total_entries": 14,
       "reused_count": 0,
       "reuse_rate": 0
     },
     "source_breakdown": {
-      "ideogram": 6,
-      "boom": 6
+      "boom": 8,
+      "ideogram": 6
     },
     "generation_counts": {
       "ideogram": 6
     },
     "platform_usage": {
-      "pinterest": 9,
-      "instagram": 9,
+      "instagram": 10,
+      "pinterest": 10,
       "bluesky_voa": 6,
       "mastodon_voa": 6
     }
@@ -1844,7 +1868,7 @@
     "unassigned_post_count": 32
   },
   "generation": {
-    "last_updated": "2026-05-22T23:04:36.114Z",
+    "last_updated": "2026-05-22T23:07:24.362Z",
     "recent_hooks": [],
     "recent_titles": [],
     "recent_structures": [],
@@ -1852,6 +1876,15 @@
     "recent_opening_styles": [],
     "recent_cta_patterns": [],
     "recent_threads_formats": [
+      {
+        "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
+        "format": "manifesto-conviction",
+        "cadenceProfile": "charged-decisive",
+        "density": "medium-dense",
+        "openerStyle": "strong-declarative",
+        "closerStyle": "worldview-shift",
+        "timestamp": "2026-05-22T23:07:24.362Z"
+      },
       {
         "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
         "format": "single-native-post",
@@ -1993,7 +2026,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-05-22T23:07:00.539Z",
+    "as_of": "2026-05-22T23:07:24.384Z",
     "next_estimated_window": "2026-05-23",
     "queue_runway_days": 49,
     "queue_runway_status": "healthy",
@@ -2085,9 +2118,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-05-22T23:07:00.537Z",
-    "source_event": "syndication",
-    "export_duration_ms": 2,
+    "last_export_at": "2026-05-22T23:07:24.380Z",
+    "source_event": "retry",
+    "export_duration_ms": 4,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
