@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-22T23:07:24.362Z",
+  "lastUpdated": "2026-05-23T14:47:28.122Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,24 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-stop-living-in-survival-mode-for-good",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-05-23T14:47:28.122Z"
+    },
+    {
+      "slug": "how-to-stop-living-in-survival-mode-for-good",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-05-23T14:44:20.732Z"
+    },
     {
       "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
       "format": "manifesto-conviction",
@@ -104,6 +122,15 @@
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-stop-living-in-survival-mode-for-good",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-05-23T14:44:35.373Z"
+    },
     {
       "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
       "archetype": "minimalist-philosophy",
