@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-23T14:47:28.122Z",
+  "lastUpdated": "2026-05-23T22:57:16.045Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "ai-content-creation-tools-that-actually-save-time",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-05-23T22:57:00.649Z"
+    },
     {
       "slug": "how-to-stop-living-in-survival-mode-for-good",
       "format": "conversational-reflection",
@@ -122,6 +131,15 @@
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "ai-content-creation-tools-that-actually-save-time",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-05-23T22:57:16.045Z"
+    },
     {
       "slug": "how-to-stop-living-in-survival-mode-for-good",
       "archetype": "sacred-tech",
