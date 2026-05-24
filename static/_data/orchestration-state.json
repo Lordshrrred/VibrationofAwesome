@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-05-24T14:44:27.404Z",
+  "generated_at": "2026-05-24T22:59:23.650Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -117,6 +117,16 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
+        "title": "How to Make Money as a Musician Without Compromising Your Art",
+        "lane": "boom",
+        "date": "2026-05-24T22:59:23.645Z",
+        "url": "/blog/boom/posts/how-to-make-money-as-a-musician-without-compromising-your-art.html",
+        "tags": [],
+        "cluster": null,
+        "content_type": null
+      },
       {
         "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
         "title": "How to Get Out of Survival Mode and Actually Start Living",
@@ -329,19 +339,6 @@
         ],
         "cluster": null,
         "content_type": null
-      },
-      {
-        "slug": "best-hair-stylist-in-st-pete",
-        "title": "Best Hair Stylist in St Pete",
-        "lane": "matt",
-        "date": "2016-06-21",
-        "url": "/blog/matt/posts/best-hair-stylist-in-st-pete/",
-        "tags": [
-          "archive",
-          "legacy"
-        ],
-        "cluster": null,
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -376,9 +373,9 @@
     ],
     "next_estimated_window": "2026-05-25",
     "published_counts": {
-      "boom": 17,
+      "boom": 18,
       "matt": 18,
-      "total": 35
+      "total": 36
     }
   },
   "syndication": {
@@ -401,66 +398,66 @@
         "title": "How to Get Out of Survival Mode and Actually Start Living",
         "lane": "boom",
         "date": "2026-05-24",
-        "publish_status": "partial",
+        "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
+            "status": "success",
+            "timestamp": "2026-05-24T14:42:30.925Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-get-out-of-survival-mode-and-actually-start-living-signal.html"
+          },
+          "bluesky_voa": {
             "status": "not_attempted",
             "timestamp": null,
             "url": null
           },
-          "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-05-24T14:43:59.673Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mmm74c6cdd2c"
-          },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-05-24T14:43:59.673Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116630076499232322"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "facebook_voa": {
-            "status": "success",
-            "timestamp": "2026-05-24T14:43:59.673Z",
-            "url": "https://www.facebook.com/175302679321012_1027796922938330"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "pinterest": {
-            "status": "success",
-            "timestamp": "2026-05-24T14:43:59.673Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "threads": {
-            "status": "success",
-            "timestamp": "2026-05-24T14:43:59.673Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "instagram": {
-            "status": "success",
-            "timestamp": "2026-05-24T14:43:59.673Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "devto": {
-            "status": "success",
-            "timestamp": "2026-05-24T14:43:59.673Z",
-            "url": "https://dev.to/earthstarrising/how-to-get-out-of-survival-mode-and-actually-start-living-4fmo"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "tumblr_voa": {
-            "status": "failed",
-            "timestamp": "2026-05-24T14:44:27.384Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "blogger": {
-            "status": "failed",
-            "timestamp": "2026-05-24T14:43:59.673Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "wordpress_earthstar": {
-            "status": "success",
-            "timestamp": "2026-05-24T14:43:59.673Z",
-            "url": "https://earthstarrisingsun.wordpress.com/2026/05/24/how-to-get-out-of-survival-mode-and-actually-start-living-earthstar/"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           }
         },
-        "success_count": 8,
-        "failed_count": 2
+        "success_count": 1,
+        "failed_count": 0
       },
       {
         "slug": "ai-content-creation-tools-that-actually-save-time",
@@ -1519,81 +1516,70 @@
         "failed_count": 0
       }
     ],
-    "retry_backlog": [
-      {
-        "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
-        "platform": "tumblr_voa",
-        "timestamp": "2026-05-24T14:44:27.384Z"
-      },
-      {
-        "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
-        "platform": "blogger",
-        "timestamp": "2026-05-24T14:43:59.673Z"
-      }
-    ],
+    "retry_backlog": [],
     "platform_coverage": {
       "feeder": {
-        "successes": 16,
+        "successes": 17,
         "failures": 0,
         "total": 17
       },
       "bluesky_voa": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 17
       },
       "mastodon_voa": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 17
       },
       "facebook_voa": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 17
       },
       "pinterest": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 17
       },
       "threads": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 17
       },
       "instagram": {
-        "successes": 8,
+        "successes": 7,
         "failures": 0,
         "total": 17
       },
       "devto": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 17
       },
       "tumblr_voa": {
         "successes": 9,
-        "failures": 1,
+        "failures": 0,
         "total": 17
       },
       "blogger": {
         "successes": 9,
-        "failures": 1,
+        "failures": 0,
         "total": 17
       },
       "wordpress_earthstar": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 17
       }
     },
     "summary": {
       "total_posts": 17,
-      "fully_syndicated": 16,
-      "partial": 1,
+      "fully_syndicated": 17,
+      "partial": 0,
       "pending": 0,
-      "retry_backlog_count": 2
+      "retry_backlog_count": 0
     }
   },
   "visuals": {
@@ -2173,7 +2159,7 @@
       "emotional-regulation": 0,
       "consciousness-technology": 0
     },
-    "unassigned_post_count": 35
+    "unassigned_post_count": 36
   },
   "generation": {
     "last_updated": "2026-05-24T14:44:27.374Z",
@@ -2415,7 +2401,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-05-24T14:44:27.404Z",
+    "as_of": "2026-05-24T22:59:23.650Z",
     "next_estimated_window": "2026-05-25",
     "queue_runway_days": 49,
     "queue_runway_status": "healthy",
@@ -2449,13 +2435,18 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 2,
+    "retry_backlog_count": 0,
     "cadence_density": {
-      "posts_last_7_days": 11,
-      "posts_last_14_days": 16,
-      "posts_last_30_days": 16
+      "posts_last_7_days": 12,
+      "posts_last_14_days": 17,
+      "posts_last_30_days": 17
     },
     "recent_publish_history": [
+      {
+        "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
+        "lane": "boom",
+        "date": "2026-05-24T22:59:23.645Z"
+      },
       {
         "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
         "lane": "boom",
@@ -2500,18 +2491,13 @@
         "slug": "how-to-become-your-true-self-when-the-world-wants-you-generic",
         "lane": "boom",
         "date": "2026-05-20T13:00:00.000Z"
-      },
-      {
-        "slug": "the-best-ai-tools-for-musicians-in-2026-that-actually-work",
-        "lane": "boom",
-        "date": "2026-05-19T02:43:59.431Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-05-24T14:44:27.397Z",
-    "source_event": "retry",
-    "export_duration_ms": 7,
+    "last_export_at": "2026-05-24T22:59:23.647Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 3,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
