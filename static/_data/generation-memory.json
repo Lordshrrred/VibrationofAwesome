@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-24T14:44:27.374Z",
+  "lastUpdated": "2026-05-24T23:01:06.947Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-05-24T23:00:52.497Z"
+    },
     {
       "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
       "format": "short-native-insight",
@@ -158,6 +167,15 @@
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-05-24T23:01:06.947Z"
+    },
     {
       "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
       "archetype": "nervous-system-atmospheric",
