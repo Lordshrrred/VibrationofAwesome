@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-23T22:59:53.879Z",
+  "lastUpdated": "2026-05-24T14:44:27.374Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,24 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-05-24T14:44:27.374Z"
+    },
+    {
+      "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-05-24T14:41:57.518Z"
+    },
     {
       "slug": "ai-content-creation-tools-that-actually-save-time",
       "format": "reflective-essay",
@@ -140,6 +158,15 @@
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "timestamp": "2026-05-24T14:42:11.814Z"
+    },
     {
       "slug": "ai-content-creation-tools-that-actually-save-time",
       "archetype": "abstract-creator-life",
