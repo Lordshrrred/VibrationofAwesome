@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-24T23:03:22.473Z",
+  "lastUpdated": "2026-05-25T16:00:37.939Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-05-25T16:00:23.488Z"
+    },
     {
       "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
       "format": "manifesto-conviction",
@@ -176,6 +185,15 @@
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-05-25T16:00:37.939Z"
+    },
     {
       "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
       "archetype": "premium-quote-card",
