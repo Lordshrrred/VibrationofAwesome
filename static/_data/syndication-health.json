@@ -1,8 +1,8 @@
 {
-  "lastChecked": "2026-05-24T22:59:23.590Z",
+  "lastChecked": "2026-05-25T04:51:14.817Z",
   "status": "broken",
-  "passed": 12,
-  "failed": 2,
+  "passed": 10,
+  "failed": 4,
   "total": 14,
   "topFix": {
     "name": "Blogger token refresh",
@@ -13,8 +13,8 @@
     "status": "active",
     "rate": 1,
     "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
-    "remaining": 87,
-    "published": 12,
+    "remaining": 86,
+    "published": 13,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -22,7 +22,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=87"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=86"
     },
     {
       "name": "Publer accounts",
@@ -36,13 +36,13 @@
     },
     {
       "name": "Publer VOA Instagram account",
-      "ok": true,
-      "detail": "vibrationofawesome (6a0698ee1f0e47d9f3f18a43)"
+      "ok": false,
+      "detail": "missing PUBLER_INSTAGRAM_ACCOUNT_ID"
     },
     {
       "name": "Publer VOA Threads account",
-      "ok": true,
-      "detail": "@vibrationofawesome (6a069b7979cc0b32f3235166)"
+      "ok": false,
+      "detail": "missing PUBLER_THREADS_ACCOUNT_ID"
     },
     {
       "name": "Bluesky ESR auth",
