@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-05-25T16:03:20.810Z",
+  "generated_at": "2026-05-25T23:05:16.218Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -117,6 +117,16 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "how-to-use-claude-without-losing-creative-control",
+        "title": "How To Use Claude Without Losing Creative Control",
+        "lane": "boom",
+        "date": "2026-05-25T23:05:16.213Z",
+        "url": "/blog/boom/posts/how-to-use-claude-without-losing-creative-control.html",
+        "tags": [],
+        "cluster": null,
+        "content_type": null
+      },
       {
         "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
         "title": "How to Stop Feeling Lost and Start Moving Forward",
@@ -321,20 +331,6 @@
         ],
         "cluster": null,
         "content_type": null
-      },
-      {
-        "slug": "ai-tools-for-independent-artists",
-        "title": "AI Tools for Independent Artists: The Stack That Changes Everything",
-        "lane": "boom",
-        "date": "2026-02-15",
-        "url": "/blog/boom/posts/ai-tools-for-independent-artists.html",
-        "tags": [
-          "ai-tools",
-          "independent-artists",
-          "creative-stack"
-        ],
-        "cluster": null,
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -370,9 +366,9 @@
     ],
     "next_estimated_window": "2026-05-26",
     "published_counts": {
-      "boom": 19,
+      "boom": 20,
       "matt": 18,
-      "total": 37
+      "total": 38
     }
   },
   "syndication": {
@@ -395,66 +391,66 @@
         "title": "How to Stop Feeling Lost and Start Moving Forward",
         "lane": "boom",
         "date": "2026-05-25",
-        "publish_status": "partial",
+        "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
+            "status": "success",
+            "timestamp": "2026-05-25T16:00:51.256Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-stop-feeling-lost-and-start-moving-forward-shift.html"
+          },
+          "bluesky_voa": {
             "status": "not_attempted",
             "timestamp": null,
             "url": null
           },
-          "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-05-25T16:02:48.371Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mmotxhnra324"
-          },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-05-25T16:02:48.371Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116636047234146411"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "facebook_voa": {
-            "status": "success",
-            "timestamp": "2026-05-25T16:02:48.371Z",
-            "url": "https://www.facebook.com/175302679321012_1028661346185221"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "pinterest": {
-            "status": "success",
-            "timestamp": "2026-05-25T16:02:48.371Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "threads": {
-            "status": "success",
-            "timestamp": "2026-05-25T16:02:48.371Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "instagram": {
-            "status": "success",
-            "timestamp": "2026-05-25T16:02:48.371Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "devto": {
-            "status": "success",
-            "timestamp": "2026-05-25T16:02:48.371Z",
-            "url": "https://dev.to/earthstarrising/how-to-stop-feeling-lost-and-start-moving-forward-44c"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "tumblr_voa": {
-            "status": "failed",
-            "timestamp": "2026-05-25T16:03:20.795Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "blogger": {
-            "status": "failed",
-            "timestamp": "2026-05-25T16:02:48.371Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "wordpress_earthstar": {
-            "status": "success",
-            "timestamp": "2026-05-25T16:02:48.371Z",
-            "url": "https://earthstarrisingsun.wordpress.com/2026/05/25/how-to-stop-feeling-lost-and-start-moving-forward-earthstar/"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           }
         },
-        "success_count": 8,
-        "failed_count": 2
+        "success_count": 1,
+        "failed_count": 0
       },
       {
         "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
@@ -1645,81 +1641,70 @@
         "failed_count": 0
       }
     ],
-    "retry_backlog": [
-      {
-        "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
-        "platform": "tumblr_voa",
-        "timestamp": "2026-05-25T16:03:20.795Z"
-      },
-      {
-        "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
-        "platform": "blogger",
-        "timestamp": "2026-05-25T16:02:48.371Z"
-      }
-    ],
+    "retry_backlog": [],
     "platform_coverage": {
       "feeder": {
-        "successes": 18,
+        "successes": 19,
         "failures": 0,
         "total": 19
       },
       "bluesky_voa": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 19
       },
       "mastodon_voa": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 19
       },
       "facebook_voa": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 19
       },
       "pinterest": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 19
       },
       "threads": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 19
       },
       "instagram": {
-        "successes": 8,
+        "successes": 7,
         "failures": 0,
         "total": 19
       },
       "devto": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 19
       },
       "tumblr_voa": {
         "successes": 9,
-        "failures": 1,
+        "failures": 0,
         "total": 19
       },
       "blogger": {
         "successes": 9,
-        "failures": 1,
+        "failures": 0,
         "total": 19
       },
       "wordpress_earthstar": {
-        "successes": 10,
+        "successes": 9,
         "failures": 0,
         "total": 19
       }
     },
     "summary": {
       "total_posts": 19,
-      "fully_syndicated": 18,
-      "partial": 1,
+      "fully_syndicated": 19,
+      "partial": 0,
       "pending": 0,
-      "retry_backlog_count": 2
+      "retry_backlog_count": 0
     }
   },
   "visuals": {
@@ -2377,7 +2362,7 @@
       "emotional-regulation": 0,
       "consciousness-technology": 0
     },
-    "unassigned_post_count": 37
+    "unassigned_post_count": 38
   },
   "generation": {
     "last_updated": "2026-05-25T16:03:20.786Z",
@@ -2673,7 +2658,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-05-25T16:03:20.810Z",
+    "as_of": "2026-05-25T23:05:16.218Z",
     "next_estimated_window": "2026-05-26",
     "queue_runway_days": 49,
     "queue_runway_status": "healthy",
@@ -2708,13 +2693,18 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 2,
+    "retry_backlog_count": 0,
     "cadence_density": {
-      "posts_last_7_days": 13,
-      "posts_last_14_days": 18,
-      "posts_last_30_days": 18
+      "posts_last_7_days": 14,
+      "posts_last_14_days": 19,
+      "posts_last_30_days": 19
     },
     "recent_publish_history": [
+      {
+        "slug": "how-to-use-claude-without-losing-creative-control",
+        "lane": "boom",
+        "date": "2026-05-25T23:05:16.213Z"
+      },
       {
         "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
         "lane": "boom",
@@ -2759,17 +2749,12 @@
         "slug": "the-identity-shift-that-changes-everything",
         "lane": "boom",
         "date": "2026-05-21T16:20:36.793Z"
-      },
-      {
-        "slug": "how-to-use-ai-to-make-music-without-losing-your-sound",
-        "lane": "boom",
-        "date": "2026-05-20T22:00:00.000Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-05-25T16:03:20.807Z",
-    "source_event": "retry",
+    "last_export_at": "2026-05-25T23:05:16.215Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 3,
     "schema_version": "1.0",
     "stale_after_minutes": 60
