@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-05-25T23:05:16.218Z",
+  "generated_at": "2026-05-25T23:10:05.910Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -386,6 +386,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "how-to-use-claude-without-losing-creative-control",
+        "title": "How To Use Claude Without Losing Creative Control",
+        "lane": "boom",
+        "date": "2026-05-25",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-05-25T23:10:05.906Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mmplsxs6qw2s"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-05-25T23:10:05.906Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/116637726212643657"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-05-25T23:10:05.906Z",
+            "url": "https://www.facebook.com/175302679321012_1028882436163112"
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-05-25T23:10:05.906Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-05-25T23:10:05.906Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-05-25T23:10:05.906Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-05-25T23:10:05.906Z",
+            "url": "https://dev.to/earthstarrising/how-to-use-claude-without-losing-creative-control-gi1"
+          },
+          "tumblr_voa": {
+            "status": "failed",
+            "timestamp": "2026-05-25T23:10:05.906Z",
+            "url": null
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-05-25T23:10:05.906Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-05-25T23:10:05.906Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/05/25/how-to-use-claude-without-losing-creative-control-earthstar/"
+          }
+        },
+        "success_count": 8,
+        "failed_count": 2
+      },
       {
         "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
         "title": "How to Stop Feeling Lost and Start Moving Forward",
@@ -1641,75 +1707,101 @@
         "failed_count": 0
       }
     ],
-    "retry_backlog": [],
+    "retry_backlog": [
+      {
+        "slug": "how-to-use-claude-without-losing-creative-control",
+        "platform": "tumblr_voa",
+        "timestamp": "2026-05-25T23:10:05.906Z"
+      },
+      {
+        "slug": "how-to-use-claude-without-losing-creative-control",
+        "platform": "blogger",
+        "timestamp": "2026-05-25T23:10:05.906Z"
+      }
+    ],
     "platform_coverage": {
       "feeder": {
         "successes": 19,
         "failures": 0,
-        "total": 19
+        "total": 20
       },
       "bluesky_voa": {
-        "successes": 9,
+        "successes": 10,
         "failures": 0,
-        "total": 19
+        "total": 20
       },
       "mastodon_voa": {
-        "successes": 9,
+        "successes": 10,
         "failures": 0,
-        "total": 19
+        "total": 20
       },
       "facebook_voa": {
-        "successes": 9,
+        "successes": 10,
         "failures": 0,
-        "total": 19
+        "total": 20
       },
       "pinterest": {
-        "successes": 9,
+        "successes": 10,
         "failures": 0,
-        "total": 19
+        "total": 20
       },
       "threads": {
-        "successes": 9,
+        "successes": 10,
         "failures": 0,
-        "total": 19
+        "total": 20
       },
       "instagram": {
-        "successes": 7,
+        "successes": 8,
         "failures": 0,
-        "total": 19
+        "total": 20
       },
       "devto": {
-        "successes": 9,
+        "successes": 10,
         "failures": 0,
-        "total": 19
+        "total": 20
       },
       "tumblr_voa": {
         "successes": 9,
-        "failures": 0,
-        "total": 19
+        "failures": 1,
+        "total": 20
       },
       "blogger": {
         "successes": 9,
-        "failures": 0,
-        "total": 19
+        "failures": 1,
+        "total": 20
       },
       "wordpress_earthstar": {
-        "successes": 9,
+        "successes": 10,
         "failures": 0,
-        "total": 19
+        "total": 20
       }
     },
     "summary": {
-      "total_posts": 19,
+      "total_posts": 20,
       "fully_syndicated": 19,
-      "partial": 0,
+      "partial": 1,
       "pending": 0,
-      "retry_backlog_count": 0
+      "retry_backlog_count": 2
     }
   },
   "visuals": {
-    "registry_count": 29,
+    "registry_count": 30,
     "registry_entries": [
+      {
+        "post_slug": "how-to-use-claude-without-losing-creative-control",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "vibration-of-awesome",
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-05-25T23:07:36.158Z"
+      },
       {
         "post_slug": "how-to-stop-feeling-lost-and-start-moving-forward",
         "source": "boom",
@@ -2093,22 +2185,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 29,
+      "total_entries": 30,
       "reused_count": 0,
       "reuse_rate": 0
     },
     "source_breakdown": {
-      "boom": 18,
-      "ideogram": 11
+      "ideogram": 12,
+      "boom": 18
     },
     "generation_counts": {
-      "ideogram": 11
+      "ideogram": 12
     },
     "platform_usage": {
-      "instagram": 20,
-      "pinterest": 20,
-      "bluesky_voa": 11,
-      "mastodon_voa": 11
+      "pinterest": 21,
+      "instagram": 21,
+      "bluesky_voa": 12,
+      "mastodon_voa": 12
     }
   },
   "clusters": {
@@ -2365,7 +2457,7 @@
     "unassigned_post_count": 38
   },
   "generation": {
-    "last_updated": "2026-05-25T16:03:20.786Z",
+    "last_updated": "2026-05-25T23:07:36.156Z",
     "recent_hooks": [],
     "recent_titles": [],
     "recent_structures": [],
@@ -2373,6 +2465,15 @@
     "recent_opening_styles": [],
     "recent_cta_patterns": [],
     "recent_threads_formats": [
+      {
+        "slug": "how-to-use-claude-without-losing-creative-control",
+        "format": "philosophical-observation",
+        "cadenceProfile": "contemplative",
+        "density": "medium-dense",
+        "openerStyle": "conceptual-paradox",
+        "closerStyle": "open-question",
+        "timestamp": "2026-05-25T23:07:21.002Z"
+      },
       {
         "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
         "format": "conversational-reflection",
@@ -2556,6 +2657,15 @@
     ],
     "recent_instagram_archetypes": [
       {
+        "slug": "how-to-use-claude-without-losing-creative-control",
+        "archetype": "field-guide-aesthetic",
+        "archetypeLabel": "Field Guide Aesthetic",
+        "palette": "warm-archive",
+        "emotionalTone": "quiet-discovery",
+        "emotionalCluster": "grounded",
+        "timestamp": "2026-05-25T23:07:36.156Z"
+      },
+      {
         "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
         "archetype": "symbolic-consciousness",
         "archetypeLabel": "Symbolic Consciousness",
@@ -2658,7 +2768,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-05-25T23:05:16.218Z",
+    "as_of": "2026-05-25T23:10:05.909Z",
     "next_estimated_window": "2026-05-26",
     "queue_runway_days": 49,
     "queue_runway_status": "healthy",
@@ -2693,7 +2803,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 0,
+    "retry_backlog_count": 2,
     "cadence_density": {
       "posts_last_7_days": 14,
       "posts_last_14_days": 19,
@@ -2753,9 +2863,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-05-25T23:05:16.215Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 3,
+    "last_export_at": "2026-05-25T23:10:05.906Z",
+    "source_event": "syndication",
+    "export_duration_ms": 4,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
