@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: voa-publish-and-syndicate
@@ -76,6 +77,30 @@ jobs:
           STATUS=$?
           set -e
           echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+
+      - name: Alert on Blogger health failure
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          BLOGGER_OK="$(node -e 'const fs=require("fs"); const h=JSON.parse(fs.readFileSync("static/_data/syndication-health.json","utf8")); const c=(h.checks||[]).find(row=>row.name==="Blogger token refresh"); process.stdout.write(c && c.ok ? "1" : "0");')"
+          if [ "$BLOGGER_OK" = "1" ]; then
+            existing="$(gh issue list --state open --search 'Blogger syndication token needs repair in:title' --json number --jq '.[0].number // empty')"
+            if [ -n "$existing" ]; then
+              gh issue close "$existing" --comment "Blogger health recovered. Latest successful check: $RUN_URL"
+            fi
+            exit 0
+          fi
+
+          DETAIL="$(node -e 'const fs=require("fs"); const h=JSON.parse(fs.readFileSync("static/_data/syndication-health.json","utf8")); const c=(h.checks||[]).find(row=>row.name==="Blogger token refresh"); process.stdout.write((c && c.detail) || "Blogger token refresh failed.");')"
+          existing="$(gh issue list --state open --search 'Blogger syndication token needs repair in:title' --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "Blogger is still failing: $DETAIL\n\nRun: $RUN_URL\n\nRepair locally with: \`npm run blogger-token\`"
+          else
+            gh issue create \
+              --title "Blogger syndication token needs repair" \
+              --body "The scheduled syndication health check detected a Blogger OAuth refresh failure.\n\nFailure: $DETAIL\n\nRun: $RUN_URL\n\nRepair locally with: \`npm run blogger-token\`. That helper opens Google consent, saves the new refresh token to \`.env\`, and updates the GitHub Actions \`BLOGGER_REFRESH_TOKEN\` secret."
+          fi
 
       - name: Commit health snapshot
         run: |
