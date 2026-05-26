@@ -62,6 +62,8 @@ jobs:
           VOA_TUMBLR_BLOG_NAME:        ${{ secrets.VOA_TUMBLR_BLOG_NAME }}
           PUBLER_API_KEY:              ${{ secrets.PUBLER_API_KEY }}
           PUBLER_WORKSPACE_ID:         ${{ secrets.PUBLER_WORKSPACE_ID }}
+          PUBLER_INSTAGRAM_ACCOUNT_ID: ${{ secrets.PUBLER_INSTAGRAM_ACCOUNT_ID }}
+          PUBLER_THREADS_ACCOUNT_ID:   ${{ secrets.PUBLER_THREADS_ACCOUNT_ID }}
           BLOGGER_CLIENT_ID:           ${{ secrets.BLOGGER_CLIENT_ID }}
           BLOGGER_CLIENT_SECRET:       ${{ secrets.BLOGGER_CLIENT_SECRET }}
           BLOGGER_REFRESH_TOKEN:       ${{ secrets.BLOGGER_REFRESH_TOKEN }}
