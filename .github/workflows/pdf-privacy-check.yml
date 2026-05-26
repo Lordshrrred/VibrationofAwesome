@@ -1,6 +1,7 @@
 name: PDF Privacy Check
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - '**.pdf'
@@ -28,13 +29,16 @@ jobs:
       - name: Make scripts executable
         run: chmod +x scripts/scrub-pdf-metadata.sh scripts/check-pdf-privacy.sh
 
-      - name: Write private forbidden terms from secret (if available)
-        if: ${{ secrets.PDF_PRIVACY_FORBIDDEN_TERMS != '' }}
+      - name: Write private forbidden terms from secret
         env:
           PDF_PRIVACY_FORBIDDEN_TERMS: ${{ secrets.PDF_PRIVACY_FORBIDDEN_TERMS }}
         run: |
-          printf '%s\n' "$PDF_PRIVACY_FORBIDDEN_TERMS" > .privacy-forbidden.local
-          echo "Private terms loaded from secret (not printed)"
+          if [ -n "${PDF_PRIVACY_FORBIDDEN_TERMS:-}" ]; then
+            printf '%s\n' "$PDF_PRIVACY_FORBIDDEN_TERMS" > .privacy-forbidden.local
+            echo "Private terms loaded from secret (not printed)"
+          else
+            echo "No private forbidden terms secret configured"
+          fi
 
       - name: Run PDF privacy check
         run: bash scripts/check-pdf-privacy.sh
