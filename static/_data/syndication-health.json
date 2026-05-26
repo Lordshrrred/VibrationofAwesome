@@ -1,10 +1,14 @@
 {
-  "lastChecked": "2026-05-26T03:52:16.297Z",
-  "status": "ok",
-  "passed": 14,
-  "failed": 0,
+  "lastChecked": "2026-05-26T03:53:32.518Z",
+  "status": "broken",
+  "passed": 12,
+  "failed": 2,
   "total": 14,
-  "topFix": null,
+  "topFix": {
+    "name": "Publer VOA Instagram account",
+    "detail": "missing PUBLER_INSTAGRAM_ACCOUNT_ID",
+    "repairCommand": "npm run check:syndication -- --write"
+  },
   "drip": {
     "status": "active",
     "rate": 1,
@@ -32,13 +36,13 @@
     },
     {
       "name": "Publer VOA Instagram account",
-      "ok": true,
-      "detail": "vibrationofawesome (6a0698ee1f0e47d9f3f18a43)"
+      "ok": false,
+      "detail": "missing PUBLER_INSTAGRAM_ACCOUNT_ID"
     },
     {
       "name": "Publer VOA Threads account",
-      "ok": true,
-      "detail": "@vibrationofawesome (6a069b7979cc0b32f3235166)"
+      "ok": false,
+      "detail": "missing PUBLER_THREADS_ACCOUNT_ID"
     },
     {
       "name": "Bluesky ESR auth",
@@ -63,7 +67,7 @@
     {
       "name": "Facebook VOA",
       "ok": true,
-      "detail": "Vibration of Awesome · expires Jul 13, 2026"
+      "detail": "Vibration of Awesome"
     },
     {
       "name": "Dev.to auth",
