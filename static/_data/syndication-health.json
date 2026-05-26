@@ -1,20 +1,16 @@
 {
-  "lastChecked": "2026-05-25T23:05:16.166Z",
-  "status": "broken",
-  "passed": 12,
-  "failed": 2,
+  "lastChecked": "2026-05-26T03:52:16.297Z",
+  "status": "ok",
+  "passed": 14,
+  "failed": 0,
   "total": 14,
-  "topFix": {
-    "name": "Blogger token refresh",
-    "detail": "invalid_grant: Token has been expired or revoked.",
-    "repairCommand": "npm run blogger-token"
-  },
+  "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
     "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
-    "remaining": 85,
-    "published": 14,
+    "remaining": 84,
+    "published": 15,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -22,7 +18,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=85"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=84"
     },
     {
       "name": "Publer accounts",
@@ -67,7 +63,7 @@
     {
       "name": "Facebook VOA",
       "ok": true,
-      "detail": "Vibration of Awesome"
+      "detail": "Vibration of Awesome · expires Jul 13, 2026"
     },
     {
       "name": "Dev.to auth",
@@ -76,13 +72,13 @@
     },
     {
       "name": "Tumblr VOA auth",
-      "ok": false,
-      "detail": "missing VOA_TUMBLR_CONSUMER_KEY, VOA_TUMBLR_CONSUMER_SECRET, VOA_TUMBLR_TOKEN, VOA_TUMBLR_TOKEN_SECRET, VOA_TUMBLR_BLOG_NAME"
+      "ok": true,
+      "detail": "vibrationofawesome.tumblr.com user ok"
     },
     {
       "name": "Blogger token refresh",
-      "ok": false,
-      "detail": "invalid_grant: Token has been expired or revoked."
+      "ok": true,
+      "detail": "token ok"
     },
     {
       "name": "WordPress direct auth",
