@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-05-25T23:10:29.557Z",
+  "generated_at": "2026-05-26T16:47:01.977Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -117,6 +117,16 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job",
+        "title": "How to Escape the 9 to 5 Mindset Even If You Still Have a Job",
+        "lane": "boom",
+        "date": "2026-05-26T16:47:01.972Z",
+        "url": "/blog/boom/posts/how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job.html",
+        "tags": [],
+        "cluster": null,
+        "content_type": null
+      },
       {
         "slug": "how-to-use-claude-without-losing-creative-control",
         "title": "How To Use Claude Without Losing Creative Control",
@@ -317,23 +327,10 @@
         ],
         "cluster": null,
         "content_type": null
-      },
-      {
-        "slug": "twenty-years-internet-marketing",
-        "title": "Why I Spent 20 Years Doing Internet Marketing Wrong",
-        "lane": "matt",
-        "date": "2026-03-01",
-        "url": "/blog/matt/posts/twenty-years-internet-marketing.html",
-        "tags": [
-          "personal",
-          "marketing",
-          "lessons"
-        ],
-        "cluster": null,
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-05-26",
       "2026-05-25",
       "2026-05-24",
       "2026-05-23",
@@ -364,11 +361,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-05-26",
+    "next_estimated_window": "2026-05-27",
     "published_counts": {
-      "boom": 20,
+      "boom": 21,
       "matt": 18,
-      "total": 38
+      "total": 39
     }
   },
   "syndication": {
@@ -394,9 +391,9 @@
         "publish_status": "partial",
         "platform_statuses": {
           "feeder": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-05-26T03:31:26.350Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-use-claude-without-losing-creative-control-insight.html"
           },
           "bluesky_voa": {
             "status": "success",
@@ -449,7 +446,7 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/05/25/how-to-use-claude-without-losing-creative-control-earthstar/"
           }
         },
-        "success_count": 8,
+        "success_count": 9,
         "failed_count": 2
       },
       {
@@ -1721,7 +1718,7 @@
     ],
     "platform_coverage": {
       "feeder": {
-        "successes": 19,
+        "successes": 20,
         "failures": 0,
         "total": 20
       },
@@ -2478,7 +2475,7 @@
       "emotional-regulation": 0,
       "consciousness-technology": 0
     },
-    "unassigned_post_count": 38
+    "unassigned_post_count": 39
   },
   "generation": {
     "last_updated": "2026-05-25T23:10:29.535Z",
@@ -2801,11 +2798,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-05-25T23:10:29.557Z",
-    "next_estimated_window": "2026-05-26",
+    "as_of": "2026-05-26T16:47:01.977Z",
+    "next_estimated_window": "2026-05-27",
     "queue_runway_days": 49,
     "queue_runway_status": "healthy",
     "occupied_dates": [
+      "2026-05-26",
       "2026-05-25",
       "2026-05-24",
       "2026-05-23",
@@ -2838,11 +2836,16 @@
     ],
     "retry_backlog_count": 2,
     "cadence_density": {
-      "posts_last_7_days": 14,
-      "posts_last_14_days": 19,
-      "posts_last_30_days": 19
+      "posts_last_7_days": 13,
+      "posts_last_14_days": 20,
+      "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job",
+        "lane": "boom",
+        "date": "2026-05-26T16:47:01.972Z"
+      },
       {
         "slug": "how-to-use-claude-without-losing-creative-control",
         "lane": "boom",
@@ -2887,18 +2890,13 @@
         "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
         "lane": "boom",
         "date": "2026-05-21T23:05:05.365Z"
-      },
-      {
-        "slug": "the-identity-shift-that-changes-everything",
-        "lane": "boom",
-        "date": "2026-05-21T16:20:36.793Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-05-25T23:10:29.553Z",
-    "source_event": "retry",
-    "export_duration_ms": 4,
+    "last_export_at": "2026-05-26T16:47:01.974Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 3,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
