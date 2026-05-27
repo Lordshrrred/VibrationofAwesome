@@ -673,6 +673,67 @@
       padding: 0.28rem 0.5rem; background: rgba(204,68,255,0.04);
       border-radius: 4px; line-height: 1.4;
     }
+    /* ── ESC Phase 8D: Draft Assist layer ── */
+    .esc-draft-assist-box {
+      margin-top: 0.9rem; padding: 0.85rem 0.95rem;
+      background: rgba(57,255,20,0.04); border: 1px solid rgba(57,255,20,0.18);
+      border-radius: 7px;
+    }
+    .esc-draft-header {
+      display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem;
+    }
+    .esc-draft-label {
+      font-size: 0.67rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--success);
+    }
+    .esc-draft-type-chip {
+      font-size: 0.61rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.1em 0.45em; border-radius: 3px;
+      background: rgba(57,255,20,0.08); color: rgba(57,255,20,0.65); border: 1px solid rgba(57,255,20,0.2);
+    }
+    .esc-draft-reminder {
+      font-size: 0.74rem; line-height: 1.45; margin-bottom: 0.45rem;
+      padding: 0.35rem 0.6rem; border-radius: 4px;
+    }
+    .esc-draft-reminder.adapt {
+      background: rgba(255,179,0,0.07); border: 1px solid rgba(255,179,0,0.2); color: var(--warn);
+    }
+    .esc-draft-reminder.risk {
+      background: rgba(255,68,68,0.06); border: 1px solid rgba(255,68,68,0.2); color: var(--danger);
+    }
+    .esc-draft-override-notice {
+      font-size: 0.63rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--info); margin-bottom: 0.35rem; padding: 0.18rem 0.45rem;
+      background: rgba(0,255,255,0.06); border-radius: 3px; display: inline-block;
+    }
+    .esc-draft-text {
+      font-family: inherit; font-size: 0.8rem; color: var(--text); line-height: 1.6;
+      white-space: pre-wrap; word-break: break-word; margin: 0 0 0.6rem;
+      background: rgba(0,0,0,0.18); border: 1px solid rgba(57,255,20,0.12);
+      border-radius: 5px; padding: 0.65rem 0.8rem;
+    }
+    .esc-draft-actions { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+    .esc-copy-btn.primary { border-color: rgba(57,255,20,0.4); color: var(--success); }
+    .esc-copy-btn.primary:hover { border-color: var(--success); background: rgba(57,255,20,0.06); }
+    .esc-draft-edit { display: flex; flex-direction: column; gap: 0.32rem; margin-bottom: 0.4rem; }
+    .esc-draft-override-input {
+      width: 100%; background: var(--surface3); border: 1px solid var(--border);
+      border-radius: 5px; color: var(--text); font-family: inherit; font-size: 0.8rem;
+      padding: 0.45rem 0.65rem; resize: vertical; min-height: 80px; outline: none;
+      transition: border-color 0.2s; line-height: 1.5;
+    }
+    .esc-draft-override-input:focus { border-color: rgba(57,255,20,0.35); }
+    .esc-draft-notice {
+      font-size: 0.64rem; color: rgba(57,255,20,0.38); margin-top: 0.3rem;
+      padding: 0.22rem 0.45rem; background: rgba(57,255,20,0.03);
+      border-radius: 4px; line-height: 1.4; font-style: italic;
+    }
+    .esc-draft-hint {
+      margin-top: 0.7rem; padding: 0.45rem 0.65rem;
+      font-size: 0.71rem; color: var(--text-muted); font-style: italic;
+      background: rgba(0,0,0,0.1); border-radius: 5px;
+      border: 1px solid rgba(204,68,255,0.08);
+    }
   </style>
 </head>
 <body>
@@ -845,7 +906,7 @@
       </div>
 
       <!--
-        ── ESC Recommendations (Phase 7Z / 8B / 8C) ─────────────────────────
+        ── ESC Recommendations (Phase 7Z / 8B / 8C / 8D) ────────────────────
         VOA reads ESC recommendations from static/_data/latest-voa-recommendations.json
         Local review state: browser localStorage key voaEscRecommendationReviewState
         This panel is REVIEW ONLY. Rendering requires ALL THREE safety flags:
@@ -853,9 +914,12 @@
           requiresHumanApproval === true
           exportMode        === "review_only"
         "Accepted" means worth manual follow-up — NOT published or syndicated.
-        No queue mutation, post creation, publishing, or syndication happens here.
-        Copy and review-status buttons are localStorage-only.
-        Future automation requires a separate explicit approval-gated phase (8D+).
+        Phase 8D: accepted recommendations show a Manual Draft Assist box.
+          Drafts are browser-generated suggestions — not posts, not queued.
+          manualDraftOverride persists user edits in localStorage.
+          Copy is always manual. Nothing is sent anywhere.
+        No queue mutation, post creation, publishing, or syndication here.
+        Future automation requires a separate approval-gated phase (8E+).
         ─────────────────────────────────────────────────────────────────────
       -->
       <!-- ── ESC Recommendations ── -->
@@ -2037,7 +2101,7 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
     </div>`;
 }
 
-// ── ESC Recommendations (Phase 7Z / 8B / 8C) ─────────────────────────────────
+// ── ESC Recommendations (Phase 7Z / 8B / 8C / 8D) ───────────────────────────
 //
 // VOA reads ESC recommendations from static/_data/latest-voa-recommendations.json
 // Review state is stored in browser localStorage only (key: voaEscRecommendationReviewState).
@@ -2046,8 +2110,11 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
 //   requiresHumanApproval === true
 //   exportMode        === "review_only"
 // "Accepted" means worth manual follow-up — NOT published or syndicated.
+// Phase 8D: accepted recommendations show a Draft Assist box with copyable draft text.
+//   Drafts are browser-generated suggestions — not posts, not queued, not syndicated.
+//   manualDraftOverride in localStorage persists user edits to draft text.
+//   Copy is always manual. Future automation requires an approval-gated phase (8E+).
 // No queue mutation, publishing, or syndication is possible from this panel.
-// Future automation requires a separate explicit approval-gated phase (8D+).
 //
 const ESC_LOCAL_URL     = "/_data/latest-voa-recommendations.json";
 const ESC_REMOTE_URL    = "https://lordshrrred.github.io/VOA_Feeder/latest-voa-recommendations.json";
@@ -2119,6 +2186,7 @@ function getOrInitReview(reviewMap, recId, rec) {
     updatedAt:              null,
     copiedToManualWorkflow: false,
     manualNextStep:         null,
+    manualDraftOverride:    null,
   };
 }
 
@@ -2335,6 +2403,7 @@ function buildEscRecCard(rec, cacheKey, reviewMap) {
 
 // ── Review section HTML ───────────────────────────────────────────────────────
 function buildEscReviewSection(cacheKey, review) {
+  const rec        = ESC_REC_CACHE[cacheKey];
   const status     = review.status || "new";
   const statusCls  = ESC_STATUS_CSS[status] || "new";
   const statusLbl  = ESC_STATUS_LABELS[status] || status;
@@ -2394,25 +2463,33 @@ function buildEscReviewSection(cacheKey, review) {
         <button class="esc-clear-btn" onclick="escClearReview('${cacheKey}',this)">Clear Local Review</button>
       </div>
     </div>
-    <div class="esc-local-notice">Review status saved locally in this browser only. Does not publish, syndicate, or mutate VOA queues.</div>`;
+    <div class="esc-local-notice">Review status saved locally in this browser only. Does not publish, syndicate, or mutate VOA queues.</div>
+    ${rec ? buildEscDraftAssistBox(cacheKey, rec, review) : ""}`;
 }
 
 // ── Refresh a single card's review section without re-rendering the whole panel ──
 function escRefreshReviewSection(cacheKey) {
   const reviewEl = document.getElementById(`esc-review-${cacheKey}`);
   if (!reviewEl) return;
-  // Preserve any in-progress note text the user hasn't saved yet
-  const noteEl       = document.getElementById(`esc-note-${cacheKey}`);
-  const unsavedNote  = noteEl ? noteEl.value : null;
-  const rec          = ESC_REC_CACHE[cacheKey];
+  // Preserve any in-progress text the user hasn't saved yet
+  const noteEl           = document.getElementById(`esc-note-${cacheKey}`);
+  const unsavedNote      = noteEl ? noteEl.value : null;
+  const overrideEl       = document.getElementById(`esc-draft-override-${cacheKey}`);
+  const unsavedOverride  = overrideEl ? overrideEl.value : null;
+  const rec              = ESC_REC_CACHE[cacheKey];
   if (!rec) return;
-  const reviewMap    = loadEscReviewState();
-  const review       = getOrInitReview(reviewMap, rec.id, rec);
-  reviewEl.innerHTML = buildEscReviewSection(cacheKey, review);
+  const reviewMap        = loadEscReviewState();
+  const review           = getOrInitReview(reviewMap, rec.id, rec);
+  reviewEl.innerHTML     = buildEscReviewSection(cacheKey, review);
   // Restore unsaved note if it differs from persisted note
   if (unsavedNote !== null && unsavedNote !== (review.reviewerNote || "")) {
     const newNoteEl = document.getElementById(`esc-note-${cacheKey}`);
     if (newNoteEl) newNoteEl.value = unsavedNote;
+  }
+  // Restore unsaved draft override if it differs from persisted override
+  if (unsavedOverride !== null && unsavedOverride !== (review.manualDraftOverride || "")) {
+    const newOverrideEl = document.getElementById(`esc-draft-override-${cacheKey}`);
+    if (newOverrideEl) newOverrideEl.value = unsavedOverride;
   }
   updateEscPanelSummary();
 }
@@ -2556,6 +2633,218 @@ function escCopySummary(cacheKey, btn) {
     const old = btn.textContent; btn.textContent = "Copied ✓";
     setTimeout(() => { btn.textContent = old; }, 2000);
   });
+}
+
+// ── Phase 8D: Draft generation (deterministic, browser-only, no AI/API calls) ──
+
+function escGenerateDraftAssist(rec, review) {
+  const nextStep   = review.manualNextStep || "";
+  const dests      = Array.isArray(rec.targetDestinations) ? rec.targetDestinations : [];
+  const fromEsr    = rec.sourceHighway === "esr" || rec.direction === "esr_to_voa";
+  const srcTitle   = rec.sourceTitle || rec.title || "this idea";
+  const reason     = rec.reason     || "";
+  const evidence   = rec.evidence   || "";
+  const adaptNotes = rec.adaptationNotes || "";
+  const theme      = rec.theme      || "";
+  const riskWarn   = Array.isArray(rec.riskWarnings) && rec.riskWarnings.length
+    ? rec.riskWarnings.join("; ") : null;
+
+  let draftType;
+  if      (nextStep === "draft_facebook_post"      || (!nextStep && dests.includes("voa_facebook"))) draftType = "facebook_support_post";
+  else if (nextStep === "draft_threads_mini_essay") draftType = "threads_mini_essay";
+  else if (nextStep === "draft_blog_expansion")     draftType = "blog_expansion_outline";
+  else if (nextStep === "draft_instagram_support")  draftType = "instagram_support_caption";
+  else                                               draftType = "manual_note";
+
+  let draftLabel, draftText, copyLabel;
+
+  if (draftType === "facebook_support_post") {
+    draftLabel = "Facebook Support Post Draft";
+    copyLabel  = "Copy Draft";
+    const esrBridge  = fromEsr
+      ? "\nThis is a thread of thought that's been coming through on the EarthStar side — feels like it has a real home here too."
+      : "";
+    const reasonPara = reason   ? "\n" + reason   : "";
+    const evidPara   = evidence ? "\n" + evidence : "";
+    draftText =
+`There's something in the space around ${srcTitle.toLowerCase()} that keeps coming back.${esrBridge}${reasonPara}${evidPara}
+
+If any of this lands for you, I'd be curious what you notice in your own life around it.`;
+
+  } else if (draftType === "threads_mini_essay") {
+    draftLabel = "Threads Mini-Essay Draft";
+    copyLabel  = "Copy Draft";
+    const mainReason = reason || "There's a signal here worth paying attention to.";
+    const evidLine   = evidence ? "\n" + evidence : "";
+    const adaptNote  = adaptNotes ? "\n\n(Note for writing: " + adaptNotes + ")" : "";
+    draftText =
+`The idea behind ${srcTitle} is worth sitting with.
+
+${mainReason}${evidLine}
+
+What actually shifts when you take this seriously — not as a concept, but as something that changes how you move through the day?
+
+That's the question I keep coming back to here. No clean answer. Just following where it leads.${adaptNote}`;
+
+  } else if (draftType === "blog_expansion_outline") {
+    draftLabel = "Blog Expansion Outline";
+    copyLabel  = "Copy Outline";
+    const workingTitle   = "What " + srcTitle + " Actually Means";
+    const thesis         = reason || srcTitle + " connects to how people show up in their creative and personal lives — most navigate it without realizing it.";
+    const themeSection   = theme ? "4. The " + theme + " angle — what it reveals" : "4. The layer most people miss";
+    const adaptLine      = adaptNotes ? "\nAdaptation notes for writing: " + adaptNotes : "";
+    draftText =
+`Working title: ${workingTitle}
+
+Thesis: ${thesis}
+
+Section headings:
+1. The Setup — why this idea keeps surfacing
+2. What it looks like when it's working
+3. What most people actually experience instead
+${themeSection}
+5. What to do with this practically
+6. The quiet thing at the center
+
+Key angle: ${reason || srcTitle}
+
+Internal link note: Search published posts in the identity / self-expression / creator cluster and link naturally in sections 2 and 6.
+
+Field Guide note: Check whether this connects to a Field Guide principle — if so, reference it in the intro or conclusion.${adaptLine}`.trim();
+
+  } else if (draftType === "instagram_support_caption") {
+    draftLabel = "Instagram Support Caption Draft";
+    copyLabel  = "Copy Caption";
+    const openLine = reason ? reason.split(".")[0] + "." : srcTitle + " — something worth sitting with.";
+    const evidLine = evidence ? "\n\n" + evidence.split(".")[0] + "." : "";
+    const themeTag = theme ? "#" + theme.replace(/[\s/&]+/g, "").toLowerCase() : "";
+    const tagsLine = "\n\n" + [themeTag, "#vibrationofawesome", "#innerwork", "#creatorlife"].filter(Boolean).join(" ");
+    draftText = openLine + evidLine + tagsLine;
+
+  } else {
+    draftLabel = "Manual Note Starting Point";
+    copyLabel  = "Copy Note";
+    draftText =
+`Recommendation: ${srcTitle}
+Direction: ${rec.sourceHighway || "?"} → ${rec.targetHighway || "?"}
+Destinations: ${dests.length ? dests.join(", ") : "—"}
+Theme: ${theme || "—"}
+
+Reason: ${reason || "—"}
+${evidence   ? "Evidence: " + evidence + "\n"          : ""}${adaptNotes ? "Adaptation notes: " + adaptNotes + "\n" : ""}
+Next step: [fill in manually]`.trim();
+  }
+
+  return {
+    recommendationId:   rec.id,
+    draftType,
+    title:              draftLabel,
+    draftText,
+    adaptationReminder: adaptNotes || null,
+    riskReminder:       riskWarn,
+    copyLabel,
+    generatedAt:        new Date().toISOString(),
+  };
+}
+
+function buildEscDraftAssistBox(cacheKey, rec, review) {
+  if (review.status !== "accepted") {
+    return `<div class="esc-draft-hint">Accept for Manual Work to generate a copyable draft starting point.</div>`;
+  }
+  const draft       = escGenerateDraftAssist(rec, review);
+  const hasOverride = !!(review.manualDraftOverride && review.manualDraftOverride.trim());
+  const displayText = hasOverride ? review.manualDraftOverride : draft.draftText;
+
+  const overrideNotice = hasOverride
+    ? `<div class="esc-draft-override-notice">Using your local edit — override active</div>` : "";
+  const adaptReminder = draft.adaptationReminder
+    ? `<div class="esc-draft-reminder adapt">⚠ Adaptation needed: ${esc(draft.adaptationReminder)}</div>` : "";
+  const riskReminder = draft.riskReminder
+    ? `<div class="esc-draft-reminder risk">⚠ Risk notes: ${esc(draft.riskReminder)}</div>` : "";
+  const clearBtn = hasOverride
+    ? `<button class="esc-clear-btn" onclick="escClearDraftOverride('${cacheKey}',this)">Clear Local Draft Edit</button>` : "";
+
+  return `<div class="esc-draft-assist-box" id="esc-draft-${cacheKey}">
+    <div class="esc-draft-header">
+      <span class="esc-draft-label">Manual Draft Assist — ${esc(draft.title)}</span>
+      <span class="esc-draft-type-chip">${esc(draft.draftType)}</span>
+    </div>
+    ${adaptReminder}${riskReminder}${overrideNotice}
+    <pre class="esc-draft-text">${esc(displayText)}</pre>
+    <div class="esc-draft-actions">
+      <button class="esc-copy-btn primary" onclick="escCopyDraft('${cacheKey}',this)">${esc(draft.copyLabel)}</button>
+      <button class="esc-copy-btn" onclick="escCopyDraftWithNotes('${cacheKey}',this)">Copy Draft + Notes</button>
+    </div>
+    <div class="esc-draft-edit">
+      <textarea class="esc-draft-override-input" id="esc-draft-override-${cacheKey}"
+        placeholder="Optionally edit the draft here — saved locally, does not publish or queue anything…">${esc(review.manualDraftOverride||"")}</textarea>
+      <div class="esc-note-actions">
+        <button class="esc-action-btn" onclick="escSaveDraftOverride('${cacheKey}',this)">Save Local Draft Edit</button>
+        ${clearBtn}
+      </div>
+    </div>
+    <div class="esc-draft-notice">Draft assist only — copy manually if useful. Nothing is published or queued.</div>
+  </div>`;
+}
+
+function escCopyDraft(cacheKey, btn) {
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
+  const reviewMap = loadEscReviewState();
+  const review    = getOrInitReview(reviewMap, rec.id, rec);
+  const draft     = escGenerateDraftAssist(rec, review);
+  const text      = (review.manualDraftOverride && review.manualDraftOverride.trim())
+    ? review.manualDraftOverride : draft.draftText;
+  navigator.clipboard?.writeText(text).then(() => {
+    const old = btn.textContent; btn.textContent = "Copied ✓";
+    setTimeout(() => { btn.textContent = old; }, 2000);
+  });
+}
+
+function escCopyDraftWithNotes(cacheKey, btn) {
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
+  const reviewMap  = loadEscReviewState();
+  const review     = getOrInitReview(reviewMap, rec.id, rec);
+  const draft      = escGenerateDraftAssist(rec, review);
+  const draftText  = (review.manualDraftOverride && review.manualDraftOverride.trim())
+    ? review.manualDraftOverride : draft.draftText;
+  const lines = [
+    draftText,
+    "",
+    "── Review notes ──",
+    review.reviewerNote       ? "Note: "        + review.reviewerNote       : null,
+    draft.adaptationReminder  ? "Adaptation: "  + draft.adaptationReminder  : null,
+    draft.riskReminder        ? "Risk: "        + draft.riskReminder        : null,
+  ].filter(s => s !== null).join("\n");
+  navigator.clipboard?.writeText(lines).then(() => {
+    const old = btn.textContent; btn.textContent = "Copied ✓";
+    setTimeout(() => { btn.textContent = old; }, 2000);
+  });
+}
+
+function escSaveDraftOverride(cacheKey, btn) {
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
+  const overrideEl = document.getElementById(`esc-draft-override-${cacheKey}`);
+  const val        = overrideEl ? overrideEl.value : "";
+  const reviewMap  = loadEscReviewState();
+  const review     = getOrInitReview(reviewMap, rec.id, rec);
+  review.manualDraftOverride = val.trim() || null;
+  review.updatedAt           = new Date().toISOString();
+  reviewMap[rec.id]          = review;
+  saveEscReviewState(reviewMap);
+  const old = btn.textContent; btn.textContent = "Saved ✓";
+  setTimeout(() => { btn.textContent = old; }, 2000);
+  escRefreshReviewSection(cacheKey);
+}
+
+function escClearDraftOverride(cacheKey, btn) {
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
+  const reviewMap = loadEscReviewState();
+  const review    = getOrInitReview(reviewMap, rec.id, rec);
+  review.manualDraftOverride = null;
+  review.updatedAt           = new Date().toISOString();
+  reviewMap[rec.id]          = review;
+  saveEscReviewState(reviewMap);
+  escRefreshReviewSection(cacheKey);
 }
 
 // ── Manual Trigger ────────────────────────────────────────────────────────────
