@@ -450,6 +450,129 @@
       .drip-meta { gap: 1rem; }
       .site-cards { grid-template-columns: 1fr; }
     }
+
+    /* ── ESC Recommendations Panel ── */
+    .esc-panel {
+      background: var(--surface); border: 1px solid rgba(204,68,255,0.25);
+      border-radius: 10px; padding: 1.5rem;
+    }
+    .esc-panel-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.7rem;
+    }
+    .esc-panel-left { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .esc-panel-title {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple);
+    }
+    .esc-review-badge {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.18em 0.55em; border-radius: 3px;
+      background: rgba(204,68,255,0.1); color: var(--purple);
+      border: 1px solid rgba(204,68,255,0.35);
+    }
+    .esc-meta {
+      font-size: 0.72rem; color: var(--text-muted); display: flex; gap: 0.6rem; flex-wrap: wrap;
+      align-items: center; margin-bottom: 0.85rem;
+    }
+    .esc-meta-sep { opacity: 0.35; }
+    .esc-notice {
+      background: rgba(204,68,255,0.07); border: 1px solid rgba(204,68,255,0.2);
+      border-radius: 6px; padding: 0.55rem 0.9rem; margin-bottom: 1rem;
+      font-size: 0.77rem; color: var(--purple); letter-spacing: 0.01em; line-height: 1.5;
+    }
+    .esc-notice strong { font-weight: 700; }
+    .esc-security-warn, .esc-fetch-fail, .esc-schema-warn {
+      background: rgba(255,68,68,0.07); border: 1px solid rgba(255,68,68,0.3);
+      border-radius: 6px; padding: 0.7rem 0.9rem; font-size: 0.82rem;
+      color: var(--danger); line-height: 1.5;
+    }
+    .esc-stale-warn {
+      background: rgba(255,179,0,0.07); border: 1px solid rgba(255,179,0,0.3);
+      border-radius: 6px; padding: 0.55rem 0.9rem; font-size: 0.78rem;
+      color: var(--warn); margin-bottom: 0.85rem; line-height: 1.5;
+    }
+    .esc-rec-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .esc-rec-card {
+      background: var(--surface2); border: 1px solid rgba(0,229,204,0.07);
+      border-radius: 8px; padding: 0.9rem 1rem; border-left: 3px solid transparent;
+    }
+    .esc-rec-card.priority-high   { border-left-color: var(--danger); }
+    .esc-rec-card.priority-medium { border-left-color: var(--warn); }
+    .esc-rec-card.priority-low    { border-left-color: var(--text-muted); }
+    .esc-rec-top {
+      display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.55rem;
+    }
+    .esc-priority {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.15em 0.5em; border-radius: 3px;
+    }
+    .esc-priority.high   { background: rgba(255,68,68,0.12);  color: var(--danger); border: 1px solid rgba(255,68,68,0.3); }
+    .esc-priority.medium { background: rgba(255,179,0,0.12);  color: var(--warn);   border: 1px solid rgba(255,179,0,0.3); }
+    .esc-priority.low    { background: rgba(60,120,220,0.1);   color: #7aaaf0;       border: 1px solid rgba(60,120,220,0.3); }
+    .esc-confidence-chip {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.15em 0.5em; border-radius: 3px;
+      background: rgba(0,229,204,0.06); color: var(--text-muted); border: 1px solid rgba(0,229,204,0.12);
+    }
+    .esc-route-tag {
+      font-size: 0.66rem; font-weight: 600; letter-spacing: 0.04em;
+      padding: 0.15em 0.55em; border-radius: 3px;
+      background: rgba(204,68,255,0.08); color: var(--purple); border: 1px solid rgba(204,68,255,0.2);
+    }
+    .esc-rec-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.18rem; }
+    .esc-rec-theme { font-size: 0.74rem; color: var(--text-muted); margin-bottom: 0.6rem; font-style: italic; }
+    .esc-detail-grid {
+      display: grid; grid-template-columns: auto 1fr; gap: 0.22rem 0.8rem;
+      margin-bottom: 0.65rem; align-items: start;
+    }
+    .esc-detail-label {
+      font-size: 0.66rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--text-muted); white-space: nowrap; padding-top: 0.12rem;
+    }
+    .esc-detail-value { font-size: 0.79rem; color: var(--text); }
+    .esc-dest-chip {
+      display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; padding: 0.12em 0.45em; border-radius: 3px; margin-right: 0.25rem;
+      background: rgba(0,180,216,0.1); color: var(--accent2); border: 1px solid rgba(0,180,216,0.25);
+    }
+    .esc-rec-reason {
+      font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 0.5rem;
+    }
+    .esc-evidence {
+      font-size: 0.74rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 0.5rem;
+      padding: 0.4rem 0.65rem; background: rgba(0,229,204,0.03);
+      border-left: 2px solid rgba(0,229,204,0.15); border-radius: 0 4px 4px 0;
+    }
+    .esc-adaptation-box {
+      background: rgba(255,179,0,0.06); border: 1px solid rgba(255,179,0,0.25);
+      border-radius: 5px; padding: 0.55rem 0.75rem; margin-bottom: 0.5rem;
+      font-size: 0.77rem; color: var(--warn); line-height: 1.5;
+    }
+    .esc-adaptation-label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.3rem; opacity: 0.8;
+    }
+    .esc-risk-list { margin-bottom: 0.5rem; }
+    .esc-risk-item {
+      font-size: 0.77rem; color: var(--danger); line-height: 1.45; padding: 0.3rem 0.6rem;
+      background: rgba(255,68,68,0.05); border-left: 2px solid rgba(255,68,68,0.3);
+      border-radius: 0 4px 4px 0; margin-bottom: 0.25rem;
+    }
+    .esc-card-divider {
+      border: none; border-top: 1px solid rgba(0,229,204,0.07); margin: 0.65rem 0 0.55rem;
+    }
+    .esc-copy-row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .esc-copy-btn {
+      font-family: inherit; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; background: none; border: 1px solid var(--border);
+      color: var(--text-muted); padding: 0.25rem 0.65rem; border-radius: 4px;
+      cursor: pointer; transition: border-color 0.2s, color 0.2s; white-space: nowrap;
+    }
+    .esc-copy-btn:hover { border-color: var(--purple); color: var(--purple); }
+    .esc-empty-inner {
+      text-align: center; padding: 2rem 1rem; color: var(--text-muted); font-size: 0.84rem;
+    }
   </style>
 </head>
 <body>
@@ -618,6 +741,29 @@
             </div>
             <div class="loading dot-pulse">Loading</div>
           </div>
+        </div>
+      </div>
+
+      <!--
+        ── ESC Recommendations (Phase 7Z / 8B) ──────────────────────────────
+        VOA reads ESC recommendations from static/_data/latest-voa-recommendations.json
+        This panel is REVIEW ONLY. Rendering requires ALL THREE safety flags:
+          executionAllowed  === false
+          requiresHumanApproval === true
+          exportMode        === "review_only"
+        No queue mutation, post creation, publishing, or syndication happens here.
+        Copy buttons are clipboard-only.
+        Future automation requires a separate explicit approval-gated phase (Phase 8C+).
+        ─────────────────────────────────────────────────────────────────────
+      -->
+      <!-- ── ESC Recommendations ── -->
+      <div class="section" id="esc-section">
+        <div class="section-header">
+          <span class="section-title" style="color:var(--purple)">ESC Recommendations</span>
+          <span style="font-size:0.75rem;color:var(--text-muted)">Review-only · no automatic execution</span>
+        </div>
+        <div id="esc-panel-wrap">
+          <div class="loading dot-pulse">Loading</div>
         </div>
       </div>
 
@@ -879,6 +1025,7 @@ async function loadDashboard() {
   renderQueue(entries, allPosts, dripData);
   renderTrigger(allPosts);
   renderFeederSection(resultsData, dripData, boomPosts, mattPosts);
+  loadEscRecommendations();
 }
 
 function feederSourceSlug(feederSlug) {
@@ -1786,6 +1933,256 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
       <span class="site-stat-label">Status</span>
       <span class="site-stat-value">${statusBadge}</span>
     </div>`;
+}
+
+// ── ESC Recommendations ──────────────────────────────────────────────────────
+//
+// VOA reads ESC recommendations from static/_data/latest-voa-recommendations.json
+// This panel is REVIEW ONLY. Safety gate requires ALL THREE:
+//   executionAllowed  === false
+//   requiresHumanApproval === true
+//   exportMode        === "review_only"
+// No queue mutation, publishing, or syndication is possible from this panel.
+// Future automation requires a separate explicit approval-gated phase.
+//
+const ESC_LOCAL_URL  = "/_data/latest-voa-recommendations.json";
+const ESC_REMOTE_URL = "https://lordshrrred.github.io/VOA_Feeder/latest-voa-recommendations.json";
+const ESC_REC_CACHE  = {};  // keyed "rec_N", populated during render
+
+async function loadEscRecommendations() {
+  let data = null, source = null, anyNetworkError = false;
+
+  for (const [url, label] of [[ESC_LOCAL_URL, "local"], [ESC_REMOTE_URL, "feeder"]]) {
+    try {
+      const r = await fetch(url);
+      if (r.ok) { data = await r.json(); source = label; break; }
+    } catch (_) { anyNetworkError = true; }
+  }
+
+  renderEscPanel(data, source, anyNetworkError);
+}
+
+function renderEscPanel(data, source, anyNetworkError) {
+  const wrap = document.getElementById("esc-panel-wrap");
+  if (!wrap) return;
+
+  // ── No data ──
+  if (!data) {
+    const msg = anyNetworkError
+      ? "Could not load ESC recommendations. Check network and refresh."
+      : "No ESC recommendations available yet.";
+    wrap.innerHTML = `<div class="esc-panel"><div class="esc-empty-inner">${esc(msg)}</div></div>`;
+    return;
+  }
+
+  // ── Schema mismatch ──
+  if (!data.schemaVersion || !Array.isArray(data.recommendations)) {
+    wrap.innerHTML = `<div class="esc-panel">
+      <div class="esc-schema-warn">⚠ Recommendation export schema not recognized.
+        Expected <strong>schemaVersion</strong> and <strong>recommendations</strong> array.</div>
+    </div>`;
+    return;
+  }
+
+  // ── Safety gate (all three flags must be correct) ──
+  if (data.executionAllowed !== false || data.requiresHumanApproval !== true || data.exportMode !== "review_only") {
+    const flags = [
+      data.executionAllowed  !== false          ? "executionAllowed is not false"         : null,
+      data.requiresHumanApproval !== true        ? "requiresHumanApproval is not true"     : null,
+      data.exportMode        !== "review_only"  ? "exportMode is not \"review_only\""      : null,
+    ].filter(Boolean).join("; ");
+    wrap.innerHTML = `<div class="esc-panel">
+      <div class="esc-security-warn">⚠ Blocked unsafe recommendation export.
+        <strong>executionAllowed</strong> must be <strong>false</strong>,
+        <strong>requiresHumanApproval</strong> must be <strong>true</strong>, and
+        <strong>exportMode</strong> must be <strong>"review_only"</strong>.<br>
+        Violations: ${esc(flags)}. Review the file manually before proceeding.
+      </div>
+    </div>`;
+    return;
+  }
+
+  // ── Staleness check ──
+  let isStale = false, staleReason = "";
+  const now = Date.now();
+  if (data.expirationDate) {
+    const exp = new Date(data.expirationDate).getTime();
+    if (!isNaN(exp) && now > exp) {
+      isStale = true;
+      staleReason = `Expired ${new Date(data.expirationDate).toLocaleDateString("en-US", {month:"short",day:"numeric",year:"numeric"})}.`;
+    }
+  } else if (data.staleAfterHours && data.generatedAt) {
+    const age = now - new Date(data.generatedAt).getTime();
+    if (!isNaN(age) && age > data.staleAfterHours * 3600000) {
+      isStale = true;
+      staleReason = `Older than ${data.staleAfterHours}h threshold.`;
+    }
+  }
+
+  const recs    = data.recommendations;
+  const genAt   = data.generatedAt
+    ? new Date(data.generatedAt).toLocaleString("en-US", {month:"short",day:"numeric",year:"numeric",hour:"2-digit",minute:"2-digit"})
+    : "unknown";
+  const expAt   = data.expirationDate
+    ? new Date(data.expirationDate).toLocaleDateString("en-US", {month:"short",day:"numeric",year:"numeric"})
+    : null;
+  const srcLabel = source === "feeder" ? "VOA Feeder (remote)" : "local _data";
+  const hi  = recs.filter(r => r.priority === "high").length;
+  const med = recs.filter(r => r.priority === "medium").length;
+  const lo  = recs.filter(r => r.priority === "low").length;
+  const countParts = [
+    hi  > 0 ? `<span style="color:var(--danger)">${hi} high</span>`  : null,
+    med > 0 ? `<span style="color:var(--warn)">${med} med</span>`    : null,
+    lo  > 0 ? `<span style="color:#7aaaf0">${lo} low</span>`         : null,
+  ].filter(Boolean).join(" · ");
+
+  const staleHtml = isStale
+    ? `<div class="esc-stale-warn">⚠ Recommendations are stale — review carefully before acting. ${esc(staleReason)}</div>`
+    : "";
+
+  const cardsHtml = recs.length === 0
+    ? `<div class="esc-empty-inner">No recommendations in this export.</div>`
+    : recs.map((rec, i) => {
+        const key = `rec_${i}`;
+        ESC_REC_CACHE[key] = rec;
+        return buildEscRecCard(rec, key);
+      }).join("");
+
+  wrap.innerHTML = `<div class="esc-panel">
+    <div class="esc-panel-header">
+      <div class="esc-panel-left">
+        <span class="esc-panel-title">ESC Recommendations</span>
+        <span class="esc-review-badge">Review Only</span>
+      </div>
+      <span style="font-size:0.72rem;color:var(--text-muted)">
+        ${recs.length} rec${recs.length !== 1 ? "s" : ""}${countParts ? " · " + countParts : ""} · ${esc(srcLabel)}
+      </span>
+    </div>
+    <div class="esc-meta">
+      <span>Generated: ${esc(genAt)}</span>
+      ${data.sourceSystem ? `<span class="esc-meta-sep">·</span><span>Source: ${esc(data.sourceSystem)}</span>` : ""}
+      ${data.targetSystem ? `<span class="esc-meta-sep">·</span><span>Target: ${esc(data.targetSystem)}</span>` : ""}
+      <span class="esc-meta-sep">·</span><span>Mode: ${esc(data.exportMode)}</span>
+      ${expAt ? `<span class="esc-meta-sep">·</span><span>Expires: ${esc(expAt)}</span>` : ""}
+    </div>
+    ${staleHtml}
+    <div class="esc-notice">
+      <strong>Review only — VOA must decide manually.</strong>
+      These are ESC suggestions only. Nothing in this panel can execute, publish, syndicate, add to queue, or schedule anything.
+      Copy buttons below are clipboard-only.
+    </div>
+    <div class="esc-rec-list">${cardsHtml}</div>
+  </div>`;
+}
+
+function buildEscRecCard(rec, cacheKey) {
+  const priCls  = rec.priority === "high" ? "high" : rec.priority === "low" ? "low" : "medium";
+
+  const routeTag = (rec.sourceHighway && rec.targetHighway)
+    ? `<span class="esc-route-tag">${esc(rec.sourceHighway)} → ${esc(rec.targetHighway)}</span>`
+    : "";
+
+  const confChip = rec.confidence
+    ? `<span class="esc-confidence-chip">confidence: ${esc(rec.confidence)}</span>`
+    : "";
+
+  const destChips = Array.isArray(rec.targetDestinations) && rec.targetDestinations.length
+    ? rec.targetDestinations.map(d => `<span class="esc-dest-chip">${esc(d)}</span>`).join("")
+    : "";
+
+  const detailItems = [
+    destChips
+      ? `<div class="esc-detail-label">Route to</div><div class="esc-detail-value">${destChips}</div>`
+      : null,
+    rec.suggestedVOAUse
+      ? `<div class="esc-detail-label">Suggested use</div><div class="esc-detail-value">${esc(rec.suggestedVOAUse)}</div>`
+      : null,
+    rec.adaptationRequired != null
+      ? `<div class="esc-detail-label">Adaptation</div><div class="esc-detail-value" style="${rec.adaptationRequired ? "color:var(--warn)" : "color:var(--text-muted)"}">${rec.adaptationRequired ? "Required" : "Not required"}</div>`
+      : null,
+    rec.recommendedExecutionOwner
+      ? `<div class="esc-detail-label">Owner</div><div class="esc-detail-value">${esc(rec.recommendedExecutionOwner)}</div>`
+      : null,
+  ].filter(Boolean);
+  const detailHtml = detailItems.length
+    ? `<div class="esc-detail-grid">${detailItems.join("")}</div>`
+    : "";
+
+  const evidenceHtml = rec.evidence
+    ? `<div class="esc-evidence">${esc(rec.evidence)}</div>`
+    : "";
+
+  const adaptHtml = rec.adaptationRequired && rec.adaptationNotes
+    ? `<div class="esc-adaptation-box">
+        <div class="esc-adaptation-label">Adaptation notes</div>
+        ${esc(rec.adaptationNotes)}
+      </div>`
+    : "";
+
+  const riskHtml = Array.isArray(rec.riskWarnings) && rec.riskWarnings.length
+    ? `<div class="esc-risk-list">${rec.riskWarnings.map(w => `<div class="esc-risk-item">⚠ ${esc(w)}</div>`).join("")}</div>`
+    : "";
+
+  // All copy buttons pass only the safe cache key (never raw user data in onclick)
+  const copyBtns = [
+    `<button class="esc-copy-btn" onclick="escCopyRecField('${cacheKey}','id',this)">Copy ID</button>`,
+    `<button class="esc-copy-btn" onclick="escCopySummary('${cacheKey}',this)">Copy Summary</button>`,
+    rec.adaptationNotes
+      ? `<button class="esc-copy-btn" onclick="escCopyRecField('${cacheKey}','adaptationNotes',this)">Copy Adaptation Notes</button>`
+      : null,
+  ].filter(Boolean).join("");
+
+  return `<div class="esc-rec-card priority-${priCls}">
+    <div class="esc-rec-top">
+      <span class="esc-priority ${priCls}">${esc(rec.priority || "medium")}</span>
+      ${confChip}
+      ${routeTag}
+      <span class="esc-review-badge" style="margin-left:auto">review only</span>
+    </div>
+    <div class="esc-rec-title">${esc(rec.sourceTitle || rec.title || "Untitled")}</div>
+    ${rec.theme ? `<div class="esc-rec-theme">${esc(rec.theme)}</div>` : ""}
+    ${detailHtml}
+    ${rec.reason ? `<div class="esc-rec-reason">${esc(rec.reason)}</div>` : ""}
+    ${evidenceHtml}
+    ${adaptHtml}
+    ${riskHtml}
+    <hr class="esc-card-divider">
+    <div class="esc-copy-row">${copyBtns}</div>
+  </div>`;
+}
+
+function escCopyRecField(cacheKey, field, btn) {
+  const rec = ESC_REC_CACHE[cacheKey];
+  if (!rec) return;
+  const val = String(rec[field] || "");
+  navigator.clipboard?.writeText(val).then(() => {
+    const old = btn.textContent; btn.textContent = "Copied ✓";
+    setTimeout(() => { btn.textContent = old; }, 2000);
+  });
+}
+
+function escCopySummary(cacheKey, btn) {
+  const rec = ESC_REC_CACHE[cacheKey];
+  if (!rec) return;
+  const dests = Array.isArray(rec.targetDestinations) ? rec.targetDestinations.join(", ") : "—";
+  const lines = [
+    "ESC Recommendation",
+    `ID: ${rec.id || "—"}`,
+    `Title: ${rec.sourceTitle || rec.title || "—"}`,
+    `Direction: ${rec.sourceHighway || "?"} → ${rec.targetHighway || "?"}`,
+    `Destinations: ${dests}`,
+    `Priority: ${rec.priority || "—"} · Confidence: ${rec.confidence || "—"}`,
+    `Theme: ${rec.theme || "—"}`,
+    `Suggested VOA use: ${rec.suggestedVOAUse || "—"}`,
+    `Reason: ${rec.reason || "—"}`,
+    rec.adaptationRequired ? "Adaptation required: YES" : "Adaptation required: no",
+    rec.adaptationNotes  ? `Adaptation notes: ${rec.adaptationNotes}` : null,
+    rec.evidence         ? `Evidence: ${rec.evidence}` : null,
+  ].filter(Boolean).join("\n");
+  navigator.clipboard?.writeText(lines).then(() => {
+    const old = btn.textContent; btn.textContent = "Copied ✓";
+    setTimeout(() => { btn.textContent = old; }, 2000);
+  });
 }
 
 // ── Manual Trigger ────────────────────────────────────────────────────────────

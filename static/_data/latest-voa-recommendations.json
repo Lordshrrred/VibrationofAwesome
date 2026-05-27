@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-05-27T01:53:12.731Z",
+  "sourceSystem": "earthstar-command",
+  "targetSystem": "vibration-of-awesome",
+  "exportMode": "review_only",
+  "executionAllowed": false,
+  "requiresHumanApproval": true,
+  "expirationDate": "2026-06-03T01:53:15.720Z",
+  "staleAfterHours": 168,
+  "recommendations": [
+    {
+      "id": "export_handoff_esr_to_voa_emotional_resonance_voa_facebook",
+      "sourceHandoffId": "handoff_esr_to_voa_emotional_resonance_voa_facebook",
+      "direction": "esr_to_voa",
+      "sourceHighway": "esr",
+      "targetHighway": "voa",
+      "targetDestinations": [
+        "voa_facebook"
+      ],
+      "recommendedExecutionOwner": "voa_runtime",
+      "theme": "identity / emotional resonance",
+      "hookFamily": null,
+      "sourceTitle": "ESR emotional/identity content — VOA Facebook routing",
+      "sourceUrl": null,
+      "adaptationRequired": true,
+      "adaptationNotes": "Remove TikTok-native compression and hyper-compressed hooks. Add a contextual setup sentence. Do not use slang without explanation.",
+      "suggestedVOAUse": "facebook_support_post",
+      "priority": "high",
+      "confidence": "high",
+      "reason": "ESR videos with emotional resonance have historically performed well on VOA Facebook. Broader, older audience responds to grounded identity content.",
+      "evidence": "Historical cross-highway performance signal. VOA Facebook accepts longer contextual captions and broader emotional framing.",
+      "riskWarnings": [],
+      "originalStatus": "recommended",
+      "exportedAt": "2026-05-27T01:53:12.731Z"
+    }
+  ],
+  "forbiddenActions": [
+    "ESC cannot publish to voa_facebook, voa_threads, voa_instagram, voa_pinterest, voa_blog, or voa_email.",
+    "ESC cannot schedule content on any VOA platform or in any VOA queue.",
+    "ESC cannot mutate VOA orchestration state, cadence tables, or syndication targets.",
+    "ESC cannot send this export file to an external endpoint or webhook.",
+    "ESC cannot read this file on VOA's behalf and execute its contents.",
+    "VOA cannot auto-execute this export without human review.",
+    "Rejected candidates must not be re-included without resetting to recommended state first."
+  ],
+  "humanApprovalRules": [
+    "At least one human must review this file before any ESR→VOA routing happens.",
+    "Each destination type (facebook, threads, instagram, etc.) should be reviewed independently.",
+    "Adaptations must be confirmed as adequate before publishing — the adaptationNotes are advisory.",
+    "If VOA's runtime auto-routes based on this export without human review, that is a contract violation.",
+    "ESC review actions (approve_local, defer_local) in Phase 7X are a prerequisite for export inclusion."
+  ]
+}
