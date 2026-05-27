@@ -573,6 +573,106 @@
     .esc-empty-inner {
       text-align: center; padding: 2rem 1rem; color: var(--text-muted); font-size: 0.84rem;
     }
+    /* ── ESC Phase 8C: Review state layer ── */
+    .esc-summary-bar {
+      display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.8rem;
+    }
+    .esc-status-count {
+      display: inline-flex; align-items: center; font-size: 0.64rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15em 0.5em; border-radius: 3px;
+    }
+    .esc-status-count.new           { background: rgba(74,158,150,0.08); color: var(--text-muted); border: 1px solid rgba(74,158,150,0.18); }
+    .esc-status-count.reviewed      { background: rgba(0,255,255,0.07);  color: var(--info);       border: 1px solid rgba(0,255,255,0.18); }
+    .esc-status-count.accepted      { background: rgba(57,255,20,0.09);  color: var(--success);    border: 1px solid rgba(57,255,20,0.22); }
+    .esc-status-count.deferred      { background: rgba(255,179,0,0.09);  color: var(--warn);       border: 1px solid rgba(255,179,0,0.22); }
+    .esc-status-count.rejected      { background: rgba(255,68,68,0.07);  color: #ff9999;           border: 1px solid rgba(255,68,68,0.18); }
+    .esc-status-count.needs-adaptation { background: rgba(255,140,0,0.09); color: #ffaa44;         border: 1px solid rgba(255,140,0,0.22); }
+    .esc-panel-actions {
+      display: flex; gap: 0.45rem; flex-wrap: wrap; margin-bottom: 0.9rem; align-items: center;
+    }
+    .esc-action-btn {
+      font-family: inherit; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; background: none; border: 1px solid var(--border);
+      color: var(--text-muted); padding: 0.28rem 0.7rem; border-radius: 4px;
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    }
+    .esc-import-label { display: inline-block; position: relative; }
+    .esc-action-btn:hover,
+    .esc-import-label:hover .esc-action-btn-inner,
+    .esc-import-label:hover { border-color: var(--text-muted); color: var(--text); }
+    .esc-action-btn.review:hover,  .esc-action-btn.review.active  { border-color: var(--info);    color: var(--info);    background: rgba(0,255,255,0.06); }
+    .esc-action-btn.accept:hover,  .esc-action-btn.accept.active  { border-color: var(--success); color: var(--success); background: rgba(57,255,20,0.06); }
+    .esc-action-btn.defer:hover,   .esc-action-btn.defer.active   { border-color: var(--warn);    color: var(--warn);    background: rgba(255,179,0,0.06); }
+    .esc-action-btn.reject:hover,  .esc-action-btn.reject.active  { border-color: #ff9999;        color: #ff9999;        background: rgba(255,68,68,0.05); }
+    .esc-action-btn.adapt:hover,   .esc-action-btn.adapt.active   { border-color: #ffaa44;        color: #ffaa44;        background: rgba(255,140,0,0.06); }
+    .esc-review-section {
+      margin-top: 0.75rem; padding-top: 0.7rem;
+      border-top: 1px solid rgba(204,68,255,0.12);
+    }
+    .esc-review-status-row {
+      display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; margin-bottom: 0.5rem;
+    }
+    .esc-status-label {
+      font-size: 0.64rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted);
+    }
+    .esc-status-chip {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.15em 0.5em; border-radius: 3px;
+    }
+    .esc-status-chip.new           { background: rgba(74,158,150,0.08); color: var(--text-muted); border: 1px solid rgba(74,158,150,0.18); }
+    .esc-status-chip.reviewed      { background: rgba(0,255,255,0.1);   color: var(--info);       border: 1px solid rgba(0,255,255,0.25); }
+    .esc-status-chip.accepted      { background: rgba(57,255,20,0.1);   color: var(--success);    border: 1px solid rgba(57,255,20,0.28); }
+    .esc-status-chip.deferred      { background: rgba(255,179,0,0.1);   color: var(--warn);       border: 1px solid rgba(255,179,0,0.28); }
+    .esc-status-chip.rejected      { background: rgba(255,68,68,0.09);  color: #ff9999;           border: 1px solid rgba(255,68,68,0.22); }
+    .esc-status-chip.needs-adaptation { background: rgba(255,140,0,0.1); color: #ffaa44;          border: 1px solid rgba(255,140,0,0.28); }
+    .esc-review-ts { font-size: 0.63rem; color: var(--text-muted); opacity: 0.7; }
+    .esc-review-actions { display: flex; gap: 0.32rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+    .esc-next-step-row {
+      display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.4rem;
+    }
+    .esc-next-step-label {
+      font-size: 0.64rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted);
+    }
+    .esc-next-step-select {
+      background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+      font-family: inherit; font-size: 0.76rem; padding: 0.22rem 0.5rem; border-radius: 4px; outline: none;
+    }
+    .esc-next-step-select:focus { border-color: var(--accent); }
+    .esc-copied-row {
+      display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.45rem;
+    }
+    .esc-copied-checkbox { width: 13px; height: 13px; accent-color: var(--success); cursor: pointer; }
+    .esc-copied-label { font-size: 0.72rem; color: var(--text-muted); cursor: pointer; }
+    .esc-note-area { display: flex; flex-direction: column; gap: 0.32rem; margin-bottom: 0.45rem; }
+    .esc-note-input {
+      width: 100%; background: var(--surface3); border: 1px solid var(--border);
+      border-radius: 5px; color: var(--text); font-family: inherit; font-size: 0.8rem;
+      padding: 0.45rem 0.65rem; resize: vertical; min-height: 52px; outline: none;
+      transition: border-color 0.2s; line-height: 1.45;
+    }
+    .esc-note-input:focus { border-color: rgba(204,68,255,0.4); }
+    .esc-note-actions { display: flex; gap: 0.32rem; align-items: center; flex-wrap: wrap; }
+    .esc-clear-btn {
+      font-family: inherit; font-size: 0.64rem; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; background: none; border: 1px solid rgba(255,68,68,0.2);
+      color: rgba(255,68,68,0.45); padding: 0.2rem 0.55rem; border-radius: 4px;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap; margin-left: auto;
+    }
+    .esc-clear-btn:hover { border-color: var(--danger); color: var(--danger); }
+    .esc-saved-note {
+      background: rgba(0,229,204,0.03); border: 1px solid rgba(0,229,204,0.1);
+      border-radius: 5px; padding: 0.42rem 0.62rem; font-size: 0.78rem;
+      color: var(--text-muted); margin-bottom: 0.42rem; line-height: 1.5;
+    }
+    .esc-saved-note-label {
+      font-size: 0.59rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(0,229,204,0.45); margin-bottom: 0.18rem;
+    }
+    .esc-local-notice {
+      font-size: 0.65rem; color: rgba(204,68,255,0.45); margin-top: 0.5rem;
+      padding: 0.28rem 0.5rem; background: rgba(204,68,255,0.04);
+      border-radius: 4px; line-height: 1.4;
+    }
   </style>
 </head>
 <body>
@@ -745,15 +845,17 @@
       </div>
 
       <!--
-        ── ESC Recommendations (Phase 7Z / 8B) ──────────────────────────────
+        ── ESC Recommendations (Phase 7Z / 8B / 8C) ─────────────────────────
         VOA reads ESC recommendations from static/_data/latest-voa-recommendations.json
+        Local review state: browser localStorage key voaEscRecommendationReviewState
         This panel is REVIEW ONLY. Rendering requires ALL THREE safety flags:
           executionAllowed  === false
           requiresHumanApproval === true
           exportMode        === "review_only"
+        "Accepted" means worth manual follow-up — NOT published or syndicated.
         No queue mutation, post creation, publishing, or syndication happens here.
-        Copy buttons are clipboard-only.
-        Future automation requires a separate explicit approval-gated phase (Phase 8C+).
+        Copy and review-status buttons are localStorage-only.
+        Future automation requires a separate explicit approval-gated phase (8D+).
         ─────────────────────────────────────────────────────────────────────
       -->
       <!-- ── ESC Recommendations ── -->
@@ -1935,30 +2037,100 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
     </div>`;
 }
 
-// ── ESC Recommendations ──────────────────────────────────────────────────────
+// ── ESC Recommendations (Phase 7Z / 8B / 8C) ─────────────────────────────────
 //
 // VOA reads ESC recommendations from static/_data/latest-voa-recommendations.json
-// This panel is REVIEW ONLY. Safety gate requires ALL THREE:
+// Review state is stored in browser localStorage only (key: voaEscRecommendationReviewState).
+// Safety gate requires ALL THREE on the export file:
 //   executionAllowed  === false
 //   requiresHumanApproval === true
 //   exportMode        === "review_only"
+// "Accepted" means worth manual follow-up — NOT published or syndicated.
 // No queue mutation, publishing, or syndication is possible from this panel.
-// Future automation requires a separate explicit approval-gated phase.
+// Future automation requires a separate explicit approval-gated phase (8D+).
 //
-const ESC_LOCAL_URL  = "/_data/latest-voa-recommendations.json";
-const ESC_REMOTE_URL = "https://lordshrrred.github.io/VOA_Feeder/latest-voa-recommendations.json";
-const ESC_REC_CACHE  = {};  // keyed "rec_N", populated during render
+const ESC_LOCAL_URL     = "/_data/latest-voa-recommendations.json";
+const ESC_REMOTE_URL    = "https://lordshrrred.github.io/VOA_Feeder/latest-voa-recommendations.json";
+const ESC_REC_CACHE     = {};    // keyed "rec_N", set in renderEscPanel
+const ESC_REVIEW_LS_KEY = "voaEscRecommendationReviewState";
+let   ESC_EXPORT_DATA   = null;  // current export, cached for summary re-renders
 
+const ESC_STATUS_LABELS = {
+  new:              "New",
+  reviewed:         "Reviewed Locally",
+  accepted:         "Accepted for Manual Work",
+  deferred:         "Deferred Locally",
+  rejected:         "Rejected Locally",
+  needs_adaptation: "Needs Adaptation",
+};
+const ESC_STATUS_CSS = {
+  new:              "new",
+  reviewed:         "reviewed",
+  accepted:         "accepted",
+  deferred:         "deferred",
+  rejected:         "rejected",
+  needs_adaptation: "needs-adaptation",
+};
+const ESC_NEXT_STEPS = [
+  { value: "",                         label: "— no next step —" },
+  { value: "draft_facebook_post",      label: "Draft Facebook post" },
+  { value: "draft_threads_mini_essay", label: "Draft Threads mini-essay" },
+  { value: "draft_blog_expansion",     label: "Draft blog expansion" },
+  { value: "draft_instagram_support",  label: "Draft Instagram support" },
+  { value: "hold",                     label: "Hold" },
+  { value: "other",                    label: "Other" },
+];
+
+// ── localStorage helpers ──────────────────────────────────────────────────────
+function loadEscReviewState() {
+  try {
+    const raw = localStorage.getItem(ESC_REVIEW_LS_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed.reviews)) {
+      const map = {};
+      for (const r of parsed.reviews) { if (r.recommendationId) map[r.recommendationId] = r; }
+      return map;
+    }
+    return {};
+  } catch (_) { return {}; }
+}
+
+function saveEscReviewState(reviewMap) {
+  // Safety flags are always enforced in saved state — they never change
+  const payload = {
+    schemaVersion:        "1.0",
+    updatedAt:            new Date().toISOString(),
+    source:               "voa-dashboard-localStorage",
+    executionAllowed:     false,
+    requiresHumanApproval: true,
+    reviews:              Object.values(reviewMap),
+  };
+  try { localStorage.setItem(ESC_REVIEW_LS_KEY, JSON.stringify(payload)); } catch (_) {}
+}
+
+function getOrInitReview(reviewMap, recId, rec) {
+  return reviewMap[recId] || {
+    recommendationId:       recId,
+    sourceHandoffId:        rec?.sourceHandoffId || null,
+    status:                 "new",
+    reviewerNote:           "",
+    reviewedAt:             null,
+    updatedAt:              null,
+    copiedToManualWorkflow: false,
+    manualNextStep:         null,
+  };
+}
+
+// ── Fetch + render ────────────────────────────────────────────────────────────
 async function loadEscRecommendations() {
   let data = null, source = null, anyNetworkError = false;
-
   for (const [url, label] of [[ESC_LOCAL_URL, "local"], [ESC_REMOTE_URL, "feeder"]]) {
     try {
       const r = await fetch(url);
       if (r.ok) { data = await r.json(); source = label; break; }
     } catch (_) { anyNetworkError = true; }
   }
-
   renderEscPanel(data, source, anyNetworkError);
 }
 
@@ -1974,7 +2146,6 @@ function renderEscPanel(data, source, anyNetworkError) {
     wrap.innerHTML = `<div class="esc-panel"><div class="esc-empty-inner">${esc(msg)}</div></div>`;
     return;
   }
-
   // ── Schema mismatch ──
   if (!data.schemaVersion || !Array.isArray(data.recommendations)) {
     wrap.innerHTML = `<div class="esc-panel">
@@ -1983,13 +2154,12 @@ function renderEscPanel(data, source, anyNetworkError) {
     </div>`;
     return;
   }
-
-  // ── Safety gate (all three flags must be correct) ──
+  // ── Safety gate ──
   if (data.executionAllowed !== false || data.requiresHumanApproval !== true || data.exportMode !== "review_only") {
     const flags = [
-      data.executionAllowed  !== false          ? "executionAllowed is not false"         : null,
-      data.requiresHumanApproval !== true        ? "requiresHumanApproval is not true"     : null,
-      data.exportMode        !== "review_only"  ? "exportMode is not \"review_only\""      : null,
+      data.executionAllowed  !== false        ? "executionAllowed is not false"       : null,
+      data.requiresHumanApproval !== true      ? "requiresHumanApproval is not true"  : null,
+      data.exportMode !== "review_only"        ? 'exportMode is not "review_only"'    : null,
     ].filter(Boolean).join("; ");
     wrap.innerHTML = `<div class="esc-panel">
       <div class="esc-security-warn">⚠ Blocked unsafe recommendation export.
@@ -2002,14 +2172,16 @@ function renderEscPanel(data, source, anyNetworkError) {
     return;
   }
 
-  // ── Staleness check ──
+  ESC_EXPORT_DATA = data;
+
+  // ── Staleness ──
   let isStale = false, staleReason = "";
   const now = Date.now();
   if (data.expirationDate) {
     const exp = new Date(data.expirationDate).getTime();
     if (!isNaN(exp) && now > exp) {
       isStale = true;
-      staleReason = `Expired ${new Date(data.expirationDate).toLocaleDateString("en-US", {month:"short",day:"numeric",year:"numeric"})}.`;
+      staleReason = `Expired ${new Date(data.expirationDate).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})}.`;
     }
   } else if (data.staleAfterHours && data.generatedAt) {
     const age = now - new Date(data.generatedAt).getTime();
@@ -2019,22 +2191,15 @@ function renderEscPanel(data, source, anyNetworkError) {
     }
   }
 
-  const recs    = data.recommendations;
-  const genAt   = data.generatedAt
-    ? new Date(data.generatedAt).toLocaleString("en-US", {month:"short",day:"numeric",year:"numeric",hour:"2-digit",minute:"2-digit"})
+  const recs      = data.recommendations;
+  const reviewMap = loadEscReviewState();
+  const genAt     = data.generatedAt
+    ? new Date(data.generatedAt).toLocaleString("en-US",{month:"short",day:"numeric",year:"numeric",hour:"2-digit",minute:"2-digit"})
     : "unknown";
-  const expAt   = data.expirationDate
-    ? new Date(data.expirationDate).toLocaleDateString("en-US", {month:"short",day:"numeric",year:"numeric"})
+  const expAt     = data.expirationDate
+    ? new Date(data.expirationDate).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})
     : null;
-  const srcLabel = source === "feeder" ? "VOA Feeder (remote)" : "local _data";
-  const hi  = recs.filter(r => r.priority === "high").length;
-  const med = recs.filter(r => r.priority === "medium").length;
-  const lo  = recs.filter(r => r.priority === "low").length;
-  const countParts = [
-    hi  > 0 ? `<span style="color:var(--danger)">${hi} high</span>`  : null,
-    med > 0 ? `<span style="color:var(--warn)">${med} med</span>`    : null,
-    lo  > 0 ? `<span style="color:#7aaaf0">${lo} low</span>`         : null,
-  ].filter(Boolean).join(" · ");
+  const srcLabel  = source === "feeder" ? "VOA Feeder (remote)" : "local _data";
 
   const staleHtml = isStale
     ? `<div class="esc-stale-warn">⚠ Recommendations are stale — review carefully before acting. ${esc(staleReason)}</div>`
@@ -2045,7 +2210,7 @@ function renderEscPanel(data, source, anyNetworkError) {
     : recs.map((rec, i) => {
         const key = `rec_${i}`;
         ESC_REC_CACHE[key] = rec;
-        return buildEscRecCard(rec, key);
+        return buildEscRecCard(rec, key, reviewMap);
       }).join("");
 
   wrap.innerHTML = `<div class="esc-panel">
@@ -2054,9 +2219,7 @@ function renderEscPanel(data, source, anyNetworkError) {
         <span class="esc-panel-title">ESC Recommendations</span>
         <span class="esc-review-badge">Review Only</span>
       </div>
-      <span style="font-size:0.72rem;color:var(--text-muted)">
-        ${recs.length} rec${recs.length !== 1 ? "s" : ""}${countParts ? " · " + countParts : ""} · ${esc(srcLabel)}
-      </span>
+      <span style="font-size:0.72rem;color:var(--text-muted)">${recs.length} rec${recs.length!==1?"s":""} · ${esc(srcLabel)}</span>
     </div>
     <div class="esc-meta">
       <span>Generated: ${esc(genAt)}</span>
@@ -2065,95 +2228,306 @@ function renderEscPanel(data, source, anyNetworkError) {
       <span class="esc-meta-sep">·</span><span>Mode: ${esc(data.exportMode)}</span>
       ${expAt ? `<span class="esc-meta-sep">·</span><span>Expires: ${esc(expAt)}</span>` : ""}
     </div>
+    <div id="esc-summary-bar" class="esc-summary-bar"></div>
     ${staleHtml}
+    <div class="esc-panel-actions">
+      <button class="esc-action-btn" onclick="escExportReviewState()">↓ Export Local Review State</button>
+      <label class="esc-import-label" style="display:inline-block">
+        <span class="esc-action-btn" style="display:inline-block">↑ Import Local Review State</span>
+        <input type="file" accept=".json" onchange="escImportReviewState(this)"
+          style="position:absolute;width:0;height:0;opacity:0;pointer-events:none">
+      </label>
+    </div>
     <div class="esc-notice">
       <strong>Review only — VOA must decide manually.</strong>
-      These are ESC suggestions only. Nothing in this panel can execute, publish, syndicate, add to queue, or schedule anything.
-      Copy buttons below are clipboard-only.
+      These are ESC suggestions. Nothing here can execute, publish, syndicate, add to queue, or schedule.
+      "Accepted" means worth manual follow-up only. Review status is saved locally in this browser.
     </div>
     <div class="esc-rec-list">${cardsHtml}</div>
   </div>`;
+
+  updateEscPanelSummary();
 }
 
-function buildEscRecCard(rec, cacheKey) {
+// ── Summary bar ───────────────────────────────────────────────────────────────
+function updateEscPanelSummary() {
+  const bar = document.getElementById("esc-summary-bar");
+  if (!bar || !ESC_EXPORT_DATA) return;
+
+  const recs      = ESC_EXPORT_DATA.recommendations || [];
+  const reviewMap = loadEscReviewState();
+  const counts    = { new:0, reviewed:0, accepted:0, deferred:0, rejected:0, needs_adaptation:0 };
+  let   hasAny    = false;
+
+  for (const rec of recs) {
+    const rv = reviewMap[rec.id];
+    const s  = rv?.status || "new";
+    if (rv && s !== "new") hasAny = true;
+    if (counts[s] !== undefined) counts[s]++; else counts.new++;
+  }
+
+  const d = ESC_EXPORT_DATA;
+  const safetyOk = d.executionAllowed === false && d.requiresHumanApproval === true && d.exportMode === "review_only";
+  const now = Date.now();
+  let stale = false;
+  if (d.expirationDate) { const e = new Date(d.expirationDate).getTime(); if (!isNaN(e) && now > e) stale = true; }
+
+  const chips = [
+    safetyOk ? `<span class="esc-status-count reviewed">✓ Safety gate</span>` : `<span class="esc-status-count rejected">✗ Safety gate</span>`,
+    stale     ? `<span class="esc-status-count deferred">⚠ Stale</span>`      : `<span class="esc-status-count accepted">✓ Fresh</span>`,
+    hasAny    ? `<span class="esc-status-count reviewed">Local: present</span>` : `<span class="esc-status-count new">Local: none</span>`,
+    ...Object.entries(counts)
+      .filter(([,n]) => n > 0)
+      .map(([s,n]) => `<span class="esc-status-count ${ESC_STATUS_CSS[s]||s}">${n} ${ESC_STATUS_LABELS[s]||s}</span>`),
+  ];
+  bar.innerHTML = chips.join(" ");
+}
+
+// ── Card builder ──────────────────────────────────────────────────────────────
+function buildEscRecCard(rec, cacheKey, reviewMap) {
   const priCls  = rec.priority === "high" ? "high" : rec.priority === "low" ? "low" : "medium";
+  const review  = getOrInitReview(reviewMap, rec.id, rec);
 
-  const routeTag = (rec.sourceHighway && rec.targetHighway)
-    ? `<span class="esc-route-tag">${esc(rec.sourceHighway)} → ${esc(rec.targetHighway)}</span>`
-    : "";
-
-  const confChip = rec.confidence
-    ? `<span class="esc-confidence-chip">confidence: ${esc(rec.confidence)}</span>`
-    : "";
-
+  const routeTag  = (rec.sourceHighway && rec.targetHighway)
+    ? `<span class="esc-route-tag">${esc(rec.sourceHighway)} → ${esc(rec.targetHighway)}</span>` : "";
+  const confChip  = rec.confidence
+    ? `<span class="esc-confidence-chip">confidence: ${esc(rec.confidence)}</span>` : "";
   const destChips = Array.isArray(rec.targetDestinations) && rec.targetDestinations.length
-    ? rec.targetDestinations.map(d => `<span class="esc-dest-chip">${esc(d)}</span>`).join("")
-    : "";
+    ? rec.targetDestinations.map(d => `<span class="esc-dest-chip">${esc(d)}</span>`).join("") : "";
 
   const detailItems = [
-    destChips
-      ? `<div class="esc-detail-label">Route to</div><div class="esc-detail-value">${destChips}</div>`
-      : null,
-    rec.suggestedVOAUse
-      ? `<div class="esc-detail-label">Suggested use</div><div class="esc-detail-value">${esc(rec.suggestedVOAUse)}</div>`
-      : null,
-    rec.adaptationRequired != null
-      ? `<div class="esc-detail-label">Adaptation</div><div class="esc-detail-value" style="${rec.adaptationRequired ? "color:var(--warn)" : "color:var(--text-muted)"}">${rec.adaptationRequired ? "Required" : "Not required"}</div>`
-      : null,
-    rec.recommendedExecutionOwner
-      ? `<div class="esc-detail-label">Owner</div><div class="esc-detail-value">${esc(rec.recommendedExecutionOwner)}</div>`
-      : null,
+    destChips ? `<div class="esc-detail-label">Route to</div><div class="esc-detail-value">${destChips}</div>` : null,
+    rec.suggestedVOAUse ? `<div class="esc-detail-label">Suggested use</div><div class="esc-detail-value">${esc(rec.suggestedVOAUse)}</div>` : null,
+    rec.adaptationRequired != null ? `<div class="esc-detail-label">Adaptation</div><div class="esc-detail-value" style="${rec.adaptationRequired?"color:var(--warn)":"color:var(--text-muted)"}">${rec.adaptationRequired?"Required":"Not required"}</div>` : null,
+    rec.recommendedExecutionOwner ? `<div class="esc-detail-label">Owner</div><div class="esc-detail-value">${esc(rec.recommendedExecutionOwner)}</div>` : null,
   ].filter(Boolean);
-  const detailHtml = detailItems.length
-    ? `<div class="esc-detail-grid">${detailItems.join("")}</div>`
-    : "";
+  const detailHtml  = detailItems.length ? `<div class="esc-detail-grid">${detailItems.join("")}</div>` : "";
+  const evidenceHtml = rec.evidence ? `<div class="esc-evidence">${esc(rec.evidence)}</div>` : "";
+  const adaptHtml   = rec.adaptationRequired && rec.adaptationNotes
+    ? `<div class="esc-adaptation-box"><div class="esc-adaptation-label">Adaptation notes</div>${esc(rec.adaptationNotes)}</div>` : "";
+  const riskHtml    = Array.isArray(rec.riskWarnings) && rec.riskWarnings.length
+    ? `<div class="esc-risk-list">${rec.riskWarnings.map(w=>`<div class="esc-risk-item">⚠ ${esc(w)}</div>`).join("")}</div>` : "";
 
-  const evidenceHtml = rec.evidence
-    ? `<div class="esc-evidence">${esc(rec.evidence)}</div>`
-    : "";
-
-  const adaptHtml = rec.adaptationRequired && rec.adaptationNotes
-    ? `<div class="esc-adaptation-box">
-        <div class="esc-adaptation-label">Adaptation notes</div>
-        ${esc(rec.adaptationNotes)}
-      </div>`
-    : "";
-
-  const riskHtml = Array.isArray(rec.riskWarnings) && rec.riskWarnings.length
-    ? `<div class="esc-risk-list">${rec.riskWarnings.map(w => `<div class="esc-risk-item">⚠ ${esc(w)}</div>`).join("")}</div>`
-    : "";
-
-  // All copy buttons pass only the safe cache key (never raw user data in onclick)
   const copyBtns = [
     `<button class="esc-copy-btn" onclick="escCopyRecField('${cacheKey}','id',this)">Copy ID</button>`,
     `<button class="esc-copy-btn" onclick="escCopySummary('${cacheKey}',this)">Copy Summary</button>`,
-    rec.adaptationNotes
-      ? `<button class="esc-copy-btn" onclick="escCopyRecField('${cacheKey}','adaptationNotes',this)">Copy Adaptation Notes</button>`
-      : null,
+    rec.adaptationNotes ? `<button class="esc-copy-btn" onclick="escCopyRecField('${cacheKey}','adaptationNotes',this)">Copy Adaptation Notes</button>` : null,
   ].filter(Boolean).join("");
 
-  return `<div class="esc-rec-card priority-${priCls}">
+  return `<div class="esc-rec-card priority-${priCls}" id="esc-card-${cacheKey}">
     <div class="esc-rec-top">
-      <span class="esc-priority ${priCls}">${esc(rec.priority || "medium")}</span>
-      ${confChip}
-      ${routeTag}
+      <span class="esc-priority ${priCls}">${esc(rec.priority||"medium")}</span>
+      ${confChip}${routeTag}
       <span class="esc-review-badge" style="margin-left:auto">review only</span>
     </div>
-    <div class="esc-rec-title">${esc(rec.sourceTitle || rec.title || "Untitled")}</div>
-    ${rec.theme ? `<div class="esc-rec-theme">${esc(rec.theme)}</div>` : ""}
+    <div class="esc-rec-title">${esc(rec.sourceTitle||rec.title||"Untitled")}</div>
+    ${rec.theme?`<div class="esc-rec-theme">${esc(rec.theme)}</div>`:""}
     ${detailHtml}
-    ${rec.reason ? `<div class="esc-rec-reason">${esc(rec.reason)}</div>` : ""}
-    ${evidenceHtml}
-    ${adaptHtml}
-    ${riskHtml}
+    ${rec.reason?`<div class="esc-rec-reason">${esc(rec.reason)}</div>`:""}
+    ${evidenceHtml}${adaptHtml}${riskHtml}
     <hr class="esc-card-divider">
     <div class="esc-copy-row">${copyBtns}</div>
+    <div class="esc-review-section" id="esc-review-${cacheKey}">
+      ${buildEscReviewSection(cacheKey, review)}
+    </div>
   </div>`;
 }
 
-function escCopyRecField(cacheKey, field, btn) {
-  const rec = ESC_REC_CACHE[cacheKey];
+// ── Review section HTML ───────────────────────────────────────────────────────
+function buildEscReviewSection(cacheKey, review) {
+  const status     = review.status || "new";
+  const statusCls  = ESC_STATUS_CSS[status] || "new";
+  const statusLbl  = ESC_STATUS_LABELS[status] || status;
+
+  const tsUpdated  = review.updatedAt
+    ? `<span class="esc-review-ts">· Updated ${new Date(review.updatedAt).toLocaleString("en-US",{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span>` : "";
+  const tsReviewed = review.reviewedAt
+    ? `<span class="esc-review-ts">· Reviewed ${new Date(review.reviewedAt).toLocaleString("en-US",{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span>` : "";
+
+  // Status action buttons — active one gets highlighted
+  const actionDefs = [
+    { s:"reviewed",         cls:"review", lbl:"Reviewed Locally"       },
+    { s:"accepted",         cls:"accept", lbl:"Accept for Manual Work"  },
+    { s:"deferred",         cls:"defer",  lbl:"Defer Locally"           },
+    { s:"rejected",         cls:"reject", lbl:"Reject Locally"          },
+    { s:"needs_adaptation", cls:"adapt",  lbl:"Needs Adaptation"        },
+  ];
+  const actionBtns = actionDefs.map(a =>
+    `<button class="esc-action-btn ${a.cls}${status===a.s?" active":""}" onclick="escSetStatus('${cacheKey}','${a.s}',this)">${a.lbl}</button>`
+  ).join("");
+
+  // manualNextStep selector — only when accepted
+  const nextStepOpts = ESC_NEXT_STEPS.map(o =>
+    `<option value="${o.value}"${review.manualNextStep===o.value?" selected":""}>${o.label}</option>`
+  ).join("");
+  const nextStepHtml = (status === "accepted")
+    ? `<div class="esc-next-step-row">
+        <span class="esc-next-step-label">Manual next step</span>
+        <select class="esc-next-step-select" onchange="escSetNextStep('${cacheKey}',this.value)">${nextStepOpts}</select>
+      </div>` : "";
+
+  // copiedToManualWorkflow checkbox — show when accepted or a next step is set
+  const copiedHtml = (status === "accepted" || review.manualNextStep)
+    ? `<div class="esc-copied-row">
+        <input type="checkbox" id="esc-copied-${cacheKey}" class="esc-copied-checkbox"
+          ${review.copiedToManualWorkflow?"checked":""} onchange="escToggleCopied('${cacheKey}',this.checked)">
+        <label for="esc-copied-${cacheKey}" class="esc-copied-label">Copied to manual workflow</label>
+      </div>` : "";
+
+  // Note input + saved note display
+  const savedNoteHtml = review.reviewerNote
+    ? `<div class="esc-saved-note"><div class="esc-saved-note-label">Local note</div>${esc(review.reviewerNote)}</div>` : "";
+
+  return `<div class="esc-review-status-row">
+      <span class="esc-status-label">Local status:</span>
+      <span class="esc-status-chip ${statusCls}">${statusLbl}</span>
+      ${tsReviewed}${tsUpdated}
+    </div>
+    <div class="esc-review-actions">${actionBtns}</div>
+    ${nextStepHtml}
+    ${copiedHtml}
+    ${savedNoteHtml}
+    <div class="esc-note-area">
+      <textarea class="esc-note-input" id="esc-note-${cacheKey}" placeholder="Add local review note…">${esc(review.reviewerNote||"")}</textarea>
+      <div class="esc-note-actions">
+        <button class="esc-action-btn" onclick="escSaveNote('${cacheKey}',this)">Save Local Note</button>
+        <button class="esc-clear-btn" onclick="escClearReview('${cacheKey}',this)">Clear Local Review</button>
+      </div>
+    </div>
+    <div class="esc-local-notice">Review status saved locally in this browser only. Does not publish, syndicate, or mutate VOA queues.</div>`;
+}
+
+// ── Refresh a single card's review section without re-rendering the whole panel ──
+function escRefreshReviewSection(cacheKey) {
+  const reviewEl = document.getElementById(`esc-review-${cacheKey}`);
+  if (!reviewEl) return;
+  // Preserve any in-progress note text the user hasn't saved yet
+  const noteEl       = document.getElementById(`esc-note-${cacheKey}`);
+  const unsavedNote  = noteEl ? noteEl.value : null;
+  const rec          = ESC_REC_CACHE[cacheKey];
   if (!rec) return;
+  const reviewMap    = loadEscReviewState();
+  const review       = getOrInitReview(reviewMap, rec.id, rec);
+  reviewEl.innerHTML = buildEscReviewSection(cacheKey, review);
+  // Restore unsaved note if it differs from persisted note
+  if (unsavedNote !== null && unsavedNote !== (review.reviewerNote || "")) {
+    const newNoteEl = document.getElementById(`esc-note-${cacheKey}`);
+    if (newNoteEl) newNoteEl.value = unsavedNote;
+  }
+  updateEscPanelSummary();
+}
+
+// ── Review action handlers ────────────────────────────────────────────────────
+function escSetStatus(cacheKey, newStatus, btn) {
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
+  const reviewMap = loadEscReviewState();
+  const review    = getOrInitReview(reviewMap, rec.id, rec);
+  review.status     = newStatus;
+  review.reviewedAt = review.reviewedAt || new Date().toISOString();
+  review.updatedAt  = new Date().toISOString();
+  reviewMap[rec.id] = review;
+  saveEscReviewState(reviewMap);
+  escRefreshReviewSection(cacheKey);
+}
+
+function escSaveNote(cacheKey, btn) {
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
+  const noteEl = document.getElementById(`esc-note-${cacheKey}`);
+  const note   = noteEl ? noteEl.value.trim() : "";
+  const reviewMap = loadEscReviewState();
+  const review    = getOrInitReview(reviewMap, rec.id, rec);
+  review.reviewerNote = note;
+  review.updatedAt    = new Date().toISOString();
+  if (review.status === "new" && note) review.status = "reviewed";
+  reviewMap[rec.id] = review;
+  saveEscReviewState(reviewMap);
+  const old = btn.textContent; btn.textContent = "Saved ✓";
+  setTimeout(() => { btn.textContent = old; }, 2000);
+  escRefreshReviewSection(cacheKey);
+}
+
+function escSetNextStep(cacheKey, val) {
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
+  const reviewMap = loadEscReviewState();
+  const review    = getOrInitReview(reviewMap, rec.id, rec);
+  review.manualNextStep = val || null;
+  review.updatedAt      = new Date().toISOString();
+  reviewMap[rec.id] = review;
+  saveEscReviewState(reviewMap);
+  escRefreshReviewSection(cacheKey);
+}
+
+function escToggleCopied(cacheKey, checked) {
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
+  const reviewMap = loadEscReviewState();
+  const review    = getOrInitReview(reviewMap, rec.id, rec);
+  review.copiedToManualWorkflow = !!checked;
+  review.updatedAt              = new Date().toISOString();
+  reviewMap[rec.id] = review;
+  saveEscReviewState(reviewMap);
+  // No re-render needed — checkbox state is already correct in DOM
+}
+
+function escClearReview(cacheKey, btn) {
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
+  const reviewMap = loadEscReviewState();
+  delete reviewMap[rec.id];
+  saveEscReviewState(reviewMap);
+  escRefreshReviewSection(cacheKey);
+}
+
+// ── Export local review state (browser download only) ────────────────────────
+function escExportReviewState() {
+  const reviewMap = loadEscReviewState();
+  const today     = new Date().toISOString().slice(0, 10);
+  const payload   = {
+    schemaVersion:        "1.0",
+    exportedAt:           new Date().toISOString(),
+    source:               "voa-dashboard-localStorage",
+    executionAllowed:     false,
+    requiresHumanApproval: true,
+    reviews:              Object.values(reviewMap),
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const a    = document.createElement("a");
+  a.href     = URL.createObjectURL(blob);
+  a.download = `esc-recommendation-review-state-${today}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+// ── Import local review state (file picker → validate → merge → save) ────────
+function escImportReviewState(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const imported = JSON.parse(e.target.result);
+      // Safety gate on imported file
+      if (imported.executionAllowed !== false || imported.requiresHumanApproval !== true || !Array.isArray(imported.reviews)) {
+        alert("Import blocked: file must have executionAllowed=false, requiresHumanApproval=true, and a reviews array.");
+        input.value = ""; return;
+      }
+      const existing = loadEscReviewState();
+      for (const rv of imported.reviews) {
+        if (rv.recommendationId) existing[rv.recommendationId] = rv;
+      }
+      saveEscReviewState(existing);
+      // Re-render all cached card review sections
+      for (const key of Object.keys(ESC_REC_CACHE)) escRefreshReviewSection(key);
+      input.value = "";
+    } catch (_) {
+      alert("Import failed: could not parse JSON file.");
+      input.value = "";
+    }
+  };
+  reader.readAsText(file);
+}
+
+// ── Copy helpers ──────────────────────────────────────────────────────────────
+function escCopyRecField(cacheKey, field, btn) {
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
   const val = String(rec[field] || "");
   navigator.clipboard?.writeText(val).then(() => {
     const old = btn.textContent; btn.textContent = "Copied ✓";
@@ -2162,22 +2536,21 @@ function escCopyRecField(cacheKey, field, btn) {
 }
 
 function escCopySummary(cacheKey, btn) {
-  const rec = ESC_REC_CACHE[cacheKey];
-  if (!rec) return;
+  const rec = ESC_REC_CACHE[cacheKey]; if (!rec) return;
   const dests = Array.isArray(rec.targetDestinations) ? rec.targetDestinations.join(", ") : "—";
   const lines = [
     "ESC Recommendation",
-    `ID: ${rec.id || "—"}`,
-    `Title: ${rec.sourceTitle || rec.title || "—"}`,
-    `Direction: ${rec.sourceHighway || "?"} → ${rec.targetHighway || "?"}`,
+    `ID: ${rec.id||"—"}`,
+    `Title: ${rec.sourceTitle||rec.title||"—"}`,
+    `Direction: ${rec.sourceHighway||"?"} → ${rec.targetHighway||"?"}`,
     `Destinations: ${dests}`,
-    `Priority: ${rec.priority || "—"} · Confidence: ${rec.confidence || "—"}`,
-    `Theme: ${rec.theme || "—"}`,
-    `Suggested VOA use: ${rec.suggestedVOAUse || "—"}`,
-    `Reason: ${rec.reason || "—"}`,
+    `Priority: ${rec.priority||"—"} · Confidence: ${rec.confidence||"—"}`,
+    `Theme: ${rec.theme||"—"}`,
+    `Suggested VOA use: ${rec.suggestedVOAUse||"—"}`,
+    `Reason: ${rec.reason||"—"}`,
     rec.adaptationRequired ? "Adaptation required: YES" : "Adaptation required: no",
-    rec.adaptationNotes  ? `Adaptation notes: ${rec.adaptationNotes}` : null,
-    rec.evidence         ? `Evidence: ${rec.evidence}` : null,
+    rec.adaptationNotes ? `Adaptation notes: ${rec.adaptationNotes}` : null,
+    rec.evidence        ? `Evidence: ${rec.evidence}` : null,
   ].filter(Boolean).join("\n");
   navigator.clipboard?.writeText(lines).then(() => {
     const old = btn.textContent; btn.textContent = "Copied ✓";
