@@ -1,0 +1,237 @@
+name: Syndication Catch-up ~ Missed Posts
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+# ── SCHEDULE ───────────────────────────────────────────────────────────────────
+# 1:00 AM ET (05:00 UTC) ~ halfway between the 6pm ET and 9am ET drip runs.
+# Maximally spaced from both regular publish windows.
+# Processes ONE slug per run from static/_data/syndication-catchup-queue.json.
+# No-ops cleanly when the queue is empty.
+# ──────────────────────────────────────────────────────────────────────────────
+
+on:
+  schedule:
+    - cron: '0 5 * * *'    # 1:00 AM ET (UTC-4 EDT) ~ catch-up window
+  workflow_dispatch:         # Manual trigger if needed
+
+# Share the same lock as drip and feeder-callback so runs never overlap.
+concurrency:
+  group: voa-publish-and-syndicate
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  catchup:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ───────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      # ── 2. Setup Node ─────────────────────────────────────────────────────
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      # ── 3. Install dependencies ───────────────────────────────────────────
+      - name: Install dependencies
+        run: npm ci
+
+      # ── 4. Read catch-up queue ────────────────────────────────────────────
+      - name: Read catch-up queue
+        id: queue
+        run: |
+          QUEUE_FILE="static/_data/syndication-catchup-queue.json"
+          if [ ! -f "$QUEUE_FILE" ]; then
+            echo "slug="       >> $GITHUB_OUTPUT
+            echo "remaining=0" >> $GITHUB_OUTPUT
+            echo "Catch-up queue file not found ~ nothing to do."
+            exit 0
+          fi
+          SLUG=$(node -e "
+            const q = JSON.parse(require('fs').readFileSync('$QUEUE_FILE','utf8'));
+            console.log(q.queue.length > 0 ? q.queue[0] : '');
+          ")
+          REMAINING=$(node -e "
+            const q = JSON.parse(require('fs').readFileSync('$QUEUE_FILE','utf8'));
+            console.log(q.queue.length);
+          ")
+          echo "slug=$SLUG"           >> $GITHUB_OUTPUT
+          echo "remaining=$REMAINING" >> $GITHUB_OUTPUT
+          if [ -z "$SLUG" ]; then
+            echo "Catch-up queue is empty ~ all missed posts have been syndicated."
+          else
+            echo "Next catch-up slug: $SLUG ($REMAINING remaining)"
+          fi
+
+      # ── 5. Exit cleanly if nothing to do ─────────────────────────────────
+      - name: Exit if queue empty
+        if: steps.queue.outputs.slug == ''
+        run: |
+          echo "Queue empty or missing ~ no action taken."
+          exit 0
+
+      # ── 6. Syndicate the next missed post ─────────────────────────────────
+      # These posts are already live on VOA (published previously).
+      # We skip the live-URL check and feeder trigger ~ just syndicate social/blog.
+      - name: Syndicate missed post
+        id: syndicate
+        if: steps.queue.outputs.slug != ''
+        env:
+          CATCHUP_SLUG:                ${{ steps.queue.outputs.slug }}
+          ANTHROPIC_API_KEY:           ${{ secrets.ANTHROPIC_API_KEY }}
+          VOA_FEEDER_TRIGGER_TOKEN:    ${{ secrets.VOA_FEEDER_TRIGGER_TOKEN }}
+          NASA_API_KEY:                ${{ secrets.NASA_API_KEY }}
+          PEXELS_API_KEY:              ${{ secrets.PEXELS_API_KEY }}
+          ESR_BLUESKY_HANDLE:          ${{ secrets.ESR_BLUESKY_HANDLE }}
+          ESR_BLUESKY_APP_PASSWORD:    ${{ secrets.ESR_BLUESKY_APP_PASSWORD }}
+          VOA_BLUESKY_HANDLE:          ${{ secrets.VOA_BLUESKY_HANDLE }}
+          VOA_BLUESKY_APP_PASSWORD:    ${{ secrets.VOA_BLUESKY_APP_PASSWORD }}
+          BLUESKY_HANDLE:              ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD:        ${{ secrets.BLUESKY_APP_PASSWORD }}
+          ESR_MASTODON_INSTANCE:       ${{ secrets.ESR_MASTODON_INSTANCE }}
+          ESR_MASTODON_ACCESS_TOKEN:   ${{ secrets.ESR_MASTODON_ACCESS_TOKEN }}
+          VOA_MASTODON_INSTANCE:       ${{ secrets.VOA_MASTODON_INSTANCE }}
+          VOA_MASTODON_ACCESS_TOKEN:   ${{ secrets.VOA_MASTODON_ACCESS_TOKEN }}
+          MASTODON_INSTANCE:           ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCESS_TOKEN:       ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          META_APP_ID:                 ${{ secrets.META_APP_ID }}
+          META_APP_SECRET:             ${{ secrets.META_APP_SECRET }}
+          META_USER_TOKEN:             ${{ secrets.META_USER_TOKEN }}
+          META_PAGE_ID_VOA:            ${{ secrets.META_PAGE_ID_VOA }}
+          META_PAGE_TOKEN_VOA:         ${{ secrets.META_PAGE_TOKEN_VOA }}
+          META_PAGE_ID_EARTHSTAR:      ${{ secrets.META_PAGE_ID_EARTHSTAR }}
+          META_PAGE_TOKEN_EARTHSTAR:   ${{ secrets.META_PAGE_TOKEN_EARTHSTAR }}
+          META_PAGE_ID_RUZINDLA:       ${{ secrets.META_PAGE_ID_RUZINDLA }}
+          META_PAGE_TOKEN_RUZINDLA:    ${{ secrets.META_PAGE_TOKEN_RUZINDLA }}
+          DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
+          VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
+          VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
+          VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}
+          VOA_TUMBLR_TOKEN_SECRET:     ${{ secrets.VOA_TUMBLR_TOKEN_SECRET }}
+          VOA_TUMBLR_BLOG_NAME:        ${{ secrets.VOA_TUMBLR_BLOG_NAME }}
+          PUBLER_API_KEY:              ${{ secrets.PUBLER_API_KEY }}
+          PUBLER_WORKSPACE_ID:         ${{ secrets.PUBLER_WORKSPACE_ID }}
+          PUBLER_PINTEREST_ACCOUNT_ID: ${{ secrets.PUBLER_PINTEREST_ACCOUNT_ID }}
+          PUBLER_PINTEREST_BOARD_ID:   ${{ secrets.PUBLER_PINTEREST_BOARD_ID }}
+          PUBLER_INSTAGRAM_ACCOUNT_ID: ${{ secrets.PUBLER_INSTAGRAM_ACCOUNT_ID }}
+          PUBLER_THREADS_ACCOUNT_ID:   ${{ secrets.PUBLER_THREADS_ACCOUNT_ID }}
+          BLOGGER_CLIENT_ID:           ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET:       ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN:       ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID:             ${{ secrets.BLOGGER_BLOG_ID }}
+          WORDPRESS_OAUTH2_TOKEN:      ${{ secrets.WORDPRESS_OAUTH2_TOKEN }}
+          WORDPRESS_BLOG:              ${{ secrets.WORDPRESS_BLOG }}
+          WORDPRESS_CATEGORY_NAMES:    ${{ secrets.WORDPRESS_CATEGORY_NAMES }}
+          WORDPRESS_TAG_NAMES:         ${{ secrets.WORDPRESS_TAG_NAMES }}
+          DASHBOARD_PASSWORD:          ${{ secrets.DASHBOARD_PASSWORD }}
+          IDEOGRAM_API_KEY:            ${{ secrets.IDEOGRAM_API_KEY }}
+        run: |
+          echo "Syndicating catch-up post: $CATCHUP_SLUG"
+          node scripts/syndicate.js --lane boom --slug "$CATCHUP_SLUG"
+
+      # ── 7. Update catch-up queue ──────────────────────────────────────────
+      # Move processed slug from queue[] to processed[], update remaining count.
+      - name: Update catch-up queue
+        if: steps.queue.outputs.slug != ''
+        run: |
+          node -e "
+            const fs   = require('fs');
+            const file = 'static/_data/syndication-catchup-queue.json';
+            const q    = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const slug = q.queue.shift();
+            q.processed.push({ slug, processedAt: new Date().toISOString() });
+            q.remaining = q.queue.length;
+            fs.writeFileSync(file, JSON.stringify(q, null, 2) + '\n');
+            console.log('Queue updated ~ processed: ' + slug + ' | remaining: ' + q.remaining);
+          "
+
+      # ── 8. Commit results ─────────────────────────────────────────────────
+      - name: Commit catch-up results
+        if: steps.queue.outputs.slug != ''
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A \
+            static/_data/syndication-catchup-queue.json \
+            static/_data/syndication-results.json \
+            static/_data/syndication-log.json \
+            static/_data/syndication-health.json \
+            static/_data/image-registry.json \
+            || true
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            git add -A static/_data/ || true
+          fi
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            SLUG="${{ steps.queue.outputs.slug }}"
+            git commit -m "Catch-up syndication: $SLUG [automated]"
+            git fetch origin main
+            git merge --no-edit -X ours origin/main
+            git push
+          fi
+
+      # ── 9. Retry any platforms that failed this run ───────────────────────
+      - name: Retry failed platforms
+        if: steps.queue.outputs.slug != ''
+        env:
+          ANTHROPIC_API_KEY:           ${{ secrets.ANTHROPIC_API_KEY }}
+          PEXELS_API_KEY:              ${{ secrets.PEXELS_API_KEY }}
+          VOA_BLUESKY_HANDLE:          ${{ secrets.VOA_BLUESKY_HANDLE }}
+          VOA_BLUESKY_APP_PASSWORD:    ${{ secrets.VOA_BLUESKY_APP_PASSWORD }}
+          BLUESKY_HANDLE:              ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD:        ${{ secrets.BLUESKY_APP_PASSWORD }}
+          VOA_MASTODON_INSTANCE:       ${{ secrets.VOA_MASTODON_INSTANCE }}
+          VOA_MASTODON_ACCESS_TOKEN:   ${{ secrets.VOA_MASTODON_ACCESS_TOKEN }}
+          MASTODON_INSTANCE:           ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCESS_TOKEN:       ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          META_APP_ID:                 ${{ secrets.META_APP_ID }}
+          META_APP_SECRET:             ${{ secrets.META_APP_SECRET }}
+          META_USER_TOKEN:             ${{ secrets.META_USER_TOKEN }}
+          META_PAGE_ID_VOA:            ${{ secrets.META_PAGE_ID_VOA }}
+          META_PAGE_TOKEN_VOA:         ${{ secrets.META_PAGE_TOKEN_VOA }}
+          VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
+          VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
+          VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}
+          VOA_TUMBLR_TOKEN_SECRET:     ${{ secrets.VOA_TUMBLR_TOKEN_SECRET }}
+          VOA_TUMBLR_BLOG_NAME:        ${{ secrets.VOA_TUMBLR_BLOG_NAME }}
+          PUBLER_API_KEY:              ${{ secrets.PUBLER_API_KEY }}
+          PUBLER_WORKSPACE_ID:         ${{ secrets.PUBLER_WORKSPACE_ID }}
+          PUBLER_PINTEREST_ACCOUNT_ID: ${{ secrets.PUBLER_PINTEREST_ACCOUNT_ID }}
+          PUBLER_PINTEREST_BOARD_ID:   ${{ secrets.PUBLER_PINTEREST_BOARD_ID }}
+          PUBLER_INSTAGRAM_ACCOUNT_ID: ${{ secrets.PUBLER_INSTAGRAM_ACCOUNT_ID }}
+          PUBLER_THREADS_ACCOUNT_ID:   ${{ secrets.PUBLER_THREADS_ACCOUNT_ID }}
+          BLOGGER_CLIENT_ID:           ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET:       ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN:       ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID:             ${{ secrets.BLOGGER_BLOG_ID }}
+          WORDPRESS_OAUTH2_TOKEN:      ${{ secrets.WORDPRESS_OAUTH2_TOKEN }}
+          WORDPRESS_BLOG:              ${{ secrets.WORDPRESS_BLOG }}
+        run: node scripts/retry-failed-syndication.js
+
+      # ── 10. Commit retry results ──────────────────────────────────────────
+      - name: Commit retry results
+        if: steps.queue.outputs.slug != ''
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A static/_data/ || true
+          if git diff --staged --quiet; then
+            echo "No retry updates to commit."
+          else
+            git commit -m "Update catch-up syndication results [automated]"
+            git fetch origin main
+            git merge --no-edit -X ours origin/main
+            git push
+          fi

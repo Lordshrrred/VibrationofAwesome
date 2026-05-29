@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0",
+  "description": "One-time catch-up queue for posts that published with feeder only (no social/blog syndication). Processed one per day at 1am ET by syndication-catchup.yml.",
+  "schedule": "0 5 * * * (1am ET, halfway between 9am and 6pm drip runs)",
+  "createdAt": "2026-05-28",
+  "remaining": 12,
+  "queue": [
+    "how-to-become-your-true-self-when-the-world-wants-you-generic",
+    "music-production-for-beginners-where-to-start-without-getting-lost",
+    "the-identity-shift-that-changes-everything",
+    "how-to-grow-as-an-independent-artist-in-a-noisy-world",
+    "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+    "ai-content-creation-tools-that-actually-save-time",
+    "how-to-stop-living-in-survival-mode-for-good",
+    "how-to-make-money-as-a-musician-without-compromising-your-art",
+    "how-to-get-out-of-survival-mode-and-actually-start-living",
+    "how-to-stop-feeling-lost-and-start-moving-forward",
+    "claude-ai-paired-programming-for-independent-musicians",
+    "how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job"
+  ],
+  "processed": []
+}
