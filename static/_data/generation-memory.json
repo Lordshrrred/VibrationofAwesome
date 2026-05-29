@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-29T16:51:19.165Z",
+  "lastUpdated": "2026-05-29T23:16:47.428Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "best-ai-video-tools-for-independent-musicians-2026",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-05-29T23:16:33.242Z"
+    },
     {
       "slug": "burnout-isnt-the-problem-its-the-signal",
       "format": "tension-revelation",
@@ -257,6 +266,15 @@
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "best-ai-video-tools-for-independent-musicians-2026",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-05-29T23:16:47.428Z"
+    },
     {
       "slug": "burnout-isnt-the-problem-its-the-signal",
       "archetype": "minimalist-philosophy",
