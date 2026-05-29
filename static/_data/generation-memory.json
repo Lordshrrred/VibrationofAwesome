@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-29T08:38:37.825Z",
+  "lastUpdated": "2026-05-29T16:51:19.165Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "burnout-isnt-the-problem-its-the-signal",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-05-29T16:51:06.289Z"
+    },
     {
       "slug": "how-to-become-your-true-self-when-the-world-wants-you-generic",
       "format": "short-native-insight",
@@ -248,6 +257,15 @@
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "burnout-isnt-the-problem-its-the-signal",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-05-29T16:51:19.165Z"
+    },
     {
       "slug": "how-to-become-your-true-self-when-the-world-wants-you-generic",
       "archetype": "nervous-system-atmospheric",
