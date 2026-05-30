@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-29T23:16:47.428Z",
+  "lastUpdated": "2026-05-30T07:36:13.412Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-05-30T07:35:59.516Z"
+    },
     {
       "slug": "best-ai-video-tools-for-independent-musicians-2026",
       "format": "conversational-reflection",
@@ -266,6 +275,15 @@
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-05-30T07:36:13.412Z"
+    },
     {
       "slug": "best-ai-video-tools-for-independent-musicians-2026",
       "archetype": "abstract-creator-life",

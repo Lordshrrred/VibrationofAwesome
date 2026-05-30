@@ -3,9 +3,8 @@
   "description": "One-time catch-up queue for posts that published with feeder only (no social/blog syndication). Processed one per day at 1am ET by syndication-catchup.yml.",
   "schedule": "0 5 * * * (1am ET, halfway between 9am and 6pm drip runs)",
   "createdAt": "2026-05-28",
-  "remaining": 11,
+  "remaining": 10,
   "queue": [
-    "music-production-for-beginners-where-to-start-without-getting-lost",
     "the-identity-shift-that-changes-everything",
     "how-to-grow-as-an-independent-artist-in-a-noisy-world",
     "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
@@ -21,6 +20,10 @@
     {
       "slug": "how-to-become-your-true-self-when-the-world-wants-you-generic",
       "processedAt": "2026-05-29T08:40:24.789Z"
+    },
+    {
+      "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
+      "processedAt": "2026-05-30T07:38:28.272Z"
     }
   ]
 }
