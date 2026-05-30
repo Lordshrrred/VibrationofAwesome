@@ -1,0 +1,119 @@
+name: VOA Watchdog & Self-Healer
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+# ── TRIGGERS ───────────────────────────────────────────────────────────────────
+# 1. workflow_run ~ fires when drip or catch-up completes with failure
+# 2. schedule ~ 3:30am ET daily proactive check (between drip windows)
+# 3. workflow_dispatch ~ manual heal trigger
+# ──────────────────────────────────────────────────────────────────────────────
+
+on:
+  workflow_run:
+    workflows:
+      - "Drip Publish ~ Boom Frequency"
+      - "Syndication Catch-up ~ Missed Posts"
+    types: [completed]
+  schedule:
+    - cron: '30 7 * * *'   # 3:30am ET (07:30 UTC)
+  workflow_dispatch:
+
+# Watchdog does NOT use the voa-publish-and-syndicate concurrency group.
+# It monitors; it does not publish. Re-triggered drip runs will queue normally.
+concurrency:
+  group: voa-watchdog
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  actions:  write    # needed to trigger workflow_dispatch on drip
+
+jobs:
+  heal:
+    runs-on: ubuntu-latest
+
+    # For workflow_run events: only run when the source workflow FAILED.
+    # For schedule and workflow_dispatch: always run.
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'schedule' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'failure')
+
+    steps:
+      # ── 1. Checkout ───────────────────────────────────────────────────────
+      # Use GH_PAT so auto-healer can push patches back without GITHUB_TOKEN
+      # restrictions. Falls back to GITHUB_TOKEN if GH_PAT is not configured.
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      # ── 2. Setup Node ─────────────────────────────────────────────────────
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      # ── 3. Install dependencies ───────────────────────────────────────────
+      - name: Install dependencies
+        run: npm ci
+
+      # ── 4. Run self-healer ────────────────────────────────────────────────
+      - name: Run self-healer
+        env:
+          # Passed to auto-heal.js for context in email + re-trigger logic
+          FAILED_WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          FAILED_RUN_URL: ${{ github.event.workflow_run.html_url }}
+          GITHUB_TOKEN:                ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT:                      ${{ secrets.GH_PAT }}
+          # Anthropic (Claude Haiku diagnosis)
+          ANTHROPIC_API_KEY:           ${{ secrets.ANTHROPIC_API_KEY }}
+          # Email (Gmail SMTP)
+          GMAIL_ADDRESS:               ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD:          ${{ secrets.GMAIL_APP_PASSWORD }}
+          # Platform credentials (needed for health check re-run)
+          BLUESKY_HANDLE:              ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD:        ${{ secrets.BLUESKY_APP_PASSWORD }}
+          ESR_BLUESKY_HANDLE:          ${{ secrets.ESR_BLUESKY_HANDLE }}
+          ESR_BLUESKY_APP_PASSWORD:    ${{ secrets.ESR_BLUESKY_APP_PASSWORD }}
+          VOA_BLUESKY_HANDLE:          ${{ secrets.VOA_BLUESKY_HANDLE }}
+          VOA_BLUESKY_APP_PASSWORD:    ${{ secrets.VOA_BLUESKY_APP_PASSWORD }}
+          MASTODON_INSTANCE:           ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCESS_TOKEN:       ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          ESR_MASTODON_INSTANCE:       ${{ secrets.ESR_MASTODON_INSTANCE }}
+          ESR_MASTODON_ACCESS_TOKEN:   ${{ secrets.ESR_MASTODON_ACCESS_TOKEN }}
+          VOA_MASTODON_INSTANCE:       ${{ secrets.VOA_MASTODON_INSTANCE }}
+          VOA_MASTODON_ACCESS_TOKEN:   ${{ secrets.VOA_MASTODON_ACCESS_TOKEN }}
+          META_APP_ID:                 ${{ secrets.META_APP_ID }}
+          META_APP_SECRET:             ${{ secrets.META_APP_SECRET }}
+          META_USER_TOKEN:             ${{ secrets.META_USER_TOKEN }}
+          META_PAGE_ID_VOA:            ${{ secrets.META_PAGE_ID_VOA }}
+          META_PAGE_TOKEN_VOA:         ${{ secrets.META_PAGE_TOKEN_VOA }}
+          META_PAGE_ID_EARTHSTAR:      ${{ secrets.META_PAGE_ID_EARTHSTAR }}
+          META_PAGE_TOKEN_EARTHSTAR:   ${{ secrets.META_PAGE_TOKEN_EARTHSTAR }}
+          META_PAGE_ID_RUZINDLA:       ${{ secrets.META_PAGE_ID_RUZINDLA }}
+          META_PAGE_TOKEN_RUZINDLA:    ${{ secrets.META_PAGE_TOKEN_RUZINDLA }}
+          DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
+          VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
+          VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
+          VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}
+          VOA_TUMBLR_TOKEN_SECRET:     ${{ secrets.VOA_TUMBLR_TOKEN_SECRET }}
+          VOA_TUMBLR_BLOG_NAME:        ${{ secrets.VOA_TUMBLR_BLOG_NAME }}
+          PUBLER_API_KEY:              ${{ secrets.PUBLER_API_KEY }}
+          PUBLER_WORKSPACE_ID:         ${{ secrets.PUBLER_WORKSPACE_ID }}
+          PUBLER_PINTEREST_ACCOUNT_ID: ${{ secrets.PUBLER_PINTEREST_ACCOUNT_ID }}
+          PUBLER_PINTEREST_BOARD_ID:   ${{ secrets.PUBLER_PINTEREST_BOARD_ID }}
+          PUBLER_INSTAGRAM_ACCOUNT_ID: ${{ secrets.PUBLER_INSTAGRAM_ACCOUNT_ID }}
+          PUBLER_THREADS_ACCOUNT_ID:   ${{ secrets.PUBLER_THREADS_ACCOUNT_ID }}
+          BLOGGER_CLIENT_ID:           ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET:       ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN:       ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID:             ${{ secrets.BLOGGER_BLOG_ID }}
+          WORDPRESS_OAUTH2_TOKEN:      ${{ secrets.WORDPRESS_OAUTH2_TOKEN }}
+          WORDPRESS_BLOG:              ${{ secrets.WORDPRESS_BLOG }}
+          DASHBOARD_PASSWORD:          ${{ secrets.DASHBOARD_PASSWORD }}
+          IDEOGRAM_API_KEY:            ${{ secrets.IDEOGRAM_API_KEY }}
+        run: node scripts/auto-heal.js
