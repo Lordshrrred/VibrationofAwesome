@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-30T14:45:51.629Z",
+  "lastUpdated": "2026-05-30T23:00:27.211Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "best-free-ai-image-generator-for-musicians-and-artists-2026",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-05-30T23:00:13.358Z"
+    },
     {
       "slug": "how-to-change-your-life-completely-when-you-dont-know-where-to-begin",
       "format": "reflective-essay",
@@ -272,18 +281,18 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-05-19T02:44:31.557Z"
-    },
-    {
-      "slug": "how-to-unlock-your-potential-when-nothing-seems-to-work",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-05-19T02:41:04.632Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "best-free-ai-image-generator-for-musicians-and-artists-2026",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-05-30T23:00:27.211Z"
+    },
     {
       "slug": "how-to-change-your-life-completely-when-you-dont-know-where-to-begin",
       "archetype": "field-guide-aesthetic",
