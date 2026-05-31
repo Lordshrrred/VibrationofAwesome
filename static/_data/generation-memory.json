@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-31T08:10:11.511Z",
+  "lastUpdated": "2026-05-31T14:52:38.850Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-break-out-of-the-system-without-losing-everything",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-05-31T14:52:25.825Z"
+    },
     {
       "slug": "the-identity-shift-that-changes-everything",
       "format": "creative-identity-reflection",
@@ -272,18 +281,18 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-05-21T16:25:46.570Z"
-    },
-    {
-      "slug": "the-identity-shift-that-changes-everything",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-05-21T16:22:50.079Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-break-out-of-the-system-without-losing-everything",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-05-31T14:52:38.850Z"
+    },
     {
       "slug": "the-identity-shift-that-changes-everything",
       "archetype": "nervous-system-atmospheric",
