@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-01T18:45:36.862Z",
+  "lastUpdated": "2026-06-01T23:30:00.808Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "ai-music-production-tools-for-independent-artists-2026",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-06-01T23:29:46.527Z"
+    },
     {
       "slug": "how-to-build-a-life-you-actually-want-not-the-one-you-settled-for",
       "format": "short-native-insight",
@@ -272,18 +281,18 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-05-22T15:56:44.554Z"
-    },
-    {
-      "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-05-22T15:54:13.355Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "ai-music-production-tools-for-independent-artists-2026",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-01T23:30:00.808Z"
+    },
     {
       "slug": "how-to-build-a-life-you-actually-want-not-the-one-you-settled-for",
       "archetype": "abstract-creator-life",
