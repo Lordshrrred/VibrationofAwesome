@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-05-31T23:03:30.712Z",
+  "lastUpdated": "2026-06-01T10:12:18.439Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-06-01T10:12:04.459Z"
+    },
     {
       "slug": "best-llm-tools-for-independent-musicians-2026",
       "format": "manifesto-conviction",
@@ -272,18 +281,18 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-05-21T23:09:42.725Z"
-    },
-    {
-      "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-05-21T23:06:35.390Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-06-01T10:12:18.439Z"
+    },
     {
       "slug": "best-llm-tools-for-independent-musicians-2026",
       "archetype": "symbolic-consciousness",

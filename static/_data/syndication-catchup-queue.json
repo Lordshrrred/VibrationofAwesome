@@ -3,9 +3,8 @@
   "description": "One-time catch-up queue for posts that published with feeder only (no social/blog syndication). Processed one per day at 1am ET by syndication-catchup.yml.",
   "schedule": "0 5 * * * (1am ET, halfway between 9am and 6pm drip runs)",
   "createdAt": "2026-05-28",
-  "remaining": 9,
+  "remaining": 8,
   "queue": [
-    "how-to-grow-as-an-independent-artist-in-a-noisy-world",
     "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
     "ai-content-creation-tools-that-actually-save-time",
     "how-to-stop-living-in-survival-mode-for-good",
@@ -27,6 +26,10 @@
     {
       "slug": "the-identity-shift-that-changes-everything",
       "processedAt": "2026-05-31T08:12:22.903Z"
+    },
+    {
+      "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
+      "processedAt": "2026-06-01T10:14:41.219Z"
     }
   ]
 }
