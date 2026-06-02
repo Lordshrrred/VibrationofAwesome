@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-06-02T09:03:45.977Z",
+  "generated_at": "2026-06-02T09:04:45.369Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -1552,7 +1552,7 @@
           },
           "blogger": {
             "status": "failed",
-            "timestamp": "2026-06-02T09:03:45.972Z",
+            "timestamp": "2026-06-02T09:04:45.353Z",
             "url": null
           },
           "wordpress_earthstar": {
@@ -2366,7 +2366,7 @@
       {
         "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
         "platform": "blogger",
-        "timestamp": "2026-06-02T09:03:45.972Z"
+        "timestamp": "2026-06-02T09:04:45.353Z"
       }
     ],
     "platform_coverage": {
@@ -2435,8 +2435,32 @@
     }
   },
   "visuals": {
-    "registry_count": 51,
+    "registry_count": 53,
     "registry_entries": [
+      {
+        "post_slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "source": "boom",
+        "asset_type": "fallback",
+        "platforms_used": [
+          "instagram"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "none",
+        "timestamp": "2026-06-02T09:04:12.091Z"
+      },
+      {
+        "post_slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "source": "boom",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest"
+        ],
+        "pinterest_board": "purpose-and-direction",
+        "reused": false,
+        "reused_from": "none",
+        "timestamp": "2026-06-02T09:04:12.090Z"
+      },
       {
         "post_slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
         "source": "ideogram",
@@ -3132,20 +3156,20 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 51,
+      "total_entries": 53,
       "reused_count": 0,
       "reuse_rate": 0
     },
     "source_breakdown": {
-      "ideogram": 27,
-      "boom": 24
+      "boom": 26,
+      "ideogram": 27
     },
     "generation_counts": {
       "ideogram": 27
     },
     "platform_usage": {
-      "pinterest": 39,
-      "instagram": 39,
+      "instagram": 40,
+      "pinterest": 40,
       "bluesky_voa": 27,
       "mastodon_voa": 27
     }
@@ -3404,7 +3428,7 @@
     "unassigned_post_count": 48
   },
   "generation": {
-    "last_updated": "2026-06-02T09:02:01.604Z",
+    "last_updated": "2026-06-02T09:04:12.087Z",
     "recent_hooks": [],
     "recent_titles": [],
     "recent_structures": [],
@@ -3412,6 +3436,15 @@
     "recent_opening_styles": [],
     "recent_cta_patterns": [],
     "recent_threads_formats": [
+      {
+        "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "format": "tension-revelation",
+        "cadenceProfile": "tension-then-release",
+        "density": "medium-dense",
+        "openerStyle": "contradiction",
+        "closerStyle": "earned-realization",
+        "timestamp": "2026-06-02T09:04:12.087Z"
+      },
       {
         "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
         "format": "single-native-post",
@@ -3672,15 +3705,6 @@
         "openerStyle": "contradiction",
         "closerStyle": "earned-realization",
         "timestamp": "2026-05-23T14:44:20.732Z"
-      },
-      {
-        "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
-        "format": "manifesto-conviction",
-        "cadenceProfile": "charged-decisive",
-        "density": "medium-dense",
-        "openerStyle": "strong-declarative",
-        "closerStyle": "worldview-shift",
-        "timestamp": "2026-05-22T23:07:24.362Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -3931,7 +3955,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-06-02T09:03:45.976Z",
+    "as_of": "2026-06-02T09:04:45.369Z",
     "next_estimated_window": "2026-06-02",
     "queue_runway_days": 49,
     "queue_runway_status": "healthy",
@@ -4031,8 +4055,8 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-06-02T09:03:45.973Z",
-    "source_event": "syndication",
+    "last_export_at": "2026-06-02T09:04:45.365Z",
+    "source_event": "retry",
     "export_duration_ms": 4,
     "schema_version": "1.0",
     "stale_after_minutes": 60
