@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-01T23:32:55.487Z",
+  "lastUpdated": "2026-06-02T09:02:01.604Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-06-02T09:01:46.243Z"
+    },
     {
       "slug": "ai-music-production-tools-for-independent-artists-2026",
       "format": "reflective-essay",
@@ -272,18 +281,18 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-05-22T23:07:24.362Z"
-    },
-    {
-      "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-05-22T23:04:22.971Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "timestamp": "2026-06-02T09:02:01.604Z"
+    },
     {
       "slug": "ai-music-production-tools-for-independent-artists-2026",
       "archetype": "sacred-tech",
