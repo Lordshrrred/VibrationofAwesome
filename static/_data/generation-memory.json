@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-02T09:04:12.087Z",
+  "lastUpdated": "2026-06-02T17:51:41.661Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,24 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-06-02T17:51:41.661Z"
+    },
+    {
+      "slug": "how-to-monetize-your-creativity-without-selling-your-soul",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-06-02T17:48:45.909Z"
+    },
     {
       "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
       "format": "tension-revelation",
@@ -263,27 +281,18 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-05-23T22:57:00.649Z"
-    },
-    {
-      "slug": "how-to-stop-living-in-survival-mode-for-good",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-05-23T14:47:28.122Z"
-    },
-    {
-      "slug": "how-to-stop-living-in-survival-mode-for-good",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-05-23T14:44:20.732Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-monetize-your-creativity-without-selling-your-soul",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-02T17:49:01.248Z"
+    },
     {
       "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
       "archetype": "cinematic-ideogram",
