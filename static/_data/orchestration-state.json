@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-06-02T17:51:18.277Z",
+  "generated_at": "2026-06-02T17:52:10.644Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -1619,7 +1619,7 @@
           },
           "blogger": {
             "status": "failed",
-            "timestamp": "2026-06-02T09:04:45.353Z",
+            "timestamp": "2026-06-02T17:52:10.601Z",
             "url": null
           },
           "wordpress_earthstar": {
@@ -2438,7 +2438,7 @@
       {
         "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
         "platform": "blogger",
-        "timestamp": "2026-06-02T09:04:45.353Z"
+        "timestamp": "2026-06-02T17:52:10.601Z"
       }
     ],
     "platform_coverage": {
@@ -2507,8 +2507,32 @@
     }
   },
   "visuals": {
-    "registry_count": 54,
+    "registry_count": 56,
     "registry_entries": [
+      {
+        "post_slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "source": "boom",
+        "asset_type": "fallback",
+        "platforms_used": [
+          "instagram"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "none",
+        "timestamp": "2026-06-02T17:51:41.664Z"
+      },
+      {
+        "post_slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "source": "boom",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest"
+        ],
+        "pinterest_board": "purpose-and-direction",
+        "reused": false,
+        "reused_from": "none",
+        "timestamp": "2026-06-02T17:51:41.663Z"
+      },
       {
         "post_slug": "how-to-monetize-your-creativity-without-selling-your-soul",
         "source": "ideogram",
@@ -3243,20 +3267,20 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 54,
+      "total_entries": 56,
       "reused_count": 0,
       "reuse_rate": 0
     },
     "source_breakdown": {
-      "ideogram": 28,
-      "boom": 26
+      "boom": 28,
+      "ideogram": 28
     },
     "generation_counts": {
       "ideogram": 28
     },
     "platform_usage": {
-      "pinterest": 41,
-      "instagram": 41,
+      "instagram": 42,
+      "pinterest": 42,
       "bluesky_voa": 28,
       "mastodon_voa": 28
     }
@@ -3515,7 +3539,7 @@
     "unassigned_post_count": 49
   },
   "generation": {
-    "last_updated": "2026-06-02T17:49:01.248Z",
+    "last_updated": "2026-06-02T17:51:41.661Z",
     "recent_hooks": [],
     "recent_titles": [],
     "recent_structures": [],
@@ -3523,6 +3547,15 @@
     "recent_opening_styles": [],
     "recent_cta_patterns": [],
     "recent_threads_formats": [
+      {
+        "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
+        "format": "philosophical-observation",
+        "cadenceProfile": "contemplative",
+        "density": "medium-dense",
+        "openerStyle": "conceptual-paradox",
+        "closerStyle": "open-question",
+        "timestamp": "2026-06-02T17:51:41.661Z"
+      },
       {
         "slug": "how-to-monetize-your-creativity-without-selling-your-soul",
         "format": "creative-identity-reflection",
@@ -3783,15 +3816,6 @@
         "openerStyle": "identity-confession",
         "closerStyle": "invitation",
         "timestamp": "2026-05-23T22:57:00.649Z"
-      },
-      {
-        "slug": "how-to-stop-living-in-survival-mode-for-good",
-        "format": "conversational-reflection",
-        "cadenceProfile": "casual-spoken",
-        "density": "light-medium",
-        "openerStyle": "mid-conversation",
-        "closerStyle": "natural-landing",
-        "timestamp": "2026-05-23T14:47:28.122Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -4051,7 +4075,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-06-02T17:51:18.277Z",
+    "as_of": "2026-06-02T17:52:10.644Z",
     "next_estimated_window": "2026-06-03",
     "queue_runway_days": 49,
     "queue_runway_status": "healthy",
@@ -4152,8 +4176,8 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-06-02T17:51:18.273Z",
-    "source_event": "syndication",
+    "last_export_at": "2026-06-02T17:52:10.640Z",
+    "source_event": "retry",
     "export_duration_ms": 4,
     "schema_version": "1.0",
     "stale_after_minutes": 60
