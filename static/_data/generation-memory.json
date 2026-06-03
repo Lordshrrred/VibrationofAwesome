@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-02T23:49:39.284Z",
+  "lastUpdated": "2026-06-03T09:22:00.223Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "ai-content-creation-tools-that-actually-save-time",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-06-03T09:21:44.953Z"
+    },
     {
       "slug": "how-to-write-ai-prompts-for-creative-projects",
       "format": "short-native-insight",
@@ -272,18 +281,18 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-05-24T14:41:57.518Z"
-    },
-    {
-      "slug": "ai-content-creation-tools-that-actually-save-time",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-05-23T22:59:53.879Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "ai-content-creation-tools-that-actually-save-time",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "timestamp": "2026-06-03T09:22:00.223Z"
+    },
     {
       "slug": "how-to-write-ai-prompts-for-creative-projects",
       "archetype": "minimalist-philosophy",

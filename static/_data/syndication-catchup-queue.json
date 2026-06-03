@@ -3,9 +3,8 @@
   "description": "One-time catch-up queue for posts that published with feeder only (no social/blog syndication). Processed one per day at 1am ET by syndication-catchup.yml.",
   "schedule": "0 5 * * * (1am ET, halfway between 9am and 6pm drip runs)",
   "createdAt": "2026-05-28",
-  "remaining": 7,
+  "remaining": 6,
   "queue": [
-    "ai-content-creation-tools-that-actually-save-time",
     "how-to-stop-living-in-survival-mode-for-good",
     "how-to-make-money-as-a-musician-without-compromising-your-art",
     "how-to-get-out-of-survival-mode-and-actually-start-living",
@@ -33,6 +32,10 @@
     {
       "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
       "processedAt": "2026-06-02T09:03:46.020Z"
+    },
+    {
+      "slug": "ai-content-creation-tools-that-actually-save-time",
+      "processedAt": "2026-06-03T09:24:00.476Z"
     }
   ]
 }
