@@ -64,5 +64,27 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-06-04T10:46:46.348Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Blogger token refresh",
+        "diagnosis": "Google OAuth token has expired or been revoked and must be re-authenticated to restore Blogger syndication capability.",
+        "fix_type": "token_expired",
+        "confidence": "high",
+        "action": {
+          "token_name": "BLOGGER_REFRESH_TOKEN",
+          "renewal_command": "npm run blogger-token"
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
