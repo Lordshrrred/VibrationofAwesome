@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-04T08:44:06.362Z",
+  "lastUpdated": "2026-06-04T16:26:39.196Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "multiple-streams-of-income-for-beginners-where-to-actually-start",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-06-04T16:26:24.424Z"
+    },
     {
       "slug": "how-to-stop-living-in-survival-mode-for-good",
       "format": "creative-identity-reflection",
@@ -272,18 +281,18 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-05-25T16:00:23.488Z"
-    },
-    {
-      "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-05-24T23:03:22.473Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "multiple-streams-of-income-for-beginners-where-to-actually-start",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-04T16:26:39.196Z"
+    },
     {
       "slug": "how-to-stop-living-in-survival-mode-for-good",
       "archetype": "premium-quote-card",
@@ -544,15 +553,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-05-22T15:54:27.933Z"
-    },
-    {
-      "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-05-21T23:06:49.820Z"
     }
   ]
 }
