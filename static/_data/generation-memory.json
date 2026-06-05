@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-04T23:13:10.245Z",
+  "lastUpdated": "2026-06-05T08:39:37.931Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-06-05T08:39:19.506Z"
+    },
     {
       "slug": "how-to-manage-multiple-chatgpt-projects-at-once",
       "format": "conversational-reflection",
@@ -272,18 +281,18 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-05-25T23:07:21.002Z"
-    },
-    {
-      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-05-25T16:03:20.786Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "timestamp": "2026-06-05T08:39:37.931Z"
+    },
     {
       "slug": "how-to-manage-multiple-chatgpt-projects-at-once",
       "archetype": "minimalist-philosophy",
@@ -544,15 +553,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-05-23T14:44:35.373Z"
-    },
-    {
-      "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-05-22T23:04:36.114Z"
     }
   ]
 }

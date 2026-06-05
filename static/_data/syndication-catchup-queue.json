@@ -3,9 +3,8 @@
   "description": "One-time catch-up queue for posts that published with feeder only (no social/blog syndication). Processed one per day at 1am ET by syndication-catchup.yml.",
   "schedule": "0 5 * * * (1am ET, halfway between 9am and 6pm drip runs)",
   "createdAt": "2026-05-28",
-  "remaining": 5,
+  "remaining": 4,
   "queue": [
-    "how-to-make-money-as-a-musician-without-compromising-your-art",
     "how-to-get-out-of-survival-mode-and-actually-start-living",
     "how-to-stop-feeling-lost-and-start-moving-forward",
     "claude-ai-paired-programming-for-independent-musicians",
@@ -39,6 +38,10 @@
     {
       "slug": "how-to-stop-living-in-survival-mode-for-good",
       "processedAt": "2026-06-04T08:46:27.125Z"
+    },
+    {
+      "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
+      "processedAt": "2026-06-05T08:41:17.495Z"
     }
   ]
 }
