@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-05T08:39:37.931Z",
+  "lastUpdated": "2026-06-05T16:07:29.325Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-create-a-freedom-lifestyle-from-scratch",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-06-05T16:07:14.935Z"
+    },
     {
       "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
       "format": "tension-revelation",
@@ -272,18 +281,18 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-05-25T23:10:29.535Z"
-    },
-    {
-      "slug": "how-to-use-claude-without-losing-creative-control",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-05-25T23:07:21.002Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-create-a-freedom-lifestyle-from-scratch",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-05T16:07:29.325Z"
+    },
     {
       "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
       "archetype": "nervous-system-atmospheric",
@@ -544,15 +553,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-05-23T22:57:16.045Z"
-    },
-    {
-      "slug": "how-to-stop-living-in-survival-mode-for-good",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-05-23T14:44:35.373Z"
     }
   ]
 }
