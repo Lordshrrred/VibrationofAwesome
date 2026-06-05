@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-06-05T16:09:46.717Z",
+  "generated_at": "2026-06-05T23:11:43.414Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -117,6 +117,16 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "chatgpt-prompts-for-music-producers",
+        "title": "Chatgpt Prompts For Music Producers",
+        "lane": "boom",
+        "date": "2026-06-05T23:11:43.407Z",
+        "url": "/blog/boom/posts/chatgpt-prompts-for-music-producers.html",
+        "tags": [],
+        "cluster": null,
+        "content_type": null
+      },
       {
         "slug": "how-to-create-a-freedom-lifestyle-from-scratch",
         "title": "How to Create a Freedom Lifestyle From Scratch",
@@ -306,16 +316,6 @@
         "tags": [],
         "cluster": null,
         "content_type": null
-      },
-      {
-        "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
-        "title": "How to Make Money as a Musician Without Compromising Your Art",
-        "lane": "boom",
-        "date": "2026-05-24T22:59:23.645Z",
-        "url": "/blog/boom/posts/how-to-make-money-as-a-musician-without-compromising-your-art.html",
-        "tags": [],
-        "cluster": null,
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -360,9 +360,9 @@
     ],
     "next_estimated_window": "2026-06-06",
     "published_counts": {
-      "boom": 37,
+      "boom": 38,
       "matt": 18,
-      "total": 55
+      "total": 56
     }
   },
   "syndication": {
@@ -385,66 +385,66 @@
         "title": "How to Create a Freedom Lifestyle From Scratch",
         "lane": "boom",
         "date": "2026-06-05",
-        "publish_status": "partial",
+        "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
+            "status": "success",
+            "timestamp": "2026-06-05T16:07:41.852Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-create-a-freedom-lifestyle-from-scratch-shift.html"
+          },
+          "bluesky_voa": {
             "status": "not_attempted",
             "timestamp": null,
             "url": null
           },
-          "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-06-05T16:09:46.713Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mnkjhtthey2m"
-          },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-06-05T16:09:46.713Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116698359595855711"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "facebook_voa": {
-            "status": "failed",
-            "timestamp": "2026-06-05T16:09:46.713Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "pinterest": {
-            "status": "success",
-            "timestamp": "2026-06-05T16:09:46.713Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "threads": {
-            "status": "success",
-            "timestamp": "2026-06-05T16:09:46.713Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "instagram": {
-            "status": "success",
-            "timestamp": "2026-06-05T16:09:46.713Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "devto": {
-            "status": "success",
-            "timestamp": "2026-06-05T16:09:46.713Z",
-            "url": "https://dev.to/earthstarrising/how-to-create-a-freedom-lifestyle-from-scratch-3h03"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "tumblr_voa": {
-            "status": "success",
-            "timestamp": "2026-06-05T16:09:46.713Z",
-            "url": "https://vibrationofawesome.tumblr.com/post/818597821913628672"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "blogger": {
-            "status": "failed",
-            "timestamp": "2026-06-05T16:09:46.713Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "wordpress_earthstar": {
-            "status": "success",
-            "timestamp": "2026-06-05T16:09:46.713Z",
-            "url": "https://earthstarrisingsun.wordpress.com/2026/06/05/how-to-create-a-freedom-lifestyle-from-scratch-earthstar/"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           }
         },
-        "success_count": 8,
-        "failed_count": 2
+        "success_count": 1,
+        "failed_count": 0
       },
       {
         "slug": "how-to-manage-multiple-chatgpt-projects-at-once",
@@ -2825,16 +2825,6 @@
     ],
     "retry_backlog": [
       {
-        "slug": "how-to-create-a-freedom-lifestyle-from-scratch",
-        "platform": "facebook_voa",
-        "timestamp": "2026-06-05T16:09:46.713Z"
-      },
-      {
-        "slug": "how-to-create-a-freedom-lifestyle-from-scratch",
-        "platform": "blogger",
-        "timestamp": "2026-06-05T16:09:46.713Z"
-      },
-      {
         "slug": "how-to-use-claude-without-losing-creative-control",
         "platform": "blogger",
         "timestamp": "2026-05-25T23:10:05.906Z"
@@ -2867,67 +2857,67 @@
     ],
     "platform_coverage": {
       "feeder": {
-        "successes": 36,
+        "successes": 37,
         "failures": 0,
         "total": 37
       },
       "bluesky_voa": {
-        "successes": 19,
+        "successes": 18,
         "failures": 0,
         "total": 37
       },
       "mastodon_voa": {
-        "successes": 19,
+        "successes": 18,
         "failures": 0,
         "total": 37
       },
       "facebook_voa": {
         "successes": 17,
-        "failures": 2,
+        "failures": 1,
         "total": 37
       },
       "pinterest": {
-        "successes": 19,
+        "successes": 18,
         "failures": 0,
         "total": 37
       },
       "threads": {
-        "successes": 19,
+        "successes": 18,
         "failures": 0,
         "total": 37
       },
       "instagram": {
-        "successes": 17,
+        "successes": 16,
         "failures": 0,
         "total": 37
       },
       "devto": {
-        "successes": 19,
+        "successes": 18,
         "failures": 0,
         "total": 37
       },
       "tumblr_voa": {
-        "successes": 19,
+        "successes": 18,
         "failures": 0,
         "total": 37
       },
       "blogger": {
         "successes": 13,
-        "failures": 6,
+        "failures": 5,
         "total": 37
       },
       "wordpress_earthstar": {
-        "successes": 19,
+        "successes": 18,
         "failures": 0,
         "total": 37
       }
     },
     "summary": {
       "total_posts": 37,
-      "fully_syndicated": 31,
-      "partial": 6,
+      "fully_syndicated": 32,
+      "partial": 5,
       "pending": 0,
-      "retry_backlog_count": 8
+      "retry_backlog_count": 6
     }
   },
   "visuals": {
@@ -4095,7 +4085,7 @@
       "emotional-regulation": 0,
       "consciousness-technology": 0
     },
-    "unassigned_post_count": 55
+    "unassigned_post_count": 56
   },
   "generation": {
     "last_updated": "2026-06-05T16:07:29.325Z",
@@ -4652,7 +4642,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-06-05T16:09:46.717Z",
+    "as_of": "2026-06-05T23:11:43.413Z",
     "next_estimated_window": "2026-06-06",
     "queue_runway_days": 49,
     "queue_runway_status": "healthy",
@@ -4696,13 +4686,18 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 8,
+    "retry_backlog_count": 6,
     "cadence_density": {
       "posts_last_7_days": 15,
       "posts_last_14_days": 20,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "chatgpt-prompts-for-music-producers",
+        "lane": "boom",
+        "date": "2026-06-05T23:11:43.407Z"
+      },
       {
         "slug": "how-to-create-a-freedom-lifestyle-from-scratch",
         "lane": "boom",
@@ -4747,18 +4742,13 @@
         "slug": "how-to-build-a-life-you-actually-want-not-the-one-you-settled-for",
         "lane": "boom",
         "date": "2026-06-01T18:43:11.681Z"
-      },
-      {
-        "slug": "best-llm-tools-for-independent-musicians-2026",
-        "lane": "boom",
-        "date": "2026-05-31T23:01:45.683Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-06-05T16:09:46.713Z",
-    "source_event": "syndication",
-    "export_duration_ms": 4,
+    "last_export_at": "2026-06-05T23:11:43.409Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 5,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
