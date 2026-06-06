@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-05T23:14:07.359Z",
+  "lastUpdated": "2026-06-06T07:41:16.661Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-06-06T07:41:00.917Z"
+    },
     {
       "slug": "chatgpt-prompts-for-music-producers",
       "format": "short-native-insight",
@@ -272,18 +281,18 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-05-26T16:51:46.488Z"
-    },
-    {
-      "slug": "how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-05-26T16:48:32.152Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-06T07:41:16.661Z"
+    },
     {
       "slug": "chatgpt-prompts-for-music-producers",
       "archetype": "cinematic-ideogram",
@@ -544,15 +553,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-05-24T23:01:06.947Z"
-    },
-    {
-      "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "timestamp": "2026-05-24T14:42:11.814Z"
     }
   ]
 }
