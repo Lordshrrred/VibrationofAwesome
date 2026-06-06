@@ -108,5 +108,27 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-06-06T09:32:59.847Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Blogger token refresh",
+        "diagnosis": "OAuth token for Blogger has expired or been revoked and requires manual re-authentication.",
+        "fix_type": "token_expired",
+        "confidence": "high",
+        "action": {
+          "token_name": "BLOGGER_REFRESH_TOKEN",
+          "renewal_command": "npm run blogger-token"
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
