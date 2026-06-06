@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-06T07:41:16.661Z",
+  "lastUpdated": "2026-06-06T14:49:57.023Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "passive-income-ideas-for-beginners-that-dont-require-being-fake",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-06-06T14:49:38.408Z"
+    },
     {
       "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
       "format": "single-native-post",
@@ -272,18 +281,18 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-05-26T23:13:14.153Z"
-    },
-    {
-      "slug": "how-to-use-claude-without-losing-creative-control",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-05-26T16:51:46.488Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "passive-income-ideas-for-beginners-that-dont-require-being-fake",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-06T14:49:57.023Z"
+    },
     {
       "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
       "archetype": "field-guide-aesthetic",
@@ -544,15 +553,6 @@
       "emotionalTone": "cosmic",
       "emotionalCluster": "mystical",
       "timestamp": "2026-05-25T16:00:37.939Z"
-    },
-    {
-      "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-05-24T23:01:06.947Z"
     }
   ]
 }
