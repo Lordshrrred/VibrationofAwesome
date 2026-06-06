@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-06T14:49:57.023Z",
+  "lastUpdated": "2026-06-06T23:08:21.812Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-use-perplexity-ai-for-creative-projects",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-06-06T23:08:08.958Z"
+    },
     {
       "slug": "passive-income-ideas-for-beginners-that-dont-require-being-fake",
       "format": "reflective-essay",
@@ -272,18 +281,18 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-05-29T08:38:23.056Z"
-    },
-    {
-      "slug": "claude-ai-paired-programming-for-independent-musicians",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-05-26T23:13:14.153Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-use-perplexity-ai-for-creative-projects",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-06-06T23:08:21.812Z"
+    },
     {
       "slug": "passive-income-ideas-for-beginners-that-dont-require-being-fake",
       "archetype": "sacred-tech",
@@ -544,15 +553,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-05-25T23:07:36.156Z"
-    },
-    {
-      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-05-25T16:00:37.939Z"
     }
   ]
 }
