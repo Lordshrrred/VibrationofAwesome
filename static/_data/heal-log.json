@@ -130,5 +130,28 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-06-07T10:11:58.607Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Blogger token refresh",
+        "diagnosis": "Blogger OAuth token has expired or been revoked and must be refreshed through Google's OAuth flow.",
+        "fix_type": "token_expired",
+        "confidence": "high",
+        "action": {
+          "token_name": "BLOGGER_REFRESH_TOKEN",
+          "renewal_command": "npm run blogger-token",
+          "details": "This will prompt you to authenticate with Google and obtain a fresh access token. The invalid_grant error indicates the stored refresh token is no longer valid."
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
