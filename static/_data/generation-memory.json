@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-06T23:08:21.812Z",
+  "lastUpdated": "2026-06-07T08:19:36.003Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-06-07T08:19:21.695Z"
+    },
     {
       "slug": "how-to-use-perplexity-ai-for-creative-projects",
       "format": "creative-identity-reflection",
@@ -272,18 +281,18 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-05-29T16:51:06.289Z"
-    },
-    {
-      "slug": "how-to-become-your-true-self-when-the-world-wants-you-generic",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-05-29T08:38:23.056Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "timestamp": "2026-06-07T08:19:36.003Z"
+    },
     {
       "slug": "how-to-use-perplexity-ai-for-creative-projects",
       "archetype": "minimalist-philosophy",
@@ -544,15 +553,6 @@
       "emotionalTone": "liminal",
       "emotionalCluster": "atmospheric",
       "timestamp": "2026-05-26T16:48:47.677Z"
-    },
-    {
-      "slug": "how-to-use-claude-without-losing-creative-control",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-05-25T23:07:36.156Z"
     }
   ]
 }
