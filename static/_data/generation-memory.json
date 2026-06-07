@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-07T14:58:45.961Z",
+  "lastUpdated": "2026-06-07T23:08:37.778Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-set-up-chatgpt-projects-workspace-for-creators",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-06-07T23:08:18.040Z"
+    },
     {
       "slug": "shadow-work-for-beginners-what-it-actually-is-and-why-it-matters",
       "format": "philosophical-observation",
@@ -272,18 +281,18 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-05-30T07:35:59.516Z"
-    },
-    {
-      "slug": "best-ai-video-tools-for-independent-musicians-2026",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-05-29T23:16:33.242Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-set-up-chatgpt-projects-workspace-for-creators",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-07T23:08:37.778Z"
+    },
     {
       "slug": "shadow-work-for-beginners-what-it-actually-is-and-why-it-matters",
       "archetype": "premium-quote-card",
@@ -544,15 +553,6 @@
       "emotionalTone": "regulation",
       "emotionalCluster": "somatic",
       "timestamp": "2026-05-29T08:38:37.825Z"
-    },
-    {
-      "slug": "claude-ai-paired-programming-for-independent-musicians",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-05-26T23:13:28.582Z"
     }
   ]
 }
