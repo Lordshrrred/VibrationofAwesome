@@ -3,9 +3,8 @@
   "description": "One-time catch-up queue for posts that published with feeder only (no social/blog syndication). Processed one per day at 1am ET by syndication-catchup.yml.",
   "schedule": "0 5 * * * (1am ET, halfway between 9am and 6pm drip runs)",
   "createdAt": "2026-05-28",
-  "remaining": 2,
+  "remaining": 1,
   "queue": [
-    "claude-ai-paired-programming-for-independent-musicians",
     "how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job"
   ],
   "processed": [
@@ -48,6 +47,10 @@
     {
       "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
       "processedAt": "2026-06-07T08:21:50.745Z"
+    },
+    {
+      "slug": "claude-ai-paired-programming-for-independent-musicians",
+      "processedAt": "2026-06-08T09:20:02.866Z"
     }
   ]
 }

@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-07T23:08:37.778Z",
+  "lastUpdated": "2026-06-08T09:18:22.981Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "claude-ai-paired-programming-for-independent-musicians",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-06-08T09:18:07.496Z"
+    },
     {
       "slug": "how-to-set-up-chatgpt-projects-workspace-for-creators",
       "format": "tension-revelation",
@@ -272,18 +281,18 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-05-30T14:45:37.439Z"
-    },
-    {
-      "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-05-30T07:35:59.516Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "claude-ai-paired-programming-for-independent-musicians",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-08T09:18:22.981Z"
+    },
     {
       "slug": "how-to-set-up-chatgpt-projects-workspace-for-creators",
       "archetype": "abstract-creator-life",
@@ -544,15 +553,6 @@
       "emotionalTone": "stillness",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-05-29T16:51:19.165Z"
-    },
-    {
-      "slug": "how-to-become-your-true-self-when-the-world-wants-you-generic",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "timestamp": "2026-05-29T08:38:37.825Z"
     }
   ]
 }
