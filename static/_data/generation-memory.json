@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-08T09:18:22.981Z",
+  "lastUpdated": "2026-06-08T16:53:47.768Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-regulate-your-nervous-system-when-life-feels-like-too-much",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-06-08T16:53:33.502Z"
+    },
     {
       "slug": "claude-ai-paired-programming-for-independent-musicians",
       "format": "short-native-insight",
@@ -272,18 +281,18 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-05-30T23:00:13.358Z"
-    },
-    {
-      "slug": "how-to-change-your-life-completely-when-you-dont-know-where-to-begin",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-05-30T14:45:37.439Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-regulate-your-nervous-system-when-life-feels-like-too-much",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "timestamp": "2026-06-08T16:53:47.768Z"
+    },
     {
       "slug": "claude-ai-paired-programming-for-independent-musicians",
       "archetype": "symbolic-consciousness",
@@ -544,15 +553,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-05-29T23:16:47.428Z"
-    },
-    {
-      "slug": "burnout-isnt-the-problem-its-the-signal",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-05-29T16:51:19.165Z"
     }
   ]
 }
