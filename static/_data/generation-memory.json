@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-08T23:14:20.939Z",
+  "lastUpdated": "2026-06-08T23:16:26.366Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-use-gamma-ai-for-music-presentations",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-06-08T23:16:26.366Z"
+    },
     {
       "slug": "how-to-use-gamma-ai-for-music-presentations",
       "format": "single-native-post",
@@ -272,15 +281,6 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-05-31T14:52:25.825Z"
-    },
-    {
-      "slug": "the-identity-shift-that-changes-everything",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-05-31T08:09:56.301Z"
     }
   ],
   "recentInstagramArchetypes": [
