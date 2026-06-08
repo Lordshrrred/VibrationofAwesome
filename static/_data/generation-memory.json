@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-08T16:53:47.768Z",
+  "lastUpdated": "2026-06-08T23:14:20.939Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-use-gamma-ai-for-music-presentations",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-06-08T23:14:06.784Z"
+    },
     {
       "slug": "how-to-regulate-your-nervous-system-when-life-feels-like-too-much",
       "format": "manifesto-conviction",
@@ -272,18 +281,18 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-05-31T08:09:56.301Z"
-    },
-    {
-      "slug": "best-free-ai-image-generator-for-musicians-and-artists-2026",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-05-30T23:00:13.358Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-use-gamma-ai-for-music-presentations",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-08T23:14:20.939Z"
+    },
     {
       "slug": "how-to-regulate-your-nervous-system-when-life-feels-like-too-much",
       "archetype": "cinematic-ideogram",
@@ -544,15 +553,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-05-30T07:36:13.412Z"
-    },
-    {
-      "slug": "best-ai-video-tools-for-independent-musicians-2026",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-05-29T23:16:47.428Z"
     }
   ]
 }
