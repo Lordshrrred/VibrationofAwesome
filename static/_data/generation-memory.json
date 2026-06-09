@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-08T23:16:26.366Z",
+  "lastUpdated": "2026-06-09T08:27:11.510Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-06-09T08:26:57.199Z"
+    },
     {
       "slug": "how-to-use-gamma-ai-for-music-presentations",
       "format": "creative-identity-reflection",
@@ -272,18 +281,18 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-05-31T23:03:16.477Z"
-    },
-    {
-      "slug": "how-to-break-out-of-the-system-without-losing-everything",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-05-31T14:52:25.825Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-09T08:27:11.510Z"
+    },
     {
       "slug": "how-to-use-gamma-ai-for-music-presentations",
       "archetype": "field-guide-aesthetic",
@@ -544,15 +553,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-05-30T14:45:51.629Z"
-    },
-    {
-      "slug": "music-production-for-beginners-where-to-start-without-getting-lost",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-05-30T07:36:13.412Z"
     }
   ]
 }
