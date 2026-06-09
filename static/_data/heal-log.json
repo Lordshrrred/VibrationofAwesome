@@ -175,5 +175,27 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-06-09T10:45:00.212Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Blogger token refresh",
+        "diagnosis": "OAuth2 refresh token has expired or been revoked by Google, preventing new access token generation.",
+        "fix_type": "token_expired",
+        "confidence": "high",
+        "action": {
+          "token_name": "BLOGGER_REFRESH_TOKEN",
+          "renewal_command": "npm run blogger-token"
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
