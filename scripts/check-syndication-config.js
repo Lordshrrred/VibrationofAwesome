@@ -259,6 +259,18 @@ async function main() {
       const resp = await fetch(`https://graph.facebook.com/v19.0/${process.env[idKey]}?${qs}`);
       const data = await resp.json().catch(() => ({}));
       if (!resp.ok || data.error) throw new Error(data.error?.message || `HTTP ${resp.status}`);
+      if (process.env.META_APP_ID && process.env.META_APP_SECRET) {
+        const debugQs = new URLSearchParams({
+          input_token: process.env[tokenKey],
+          access_token: `${process.env.META_APP_ID}|${process.env.META_APP_SECRET}`,
+        });
+        const debugResp = await fetch(`https://graph.facebook.com/v19.0/debug_token?${debugQs}`);
+        const debugData = await debugResp.json().catch(() => ({}));
+        if (!debugResp.ok || debugData.error) throw new Error(debugData.error?.message || `debug_token HTTP ${debugResp.status}`);
+        const scopes = new Set(debugData?.data?.scopes || []);
+        const missingScopes = ["pages_read_engagement", "pages_manage_posts"].filter(scope => !scopes.has(scope));
+        if (missingScopes.length) throw new Error(`missing required Page posting scope(s): ${missingScopes.join(", ")}`);
+      }
       // Surface token expiry date from .cache/fb-tokens.json if available
       let expiryNote = "";
       try {

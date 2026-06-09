@@ -8,6 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "..");
 const RESULTS_FILE = path.join(ROOT, "static", "_data", "syndication-results.json");
+const LOG_FILE = path.join(ROOT, "static", "_data", "syndication-log.json");
 const POST_INDEX_FILES = [
   { lane: "boom", file: path.join(ROOT, "static", "_data", "boom-posts.json") },
   { lane: "matt", file: path.join(ROOT, "static", "_data", "matt-posts.json") },
@@ -49,11 +50,34 @@ function findSourcePost(slug) {
   return null;
 }
 
+function latestLoggedSyndication(slug) {
+  const log = loadJson(LOG_FILE, null);
+  const entries = Array.isArray(log?.entries) ? log.entries : [];
+  const match = entries.find(entry => entry.postSlug === slug && entry.platforms && typeof entry.platforms === "object");
+  if (!match) return {};
+
+  const timestamp = match.timestamp || new Date().toISOString();
+  const out = {};
+  for (const [key, platform] of Object.entries(match.platforms)) {
+    if (!platform || typeof platform !== "object") continue;
+    const next = {
+      status: platform.success ? "success" : (platform.skipped ? "skipped" : "failed"),
+      url: platform.postUrl || null,
+      timestamp,
+    };
+    if (platform.error) next.error = platform.error;
+    if (platform.skipped) next.skipped = true;
+    out[key] = next;
+  }
+  return out;
+}
+
 const results = loadJson(RESULTS_FILE, []);
 const safeResults = Array.isArray(results) ? results : [];
 const sourcePost = findSourcePost(sourceSlug);
 const idx = safeResults.findIndex(entry => entry.slug === sourceSlug);
 const existing = idx >= 0 ? safeResults[idx] : null;
+const loggedSyndication = latestLoggedSyndication(sourceSlug);
 
 const feederEntry = {
   ...(existing?.syndication?.feeder || {}),
@@ -74,6 +98,7 @@ const nextEntry = {
   date: existing?.date || (timestamp ? timestamp.slice(0, 10) : new Date().toISOString().slice(0, 10)),
   voa_url: existing?.voa_url || sourceUrl || (sourcePost?.url ? `https://vibrationofawesome.com${sourcePost.url}` : null),
   syndication: {
+    ...loggedSyndication,
     ...(existing?.syndication || {}),
     feeder: feederEntry,
   },

@@ -1170,7 +1170,7 @@ function writeDashboardConfig() {
   const existing = fs.existsSync(configFile)
     ? JSON.parse(fs.readFileSync(configFile, "utf8"))
     : {};
-  const editorApiBase = process.env.EDITOR_API_BASE || existing.editorApiBase || "";
+  const editorApiBase = process.env.EDITOR_API_BASE || existing.editorApiBase || "/api";
   const nextConfig = {
     passwordHash: hash,
     editorBackendEnabled: Boolean(editorApiBase),
