@@ -36,9 +36,10 @@ const DATA_DIR   = path.join(ROOT, "static", "_data");
  * Update these if accounts are disconnected and reconnected in Publer.
  */
 export const PUBLER_VOA_ACCOUNT_IDS = {
-  instagram: "6a0698ee1f0e47d9f3f18a43",  // VOA Instagram
-  threads:   "6a069b7979cc0b32f3235166",  // VOA Threads
-  pinterest: "6a052b620ce3c7cac0c7ebac",  // VOA Pinterest (@awesomevibe)
+  instagram: "6a0698ee1f0e47d9f3f18a43",  // VOA Instagram @vibrationofawesome
+  threads:   "6a069b7979cc0b32f3235166",  // VOA Threads @vibrationofawesome
+  pinterest: "6a052b620ce3c7cac0c7ebac",  // VOA Pinterest @awesomevibe
+  facebook:  "5f189becdb27977d231aea50",  // VOA Facebook Page "Vibration of Awesome" (fb_page)
 };
 
 /**

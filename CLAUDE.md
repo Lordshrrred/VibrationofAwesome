@@ -114,6 +114,7 @@ PUBLER_INSTAGRAM_ACCOUNT_ID = 6a0698ee1f0e47d9f3f18a43   (VOA Instagram @vibrati
 PUBLER_THREADS_ACCOUNT_ID   = 6a069b7979cc0b32f3235166   (VOA Threads @vibrationofawesome)
 PUBLER_PINTEREST_ACCOUNT_ID = 6a052b620ce3c7cac0c7ebac   (VOA Pinterest @awesomevibe)
 PUBLER_PINTEREST_BOARD_ID   = 641129765641663037           (Vibration of Awesome board)
+PUBLER_FACEBOOK_ACCOUNT_ID  = 5f189becdb27977d231aea50   (VOA Facebook Page "Vibration of Awesome" ~ fb_page)
 ```
 ESR accounts exist in Publer but are NOT used by the VOA blog engine. If an account ID looks like `673d...`, it is ESR ~ verify before using.
 

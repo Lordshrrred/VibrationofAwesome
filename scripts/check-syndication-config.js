@@ -167,7 +167,7 @@ function extractAccounts(data) {
   return Array.isArray(data) ? data : Array.isArray(data.data) ? data.data : [];
 }
 
-function requireConfiguredVoaPublerAccount(accounts, provider, expectedUsername) {
+function requireConfiguredVoaPublerAccount(accounts, provider, expectedIdentifier, { field = "username" } = {}) {
   const envKey = `PUBLER_${provider.toUpperCase()}_ACCOUNT_ID`;
   hasEnv(envKey);
   const configuredId = process.env[envKey].trim();
@@ -178,10 +178,11 @@ function requireConfiguredVoaPublerAccount(accounts, provider, expectedUsername)
 
   const account = accounts.find(row => row.id === configuredId && row.provider === provider);
   if (!account) throw new Error(`configured VOA ${provider} account not visible in Publer`);
-  if (account.username !== expectedUsername) {
-    throw new Error(`configured VOA ${provider} account resolves to ${account.username || "unknown"}`);
+  const actual = account[field] || account.username || account.name || "(unknown)";
+  if (actual !== expectedIdentifier) {
+    throw new Error(`configured VOA ${provider} account resolves to "${actual}"`);
   }
-  return `${account.username} (${account.id})`;
+  return `${actual} (${account.id})`;
 }
 
 async function main() {
@@ -260,41 +261,12 @@ async function main() {
     });
   }
 
-  for (const [label, idKey, tokenKey] of [
-    ["Facebook VOA", "META_PAGE_ID_VOA", "META_PAGE_TOKEN_VOA"],
-  ]) {
-    await check(label, async () => {
-      hasEnv(idKey, tokenKey);
-      const qs = new URLSearchParams({ fields: "id,name", access_token: process.env[tokenKey] });
-      const resp = await fetch(`https://graph.facebook.com/v19.0/${process.env[idKey]}?${qs}`);
-      const data = await resp.json().catch(() => ({}));
-      if (!resp.ok || data.error) throw new Error(data.error?.message || `HTTP ${resp.status}`);
-      if (process.env.META_APP_ID && process.env.META_APP_SECRET) {
-        const debugQs = new URLSearchParams({
-          input_token: process.env[tokenKey],
-          access_token: `${process.env.META_APP_ID}|${process.env.META_APP_SECRET}`,
-        });
-        const debugResp = await fetch(`https://graph.facebook.com/v19.0/debug_token?${debugQs}`);
-        const debugData = await debugResp.json().catch(() => ({}));
-        if (!debugResp.ok || debugData.error) throw new Error(debugData.error?.message || `debug_token HTTP ${debugResp.status}`);
-        const scopes = new Set(debugData?.data?.scopes || []);
-        const missingScopes = ["pages_read_engagement", "pages_manage_posts"].filter(scope => !scopes.has(scope));
-        if (missingScopes.length) throw new Error(`missing required Page posting scope(s): ${missingScopes.join(", ")}`);
-      }
-      // Surface token expiry date from .cache/fb-tokens.json if available
-      let expiryNote = "";
-      try {
-        const cacheFile = new URL("../.cache/fb-tokens.json", import.meta.url).pathname;
-        const cache = JSON.parse(fs.readFileSync(cacheFile, "utf8"));
-        const entry = Object.values(cache)[0];
-        if (entry?.expiresAt) {
-          const expDate = new Date(entry.expiresAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-          expiryNote = ` · expires ${expDate}`;
-        }
-      } catch (_) {}
-      return (data.name || data.id || "page ok") + expiryNote;
-    });
-  }
+  // Facebook VOA ~ validated via Publer (Publer account ID pinned, not direct Meta Graph API).
+  // Direct Meta path is blocked: pages_manage_posts scope is missing from the ESC Meta App.
+  // The ESC Meta App should remain read-only; adding pages_manage_posts would expand its scope.
+  await check("Facebook VOA", () =>
+    requireConfiguredVoaPublerAccount(publerAccounts, "facebook", "Vibration of Awesome", { field: "name" })
+  );
 
   await check("Dev.to auth", async () => {
     hasEnv("DEVTO_API_KEY");

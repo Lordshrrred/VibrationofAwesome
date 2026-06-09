@@ -14,7 +14,15 @@ Do not run a live publish or schedule test while repairing auth. Use the validat
 
 ## Facebook VOA
 
-Status: blocked for the direct Meta Graph API provider.
+Status: **resolved** — now publishing via Publer. Readiness is 14/14.
+
+The VOA Facebook Page (`5f189becdb27977d231aea50`, "Vibration of Awesome") is confirmed and pinned in `PUBLER_FACEBOOK_ACCOUNT_ID`. The `check:syndication` health check validates the Publer account directly.
+
+See `docs/facebook-voa-publishing-provider.md` for the full routing decision, account mapping, and why the direct Meta path remains blocked.
+
+---
+
+### Historical: direct Meta Graph API provider (blocked)
 
 Root cause: the configured Facebook Page token is present and maps to the VOA Page, but it does not include the Page publishing permission required by the direct provider. The missing scope is:
 

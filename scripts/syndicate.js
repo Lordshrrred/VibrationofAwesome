@@ -1463,7 +1463,11 @@ export async function syndicatePost(lane, slug, options = {}) {
   console.log("║  VOA social (policy-routed):");
   if (hasBlueskyConfig("VOA"))    console.log(`║    bluesky_voa   → @${getBlueskyConfig("VOA").handle}`);
   if (hasMastodonConfig("VOA"))   console.log(`║    mastodon_voa  → ${getMastodonConfig("VOA").instance} [VOA]`);
-  if (process.env.META_PAGE_ID_VOA) console.log(`║    facebook_voa  → page:${process.env.META_PAGE_ID_VOA} [VOA]`);
+  {
+    const fbOwn = publerAccountOwnership("facebook");
+    const fbId  = process.env.PUBLER_FACEBOOK_ACCOUNT_ID || "(auto)";
+    console.log(`║    facebook_voa  → Publer:${fbId.slice(0,16)}... [${fbOwn}]`);
+  }
   {
     const tOwn = publerAccountOwnership("threads");
     const tId  = process.env.PUBLER_THREADS_ACCOUNT_ID || "(auto)";
@@ -1580,14 +1584,12 @@ export async function syndicatePost(lane, slug, options = {}) {
     results.mastodon_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
   }
 
-  // Facebook VOA ~ primary VOA blog destination
-  if (process.env.META_PAGE_ID_VOA && process.env.META_PAGE_TOKEN_VOA) {
+  // Facebook VOA ~ via Publer (direct Meta path blocked: ESC Meta App lacks pages_manage_posts)
+  {
+    const fbOwn = publerAccountOwnership("facebook");
     await attempt("facebook_voa", () =>
-      postToFacebookPage(process.env.META_PAGE_ID_VOA, process.env.META_PAGE_TOKEN_VOA, captions.facebook, postUrl),
-      `page:${process.env.META_PAGE_ID_VOA}`);
-  } else {
-    console.warn("  ~ facebook_voa: META_PAGE_ID_VOA or META_PAGE_TOKEN_VOA not set");
-    results.facebook_voa = { success: false, postId: null, postUrl: null, error: "env vars not set" };
+      postViaPubler("facebook", captions.facebook, null),
+      `[${fbOwn}]`);
   }
 
   // Pinterest via Publer ~ AI-generated image (Ideogram) when available, else Pexels
