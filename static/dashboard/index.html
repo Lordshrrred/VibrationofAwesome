@@ -1286,7 +1286,7 @@ async function mergeWordPressStatuses(resultsData) {
 
 // Platforms to monitor for token health. Order = display order.
 const TOKEN_PLATFORMS = [
-  { key: "facebook_voa",        label: "FB-V",  cmd: "npm run fb-token"        },
+  { key: "facebook_voa",        label: "FB-V",  cmd: "See docs/syndication-auth-repair.md#facebook-voa" },
   { key: "blogger",             label: "Blog",  cmd: "npm run blogger-token"   },
   { key: "wordpress_earthstar", label: "WP",    cmd: "npm run wordpress-token" },
   { key: "pinterest",           label: "Pins",  cmd: "npm run pinterest-token" },
@@ -1298,6 +1298,20 @@ const TOKEN_EXPIRED_PATTERNS = [
 ];
 const DISMISS_KEY   = "voa_tok_dismiss";
 const DISMISS_TTL   = 12 * 60 * 60 * 1000; // 12 hours
+const HEALTH_REPAIR_HINTS = {
+  "Facebook VOA": {
+    cmd: "See docs/syndication-auth-repair.md#facebook-voa",
+    detail: "Blocked: direct Facebook provider missing pages_manage_posts. Preferred repair: route through Publer after account mapping is verified, otherwise use a future publishing permission review.",
+  },
+  "Blogger token refresh": {
+    cmd: "npm run blogger-token",
+    detail: "Blocked: Blogger refresh token expired/revoked. Reconnect Google/Blogger OAuth.",
+  },
+};
+const TOKEN_REPAIR_HINTS = {
+  facebook_voa: HEALTH_REPAIR_HINTS["Facebook VOA"],
+  blogger: HEALTH_REPAIR_HINTS["Blogger token refresh"],
+};
 
 function getTokenDismissed() {
   try { return JSON.parse(localStorage.getItem(DISMISS_KEY) || "{}"); } catch { return {}; }
@@ -1369,8 +1383,10 @@ function renderTokenStatus(results, health) {
       return `<span class="tok ok" title="${esc(title)}">✓ ${label}${extra}</span>`;
     }
     if (info.state === "warn" && !isTokenDismissed(key)) {
-      const safeCmd = esc(cmd);
-      return `<span class="tok warn" title="${label}: ${esc(info.error || "token error")}">
+      const hint = TOKEN_REPAIR_HINTS[key] || {};
+      const safeCmd = esc(hint.cmd || cmd);
+      const detail = hint.detail || info.error || "token error";
+      return `<span class="tok warn" title="${label}: ${esc(detail)}">
         ⚠ ${label}
         <button onclick="copyTokCmd('${safeCmd}',this)">${safeCmd}</button>
         <button class="tok-dismiss" title="Dismiss for 12h" onclick="dismissToken('${esc(key)}')">✕</button>
@@ -1408,9 +1424,10 @@ function renderHealth(health) {
   if (failed.length === 0) return; // all passing ~ show nothing
 
   for (const f of failed) {
-    const cmd     = esc(f.repairCommand || (/blogger/i.test(f.name) ? "npm run blogger-token" : "npm run check:syndication -- --write"));
+    const hint    = HEALTH_REPAIR_HINTS[f.name] || {};
+    const cmd     = esc(hint.cmd || f.repairCommand || (/blogger/i.test(f.name) ? "npm run blogger-token" : "npm run check:syndication -- --write"));
     const label   = esc(f.name || "check");
-    const detail  = esc(f.detail || "check failed");
+    const detail  = esc(hint.detail || f.detail || "check failed");
     const chip    = document.createElement("span");
     chip.className = "tok warn";
     chip.title     = detail;
