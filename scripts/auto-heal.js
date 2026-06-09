@@ -49,6 +49,70 @@ const PATCHABLE_FILES = new Set([
   "scripts/check-syndication-config.js",
 ]);
 
+// Auth failures that are NEVER retryable or diagnosable by AI.
+// These require external user action (OAuth consent, permission grant) and
+// must never trigger a paid Claude call — the diagnosis is deterministic.
+const AUTH_FAILURE_PATTERNS = [
+  /invalid_grant/i,
+  /token has been expired/i,
+  /token has been revoked/i,
+  /pages_manage_posts/i,
+  /missing required.*scope/i,
+  /missing.*page.*posting.*scope/i,
+];
+
+function isAuthFailure(check) {
+  const d = check.detail || "";
+  return AUTH_FAILURE_PATTERNS.some(p => p.test(d));
+}
+
+function buildAuthFailureDiagnosis(check) {
+  const d = check.detail || "";
+  const isOAuthRevoked = /invalid_grant|token has been expired|token has been revoked/i.test(d);
+  const isScopeMissing = /pages_manage_posts|missing required.*scope|missing.*page.*posting.*scope/i.test(d);
+
+  if (isOAuthRevoked) {
+    const renewCmd = /blogger/i.test(check.name) ? "npm run blogger-token" : "See docs/syndication-auth-repair.md";
+    return {
+      checkName: check.name,
+      diagnosis: "OAuth refresh token expired or revoked. External Google/OAuth consent flow required. AI self-healing cannot repair OAuth tokens.",
+      fix_type: "auth_reconnect_required",
+      confidence: "high",
+      action: {
+        instructions: [
+          `1. Run token renewal locally: ${renewCmd}`,
+          "2. Complete the OAuth consent flow in the browser that opens.",
+          "3. Re-run: npm run check:syndication -- --write",
+          "Note: AI self-healing cannot create a new valid OAuth refresh token. This requires external user consent.",
+        ].join("\n"),
+      },
+    };
+  }
+  if (isScopeMissing) {
+    return {
+      checkName: check.name,
+      diagnosis: "Missing required OAuth scope (pages_manage_posts). Provider or app-level permission repair required. AI self-healing cannot grant API permissions.",
+      fix_type: "auth_reconnect_required",
+      confidence: "high",
+      action: {
+        instructions: [
+          "1. See docs/syndication-auth-repair.md for the repair procedure.",
+          "2. Do not use the direct Meta provider until pages_manage_posts scope is granted.",
+          "3. Consider routing Facebook VOA through Publer after verifying the correct account mapping.",
+          "Note: AI self-healing cannot grant API scopes or modify app permissions.",
+        ].join("\n"),
+      },
+    };
+  }
+  return {
+    checkName: check.name,
+    diagnosis: "Auth failure detected. External reauth or permission repair required. AI self-healing cannot repair.",
+    fix_type: "auth_reconnect_required",
+    confidence: "high",
+    action: { instructions: "See docs/syndication-auth-repair.md and re-run: npm run check:syndication -- --write" },
+  };
+}
+
 // Mirrors check-no-emdash.js scope
 const EMDASH_SCAN_DIRS = ["README.md", "CLAUDE.md", ".github", "layouts", "netlify", "scripts", "static"];
 const EMDASH_TEXT_EXTS = new Set([".html", ".md", ".txt"]);
@@ -331,6 +395,8 @@ function buildEmailBody({ trigger, tier1Result, tier2Results, retriggered }) {
       if (r.appliedPatch) {
         lines.push(`    SELF-HEALED ~ Code patch applied to ${r.action?.file}`);
         lines.push(`    Change: ${r.action?.explanation}`);
+      } else if (r.fix_type === "auth_reconnect_required") {
+        lines.push(`    REAUTH REQUIRED (AI cannot repair): ${r.action?.instructions || r.diagnosis}`);
       } else if (r.fix_type === "token_expired") {
         lines.push(`    ACTION NEEDED: Run locally ~ ${r.action?.renewal_command}`);
       } else if (r.fix_type === "platform_outage") {
@@ -394,53 +460,71 @@ async function main() {
   // ── Tier 2/3: Claude diagnosis ────────────────────────────────────────────
   let tier2Results = [];
   if (failingChecks.length > 0) {
-    console.log(`[HEAL] Consulting Claude for ${failingChecks.length} failure(s)...`);
-    const claudeResponse = await askClaude(failingChecks);
+    // Split: auth failures are pre-classified deterministically (no AI call).
+    // Only non-auth failures (code/config/transient) go to Claude.
+    const authFailures    = failingChecks.filter(isAuthFailure);
+    const healableFailures = failingChecks.filter(c => !isAuthFailure(c));
 
-    if (claudeResponse && Array.isArray(claudeResponse)) {
-      for (const diagnosis of claudeResponse) {
-        console.log(`[HEAL] ${diagnosis.checkName}: ${diagnosis.fix_type} (${diagnosis.confidence})`);
+    // Pre-classify auth failures without spending Claude credits
+    for (const c of authFailures) {
+      const diag = buildAuthFailureDiagnosis(c);
+      console.log(`[HEAL] ${diag.checkName}: auth_reconnect_required (pre-classified, no AI call)`);
+      tier2Results.push(diag);
+      healRecord.tier2.push(diag);
+    }
 
-        if (
-          diagnosis.fix_type === "code_patch" &&
-          diagnosis.confidence === "high" &&
-          diagnosis.action?.file &&
-          diagnosis.action?.old_code &&
-          diagnosis.action?.new_code
-        ) {
-          const patchResult = applyCodePatch(
-            diagnosis.action.file,
-            diagnosis.action.old_code,
-            diagnosis.action.new_code
-          );
-          if (patchResult.ok) {
-            const commitResult = commitAndPush(
-              [diagnosis.action.file],
-              `Auto-heal: ${diagnosis.checkName} ~ ${diagnosis.action.explanation || "code patch"}\n\nDiagnosis: ${diagnosis.diagnosis}\n\nCo-Authored-By: Claude Haiku <noreply@anthropic.com>`
+    if (healableFailures.length > 0) {
+      console.log(`[HEAL] Consulting Claude for ${healableFailures.length} non-auth failure(s)...`);
+      const claudeResponse = await askClaude(healableFailures);
+
+      if (claudeResponse && Array.isArray(claudeResponse)) {
+        for (const diagnosis of claudeResponse) {
+          console.log(`[HEAL] ${diagnosis.checkName}: ${diagnosis.fix_type} (${diagnosis.confidence})`);
+
+          if (
+            diagnosis.fix_type === "code_patch" &&
+            diagnosis.confidence === "high" &&
+            diagnosis.action?.file &&
+            diagnosis.action?.old_code &&
+            diagnosis.action?.new_code
+          ) {
+            const patchResult = applyCodePatch(
+              diagnosis.action.file,
+              diagnosis.action.old_code,
+              diagnosis.action.new_code
             );
-            diagnosis.appliedPatch = commitResult.ok || commitResult.note === "nothing to commit";
-            diagnosis.patchFailed  = !diagnosis.appliedPatch;
-            diagnosis.patchNote    = commitResult.note;
-          } else {
-            diagnosis.appliedPatch = false;
-            diagnosis.patchFailed  = true;
-            diagnosis.patchNote    = patchResult.note;
+            if (patchResult.ok) {
+              const commitResult = commitAndPush(
+                [diagnosis.action.file],
+                `Auto-heal: ${diagnosis.checkName} ~ ${diagnosis.action.explanation || "code patch"}\n\nDiagnosis: ${diagnosis.diagnosis}\n\nCo-Authored-By: Claude Haiku <noreply@anthropic.com>`
+              );
+              diagnosis.appliedPatch = commitResult.ok || commitResult.note === "nothing to commit";
+              diagnosis.patchFailed  = !diagnosis.appliedPatch;
+              diagnosis.patchNote    = commitResult.note;
+            } else {
+              diagnosis.appliedPatch = false;
+              diagnosis.patchFailed  = true;
+              diagnosis.patchNote    = patchResult.note;
+            }
           }
-        }
 
-        tier2Results.push(diagnosis);
-        healRecord.tier2.push(diagnosis);
+          tier2Results.push(diagnosis);
+          healRecord.tier2.push(diagnosis);
+        }
+      } else {
+        console.log("[HEAL] Claude unavailable or returned unparseable response.");
+        const fallback = healableFailures.map(c => ({
+          checkName: c.name,
+          diagnosis: c.detail || "unknown error",
+          fix_type: "human_required",
+          confidence: "low",
+          action: { instructions: `Check ${c.name} manually. Detail: ${c.detail}` },
+        }));
+        tier2Results.push(...fallback);
+        healRecord.tier2.push(...fallback);
       }
     } else {
-      console.log("[HEAL] Claude unavailable or returned unparseable response.");
-      tier2Results = failingChecks.map(c => ({
-        checkName: c.name,
-        diagnosis: c.detail || "unknown error",
-        fix_type: "human_required",
-        confidence: "low",
-        action: { instructions: `Check ${c.name} manually. Detail: ${c.detail}` },
-      }));
-      healRecord.tier2 = tier2Results;
+      console.log(`[HEAL] All ${authFailures.length} failure(s) are auth-related. Skipping Claude call ~ no credits spent.`);
     }
   }
 
@@ -469,6 +553,7 @@ async function main() {
   const anyNeedsHuman = tier2Results.some(r =>
     r.fix_type === "token_expired" ||
     r.fix_type === "human_required" ||
+    r.fix_type === "auth_reconnect_required" ||
     r.patchFailed
   );
 

@@ -2,6 +2,14 @@
 
 Current readiness is 12/14. The working paths are Feeder, Bluesky VOA, Mastodon VOA, Pinterest VOA, Threads VOA, Instagram VOA, Dev.to, Tumblr VOA, and WordPress EarthStar. The remaining blockers are Facebook VOA direct posting and Blogger.
 
+## Self-Healing Scope
+
+The VOA auto-healer (`scripts/auto-heal.js`) **cannot repair OAuth or permission failures**. Auth failures are classified as `auth_reconnect_required` and the Claude call is hard-blocked. No Anthropic credits are spent on them. The watchdog sends an email alert and stops.
+
+Blogger `invalid_grant` and Facebook `pages_manage_posts` are both classified as `auth_reconnect_required`. The correct repair for each is described below. Do not expect the daily watchdog cron to fix them.
+
+See `docs/self-healing-syndication.md` for the full self-healing capability matrix.
+
 Do not run a live publish or schedule test while repairing auth. Use the validation commands below, which check readiness without creating posts.
 
 ## Facebook VOA

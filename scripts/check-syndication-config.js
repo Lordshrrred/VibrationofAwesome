@@ -128,12 +128,22 @@ function requireMastodonConfig(prefix) {
   return cfg;
 }
 
+// Classify failure detail strings so consumers (dashboard, auto-healer) don't
+// need to re-parse raw error messages to determine remediation path.
+function classifyFailure(detail) {
+  const d = detail || "";
+  if (/invalid_grant|token has been expired|token has been revoked/i.test(d)) return "auth_reconnect_required";
+  if (/pages_manage_posts|missing required.*scope|missing.*page.*posting.*scope/i.test(d)) return "auth_reconnect_required";
+  if (/missing\s+\w/i.test(d) && /env|secret|config/i.test(d)) return "missing_config";
+  return "check_failed";
+}
+
 async function check(name, fn) {
   try {
     const detail = await fn();
     results.push({ name, ok: true, detail: detail || "ok" });
   } catch (err) {
-    results.push({ name, ok: false, detail: err.message });
+    results.push({ name, ok: false, detail: err.message, failureType: classifyFailure(err.message) });
   }
 }
 
@@ -375,6 +385,7 @@ function writeHealthFile(failed) {
       name: result.name,
       ok: result.ok,
       detail: result.detail,
+      ...(result.failureType ? { failureType: result.failureType } : {}),
     })),
     repairs: {
       blogger: {
