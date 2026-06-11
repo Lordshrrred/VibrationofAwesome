@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-10T23:28:59.885Z",
+  "lastUpdated": "2026-06-11T17:00:27.101Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-feel-safe-in-your-body-again",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-06-11T16:59:57.544Z"
+    },
     {
       "slug": "how-to-restyle-product-images-with-chatgpt",
       "format": "single-native-post",
@@ -272,18 +281,18 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-06-02T09:01:46.243Z"
-    },
-    {
-      "slug": "ai-music-production-tools-for-independent-artists-2026",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-06-01T23:32:55.487Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-feel-safe-in-your-body-again",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-11T17:00:27.101Z"
+    },
     {
       "slug": "how-to-restyle-product-images-with-chatgpt",
       "archetype": "premium-quote-card",
@@ -544,15 +553,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-01T10:12:18.439Z"
-    },
-    {
-      "slug": "best-llm-tools-for-independent-musicians-2026",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-05-31T23:03:30.712Z"
     }
   ]
 }
