@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-11T17:00:27.101Z",
+  "lastUpdated": "2026-06-11T23:25:42.799Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-use-notebooklm-for-music-production-notes",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-06-11T23:25:28.648Z"
+    },
     {
       "slug": "how-to-feel-safe-in-your-body-again",
       "format": "tension-revelation",
@@ -272,18 +281,18 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-06-02T09:04:12.087Z"
-    },
-    {
-      "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-06-02T09:01:46.243Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-use-notebooklm-for-music-production-notes",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-11T23:25:42.799Z"
+    },
     {
       "slug": "how-to-feel-safe-in-your-body-again",
       "archetype": "field-guide-aesthetic",
@@ -544,15 +553,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-01T18:45:36.862Z"
-    },
-    {
-      "slug": "how-to-grow-as-an-independent-artist-in-a-noisy-world",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-01T10:12:18.439Z"
     }
   ]
 }
