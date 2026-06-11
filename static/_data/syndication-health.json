@@ -1,16 +1,20 @@
 {
-  "lastChecked": "2026-06-10T23:26:42.937Z",
-  "status": "ok",
-  "passed": 14,
-  "failed": 0,
+  "lastChecked": "2026-06-11T04:58:43.956Z",
+  "status": "broken",
+  "passed": 13,
+  "failed": 1,
   "total": 14,
-  "topFix": null,
+  "topFix": {
+    "name": "Facebook VOA",
+    "detail": "missing PUBLER_FACEBOOK_ACCOUNT_ID",
+    "repairCommand": "npm run check:syndication -- --write"
+  },
   "drip": {
     "status": "active",
     "rate": 1,
     "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
-    "remaining": 57,
-    "published": 42,
+    "remaining": 56,
+    "published": 43,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -18,7 +22,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=57"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=56"
     },
     {
       "name": "Publer accounts",
@@ -62,8 +66,9 @@
     },
     {
       "name": "Facebook VOA",
-      "ok": true,
-      "detail": "Vibration of Awesome (5f189becdb27977d231aea50)"
+      "ok": false,
+      "detail": "missing PUBLER_FACEBOOK_ACCOUNT_ID",
+      "failureType": "check_failed"
     },
     {
       "name": "Dev.to auth",
