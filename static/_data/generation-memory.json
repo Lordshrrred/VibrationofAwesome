@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-12T16:26:46.752Z",
+  "lastUpdated": "2026-06-12T23:20:21.227Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-make-presentations-faster-with-chatgpt",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-06-12T23:20:07.391Z"
+    },
     {
       "slug": "why-youre-always-anxious-for-no-reason-theres-always-a-reason",
       "format": "creative-identity-reflection",
@@ -272,18 +281,18 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-06-02T17:51:41.661Z"
-    },
-    {
-      "slug": "how-to-monetize-your-creativity-without-selling-your-soul",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-06-02T17:48:45.909Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-make-presentations-faster-with-chatgpt",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-12T23:20:21.227Z"
+    },
     {
       "slug": "why-youre-always-anxious-for-no-reason-theres-always-a-reason",
       "archetype": "minimalist-philosophy",
@@ -544,15 +553,6 @@
       "emotionalTone": "liminal",
       "emotionalCluster": "atmospheric",
       "timestamp": "2026-06-02T09:02:01.604Z"
-    },
-    {
-      "slug": "ai-music-production-tools-for-independent-artists-2026",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-01T23:30:00.808Z"
     }
   ]
 }
