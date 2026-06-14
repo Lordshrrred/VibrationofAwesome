@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-13T23:08:45.166Z",
+  "lastUpdated": "2026-06-14T15:13:24.259Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-organize-coworking-receipts-in-a-spreadsheet-for-taxes",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-06-14T15:13:09.725Z"
+    },
     {
       "slug": "chatgpt-data-privacy-settings-for-creators",
       "format": "reflective-essay",
@@ -272,18 +281,18 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-06-03T18:09:28.663Z"
-    },
-    {
-      "slug": "ai-content-creation-tools-that-actually-save-time",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-06-03T09:21:44.953Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-organize-coworking-receipts-in-a-spreadsheet-for-taxes",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "timestamp": "2026-06-14T15:13:24.259Z"
+    },
     {
       "slug": "chatgpt-data-privacy-settings-for-creators",
       "archetype": "premium-quote-card",
@@ -544,15 +553,6 @@
       "emotionalTone": "regulation",
       "emotionalCluster": "somatic",
       "timestamp": "2026-06-03T09:22:00.223Z"
-    },
-    {
-      "slug": "how-to-write-ai-prompts-for-creative-projects",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-02T23:49:39.284Z"
     }
   ]
 }
