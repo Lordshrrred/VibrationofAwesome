@@ -116,6 +116,35 @@ function escapeRegExp(text) {
   return String(text || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+/**
+ * Build AT Protocol "facets" so URLs in Bluesky post text render as real
+ * clickable links. Bluesky never auto-linkifies plain text ~ without facets
+ * a URL is just dead text, even when an image embed replaces the link card.
+ */
+function buildBlueskyFacets(text) {
+  const facets = [];
+  const urlRegex = /https?:\/\/[^\s]+/g;
+  let match;
+  while ((match = urlRegex.exec(text))) {
+    let url = match[0];
+    // Strip trailing punctuation that's almost certainly sentence punctuation, not part of the URL
+    while (url.length > 0 && /[.,;:!?)\]}>'"]$/.test(url)) {
+      url = url.slice(0, -1);
+    }
+    if (!url) continue;
+    const start = match.index;
+    const end = start + url.length;
+    facets.push({
+      index: {
+        byteStart: Buffer.byteLength(text.slice(0, start), "utf8"),
+        byteEnd:   Buffer.byteLength(text.slice(0, end), "utf8"),
+      },
+      features: [{ $type: "app.bsky.richtext.facet#link", uri: url }],
+    });
+  }
+  return facets;
+}
+
 function removeRawUrlText(text, sourceUrl) {
   const cleanUrl = String(sourceUrl || "").trim();
   if (!cleanUrl) return String(text || "").trim();
@@ -646,10 +675,13 @@ async function postToBluesky(caption, postUrl, postTitle, postExcerpt, prefix = 
   }
 
   // Image-native when a visual is available; otherwise preserve external link preview.
+  const text   = caption.slice(0, 300);
+  const facets = buildBlueskyFacets(text);
   const record = {
     $type:     "app.bsky.feed.post",
-    text:      caption.slice(0, 300),
+    text,
     createdAt: new Date().toISOString(),
+    ...(facets.length ? { facets } : {}),
     embed: imageEmbed || {
       $type:    "app.bsky.embed.external",
       external: {
