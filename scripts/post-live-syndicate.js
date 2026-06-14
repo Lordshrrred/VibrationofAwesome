@@ -47,7 +47,7 @@ function extractSourceTextFromHtml(html) {
 }
 
 async function verifyLivePost(item) {
-  const url = item.url || `https://vibrationofawesome.com/blog/boom/posts/${item.slug}.html`;
+  const url = item.url || `https://vibrationofawesome.com/blog/boom/posts/${item.slug}`;
   const titleNeedle = String(item.title || "").slice(0, 80);
 
   for (let attempt = 1; attempt <= LIVE_CHECK_ATTEMPTS; attempt++) {
@@ -77,7 +77,7 @@ async function triggerFeeder(item) {
     return;
   }
 
-  const postUrl = item.url || `https://vibrationofawesome.com/blog/boom/posts/${item.slug}.html`;
+  const postUrl = item.url || `https://vibrationofawesome.com/blog/boom/posts/${item.slug}`;
   const postHtmlPath = path.join(POSTS_DIR, item.slug + ".html");
   const postHtml = fs.existsSync(postHtmlPath) ? fs.readFileSync(postHtmlPath, "utf8") : "";
 

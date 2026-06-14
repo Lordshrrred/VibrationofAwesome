@@ -179,7 +179,7 @@ HARD RULES:
 // ── Template ──────────────────────────────────────────────────────────────────
 
 function buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg }) {
-  const url = `https://vibrationofawesome.com/blog/boom/posts/${slug}.html`;
+  const url = `https://vibrationofawesome.com/blog/boom/posts/${slug}`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>

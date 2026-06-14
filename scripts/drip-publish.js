@@ -212,7 +212,7 @@ async function main() {
       slug:    item.slug,
       date:    new Date().toISOString(),
       excerpt: extractExcerptFromHtml(html),
-      url:     "/blog/boom/posts/" + item.slug + ".html",
+      url:     "/blog/boom/posts/" + item.slug,
       tags:    [],
     });
 
@@ -251,7 +251,7 @@ async function main() {
     trigger_feeder_on_publish: !!queue.trigger_feeder_on_publish,
     items: justPublished.map(item => ({
       ...item,
-      url: "https://vibrationofawesome.com/blog/boom/posts/" + item.slug + ".html",
+      url: "https://vibrationofawesome.com/blog/boom/posts/" + item.slug,
     })),
   };
   fs.writeFileSync(LAST_PUBLISHED_FILE, JSON.stringify(postLiveManifest, null, 2), "utf8");

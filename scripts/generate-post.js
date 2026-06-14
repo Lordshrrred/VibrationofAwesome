@@ -223,7 +223,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push('  <meta name="viewport" content="width=device-width, initial-scale=1.0">');
   H.push("  <title>" + title + " | " + laneName + " | Vibration of Awesome</title>");
   H.push('  <meta name="description" content="' + metaContent + '">');
-  const postUrl = "https://vibrationofawesome.com/blog/" + lane + "/posts/" + slug + ".html";
+  const postUrl = "https://vibrationofawesome.com/blog/" + lane + "/posts/" + slug;
   const datePublished = new Date(dateStr).toISOString();
   const authorName = isMatt ? "Matt EarthStar" : "Matty BoomBoom";
   H.push('  <link rel="canonical" href="' + postUrl + '">');
@@ -841,7 +841,7 @@ async function main() {
       slug,
       date:    dateStr,
       excerpt: extractExcerpt(bodyMarkdown),
-      url:     "/blog/" + lane + "/posts/" + slug + ".html",
+      url:     "/blog/" + lane + "/posts/" + slug,
       tags:    selectedNiche ? [selectedNiche.slug] : [],
       niche:   selectedNiche ? selectedNiche.slug : undefined,
       cluster: clusterKey || undefined,
@@ -879,7 +879,7 @@ async function main() {
 
     // Fire feeder trigger for every successfully published Boom post
     if (lane === "boom") {
-      const fullPostUrl = "https://vibrationofawesome.com/blog/boom/posts/" + slug + ".html";
+      const fullPostUrl = "https://vibrationofawesome.com/blog/boom/posts/" + slug;
       await triggerFeeder(fullPostUrl, postTitle, argv.keyword, {
         slug,
         lane,
