@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-14T15:13:24.259Z",
+  "lastUpdated": "2026-06-14T23:13:02.219Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-generate-consistent-ai-images-for-your-brand",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-06-14T23:12:48.279Z"
+    },
     {
       "slug": "how-to-organize-coworking-receipts-in-a-spreadsheet-for-taxes",
       "format": "conversational-reflection",
@@ -272,18 +281,18 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-06-03T23:47:02.390Z"
-    },
-    {
-      "slug": "how-to-make-money-doing-what-you-love-the-real-version",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-06-03T18:09:28.663Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-generate-consistent-ai-images-for-your-brand",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-14T23:13:02.219Z"
+    },
     {
       "slug": "how-to-organize-coworking-receipts-in-a-spreadsheet-for-taxes",
       "archetype": "cinematic-ideogram",
@@ -544,15 +553,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-03T18:09:44.544Z"
-    },
-    {
-      "slug": "ai-content-creation-tools-that-actually-save-time",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "timestamp": "2026-06-03T09:22:00.223Z"
     }
   ]
 }
