@@ -327,6 +327,18 @@ async function main() {
     return data.name || data.URL || "site ok";
   });
 
+  await check("Dashboard password sync", () => {
+    hasEnv("DASHBOARD_PASSWORD");
+    const configFile = path.join(ROOT, "static", "_data", "dashboard-config.json");
+    if (!fs.existsSync(configFile)) throw new Error("dashboard-config.json missing");
+    const config = JSON.parse(fs.readFileSync(configFile, "utf8"));
+    const expected = crypto.createHash("sha256").update(process.env.DASHBOARD_PASSWORD).digest("hex");
+    if (config.passwordHash !== expected) {
+      throw new Error("dashboard-config.json passwordHash does not match DASHBOARD_PASSWORD ~ run: DASHBOARD_PASSWORD=... node scripts/syndicate.js (or update the hash directly)");
+    }
+    return "hash matches DASHBOARD_PASSWORD";
+  });
+
   console.log("\nSyndication readiness checks\n");
   for (const result of results) {
     console.log(`${result.ok ? "OK  " : "FAIL"} ${result.name}: ${result.detail}`);

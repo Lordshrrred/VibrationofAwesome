@@ -1,16 +1,16 @@
 {
-  "lastChecked": "2026-06-13T23:06:49.048Z",
+  "lastChecked": "2026-06-14T03:51:59.654Z",
   "status": "ok",
-  "passed": 14,
+  "passed": 15,
   "failed": 0,
-  "total": 14,
+  "total": 15,
   "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
     "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
-    "remaining": 51,
-    "published": 48,
+    "remaining": 50,
+    "published": 49,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -18,7 +18,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=51"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=50"
     },
     {
       "name": "Publer accounts",
@@ -84,6 +84,11 @@
       "name": "WordPress direct auth",
       "ok": true,
       "detail": "EarthStar Rising"
+    },
+    {
+      "name": "Dashboard password sync",
+      "ok": true,
+      "detail": "hash matches DASHBOARD_PASSWORD"
     }
   ],
   "repairs": {
