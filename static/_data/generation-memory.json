@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-15T18:04:18.888Z",
+  "lastUpdated": "2026-06-15T23:48:45.426Z",
   "recentHooks": [],
   "recentTitles": [],
   "recentNarrativeStructures": [],
@@ -12,6 +12,15 @@
   "recentOpeningStyles": [],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
+    {
+      "slug": "how-to-stop-ai-hallucinations-in-content-creation",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-06-15T23:48:32.002Z"
+    },
     {
       "slug": "how-to-make-faceless-videos-with-pictory-ai",
       "format": "philosophical-observation",
@@ -272,18 +281,18 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-06-04T23:12:57.561Z"
-    },
-    {
-      "slug": "multiple-streams-of-income-for-beginners-where-to-actually-start",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-06-04T16:26:24.424Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-stop-ai-hallucinations-in-content-creation",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-06-15T23:48:45.426Z"
+    },
     {
       "slug": "how-to-make-faceless-videos-with-pictory-ai",
       "archetype": "field-guide-aesthetic",
@@ -544,15 +553,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-04T08:44:06.362Z"
-    },
-    {
-      "slug": "how-to-create-your-first-claude-skill-with-a-unique-voice",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-03T23:47:17.057Z"
     }
   ]
 }
