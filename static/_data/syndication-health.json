@@ -1,14 +1,10 @@
 {
-  "lastChecked": "2026-06-15T17:27:19.714Z",
-  "status": "broken",
-  "passed": 13,
-  "failed": 2,
+  "lastChecked": "2026-06-15T17:59:06.085Z",
+  "status": "ok",
+  "passed": 15,
+  "failed": 0,
   "total": 15,
-  "topFix": {
-    "name": "Facebook VOA",
-    "detail": "missing PUBLER_FACEBOOK_ACCOUNT_ID",
-    "repairCommand": "npm run check:syndication -- --write"
-  },
+  "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
@@ -66,9 +62,8 @@
     },
     {
       "name": "Facebook VOA",
-      "ok": false,
-      "detail": "missing PUBLER_FACEBOOK_ACCOUNT_ID",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "Vibration of Awesome (5f189becdb27977d231aea50)"
     },
     {
       "name": "Dev.to auth",
@@ -92,9 +87,8 @@
     },
     {
       "name": "Dashboard password sync",
-      "ok": false,
-      "detail": "missing DASHBOARD_PASSWORD",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "hash matches DASHBOARD_PASSWORD"
     }
   ],
   "repairs": {
