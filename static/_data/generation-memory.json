@@ -4,12 +4,191 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-16T18:10:01.908Z",
-  "recentHooks": [],
-  "recentTitles": [],
-  "recentNarrativeStructures": [],
-  "recentEmotionalArcs": [],
-  "recentOpeningStyles": [],
+  "lastUpdated": "2026-06-16T22:08:29.927Z",
+  "recentHooks": [
+    {
+      "slug": "how-to-tell-if-a-piece-of-art-is-right-for-you",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "hook": "Your body knows before your brain does.",
+      "timestamp": "2026-06-16T22:08:29.927Z"
+    },
+    {
+      "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "hook": "Here is the question nobody answers honestly: is a digital art print \"real\" art, or is it just a glorified poster you paid too much for?",
+      "timestamp": "2026-06-16T22:07:39.951Z"
+    },
+    {
+      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "hook": "You almost bought the $40 canvas print of a foggy forest at 1am, didn't you. It was fine. It matched the couch. And something in you went quiet and a little sad, because you knew it was filler, not fe",
+      "timestamp": "2026-06-16T22:05:56.208Z"
+    },
+    {
+      "slug": "why-buying-art-from-independent-artists-actually-matters",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "hook": "There's a print hanging in roughly four million living rooms right now. You know the one. The motivational word in a clean sans-serif font, or the abstract gold splotch that matches the throw pillows.",
+      "timestamp": "2026-06-16T22:04:43.238Z"
+    },
+    {
+      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "hook": "What if the reason you can't pick art for your walls has nothing to do with taste?",
+      "timestamp": "2026-06-16T22:03:41.813Z"
+    },
+    {
+      "slug": "where-to-buy-original-art-online-without-getting-burned",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "hook": "You've spent twenty minutes scrolling through a mass-market print site, and every single canvas of a fern leaf or a faded mountain range makes you feel exactly nothing. You almost added one to your ca",
+      "timestamp": "2026-06-16T22:02:58.076Z"
+    }
+  ],
+  "recentTitles": [
+    {
+      "slug": "how-to-tell-if-a-piece-of-art-is-right-for-you",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "title": "How to Tell If a Piece of Art Is Right for You",
+      "timestamp": "2026-06-16T22:08:29.927Z"
+    },
+    {
+      "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "title": "Digital Art Prints vs Original Art: What Is Actually Worth Buying",
+      "timestamp": "2026-06-16T22:07:39.951Z"
+    },
+    {
+      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "title": "Affordable Original Art: What to Look For and Where to Find It",
+      "timestamp": "2026-06-16T22:05:56.208Z"
+    },
+    {
+      "slug": "why-buying-art-from-independent-artists-actually-matters",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "title": "Why Buying Art From Independent Artists Actually Matters",
+      "timestamp": "2026-06-16T22:04:43.238Z"
+    },
+    {
+      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "title": "How to Choose Art for Your Home When You Don't Know Where to Start",
+      "timestamp": "2026-06-16T22:03:41.813Z"
+    },
+    {
+      "slug": "where-to-buy-original-art-online-without-getting-burned",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buyer-intent",
+      "title": "Where to Buy Original Art Online Without Getting Burned",
+      "timestamp": "2026-06-16T22:02:58.076Z"
+    }
+  ],
+  "recentNarrativeStructures": [
+    {
+      "slug": "how-to-tell-if-a-piece-of-art-is-right-for-you",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-06-16T22:08:29.927Z"
+    },
+    {
+      "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-06-16T22:07:39.951Z"
+    },
+    {
+      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-06-16T22:05:56.208Z"
+    },
+    {
+      "slug": "why-buying-art-from-independent-artists-actually-matters",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-06-16T22:04:43.238Z"
+    },
+    {
+      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-06-16T22:03:41.813Z"
+    },
+    {
+      "slug": "where-to-buy-original-art-online-without-getting-burned",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-06-16T22:02:58.076Z"
+    }
+  ],
+  "recentEmotionalArcs": [
+    {
+      "slug": "how-to-tell-if-a-piece-of-art-is-right-for-you",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-06-16T22:08:29.927Z"
+    },
+    {
+      "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-06-16T22:07:39.951Z"
+    },
+    {
+      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-06-16T22:05:56.208Z"
+    },
+    {
+      "slug": "why-buying-art-from-independent-artists-actually-matters",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-06-16T22:04:43.238Z"
+    },
+    {
+      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-06-16T22:03:41.813Z"
+    },
+    {
+      "slug": "where-to-buy-original-art-online-without-getting-burned",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-06-16T22:02:58.076Z"
+    }
+  ],
+  "recentOpeningStyles": [
+    {
+      "slug": "how-to-tell-if-a-piece-of-art-is-right-for-you",
+      "style": "statement opening",
+      "timestamp": "2026-06-16T22:08:29.927Z"
+    },
+    {
+      "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
+      "style": "question opening",
+      "timestamp": "2026-06-16T22:07:39.951Z"
+    },
+    {
+      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
+      "style": "statement opening",
+      "timestamp": "2026-06-16T22:05:56.208Z"
+    },
+    {
+      "slug": "why-buying-art-from-independent-artists-actually-matters",
+      "style": "statement opening",
+      "timestamp": "2026-06-16T22:04:43.238Z"
+    },
+    {
+      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
+      "style": "question opening",
+      "timestamp": "2026-06-16T22:03:41.813Z"
+    },
+    {
+      "slug": "where-to-buy-original-art-online-without-getting-burned",
+      "style": "statement opening",
+      "timestamp": "2026-06-16T22:02:58.076Z"
+    }
+  ],
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {

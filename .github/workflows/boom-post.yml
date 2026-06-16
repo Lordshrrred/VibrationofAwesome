@@ -79,6 +79,7 @@ jobs:
           META_PAGE_ID_RUZINDLA:          ${{ secrets.META_PAGE_ID_RUZINDLA }}
           META_PAGE_TOKEN_RUZINDLA:       ${{ secrets.META_PAGE_TOKEN_RUZINDLA }}
           DEVTO_API_KEY:                  ${{ secrets.DEVTO_API_KEY }}
+          DEVTO2_API_KEY:                 ${{ secrets.DEVTO2_API_KEY }}
           VOA_TUMBLR_CONSUMER_KEY:        ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
           VOA_TUMBLR_CONSUMER_SECRET:     ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
           VOA_TUMBLR_TOKEN:               ${{ secrets.VOA_TUMBLR_TOKEN }}

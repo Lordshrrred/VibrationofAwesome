@@ -19,9 +19,10 @@
  * then runs scripts/post-live-syndicate.js.
  *
  * Usage:
- *   node scripts/drip-publish.js                  ~ publish next drip_rate posts
- *   node scripts/drip-publish.js --slug <slug>    ~ publish one specific draft
- *   node scripts/drip-publish.js --dry-run        ~ preview only, no changes
+ *   node scripts/drip-publish.js                                      ~ publish next drip_rate posts
+ *   node scripts/drip-publish.js --slug <slug>                        ~ publish one specific draft
+ *   node scripts/drip-publish.js --niche art-buyer-intent --limit 1    ~ publish next matching niche post
+ *   node scripts/drip-publish.js --dry-run                            ~ preview only, no changes
  */
 import fs from "fs";
 import path from "path";
@@ -37,7 +38,7 @@ const __dirname  = path.dirname(__filename);
 const ROOT       = path.resolve(__dirname, "..");
 
 const argv = minimist(process.argv.slice(2), {
-  string:  ["slug"],
+  string:  ["slug", "niche", "limit", "syndication-profile"],
   boolean: ["dry-run"],
 });
 
@@ -154,15 +155,34 @@ async function main() {
       process.exit(1);
     }
     toPublish = [item];
+  } else if (argv.niche) {
+    const limit = Math.max(1, Number(argv.limit || 1));
+    toPublish = queue.queue
+      .filter(q => q.niche === argv.niche)
+      .slice(0, limit);
   } else {
     const rate = queue.drip_rate || 2;
     toPublish = queue.queue.slice(0, rate);
   }
 
   if (toPublish.length === 0) {
-    console.log("Queue is empty ~ all posts have been published!");
+    if (argv.niche) {
+      console.log(`No queued posts found for niche "${argv.niche}" ~ nothing to publish.`);
+    } else {
+      console.log("Queue is empty ~ all posts have been published!");
+    }
     process.exit(0);
   }
+
+  toPublish = toPublish.map(item => {
+    if (!argv["syndication-profile"]) return item;
+    return {
+      ...item,
+      syndication_profile: argv["syndication-profile"],
+      syndicate_on_publish: true,
+      trigger_feeder_on_publish: false,
+    };
+  });
 
   console.log(`\nDrip publish${argv["dry-run"] ? " [DRY RUN]" : ""} ~ ${toPublish.length} post(s):`);
   toPublish.forEach(p => console.log("  ~ " + p.title));
@@ -234,7 +254,7 @@ async function main() {
   console.log("  ✓ Sitemap regenerated");
 
   // ── Update drip-queue.json ───────────────────────────────────────────────
-  const justPublished = queue.queue
+  const justPublished = toPublish
     .filter(q => publishedSlugs.includes(q.slug))
     .map(q => ({ ...q, published_at: new Date().toISOString() }));
 
