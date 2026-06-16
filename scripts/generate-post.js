@@ -724,7 +724,7 @@ async function main() {
   let markdown;
   try {
     const message = await client.messages.create({
-      model: "claude-opus-4-5",
+      model: "claude-opus-4-8",
       max_tokens: 4096,
       system: systemPrompt,
       messages: [{ role: "user", content: userMessage }],
