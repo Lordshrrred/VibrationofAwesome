@@ -4,31 +4,36 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 # ── PUBLISH RATE CONFIG ────────────────────────────────────────────────────────
-# Phase One: 2 standard posts/day
-#   Morning:  9:00 AM ET  (13:00 UTC)
-#   Evening:  6:00 PM ET  (22:00 UTC)
+# Phase Two: 3-4 posts/day (active June 16 2026)
 #
-# Art buyer expansion: 2 extra art-niche posts/day
-#   Midday:   12:00 PM ET (16:00 UTC)
-#   Night:    9:00 PM ET  (01:00 UTC)
+#  SLOT  TIME (ET)  UTC   NICHE/TYPE          SOCIAL  DEVTO        BACKLINKS
+#  ────  ─────────  ───   ──────────────────  ──────  ─────────    ─────────
+#  A     9:00 AM    13h   Normal drip          YES    Account 1    all
+#  B     12:00 PM   16h   AI Advantage camp    no     Account 2    all
+#  C     3:00 PM    19h   Normal drip (fast)   no     Account 2    all
+#  D     6:00 PM    22h   Normal drip          YES    Account 1    all
+#  E     9:00 PM    01h   Art buyer (future)   no     Account 2    Pinterest
 #
-# Extra art posts use the art-devto2-only profile:
-#   - publish on VOA
-#   - verify live URL
-#   - syndicate only to Dev.to account 2
-#   - do not increase Pinterest, Instagram, Threads, Facebook, Tumblr, Blogger,
-#     WordPress, or Feeder volume
+# Dev.to safety: Account 1 = 2/day (slots A+D). Account 2 = 2/day (slots B+C).
+# Social safety: 2 posts/day max (slots A+D only).
 #
-# Each run publishes drip_rate posts (set in static/_data/drip-queue.json).
-# drip_rate is currently 1 so each cron run = 1 post.
+# Slot C (3pm) added June 16 to burn through the existing 51-post queue faster.
+# At 3 normal posts/day (A+C+D) queue clears ~July 3 instead of July 11.
+#
+# PHASE THREE ~ target July 7 2026 (3 weeks from now):
+#   - Switch slot C from normal-drip to ai-advantage-campaign
+#   - Switch slot E from art-buyer to ai-advantage-campaign
+#   - Result: 2 campaign posts/day + 2 normal posts/day = 4 total
+#   - Dev.to: Account 1 = 2/day, Account 2 = 2/day
 # ──────────────────────────────────────────────────────────────────────────────
 
 on:
   schedule:
-    - cron: '0 13 * * *'    # 9:00 AM ET  (UTC-4 EDT)  ~ morning publish
-    - cron: '0 16 * * *'    # 12:00 PM ET (UTC-4 EDT)  ~ art extra → Dev.to account 2 only
-    - cron: '0 22 * * *'    # 6:00 PM ET  (UTC-4 EDT)  ~ evening publish
-    - cron: '0 1 * * *'     # 9:00 PM ET  (UTC-4 EDT)  ~ art extra → Dev.to account 2 only
+    - cron: '0 13 * * *'    # 9:00 AM ET  (UTC-4 EDT)  ~ slot A: normal, full social
+    - cron: '0 16 * * *'    # 12:00 PM ET (UTC-4 EDT)  ~ slot B: AI Advantage campaign
+    - cron: '0 19 * * *'    # 3:00 PM ET  (UTC-4 EDT)  ~ slot C: normal, SEO-only (speed burn)
+    - cron: '0 22 * * *'    # 6:00 PM ET  (UTC-4 EDT)  ~ slot D: normal, full social
+    - cron: '0 1 * * *'     # 9:00 PM ET  (UTC-4 EDT)  ~ slot E: art buyer (future)
   workflow_dispatch:          # Manual trigger for testing or emergency publish
 
 # Prevent any VOA publishing/syndication run from overlapping.
@@ -162,10 +167,13 @@ jobs:
         run: |
           npm run check:syndication -- --write || echo "[warn] Syndication health check had non-critical failures ~ continuing drip publish"
           if [ "${{ github.event.schedule }}" = "0 16 * * *" ]; then
-            echo "[drip] Campaign slot (12pm ET) → AI Advantage campaign + SEO backlinks, no social"
+            echo "[drip] Slot B (12pm ET) → AI Advantage campaign, SEO backlinks + devto2, no social"
             node scripts/drip-publish.js --niche ai-advantage-campaign --limit 1 --syndication-profile campaign-seo
+          elif [ "${{ github.event.schedule }}" = "0 19 * * *" ]; then
+            echo "[drip] Slot C (3pm ET) → normal drip speed burn, SEO backlinks + devto2, no social"
+            node scripts/drip-publish.js --limit 1 --syndication-profile campaign-seo
           elif [ "${{ github.event.schedule }}" = "0 1 * * *" ]; then
-            echo "[drip] Art buyer slot (9pm ET) → art-buyer-intent + Dev.to account 2 only"
+            echo "[drip] Slot E (9pm ET) → art buyer, devto2 only"
             node scripts/drip-publish.js --niche art-buyer-intent --limit 1 --syndication-profile art-devto2-only
           else
             node scripts/drip-publish.js
