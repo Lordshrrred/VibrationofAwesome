@@ -103,6 +103,7 @@ const NICHE_TO_TYPE = {
   "misalignment-wrong-life":      "philosophy",
   "direction-purpose-drift":      "philosophy",
   "disconnection-inner-noise":    "philosophy",
+  "art-buyer-intent":             "earthstar",
 };
 
 /**

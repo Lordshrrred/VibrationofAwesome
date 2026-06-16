@@ -430,6 +430,67 @@ export const EARTHSTAR_NICHES = [
       ],
     },
   },
+  {
+    slug: "art-buyer-intent",
+    displayName: "Buying Original Art",
+    coreProblem: "People want to bring something alive and resonant into their home but do not know how to find it, evaluate it, or justify the purchase.",
+    audiencePain: "They scroll mass-market prints, feel nothing, and quietly wonder if real art is only for people with money or taste credentials.",
+    contentAngle: "Buying art as an act of resonance and self-expression — not interior design, not investment. Guide buyers toward independent artists and pieces that actually mean something.",
+    exampleArticleTopics: [
+      "Where to Buy Original Art Online Without Getting Burned",
+      "How to Choose Art for Your Home When You Don't Know Where to Start",
+      "Why Buying Art From Independent Artists Actually Matters",
+      "Affordable Original Art: What to Look For and Where to Find It",
+      "Digital Art Prints vs Original Art: What Is Actually Worth Buying",
+      "How to Tell If a Piece of Art Is Right for You",
+    ],
+    keywordSeedPhrases: [
+      "where to buy original art online",
+      "how to choose art for your home",
+      "buy art from independent artists",
+      "affordable original art",
+      "digital art prints for home",
+      "how to tell if art is right for you",
+    ],
+    toneNotes: [
+      "Practical and warm, never gatekeeping.",
+      "Art should feel like something, not just look expensive.",
+      "Center the buyer's instinct and resonance, not external validation.",
+      "Naturally reference vibrationofawesome.com/art-store/ as a place to explore.",
+    ],
+    keywordResearch: {
+      informational: [
+        "how to buy original art online safely",
+        "what makes original art worth buying",
+        "difference between prints and original art",
+        "how independent artists sell their work online",
+      ],
+      "problem-aware": [
+        "I want art for my home but do not know where to look",
+        "mass market prints feel generic and soulless",
+        "I want something that actually means something on my wall",
+        "original art feels too expensive or exclusive",
+      ],
+      "solution-aware": [
+        "where to find affordable original art online",
+        "how to buy art directly from artists",
+        "digital art prints that feel like originals",
+        "art buying guide for non-collectors",
+      ],
+      comparison: [
+        "original art vs prints vs posters",
+        "Etsy vs art galleries vs artist websites",
+        "digital prints vs physical originals",
+        "buying art online vs buying in person",
+      ],
+      "action/how-to": [
+        "how to buy original art without a big budget",
+        "how to choose art that resonates with your space",
+        "how to support independent artists when buying art",
+        "how to find digital art prints that feel meaningful",
+      ],
+    },
+  },
 ];
 
 export function getNicheBySlug(slug) {
