@@ -4,21 +4,31 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 # ── PUBLISH RATE CONFIG ────────────────────────────────────────────────────────
-# Phase One: 2 posts/day
+# Phase One: 2 standard posts/day
 #   Morning:  9:00 AM ET  (13:00 UTC)
 #   Evening:  6:00 PM ET  (22:00 UTC)
 #
+# Art buyer expansion: 2 extra art-niche posts/day
+#   Midday:   12:00 PM ET (16:00 UTC)
+#   Night:    9:00 PM ET  (01:00 UTC)
+#
+# Extra art posts use the art-devto2-only profile:
+#   - publish on VOA
+#   - verify live URL
+#   - syndicate only to Dev.to account 2
+#   - do not increase Pinterest, Instagram, Threads, Facebook, Tumblr, Blogger,
+#     WordPress, or Feeder volume
+#
 # Each run publishes drip_rate posts (set in static/_data/drip-queue.json).
 # drip_rate is currently 1 so each cron run = 1 post.
-#
-# To scale to 3/day: add a third cron at  '0 18 * * *' (2pm ET)
-# To scale to 4/day: add a fourth cron at '0 2  * * *' (10pm ET)
 # ──────────────────────────────────────────────────────────────────────────────
 
 on:
   schedule:
     - cron: '0 13 * * *'    # 9:00 AM ET  (UTC-4 EDT)  ~ morning publish
+    - cron: '0 16 * * *'    # 12:00 PM ET (UTC-4 EDT)  ~ art extra → Dev.to account 2 only
     - cron: '0 22 * * *'    # 6:00 PM ET  (UTC-4 EDT)  ~ evening publish
+    - cron: '0 1 * * *'     # 9:00 PM ET  (UTC-4 EDT)  ~ art extra → Dev.to account 2 only
   workflow_dispatch:          # Manual trigger for testing or emergency publish
 
 # Prevent any VOA publishing/syndication run from overlapping.
@@ -126,6 +136,7 @@ jobs:
           META_PAGE_ID_RUZINDLA:       ${{ secrets.META_PAGE_ID_RUZINDLA }}
           META_PAGE_TOKEN_RUZINDLA:    ${{ secrets.META_PAGE_TOKEN_RUZINDLA }}
           DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
+          DEVTO2_API_KEY:              ${{ secrets.DEVTO2_API_KEY }}
           VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
           VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
           VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}
@@ -150,7 +161,15 @@ jobs:
           IDEOGRAM_API_KEY:            ${{ secrets.IDEOGRAM_API_KEY }}
         run: |
           npm run check:syndication -- --write || echo "[warn] Syndication health check had non-critical failures ~ continuing drip publish"
-          node scripts/drip-publish.js
+          if [ "${{ github.event.schedule }}" = "0 16 * * *" ]; then
+            echo "[drip] Campaign slot (12pm ET) → AI Advantage campaign + SEO backlinks, no social"
+            node scripts/drip-publish.js --niche ai-advantage-campaign --limit 1 --syndication-profile campaign-seo
+          elif [ "${{ github.event.schedule }}" = "0 1 * * *" ]; then
+            echo "[drip] Art buyer slot (9pm ET) → art-buyer-intent + Dev.to account 2 only"
+            node scripts/drip-publish.js --niche art-buyer-intent --limit 1 --syndication-profile art-devto2-only
+          else
+            node scripts/drip-publish.js
+          fi
 
       # ── 7. Commit published posts back to repo ────────────────────────────
       - name: Commit published posts
@@ -223,6 +242,7 @@ jobs:
           META_PAGE_ID_RUZINDLA:       ${{ secrets.META_PAGE_ID_RUZINDLA }}
           META_PAGE_TOKEN_RUZINDLA:    ${{ secrets.META_PAGE_TOKEN_RUZINDLA }}
           DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
+          DEVTO2_API_KEY:              ${{ secrets.DEVTO2_API_KEY }}
           VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
           VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
           VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}

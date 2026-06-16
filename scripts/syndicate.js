@@ -770,9 +770,10 @@ async function postToFacebookPage(pageId, pageToken, caption, postUrl) {
 }
 
 /** Publish a teaser article on Dev.to */
-async function postToDevTo(postTitle, caption, postUrl, tags) {
-  const key = process.env.DEVTO_API_KEY;
-  if (!key) throw new Error("DEVTO_API_KEY not set");
+async function postToDevTo(postTitle, caption, postUrl, tags, account = "primary") {
+  const accountKey = account === "secondary" ? "DEVTO2_API_KEY" : "DEVTO_API_KEY";
+  const key = process.env[accountKey];
+  if (!key) throw new Error(`${accountKey} not set`);
 
   const safeTags = (tags || [])
     .map(t => t.replace(/[^a-z0-9]/gi, "").toLowerCase().slice(0, 30))
@@ -809,10 +810,9 @@ async function postToDevTo(postTitle, caption, postUrl, tags) {
     if (/canonical url has already been taken/i.test(errMsg)) {
       console.log(`  [devto] Post already exists on dev.to (canonical URL taken) ~ marking as success`);
       // Try to find the existing article URL by searching dev.to
-      const searchResp = await fetch(
-        `https://dev.to/api/articles?username=earthstarrising&per_page=50`,
-        { headers: { "api-key": key } }
-      ).catch(() => null);
+      const searchResp = await fetch("https://dev.to/api/articles/me/published?per_page=100", {
+        headers: { "api-key": key },
+      }).catch(() => null);
       if (searchResp?.ok) {
         const articles = await searchResp.json().catch(() => []);
         const match = articles.find(a => a.canonical_url === postUrl || a.url?.includes(postUrl));
@@ -1537,7 +1537,7 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   // ── Image registry ~ consolidated entries for visual platforms ────────────
   // Pinterest entry (includes shared-asset metadata when both platforms share one image)
-  if (pinterestImageUrl) {
+  if (willPostPinterest && pinterestImageUrl) {
     const pVisual = isSharedVisual ? instagramVisual : pinterestVisual;
     const reusedByVoaTextSocial = Boolean(socialVisualReuse.url && socialVisualReuse.url === pinterestImageUrl);
     recordImageUsage({
@@ -1565,7 +1565,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   }
 
   // Instagram-only entry (skipped when asset is shared ~ already recorded above)
-  if (!isSharedVisual && instagramImageUrl) {
+  if (willPostInstagram && !isSharedVisual && instagramImageUrl) {
     const reusedByVoaTextSocial = Boolean(socialVisualReuse.url && socialVisualReuse.url === instagramImageUrl);
     recordImageUsage({
       post_slug:                slug,
@@ -1685,7 +1685,16 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   // Dev.to ~ canonical URL + DoFollow, high-DA tech platform
   await attempt("devto", () =>
-    postToDevTo(post.title, captions.devto, postUrl, post.tags));
+    postToDevTo(post.title, captions.devto, postUrl, post.tags, "primary"),
+    "primary");
+
+  // Dev.to account 2 ~ only fires when caller explicitly requests it via options.platforms.
+  // Normal drip posts use account 1 only; campaign/art-extra slots pass --platforms devto2.
+  if (options.platforms && options.platforms.includes("devto2")) {
+    await attempt("devto2", () =>
+      postToDevTo(post.title, captions.devto, postUrl, post.tags, "secondary"),
+      "secondary");
+  }
 
   // VOA Tumblr ~ primary Tumblr backlink destination
   if (hasTumblrConfig("VOA")) {
@@ -1778,6 +1787,8 @@ if (isCli) {
       fbv:  "facebook_voa",
       fb:   "facebook_voa",
       dev:  "devto",
+      dev2: "devto2",
+      devto2: "devto2",
       wp:   "wordpress_earthstar",
       wordpress: "wordpress_earthstar",
       bluesky: "bluesky_voa",

@@ -96,6 +96,7 @@ export const ALL_SOCIAL = [
 
 /** EarthStar niche slug -> content type */
 const NICHE_TO_TYPE = {
+  "ai-advantage-campaign":        "creator",
   "ai-creator-tools":             "creator",
   "self-betrayal-avoidance":      "philosophy",
   "dopamine-addiction-numbing":   "nervous-system",

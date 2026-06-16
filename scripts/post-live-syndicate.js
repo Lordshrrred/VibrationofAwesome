@@ -117,6 +117,12 @@ async function triggerFeeder(item) {
 function syndicate(item) {
   const args = ["scripts/syndicate.js", "--lane", "boom", "--slug", item.slug];
   if (item.keyword) args.push("--keyword", item.keyword);
+  if (item.syndication_profile === "art-devto2-only") {
+    args.push("--platforms", "devto2");
+  } else if (item.syndication_profile === "campaign-seo") {
+    // SEO backlinks only — no social. devto2 keeps account 1 under the 2/day ceiling.
+    args.push("--platforms", "devto2,blogger,wordpress_earthstar,tumblr_voa,pinterest");
+  }
   const result = spawnSync("node", args, { stdio: "inherit", cwd: ROOT });
   if (result.error) throw result.error;
   if (result.status !== 0) {
@@ -148,8 +154,11 @@ async function main() {
   }
 
   for (const item of items) {
-    if (manifest.trigger_feeder_on_publish) await triggerFeeder(item);
-    if (manifest.syndicate_on_publish) {
+    const triggerFeederForItem = item.trigger_feeder_on_publish ?? manifest.trigger_feeder_on_publish;
+    const syndicateForItem = item.syndicate_on_publish ?? manifest.syndicate_on_publish;
+
+    if (triggerFeederForItem) await triggerFeeder(item);
+    if (syndicateForItem) {
       console.log(`\n  Syndicating after live verification: ${item.slug}...`);
       syndicate(item);
     }
