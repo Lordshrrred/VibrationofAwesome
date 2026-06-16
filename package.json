@@ -7,6 +7,7 @@
     "check:emdash": "node scripts/check-no-emdash.js",
     "build:matt-index": "node scripts/build-blog-index.js",
     "generate": "node scripts/generate-post.js",
+    "generate:campaign": "node scripts/generate-campaign-batch.js",
     "syndicate": "node scripts/syndicate.js",
     "check:syndication": "node scripts/check-syndication-config.js",
     "check:publer-accounts": "node scripts/list-publer-accounts.js",
