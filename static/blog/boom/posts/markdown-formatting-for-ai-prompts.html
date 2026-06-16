@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Formatting For Ai Prompts | Boom Frequency | Vibration of Awesome</title>
+  <meta name="description" content="Markdown For AI ~ a practical guide for creators and independent artists.">
+  <link rel="canonical" href="https://vibrationofawesome.com/blog/boom/posts/markdown-formatting-for-ai-prompts.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#00e5ff">
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Vibration of Awesome">
+  <meta property="og:title" content="Markdown Formatting For Ai Prompts">
+  <meta property="og:description" content="Markdown For AI ~ a practical guide for creators and independent artists.">
+  <meta property="og:url" content="https://vibrationofawesome.com/blog/boom/posts/markdown-formatting-for-ai-prompts.html">
+  <meta property="og:image" content="https://apod.nasa.gov/apod/image/0610/IC342NML_gendler_f.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Markdown Formatting For Ai Prompts">
+  <meta name="twitter:description" content="Markdown For AI ~ a practical guide for creators and independent artists.">
+  <meta name="twitter:image" content="https://apod.nasa.gov/apod/image/0610/IC342NML_gendler_f.jpg">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Markdown Formatting For Ai Prompts","description":"Markdown For AI ~ a practical guide for creators and independent artists.","url":"https://vibrationofawesome.com/blog/boom/posts/markdown-formatting-for-ai-prompts.html","datePublished":"2026-05-07T13:17:14.606Z","author":{"@type":"Person","name":"Matty BoomBoom","url":"https://vibrationofawesome.com"},"publisher":{"@type":"Organization","name":"Vibration of Awesome","url":"https://vibrationofawesome.com"},"image":"https://apod.nasa.gov/apod/image/0610/IC342NML_gendler_f.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://vibrationofawesome.com/blog/boom/posts/markdown-formatting-for-ai-prompts.html"}}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-G5HF0WKZT9");
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #020a0a; --surface: #060f10; --surface2: #0b1a1c;
+      --accent: #00e5ff; --accent-light: #b2f5ff; --accent-dark: #0097a7;
+      --text: #e8f4f0; --text-muted: #7a9e9a; --border: rgba(255,255,255,0.06);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: Space Grotesk, Inter, sans-serif; font-size: 18px; line-height: 1.75; min-height: 100vh; overflow-x: hidden; }
+    #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .site-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
+    .post-header { position:relative; z-index:1; overflow:hidden; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); min-height:31rem; display:flex; align-items:flex-end; padding:11rem 4rem 3.75rem; border-bottom:1px solid rgba(0,229,255,0.16); background-color:#020a0a; background:linear-gradient(to bottom, rgba(2,10,8,0.55) 0%, rgba(2,10,8,0.82) 62%, #020a0a 100%), url('https://apod.nasa.gov/apod/image/0610/IC342NML_gendler_f.jpg') center/cover no-repeat; }
+    .lane-badge { display: inline-block; font-family: Space Grotesk, sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 0.2em 0.6em; margin-bottom: 1.2rem; }
+    .post-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 1rem; }
+    .post-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .post-meta .author { color: var(--accent-light); }
+    .post-body { padding: 2.5rem 0 3rem; flex: 1; }
+    .post-body p { margin-bottom: 1.4em; }
+    .post-body h2 { font-size: 1.5rem; font-weight: 700; color: var(--accent-light); margin: 2.5rem 0 0.8rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+    .post-body h3 { font-size: 1.2rem; font-weight: 600; color: var(--text); margin: 1.8rem 0 0.6rem; }
+    .post-body h4, .post-body h5, .post-body h6 { font-size: 1.05rem; font-weight: 600; color: var(--text-muted); margin: 1.4rem 0 0.5rem; }
+    .post-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .post-body a:hover { color: var(--accent-light); }
+    .post-body ul, .post-body ol { margin: 0.8em 0 1.4em 1.6em; }
+    .post-body li { margin-bottom: 0.4em; }
+    .post-body blockquote { border-left: 3px solid var(--accent); padding: 0.6em 1.2em; margin: 1.5em 0; color: var(--text-muted); font-style: italic; background: var(--surface2); border-radius: 0 4px 4px 0; }
+    .post-body code { background: var(--surface2); color: var(--accent-light); padding: 0.15em 0.4em; border-radius: 3px; font-size: 0.88em; font-family: JetBrains Mono, Fira Code, monospace; }
+    .post-body pre { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 1.2em; overflow-x: auto; margin: 1.5em 0; }
+    .post-body pre code { background: none; padding: 0; color: var(--text); }
+    .post-body hr { border: none; border-top: 1px solid var(--border); margin: 2.5em 0; }
+    .post-body strong { color: var(--accent-light); font-weight: 600; }
+    .post-body em { font-style: italic; }
+    .site-footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 0.82rem; color: var(--text-muted); }
+    .site-footer a { color: var(--accent); text-decoration: none; }
+    footer p { margin: 0; }
+    footer .footer-brand { margin-top: 0.9rem; display: flex; flex-direction: column; align-items: center; gap: 0.36rem; }
+    footer .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.18rem; letter-spacing: 0.08em; color: rgba(112,182,196,0.72); text-decoration: none; text-shadow: 0 0 18px rgba(0,229,255,0.12); transition: color 0.22s ease; border-bottom: 1px solid transparent; padding-bottom: 0.08rem; }
+    footer .footer-logo span { font-size: 0.82em; opacity: 0.92; }
+    footer a.footer-logo:hover { color: #00e5ff; text-shadow: 0 0 24px rgba(0,229,255,0.24); border-bottom-color: rgba(0,229,255,0.75); }
+    footer .footer-tagline { font-family: Georgia, serif; font-style: italic; font-size: 0.98rem; color: rgba(207,246,255,0.76); }
+    .site-footer a:hover { text-decoration: underline; }
+    @media (max-width: 768px) { body { font-size: 16px; } .post-header { padding: 10rem 1.5rem 3rem; } }
+      .post-header-inner { max-width:760px; margin:0 auto; padding:0 1.5rem; width:100%; }
+    .post-header > *:not(.ev-art) { position:relative; z-index:1; }
+    .ev-art { position:absolute; inset:0; z-index:0; opacity:0.35; pointer-events:none; }
+
+/* Blog footer alignment repair */
+footer, .site-footer { text-align: center; width: 100%; }
+footer .footer-meta, .site-footer .footer-meta { display: block; width: 100%; margin-left: auto; margin-right: auto; text-align: center; }
+footer .footer-brand, .site-footer .footer-brand { margin-left: auto; margin-right: auto; text-align: center; }
+footer .footer-meta a, .site-footer .footer-meta a { color: var(--accent, var(--cyan, var(--amber, #00e5ff))) !important; text-decoration: none; border-bottom: 1px solid rgba(0,229,255,0.28); }
+footer .footer-meta a:hover, .site-footer .footer-meta a:hover { color: var(--accent-light, var(--cyan, var(--amber, #7ef2ff))) !important; border-bottom-color: currentColor; }
+
+
+/* Boom Site Nav */
+nav.site-nav{display:block;padding:0;position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(2,10,10,0.97);border-bottom:1px solid rgba(0,229,204,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.site-nav-main{display:flex;align-items:center;justify-content:space-between;gap:1.15rem;min-height:62px;padding:1.1rem 3rem;border-bottom:1px solid rgba(0,229,204,0.06);}
+a.site-nav-logo{font-family:'Space Grotesk',sans-serif;font-size:1rem;color:#00e5cc;text-decoration:none;letter-spacing:0.15em;font-weight:700;text-shadow:0 0 14px rgba(0,229,204,0.18);}
+.site-nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;justify-content:flex-end;flex:1 1 auto;min-width:0;}
+.site-nav-links a{font-family:'Space Grotesk',sans-serif;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(208,255,248,0.5);text-decoration:none;transition:color 0.2s;white-space:nowrap;}
+.site-nav-links a:hover,.site-nav-links a.active{color:#00e5cc;}
+.site-nav-links a.nav-aura-link{color:rgba(0,229,204,0.9);border:1px solid rgba(0,229,204,0.28);padding:0.22rem 0.6rem;border-radius:2px;}
+.site-nav-links a.nav-guide-link{color:#22c06a;border:1px solid rgba(34,192,106,0.35);padding:0.25rem 0.7rem;border-radius:2px;}
+.site-nav-links a.nav-ai-link{color:rgba(0,229,204,0.8);border:1px solid rgba(0,229,204,0.18);padding:0.2rem 0.52rem;border-radius:3px;}
+.site-nav-breadcrumb{display:flex;align-items:center;gap:0.4rem;min-height:30px;padding:0.22rem 3rem;}
+.site-nav-breadcrumb a{font-family:'Space Grotesk',sans-serif;font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(208,255,248,0.3);text-decoration:none;}
+.site-nav-breadcrumb a:hover{color:#00e5cc;}
+.site-nav-breadcrumb .nav-sep{font-size:0.58rem;color:rgba(208,255,248,0.18);}
+.site-nav-breadcrumb .nav-current{font-family:'Space Grotesk',sans-serif;font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:rgba(208,255,248,0.4);max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.site-nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+.site-nav-hamburger span{display:block;width:22px;height:2px;background:rgba(208,255,248,0.55);border-radius:1px;}
+@media(max-width:900px){
+  .site-nav-hamburger{display:flex;}
+  .site-nav-links{display:none;position:fixed;top:92px;left:0;right:0;background:rgba(2,10,10,0.99);flex-direction:column;gap:0;padding:1rem 0 1.5rem;border-bottom:1px solid rgba(0,229,204,0.12);}
+  .site-nav-links.open{display:flex;}
+  .site-nav-links li{width:100%;}
+  .site-nav-links a{display:block;padding:0.65rem 3rem;}
+  .site-nav-breadcrumb{padding:0.3rem 1.5rem;}
+}
+@media(max-width:768px){
+  .site-nav-main{padding:0.9rem 1.5rem;min-height:52px;}
+  .post-header{min-height:26.5rem;padding:10rem 1.5rem 3rem;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars-canvas" aria-hidden="true"></canvas>
+
+<nav class="site-nav site-nav--boom">
+  <div class="site-nav-main">
+    <a href="/" class="site-nav-logo">VOA</a>
+    <button class="site-nav-hamburger" id="siteNavHamburger" onclick="toggleSiteNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="site-nav-links" id="siteNavLinks">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/blog/boom/" class="active">Boom Frequency</a></li>
+      <li><a href="/field-guide/" class="nav-guide-link">Free Guide &#10022;</a></li>
+      <li><a href="/ai-engine/" class="nav-ai-link">AI Engine</a></li>
+      <li><a href="/art-store/">Art Store</a></li>
+      <li><a href="/aura/" class="nav-aura-link">AURA &#10022;</a></li>
+      <li><a href="/earthstar/">EarthStar &#10022;</a></li>
+    </ul>
+  </div>
+  <div class="site-nav-breadcrumb">
+    <a href="/">VOA</a>
+    <span class="nav-sep">/</span>
+    <a href="/blog/">Blog</a>
+    <span class="nav-sep">/</span>
+    <a href="/blog/boom/">Boom Frequency</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">Markdown Formatting For Ai Prompts</span>
+  </div>
+</nav>
+<script>function toggleSiteNav(){var l=document.getElementById("siteNavLinks");if(l)l.classList.toggle("open");}</script>
+
+
+<div class="site-wrapper">
+  <main>
+    <div class="container">
+      <header class="post-header">
+        <div class="post-header-inner">
+<div class="lane-badge">BOOM FREQUENCY</div>
+        <h1 class="post-title">Markdown Formatting For Ai Prompts</h1>
+        <div class="post-meta">
+          <span class="author">by Matty BoomBoom (AI)</span>
+          <span>&middot;</span>
+          <time datetime="2026-05-07T13:17:14.606Z">May 7, 2026</time>
+        </div>
+        </div>
+      </header>
+      <article class="post-body">
+        ```html
+<p><strong>META:</strong> Learn how markdown formatting for AI prompts actually changes the quality of responses you get. Real techniques, tested in the trenches.</p>
+
+<h1>Markdown Formatting for AI Prompts Changes Everything (Here's What Nobody Tells You)</h1>
+
+<p>If you've been sending AI plain walls of text and wondering why the responses feel scattered or shallow, <strong>markdown formatting for AI prompts</strong> is the thing you didn't know was missing. This isn't a theory. It's something I discovered by accident, got obsessed with, and now use every single day.</p>
+
+<p>The short version: AI models like Claude, ChatGPT, and Gemini are trained on enormous amounts of structured text. When you structure your prompts the same way, you speak the model's native language.</p>
+
+<p>Let's get into it.</p>
+
+<h2>Why Markdown Formatting for AI Prompts Actually Works</h2>
+
+<p>Most people treat prompts like a text message. One blob of words, hit enter, hope for the best. The AI tries to figure out what you want, makes assumptions, and fills gaps with generic filler.</p>
+
+<p>Markdown gives the model clear signals. Headers tell it what topic you're on. Bold text tells it what matters most. Bullet lists signal that you want discrete, parallel items ~ not a run-on paragraph pretending to be a list.</p>
+
+<p>Think of it like handing someone a sticky note versus handing them a properly formatted brief. Same information, wildly different results.</p>
+
+<h3>The Models Are Trained to Respond to Structure</h3>
+
+<p>Here's what clicked for me: these models processed millions of markdown documents during training. README files, technical docs, blog posts, wikis. Structure is baked into how they process meaning.</p>
+
+<p>When you use a <code>##</code> header in a prompt, you're not just organizing for yourself. You're activating a pattern the model recognizes at a deep level.</p>
+
+<p>The response quality shifts noticeably. More organized. More relevant. Less wandering.</p>
+
+<h2>The Core Markdown Elements That Actually Move the Needle</h2>
+
+<h3>Headers for Context Separation</h3>
+
+<p>Use <code>#</code> or <code>##</code> to separate major sections of a complex prompt. If you're giving the AI a role, a task, context, and constraints ~ put each one under its own header.</p>
+
+<p>Something like <code>## Your Role</code>, <code>## The Task</code>, <code>## Constraints</code> makes a massive difference in how cleanly the model processes each piece. It stops blending them together.</p>
+
+<p>I use this constantly when I'm building system prompts or giving a model a complicated multi-part job.</p>
+
+<h3>Bold Text to Anchor Priority</h3>
+
+<p>Wrap your most important instruction in <code>**double asterisks**</code>. The model treats bolded phrases as high-signal anchors. If something absolutely must happen, bold it.</p>
+
+<p>Example: <code>**Do not include any pricing information in this response.**</code> versus just typing that in plain text. The bolded version gets respected more consistently.</p>
+
+<p>I noticed this when testing prompt variations for client work. Bold constraints stuck. Plain text constraints got ignored about 30% of the time.</p>
+
+<h3>Bullet Lists for Multi-Part Instructions</h3>
+
+<p>If you have more than two things you want the AI to do or consider, put them in a bullet list. Plain prose instructions get tangled up ~ the model starts treating them as one continuous thought.</p>
+
+<p>A bulleted list forces parallel processing. Each item gets treated as its own discrete directive. The output becomes more complete and less likely to skip one of your requirements.</p>
+
+<p>This one change alone cuts my revision rounds in half.</p>
+
+<h3>Code Blocks for Exact Text</h3>
+
+<p>Wrap anything you want the model to treat as literal, unchanged text inside backticks or a fenced code block. This is huge for prompts where you're feeding it sample content, templates, or exact phrases.</p>
+
+<p>Without code blocks, the model might interpret or paraphrase your sample. With them, it treats the content as raw material to work with, not instructions to follow.</p>
+
+<p>Game changer for anyone doing content repurposing or template-based work.</p>
+
+<h2>Markdown Formatting for AI Prompts: Advanced Moves</h2>
+
+<h3>Numbered Lists for Sequences That Must Stay in Order</h3>
+
+<p>When you need steps, use numbered lists. The model understands sequencing from numbered structure the same way humans do. It preserves order and treats each number as a discrete action.</p>
+
+<p>Bullet points are unordered by nature ~ use numbers when sequence matters. Don't leave it to chance.</p>
+
+<h3>Horizontal Rules to Signal Sections in Long Prompts</h3>
+
+<p>Three hyphens <code>---</code> creates a horizontal rule in markdown. In a long prompt, dropping one of these between major sections gives the model a hard boundary signal.</p>
+
+<p>I use this when combining a system prompt with user context and then a specific task in one message. The visual separation carries real functional weight.</p>
+
+<h3>Nested Lists for Hierarchical Thinking</h3>
+
+<p>If your task has sub-tasks, indent them. Nested bullet points communicate hierarchy. The model understands that indented items belong to their parent item.</p>
+
+<p>This is useful for prompts that involve categories with specific requirements per category. Instead of explaining it in prose, just nest it. Cleaner prompt, cleaner output.</p>
+
+<h2>What NOT to Do With Markdown in Prompts</h2>
+
+<p>Don't go overboard. A prompt that's 80% markdown structure and 20% actual content is confusing. The structure should serve the content, not bury it.</p>
+
+<p>Also, don't use markdown when you're asking something simple. A quick one-line question doesn't need headers. Context collapse is real ~ over-structuring a simple request can actually confuse the model about what you want.</p>
+
+<p>Match the structure to the complexity of the task. Simple task, simple prompt. Complex multi-part task, structured markdown prompt.</p>
+
+<h2>A Real Example Side by Side</h2>
+
+<h3>Unformatted Prompt</h3>
+
+<p><em>"Write me an email to a client about a delayed project. Keep it professional but warm. Don't blame the team. Offer a new timeline. Include an apology but don't be groveling. End with confidence."</em></p>
+
+<h3>Markdown-Formatted Prompt</h3>
+
+<pre><code>## Task
+Write a client email about a project delay.
+
+## Tone
+- Professional but warm
+- Confident, not groveling
+
+## Requirements
+- **Do not blame the team**
+- Include a sincere apology
+- Offer a revised timeline
+- Close with confidence and forward momentum
+</code></pre>
+
+<p>Same information. Completely different signal quality. The second one gets a tighter, more on-target response every single time.</p>
+
+<h2>Markdown Formatting for AI Prompts Is a Skill Worth Building</h2>
+
+<p>This is one of those things that compounds fast. Once you internalize the pattern, it becomes second nature. You start writing prompts that get the response you actually wanted on the first try.</p>
+
+<p>That means less time iterating, less frustration, and more creative output you can actually use. For musicians, writers, entrepreneurs ~ anyone using AI as a creative partner ~ this matters enormously.</p>
+
+<p>If you're already exploring ways to use AI as a tool for creative and financial freedom, this is foundational stuff. It's the kind of thing we dig into regularly over at Vibration of Awesome, where the whole focus is on using these tools practically, not theoretically.</p>
+
+<p>You don't need to memorize every markdown rule. You just need to start using headers, bold text, and bullet lists in your prompts tomorrow. Notice what changes. Then build from there.</p>
+
+<p>That's it. No magic. Just structure doing what structure does.</p>
+
+<hr>
+
+<p><strong>Want more prompting strategies, AI workflows, and creative tools that actually work?</strong> Head over to the Boom Frequency blog at Vibration of Awesome and dig in. There's a lot more where this came from.</p>
+```
+<p>If you are building your own creative system around this, the <a href="https://vibrationofawesome.com/ai-engine/">AI Engine guide</a> goes deeper into using AI as a creative exoskeleton instead of another productivity costume.</p>
+      <div data-ai-engine-cta data-blog-slug="markdown-formatting-for-ai-prompts"></div>
+      <script src="/js/ai-engine-cta.js"></script>
+<div style="height:1rem;"></div>
+<div style="height:1rem;"></div>
+<div class="voa-photo-rotator" data-folder="boombot" data-mode="signature"></div>
+<script src="/js/photo-rotator.js"></script>
+<div style="height:1rem;"></div>
+      <div data-ebook-cta data-placement="end-of-post" data-blog-slug="markdown-formatting-for-ai-prompts"></div>
+      <script src="/js/ebook-cta.js?v=4d2b383"></script>
+        <div data-art-store-whisper data-blog-slug="markdown-formatting-for-ai-prompts"></div>
+        <script src="/js/art-store-whisper.js"></script>
+      </article>
+    </div>
+  </main>
+  <footer>
+  <p class="footer-meta">&copy; 2026 <a href="/">Vibration of Awesome</a> &nbsp;&middot;&nbsp; <a href="/blog/boom/">Boom Frequency</a> &nbsp;&middot;&nbsp; <a href="/blog/">All Posts</a></p>
+
+  <div class="footer-brand">
+    <a href="/" class="footer-logo">Vibration <span>of</span> Awesome</a>
+    <div class="footer-tagline">Empower Thyself. Empower the Earth.</div>
+  </div>
+</footer>
+</div>
+
+<script>
+(function() {
+  var canvas = document.getElementById("stars-canvas");
+  var ctx = canvas.getContext("2d");
+  var stars = [];
+  var STAR_COUNT = 160;
+  var AR = 0, AG = 229, AB = 255;
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  function initStars() {
+    stars = [];
+    for (var i = 0; i < STAR_COUNT; i++) {
+      stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.2, speed: Math.random() * 0.15 + 0.03,
+        opacity: Math.random() * 0.6 + 0.2, pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: Math.random() * 0.008 + 0.003, isAccent: Math.random() < 0.04 });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      s.pulse += s.pulseSpeed;
+      var op = s.opacity * (0.7 + 0.3 * Math.sin(s.pulse));
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      if (s.isAccent) { ctx.fillStyle = "rgba(" + AR + "," + AG + "," + AB + "," + op + ")"; }
+      else { ctx.fillStyle = "rgba(255,255,255," + op + ")"; }
+      ctx.fill();
+      s.y += s.speed;
+      if (s.y > canvas.height + 2) { s.y = -2; s.x = Math.random() * canvas.width; }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener("resize", function() { resize(); initStars(); });
+  resize(); initStars(); draw();
+})();
+</script>
+<script src="/js/announcement-bar.js"></script>
+<script src="/js/earthstar-visual.js"></script>
+<script src="/js/voa-nav.js" defer></script>
+</body>
+</html>

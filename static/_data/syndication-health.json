@@ -1,16 +1,20 @@
 {
-  "lastChecked": "2026-06-16T18:07:16.259Z",
-  "status": "ok",
+  "lastChecked": "2026-06-16T23:24:58.078Z",
+  "status": "broken",
   "passed": 15,
-  "failed": 0,
-  "total": 15,
-  "topFix": null,
+  "failed": 1,
+  "total": 16,
+  "topFix": {
+    "name": "Blogger token refresh",
+    "detail": "invalid_grant: Token has been expired or revoked.",
+    "repairCommand": "npm run blogger-token"
+  },
   "drip": {
     "status": "active",
     "rate": 1,
     "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
-    "remaining": 46,
-    "published": 53,
+    "remaining": 73,
+    "published": 54,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -18,7 +22,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=46"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=73"
     },
     {
       "name": "Publer accounts",
@@ -71,14 +75,20 @@
       "detail": "earthstarrising"
     },
     {
+      "name": "Dev.to account 2 auth",
+      "ok": true,
+      "detail": "awesomesaucyvibe"
+    },
+    {
       "name": "Tumblr VOA auth",
       "ok": true,
       "detail": "vibrationofawesome.tumblr.com user ok"
     },
     {
       "name": "Blogger token refresh",
-      "ok": true,
-      "detail": "token ok"
+      "ok": false,
+      "detail": "invalid_grant: Token has been expired or revoked.",
+      "failureType": "auth_reconnect_required"
     },
     {
       "name": "WordPress direct auth",
