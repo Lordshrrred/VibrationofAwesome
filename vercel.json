@@ -13,6 +13,8 @@
   },
   "redirects": [
     { "source": "/analytics", "destination": "/dashboard/analytics", "permanent": false },
-    { "source": "/analytics/", "destination": "/dashboard/analytics", "permanent": false }
+    { "source": "/analytics/", "destination": "/dashboard/analytics", "permanent": false },
+    { "source": "/api/orchestration-state", "destination": "/_data/orchestration-state.json", "permanent": false },
+    { "source": "/api/check-url", "destination": "/", "permanent": false }
   ]
 }

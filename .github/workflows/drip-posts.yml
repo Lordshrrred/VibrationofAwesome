@@ -275,6 +275,13 @@ jobs:
           IDEOGRAM_API_KEY:            ${{ secrets.IDEOGRAM_API_KEY }}
         run: node scripts/post-live-syndicate.js
 
+      - name: Reconcile syndication results with log
+        if: |
+          steps.queue_status.outputs.status == 'active' &&
+          steps.queue_status.outputs.remaining != '0' &&
+          steps.commit.outputs.nothing_committed != 'true'
+        run: node scripts/reconcile-syndication-results.js
+
       - name: Commit post-live syndication results
         id: post_live_commit
         if: |
