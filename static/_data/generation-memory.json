@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-17T16:43:25.966Z",
+  "lastUpdated": "2026-06-17T18:09:06.743Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "dean-graziosi-ai-bootcamp-who-is-this-actually-for",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-06-17T18:09:06.743Z"
+    },
+    {
       "slug": "tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,15 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-06-06T14:49:38.408Z"
-    },
-    {
-      "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-06-06T07:41:00.917Z"
     }
   ],
   "recentInstagramArchetypes": [
