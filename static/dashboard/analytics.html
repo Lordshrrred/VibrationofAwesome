@@ -127,6 +127,18 @@
       animation: skeleton-pulse 1.5s ease-in-out infinite;
     }
 
+    /* ── Range selector bar ── */
+    .range-bar { display: flex; align-items: center; gap: 0.35rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .range-bar-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-right: 0.2rem; font-family: "Rajdhani", sans-serif; }
+    .range-btn {
+      padding: 0.32rem 0.7rem; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; background: transparent;
+      border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted);
+      cursor: pointer; transition: all 0.18s; font-family: "Rajdhani", sans-serif;
+    }
+    .range-btn:hover { color: var(--cyan); border-color: rgba(0,255,255,0.3); }
+    .range-btn.active { color: var(--cyan); background: var(--cyan-dim); border-color: rgba(0,255,255,0.4); }
+
     /* ── Stat cards row ── */
     .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
     .stat-card {
@@ -187,6 +199,27 @@
     .source-name { flex: 1; font-size: 0.82rem; color: var(--text); }
     .source-pct { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); }
     .source-sessions { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* ── Sources detail table ── */
+    .src-detail-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.3rem 1.5rem; margin-bottom: 1.5rem;
+    }
+    .src-detail-card h3 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+    .src-detail-note { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .src-detail-note strong { color: var(--gold); }
+    .src-detail-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .src-detail-table th {
+      text-align: left; font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); padding: 0.4rem 0.7rem;
+      border-bottom: 1px solid var(--border); font-family: "Rajdhani", sans-serif;
+    }
+    .src-detail-table td { padding: 0.42rem 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--text); }
+    .src-detail-table tr:hover td { background: var(--cyan-glow); }
+    .src-detail-table td.td-source { color: var(--cyan); }
+    .src-detail-table td.td-medium { color: var(--text-muted); font-size: 0.75rem; }
+    .src-detail-table td.td-sessions { font-weight: 600; color: var(--text); text-align: right; }
+    .src-detail-table td.td-pct { color: var(--text-muted); text-align: right; }
 
     /* ── Top pages list ── */
     .pages-list { display: flex; flex-direction: column; gap: 0; }
@@ -255,6 +288,34 @@
     .nvr-bar-split { height: 100%; border-radius: 6px; }
     .nvr-bar-labels { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); }
 
+    /* ── MailerLite widget ── */
+    .ml-card {
+      background: var(--surface); border: 1px solid var(--border-gold);
+      border-radius: 10px; padding: 1.3rem 1.5rem; margin-bottom: 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .ml-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .ml-header { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+    .ml-card h3 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin: 0; }
+    .ml-total-wrap { display: flex; align-items: baseline; gap: 0.4rem; }
+    .ml-total { font-family: "Poppins", sans-serif; font-size: 2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .ml-total-label { font-size: 0.75rem; color: var(--text-muted); }
+    .ml-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .ml-section-title { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem; font-family: "Rajdhani", sans-serif; }
+    .ml-campaign-row { padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .ml-campaign-name { font-size: 0.82rem; color: var(--text); margin-bottom: 0.28rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ml-campaign-meta { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.28rem; }
+    .ml-campaign-stats { display: flex; gap: 1rem; font-size: 0.75rem; flex-wrap: wrap; }
+    .ml-campaign-stat { color: var(--text-muted); }
+    .ml-campaign-stat strong { color: var(--cyan); }
+    .ml-group-row { display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.8rem; }
+    .ml-group-name { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; margin-right: 0.5rem; }
+    .ml-group-count { color: var(--gold); font-weight: 600; white-space: nowrap; }
+    @media(max-width: 700px) { .ml-body { grid-template-columns: 1fr; } }
+
     /* ── Error state ── */
     .error-msg { color: var(--text-muted); font-style: italic; font-size: 0.82rem; text-align: center; padding: 1.5rem; }
 
@@ -294,12 +355,22 @@
       </nav>
     </div>
     <div class="dash-right">
-      <span class="last-updated" id="last-updated">Loading…</span>
+      <span class="last-updated" id="last-updated">Loading&hellip;</span>
       <button class="lock-btn" id="lock-btn">Lock</button>
     </div>
   </header>
 
   <main class="dash-main">
+
+    <!-- Date range selector -->
+    <div class="range-bar" id="range-bar">
+      <span class="range-bar-label">Range</span>
+      <button class="range-btn active" data-range="30d">30D</button>
+      <button class="range-btn" data-range="90d">90D</button>
+      <button class="range-btn" data-range="180d">6M</button>
+      <button class="range-btn" data-range="365d">1Y</button>
+      <button class="range-btn" data-range="alltime">All</button>
+    </div>
 
     <!-- Stat Cards -->
     <div class="stat-row" id="stat-row">
@@ -317,7 +388,7 @@
     <!-- Row 2: Pageviews chart + Sources -->
     <div class="two-col split-6040" id="row2">
       <div class="chart-card">
-        <h3>Pageviews Over Time <span style="font-size:0.72rem;color:var(--text-muted);font-weight:400;">~ last 30 days</span></h3>
+        <h3>Pageviews Over Time <span id="pv-range-label" style="font-size:0.72rem;color:var(--text-muted);font-weight:400;">~ last 30 days</span></h3>
         <div class="chart-wrap"><div class="skeleton chart-skel" id="pv-skel" style="height:200px;"></div><canvas id="pv-chart" style="display:none;"></canvas></div>
       </div>
       <div class="chart-card">
@@ -327,10 +398,17 @@
       </div>
     </div>
 
+    <!-- Sources detail (source/medium breakdown) -->
+    <div class="src-detail-card">
+      <h3>Traffic Source Detail</h3>
+      <p class="src-detail-note">Source/medium pairs for the selected range. Shows what is actually inside <strong>Direct</strong> and which referrers are driving sessions.</p>
+      <div id="src-detail-content"><div class="skeleton chart-skel" style="height:160px;"></div></div>
+    </div>
+
     <!-- Row 3: Top pages + Geo -->
     <div class="two-col split-5050" id="row3">
       <div class="chart-card">
-        <h3>Top Pages <span style="font-size:0.72rem;color:var(--text-muted);font-weight:400;">~ last 30 days</span></h3>
+        <h3>Top Pages <span id="pages-range-label" style="font-size:0.72rem;color:var(--text-muted);font-weight:400;">~ last 30 days</span></h3>
         <div id="pages-list"><div class="skeleton chart-skel" style="height:320px;"></div></div>
       </div>
       <div class="chart-card">
@@ -364,6 +442,11 @@
       <div id="nvr-content"><div class="skeleton chart-skel" style="height:80px;"></div></div>
     </div>
 
+    <!-- MailerLite -->
+    <div id="ml-wrap">
+      <div class="skeleton chart-skel" style="height:120px;border-radius:10px;"></div>
+    </div>
+
   </main>
 </div>
 
@@ -372,8 +455,19 @@
 const SESSION_KEY   = "voa_dash_authed";
 const CONFIG_URL    = "/_data/dashboard-config.json";
 const GA_BASE       = "https://vibrationofawesome.vercel.app/api/analytics";
-const REFRESH_MS    = 5 * 60 * 1000;   // 5 min for all metrics
-const RT_REFRESH_MS = 30 * 1000;        // 30 sec for realtime
+const ML_BASE       = "https://vibrationofawesome.vercel.app/api/mailerlite";
+const REFRESH_MS    = 10 * 60 * 1000;  // full refresh every 10 min (GA4 data has ~4hr delay anyway)
+const RT_REFRESH_MS = 60 * 1000;       // realtime every 60s (GA4 realtime has ~30s latency)
+
+let currentRange = "30d";
+
+const RANGE_LABELS = {
+  "30d":    "last 30 days",
+  "90d":    "last 90 days",
+  "180d":   "last 6 months",
+  "365d":   "last 12 months",
+  "alltime":"all time",
+};
 
 // Chart.js palette
 const PALETTE = [
@@ -441,6 +535,7 @@ async function initAuth() {
 function showApp() {
   document.getElementById("gate").style.display = "none";
   const app = document.getElementById("app"); app.style.display = "flex";
+  initRangeBar();
   loadAll();
 }
 
@@ -448,9 +543,42 @@ document.getElementById("lock-btn").addEventListener("click", () => {
   sessionStorage.removeItem(SESSION_KEY); location.reload();
 });
 
-// ── Fetch helper ─────────────────────────────────────────────────────────────
+// ── Range bar ─────────────────────────────────────────────────────────────────
+function initRangeBar() {
+  document.querySelectorAll(".range-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.range === currentRange) return;
+      currentRange = btn.dataset.range;
+      document.querySelectorAll(".range-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      // Update range labels on chart titles
+      const label = RANGE_LABELS[currentRange] || currentRange;
+      const pvLabel = document.getElementById("pv-range-label");
+      const pgLabel = document.getElementById("pages-range-label");
+      if (pvLabel) pvLabel.textContent = "~ " + label;
+      if (pgLabel) pgLabel.textContent = "~ " + label;
+      // Reload all range-sensitive data
+      loadOverview();
+      loadSources();
+      loadSourcesDetail();
+      loadTopPages();
+      loadGeo();
+      loadDevices();
+    });
+  });
+}
+
+// ── Fetch helpers ─────────────────────────────────────────────────────────────
 async function gaFetch(metric) {
-  const resp = await fetch(`${GA_BASE}?metric=${metric}`);
+  const resp = await fetch(`${GA_BASE}?metric=${metric}&range=${currentRange}`);
+  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+  const data = await resp.json();
+  if (data.error) throw new Error(data.error);
+  return data;
+}
+
+async function mlFetch() {
+  const resp = await fetch(ML_BASE);
   if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
   const data = await resp.json();
   if (data.error) throw new Error(data.error);
@@ -468,15 +596,19 @@ function fmtDur(sec) {
   return `${m}m ${String(s).padStart(2,"0")}s`;
 }
 function fmtPct(f) { return (f * 100).toFixed(1) + "%"; }
-function fmtDate(d) { // YYYYMMDD → Mon DD
+function fmtDate(d) { // YYYYMMDD -> Mon DD
   const y = d.slice(0,4), m = d.slice(4,6), day = d.slice(6,8);
   return new Date(`${y}-${m}-${day}`).toLocaleDateString("en-US",{month:"short",day:"numeric"});
 }
+function fmtSentDate(iso) {
+  if (!iso) return "";
+  return new Date(iso).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+}
 function errHtml(msg) {
-  return `<div class="error-msg">⚠ Could not load ~ ${msg || "check GA credentials"}</div>`;
+  return `<div class="error-msg">Could not load ~ ${msg || "check credentials"}</div>`;
 }
 
-// ── Chart instances (to destroy on refresh) ──────────────────────────────────
+// ── Chart instances (destroy on refresh) ─────────────────────────────────────
 const charts = {};
 function makeChart(id, config) {
   if (charts[id]) charts[id].destroy();
@@ -487,18 +619,18 @@ function makeChart(id, config) {
 async function loadOverview() {
   try {
     const d = await gaFetch("overview");
+    const rangeLabel = RANGE_LABELS[currentRange] || currentRange;
 
-    // Stat cards
     document.getElementById("stat-row").innerHTML = `
       <div class="stat-card">
         <div class="stat-label">Pageviews</div>
         <div class="stat-value">${fmtNum(d.pageviews)}</div>
-        <div class="stat-sub">last 30 days</div>
+        <div class="stat-sub">${rangeLabel}</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Sessions</div>
         <div class="stat-value">${fmtNum(d.sessions)}</div>
-        <div class="stat-sub">last 30 days</div>
+        <div class="stat-sub">${rangeLabel}</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Avg. Session Duration</div>
@@ -581,8 +713,8 @@ async function loadOverview() {
             <div class="nvr-bar-split" style="width:${newPct}%;background:linear-gradient(90deg,var(--cyan),var(--gold));"></div>
           </div>
           <div class="nvr-bar-labels">
-            <span style="color:var(--cyan);">↑ New ${newPct}%</span>
-            <span style="color:var(--gold);">Returning ${retPct}% ↑</span>
+            <span style="color:var(--cyan);">New ${newPct}%</span>
+            <span style="color:var(--gold);">Returning ${retPct}%</span>
           </div>
         </div>
       </div>`;
@@ -671,6 +803,34 @@ async function loadSources() {
       </div>`).join("");
   } catch (err) {
     document.getElementById("src-skel").innerHTML = errHtml(err.message);
+  }
+}
+
+// ── Sources Detail ────────────────────────────────────────────────────────────
+async function loadSourcesDetail() {
+  const el = document.getElementById("src-detail-content");
+  el.innerHTML = `<div class="skeleton chart-skel" style="height:160px;"></div>`;
+  try {
+    const rows = await gaFetch("sources_detail");
+    if (!rows.length) { el.innerHTML = errHtml("no data"); return; }
+    el.innerHTML = `
+      <table class="src-detail-table">
+        <thead><tr>
+          <th>Source</th><th>Medium</th>
+          <th style="text-align:right;">Sessions</th>
+          <th style="text-align:right;">%</th>
+        </tr></thead>
+        <tbody>${rows.map(r => `
+          <tr>
+            <td class="td-source">${r.source}</td>
+            <td class="td-medium">${r.medium}</td>
+            <td class="td-sessions">${r.sessions.toLocaleString()}</td>
+            <td class="td-pct">${r.pct}%</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>`;
+  } catch (err) {
+    el.innerHTML = errHtml(err.message);
   }
 }
 
@@ -766,8 +926,64 @@ async function loadDevices() {
     buildDonut("os-chart","os-skel","os-legend",   os,      "os");
   } catch (err) {
     ["dev-skel","br-skel","os-skel"].forEach(id => {
-      document.getElementById(id).outerHTML = errHtml(err.message);
+      const el = document.getElementById(id);
+      if (el) el.outerHTML = errHtml(err.message);
     });
+  }
+}
+
+// ── MailerLite ────────────────────────────────────────────────────────────────
+async function loadMailerLite() {
+  const wrap = document.getElementById("ml-wrap");
+  try {
+    const d = await mlFetch();
+
+    const campaignsHtml = (d.campaigns || []).length
+      ? d.campaigns.map(c => `
+          <div class="ml-campaign-row">
+            <div class="ml-campaign-name">${c.name}</div>
+            <div class="ml-campaign-meta">${fmtSentDate(c.sentAt)} &middot; ${c.sentCount.toLocaleString()} sent</div>
+            <div class="ml-campaign-stats">
+              <span class="ml-campaign-stat">Open <strong>${c.openRate != null ? (c.openRate * 100).toFixed(1) + "%" : "~"}</strong></span>
+              <span class="ml-campaign-stat">Click <strong>${c.clickRate != null ? (c.clickRate * 100).toFixed(1) + "%" : "~"}</strong></span>
+            </div>
+          </div>`).join("")
+      : `<div class="error-msg">No campaigns found</div>`;
+
+    const groupsHtml = (d.groups || []).length
+      ? d.groups.slice(0, 8).map(g => `
+          <div class="ml-group-row">
+            <span class="ml-group-name">${g.name}</span>
+            <span class="ml-group-count">${g.active.toLocaleString()}</span>
+          </div>`).join("")
+      : `<div class="error-msg">No groups found</div>`;
+
+    wrap.innerHTML = `
+      <div class="ml-card">
+        <div class="ml-header">
+          <h3>MailerLite</h3>
+          <div class="ml-total-wrap">
+            <div class="ml-total">${fmtNum(d.totalSubscribers)}</div>
+            <div class="ml-total-label">active subscribers</div>
+          </div>
+        </div>
+        <div class="ml-body">
+          <div>
+            <div class="ml-section-title">Recent Campaigns</div>
+            ${campaignsHtml}
+          </div>
+          <div>
+            <div class="ml-section-title">Groups</div>
+            ${groupsHtml}
+          </div>
+        </div>
+      </div>`;
+  } catch (err) {
+    wrap.innerHTML = `
+      <div class="ml-card">
+        <div class="ml-header"><h3>MailerLite</h3></div>
+        ${errHtml(err.message)}
+      </div>`;
   }
 }
 
@@ -782,15 +998,23 @@ async function loadAll() {
   await Promise.all([
     loadOverview(),
     loadSources(),
+    loadSourcesDetail(),
     loadTopPages(),
     loadGeo(),
     loadDevices(),
+    loadMailerLite(),
   ]);
   startRealtimeLoop();
   updateTimestamp();
-  // Auto-refresh every 5 minutes
   setInterval(async () => {
-    await Promise.all([loadOverview(), loadSources(), loadTopPages(), loadGeo(), loadDevices()]);
+    await Promise.all([
+      loadOverview(),
+      loadSources(),
+      loadSourcesDetail(),
+      loadTopPages(),
+      loadGeo(),
+      loadDevices(),
+    ]);
     updateTimestamp();
   }, REFRESH_MS);
 }

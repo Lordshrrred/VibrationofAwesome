@@ -53,7 +53,8 @@ function findSourcePost(slug) {
 function latestLoggedSyndication(slug) {
   const log = loadJson(LOG_FILE, null);
   const entries = Array.isArray(log?.entries) ? log.entries : [];
-  const match = entries.find(entry => entry.postSlug === slug && entry.platforms && typeof entry.platforms === "object");
+  const sorted = entries.filter(entry => entry.postSlug === slug && entry.platforms && typeof entry.platforms === "object").sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+  const match = sorted[0];
   if (!match) return {};
 
   const timestamp = match.timestamp || new Date().toISOString();
