@@ -455,7 +455,6 @@
 const SESSION_KEY   = "voa_dash_authed";
 const CONFIG_URL    = "/_data/dashboard-config.json";
 const GA_BASE       = "https://vibrationofawesome.vercel.app/api/analytics";
-const ML_BASE       = "https://vibrationofawesome.vercel.app/api/mailerlite";
 const REFRESH_MS    = 10 * 60 * 1000;  // full refresh every 10 min (GA4 data has ~4hr delay anyway)
 const RT_REFRESH_MS = 60 * 1000;       // realtime every 60s (GA4 realtime has ~30s latency)
 
@@ -578,11 +577,7 @@ async function gaFetch(metric) {
 }
 
 async function mlFetch() {
-  const resp = await fetch(ML_BASE);
-  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-  const data = await resp.json();
-  if (data.error) throw new Error(data.error);
-  return data;
+  return gaFetch("mailerlite");
 }
 
 // ── Utilities ─────────────────────────────────────────────────────────────────

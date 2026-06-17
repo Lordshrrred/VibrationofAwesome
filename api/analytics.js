@@ -148,6 +148,34 @@ async function getDevices(token, pid, startDate) {
   return { devices: parseRows(dr_).map(r=>({device:r.deviceCategory,sessions:fmt(r.sessions)})), browsers: parseRows(br).map(r=>({browser:r.browser,sessions:fmt(r.sessions)})), os: parseRows(or_).map(r=>({os:r.operatingSystem,sessions:fmt(r.sessions)})) };
 }
 
+// ── MailerLite handler (consolidated here to stay within Vercel 12-function limit) ──
+async function getMailerLite() {
+  const key = process.env.MAILERLITE_API_KEY;
+  if (!key) throw new Error("MAILERLITE_API_KEY not set");
+  const headers = { Authorization: `Bearer ${key}`, "Content-Type": "application/json", Accept: "application/json" };
+  const [subResp, campaignResp, groupsResp] = await Promise.all([
+    fetch("https://connect.mailerlite.com/api/subscribers?filter[status]=active&limit=1", { headers }),
+    fetch("https://connect.mailerlite.com/api/campaigns?filter[status]=sent&sort=sent_at&direction=desc&limit=3", { headers }),
+    fetch("https://connect.mailerlite.com/api/groups?limit=25", { headers }),
+  ]);
+  const [subData, campaignData, groupsData] = await Promise.all([subResp.json(), campaignResp.json(), groupsResp.json()]);
+  return {
+    totalSubscribers: subData.meta?.total ?? 0,
+    campaigns: (campaignData.data || []).map(c => ({
+      name:      c.name || "(unnamed)",
+      sentAt:    c.scheduled_at || c.sent_at || null,
+      sentCount: c.emails_count || 0,
+      openRate:  c.stats?.open_rate?.float  ?? null,
+      clickRate: c.stats?.click_rate?.float ?? null,
+    })),
+    groups: (groupsData.data || []).map(g => ({
+      name:   g.name,
+      active: g.active_count  ?? g.total_subscribers ?? 0,
+      total:  g.total         ?? g.active_count ?? 0,
+    })),
+  };
+}
+
 export default async function handler(req, res) {
   setCors(res);
   if (req.method === "OPTIONS") return res.status(200).end();
@@ -156,6 +184,12 @@ export default async function handler(req, res) {
   const metric    = req.query?.metric || "overview";
   const rangeKey  = req.query?.range  || "30d";
   const startDate = RANGE_MAP[rangeKey] || "30daysAgo";
+
+  // MailerLite doesn't need GA credentials
+  if (metric === "mailerlite") {
+    try { return res.status(200).json(await getMailerLite()); }
+    catch (err) { console.error("[mailerlite]", err.message); return res.status(500).json({ error: err.message }); }
+  }
 
   const credJson    = process.env.GA_CREDENTIALS_JSON;
   const propertyId  = process.env.GA_PROPERTY_ID;
@@ -175,7 +209,7 @@ export default async function handler(req, res) {
       geo:            (t, p) => getGeo(t, p, startDate),
       devices:        (t, p) => getDevices(t, p, startDate),
     };
-    if (!handlers[metric]) return res.status(400).json({ error: `Unknown metric: ${metric}. Valid: overview|toppages|sources|sources_detail|realtime|geo|devices` });
+    if (!handlers[metric]) return res.status(400).json({ error: `Unknown metric: ${metric}. Valid: overview|toppages|sources|sources_detail|realtime|geo|devices|mailerlite` });
     return res.status(200).json(await handlers[metric](token, propertyId));
   } catch (err) {
     console.error("[analytics]", err.message);

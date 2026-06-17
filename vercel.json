@@ -10,5 +10,9 @@
     "api/**": {
       "maxDuration": 30
     }
-  }
+  },
+  "redirects": [
+    { "source": "/analytics", "destination": "/dashboard/analytics", "permanent": false },
+    { "source": "/analytics/", "destination": "/dashboard/analytics", "permanent": false }
+  ]
 }
