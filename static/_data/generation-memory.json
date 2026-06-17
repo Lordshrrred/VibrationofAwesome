@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-17T21:01:31.706Z",
+  "lastUpdated": "2026-06-17T23:28:49.853Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-summit-vs-bootcamp-what-is-the-actual-difference",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-06-17T23:28:34.891Z"
+    },
+    {
       "slug": "igor-pogany-ai-advantage-the-person-behind-the-system",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,18 +1156,18 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-06-07T08:19:21.695Z"
-    },
-    {
-      "slug": "how-to-use-perplexity-ai-for-creative-projects",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-06-06T23:08:08.958Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "ai-advantage-summit-vs-bootcamp-what-is-the-actual-difference",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-17T23:28:49.853Z"
+    },
     {
       "slug": "tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
       "archetype": "premium-quote-card",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "liminal",
       "emotionalCluster": "atmospheric",
       "timestamp": "2026-06-05T23:14:07.359Z"
-    },
-    {
-      "slug": "how-to-create-a-freedom-lifestyle-from-scratch",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-05T16:07:29.325Z"
     }
   ]
 }
