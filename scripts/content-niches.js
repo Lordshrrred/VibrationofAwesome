@@ -488,6 +488,31 @@ export const EARTHSTAR_NICHES = [
       // Long-tail specifics
       "AI Advantage Bootcamp Refund Policy: What the Fifteen Hour Guarantee Actually Means",
       "AI Advantage Bootcamp vs ChatGPT: Do You Need a Course to Learn What GPT Can Teach You",
+      // Person cluster ~ high volume, underserved
+      "Who Is Dean Graziosi: The Man Behind the AI Advantage Sales Pitch",
+      "Dean Graziosi Net Worth: Does His Success Validate His AI Course",
+      "Is Tony Robbins Actually an AI Expert or Just a Famous Face on a Sales Page",
+      "Tony Robbins and Dean Graziosi: A History of Expensive Courses Together",
+      "Every Dean Graziosi Program Ranked: Which Ones Are Actually Worth the Money",
+      "Knowledge Business Blueprint vs AI Advantage: How Dean Graziosi Evolved His Pitch",
+      // Skeptic and funnel-exposure cluster ~ the white space nobody else fills
+      "Why Is Everyone Promoting AI Advantage: The Affiliate Machine Explained",
+      "The AI Advantage Webinar Formula: How They Move You From Free Summit to $995 Page",
+      "What AI Advantage Does Not Teach You: The Honest Gaps in the Curriculum",
+      "Is the AI Advantage 15-Hour Guarantee Actually Worth Anything",
+      "The Real Cost of AI Advantage: Price, Time, and Opportunity Cost",
+      "How Dean Graziosi Uses AI in His Own Business and What That Tells You",
+      // Free alternative cluster ~ VOA's strongest angle, nothing like this ranks
+      "How to Build Your Own AI Clone System Without Paying a Thousand Dollars",
+      "The Free Version of Everything the AI Advantage Bootcamp Actually Teaches",
+      "How to Train ChatGPT or Claude on Your Own Voice and Style for Free",
+      "Build a 15-Hour-Per-Week AI Time Savings System Without Buying a Course",
+      // Comparison cluster ~ unique angles not yet covered
+      "AI Advantage vs Hiring a Virtual Assistant: Which Gives You More Time Back",
+      "AI Advantage vs Free YouTube AI Tutorials: What You Actually Get for $995",
+      "Mastermind.com vs AI Advantage: Are Tony and Dean Selling the Same Promise Twice",
+      // Reddit anchor ~ captures the no-BS research searches
+      "AI Advantage Bootcamp Reddit: What Real People Are Actually Saying",
     ],
     keywordSeedPhrases: [
       // Review searches
@@ -541,14 +566,42 @@ export const EARTHSTAR_NICHES = [
       // Long-tail
       "AI Advantage Bootcamp refund policy guarantee",
       "AI Advantage vs ChatGPT free",
+      // Person / brand curiosity (high volume)
+      "who is Dean Graziosi",
+      "Dean Graziosi net worth",
+      "is Tony Robbins an AI expert",
+      "Tony Robbins Dean Graziosi history together",
+      "Dean Graziosi programs ranked",
+      "Knowledge Business Blueprint vs AI Advantage",
+      // Skeptic / funnel exposure (white space)
+      "why everyone promoting AI Advantage affiliate",
+      "AI Advantage webinar funnel breakdown",
+      "what AI Advantage doesn't teach",
+      "AI Advantage 15 hour guarantee real",
+      "real cost of AI Advantage",
+      "Dean Graziosi AI tools he actually uses",
+      // Free alternatives (nobody writing this)
+      "how to build AI clone system free",
+      "free version of AI Advantage course",
+      "how to train ChatGPT on your voice free",
+      "15 hour AI time savings without course",
+      // Unique comparisons
+      "AI Advantage vs hiring virtual assistant",
+      "AI Advantage vs YouTube AI tutorials",
+      "Mastermind.com vs AI Advantage same thing",
+      // Reddit anchor
+      "AI Advantage Bootcamp Reddit",
     ],
     toneNotes: [
-      "Honest and balanced. Do NOT write promotional copy for the program.",
-      "Do NOT write hit pieces either. The program has real value for certain people.",
-      "Give readers a clear decision framework: who this is for, who it is not for, what the alternatives are.",
-      "Reference vibrationofawesome.com's own AI tools content as a free resource where relevant.",
-      "Treat readers as intelligent adults capable of making their own decision with good information.",
-      "Igor Pogany is the AI educator behind the system. Dean Graziosi is the business/sales lead. Tony Robbins is the credibility anchor.",
+      "The core belief: most people do NOT need to spend $995 to get the result AI Advantage promises. They need information, practice, and the right free tools.",
+      "Honest and balanced. Do NOT write promotional copy for the program. Do NOT write hit pieces either.",
+      "The program is real, the teaching exists, the community exists. But it is also a masterclass in sales funneling — be honest about both.",
+      "Give readers genuine decision frameworks: who this is for, who it is NOT for, and exactly what they need to do instead if they skip it.",
+      "The free alternative posts should give REAL value — actual tool names, actual workflows, actual steps. Not vague advice.",
+      "Reference vibrationofawesome.com/ai-engine/ (The Creative Exoskeleton guide) naturally as the free alternative to the paid bootcamp.",
+      "Treat readers as intelligent adults who watched a slick webinar and deserve an honest outside perspective.",
+      "Igor Pogany is the hired AI educator running the technical content. Dean Graziosi is the sales architect. Tony Robbins is the trust-and-credibility anchor. Know their actual roles.",
+      "The affiliate angle matters: 40-50% commissions mean most online reviews are paid promotions. VOA is the alternative voice.",
     ],
     keywordResearch: {
       informational: [
