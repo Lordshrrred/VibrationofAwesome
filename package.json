@@ -43,7 +43,9 @@
     "pdf:scrub": "bash scripts/scrub-pdf-metadata.sh",
     "pdf:check": "bash scripts/check-pdf-privacy.sh",
     "privacy:check": "bash scripts/check-pdf-privacy.sh",
-    "heal": "node scripts/auto-heal.js"
+    "heal": "node scripts/auto-heal.js",
+    "gmail-token": "python3 scripts/get_gmail_token.py",
+    "gmail-replies": "node scripts/check-gmail-replies.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

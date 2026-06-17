@@ -316,6 +316,24 @@
     .ml-group-count { color: var(--gold); font-weight: 600; white-space: nowrap; }
     @media(max-width: 700px) { .ml-body { grid-template-columns: 1fr; } }
 
+    /* ── Gmail widget ── */
+    .gmail-card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 1.4rem 1.5rem; margin-top: 1.5rem; position: relative; overflow: hidden; }
+    .gmail-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #ea4335, #fbbc05, #34a853, #4285f4); }
+    .gmail-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .gmail-card h3 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin: 0; }
+    .gmail-updated { font-size: 0.7rem; color: var(--text-muted); margin-left: auto; }
+    .gmail-msg-row { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .gmail-msg-row:last-child { border-bottom: none; }
+    .gmail-msg-from { font-size: 0.82rem; color: var(--text); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .gmail-msg-from.unread { color: var(--cyan); }
+    .gmail-msg-subject { font-size: 0.78rem; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .gmail-msg-snippet { font-size: 0.74rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .gmail-msg-meta { font-size: 0.7rem; color: var(--text-muted); display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .gmail-badge { display: inline-block; padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.65rem; font-weight: 600; }
+    .gmail-badge.unread { background: rgba(0,255,255,0.12); color: var(--cyan); }
+    .gmail-badge.starred { background: rgba(255,215,0,0.15); color: var(--gold); }
+    .gmail-empty { color: var(--text-muted); font-style: italic; font-size: 0.82rem; padding: 0.8rem 0; }
+
     /* ── Error state ── */
     .error-msg { color: var(--text-muted); font-style: italic; font-size: 0.82rem; text-align: center; padding: 1.5rem; }
 
@@ -444,6 +462,11 @@
 
     <!-- MailerLite -->
     <div id="ml-wrap">
+      <div class="skeleton chart-skel" style="height:120px;border-radius:10px;"></div>
+    </div>
+
+    <!-- Gmail Subscriber Replies -->
+    <div id="gmail-wrap">
       <div class="skeleton chart-skel" style="height:120px;border-radius:10px;"></div>
     </div>
 
@@ -982,6 +1005,50 @@ async function loadMailerLite() {
   }
 }
 
+// ── Gmail subscriber replies ──────────────────────────────────────────────────
+async function loadGmail() {
+  const wrap = document.getElementById("gmail-wrap");
+  try {
+    const resp = await fetch("/_data/gmail-subscriber-replies.json");
+    if (!resp.ok) {
+      wrap.innerHTML = `<div class="gmail-card"><div class="gmail-header"><h3>Inbox Replies</h3></div><div class="error-msg">Not yet available — run <code>npm run gmail-token</code> and push the GH secret.</div></div>`;
+      return;
+    }
+    const d = await resp.json();
+    const msgs = (d.messages || []).slice(0, 20);
+    const updStr = d.updatedAt ? new Date(d.updatedAt).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "";
+
+    const rows = msgs.length === 0
+      ? `<div class="gmail-empty">No inbox messages in the last ${d.daysBack || 7} days.</div>`
+      : msgs.map(m => {
+          const fromDisplay = m.from.replace(/<.*?>/, "").trim() || m.from;
+          const dateDisplay = m.date ? new Date(m.date).toLocaleDateString([], { month: "short", day: "numeric" }) : "";
+          const badges = [
+            !m.isRead ? `<span class="gmail-badge unread">UNREAD</span>` : "",
+            m.isStarred ? `<span class="gmail-badge starred">★ STARRED</span>` : "",
+          ].filter(Boolean).join(" ");
+          return `
+            <div class="gmail-msg-row">
+              <div class="gmail-msg-from ${!m.isRead ? "unread" : ""}">${fromDisplay}</div>
+              <div class="gmail-msg-subject">${m.subject || "(no subject)"}</div>
+              <div class="gmail-msg-snippet">${m.snippet || ""}</div>
+              <div class="gmail-msg-meta">${dateDisplay ? `<span>${dateDisplay}</span>` : ""}${badges}</div>
+            </div>`;
+        }).join("");
+
+    wrap.innerHTML = `
+      <div class="gmail-card">
+        <div class="gmail-header">
+          <h3>Inbox Replies</h3>
+          <span class="gmail-updated">Updated ${updStr} &middot; last ${d.daysBack || 7} days</span>
+        </div>
+        ${rows}
+      </div>`;
+  } catch (err) {
+    wrap.innerHTML = `<div class="gmail-card"><div class="gmail-header"><h3>Inbox Replies</h3></div>${errHtml(err.message)}</div>`;
+  }
+}
+
 // ── Last updated timestamp ────────────────────────────────────────────────────
 function updateTimestamp() {
   document.getElementById("last-updated").textContent =
@@ -998,6 +1065,7 @@ async function loadAll() {
     loadGeo(),
     loadDevices(),
     loadMailerLite(),
+    loadGmail(),
   ]);
   startRealtimeLoop();
   updateTimestamp();
