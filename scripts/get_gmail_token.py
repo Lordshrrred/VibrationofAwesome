@@ -124,9 +124,12 @@ def main():
     })
     auth_url = f"https://accounts.google.com/o/oauth2/v2/auth?{params}"
 
-    print("\nOpening browser for Gmail authorization...")
+    print("\nOpening Safari for Gmail authorization...")
     print(f"URL: {auth_url}\n")
-    webbrowser.open(auth_url)
+    try:
+        subprocess.Popen(["open", "-a", "Safari", auth_url])
+    except Exception:
+        webbrowser.open(auth_url)
     print("Waiting for callback on http://localhost:8765/callback ...")
 
     # Wait for auth
