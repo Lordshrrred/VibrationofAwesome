@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-17T18:09:06.743Z",
+  "lastUpdated": "2026-06-17T21:01:31.706Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "igor-pogany-ai-advantage-the-person-behind-the-system",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-06-17T21:01:31.706Z"
+    },
+    {
       "slug": "dean-graziosi-ai-bootcamp-who-is-this-actually-for",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,15 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-06-06T23:08:08.958Z"
-    },
-    {
-      "slug": "passive-income-ideas-for-beginners-that-dont-require-being-fake",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-06-06T14:49:38.408Z"
     }
   ],
   "recentInstagramArchetypes": [
