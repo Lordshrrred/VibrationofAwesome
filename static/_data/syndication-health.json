@@ -1,20 +1,16 @@
 {
-  "lastChecked": "2026-06-16T23:24:58.078Z",
-  "status": "broken",
-  "passed": 15,
-  "failed": 1,
+  "lastChecked": "2026-06-17T05:16:27.299Z",
+  "status": "ok",
+  "passed": 16,
+  "failed": 0,
   "total": 16,
-  "topFix": {
-    "name": "Blogger token refresh",
-    "detail": "invalid_grant: Token has been expired or revoked.",
-    "repairCommand": "npm run blogger-token"
-  },
+  "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
     "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
-    "remaining": 73,
-    "published": 54,
+    "remaining": 114,
+    "published": 55,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -22,7 +18,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=73"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=114"
     },
     {
       "name": "Publer accounts",
@@ -86,9 +82,8 @@
     },
     {
       "name": "Blogger token refresh",
-      "ok": false,
-      "detail": "invalid_grant: Token has been expired or revoked.",
-      "failureType": "auth_reconnect_required"
+      "ok": true,
+      "detail": "token ok"
     },
     {
       "name": "WordPress direct auth",
