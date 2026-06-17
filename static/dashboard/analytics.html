@@ -398,11 +398,6 @@
       <div class="skeleton stat-skel"></div>
     </div>
 
-    <!-- Realtime strip -->
-    <div id="realtime-wrap">
-      <div class="skeleton rt-skel" style="margin-bottom:1.5rem;border-radius:10px;"></div>
-    </div>
-
     <!-- Row 2: Pageviews chart + Sources -->
     <div class="two-col split-6040" id="row2">
       <div class="chart-card">
@@ -982,7 +977,7 @@ async function loadMailerLite() {
           <h3>MailerLite</h3>
           <div class="ml-total-wrap">
             <div class="ml-total">${fmtNum(d.totalSubscribers)}</div>
-            <div class="ml-total-label">active subscribers</div>
+            <div class="ml-total-label">email subscribers</div>
           </div>
         </div>
         <div class="ml-body">
@@ -1067,7 +1062,6 @@ async function loadAll() {
     loadMailerLite(),
     loadGmail(),
   ]);
-  startRealtimeLoop();
   updateTimestamp();
   setInterval(async () => {
     await Promise.all([
