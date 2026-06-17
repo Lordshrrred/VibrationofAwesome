@@ -300,5 +300,28 @@
       }
     ],
     "retriggered": true
+  },
+  {
+    "healedAt": "2026-06-17T12:01:51.940Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the deployment environment.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "required_but_not_provided",
+          "reason": "Dev.to account 2 syndication requires a valid API key; the check-syndication-config.js script validates this on every health run and fails when missing"
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
