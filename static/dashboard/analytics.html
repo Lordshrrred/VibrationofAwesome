@@ -1006,7 +1006,7 @@ async function loadGmail() {
   try {
     const resp = await fetch("/_data/gmail-subscriber-replies.json");
     if (!resp.ok) {
-      wrap.innerHTML = `<div class="gmail-card"><div class="gmail-header"><h3>Inbox Replies</h3></div><div class="error-msg">Not yet available — run <code>npm run gmail-token</code> and push the GH secret.</div></div>`;
+      wrap.innerHTML = `<div class="gmail-card"><div class="gmail-header"><h3>Inbox Replies</h3></div><div class="error-msg">Not yet available ~ run <code>npm run gmail-token</code> and push the GH secret.</div></div>`;
       return;
     }
     const d = await resp.json();
