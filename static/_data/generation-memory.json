@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-18T05:56:44.068Z",
+  "lastUpdated": "2026-06-18T16:41:17.238Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-bootcamp-cost-here-is-exactly-what-nine-hundred-ninety-five-dollars-gets-you",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-06-18T16:41:04.370Z"
+    },
+    {
       "slug": "where-to-buy-original-art-online-without-getting-burned",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,18 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-06-07T23:08:18.040Z"
-    },
-    {
-      "slug": "shadow-work-for-beginners-what-it-actually-is-and-why-it-matters",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-06-07T14:58:32.498Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "ai-advantage-bootcamp-cost-here-is-exactly-what-nine-hundred-ninety-five-dollars-gets-you",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-06-18T16:41:17.238Z"
+    },
     {
       "slug": "ai-advantage-summit-vs-bootcamp-what-is-the-actual-difference",
       "archetype": "field-guide-aesthetic",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-06T07:41:16.661Z"
-    },
-    {
-      "slug": "chatgpt-prompts-for-music-producers",
-      "archetype": "cinematic-ideogram",
-      "archetypeLabel": "Cinematic Artwork",
-      "palette": "painterly-dark",
-      "emotionalTone": "liminal",
-      "emotionalCluster": "atmospheric",
-      "timestamp": "2026-06-05T23:14:07.359Z"
     }
   ]
 }
