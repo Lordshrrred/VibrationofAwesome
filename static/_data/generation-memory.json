@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-17T23:28:49.853Z",
+  "lastUpdated": "2026-06-18T05:56:44.068Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "where-to-buy-original-art-online-without-getting-burned",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-06-18T05:56:44.068Z"
+    },
+    {
       "slug": "ai-advantage-summit-vs-bootcamp-what-is-the-actual-difference",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,15 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-06-07T14:58:32.498Z"
-    },
-    {
-      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-06-07T08:19:21.695Z"
     }
   ],
   "recentInstagramArchetypes": [
