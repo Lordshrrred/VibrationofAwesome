@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-19T06:19:27.480Z",
+  "lastUpdated": "2026-06-19T16:13:15.651Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-reclaim-fifteen-hours-a-week-with-ai-what-the-bootcamp-does-not-tell-you",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-06-19T16:13:01.724Z"
+    },
+    {
       "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,18 +1156,18 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-06-09T08:26:57.199Z"
-    },
-    {
-      "slug": "how-to-use-gamma-ai-for-music-presentations",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-06-08T23:16:26.366Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-reclaim-fifteen-hours-a-week-with-ai-what-the-bootcamp-does-not-tell-you",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-19T16:13:15.651Z"
+    },
     {
       "slug": "tony-robbins-and-dean-graziosi-ai-course-what-makes-it-different-from-the-rest",
       "archetype": "nervous-system-atmospheric",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "stillness",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-06T23:08:21.812Z"
-    },
-    {
-      "slug": "passive-income-ideas-for-beginners-that-dont-require-being-fake",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-06T14:49:57.023Z"
     }
   ]
 }
