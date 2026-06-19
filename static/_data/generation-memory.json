@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-19T20:25:28.280Z",
+  "lastUpdated": "2026-06-19T23:02:28.427Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-club-review-is-the-monthly-community-worth-staying-in",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-06-19T23:02:13.948Z"
+    },
+    {
       "slug": "dean-graziosi-review-is-his-ai-course-better-than-his-other-programs",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,18 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-06-10T16:41:31.777Z"
-    },
-    {
-      "slug": "how-to-use-chatgpt-for-music-production-beginners",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-06-09T23:20:21.619Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "ai-advantage-club-review-is-the-monthly-community-worth-staying-in",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-19T23:02:28.427Z"
+    },
     {
       "slug": "how-to-reclaim-fifteen-hours-a-week-with-ai-what-the-bootcamp-does-not-tell-you",
       "archetype": "symbolic-consciousness",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "regulation",
       "emotionalCluster": "somatic",
       "timestamp": "2026-06-07T08:19:36.003Z"
-    },
-    {
-      "slug": "how-to-use-perplexity-ai-for-creative-projects",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-06T23:08:21.812Z"
     }
   ]
 }
