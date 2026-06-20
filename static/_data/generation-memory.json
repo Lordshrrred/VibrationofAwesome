@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-20T20:12:44.547Z",
+  "lastUpdated": "2026-06-20T23:12:33.724Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-for-entrepreneurs-does-this-actually-help-your-business",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-06-20T23:12:19.951Z"
+    },
+    {
       "slug": "tony-robbins-ai-webinar-2026-everything-that-happens-before-the-pitch",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,18 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-06-12T23:20:07.391Z"
-    },
-    {
-      "slug": "why-youre-always-anxious-for-no-reason-theres-always-a-reason",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-06-12T16:26:33.730Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "ai-advantage-for-entrepreneurs-does-this-actually-help-your-business",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-20T23:12:33.724Z"
+    },
     {
       "slug": "is-the-ai-advantage-bootcamp-a-scam-looking-at-the-actual-evidence",
       "archetype": "sacred-tech",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-07T23:08:37.778Z"
-    },
-    {
-      "slug": "shadow-work-for-beginners-what-it-actually-is-and-why-it-matters",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-07T14:58:45.961Z"
     }
   ]
 }
