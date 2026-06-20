@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-06-19T23:04:55.964Z",
+  "generated_at": "2026-06-20T05:12:13.596Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -187,6 +187,16 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "why-buying-art-from-independent-artists-actually-matters",
+        "title": "Why Buying Art From Independent Artists Actually Matters",
+        "lane": "boom",
+        "date": "2026-06-20T05:12:13.587Z",
+        "url": "/blog/boom/posts/why-buying-art-from-independent-artists-actually-matters",
+        "tags": [],
+        "cluster": null,
+        "content_type": null
+      },
       {
         "slug": "ai-advantage-club-review-is-the-monthly-community-worth-staying-in",
         "title": "AI Advantage Club Review: Is the Monthly Community Worth Staying In",
@@ -376,19 +386,10 @@
         "tags": [],
         "cluster": null,
         "content_type": null
-      },
-      {
-        "slug": "how-to-generate-consistent-ai-images-for-your-brand",
-        "title": "How To Generate Consistent Ai Images For Your Brand",
-        "lane": "boom",
-        "date": "2026-06-14T23:10:45.091Z",
-        "url": "/blog/boom/posts/how-to-generate-consistent-ai-images-for-your-brand",
-        "tags": [],
-        "cluster": null,
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-06-20",
       "2026-06-19",
       "2026-06-18",
       "2026-06-17",
@@ -442,11 +443,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-06-20",
+    "next_estimated_window": "2026-06-21",
     "published_counts": {
-      "boom": 75,
+      "boom": 76,
       "matt": 18,
-      "total": 93
+      "total": 94
     }
   },
   "syndication": {
@@ -472,62 +473,62 @@
         "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
+            "status": "success",
+            "timestamp": "2026-06-19T23:02:43.070Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/ai-advantage-club-review-is-the-monthly-community-worth-staying-in-insight.html"
+          },
+          "bluesky_voa": {
             "status": "not_attempted",
             "timestamp": null,
             "url": null
           },
-          "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-06-19T23:04:55.958Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mooh6scgqv23"
-          },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-06-19T23:04:55.958Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116779263774364386"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "facebook_voa": {
-            "status": "success",
-            "timestamp": "2026-06-19T23:04:55.958Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "pinterest": {
-            "status": "success",
-            "timestamp": "2026-06-19T23:04:55.958Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "threads": {
-            "status": "success",
-            "timestamp": "2026-06-19T23:04:55.958Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "instagram": {
-            "status": "success",
-            "timestamp": "2026-06-19T23:04:55.958Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "devto": {
-            "status": "success",
-            "timestamp": "2026-06-19T23:04:55.958Z",
-            "url": "https://dev.to/earthstarrising/ai-advantage-club-review-is-the-monthly-community-worth-staying-in-4cm5"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "tumblr_voa": {
-            "status": "success",
-            "timestamp": "2026-06-19T23:04:55.958Z",
-            "url": "https://vibrationofawesome.tumblr.com/post/819892298524557312"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "blogger": {
-            "status": "success",
-            "timestamp": "2026-06-19T23:04:55.958Z",
-            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/06/the-subscription-you-forgot-is-mirror.html"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "wordpress_earthstar": {
-            "status": "success",
-            "timestamp": "2026-06-19T23:04:55.958Z",
-            "url": "https://earthstarrisingsun.wordpress.com/2026/06/19/ai-advantage-club-review-is-the-monthly-community-worth-staying-in-earthstar/"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           }
         },
-        "success_count": 10,
+        "success_count": 1,
         "failed_count": 0
       },
       {
@@ -5604,57 +5605,57 @@
     ],
     "platform_coverage": {
       "feeder": {
-        "successes": 65,
-        "failures": 0,
-        "total": 75
-      },
-      "bluesky_voa": {
         "successes": 66,
         "failures": 0,
         "total": 75
       },
-      "mastodon_voa": {
+      "bluesky_voa": {
         "successes": 65,
+        "failures": 0,
+        "total": 75
+      },
+      "mastodon_voa": {
+        "successes": 64,
         "failures": 0,
         "total": 75
       },
       "facebook_voa": {
-        "successes": 53,
+        "successes": 52,
         "failures": 13,
         "total": 75
       },
       "pinterest": {
-        "successes": 71,
+        "successes": 70,
         "failures": 0,
         "total": 75
       },
       "threads": {
-        "successes": 65,
+        "successes": 64,
         "failures": 0,
         "total": 75
       },
       "instagram": {
-        "successes": 63,
+        "successes": 62,
         "failures": 0,
         "total": 75
       },
       "devto": {
-        "successes": 65,
+        "successes": 64,
         "failures": 0,
         "total": 75
       },
       "tumblr_voa": {
-        "successes": 71,
+        "successes": 70,
         "failures": 0,
         "total": 75
       },
       "blogger": {
-        "successes": 47,
+        "successes": 46,
         "failures": 24,
         "total": 75
       },
       "wordpress_earthstar": {
-        "successes": 71,
+        "successes": 70,
         "failures": 0,
         "total": 75
       }
@@ -7474,7 +7475,7 @@
       "emotional-regulation": 0,
       "consciousness-technology": 0
     },
-    "unassigned_post_count": 93
+    "unassigned_post_count": 94
   },
   "generation": {
     "last_updated": "2026-06-19T23:02:28.427Z",
@@ -8906,11 +8907,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-06-19T23:04:55.964Z",
-    "next_estimated_window": "2026-06-20",
+    "as_of": "2026-06-20T05:12:13.596Z",
+    "next_estimated_window": "2026-06-21",
     "queue_runway_days": 84,
     "queue_runway_status": "healthy",
     "occupied_dates": [
+      "2026-06-20",
       "2026-06-19",
       "2026-06-18",
       "2026-06-17",
@@ -8972,6 +8974,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "why-buying-art-from-independent-artists-actually-matters",
+        "lane": "boom",
+        "date": "2026-06-20T05:12:13.587Z"
+      },
+      {
         "slug": "ai-advantage-club-review-is-the-monthly-community-worth-staying-in",
         "lane": "boom",
         "date": "2026-06-19T23:00:04.017Z"
@@ -9015,17 +9022,12 @@
         "slug": "ai-advantage-bootcamp-cost-here-is-exactly-what-nine-hundred-ninety-five-dollars-gets-you",
         "lane": "boom",
         "date": "2026-06-18T16:38:29.065Z"
-      },
-      {
-        "slug": "where-to-buy-original-art-online-without-getting-burned",
-        "lane": "boom",
-        "date": "2026-06-18T05:54:27.259Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-06-19T23:04:55.959Z",
-    "source_event": "syndication",
+    "last_export_at": "2026-06-20T05:12:13.591Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 5,
     "schema_version": "1.0",
     "stale_after_minutes": 60
