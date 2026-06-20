@@ -369,5 +369,28 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-06-20T10:17:09.940Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the deployment environment.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "your_devto_account_2_api_key_here",
+          "reason": "Dev.to account 2 requires a separate API key from the primary Dev.to auth. This must be added to your .env file or GitHub Actions secrets."
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
