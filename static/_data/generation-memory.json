@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-20T05:13:39.548Z",
+  "lastUpdated": "2026-06-20T15:08:41.575Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "is-the-ai-advantage-bootcamp-a-scam-looking-at-the-actual-evidence",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-06-20T15:08:27.804Z"
+    },
+    {
       "slug": "why-buying-art-from-independent-artists-actually-matters",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,18 +1156,18 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-06-11T16:59:57.544Z"
-    },
-    {
-      "slug": "how-to-restyle-product-images-with-chatgpt",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-06-10T23:28:45.691Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "is-the-ai-advantage-bootcamp-a-scam-looking-at-the-actual-evidence",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-20T15:08:41.575Z"
+    },
     {
       "slug": "ai-advantage-club-review-is-the-monthly-community-worth-staying-in",
       "archetype": "abstract-creator-life",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-07T14:58:45.961Z"
-    },
-    {
-      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "timestamp": "2026-06-07T08:19:36.003Z"
     }
   ]
 }
