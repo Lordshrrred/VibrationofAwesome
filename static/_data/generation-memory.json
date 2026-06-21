@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-20T23:12:33.724Z",
+  "lastUpdated": "2026-06-21T06:02:30.079Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "dean-graziosi-ai-tools-what-he-uses-versus-what-he-sells",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-06-21T06:02:16.219Z"
+    },
+    {
       "slug": "ai-advantage-for-entrepreneurs-does-this-actually-help-your-business",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1147,18 +1156,18 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-06-13T15:05:52.096Z"
-    },
-    {
-      "slug": "how-to-make-presentations-faster-with-chatgpt",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-06-12T23:20:07.391Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "dean-graziosi-ai-tools-what-he-uses-versus-what-he-sells",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-06-21T06:02:30.079Z"
+    },
     {
       "slug": "ai-advantage-for-entrepreneurs-does-this-actually-help-your-business",
       "archetype": "field-guide-aesthetic",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "cosmic",
       "emotionalCluster": "mystical",
       "timestamp": "2026-06-08T09:18:22.981Z"
-    },
-    {
-      "slug": "how-to-set-up-chatgpt-projects-workspace-for-creators",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-07T23:08:37.778Z"
     }
   ]
 }
