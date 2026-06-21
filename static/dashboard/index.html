@@ -1744,7 +1744,8 @@ function renderMatrix(results) {
     const syn = entry.syndication || {};
     let successCount = 0;
     const cells = ACTIVE_PLATFORMS.map(({ key, name, tooltip, group }) => {
-      const s = syn[key];
+      // devto2 counts as Dev.to success for art-buyer posts that intentionally skip devto acct1
+      const s = syn[key] || (key === "devto" && syn["devto2"] ? syn["devto2"] : null);
       if (!s) return `<td><div class="mat-cell mat-skip" title="${name}: not attempted">~</div></td>`;
       if (s.status === "success") {
         successCount++;

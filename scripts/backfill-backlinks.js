@@ -29,6 +29,8 @@ const ROOT         = path.resolve(__dirname, "..");
 const RESULTS_FILE = path.join(ROOT, "static/_data/syndication-results.json");
 
 const BACKLINK_PLATFORMS = ["devto", "tumblr_voa", "blogger", "wordpress_earthstar"];
+// Art-buyer extra posts use devto2 instead of devto — don't backfill devto acct1 for those
+const ART_BACKLINK_PLATFORMS = ["tumblr_voa", "blogger", "wordpress_earthstar"];
 const DEFAULT_BATCH      = 3;   // posts per run — conservative to avoid API rate limits
 const INTER_POST_DELAY   = 15;  // seconds between posts
 
@@ -49,7 +51,9 @@ function loadResults() {
 
 function missingPlatforms(result) {
   const syn = result.syndication || {};
-  return targetPlatforms.filter(k => syn[k]?.status !== "success");
+  const isArtBuyer = !!syn["devto2"];  // art-buyer posts have devto2, not devto
+  const platforms = isArtBuyer ? ART_BACKLINK_PLATFORMS : targetPlatforms;
+  return platforms.filter(k => syn[k]?.status !== "success");
 }
 
 function sleep(s) { return new Promise(r => setTimeout(r, s * 1000)); }
