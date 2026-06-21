@@ -1773,7 +1773,7 @@ function renderSyndFeed(entries, resultsData) {
     const lane    = logEntry?.lane || resEntry?.lane || "boom";
     const laneLabel = lane === "matt" ? "Forest Temple" : "Boom Frequency";
 
-    // Backlink pills — devto OR devto2 counts as one DEV pill
+    // Backlink pills ~ devto OR devto2 counts as one DEV pill
     const devStatus  = syn["devto"]?.status === "success" ? "success"
                      : syn["devto2"]?.status === "success" ? "success"
                      : (syn["devto"] || syn["devto2"])?.status || (artExtra ? "skipped" : "missing");
@@ -1786,7 +1786,7 @@ function renderSyndFeed(entries, resultsData) {
       pill("Feeder", syn["feeder"]?.status || (artExtra ? "skipped" : "missing"), syn["feeder"]?.url, "VOA Feeder"),
     ].join("");
 
-    // Social pills — only for full drip posts
+    // Social pills ~ only for full drip posts
     const socialPillsHtml = artExtra ? "" :
       Object.entries(SOC_LABELS).map(([k,lbl]) =>
         pill(lbl, syn[k]?.status || "missing", syn[k]?.url, k)
