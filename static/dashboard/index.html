@@ -262,38 +262,51 @@
 
     /* ── Unified Syndication Feed ── */
     .synd-filter-btn {
-      padding: 0.28rem 0.7rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.07em;
+      padding: 0.35rem 0.9rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
       text-transform: uppercase; background: transparent; border: 1px solid var(--border);
-      border-radius: 4px; color: var(--text-muted); cursor: pointer; transition: all 0.15s;
+      border-radius: 5px; color: var(--text-muted); cursor: pointer; transition: all 0.15s;
       font-family: inherit;
     }
     .synd-filter-btn:hover { border-color: var(--accent); color: var(--accent); }
     .synd-filter-btn.active { background: rgba(0,229,204,0.1); border-color: var(--accent); color: var(--accent); }
-    .synd-feed { display: flex; flex-direction: column; gap: 0.5rem; }
+    .synd-feed { display: flex; flex-direction: column; gap: 0.9rem; }
     .synd-row {
-      background: var(--surface); border: 1px solid rgba(0,229,204,0.07);
-      border-radius: 8px; padding: 0.85rem 1rem; display: grid;
-      grid-template-columns: 1fr auto; gap: 0.3rem 1rem; align-items: start;
+      background: var(--surface); border: 1px solid rgba(0,229,204,0.08);
+      border-radius: 10px; padding: 1.25rem 1.4rem; border-left: 4px solid transparent;
+      transition: border-color 0.15s, background 0.15s;
     }
-    .synd-row:hover { border-color: rgba(0,229,204,0.18); background: var(--surface2); }
-    .synd-row.has-gaps { border-left: 3px solid rgba(255,180,0,0.6); }
-    .synd-title { font-size: 0.88rem; font-weight: 600; color: var(--text); text-decoration: none; }
+    .synd-row:hover { border-color: rgba(0,229,204,0.2); background: var(--surface2); }
+    .synd-row.has-gaps { border-left-color: rgba(255,180,0,0.7); }
+    .synd-row:not(.has-gaps) { border-left-color: rgba(57,255,20,0.25); }
+    .synd-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.55rem; }
+    .synd-title { font-size: 1rem; font-weight: 700; color: var(--text); text-decoration: none; line-height: 1.35; }
     .synd-title:hover { color: var(--accent); }
-    .synd-date  { font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; text-align: right; }
-    .synd-meta  { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.15rem; }
-    .synd-lane  { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 3px; }
+    .synd-date  { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; padding-top: 0.15rem; flex-shrink: 0; }
+    .synd-meta  { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .synd-type-badge {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 4px;
+    }
     .synd-type-full { background: rgba(0,229,204,0.1); color: var(--accent); }
-    .synd-type-art  { background: rgba(212,175,55,0.12); color: var(--warn); }
-    .synd-bl-ok   { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.1rem 0.45rem; border-radius: 3px; background: rgba(57,255,20,0.1); color: var(--success); }
-    .synd-bl-gap  { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.1rem 0.45rem; border-radius: 3px; background: rgba(255,180,0,0.12); color: #ffb400; }
-    .synd-platforms { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.45rem; grid-column: 1 / -1; }
-    .synd-group-label { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); align-self: center; margin-right: 0.1rem; }
-    .synd-divider { width: 1px; height: 18px; background: rgba(0,229,204,0.15); margin: 0 0.15rem; align-self: center; }
-    .sp { display: inline-flex; align-items: center; padding: 0.18rem 0.45rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; white-space: nowrap; cursor: default; }
+    .synd-type-art  { background: rgba(212,175,55,0.13); color: var(--warn); }
+    .synd-bl-ok  { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(57,255,20,0.1); color: var(--success); }
+    .synd-bl-gap { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(255,180,0,0.13); color: #ffb400; }
+    .synd-pill-groups { display: flex; flex-direction: column; gap: 0.6rem; }
+    .synd-pill-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .synd-group-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); min-width: 5.5rem; flex-shrink: 0;
+    }
+    .synd-pills { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .sp {
+      display: inline-flex; align-items: center; padding: 0.28rem 0.65rem;
+      border-radius: 5px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; cursor: default;
+    }
     .sp-ok   { background: rgba(57,255,20,0.12);  color: var(--success); cursor: pointer; }
-    .sp-fail { background: rgba(255,68,68,0.1);   color: var(--danger); }
-    .sp-skip { background: rgba(90,138,154,0.1);  color: var(--text-muted); font-weight: 400; }  /* intentional skip = gray, not blue */
-    .sp-miss { background: rgba(255,180,0,0.1);   color: #ffb400; }  /* should have gone but didn't */
+    .sp-ok:hover { background: rgba(57,255,20,0.2); }
+    .sp-fail { background: rgba(255,68,68,0.12);  color: var(--danger); }
+    .sp-skip { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.25); font-weight: 400; }
+    .sp-miss { background: rgba(255,180,0,0.1);   color: #ffb400; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
     .mat-title-link { color: var(--text); text-decoration: none; font-size: 0.82rem; font-weight: 500; }
     .mat-title-link:hover { color: var(--accent); }
@@ -1680,8 +1693,8 @@ function renderSyndFeed(entries, resultsData) {
 
   const BACKLINK_KEYS = ["devto", "devto2", "tumblr_voa", "blogger", "wordpress_earthstar"];
   const SOCIAL_KEYS   = ["bluesky_voa", "mastodon_voa", "facebook_voa", "threads", "instagram"];
-  const BL_LABELS     = { devto:"Dev", devto2:"Dev2", tumblr_voa:"Tum", blogger:"Blog", wordpress_earthstar:"WP" };
-  const SOC_LABELS    = { bluesky_voa:"Bsky", mastodon_voa:"Mast", facebook_voa:"FB", threads:"Thrd", instagram:"Insta" };
+  const BL_LABELS     = { devto:"Dev.to", devto2:"Dev.to", tumblr_voa:"Tumblr", blogger:"Blogger", wordpress_earthstar:"WordPress" };
+  const SOC_LABELS    = { bluesky_voa:"Bluesky", mastodon_voa:"Mastodon", facebook_voa:"Facebook", threads:"Threads", instagram:"Instagram" };
 
   // Merge: results is authoritative, fill gaps from log platforms
   function getSyn(slug) {
@@ -1765,44 +1778,48 @@ function renderSyndFeed(entries, resultsData) {
                      : syn["devto2"]?.status === "success" ? "success"
                      : (syn["devto"] || syn["devto2"])?.status || (artExtra ? "skipped" : "missing");
     const devUrl     = syn["devto"]?.url || syn["devto2"]?.url;
-    const blPills    = [
-      pill("Dev", devStatus, devUrl, "Dev.to"),
-      pill("Tum",  syn["tumblr_voa"]?.status || "missing", syn["tumblr_voa"]?.url, "Tumblr"),
-      pill("Blog", syn["blogger"]?.status || "missing",    syn["blogger"]?.url,    "Blogger"),
-      pill("WP",   syn["wordpress_earthstar"]?.status || "missing", syn["wordpress_earthstar"]?.url, "WordPress"),
-      pill("Feed", syn["feeder"]?.status || (artExtra ? "skipped" : "missing"), syn["feeder"]?.url, "Feeder"),
+    const blPillsHtml = [
+      pill("Dev.to", devStatus, devUrl, "Dev.to"),
+      pill("Tumblr", syn["tumblr_voa"]?.status || "missing",          syn["tumblr_voa"]?.url,          "Tumblr"),
+      pill("Blogger", syn["blogger"]?.status || "missing",            syn["blogger"]?.url,              "Blogger"),
+      pill("WordPress", syn["wordpress_earthstar"]?.status || "missing", syn["wordpress_earthstar"]?.url, "WordPress EarthStar"),
+      pill("Feeder", syn["feeder"]?.status || (artExtra ? "skipped" : "missing"), syn["feeder"]?.url, "VOA Feeder"),
     ].join("");
 
-    // Social pills — only show for full drip posts; show condensed for art-extra
-    let socialHtml = "";
-    if (!artExtra) {
-      socialHtml = `<span class="synd-divider"></span>` +
-        Object.entries(SOC_LABELS).map(([k,lbl]) =>
-          pill(lbl, syn[k]?.status || "missing", syn[k]?.url, k)
-        ).join("");
-    }
+    // Social pills — only for full drip posts
+    const socialPillsHtml = artExtra ? "" :
+      Object.entries(SOC_LABELS).map(([k,lbl]) =>
+        pill(lbl, syn[k]?.status || "missing", syn[k]?.url, k)
+      ).join("");
 
     const typeClass = artExtra ? "synd-type-art" : "synd-type-full";
-    const typeLabel = artExtra ? "Art Extra · backlinks only" : "Full Drip";
+    const typeLabel = artExtra ? "Art Extra" : "Full Drip";
     const blBadge   = allOk
-      ? `<span class="synd-bl-ok">✓ Backlinks</span>`
-      : `<span class="synd-bl-gap">⚠ Missing</span>`;
+      ? `<span class="synd-bl-ok">✓ Backlinks complete</span>`
+      : `<span class="synd-bl-gap">⚠ Backlinks missing</span>`;
+
+    const socialRow = artExtra ? "" : `
+      <div class="synd-pill-row">
+        <span class="synd-group-label">Social</span>
+        <div class="synd-pills">${socialPillsHtml}</div>
+      </div>`;
 
     return `<div class="synd-row${anyMiss?" has-gaps":""}" data-type="${artExtra?"art":"full"}" data-gaps="${anyMiss?1:0}">
-      <div>
+      <div class="synd-top">
         <a href="${esc(url)}" target="_blank" class="synd-title">${esc(title)}</a>
+        <span class="synd-date">${date}</span>
       </div>
-      <div class="synd-date">${date}</div>
       <div class="synd-meta">
-        <span class="synd-lane ${typeClass}">${laneLabel}</span>
-        <span class="synd-lane ${typeClass}" style="opacity:0.7">${typeLabel}</span>
+        <span class="synd-type-badge ${typeClass}">${typeLabel}</span>
         ${blBadge}
       </div>
-      <div></div>
-      <div class="synd-platforms">
-        ${blPills}${socialHtml}
+      <div class="synd-pill-groups">
+        <div class="synd-pill-row">
+          <span class="synd-group-label">Backlinks</span>
+          <div class="synd-pills">${blPillsHtml}</div>
+        </div>
+        ${socialRow}
       </div>
-      <div></div>
     </div>`;
   }).join("");
 
