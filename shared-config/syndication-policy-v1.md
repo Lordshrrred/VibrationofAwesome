@@ -18,7 +18,7 @@ on the same day. These are defaults, not hard locks.
 | Platform | Primary Owner | Secondary | Blog posts? | Video posts? |
 |---|---|---|---|---|
 | YouTube | EarthStar Command | ~ | No | Yes |
-| Dev.to | VOA Blog | ~ | Yes (always) | No |
+| Dev.to | VOA Blog | Dev.to account 2 for art-buyer extras only | Yes (primary always; account 2 selective) | No |
 | Blogger | VOA Blog | ~ | Yes (always) | No |
 | WordPress (EarthStarRising) | VOA Blog | ~ | Yes (always) | No |
 | Tumblr VOA | VOA Blog | ~ | Yes (always ~ backlink tier) | No |
@@ -56,6 +56,8 @@ tumblr_voa         ~ indexed, DoFollow, VOA brand continuity
 blogger            ~ Google-owned, fast indexing, DoFollow
 wordpress_earthstar ~ WordPress.com indexed, DoFollow, EarthStarRising brand
 ```
+
+**Dev.to account 2:** `DEVTO2_API_KEY` exists for the second Dev.to account. It is **not** part of the default backlink tier. It is used only for art-buyer extra posts via platform key `devto2` / syndication profile `art-devto2-only`. Do not send normal posts to both Dev.to accounts; the same canonical URL should not be duplicated across accounts.
 
 **Note on Tumblr ESR:** `tumblr_esr` appears in the quota tables for planning purposes but is **NOT wired into live syndication** in `syndicate.js`. Only `tumblr_voa` is actively posted to. If you add Tumblr ESR to the live pipeline, update this document and the backlink tier list in `scripts/lib/policy.js`.
 

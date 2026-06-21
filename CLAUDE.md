@@ -25,6 +25,10 @@ node scripts/generate-post.js --lane boom --keyword "target keyword" --topic "co
 # SEO keyword research → saves to static/_data/topic-queue.json
 npm run research
 
+# Deterministic internal linking / topical authority
+npm run links:audit       # Audit Boom posts/drafts for internal-link coverage
+npm run links:apply       # Backfill/refresh generated related-reading blocks
+
 # Syndicate most recent post to all social platforms
 npm run syndicate
 ```
@@ -43,7 +47,7 @@ node scripts/retry-failed-syndication.js   # Retry any platforms that failed rec
 - **Matt lane** (`static/blog/matt/`): Personal voice, raw/reflective writing by Matt EarthStar
 - **Boom lane** (`static/blog/boom/`): SEO-optimized content under AI persona "Matty BoomBoom"
 
-Each post is generated as standalone HTML and indexed in `static/_data/[lane]-posts.json` with fields: `{title, slug, date, excerpt, url, tags}`.
+Each post is generated as standalone HTML and indexed in `static/_data/[lane]-posts.json` with fields such as `{title, slug, date, excerpt, url, tags, niche, cluster}`.
 
 ### Content Generation Pipeline
 `generate-post.js` calls Claude API with lane-specific system prompts → converts markdown to HTML via `marked` → writes to `static/blog/[lane]/posts/[slug].html` → updates the lane's JSON index.
@@ -52,7 +56,15 @@ Each post is generated as standalone HTML and indexed in `static/_data/[lane]-po
 `syndicate.js` reads recent posts, calls `generate-captions.js` for platform-specific copy, calls `select-image.js` (Pexels/local images) and Ideogram for images, then posts to: Bluesky VOA, Mastodon VOA, Facebook VOA, Instagram VOA, Threads VOA, Pinterest VOA, Dev.to, Tumblr VOA, Blogger, and WordPress EarthStar. Results are logged to `static/_data/syndication-log.json` and `static/_data/syndication-results.json`. Uses Publer API for Instagram/Threads/Pinterest and direct APIs for others.
 
 ### Drip Queue
-99 pre-generated boom posts live in `static/blog/boom/drafts/`. `drip-publish.js` moves one per run from drafts → posts, updates `boom-posts.json`, and syndicates. Runs at 9am ET (self-help post) and 6pm ET (AI/creator post) via `.github/workflows/drip-posts.yml`. Auto-retry for failed platforms runs after each publish.
+Pre-generated Boom posts live in `static/blog/boom/drafts/`. `drip-publish.js` moves selected drafts → posts, updates `boom-posts.json`, regenerates the sitemap, writes `drip-last-published.json`, and lets `post-live-syndicate.js` syndicate only after the canonical VOA URL is live.
+
+Current schedule in `.github/workflows/drip-posts.yml`:
+- `9:00 AM ET` (`0 13 * * *`) ~ normal Boom post, existing full syndication stack
+- `12:00 PM ET` (`0 16 * * *`) ~ art-buyer extra slot, VOA publish + Dev.to account 2 only
+- `6:00 PM ET` (`0 22 * * *`) ~ normal Boom post, existing full syndication stack
+- `9:00 PM ET` (`0 1 * * *`) ~ art-buyer extra slot, VOA publish + Dev.to account 2 only
+
+Do **not** increase Instagram, Pinterest, Threads, Facebook, Tumblr, Blogger, WordPress, or Feeder volume when adding art-extra posts. Art-extra queue items use `syndication_profile: "art-devto2-only"`, `syndicate_on_publish: true`, and `trigger_feeder_on_publish: false`.
 
 ### Hugo Site
 Hugo watches `content/posts/*.md` and renders with `layouts/` templates. The `hugo.toml` has `unsafe = true` for goldmark to allow raw HTML in markdown. Deployed via Vercel (auto-deploys on push to main via GitHub webhook).
@@ -75,8 +87,25 @@ Copy `.env.example` to `.env`. Required keys:
 - `VERCEL_TOKEN` ~ push env vars to Vercel programmatically (see below)
 - OAuth credentials for each social platform (see `.env.example` for full list)
 - `DASHBOARD_PASSWORD` ~ protects the admin dashboard
+- `DEVTO_API_KEY` ~ primary Dev.to account
+- `DEVTO2_API_KEY` ~ second Dev.to account used only by art-buyer extra slots unless explicitly requested
 
 ## AGENT STANDING ORDERS
+
+### Prime directive: read and maintain repo memory before building
+Every AI agent touching this repo must orient from the agent/documentation files before making non-trivial changes. Do **not** build in the dark.
+
+Before implementing, review at minimum:
+- `CLAUDE.md` ~ current operating rules, architecture, standing orders, active strategy
+- `README.md` ~ project onboarding and canonical workflow notes
+- `content-strategy/niche-map.md` ~ content niches and strategic positioning
+- `static/_data/topic-clusters.json` ~ topical-authority cluster map
+- `shared-config/syndication-policy-v1.md` ~ syndication/backlink/social routing rules
+- `shared-config/visual-generation-policy-v1.md` ~ visual generation rules when touching imagery/social visuals
+
+After implementing any meaningful system, strategy, automation, publishing, syndication, SEO, or content-architecture change, update the relevant markdown/data memory files in the same pass. If behavior changes and the agent docs do not change, the work is incomplete.
+
+Concrete rule: future agents should be able to read the docs above and understand what the repo is doing, why it is doing it, and what must not be broken. This is mandatory, not optional housekeeping.
 
 ### Always wire it up ~ never ask Matt to do it manually
 Matt's explicit preference: **if something can be done programmatically, do it without asking**. This applies to:
@@ -126,6 +155,11 @@ Both `syndicate.js` and `check-syndication-config.js` fall back to generic `TUMB
 
 ### Dev.to canonical URL handling
 If Dev.to returns "canonical url has already been taken", treat it as **success** ~ the post is already live from a previous run whose commit was lost. The code in `syndicate.js` handles this automatically.
+
+### Dev.to account 2 / art-buyer extra slots
+`DEVTO2_API_KEY` is supported by `scripts/syndicate.js` as platform key `devto2`. It is intentionally **not** part of the default backlink tier. It runs only when explicitly requested with `--platforms devto2` or via the drip item profile `art-devto2-only`.
+
+The art-buyer expansion is designed as **extra canonical VOA posts + Dev.to account 2 only**. Do not route those extra posts to Publer/social/Feeder/backlink platforms unless Matt explicitly changes the strategy.
 
 ### Historical syndication warnings ~ resolved, do not treat as current without fresh evidence
 - **Blogger OAuth**: `syndication-log.json` contains historical Blogger failures from **Mar 24, 2026**. Live checks on **May 17, 2026** show `Blogger token refresh: token ok`, and recent Blogger successes exist on **May 14-16, 2026**. Do not run `npm run blogger-token` unless the current health check fails.
@@ -195,7 +229,7 @@ Every backlink platform article must:
 
 ## QUEUE DEPLETION MONITORING
 
-The drip queue has ~98 posts of runway (as of 2026-05-17). At 1 post/run × 2 runs/day = ~2 posts/day = ~49 days. When queue drops below 30 posts, `drip-publish.js` logs a warning. When queue is empty, publishing stops silently.
+The active drip queue currently mixes normal posts and art-buyer extra posts. At `drip_rate: 1`, the normal slots publish ~2/day, while art-extra slots publish up to 2/day only when queued `art-buyer-intent` items exist. When queue drops below 30 posts, `drip-publish.js` logs a warning. When queue is empty, publishing stops silently.
 
 **To replenish**: `node scripts/generate-all-drafts.js` ~ generates a new batch of boom drafts and adds them to the queue.
 
@@ -236,15 +270,17 @@ See `shared-config/visual-generation-policy-v1.md` for the full pipeline status 
 
 ## TOPICAL AUTHORITY SYSTEM
 
-VOA is building long-term topical authority across 10 semantic clusters. Each cluster is a distinct territory with a pillar topic, supporting angles, related niches, and natural Pinterest board destinations.
+VOA is building long-term topical authority across 11 semantic clusters. Each cluster is a distinct territory with a pillar topic, supporting angles, related niches, and natural Pinterest board destinations.
 
 ### Cluster system files
 - `static/_data/topic-clusters.json` ~ full cluster definitions (pillar, supporting angles, related niches, content type, Pinterest board)
 - `static/_data/generation-memory.json` ~ rolling registry of recent hooks, titles, narrative structures, emotional arcs, opening styles (capped at 30 each)
 - `static/_data/demand-signals.json` ~ scaffolded for future performance analytics (currently empty)
 - `scripts/lib/generation-memory.js` ~ reads memory before generation, writes after
+- `scripts/lib/internal-linking.js` ~ deterministic cluster-aware internal-link selection/insertion
+- `scripts/internal-linking.js` ~ CLI audit/apply tool for related-reading blocks
 
-### The 10 clusters
+### The 11 clusters
 
 | Key | Display Name | Content Type | Pinterest Board |
 |---|---|---|---|
@@ -257,6 +293,7 @@ VOA is building long-term topical authority across 10 semantic clusters. Each cl
 | `purpose-direction` | Purpose & Direction | philosophy | purpose-and-direction |
 | `building-life-that-fits` | Building a Life That Feels Like Yours | philosophy | empower-thyself |
 | `emotional-regulation` | Emotional Regulation | nervous-system | nervous-system-reset |
+| `art-buying-online` | Buying Art Online | earthstar | earthstar / vibration-of-awesome |
 | `consciousness-technology` | Consciousness & Technology | earthstar | earthstar |
 
 ### How clusters are used in generation
@@ -276,10 +313,29 @@ When a `--cluster` or `--niche` is provided:
 4. Injects the differentiation context ("avoid these recent patterns")
 5. After generation, records the new post's hook, title, arc, and opening style to `generation-memory.json`
 
-### Internal link scaffolding (v1)
-`buildExistingPostsList()` in `generate-post.js` already provides Claude with a list of published posts for internal linking. Future enhancement: filter by cluster membership so Claude naturally links related posts within the same topical territory.
+### Deterministic internal linking
+Internal linking is now both prompt-driven and deterministic:
 
-Posts have a `cluster` field in `{lane}-posts.json` metadata as of this pass. This enables future cluster-aware internal link suggestions.
+1. `buildExistingPostsList()` in `generate-post.js` still gives Claude existing posts for natural contextual links.
+2. `scripts/lib/internal-linking.js` infers each post's cluster from `cluster`, `niche`, title, slug, keyword, and excerpt.
+3. `ensureDeterministicInternalLinks()` inserts a generated `<section data-internal-related ...>` related-reading block before the signature/CTA area.
+4. The block prefers same-cluster posts, then related-cluster posts, and adds the right money-page link where appropriate:
+   - AI/creator clusters → `/ai-engine/`
+   - art-buying cluster → `/art-store/`
+   - self-help/nervous-system/philosophy clusters → `/field-guide/`
+5. `drip-publish.js` runs the deterministic linker at publish time before writing the post file and `boom-posts.json`.
+6. `generate-post.js` also runs the linker for direct non-drip generation.
+
+Maintenance commands:
+
+```bash
+npm run links:audit
+npm run links:apply
+```
+
+`npm run links:audit` reports body/contextual link count plus generated related-reading links. `npm run links:apply` refreshes generated blocks across Boom posts/drafts. Run `npm run check:emdash` after large link backfills.
+
+Posts should carry `niche` and `cluster` metadata in `boom-posts.json` whenever the queue/source item knows it. Older posts without metadata are cluster-inferred.
 
 ---
 

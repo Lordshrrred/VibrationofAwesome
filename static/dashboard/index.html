@@ -259,6 +259,41 @@
     .mat-fail { background: rgba(255,68,68,0.1);   color: var(--danger); }
     .mat-skip { background: rgba(60,120,220,0.1);   color: #6a9de0; }
     .mat-pend { background: rgba(0,255,255,0.06);  color: var(--info); animation: pulse 1.5s ease-in-out infinite; }
+
+    /* ── Unified Syndication Feed ── */
+    .synd-filter-btn {
+      padding: 0.28rem 0.7rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; background: transparent; border: 1px solid var(--border);
+      border-radius: 4px; color: var(--text-muted); cursor: pointer; transition: all 0.15s;
+      font-family: inherit;
+    }
+    .synd-filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .synd-filter-btn.active { background: rgba(0,229,204,0.1); border-color: var(--accent); color: var(--accent); }
+    .synd-feed { display: flex; flex-direction: column; gap: 0.5rem; }
+    .synd-row {
+      background: var(--surface); border: 1px solid rgba(0,229,204,0.07);
+      border-radius: 8px; padding: 0.85rem 1rem; display: grid;
+      grid-template-columns: 1fr auto; gap: 0.3rem 1rem; align-items: start;
+    }
+    .synd-row:hover { border-color: rgba(0,229,204,0.18); background: var(--surface2); }
+    .synd-row.has-gaps { border-left: 3px solid rgba(255,180,0,0.6); }
+    .synd-title { font-size: 0.88rem; font-weight: 600; color: var(--text); text-decoration: none; }
+    .synd-title:hover { color: var(--accent); }
+    .synd-date  { font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; text-align: right; }
+    .synd-meta  { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.15rem; }
+    .synd-lane  { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 3px; }
+    .synd-type-full { background: rgba(0,229,204,0.1); color: var(--accent); }
+    .synd-type-art  { background: rgba(212,175,55,0.12); color: var(--warn); }
+    .synd-bl-ok   { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.1rem 0.45rem; border-radius: 3px; background: rgba(57,255,20,0.1); color: var(--success); }
+    .synd-bl-gap  { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.1rem 0.45rem; border-radius: 3px; background: rgba(255,180,0,0.12); color: #ffb400; }
+    .synd-platforms { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.45rem; grid-column: 1 / -1; }
+    .synd-group-label { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); align-self: center; margin-right: 0.1rem; }
+    .synd-divider { width: 1px; height: 18px; background: rgba(0,229,204,0.15); margin: 0 0.15rem; align-self: center; }
+    .sp { display: inline-flex; align-items: center; padding: 0.18rem 0.45rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; white-space: nowrap; cursor: default; }
+    .sp-ok   { background: rgba(57,255,20,0.12);  color: var(--success); cursor: pointer; }
+    .sp-fail { background: rgba(255,68,68,0.1);   color: var(--danger); }
+    .sp-skip { background: rgba(90,138,154,0.1);  color: var(--text-muted); font-weight: 400; }  /* intentional skip = gray, not blue */
+    .sp-miss { background: rgba(255,180,0,0.1);   color: #ffb400; }  /* should have gone but didn't */
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
     .mat-title-link { color: var(--text); text-decoration: none; font-size: 0.82rem; font-weight: 500; }
     .mat-title-link:hover { color: var(--accent); }
@@ -827,24 +862,20 @@
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-head">
-            <div class="card-title">Recent Syndications</div>
-            <div class="card-sub" id="entry-count"></div>
-          </div>
-          <div id="recent-posts-wrap">
-            <div class="loading dot-pulse">Loading</div>
-          </div>
-        </div>
       </div>
 
-      <!-- ── Syndication Status Matrix ── -->
+      <!-- ── Syndication Feed (unified) ── -->
       <div class="section">
         <div class="section-header">
-          <span class="section-title">Syndication Matrix</span>
-          <span style="font-size:0.75rem;color:var(--text-muted)">All syndicated posts · click ✓ to open URL · click score badge for full list</span>
+          <span class="section-title">Syndication</span>
+          <span id="synd-feed-meta" style="font-size:0.75rem;color:var(--text-muted)"></span>
+          <div style="display:flex;gap:0.5rem;margin-left:auto;align-items:center;">
+            <button class="synd-filter-btn active" data-filter="all">All</button>
+            <button class="synd-filter-btn" data-filter="missing">Missing Backlinks</button>
+            <button class="synd-filter-btn" data-filter="full">Full Drip Only</button>
+          </div>
         </div>
-        <div id="matrix-wrap">
+        <div id="synd-feed-wrap">
           <div class="loading dot-pulse">Loading</div>
         </div>
       </div>
@@ -1186,8 +1217,7 @@ async function loadDashboard() {
   renderHealth(healthData);
   renderStats(entries, resultsData, dripData);
   renderDripQueue(dripData);
-  renderRecentPosts(entries, resultsData);
-  renderMatrix(resultsData);
+  renderSyndFeed(entries, resultsData);
   renderQueue(entries, allPosts, dripData);
   renderTrigger(allPosts);
   renderFeederSection(resultsData, dripData, boomPosts, mattPosts);
@@ -1633,305 +1663,170 @@ function copyDripCmd() {
   });
 }
 
-// ── Recent Syndications ───────────────────────────────────────────────────────
-function renderRecentPosts(entries, resultsData) {
-  const wrap = document.getElementById("recent-posts-wrap");
-  document.getElementById("entry-count").textContent = entries.length + " live entries";
+// ── Unified Syndication Feed ─────────────────────────────────────────────────
+function renderSyndFeed(entries, resultsData) {
+  const wrap = document.getElementById("synd-feed-wrap");
+  const meta = document.getElementById("synd-feed-meta");
 
-  if (entries.length === 0) {
-    wrap.innerHTML = `<div class="empty-state">No syndications yet.<br>Run: <code>node scripts/syndicate.js --lane boom --slug your-slug</code></div>`;
-    return;
+  // Build slug→syndication map from results (most reliable source)
+  const synBySlug = {};
+  for (const r of (resultsData || [])) synBySlug[r.slug] = r.syndication || {};
+
+  // Also build from log entries for platforms not yet in results
+  const logBySlug = {};
+  for (const e of entries) {
+    if (!logBySlug[e.postSlug]) logBySlug[e.postSlug] = e;
   }
 
-  const resultsBySlug = {};
-  for (const r of (resultsData || [])) {
-    resultsBySlug[r.slug] = r.syndication || {};
+  const BACKLINK_KEYS = ["devto", "devto2", "tumblr_voa", "blogger", "wordpress_earthstar"];
+  const SOCIAL_KEYS   = ["bluesky_voa", "mastodon_voa", "facebook_voa", "threads", "instagram"];
+  const BL_LABELS     = { devto:"Dev", devto2:"Dev2", tumblr_voa:"Tum", blogger:"Blog", wordpress_earthstar:"WP" };
+  const SOC_LABELS    = { bluesky_voa:"Bsky", mastodon_voa:"Mast", facebook_voa:"FB", threads:"Thrd", instagram:"Insta" };
+
+  // Merge: results is authoritative, fill gaps from log platforms
+  function getSyn(slug) {
+    const fromResults = synBySlug[slug] || {};
+    const logEntry = logBySlug[slug];
+    if (!logEntry) return fromResults;
+    const merged = {};
+    const logPlats = logEntry.platforms || {};
+    // Start from log (has raw success/fail), then overlay results (has URLs, backlink_confirmed)
+    for (const [k, v] of Object.entries(logPlats)) {
+      merged[k] = {
+        status: v.success ? "success" : (v.skipped ? "skipped" : (v.error ? "failed" : null)),
+        url: v.postUrl || null,
+        error: v.error || null,
+      };
+    }
+    // Overlay results (preserves backlink_confirmed, canonical URLs)
+    for (const [k, v] of Object.entries(fromResults)) {
+      if (v.status) merged[k] = { ...merged[k], ...v };
+    }
+    return merged;
   }
 
-  const rows = entries.slice(0, 12).map(entry => {
-    const livePlatforms = resultsBySlug[entry.postSlug] || {};
-    const platforms = entry.platforms || {};
-    function badgeFor(key, label, name, tooltip) {
-      const canonical = livePlatforms[key];
-      if (canonical) {
-        if (canonical.status === "success") {
-          const extra = canonical.backlink_confirmed ? " · backlink confirmed" : canonical.backlink_status ? ` · backlink ${canonical.backlink_status}` : "";
-          const tip = successTip(name, tooltip, canonical.url, extra);
-          const onclick = getOpenAttrs(canonical.url);
-          return `<span class="badge badge-ok" title="${esc(tip)}" ${onclick}>✓ ${label}</span>`;
-        }
-        if (canonical.status === "pending") {
-          return `<span class="badge badge-pend" title="${esc(name + ": trigger fired, waiting for post")}">⏳ ${label}</span>`;
-        }
-        if (canonical.status === "skipped" || canonical.skipped) {
-          return `<span class="badge badge-skip" title="${esc(name + ": skipped by content policy")}">~ ${label}</span>`;
-        }
-        return `<span class="badge badge-fail" title="${esc(name + ": ✗ " + (canonical.error || "failed"))}">✗ ${label}</span>`;
-      }
-      const r = platforms[key];
-      if (!r) return `<span class="badge badge-skip" title="${name}: not attempted">~ ${label}</span>`;
-      if (r.success) {
-        const tip = successTip(name, tooltip, r.postUrl);
-        const onclick = getOpenAttrs(r.postUrl);
-        return `<span class="badge badge-ok" title="${esc(tip)}" ${onclick}>✓ ${label}</span>`;
-      }
-      if (r.skipped) {
-        return `<span class="badge badge-skip" title="${esc(name + ": skipped by content policy")}">~ ${label}</span>`;
-      }
-      return `<span class="badge badge-fail" title="${esc(name + ": ✗ " + (r.error || "failed"))}">✗ ${label}</span>`;
+  function isArtExtra(syn) {
+    // Art-extra posts use devto2 but NOT devto/social
+    return !!syn["devto2"] && !syn["bluesky_voa"] && !syn["facebook_voa"];
+  }
+
+  function blStatus(syn, artExtra) {
+    // For devto: count devto OR devto2 as success
+    const devtoOk = syn["devto"]?.status === "success" || syn["devto2"]?.status === "success";
+    const others  = ["tumblr_voa","blogger","wordpress_earthstar"].map(k => syn[k]?.status);
+    const allOk   = devtoOk && others.every(s => s === "success");
+    const anyMiss = !devtoOk || others.some(s => s !== "success" && s !== "skipped");
+    return { allOk, anyMiss };
+  }
+
+  function pill(label, status, url, title) {
+    if (status === "success") {
+      const attrs = url ? `onclick="window.open('${url.replace(/'/g,"\'")}','_blank')" style="cursor:pointer"` : "";
+      return `<span class="sp sp-ok" title="${esc(title||label)}: ✓${url?" · click to open":""}" ${attrs}>✓ ${label}</span>`;
+    }
+    if (status === "skipped")  return `<span class="sp sp-skip" title="${esc(title||label)}: skipped by policy">− ${label}</span>`;
+    if (status === "failed")   return `<span class="sp sp-fail" title="${esc(title||label)}: ✗ failed">✗ ${label}</span>`;
+    if (status === "missing")  return `<span class="sp sp-miss" title="${esc(title||label)}: should have run but missing">~ ${label}</span>`;
+    return `<span class="sp sp-skip" title="${esc(title||label)}: not sent">− ${label}</span>`;
+  }
+
+  let missingCount = 0;
+  const allSlugs = [...new Set([
+    ...entries.map(e => e.postSlug),
+    ...(resultsData||[]).map(r => r.slug)
+  ])];
+
+  // Sort newest first using log timestamp, fallback to results date
+  const slugsWithDate = allSlugs.map(slug => {
+    const logE = logBySlug[slug];
+    const resE = (resultsData||[]).find(r => r.slug === slug);
+    const ts   = logE?.timestamp || resE?.date || "0";
+    return { slug, ts };
+  }).sort((a,b) => b.ts.localeCompare(a.ts));
+
+  const rows = slugsWithDate.map(({ slug }) => {
+    const syn      = getSyn(slug);
+    const logEntry = logBySlug[slug];
+    const resEntry = (resultsData||[]).find(r => r.slug === slug);
+    const artExtra = isArtExtra(syn);
+    const { allOk, anyMiss } = blStatus(syn, artExtra);
+
+    if (anyMiss) missingCount++;
+
+    const title   = logEntry?.postTitle || resEntry?.title || slug;
+    const url     = logEntry?.postUrl   || resEntry?.voa_url || "#";
+    const dateRaw = logEntry?.timestamp || resEntry?.date || "";
+    const date    = dateRaw ? new Date(dateRaw).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}) : "?";
+    const lane    = logEntry?.lane || resEntry?.lane || "boom";
+    const laneLabel = lane === "matt" ? "Forest Temple" : "Boom Frequency";
+
+    // Backlink pills — devto OR devto2 counts as one DEV pill
+    const devStatus  = syn["devto"]?.status === "success" ? "success"
+                     : syn["devto2"]?.status === "success" ? "success"
+                     : (syn["devto"] || syn["devto2"])?.status || (artExtra ? "skipped" : "missing");
+    const devUrl     = syn["devto"]?.url || syn["devto2"]?.url;
+    const blPills    = [
+      pill("Dev", devStatus, devUrl, "Dev.to"),
+      pill("Tum",  syn["tumblr_voa"]?.status || "missing", syn["tumblr_voa"]?.url, "Tumblr"),
+      pill("Blog", syn["blogger"]?.status || "missing",    syn["blogger"]?.url,    "Blogger"),
+      pill("WP",   syn["wordpress_earthstar"]?.status || "missing", syn["wordpress_earthstar"]?.url, "WordPress"),
+      pill("Feed", syn["feeder"]?.status || (artExtra ? "skipped" : "missing"), syn["feeder"]?.url, "Feeder"),
+    ].join("");
+
+    // Social pills — only show for full drip posts; show condensed for art-extra
+    let socialHtml = "";
+    if (!artExtra) {
+      socialHtml = `<span class="synd-divider"></span>` +
+        Object.entries(SOC_LABELS).map(([k,lbl]) =>
+          pill(lbl, syn[k]?.status || "missing", syn[k]?.url, k)
+        ).join("");
     }
 
-    const socialPlatforms   = ACTIVE_PLATFORMS.filter(p => p.group === "social" || p.group === "reach");
-    const seoPlataforms     = ACTIVE_PLATFORMS.filter(p => p.group === "backlink" || p.group === "feeder");
-    const socialBadges      = socialPlatforms.map(({ key, label, name, tooltip }) => badgeFor(key, label, name, tooltip)).join("");
-    const seoBadges         = seoPlataforms.map(({ key, label, name, tooltip }) => badgeFor(key, label, name, tooltip)).join("");
-    const divider           = `<span style="display:inline-block;width:1px;height:1.1em;background:rgba(0,229,204,0.18);margin:0 0.4rem;vertical-align:middle;border-radius:1px"></span>`;
-    const badges            = socialBadges + divider + seoBadges;
+    const typeClass = artExtra ? "synd-type-art" : "synd-type-full";
+    const typeLabel = artExtra ? "Art Extra · backlinks only" : "Full Drip";
+    const blBadge   = allOk
+      ? `<span class="synd-bl-ok">✓ Backlinks</span>`
+      : `<span class="synd-bl-gap">⚠ Missing</span>`;
 
-    const date   = new Date(entry.timestamp).toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" });
-    const laneClr = entry.lane === "matt" ? "#ffb300" : "#00e5ff";
-    const laneNm  = entry.lane === "matt" ? "Forest Temple" : "Boom Frequency";
-
-    return `<div class="recent-row">
-      <div class="recent-top">
-        <a href="${esc(entry.postUrl)}" target="_blank" class="recent-title">${esc(entry.postTitle)}</a>
-        <span class="recent-date">${date}</span>
+    return `<div class="synd-row${anyMiss?" has-gaps":""}" data-type="${artExtra?"art":"full"}" data-gaps="${anyMiss?1:0}">
+      <div>
+        <a href="${esc(url)}" target="_blank" class="synd-title">${esc(title)}</a>
       </div>
-      <div class="recent-meta">
-        <span class="recent-lane" style="color:${laneClr}">${laneNm}</span>
+      <div class="synd-date">${date}</div>
+      <div class="synd-meta">
+        <span class="synd-lane ${typeClass}">${laneLabel}</span>
+        <span class="synd-lane ${typeClass}" style="opacity:0.7">${typeLabel}</span>
+        ${blBadge}
       </div>
-      <div class="platform-badges" style="margin-top:0.6rem;flex-wrap:wrap">${badges}</div>
+      <div></div>
+      <div class="synd-platforms">
+        ${blPills}${socialHtml}
+      </div>
+      <div></div>
     </div>`;
   }).join("");
 
-  wrap.innerHTML = `<div class="recent-list">${rows}</div>`;
-}
+  const total = slugsWithDate.length;
+  if (meta) meta.textContent = `${total} posts · ${missingCount} with gaps · click ✓ to open`;
 
-// ── Syndication Status Matrix ─────────────────────────────────────────────────
-function renderMatrix(results) {
-  const wrap = document.getElementById("matrix-wrap");
-  if (!results || results.length === 0) {
-    wrap.innerHTML = `<div class="empty-state">No syndication results yet.<br>Run syndicate.js to populate.</div>`;
-    return;
-  }
+  wrap.innerHTML = `<div class="synd-feed">${rows}</div>`;
 
-  // Build header with group labels
-  const GROUP_LABELS = { social: "Social", reach: "Reach", backlink: "Backlink Tier", feeder: "Feeder", legacy: "" };
-  let lastGroup = null;
-  const platHeaders = ACTIVE_PLATFORMS.map(p => {
-    const groupBorder = (p.group !== lastGroup && lastGroup !== null)
-      ? ' style="border-left:1px solid rgba(0,229,204,0.18)"' : "";
-    lastGroup = p.group;
-    return `<th title="${GROUP_LABELS[p.group] || ""}: ${p.name}${p.tooltip ? " ~ " + p.tooltip : ""}"${groupBorder}>${p.label}${p.tooltip ? " ⓘ" : ""}</th>`;
-  }).join("");
-
-  // Group span headers
-  const groupSpans = [];
-  let gi = 0;
-  while (gi < ACTIVE_PLATFORMS.length) {
-    const g = ACTIVE_PLATFORMS[gi].group;
-    let count = 0;
-    while (gi + count < ACTIVE_PLATFORMS.length && ACTIVE_PLATFORMS[gi + count].group === g) count++;
-    const label = GROUP_LABELS[g] || "";
-    const border = groupSpans.length > 0 ? ' style="border-left:1px solid rgba(0,229,204,0.18)"' : "";
-    groupSpans.push(`<th colspan="${count}" style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);padding-bottom:0.1rem;text-align:center"${border}>${label}</th>`);
-    gi += count;
-  }
-  const groupHeaderRow = `<tr><th colspan="2"></th>${groupSpans.join("")}<th></th></tr>`;
-
-  // Build rows
-  const rows = results.map(entry => {
-    const syn = entry.syndication || {};
-    let successCount = 0;
-    const cells = ACTIVE_PLATFORMS.map(({ key, name, tooltip, group }) => {
-      // devto2 counts as Dev.to success for art-buyer posts that intentionally skip devto acct1
-      const s = syn[key] || (key === "devto" && syn["devto2"] ? syn["devto2"] : null);
-      if (!s) return `<td><div class="mat-cell mat-skip" title="${name}: not attempted">~</div></td>`;
-      if (s.status === "success") {
-        successCount++;
-        const extra = s.backlink_confirmed ? " · backlink confirmed" : s.backlink_status ? ` · backlink ${s.backlink_status}` : "";
-        const tip = successTip(name, tooltip, s.url, extra);
-        const onclick = getOpenAttrs(s.url);
-        return `<td><div class="mat-cell mat-ok" title="${esc(tip)}" ${onclick} data-verify="${esc(s.url||"")}" data-key="${key}" data-slug="${esc(entry.slug)}">✓</div></td>`;
-      } else if (s.status === "pending") {
-        return `<td><div class="mat-cell mat-pend" title="${esc(name + ": trigger fired, waiting for post")}">⏳</div></td>`;
-      } else if (s.status === "skipped" || s.skipped) {
-        return `<td><div class="mat-cell mat-skip" title="${esc(name + ": skipped by content policy")}">~</div></td>`;
-      } else {
-        return `<td><div class="mat-cell mat-fail" title="${esc(name + ": ✗ " + (s.error || "failed"))}">✗</div></td>`;
-      }
-    }).join("");
-
-    const total = ACTIVE_PLATFORMS.filter(p => p.group !== "legacy").length;
-    const scoreCls = successCount >= 7 ? "score-green" : successCount >= 4 ? "score-yellow" : "score-red";
-    const scoreBtn = `<span class="score-badge ${scoreCls}" onclick="showUrlModal(${JSON.stringify(JSON.stringify(entry))})" title="Click to see all URLs">${successCount}/${total}</span>`;
-
-    const date = new Date(entry.date).toLocaleDateString("en-US", { month:"short", day:"numeric" });
-    return `<tr>
-      <td class="col-title"><a href="${esc(entry.voa_url)}" target="_blank" class="mat-title-link">${esc(entry.title)}</a></td>
-      <td class="col-date" style="font-size:0.75rem;color:var(--text-muted);white-space:nowrap">${date}</td>
-      ${cells}
-      <td>${scoreBtn}</td>
-    </tr>`;
-  }).join("");
-
-  wrap.innerHTML = `<div class="matrix-wrap">
-    <table class="matrix-table">
-      <thead>
-        ${groupHeaderRow}
-        <tr>
-          <th class="col-title">Post</th>
-          <th class="col-date">Date</th>
-          ${platHeaders}
-          <th title="Platforms confirmed / total">Score</th>
-        </tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table>
-  </div>`;
-
-  // Kick off live URL verification
-  verifyMatrixUrls();
-  verifyBacklinksWithBackend(results);
-}
-
-// ── Live URL Verification ─────────────────────────────────────────────────────
-// ALL platforms use direct browser fetch (no-cors) ~ zero Netlify function calls.
-//
-// WHY: Netlify function calls are credit-expensive for dashboard-wide URL checks.
-// no-cors fetch: throws on network failure → red; returns opaque response → green.
-// Trade-off: can't distinguish 404 from 200, but post URLs are stable after syndication.
-//
-// Backlink status comes from the stored syndication result, especially the Feeder
-// callback's backlink_confirmed flag. We do not re-scrape pages from the dashboard.
-//
-//   DIRECT (browser fetch, no-cors): all platforms with a URL
-//   STORED (show syndication status, no live check): instagram, threads (never have URLs)
-// Results cached in localStorage for 24 hours.
-
-// Platforms that show stored status only ~ no live check (they don't return post URLs)
-const STORED_STATUS_KEYS = new Set(["instagram", "threads"]);
-
-// Purge old v1 cache and any legacy url-check-* keys that may have bad false entries
-(function bustOldCache() {
-  try {
-    localStorage.removeItem("voa_url_verify_cache");
-    Object.keys(localStorage).forEach(function(k) {
-      if (k.startsWith("url-check-")) localStorage.removeItem(k);
+  // Filter buttons
+  document.querySelectorAll(".synd-filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".synd-filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const f = btn.dataset.filter;
+      document.querySelectorAll(".synd-row").forEach(row => {
+        const hide =
+          (f === "missing" && row.dataset.gaps !== "1") ||
+          (f === "full"    && row.dataset.type !== "full");
+        row.style.display = hide ? "none" : "";
+      });
     });
-  } catch (_) {}
-})();
-
-function getVerifyCache() {
-  try {
-    const raw = localStorage.getItem(VERIFY_CACHE);
-    if (!raw) return {};
-    const cache = JSON.parse(raw);
-    const now = Date.now();
-    const clean = {};
-    for (const [url, entry] of Object.entries(cache)) {
-      if (now - entry.ts < CACHE_TTL) clean[url] = entry;
-    }
-    return clean;
-  } catch (_) { return {}; }
-}
-function setVerifyCache(cache) {
-  try { localStorage.setItem(VERIFY_CACHE, JSON.stringify(cache)); } catch (_) {}
+  });
 }
 
-async function verifyMatrixUrls() {
-  const cache = getVerifyCache();
-  const cells = document.querySelectorAll("[data-verify]");
-  const toCheck = [];
-
-  for (const cell of cells) {
-    const url = cell.getAttribute("data-verify");
-    const key = cell.getAttribute("data-key") || "";
-    if (!url) continue;
-
-    // Stored-status platforms: keep the rendered ✓, no live check
-    if (STORED_STATUS_KEYS.has(key)) continue;
-
-    if (cache[url] !== undefined) {
-      updateMatrixCell(cell, cache[url].live);
-      continue;
-    }
-
-    cell.innerHTML = "⏳";
-    cell.classList.replace("mat-ok", "mat-pend");
-    toCheck.push({ cell, url });
-  }
-
-  // Direct no-cors browser fetches ~ sequential to avoid flooding target sites
-  // no-cors: opaque response = server responded (treat as live); throws = network dead
-  for (const { cell, url } of toCheck) {
-    try {
-      await fetch(url, { mode: "no-cors", cache: "no-store" });
-      cache[url] = { live: true, ts: Date.now() };
-      updateMatrixCell(cell, true);
-    } catch (_) {
-      cache[url] = { live: false, ts: Date.now() };
-      updateMatrixCell(cell, false);
-    }
-  }
-
-  if (toCheck.length > 0) setVerifyCache(cache);
-}
-
-function updateMatrixCell(cell, live) {
-  cell.innerHTML = live ? "✓" : "✗";
-  cell.classList.remove("mat-pend");
-  if (live) {
-    cell.classList.add("mat-ok");
-    cell.classList.remove("mat-fail");
-  } else {
-    cell.classList.add("mat-fail");
-    cell.classList.remove("mat-ok");
-    cell.onclick = null;
-    cell.style.cursor = "default";
-  }
-}
-
-async function verifyBacklinksWithBackend(results) {
-  const checks = [];
-  for (const entry of results) {
-    for (const [key, platform] of Object.entries(entry.syndication || {})) {
-      if (!(BACKLINK_KEYS.has(key) || key === "feeder")) continue;
-      if (platform.status !== "success") continue;
-      if (platform.backlink_confirmed) continue;
-      checks.push({ slug: entry.slug, platform: key, url: platform.url || "" });
-    }
-  }
-  if (!checks.length) return;
-
-  try {
-    const res = await fetch(BACKLINK_API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ checks }),
-    });
-    if (!res.ok) return;
-    const data = await res.json();
-    for (const [slug, row] of Object.entries(data?.slugs || {})) {
-      for (const [key, result] of Object.entries(row || {})) {
-        const cell = document.querySelector(`[data-slug="${CSS.escape(slug)}"][data-key="${CSS.escape(key)}"]`);
-        if (!cell || result?.verified !== true) continue;
-        cell.innerHTML = "✓";
-        cell.classList.remove("mat-pend", "mat-fail");
-        cell.classList.add("mat-ok");
-        const recovered = result.recovered_live ? " · recovered live URL" : "";
-        cell.title = `${cell.title || PLATFORM_MAP[key]?.name || key} · backlink confirmed${recovered}`;
-        if (result.url) {
-          cell.setAttribute("data-verify", result.url);
-          cell.onclick = () => window.open(result.url, "_blank");
-          cell.style.cursor = "pointer";
-        }
-      }
-    }
-  } catch (_) {
-    // GitHub Pages/local static previews do not expose /api/backlinks.
-  }
-}
 
 // ── Post Queue ────────────────────────────────────────────────────────────────
 function renderQueue(entries, allPosts, drip) {

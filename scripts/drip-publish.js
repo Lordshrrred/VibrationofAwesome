@@ -29,6 +29,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import minimist from "minimist";
 import dotenv from "dotenv";
+import {
+  ensureDeterministicInternalLinks,
+  inferCluster,
+  loadTopicClusters,
+} from "./lib/internal-linking.js";
 import { refreshOrchestration } from "./lib/refresh-orchestration.js";
 import { updateSitemap } from "./update-sitemap.js";
 
@@ -204,6 +209,7 @@ async function main() {
   }
 
   const publishedSlugs = [];
+  const clusterData = loadTopicClusters();
 
   for (const item of toPublish) {
     const draftFile = path.join(DRAFTS_DIR, item.slug + ".html");
@@ -222,7 +228,28 @@ async function main() {
     }
 
     // Copy draft → posts
-    const html = fs.readFileSync(draftFile, "utf8");
+    let html = fs.readFileSync(draftFile, "utf8");
+    const itemCluster = item.cluster || inferCluster(item, clusterData) || undefined;
+    const sourcePost = {
+      ...item,
+      cluster: itemCluster,
+      url: "/blog/boom/posts/" + item.slug,
+      tags: item.niche ? [item.niche] : [],
+    };
+    const linkUniverse = [
+      sourcePost,
+      ...boomPosts,
+      ...(queue.published || []).map(q => ({
+        ...q,
+        url: "/blog/boom/posts/" + q.slug,
+        tags: q.niche ? [q.niche] : [],
+      })),
+    ];
+    const linkResult = ensureDeterministicInternalLinks(html, sourcePost, linkUniverse, { minRelated: 1, limit: 3 });
+    html = linkResult.html;
+    if (linkResult.inserted) {
+      console.log(`  ✓ Internal links: ${item.slug} → ${linkResult.related.map(r => r.slug).join(", ")}`);
+    }
     fs.writeFileSync(postFile, html, "utf8");
     console.log(`  ✓ Published: /blog/boom/posts/${item.slug}.html`);
 
@@ -233,7 +260,9 @@ async function main() {
       date:    new Date().toISOString(),
       excerpt: extractExcerptFromHtml(html),
       url:     "/blog/boom/posts/" + item.slug,
-      tags:    [],
+      tags:    item.niche ? [item.niche] : [],
+      niche:   item.niche || undefined,
+      cluster: itemCluster,
     });
 
     publishedSlugs.push(item.slug);

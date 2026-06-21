@@ -18,6 +18,11 @@ import { updateSitemap } from "./update-sitemap.js";
 import { syndicatePost } from "./syndicate.js";
 import { fetchNasaImages, fetchForestImages, fetchBoomImages } from "./select-image.js";
 import { findNiche, getDefaultNiche, getNichePromptContext, EARTHSTAR_NICHES } from "./content-niches.js";
+import {
+  ensureDeterministicInternalLinks,
+  inferCluster,
+  loadTopicClusters,
+} from "./lib/internal-linking.js";
 import { getNextCTA, detectContentType } from "./lib/policy.js";
 import { getDifferentiationContext, getClusterContext, recordGeneration } from "./lib/generation-memory.js";
 import { slugify, firstWords } from "./lib/utils.js";
@@ -679,7 +684,13 @@ async function main() {
   console.log("[CTA] " + selectedCTA.id + " ~ " + selectedCTA.url);
 
   // Load generation memory to build semantic differentiation context
-  const clusterKey = argv.cluster || (selectedNiche ? selectedNiche.slug : null);
+  const clusterData = loadTopicClusters();
+  const clusterKey = argv.cluster || inferCluster({
+    title: argv.title || argv.keyword,
+    keyword: argv.keyword,
+    niche: selectedNiche ? selectedNiche.slug : null,
+    pillar: argv.topic,
+  }, clusterData);
   const differentiationContext = getDifferentiationContext(ctaNicheSlug, 10) || "";
   const clusterContext         = getClusterContext(clusterKey) || "";
   if (differentiationContext) console.log("[memory] Differentiation context loaded (recent patterns will be avoided).");
@@ -821,10 +832,29 @@ async function main() {
 
   const dateStr = new Date().toISOString();
   const heroImageUrl = (inlineImages && inlineImages.length > 0) ? inlineImages[0].url : null;
-  let outputHtml = buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, selectedCTA);
-  if (lane === "boom") {
-    outputHtml = normalizeBoomHtml(outputHtml, { slug, title: postTitle, keyword: argv.keyword, niche: ctaNicheSlug });
-  }
+	  let outputHtml = buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, selectedCTA);
+	  if (lane === "boom") {
+	    outputHtml = normalizeBoomHtml(outputHtml, { slug, title: postTitle, keyword: argv.keyword, niche: ctaNicheSlug });
+      const existingPosts = fs.existsSync(dataFile)
+        ? JSON.parse(fs.readFileSync(dataFile, "utf8"))
+        : [];
+      const sourcePost = {
+        title: postTitle,
+        slug,
+        date: dateStr,
+        excerpt: extractExcerpt(bodyMarkdown),
+        url: "/blog/" + lane + "/posts/" + slug,
+        tags: selectedNiche ? [selectedNiche.slug] : [],
+        niche: selectedNiche ? selectedNiche.slug : undefined,
+        cluster: clusterKey || undefined,
+        keyword: argv.keyword,
+      };
+      const linkResult = ensureDeterministicInternalLinks(outputHtml, sourcePost, [sourcePost, ...existingPosts], { minRelated: 1, limit: 3 });
+      outputHtml = linkResult.html;
+      if (linkResult.inserted) {
+        console.log("[links] Related reading inserted: " + linkResult.related.map(r => r.slug).join(", "));
+      }
+	  }
   fs.writeFileSync(outputFile, outputHtml, "utf8");
   console.log((isDraft ? "[DRAFT] " : "") + "Post saved: /blog/" + lane + "/" + outputSub + "/" + slug + ".html");
 

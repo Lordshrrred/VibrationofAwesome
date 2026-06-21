@@ -23,6 +23,12 @@ Roots in the Earth, Crown in the Stars. The Future is Ours.
 
 ## Dual-Blog Content Engine
 
+### Agent Memory Rule
+
+Any AI agent working in this repo must read the repo memory docs before making non-trivial changes: `CLAUDE.md`, this `README.md`, `content-strategy/niche-map.md`, `static/_data/topic-clusters.json`, and the relevant files in `shared-config/`.
+
+If a change affects publishing, syndication, SEO, topic clusters, internal linking, visuals, content strategy, or automation behavior, update the relevant markdown/data memory files in the same pass. Building without updating repo memory is considered incomplete work.
+
 ### Quick Start
 
 ```bash
@@ -90,9 +96,9 @@ That opens Google consent, validates the new Blogger refresh token, saves it to 
 
 The Blogger OAuth helper opens Safari by default on macOS so the correct Google account can stay isolated from Brave. To use another browser, set `BLOGGER_OAUTH_BROWSER` in `.env`, for example `BLOGGER_OAUTH_BROWSER="Google Chrome"`. It defaults to `http://localhost:8090/` so VLC can keep using port `8080`. If Google shows `redirect_uri_mismatch`, add `http://localhost:8090/` as an authorized redirect URI on the Google OAuth client, or set `BLOGGER_REDIRECT_PORT` in `.env` to another authorized port.
 
-### EarthStar 7-Niche Content System
+### EarthStar 8-Niche Content System
 
-Boom Frequency now rotates across seven niches:
+Boom Frequency now rotates across eight niches:
 
 1. `ai-creator-tools` - AI + Music + Creator Tools
 2. `self-betrayal-avoidance` - Self-Betrayal / Avoidance
@@ -101,6 +107,7 @@ Boom Frequency now rotates across seven niches:
 5. `misalignment-wrong-life` - Misalignment / Living the Wrong Life
 6. `direction-purpose-drift` - Lack of Direction / Purpose Drift
 7. `disconnection-inner-noise` - Disconnection from Self / Inner Noise
+8. `art-buyer-intent` - Buying Original Art
 
 The source of truth is `scripts/content-niches.js`. It stores each niche slug, display name, core problem, audience pain, content angle, example article topics, keyword seed phrases, tone notes, and grouped keyword research seeds.
 
@@ -108,13 +115,37 @@ The master human-readable map is `content-strategy/niche-map.md`.
 
 ### Boom Drip Rate
 
-The current drip queue is configured for `2` Boom Frequency posts per publish run at `10:00 UTC`. The GitHub Actions drip workflow is manual-only until its schedule is re-enabled.
+The current drip system has four scheduled slots in `.github/workflows/drip-posts.yml`:
 
-Draft generation rotates through all seven niches from `scripts/content-niches.js`:
+- `9:00 AM ET` - normal Boom post with existing syndication stack
+- `12:00 PM ET` - art-buyer extra post, VOA + Dev.to account 2 only
+- `6:00 PM ET` - normal Boom post with existing syndication stack
+- `9:00 PM ET` - art-buyer extra post, VOA + Dev.to account 2 only
+
+The normal slots use `drip_rate` from `static/_data/drip-queue.json` and currently publish 1 post/run. The art-extra slots call `drip-publish.js --niche art-buyer-intent --limit 1 --syndication-profile art-devto2-only`, so they do not increase Pinterest, Instagram, Threads, Facebook, Tumblr, Blogger, WordPress, or Feeder volume.
+
+Draft generation rotates through all configured niches from `scripts/content-niches.js`:
 
 ```bash
 node scripts/generate-all-drafts.js
 ```
+
+### Internal Linking + Topic Clusters
+
+VOA has a deterministic internal-linking layer for SEO/topical authority.
+
+```bash
+npm run links:audit
+npm run links:apply
+```
+
+Key files:
+
+- `static/_data/topic-clusters.json` - semantic authority clusters
+- `scripts/lib/internal-linking.js` - cluster inference, related-post scoring, money-page targeting
+- `scripts/internal-linking.js` - audit/apply CLI
+
+New Boom posts get cluster-aware related-reading blocks automatically during generation/publish. Existing posts/drafts can be refreshed with `npm run links:apply`. The generated blocks use `<section data-internal-related ...>` and point clusters toward the correct money page: `/ai-engine/`, `/art-store/`, or `/field-guide/`.
 
 ### SEO Keyword Research
 
@@ -174,6 +205,7 @@ ANTHROPIC_API_KEY      → Claude API for post generation and captions
 VOA_FEEDER_TRIGGER_TOKEN → GitHub PAT to fire VOA_Feeder workflow
 PUBLER_API_KEY         → Publer for Instagram / Threads / Pinterest
 DEVTO_API_KEY          → Dev.to backlink posting
+DEVTO2_API_KEY         → second Dev.to account for art-buyer extra slots only
 TUMBLR_*               → Tumblr OAuth 1.0a credentials
 BLOGGER_REFRESH_TOKEN  → Blogger OAuth2 refresh token
 WORDPRESS_OAUTH2_TOKEN → WordPress.com direct API token
