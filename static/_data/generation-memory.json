@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-22T17:46:07.336Z",
+  "lastUpdated": "2026-06-22T19:03:52.672Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-bootcamp-negative-reviews-reading-between-the-lines",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-06-22T19:03:52.672Z"
+    },
+    {
       "slug": "ai-advantage-bootcamp-complaints-what-critics-say-and-whether-they-are-right",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1147,15 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-06-16T18:09:47.253Z"
-    },
-    {
-      "slug": "how-to-stop-ai-hallucinations-in-content-creation",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-06-15T23:48:32.002Z"
     }
   ],
   "recentInstagramArchetypes": [
