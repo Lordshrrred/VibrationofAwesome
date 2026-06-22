@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-22T21:29:25.175Z",
+  "lastUpdated": "2026-06-22T23:23:02.119Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-clone-builder-system-explained-is-this-actually-a-new-idea",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-06-22T23:22:45.659Z"
+    },
+    {
       "slug": "who-is-igor-pogany-the-ai-instructor-behind-the-ai-advantage-system",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,18 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-06-17T06:13:17.059Z"
-    },
-    {
-      "slug": "markdown-formatting-for-ai-prompts",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-06-16T23:27:27.345Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-clone-builder-system-explained-is-this-actually-a-new-idea",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-22T23:23:02.119Z"
+    },
     {
       "slug": "ai-advantage-bootcamp-complaints-what-critics-say-and-whether-they-are-right",
       "archetype": "abstract-creator-life",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "stillness",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-09T16:29:20.816Z"
-    },
-    {
-      "slug": "how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-09T08:27:11.510Z"
     }
   ]
 }
