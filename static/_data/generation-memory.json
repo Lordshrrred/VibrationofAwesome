@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-22T06:30:35.637Z",
+  "lastUpdated": "2026-06-22T17:46:07.336Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-bootcamp-complaints-what-critics-say-and-whether-they-are-right",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-06-22T17:45:52.801Z"
+    },
+    {
       "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,18 +1156,18 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-06-15T23:48:32.002Z"
-    },
-    {
-      "slug": "how-to-make-faceless-videos-with-pictory-ai",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-06-15T18:04:18.888Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "ai-advantage-bootcamp-complaints-what-critics-say-and-whether-they-are-right",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-06-22T17:46:07.336Z"
+    },
     {
       "slug": "should-you-buy-the-ai-advantage-bootcamp-the-honest-decision-framework",
       "archetype": "symbolic-consciousness",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-06-09T08:27:11.510Z"
-    },
-    {
-      "slug": "how-to-use-gamma-ai-for-music-presentations",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-08T23:14:20.939Z"
     }
   ]
 }
