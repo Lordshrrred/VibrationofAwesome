@@ -464,5 +464,28 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-06-23T10:46:14.560Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the runtime environment.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "REQUIRED_FROM_DEVTO_DASHBOARD",
+          "reason": "Dev.to account 2 requires a separate API key stored in DEVTO2_API_KEY environment variable for authentication and syndication support"
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
