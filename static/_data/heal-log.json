@@ -487,5 +487,31 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-06-23T20:59:33.043Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/28056597540",
+    "tier1": {
+      "healed": true,
+      "detail": "Replaced em dashes with ~ in 1 file(s): static/dashboard/index.html",
+      "files": [
+        "static/dashboard/index.html"
+      ]
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the deployment or .env configuration.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "[obtain from Dev.to account 2 API settings page]",
+          "reason": "Second Dev.to syndication account requires separate API key authentication; missing key prevents health check validation and syndication to this platform account"
+        }
+      }
+    ],
+    "retriggered": true
   }
 ]
