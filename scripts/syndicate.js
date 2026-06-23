@@ -964,7 +964,7 @@ async function getBloggerAccessToken() {
 async function generateBloggerArticle(sourceTitle, sourceText, sourceUrl, anthropic) {
   const msg = await anthropic.messages.create({
     model:      "claude-opus-4-6",
-    max_tokens: 2000,
+    max_tokens: 3000,
     system: `You are Matt EarthStar, the voice behind Vibration of Awesome (vibrationofawesome.com). Write in Matt's authentic personal voice: reflective, honest, spiritual but grounded ~ the voice of someone who has lived through real struggles and found genuine insight. Not corporate motivation or new-age fluff. Raw, direct, human.`,
     messages: [
       {
@@ -982,11 +982,15 @@ Write a NEW original article inspired by these themes but from a completely fres
 Format your response EXACTLY like this:
 TITLE: [your article title here]
 
-[article body as clean HTML using only <p>, <h2>, <blockquote>, <strong>, <em> tags]
+[article body as clean HTML using only <p>, <h2>, <h3>, <blockquote>, <strong>, <em>, <ul>, <ol>, <li> tags]
 
 Requirements:
-- 500-700 words
+- 900-1200 words minimum — this is a substantive companion article, not a stub
+- Use 3-5 H2 subheadings to break the piece into scannable sections
 - Include one natural in-body link back to the original article that inspired this piece: <a href="${sourceUrl}">${sourceTitle}</a>
+- Write with SEO in mind: use the core topic keywords naturally throughout the text, especially in headings and opening paragraphs
+- Each section should add real value — concrete insight, a story, or a specific framework, not filler
+- End with a strong closing paragraph that feels complete
 - No <html>/<head>/<body> wrappers
 - No inline styles or class attributes
 - No title tag in the HTML body`,
@@ -1008,7 +1012,7 @@ Requirements:
 async function generateWordPressArticle(sourceTitle, sourceText, sourceUrl, anthropic) {
   const msg = await anthropic.messages.create({
     model: "claude-opus-4-6",
-    max_tokens: 2200,
+    max_tokens: 3000,
     system: `You are Matt EarthStar, writing for EarthStarRising. Keep the voice human, direct, spiritual-but-grounded, and rooted in lived experience instead of generic inspiration.`,
     messages: [
       {
@@ -1027,12 +1031,16 @@ Format your response EXACTLY like this:
 TITLE: [new title]
 EXCERPT: [1-2 sentence excerpt]
 
-[article body as clean HTML using only <p>, <h2>, <blockquote>, <strong>, <em>, <a>, <ul>, <ol>, <li>]
+[article body as clean HTML using only <p>, <h2>, <h3>, <blockquote>, <strong>, <em>, <a>, <ul>, <ol>, <li>]
 
 Requirements:
-- 600-900 words
+- 900-1200 words minimum — this is a substantive companion piece, not a stub
+- Use 3-5 H2 subheadings to organize the piece into scannable sections
 - Include one natural backlink to the original source as a labeled HTML anchor: <a href="${sourceUrl}">the original Vibration of Awesome piece</a>
 - Do not use the raw URL as visible link text
+- Write with SEO in mind: work the core topic keywords into headings and opening paragraphs naturally
+- Each section should stand on its own — a concrete insight, a personal angle, or a framework that adds value
+- End with a strong concluding paragraph
 - Keep the HTML body clean with no wrappers, classes, styles, scripts, or markdown fences
 - The title must be distinct from the source title
 - The excerpt should be compelling and specific`,

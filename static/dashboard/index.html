@@ -291,11 +291,11 @@
     .synd-type-art  { background: rgba(212,175,55,0.13); color: var(--warn); }
     .synd-bl-ok  { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(57,255,20,0.1); color: var(--success); }
     .synd-bl-gap { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(255,180,0,0.13); color: #ffb400; }
-    .synd-pill-groups { display: flex; flex-direction: column; gap: 0.6rem; }
-    .synd-pill-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .synd-pill-groups { display: flex; flex-direction: row; gap: 2rem; align-items: flex-start; }
+    .synd-pill-row { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; min-width: 0; }
     .synd-group-label {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-muted); min-width: 5.5rem; flex-shrink: 0;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted);
     }
     .synd-pills { display: flex; gap: 0.35rem; flex-wrap: wrap; }
     .sp {
@@ -347,7 +347,7 @@
     }
     .drip-cmd-copy:hover { border-color: var(--accent); color: var(--accent); }
     /* Queue list inside drip panel */
-    .drip-queue-list { max-height: 420px; overflow-y: auto; border: 1px solid var(--border); border-radius: 6px; }
+    .drip-queue-list { max-height: 480px; overflow-y: auto; border: 1px solid var(--border); border-radius: 6px; }
     .drip-queue-item {
       display: flex; align-items: center; gap: 0.75rem; padding: 0.55rem 0.9rem;
       border-bottom: 1px solid rgba(0,229,204,0.05);
@@ -864,17 +864,14 @@
         </div>
       </div>
 
-      <div class="two-col split-6040">
-        <div class="card">
-          <div class="card-head">
-            <div class="card-title">Drip Queue</div>
-            <div class="card-sub" id="drip-count-label"></div>
-          </div>
-          <div id="drip-wrap">
-            <div class="loading dot-pulse">Loading</div>
-          </div>
+      <div class="card" style="margin-bottom:1.5rem">
+        <div class="card-head">
+          <div class="card-title">Drip Queue</div>
+          <div class="card-sub" id="drip-count-label"></div>
         </div>
-
+        <div id="drip-wrap">
+          <div class="loading dot-pulse">Loading</div>
+        </div>
       </div>
 
       <!-- ── Syndication Feed (unified) ── -->
@@ -897,19 +894,10 @@
         <span class="section-title">Post Queue</span>
         <span style="font-size:0.75rem;color:var(--text-muted)">Recent blog inventory, grouped by state</span>
       </div>
-      <div class="queue-panels">
+      <div class="queue-panels" style="grid-template-columns:1fr 1fr">
         <div class="queue-panel">
           <div class="panel-header">
-            <span class="panel-title" style="color:var(--success)">Syndicated</span>
-            <span class="panel-count" id="pq-synced-count">~</span>
-          </div>
-          <div class="panel-body" id="pq-synced">
-            <div class="loading dot-pulse">Loading</div>
-          </div>
-        </div>
-        <div class="queue-panel">
-          <div class="panel-header">
-            <span class="panel-title" style="color:var(--warn)">Queued</span>
+            <span class="panel-title" style="color:var(--warn)">In Drip Queue</span>
             <span class="panel-count" id="pq-queued-count">~</span>
           </div>
           <div class="panel-body" id="pq-queued">
@@ -918,7 +906,7 @@
         </div>
         <div class="queue-panel">
           <div class="panel-header">
-            <span class="panel-title" style="color:var(--text-muted)">Recent Blog Posts</span>
+            <span class="panel-title" style="color:var(--text-muted)">Recent Published Posts</span>
             <span class="panel-count" id="pq-scheduled-count">~</span>
           </div>
           <div class="panel-body" id="pq-scheduled">
@@ -926,6 +914,9 @@
           </div>
         </div>
       </div>
+      <!-- hidden placeholder to avoid JS errors on removed panel -->
+      <div id="pq-synced" style="display:none"></div>
+      <span id="pq-synced-count" style="display:none"></span>
 
       <!-- ── Site & Feeder Stats ── -->
       <div class="section">
@@ -949,33 +940,7 @@
         </div>
       </div>
 
-      <!--
-        ── ESC Recommendations (Phase 7Z / 8B / 8C / 8D) ────────────────────
-        VOA reads ESC recommendations from static/_data/latest-voa-recommendations.json
-        Local review state: browser localStorage key voaEscRecommendationReviewState
-        This panel is REVIEW ONLY. Rendering requires ALL THREE safety flags:
-          executionAllowed  === false
-          requiresHumanApproval === true
-          exportMode        === "review_only"
-        "Accepted" means worth manual follow-up ~ NOT published or syndicated.
-        Phase 8D: accepted recommendations show a Manual Draft Assist box.
-          Drafts are browser-generated suggestions ~ not posts, not queued.
-          manualDraftOverride persists user edits in localStorage.
-          Copy is always manual. Nothing is sent anywhere.
-        No queue mutation, post creation, publishing, or syndication here.
-        Future automation requires a separate approval-gated phase (8E+).
-        ─────────────────────────────────────────────────────────────────────
-      -->
-      <!-- ── ESC Recommendations ── -->
-      <div class="section" id="esc-section">
-        <div class="section-header">
-          <span class="section-title" style="color:var(--purple)">ESC Recommendations</span>
-          <span style="font-size:0.75rem;color:var(--text-muted)">Review-only · no automatic execution</span>
-        </div>
-        <div id="esc-panel-wrap">
-          <div class="loading dot-pulse">Loading</div>
-        </div>
-      </div>
+      <!-- ESC Recommendations removed — future automation phase will replace this -->
 
       <!-- ── Manual Syndication ── -->
       <div class="section">
@@ -1234,7 +1199,7 @@ async function loadDashboard() {
   renderQueue(entries, allPosts, dripData);
   renderTrigger(allPosts);
   renderFeederSection(resultsData, dripData, boomPosts, mattPosts);
-  loadEscRecommendations();
+  // ESC recommendations disabled — future automation phase will handle this
 }
 
 function feederSourceSlug(feederSlug) {
@@ -1913,7 +1878,7 @@ function renderQueue(entries, allPosts, drip) {
         <div class="item-meta">
           <span>${date}</span>
           <span class="item-pill ${post.lane === "matt" ? "lane-matt" : "lane-boom"}">${laneNm}</span>
-          ${isSynced ? `<span class="item-pill score">${platformScore}/${PLATFORMS.length}</span>` : ""}
+          ${isSynced ? `<span class="item-pill score">${platformScore}/${ACTIVE_PLATFORMS.length}</span>` : ""}
           ${dripStatus === "queued" ? `<span class="item-pill queue">Queued</span>` : ""}
           ${dripStatus === "published" && !isSynced ? `<span class="item-pill queue">Published</span>` : ""}
         </div>
