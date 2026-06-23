@@ -272,40 +272,44 @@
     .synd-feed { display: flex; flex-direction: column; gap: 0.9rem; }
     .synd-row {
       background: var(--surface); border: 1px solid rgba(0,229,204,0.08);
-      border-radius: 10px; padding: 1.25rem 1.4rem; border-left: 4px solid transparent;
+      border-radius: 8px; padding: 0.7rem 1rem; border-left: 4px solid transparent;
       transition: border-color 0.15s, background 0.15s;
+      display: grid; grid-template-columns: 1fr auto; gap: 0.2rem 1.5rem; align-items: start;
     }
     .synd-row:hover { border-color: rgba(0,229,204,0.2); background: var(--surface2); }
     .synd-row.has-gaps { border-left-color: rgba(255,180,0,0.7); }
     .synd-row:not(.has-gaps) { border-left-color: rgba(57,255,20,0.25); }
-    .synd-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.55rem; }
-    .synd-title { font-size: 1rem; font-weight: 700; color: var(--text); text-decoration: none; line-height: 1.35; }
+    .synd-row-left { display: flex; flex-direction: column; gap: 0.3rem; }
+    .synd-row-right { display: flex; flex-direction: column; gap: 0.35rem; align-items: flex-end; }
+    .synd-top { display: flex; align-items: baseline; gap: 0.65rem; flex-wrap: wrap; }
+    .synd-title { font-size: 0.9rem; font-weight: 700; color: var(--text); text-decoration: none; line-height: 1.3; }
     .synd-title:hover { color: var(--accent); }
-    .synd-date  { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; padding-top: 0.15rem; flex-shrink: 0; }
-    .synd-meta  { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .synd-date  { font-size: 0.7rem; color: var(--text-muted); white-space: nowrap; flex-shrink: 0; }
+    .synd-status { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
     .synd-type-badge {
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
-      padding: 0.2rem 0.6rem; border-radius: 4px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+      padding: 0.15rem 0.5rem; border-radius: 4px;
     }
     .synd-type-full { background: rgba(0,229,204,0.1); color: var(--accent); }
     .synd-type-art  { background: rgba(212,175,55,0.13); color: var(--warn); }
-    .synd-bl-ok  { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(57,255,20,0.1); color: var(--success); }
-    .synd-bl-gap { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(255,180,0,0.13); color: #ffb400; }
-    .synd-pill-groups { display: flex; flex-direction: row; gap: 2rem; align-items: flex-start; }
-    .synd-pill-row { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; min-width: 0; }
+    .synd-bl-ok  { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; padding: 0.15rem 0.5rem; border-radius: 4px; background: rgba(57,255,20,0.1); color: var(--success); }
+    .synd-bl-gap { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; padding: 0.15rem 0.5rem; border-radius: 4px; background: rgba(255,180,0,0.13); color: #ffb400; }
+    .synd-eta    { font-size: 0.65rem; color: var(--text-muted); font-style: italic; white-space: nowrap; }
+    .synd-pill-groups { display: flex; flex-direction: column; gap: 0.35rem; align-items: flex-end; }
+    .synd-pill-row { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; justify-content: flex-end; }
     .synd-group-label {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text-muted);
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); flex-shrink: 0;
     }
-    .synd-pills { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .synd-pills { display: flex; gap: 0.3rem; flex-wrap: wrap; justify-content: flex-end; }
     .sp {
-      display: inline-flex; align-items: center; padding: 0.28rem 0.65rem;
-      border-radius: 5px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; cursor: default;
+      display: inline-flex; align-items: center; padding: 0.2rem 0.55rem;
+      border-radius: 4px; font-size: 0.74rem; font-weight: 600; white-space: nowrap; cursor: default;
     }
     .sp-ok   { background: rgba(57,255,20,0.12);  color: var(--success); cursor: pointer; }
     .sp-ok:hover { background: rgba(57,255,20,0.2); }
     .sp-fail { background: rgba(255,68,68,0.12);  color: var(--danger); }
-    .sp-skip { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.25); font-weight: 400; }
+    .sp-skip { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.2); font-weight: 400; }
     .sp-miss { background: rgba(255,180,0,0.1);   color: #ffb400; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
     .mat-title-link { color: var(--text); text-decoration: none; font-size: 0.82rem; font-weight: 500; }
@@ -1722,6 +1726,21 @@ function renderSyndFeed(entries, resultsData) {
     return { slug, ts };
   }).sort((a,b) => b.ts.localeCompare(a.ts));
 
+  // Build ETA lookup: posts with missing backlinks sorted oldest-first
+  // Backfill runs oldest-first, 3 posts per 4-hour batch
+  const backlogSlugs = [...slugsWithDate]
+    .filter(({slug}) => blStatus(getSyn(slug), isArtExtra(getSyn(slug))).anyMiss)
+    .sort((a,b) => a.ts.localeCompare(b.ts))
+    .map(s => s.slug);
+
+  function etaDate(slug) {
+    const pos = backlogSlugs.indexOf(slug);
+    if (pos < 0) return null;
+    const runsNeeded = Math.ceil((pos + 1) / 3);
+    const etaMs = Date.now() + runsNeeded * 4 * 60 * 60 * 1000;
+    return new Date(etaMs).toLocaleDateString("en-US", {month:"short", day:"numeric"});
+  }
+
   const rows = slugsWithDate.map(({ slug }) => {
     const syn      = getSyn(slug);
     const logEntry = logBySlug[slug];
@@ -1735,8 +1754,6 @@ function renderSyndFeed(entries, resultsData) {
     const url     = logEntry?.postUrl   || resEntry?.voa_url || "#";
     const dateRaw = logEntry?.timestamp || resEntry?.date || "";
     const date    = dateRaw ? new Date(dateRaw).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}) : "?";
-    const lane    = logEntry?.lane || resEntry?.lane || "boom";
-    const laneLabel = lane === "matt" ? "Forest Temple" : "Boom Frequency";
 
     // Backlink pills ~ devto OR devto2 counts as one DEV pill
     const devStatus  = syn["devto"]?.status === "success" ? "success"
@@ -1744,11 +1761,11 @@ function renderSyndFeed(entries, resultsData) {
                      : (syn["devto"] || syn["devto2"])?.status || (artExtra ? "skipped" : "missing");
     const devUrl     = syn["devto"]?.url || syn["devto2"]?.url;
     const blPillsHtml = [
-      pill("Dev.to", devStatus, devUrl, "Dev.to"),
-      pill("Tumblr", syn["tumblr_voa"]?.status || "missing",          syn["tumblr_voa"]?.url,          "Tumblr"),
-      pill("Blogger", syn["blogger"]?.status || "missing",            syn["blogger"]?.url,              "Blogger"),
-      pill("WordPress", syn["wordpress_earthstar"]?.status || "missing", syn["wordpress_earthstar"]?.url, "WordPress EarthStar"),
-      pill("Feeder", syn["feeder"]?.status || (artExtra ? "skipped" : "missing"), syn["feeder"]?.url, "VOA Feeder"),
+      pill("Dev.to",    devStatus,                                                        devUrl,                          "Dev.to"),
+      pill("Tumblr",    syn["tumblr_voa"]?.status || "missing",                           syn["tumblr_voa"]?.url,          "Tumblr"),
+      pill("Blogger",   syn["blogger"]?.status || "missing",                              syn["blogger"]?.url,             "Blogger"),
+      pill("WordPress", syn["wordpress_earthstar"]?.status || "missing",                  syn["wordpress_earthstar"]?.url, "WordPress EarthStar"),
+      pill("Feeder",    syn["feeder"]?.status || (artExtra ? "skipped" : "missing"),      syn["feeder"]?.url,              "VOA Feeder"),
     ].join("");
 
     // Social pills ~ only for full drip posts
@@ -1759,9 +1776,11 @@ function renderSyndFeed(entries, resultsData) {
 
     const typeClass = artExtra ? "synd-type-art" : "synd-type-full";
     const typeLabel = artExtra ? "Art Extra" : "Full Drip";
-    const blBadge   = allOk
-      ? `<span class="synd-bl-ok">✓ Backlinks complete</span>`
-      : `<span class="synd-bl-gap">⚠ Backlinks missing</span>`;
+
+    const eta = anyMiss ? etaDate(slug) : null;
+    const statusBadge = allOk
+      ? `<span class="synd-bl-ok">✓ Synced</span><span class="synd-eta">${date}</span>`
+      : `<span class="synd-bl-gap">⚠ Missing</span>${eta ? `<span class="synd-eta">est. ${eta}</span>` : ""}`;
 
     const socialRow = artExtra ? "" : `
       <div class="synd-pill-row">
@@ -1770,20 +1789,24 @@ function renderSyndFeed(entries, resultsData) {
       </div>`;
 
     return `<div class="synd-row${anyMiss?" has-gaps":""}" data-type="${artExtra?"art":"full"}" data-gaps="${anyMiss?1:0}">
-      <div class="synd-top">
-        <a href="${esc(url)}" target="_blank" class="synd-title">${esc(title)}</a>
-        <span class="synd-date">${date}</span>
-      </div>
-      <div class="synd-meta">
-        <span class="synd-type-badge ${typeClass}">${typeLabel}</span>
-        ${blBadge}
-      </div>
-      <div class="synd-pill-groups">
-        <div class="synd-pill-row">
-          <span class="synd-group-label">Backlinks</span>
-          <div class="synd-pills">${blPillsHtml}</div>
+      <div class="synd-row-left">
+        <div class="synd-top">
+          <a href="${esc(url)}" target="_blank" class="synd-title">${esc(title)}</a>
+          <span class="synd-date">${date}</span>
         </div>
-        ${socialRow}
+        <div class="synd-status">
+          <span class="synd-type-badge ${typeClass}">${typeLabel}</span>
+          ${statusBadge}
+        </div>
+      </div>
+      <div class="synd-row-right">
+        <div class="synd-pill-groups">
+          <div class="synd-pill-row">
+            <span class="synd-group-label">Backlinks</span>
+            <div class="synd-pills">${blPillsHtml}</div>
+          </div>
+          ${socialRow}
+        </div>
       </div>
     </div>`;
   }).join("");
