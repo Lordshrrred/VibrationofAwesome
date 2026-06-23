@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-23T23:11:59.238Z",
+  "lastUpdated": "2026-06-23T23:16:32.885Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-use-claude-without-losing-creative-control",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-06-23T23:16:32.885Z"
+    },
+    {
+      "slug": "ai-music-production-tools-for-independent-artists-2026",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-06-23T23:16:05.629Z"
+    },
+    {
+      "slug": "how-to-write-ai-prompts-for-creative-projects",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-06-23T23:15:32.234Z"
+    },
+    {
       "slug": "is-the-ai-advantage-bootcamp-worth-it-a-breakdown-by-type-of-person",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1129,33 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-06-18T21:17:41.397Z"
-    },
-    {
-      "slug": "the-clone-builder-system-is-this-actually-a-new-idea",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-06-18T18:21:41.156Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-cost-here-is-exactly-what-nine-hundred-ninety-five-dollars-gets-you",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-06-18T16:41:04.370Z"
-    },
-    {
-      "slug": "where-to-buy-original-art-online-without-getting-burned",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-06-18T05:56:44.068Z"
     }
   ],
   "recentInstagramArchetypes": [
