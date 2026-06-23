@@ -102,6 +102,7 @@ async function triggerFeeder(item) {
           voa_post_tags: Array.isArray(item.tags) ? item.tags.join(", ") : "",
           voa_post_category: item.topic || item.category || "",
           voa_post_source_text: extractSourceTextFromHtml(postHtml),
+          voa_post_date: item.date ? String(item.date).slice(0, 10) : new Date().toISOString().slice(0, 10),
         },
       }),
     }

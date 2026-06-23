@@ -47,7 +47,9 @@
     "gmail-token": "python3 scripts/get_gmail_token.py",
     "gmail-replies": "node scripts/check-gmail-replies.js",
     "backfill:backlinks": "node scripts/backfill-backlinks.js",
-    "backfill:backlinks:run": "node scripts/backfill-backlinks.js --execute"
+    "backfill:backlinks:run": "node scripts/backfill-backlinks.js --execute",
+    "backfill:feeder": "node scripts/backfill-feeder.js",
+    "backfill:feeder:run": "node scripts/backfill-feeder.js --execute"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
