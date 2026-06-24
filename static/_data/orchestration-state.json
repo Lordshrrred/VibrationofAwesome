@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-06-24T17:45:51.666Z",
+  "generated_at": "2026-06-24T17:53:58.951Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -505,6 +505,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "ai-advantage-vs-doing-it-yourself-what-you-would-actually-need-to-learn",
+        "title": "AI Advantage vs Doing It Yourself: What You Would Actually Need to Learn",
+        "lane": "boom",
+        "date": "2026-06-24",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "facebook_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-06-24T17:53:58.943Z",
+            "url": null
+          },
+          "threads": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "instagram": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "devto": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-06-24T17:53:58.943Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/820325672972156928"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-06-24T17:53:58.943Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-06-24T17:53:58.943Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/06/24/ai-advantage-vs-doing-it-yourself-what-you-would-actually-need-to-learn-earthstar/"
+          }
+        },
+        "success_count": 3,
+        "failed_count": 1
+      },
       {
         "slug": "ai-advantage-bootcamp-payment-plan-is-three-payments-of-three-eighty-smart",
         "title": "AI Advantage Bootcamp Payment Plan: Is Three Payments of Three Eighty Smart",
@@ -6910,6 +6976,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "ai-advantage-vs-doing-it-yourself-what-you-would-actually-need-to-learn",
+        "platform": "blogger",
+        "timestamp": "2026-06-24T17:53:58.943Z"
+      },
+      {
         "slug": "markdown-formatting-for-ai-prompts",
         "platform": "blogger",
         "timestamp": "2026-06-16T23:29:36.245Z"
@@ -7214,70 +7285,84 @@
       "feeder": {
         "successes": 78,
         "failures": 0,
-        "total": 97
+        "total": 98
       },
       "bluesky_voa": {
         "successes": 68,
         "failures": 9,
-        "total": 97
+        "total": 98
       },
       "mastodon_voa": {
         "successes": 67,
         "failures": 9,
-        "total": 97
+        "total": 98
       },
       "facebook_voa": {
         "successes": 63,
         "failures": 13,
-        "total": 97
+        "total": 98
       },
       "pinterest": {
-        "successes": 88,
+        "successes": 89,
         "failures": 0,
-        "total": 97
+        "total": 98
       },
       "threads": {
         "successes": 75,
         "failures": 0,
-        "total": 97
+        "total": 98
       },
       "instagram": {
         "successes": 73,
         "failures": 0,
-        "total": 97
+        "total": 98
       },
       "devto": {
         "successes": 76,
         "failures": 0,
-        "total": 97
+        "total": 98
       },
       "tumblr_voa": {
-        "successes": 80,
+        "successes": 81,
         "failures": 9,
-        "total": 97
+        "total": 98
       },
       "blogger": {
         "successes": 70,
-        "failures": 19,
-        "total": 97
+        "failures": 20,
+        "total": 98
       },
       "wordpress_earthstar": {
-        "successes": 88,
+        "successes": 89,
         "failures": 1,
-        "total": 97
+        "total": 98
       }
     },
     "summary": {
-      "total_posts": 97,
+      "total_posts": 98,
       "fully_syndicated": 71,
-      "partial": 20,
+      "partial": 21,
       "pending": 6,
-      "retry_backlog_count": 60
+      "retry_backlog_count": 61
     }
   },
   "visuals": {
-    "registry_count": 126,
+    "registry_count": 127,
     "registry_entries": [
+      {
+        "post_slug": "ai-advantage-vs-doing-it-yourself-what-you-would-actually-need-to-learn",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "pinterest",
+        "timestamp": "2026-06-24T17:51:55.514Z"
+      },
       {
         "post_slug": "is-the-ai-advantage-bootcamp-worth-it-a-breakdown-by-type-of-person",
         "source": "ideogram",
@@ -9061,22 +9146,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 126,
+      "total_entries": 127,
       "reused_count": 0,
       "reuse_rate": 0
     },
     "source_breakdown": {
-      "ideogram": 94,
+      "ideogram": 95,
       "boom": 32
     },
     "generation_counts": {
-      "ideogram": 94
+      "ideogram": 95
     },
     "platform_usage": {
-      "pinterest": 110,
-      "instagram": 97,
-      "bluesky_voa": 94,
-      "mastodon_voa": 94
+      "pinterest": 111,
+      "bluesky_voa": 95,
+      "mastodon_voa": 95,
+      "instagram": 97
     }
   },
   "clusters": {
@@ -9377,7 +9462,7 @@
     "unassigned_post_count": 98
   },
   "generation": {
-    "last_updated": "2026-06-24T05:04:15.313Z",
+    "last_updated": "2026-06-24T17:51:41.794Z",
     "recent_hooks": [
       {
         "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -10261,6 +10346,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "ai-advantage-vs-doing-it-yourself-what-you-would-actually-need-to-learn",
+        "format": "reflective-essay",
+        "cadenceProfile": "slow-layered",
+        "density": "dense",
+        "openerStyle": "grounded-observation",
+        "closerStyle": "quiet-wisdom",
+        "timestamp": "2026-06-24T17:51:41.794Z"
+      },
+      {
         "slug": "how-to-find-your-purpose-when-you-have-no-idea-what-it-is",
         "format": "manifesto-conviction",
         "cadenceProfile": "charged-decisive",
@@ -10520,15 +10614,6 @@
         "openerStyle": "direct",
         "closerStyle": "resonant",
         "timestamp": "2026-06-19T20:25:28.280Z"
-      },
-      {
-        "slug": "ai-advantage-bootcamp-alternatives-five-ways-to-get-similar-results-for-free",
-        "format": "philosophical-observation",
-        "cadenceProfile": "contemplative",
-        "density": "medium-dense",
-        "openerStyle": "conceptual-paradox",
-        "closerStyle": "open-question",
-        "timestamp": "2026-06-19T17:47:12.564Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -10806,7 +10891,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-06-24T17:45:51.666Z",
+    "as_of": "2026-06-24T17:53:58.951Z",
     "next_estimated_window": "2026-06-25",
     "queue_runway_days": 84,
     "queue_runway_status": "healthy",
@@ -10869,7 +10954,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 60,
+    "retry_backlog_count": 61,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -10929,9 +11014,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-06-24T17:45:51.659Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 7,
+    "last_export_at": "2026-06-24T17:53:58.945Z",
+    "source_event": "syndication",
+    "export_duration_ms": 6,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
