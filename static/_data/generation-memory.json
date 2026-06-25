@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-24T17:56:18.955Z",
+  "lastUpdated": "2026-06-25T05:04:53.428Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "free-ai-resources-that-cover-what-ai-advantage-teaches",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-06-25T05:04:38.087Z"
+    },
+    {
       "slug": "multiple-streams-of-income-for-beginners-where-to-actually-start",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,18 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-06-20T23:12:19.951Z"
-    },
-    {
-      "slug": "tony-robbins-ai-webinar-2026-everything-that-happens-before-the-pitch",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-06-20T20:12:44.547Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "free-ai-resources-that-cover-what-ai-advantage-teaches",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-06-25T05:04:53.428Z"
+    },
     {
       "slug": "is-the-ai-advantage-bootcamp-worth-it-a-breakdown-by-type-of-person",
       "archetype": "cinematic-ideogram",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-11T17:00:27.101Z"
-    },
-    {
-      "slug": "how-to-restyle-product-images-with-chatgpt",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-10T23:28:59.885Z"
     }
   ]
 }
