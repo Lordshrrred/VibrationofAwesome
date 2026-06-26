@@ -597,5 +597,35 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-06-26T10:34:17.174Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Blogger token refresh",
+        "diagnosis": "OAuth refresh token expired or revoked. External Google/OAuth consent flow required. AI self-healing cannot repair OAuth tokens.",
+        "fix_type": "auth_reconnect_required",
+        "confidence": "high",
+        "action": {
+          "instructions": "1. Run token renewal locally: npm run blogger-token\n2. Complete the OAuth consent flow in the browser that opens.\n3. Re-run: npm run check:syndication -- --write\nNote: AI self-healing cannot create a new valid OAuth refresh token. This requires external user consent."
+        }
+      },
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "missing DEVTO2_API_KEY",
+        "fix_type": "human_required",
+        "confidence": "low",
+        "action": {
+          "instructions": "Check Dev.to account 2 auth manually. Detail: missing DEVTO2_API_KEY"
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
