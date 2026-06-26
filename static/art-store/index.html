@@ -1005,19 +1005,24 @@
   }
 
   /* RESPONSIVE */
+  /* Content: 4-col → 2-col at 1100px */
   @media (max-width: 1100px) {
     .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
     main.product-filtered { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
   }
-  @media (max-width: 900px) {
-    main { padding: 4rem 2rem; }
-    .portfolio-invite { padding: 0; }
-    .portfolio-invite-card { grid-template-columns: 1fr; }
+
+  /* Tablet nav — tight horizontal (901px–1180px) */
+  @media (max-width: 1180px) and (min-width: 901px) {
+    #mainNav { padding: 1.2rem 1.5rem; gap: 0.75rem; }
+    .nav-links { gap: 0.75rem; margin-left: 0.5rem; }
+    .nav-links a { font-size: 0.66rem; letter-spacing: 0.1em; }
+    .nav-links a.aura-link,
+    .nav-links a.field-guide-link,
+    .nav-links a.ai-engine-link { padding: 0.22rem 0.5rem; }
   }
-  @media (max-width: 600px) {
-    .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    main.product-filtered { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-    .product-media, .product-carousel { height: 180px; }
+
+  /* Hamburger — iPad portrait and below (≤900px) */
+  @media (max-width: 900px) {
     #mainNav { padding: 1.2rem 1.5rem; position: relative; flex-wrap: wrap; }
     .hamburger { display: flex; }
     .nav-links {
@@ -1027,6 +1032,7 @@
       border-top: none;
       position: absolute; top: 100%; left: 0; right: 0;
       z-index: 200; padding: 0.5rem 0;
+      margin-left: 0;
     }
     .nav-links.open { display: flex; }
     .nav-links li { width: 100%; }
@@ -1034,12 +1040,21 @@
     .nav-links a.aura-link { margin: 0.5rem 1.5rem; display: block; text-align: center; }
     .nav-links a.field-guide-link { margin: 0.5rem 1.5rem; display: block; text-align: center; }
     .nav-links a.ai-engine-link { margin: 0.5rem 1.5rem; display: flex; justify-content: center; text-align: center; }
-    .store-hero { min-height: 36vh; padding-top: 3.5rem; }
+    main { padding: 4rem 2rem; }
     .portfolio-invite { padding: 0; }
+    .portfolio-invite-card { grid-template-columns: 1fr; }
+    .store-hero { min-height: 36vh; padding-top: 3.5rem; }
     footer { padding: 2rem 1.5rem; grid-template-columns: 1fr; text-align: center; }
     .footer-right { text-align: center; }
     .filter-bar { gap: 0.4rem; margin-bottom: 2.5rem; }
     .store-footer-row { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* Small mobile */
+  @media (max-width: 600px) {
+    .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    main.product-filtered { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .product-media, .product-carousel { height: 180px; }
   }
   @media (max-width: 400px) {
     .collection-grid { grid-template-columns: 1fr; }
@@ -1060,7 +1075,6 @@
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="/#home">Home</a></li>
     <li><a href="/field-guide/" class="field-guide-link">Field Guide ✦</a></li>
     <li><a href="/ai-engine/" class="ai-engine-link">AI Engine
       <svg class="nav-hex" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -1070,7 +1084,6 @@
       </svg>
     </a></li>
     <li><a href="/art-store/" class="active">Art Store</a></li>
-    <li><a href="/portfolio/">Portfolio</a></li>
     <li><a href="/aura/" class="aura-link">AURA ✦</a></li>
     <li><a href="/earthstar/">EarthStar ✦</a></li>
     <li><a href="/blog/">Blog</a></li>

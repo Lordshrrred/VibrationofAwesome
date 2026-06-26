@@ -317,10 +317,6 @@
     padding-left: 1.25rem;
     border-left: 2px solid rgba(0,229,204,0.42);
   }
-  @media (max-width: 768px) {
-    .anchor-line { font-size: 1.05rem; margin: 1.5rem 0 1rem; }
-  }
-
   /* THREE PATHS */
   #three-paths {
     border-top: 1px solid rgba(201,168,76,0.08);
@@ -456,10 +452,6 @@
     color: rgba(0,229,204,0.45);
   }
 
-  @media (max-width: 768px) {
-    #manifesto { padding: 5rem 1.5rem; }
-    .manifesto-inner::before { font-size: 7rem; left: 0; }
-  }
 
   /* EARTHSTAR */
   #earthstar {
@@ -706,19 +698,21 @@
     text-shadow: 0 0 8px rgba(0,229,204,0.3);
   }
 
-  @media (max-width: 768px) {
+  /* Tablet: stack grids, tighten typography (≤900px matches nav hamburger) */
+  @media (max-width: 900px) {
     .hero-tagline {
       font-size: 1rem;
       line-height: 1.7;
       text-shadow: 0 0 10px rgba(0,229,204,0.12);
     }
-    .hero-title {
-      max-width: 9ch;
-    }
+    .hero-title { max-width: 9ch; }
     .vibration-layout { grid-template-columns: 1fr; gap: 3rem; }
     .dual-feed { grid-template-columns: 1fr; gap: 2rem; }
     .start-paths { grid-template-columns: 1fr; }
     .paths-grid { grid-template-columns: 1fr; }
+    .anchor-line { font-size: 1.05rem; margin: 1.5rem 0 1rem; }
+    #manifesto { padding: 5rem 1.5rem; }
+    .manifesto-inner::before { font-size: 7rem; left: 0; }
   }
 </style>
 {{ end }}
