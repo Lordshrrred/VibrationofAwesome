@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-25T05:10:29.792Z",
+  "lastUpdated": "2026-06-30T15:37:28.109Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-real-cost-of-ai-advantage-price-time-and-opportunity-cost",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-06-30T15:37:14.264Z"
+    },
+    {
       "slug": "how-to-make-money-doing-what-you-love-the-real-version",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,18 +1156,18 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-06-22T06:30:35.637Z"
-    },
-    {
-      "slug": "should-you-buy-the-ai-advantage-bootcamp-the-honest-decision-framework",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-06-21T23:17:28.870Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-real-cost-of-ai-advantage-price-time-and-opportunity-cost",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-06-30T15:37:28.109Z"
+    },
     {
       "slug": "free-ai-resources-that-cover-what-ai-advantage-teaches",
       "archetype": "symbolic-consciousness",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-06-11T23:25:42.799Z"
-    },
-    {
-      "slug": "how-to-feel-safe-in-your-body-again",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-11T17:00:27.101Z"
     }
   ]
 }
