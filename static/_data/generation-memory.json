@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-06-25T05:10:29.792Z",
+  "lastUpdated": "2026-06-30T15:43:05.148Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-for-the-rest-of-us-what-tony-robbins-is-actually-selling-in-2026",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-06-30T15:43:05.148Z"
+    },
+    {
+      "slug": "ai-advantage-bootcamp-refund-policy-what-the-fifteen-hour-guarantee-actually-means",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-06-30T15:42:38.565Z"
+    },
+    {
+      "slug": "dean-graziosi-net-worth-does-his-success-validate-his-ai-course",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-06-30T15:42:13.740Z"
+    },
+    {
+      "slug": "is-tony-robbins-actually-an-ai-expert-or-just-a-famous-face-on-a-sales-page",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-06-30T15:41:48.502Z"
+    },
+    {
+      "slug": "knowledge-business-blueprint-vs-ai-advantage-how-dean-graziosi-evolved-his-pitch",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-06-30T15:41:13.811Z"
+    },
+    {
+      "slug": "the-real-cost-of-ai-advantage-price-time-and-opportunity-cost",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-06-30T15:37:14.264Z"
+    },
+    {
       "slug": "how-to-make-money-doing-what-you-love-the-real-version",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1102,63 +1156,18 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-06-23T05:00:36.374Z"
-    },
-    {
-      "slug": "the-clone-builder-system-explained-is-this-actually-a-new-idea",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-06-22T23:22:45.659Z"
-    },
-    {
-      "slug": "who-is-igor-pogany-the-ai-instructor-behind-the-ai-advantage-system",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-06-22T21:29:25.175Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-negative-reviews-reading-between-the-lines",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-06-22T19:03:52.672Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-complaints-what-critics-say-and-whether-they-are-right",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-06-22T17:45:52.801Z"
-    },
-    {
-      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-06-22T06:30:35.637Z"
-    },
-    {
-      "slug": "should-you-buy-the-ai-advantage-bootcamp-the-honest-decision-framework",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-06-21T23:17:28.870Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-real-cost-of-ai-advantage-price-time-and-opportunity-cost",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-06-30T15:37:28.109Z"
+    },
     {
       "slug": "free-ai-resources-that-cover-what-ai-advantage-teaches",
       "archetype": "symbolic-consciousness",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-06-11T23:25:42.799Z"
-    },
-    {
-      "slug": "how-to-feel-safe-in-your-body-again",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-11T17:00:27.101Z"
     }
   ]
 }
