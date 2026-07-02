@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-02T05:02:17.429Z",
+  "lastUpdated": "2026-07-02T15:24:49.657Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-02T15:24:36.310Z"
+    },
+    {
       "slug": "markdown-formatting-for-ai-prompts",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,18 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-06-25T05:08:35.610Z"
-    },
-    {
-      "slug": "free-ai-resources-that-cover-what-ai-advantage-teaches",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-06-25T05:04:38.087Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "timestamp": "2026-07-02T15:24:49.657Z"
+    },
     {
       "slug": "ai-advantage-vs-free-youtube-ai-tutorials-what-you-actually-get-for-995",
       "archetype": "sacred-tech",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-12T23:20:21.227Z"
-    },
-    {
-      "slug": "why-youre-always-anxious-for-no-reason-theres-always-a-reason",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-12T16:26:46.752Z"
     }
   ]
 }
