@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-01T20:52:26.841Z",
+  "lastUpdated": "2026-07-02T04:57:19.407Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-vs-free-youtube-ai-tutorials-what-you-actually-get-for-995",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-02T04:57:04.428Z"
+    },
+    {
       "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,18 +1156,18 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-06-24T17:54:33.423Z"
-    },
-    {
-      "slug": "ai-advantage-vs-doing-it-yourself-what-you-would-actually-need-to-learn",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-06-24T17:51:41.794Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "ai-advantage-vs-free-youtube-ai-tutorials-what-you-actually-get-for-995",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-07-02T04:57:19.407Z"
+    },
     {
       "slug": "the-real-cost-of-ai-advantage-price-time-and-opportunity-cost",
       "archetype": "premium-quote-card",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "stillness",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-12T16:26:46.752Z"
-    },
-    {
-      "slug": "how-to-use-notebooklm-for-music-production-notes",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-11T23:25:42.799Z"
     }
   ]
 }
