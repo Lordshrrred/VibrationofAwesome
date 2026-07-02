@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-02T23:11:04.404Z",
+  "lastUpdated": "2026-07-02T23:16:24.929Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,51 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "passive-income-ideas-for-beginners-that-dont-require-being-fake",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-02T23:16:24.929Z"
+    },
+    {
+      "slug": "how-to-use-perplexity-ai-for-creative-projects",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-02T23:16:02.682Z"
+    },
+    {
+      "slug": "shadow-work-for-beginners-what-it-actually-is-and-why-it-matters",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-02T23:15:26.131Z"
+    },
+    {
+      "slug": "how-to-set-up-chatgpt-projects-workspace-for-creators",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-02T23:14:56.858Z"
+    },
+    {
+      "slug": "ai-advantage-vs-doing-it-yourself-what-you-would-actually-need-to-learn",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-02T23:14:34.308Z"
+    },
+    {
       "slug": "how-to-create-social-media-ads-with-chatgpt-and-canva",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1111,51 +1156,6 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-07-02T04:57:04.428Z"
-    },
-    {
-      "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-01T20:52:26.841Z"
-    },
-    {
-      "slug": "how-to-tell-if-a-piece-of-art-is-right-for-you",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-01T20:52:06.710Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-payment-plan-is-three-payments-of-three-eighty-smart",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-01T20:51:43.999Z"
-    },
-    {
-      "slug": "why-is-everyone-promoting-ai-advantage-the-affiliate-machine-explained",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-01T20:51:06.435Z"
-    },
-    {
-      "slug": "is-the-ai-advantage-15-hour-guarantee-actually-worth-anything",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-01T20:50:36.272Z"
     }
   ],
   "recentInstagramArchetypes": [
