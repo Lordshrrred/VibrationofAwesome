@@ -1,8 +1,8 @@
 {
-  "lastChecked": "2026-07-03T14:31:54.432Z",
+  "lastChecked": "2026-07-03T15:15:31.288Z",
   "status": "broken",
-  "passed": 15,
-  "failed": 1,
+  "passed": 13,
+  "failed": 3,
   "total": 16,
   "topFix": {
     "name": "Blogger token refresh",
@@ -56,13 +56,15 @@
     },
     {
       "name": "Mastodon ESR auth",
-      "ok": true,
-      "detail": "unlimitedpotential"
+      "ok": false,
+      "detail": "HTTP 503",
+      "failureType": "check_failed"
     },
     {
       "name": "Mastodon VOA auth",
-      "ok": true,
-      "detail": "Vibrationofawesome"
+      "ok": false,
+      "detail": "HTTP 503",
+      "failureType": "check_failed"
     },
     {
       "name": "Facebook VOA",
