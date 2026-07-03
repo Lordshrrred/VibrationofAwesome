@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-03T15:23:54.795Z",
+  "lastUpdated": "2026-07-03T17:08:53.394Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-write-engaging-newsletters-with-ai",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-03T17:08:53.394Z"
+    },
+    {
       "slug": "ai-advantage-bootcamp-payment-plan-is-three-payments-of-three-eighty-smart",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,15 +1156,6 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-07-02T17:27:55.630Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-02T17:25:03.091Z"
     }
   ],
   "recentInstagramArchetypes": [
