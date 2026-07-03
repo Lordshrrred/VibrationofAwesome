@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-03T20:16:17.351Z",
+  "lastUpdated": "2026-07-03T23:08:26.147Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-generate-fresh-ideas-for-creative-projects",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-03T23:08:10.860Z"
+    },
+    {
       "slug": "how-to-stop-living-in-survival-mode-for-good",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,18 +1156,18 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-07-02T23:14:34.308Z"
-    },
-    {
-      "slug": "how-to-create-social-media-ads-with-chatgpt-and-canva",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-02T23:10:49.739Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-generate-fresh-ideas-for-creative-projects",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-07-03T23:08:26.147Z"
+    },
     {
       "slug": "how-to-write-engaging-newsletters-with-ai",
       "archetype": "minimalist-philosophy",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "liminal",
       "emotionalCluster": "atmospheric",
       "timestamp": "2026-06-14T15:13:24.259Z"
-    },
-    {
-      "slug": "chatgpt-data-privacy-settings-for-creators",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-13T23:08:45.166Z"
     }
   ]
 }
