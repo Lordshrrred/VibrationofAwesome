@@ -1,8 +1,8 @@
 {
-  "lastChecked": "2026-07-03T15:15:31.288Z",
+  "lastChecked": "2026-07-03T17:08:21.090Z",
   "status": "broken",
-  "passed": 13,
-  "failed": 3,
+  "passed": 15,
+  "failed": 1,
   "total": 16,
   "topFix": {
     "name": "Blogger token refresh",
@@ -13,8 +13,8 @@
     "status": "active",
     "rate": 1,
     "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
-    "remaining": 42,
-    "published": 127,
+    "remaining": 41,
+    "published": 128,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -22,7 +22,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=42"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=41"
     },
     {
       "name": "Publer accounts",
@@ -56,15 +56,13 @@
     },
     {
       "name": "Mastodon ESR auth",
-      "ok": false,
-      "detail": "HTTP 503",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "unlimitedpotential"
     },
     {
       "name": "Mastodon VOA auth",
-      "ok": false,
-      "detail": "HTTP 503",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "Vibrationofawesome"
     },
     {
       "name": "Facebook VOA",
