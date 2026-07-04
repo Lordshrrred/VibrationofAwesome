@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-04T23:01:10.393Z",
+  "lastUpdated": "2026-07-04T23:05:45.324Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "where-to-buy-original-art-online-without-getting-burned",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-04T23:05:45.324Z"
+    },
+    {
+      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-04T23:05:16.702Z"
+    },
+    {
+      "slug": "why-buying-art-from-independent-artists-actually-matters",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-04T23:04:41.920Z"
+    },
+    {
       "slug": "how-to-organize-creative-projects-with-chatgpt",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1129,33 +1156,6 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-07-03T20:15:32.397Z"
-    },
-    {
-      "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-03T20:15:05.867Z"
-    },
-    {
-      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-03T20:14:32.594Z"
-    },
-    {
-      "slug": "how-to-copy-ai-responses-without-losing-formatting",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-03T20:11:02.911Z"
     }
   ],
   "recentInstagramArchetypes": [
