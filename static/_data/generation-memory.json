@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-04T04:39:13.393Z",
+  "lastUpdated": "2026-07-04T14:44:20.876Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-use-openai-deep-research-for-content-creation",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-04T14:44:07.124Z"
+    },
+    {
       "slug": "how-to-build-your-own-ai-clone-system-without-paying-a-thousand-dollars",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,18 +1156,18 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-07-03T04:44:53.042Z"
-    },
-    {
-      "slug": "how-to-create-a-freedom-lifestyle-from-scratch",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-03T04:44:31.204Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-use-openai-deep-research-for-content-creation",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-07-04T14:44:20.876Z"
+    },
     {
       "slug": "how-to-generate-fresh-ideas-for-creative-projects",
       "archetype": "abstract-creator-life",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "cosmic",
       "emotionalCluster": "mystical",
       "timestamp": "2026-06-14T23:13:02.219Z"
-    },
-    {
-      "slug": "how-to-organize-coworking-receipts-in-a-spreadsheet-for-taxes",
-      "archetype": "cinematic-ideogram",
-      "archetypeLabel": "Cinematic Artwork",
-      "palette": "painterly-dark",
-      "emotionalTone": "liminal",
-      "emotionalCluster": "atmospheric",
-      "timestamp": "2026-06-14T15:13:24.259Z"
     }
   ]
 }
