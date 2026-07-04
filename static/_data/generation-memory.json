@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-03T23:12:36.822Z",
+  "lastUpdated": "2026-07-04T04:34:15.248Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-generate-fresh-ideas-for-creative-projects",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-04T04:34:15.248Z"
+    },
+    {
       "slug": "mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,15 +1156,6 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-07-02T23:16:24.929Z"
-    },
-    {
-      "slug": "how-to-use-perplexity-ai-for-creative-projects",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-02T23:16:02.682Z"
     }
   ],
   "recentInstagramArchetypes": [
