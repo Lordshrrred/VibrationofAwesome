@@ -861,5 +861,47 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-07-04T09:35:09.238Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Blogger token refresh",
+        "diagnosis": "OAuth refresh token expired or revoked. External Google/OAuth consent flow required. AI self-healing cannot repair OAuth tokens.",
+        "fix_type": "auth_reconnect_required",
+        "confidence": "high",
+        "action": {
+          "instructions": "1. Run token renewal locally: npm run blogger-token\n2. Complete the OAuth consent flow in the browser that opens.\n3. Re-run: npm run check:syndication -- --write\nNote: AI self-healing cannot create a new valid OAuth refresh token. This requires external user consent."
+        }
+      },
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the deployment or local .env file.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "<obtain from Dev.to account 2 settings page>",
+          "reason": "Second Dev.to account requires its own API key for independent syndication access"
+        }
+      },
+      {
+        "checkName": "Blogger token refresh",
+        "diagnosis": "Blogger OAuth token has expired or been revoked by Google; invalid_grant indicates token is no longer valid.",
+        "fix_type": "token_expired",
+        "confidence": "high",
+        "action": {
+          "token_name": "GOOGLE_BLOGGER_REFRESH_TOKEN",
+          "renewal_command": "npm run blogger-token"
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
