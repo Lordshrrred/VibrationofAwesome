@@ -67,7 +67,7 @@ Current schedule in `.github/workflows/drip-posts.yml` (Phase Three, active July
 
 Social accounts get exactly **2 posts/day** (9am and 6pm slots only). AI Advantage publishes 2/day (noon + 3pm). Normal posts publish 2/day with social distribution. Art buyer publishes 1/day backlinks-only. ~36 AI Advantage posts remaining as of July 4 → campaign finishes ~July 22.
 
-Art-extra queue items use `syndication_profile: "art-devto2-only"`, `syndicate_on_publish: true`, and `trigger_feeder_on_publish: false`. Despite the profile name, the `art-devto2-only` profile now routes to the full backlink tier (devto2 + blogger + wordpress_earthstar + tumblr_voa) — social and feeder remain suppressed.
+Art-extra queue items use `syndication_profile: "art-devto2-only"`, `syndicate_on_publish: true`, and `trigger_feeder_on_publish: false`. Despite the profile name, the `art-devto2-only` profile now routes to the full backlink tier (devto2 + blogger + wordpress_earthstar + tumblr_voa) ~ social and feeder remain suppressed.
 
 ### Hugo Site
 Hugo watches `content/posts/*.md` and renders with `layouts/` templates. The `hugo.toml` has `unsafe = true` for goldmark to allow raw HTML in markdown. Deployed via Vercel (auto-deploys on push to main via GitHub webhook).
@@ -162,7 +162,7 @@ If Dev.to returns "canonical url has already been taken", treat it as **success*
 ### Dev.to account 2 / art-buyer extra slots
 `DEVTO2_API_KEY` is supported by `scripts/syndicate.js` as platform key `devto2`. It is intentionally **not** part of the default backlink tier. It runs only when explicitly requested with `--platforms devto2` or via the drip item profile `art-devto2-only`.
 
-Art-buyer posts run the `art-devto2-only` syndication profile which routes to the full backlink tier: devto2 + Blogger + WordPress + Tumblr. Social platforms (Publer/Instagram/Threads/Pinterest/Facebook/Bluesky/Mastodon) and the Feeder are suppressed for art posts — social volume stays at 2 posts/day max.
+Art-buyer posts run the `art-devto2-only` syndication profile which routes to the full backlink tier: devto2 + Blogger + WordPress + Tumblr. Social platforms (Publer/Instagram/Threads/Pinterest/Facebook/Bluesky/Mastodon) and the Feeder are suppressed for art posts ~ social volume stays at 2 posts/day max.
 
 ### Historical syndication warnings ~ resolved, do not treat as current without fresh evidence
 - **Blogger OAuth**: `syndication-log.json` contains historical Blogger failures from **Mar 24, 2026**. Live checks on **May 17, 2026** show `Blogger token refresh: token ok`, and recent Blogger successes exist on **May 14-16, 2026**. Do not run `npm run blogger-token` unless the current health check fails.
