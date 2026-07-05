@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-05T05:03:37.188Z",
+  "lastUpdated": "2026-07-05T14:50:26.873Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-05T14:50:13.101Z"
+    },
+    {
       "slug": "how-to-use-gamma-ai-for-music-presentations",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,18 +1156,18 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-06-19T16:13:01.724Z"
-    },
-    {
-      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-06-19T06:19:27.480Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "timestamp": "2026-07-05T14:50:26.873Z"
+    },
     {
       "slug": "how-to-build-an-authentic-personal-brand-as-a-creator",
       "archetype": "minimalist-philosophy",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-10T23:28:59.885Z"
-    },
-    {
-      "slug": "nervous-system-regulation-for-anxiety-what-actually-helps",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "timestamp": "2026-06-10T16:41:46.875Z"
     }
   ]
 }
