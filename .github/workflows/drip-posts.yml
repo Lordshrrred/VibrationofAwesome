@@ -10,9 +10,9 @@ env:
 #  ────  ─────────  ───   ──────────────────  ──────  ─────────    ─────────
 #  A     9:00 AM    13h   Normal drip          YES    Account 1    all
 #  B     12:00 PM   16h   AI Advantage camp    no     Account 2    all
-#  C     3:00 PM    19h   Normal drip (fast)   no     Account 2    all
+#  C     3:00 PM    19h   Normal drip          no     Account 2    all
 #  D     6:00 PM    22h   Normal drip          YES    Account 1    all
-#  E     9:00 PM    01h   Art buyer (future)   no     Account 2    Pinterest
+#  E     9:00 PM    01h   Art buyer            no     Account 2    all (no social, no feeder)
 #
 # Dev.to safety: Account 1 = 2/day (slots A+D). Account 2 = 2/day (slots B+C).
 # Social safety: 2 posts/day max (slots A+D only).
@@ -31,9 +31,9 @@ on:
   schedule:
     - cron: '0 13 * * *'    # 9:00 AM ET  (UTC-4 EDT)  ~ slot A: normal, full social
     - cron: '0 16 * * *'    # 12:00 PM ET (UTC-4 EDT)  ~ slot B: AI Advantage campaign
-    - cron: '0 19 * * *'    # 3:00 PM ET  (UTC-4 EDT)  ~ slot C: normal, SEO-only (speed burn)
+    - cron: '0 19 * * *'    # 3:00 PM ET  (UTC-4 EDT)  ~ slot C: normal, SEO backlinks only (no social)
     - cron: '0 22 * * *'    # 6:00 PM ET  (UTC-4 EDT)  ~ slot D: normal, full social
-    - cron: '0 1 * * *'     # 9:00 PM ET  (UTC-4 EDT)  ~ slot E: art buyer (future)
+    - cron: '0 1 * * *'     # 9:00 PM ET  (UTC-4 EDT)  ~ slot E: art buyer, SEO backlinks only (no social, no feeder)
   workflow_dispatch:          # Manual trigger for testing or emergency publish
 
 # Prevent any VOA publishing/syndication run from overlapping.
@@ -170,10 +170,10 @@ jobs:
             echo "[drip] Slot B (12pm ET) → AI Advantage campaign, SEO backlinks + devto2, no social"
             node scripts/drip-publish.js --niche ai-advantage-campaign --limit 1 --syndication-profile campaign-seo
           elif [ "${{ github.event.schedule }}" = "0 19 * * *" ]; then
-            echo "[drip] Slot C (3pm ET) → normal drip speed burn, SEO backlinks + devto2, no social"
+            echo "[drip] Slot C (3pm ET) → normal drip, SEO backlinks + devto2, no social"
             node scripts/drip-publish.js --limit 1 --syndication-profile campaign-seo
           elif [ "${{ github.event.schedule }}" = "0 1 * * *" ]; then
-            echo "[drip] Slot E (9pm ET) → art buyer, devto2 only"
+            echo "[drip] Slot E (9pm ET) → art buyer, full backlink tier (devto2 + blogger + wp + tumblr), no social, no feeder"
             node scripts/drip-publish.js --niche art-buyer-intent --limit 1 --syndication-profile art-devto2-only
           else
             node scripts/drip-publish.js
