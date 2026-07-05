@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-05T04:58:49.515Z",
+  "lastUpdated": "2026-07-05T05:03:37.188Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-use-gamma-ai-for-music-presentations",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-05T05:03:37.188Z"
+    },
+    {
+      "slug": "how-to-heal-emotionally-when-you-dont-know-where-to-start",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-05T05:03:17.369Z"
+    },
+    {
+      "slug": "markdown-formatting-for-ai-prompts",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-05T05:02:45.676Z"
+    },
+    {
       "slug": "how-to-build-an-authentic-personal-brand-as-a-creator",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1129,33 +1156,6 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-06-19T06:19:27.480Z"
-    },
-    {
-      "slug": "tony-robbins-and-dean-graziosi-ai-course-what-makes-it-different-from-the-rest",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-06-18T23:48:50.126Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-results-what-real-students-are-reporting",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-06-18T21:17:41.397Z"
-    },
-    {
-      "slug": "the-clone-builder-system-is-this-actually-a-new-idea",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-06-18T18:21:41.156Z"
     }
   ],
   "recentInstagramArchetypes": [
