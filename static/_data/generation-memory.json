@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-05T20:09:25.687Z",
+  "lastUpdated": "2026-07-05T23:09:37.618Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,42 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "why-is-everyone-promoting-ai-advantage-the-affiliate-machine-explained",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-05T23:09:37.618Z"
+    },
+    {
+      "slug": "is-the-ai-advantage-15-hour-guarantee-actually-worth-anything",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-05T23:09:10.140Z"
+    },
+    {
+      "slug": "how-to-train-chatgpt-or-claude-on-your-own-voice-and-style-for-free",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-05T23:08:47.765Z"
+    },
+    {
+      "slug": "decision-making-framework-for-creative-entrepreneurs",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-05T23:04:41.285Z"
+    },
+    {
       "slug": "ai-advantage-vs-hiring-a-virtual-assistant-which-gives-you-more-time-back",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1120,45 +1156,18 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-06-23T05:00:36.374Z"
-    },
-    {
-      "slug": "the-clone-builder-system-explained-is-this-actually-a-new-idea",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-06-22T23:22:45.659Z"
-    },
-    {
-      "slug": "who-is-igor-pogany-the-ai-instructor-behind-the-ai-advantage-system",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-06-22T21:29:25.175Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-negative-reviews-reading-between-the-lines",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-06-22T19:03:52.672Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-complaints-what-critics-say-and-whether-they-are-right",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-06-22T17:45:52.801Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "decision-making-framework-for-creative-entrepreneurs",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-07-05T23:04:55.531Z"
+    },
     {
       "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
       "archetype": "nervous-system-atmospheric",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-11T17:00:27.101Z"
-    },
-    {
-      "slug": "how-to-restyle-product-images-with-chatgpt",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-10T23:28:59.885Z"
     }
   ]
 }
