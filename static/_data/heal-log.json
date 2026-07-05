@@ -903,5 +903,33 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-07-05T04:55:47.441Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/28730014737",
+    "tier1": {
+      "healed": true,
+      "detail": "Replaced em dashes with ~ in 3 file(s): CLAUDE.md, layouts/_default/baseof.html, static/art-store/index.html",
+      "files": [
+        "CLAUDE.md",
+        "layouts/_default/baseof.html",
+        "static/art-store/index.html"
+      ]
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the deployment environment.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "your_devto_account_2_api_key_here",
+          "reason": "Dev.to account 2 syndication requires a separate API key from the primary Dev.to account (earthstarrising). This key must be provisioned in the Dev.to account settings and added to the deployment secrets."
+        }
+      }
+    ],
+    "retriggered": true
   }
 ]
