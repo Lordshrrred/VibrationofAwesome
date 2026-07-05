@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-05T02:27:37.436Z",
+  "lastUpdated": "2026-07-05T04:58:49.515Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-build-an-authentic-personal-brand-as-a-creator",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-05T04:58:37.240Z"
+    },
+    {
       "slug": "how-to-write-ai-prompts-for-creative-projects",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1147,18 +1156,18 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-06-18T18:21:41.156Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-cost-here-is-exactly-what-nine-hundred-ninety-five-dollars-gets-you",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-06-18T16:41:04.370Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-build-an-authentic-personal-brand-as-a-creator",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-07-05T04:58:49.515Z"
+    },
     {
       "slug": "ai-advantage-delegation-blueprint-what-are-the-37-tasks-actually-worth",
       "archetype": "field-guide-aesthetic",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "regulation",
       "emotionalCluster": "somatic",
       "timestamp": "2026-06-10T16:41:46.875Z"
-    },
-    {
-      "slug": "how-to-use-chatgpt-for-music-production-beginners",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-09T23:20:35.714Z"
     }
   ]
 }
