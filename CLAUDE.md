@@ -58,14 +58,14 @@ Each post is generated as standalone HTML and indexed in `static/_data/[lane]-po
 ### Drip Queue
 Pre-generated Boom posts live in `static/blog/boom/drafts/`. `drip-publish.js` moves selected drafts → posts, updates `boom-posts.json`, regenerates the sitemap, writes `drip-last-published.json`, and lets `post-live-syndicate.js` syndicate only after the canonical VOA URL is live.
 
-Current schedule in `.github/workflows/drip-posts.yml`:
+Current schedule in `.github/workflows/drip-posts.yml` (Phase Three, active July 4 2026):
 - `9:00 AM ET` (`0 13 * * *`) ~ normal Boom post, full social + full backlinks
 - `12:00 PM ET` (`0 16 * * *`) ~ AI Advantage campaign, SEO backlinks only (no social)
-- `3:00 PM ET` (`0 19 * * *`) ~ normal Boom post, SEO backlinks only (no social)
+- `3:00 PM ET` (`0 19 * * *`) ~ AI Advantage campaign, SEO backlinks only (no social)
 - `6:00 PM ET` (`0 22 * * *`) ~ normal Boom post, full social + full backlinks
 - `9:00 PM ET` (`0 1 * * *`) ~ art-buyer post, full backlinks only (devto2 + Blogger + WP + Tumblr), no social, no feeder
 
-Social accounts get exactly **2 posts/day** (9am and 6pm slots only).
+Social accounts get exactly **2 posts/day** (9am and 6pm slots only). AI Advantage publishes 2/day (noon + 3pm). Normal posts publish 2/day with social distribution. Art buyer publishes 1/day backlinks-only. ~36 AI Advantage posts remaining as of July 4 → campaign finishes ~July 22.
 
 Art-extra queue items use `syndication_profile: "art-devto2-only"`, `syndicate_on_publish: true`, and `trigger_feeder_on_publish: false`. Despite the profile name, the `art-devto2-only` profile now routes to the full backlink tier (devto2 + blogger + wordpress_earthstar + tumblr_voa) — social and feeder remain suppressed.
 
