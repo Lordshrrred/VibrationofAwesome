@@ -931,5 +931,28 @@
       }
     ],
     "retriggered": true
+  },
+  {
+    "healedAt": "2026-07-05T09:53:44.497Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the deployment or local .env file.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "paste_your_devto_account_2_api_key_here",
+          "reason": "The syndication system requires a second Dev.to API key for cross-posting to an alternate Dev.to account, but the environment variable is missing or empty."
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
