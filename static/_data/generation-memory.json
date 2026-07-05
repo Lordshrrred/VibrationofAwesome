@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-05T17:01:07.972Z",
+  "lastUpdated": "2026-07-05T20:09:25.687Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,42 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-vs-hiring-a-virtual-assistant-which-gives-you-more-time-back",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-05T20:09:25.687Z"
+    },
+    {
+      "slug": "mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-05T20:09:04.727Z"
+    },
+    {
+      "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-05T20:08:34.027Z"
+    },
+    {
+      "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-05T20:06:20.579Z"
+    },
+    {
       "slug": "passive-income-ideas-for-beginners-that-dont-require-being-fake",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1120,42 +1156,6 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-06-22T17:45:52.801Z"
-    },
-    {
-      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-06-22T06:30:35.637Z"
-    },
-    {
-      "slug": "should-you-buy-the-ai-advantage-bootcamp-the-honest-decision-framework",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-06-21T23:17:28.870Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-2026-same-program-or-actually-upgraded",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-06-21T20:21:39.732Z"
-    },
-    {
-      "slug": "how-to-use-ai-to-reclaim-your-time-without-spending-a-thousand-dollars-on-a-bootcamp",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-06-21T17:16:43.702Z"
     }
   ],
   "recentInstagramArchetypes": [
