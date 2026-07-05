@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-05T14:55:57.284Z",
+  "lastUpdated": "2026-07-05T16:51:29.196Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-05T16:51:29.196Z"
+    },
+    {
       "slug": "how-to-regulate-your-nervous-system-when-life-feels-like-too-much",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1147,15 +1156,6 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-06-20T17:13:02.918Z"
-    },
-    {
-      "slug": "is-the-ai-advantage-bootcamp-a-scam-looking-at-the-actual-evidence",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-06-20T15:08:27.804Z"
     }
   ],
   "recentInstagramArchetypes": [

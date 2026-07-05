@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-05T14:55:59.010Z",
+  "generated_at": "2026-07-05T16:56:46.988Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -505,66 +505,66 @@
         "title": "How To Export Chat History From Claude To Other Platforms",
         "lane": "boom",
         "date": "2026-07-05",
-        "publish_status": "complete",
+        "publish_status": "partial",
         "platform_statuses": {
           "feeder": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-07-05T14:50:42.907Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-export-chat-history-from-claude-to-other-platforms-guide.html"
           },
           "bluesky_voa": {
             "status": "success",
-            "timestamp": "2026-07-05T14:53:33.568Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mpvt5pjiaq2e"
+            "timestamp": "2026-07-05T16:56:46.982Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mpvzw5bzyv2s"
           },
           "mastodon_voa": {
             "status": "success",
-            "timestamp": "2026-07-05T14:53:33.568Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116867925951520960"
+            "timestamp": "2026-07-05T16:56:46.982Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/116868401905779759"
           },
           "facebook_voa": {
-            "status": "success",
-            "timestamp": "2026-07-05T14:53:33.568Z",
+            "status": "failed",
+            "timestamp": "2026-07-05T16:56:46.982Z",
             "url": null
           },
           "pinterest": {
-            "status": "success",
-            "timestamp": "2026-07-05T14:53:33.568Z",
+            "status": "failed",
+            "timestamp": "2026-07-05T16:56:46.982Z",
             "url": null
           },
           "threads": {
-            "status": "success",
-            "timestamp": "2026-07-05T14:53:33.568Z",
+            "status": "failed",
+            "timestamp": "2026-07-05T16:56:46.982Z",
             "url": null
           },
           "instagram": {
-            "status": "success",
-            "timestamp": "2026-07-05T14:53:33.568Z",
+            "status": "failed",
+            "timestamp": "2026-07-05T16:56:46.982Z",
             "url": null
           },
           "devto": {
             "status": "success",
-            "timestamp": "2026-07-05T14:53:33.568Z",
+            "timestamp": "2026-07-05T16:56:46.982Z",
             "url": "https://dev.to/earthstarrising/how-to-export-chat-history-from-claude-to-other-platforms-42oj"
           },
           "tumblr_voa": {
             "status": "success",
-            "timestamp": "2026-07-05T14:53:33.568Z",
-            "url": "https://vibrationofawesome.tumblr.com/post/821310890737565696"
+            "timestamp": "2026-07-05T16:56:46.982Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/821318640317218816"
           },
           "blogger": {
             "status": "success",
-            "timestamp": "2026-07-05T14:53:33.568Z",
-            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/your-ai-conversations-are-journal-you.html"
+            "timestamp": "2026-07-05T16:56:46.982Z",
+            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/your-ai-conversations-are-garden-stop.html"
           },
           "wordpress_earthstar": {
             "status": "success",
-            "timestamp": "2026-07-05T14:53:33.568Z",
-            "url": "https://earthstarrisingsun.wordpress.com/2026/07/05/how-to-export-chat-history-from-claude-to-other-platforms-earthstar/"
+            "timestamp": "2026-07-05T16:56:46.982Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/07/05/how-to-export-chat-history-from-claude-to-other-platforms-earthstar-2/"
           }
         },
-        "success_count": 10,
-        "failed_count": 0
+        "success_count": 7,
+        "failed_count": 4
       },
       {
         "slug": "how-to-build-an-authentic-personal-brand-as-a-creator",
@@ -8885,6 +8885,26 @@
     ],
     "retry_backlog": [
       {
+        "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+        "platform": "facebook_voa",
+        "timestamp": "2026-07-05T16:56:46.982Z"
+      },
+      {
+        "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+        "platform": "pinterest",
+        "timestamp": "2026-07-05T16:56:46.982Z"
+      },
+      {
+        "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+        "platform": "threads",
+        "timestamp": "2026-07-05T16:56:46.982Z"
+      },
+      {
+        "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+        "platform": "instagram",
+        "timestamp": "2026-07-05T16:56:46.982Z"
+      },
+      {
         "slug": "how-to-organize-creative-projects-with-chatgpt",
         "platform": "blogger",
         "timestamp": "2026-07-04T23:04:20.592Z"
@@ -9352,7 +9372,7 @@
     ],
     "platform_coverage": {
       "feeder": {
-        "successes": 100,
+        "successes": 101,
         "failures": 0,
         "total": 127
       },
@@ -9367,23 +9387,23 @@
         "total": 127
       },
       "facebook_voa": {
-        "successes": 74,
-        "failures": 13,
+        "successes": 73,
+        "failures": 14,
         "total": 127
       },
       "pinterest": {
-        "successes": 106,
-        "failures": 0,
+        "successes": 105,
+        "failures": 1,
         "total": 127
       },
       "threads": {
-        "successes": 86,
-        "failures": 0,
+        "successes": 85,
+        "failures": 1,
         "total": 127
       },
       "instagram": {
-        "successes": 84,
-        "failures": 0,
+        "successes": 83,
+        "failures": 1,
         "total": 127
       },
       "devto": {
@@ -9409,15 +9429,43 @@
     },
     "summary": {
       "total_posts": 127,
-      "fully_syndicated": 76,
-      "partial": 51,
+      "fully_syndicated": 75,
+      "partial": 52,
       "pending": 0,
-      "retry_backlog_count": 93
+      "retry_backlog_count": 97
     }
   },
   "visuals": {
-    "registry_count": 152,
+    "registry_count": 154,
     "registry_entries": [
+      {
+        "post_slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+        "source": "boom",
+        "asset_type": "fallback",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": true,
+        "reused_from": "instagram",
+        "timestamp": "2026-07-05T16:51:29.201Z"
+      },
+      {
+        "post_slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+        "source": "boom",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "vibration-of-awesome",
+        "reused": true,
+        "reused_from": "instagram",
+        "timestamp": "2026-07-05T16:51:29.200Z"
+      },
       {
         "post_slug": "how-to-export-chat-history-from-claude-to-other-platforms",
         "source": "ideogram",
@@ -11576,22 +11624,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 152,
-      "reused_count": 8,
-      "reuse_rate": 0.053
+      "total_entries": 154,
+      "reused_count": 10,
+      "reuse_rate": 0.065
     },
     "source_breakdown": {
-      "ideogram": 112,
-      "boom": 40
+      "boom": 42,
+      "ideogram": 112
     },
     "generation_counts": {
       "ideogram": 112
     },
     "platform_usage": {
-      "pinterest": 132,
-      "instagram": 112,
-      "bluesky_voa": 120,
-      "mastodon_voa": 120
+      "instagram": 113,
+      "bluesky_voa": 122,
+      "mastodon_voa": 122,
+      "pinterest": 133
     }
   },
   "clusters": {
@@ -11934,7 +11982,7 @@
     "unassigned_post_count": 98
   },
   "generation": {
-    "last_updated": "2026-07-05T14:55:57.284Z",
+    "last_updated": "2026-07-05T16:51:29.196Z",
     "recent_hooks": [
       {
         "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -12818,6 +12866,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
+        "format": "philosophical-observation",
+        "cadenceProfile": "contemplative",
+        "density": "medium-dense",
+        "openerStyle": "conceptual-paradox",
+        "closerStyle": "open-question",
+        "timestamp": "2026-07-05T16:51:29.196Z"
+      },
+      {
         "slug": "how-to-regulate-your-nervous-system-when-life-feels-like-too-much",
         "format": "conversational-reflection",
         "cadenceProfile": "casual-spoken",
@@ -13077,15 +13134,6 @@
         "openerStyle": "strong-declarative",
         "closerStyle": "worldview-shift",
         "timestamp": "2026-06-20T17:13:02.918Z"
-      },
-      {
-        "slug": "is-the-ai-advantage-bootcamp-a-scam-looking-at-the-actual-evidence",
-        "format": "single-native-post",
-        "cadenceProfile": "standalone",
-        "density": "medium",
-        "openerStyle": "any",
-        "closerStyle": "complete",
-        "timestamp": "2026-06-20T15:08:27.804Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -13363,7 +13411,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-07-05T14:55:59.010Z",
+    "as_of": "2026-07-05T16:56:46.988Z",
     "next_estimated_window": "2026-07-06",
     "queue_runway_days": 84,
     "queue_runway_status": "healthy",
@@ -13437,7 +13485,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 93,
+    "retry_backlog_count": 97,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -13497,9 +13545,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-07-05T14:55:58.998Z",
-    "source_event": "retry",
-    "export_duration_ms": 12,
+    "last_export_at": "2026-07-05T16:56:46.983Z",
+    "source_event": "syndication",
+    "export_duration_ms": 4,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
