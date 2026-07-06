@@ -954,5 +954,28 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-07-06T11:47:23.440Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the deployment environment.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "YOUR_DEVTO_ACCOUNT_2_API_KEY_HERE",
+          "reason": "Dev.to account 2 syndication requires a distinct API key from the primary Dev.to account (earthstarrising). This key must be generated in Dev.to settings and added to the deployment secrets."
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
