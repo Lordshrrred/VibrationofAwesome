@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-06T05:15:10.025Z",
+  "lastUpdated": "2026-07-06T16:33:26.496Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-make-money-doing-what-you-love-the-real-version",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-06T16:33:26.496Z"
+    },
+    {
+      "slug": "multiple-streams-of-income-for-beginners-where-to-actually-start",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-06T16:32:56.752Z"
+    },
+    {
+      "slug": "how-to-manage-multiple-chatgpt-projects-at-once",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-06T16:32:24.842Z"
+    },
+    {
+      "slug": "how-to-create-a-freedom-lifestyle-from-scratch",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-06T16:31:57.610Z"
+    },
+    {
+      "slug": "chatgpt-prompts-for-music-producers",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-06T16:31:34.752Z"
+    },
+    {
+      "slug": "how-to-set-up-chatgpt-memory-for-creative-projects",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-06T16:27:46.669Z"
+    },
+    {
       "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1102,63 +1156,18 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-07-05T14:50:13.101Z"
-    },
-    {
-      "slug": "how-to-use-gamma-ai-for-music-presentations",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-05T05:03:37.188Z"
-    },
-    {
-      "slug": "how-to-heal-emotionally-when-you-dont-know-where-to-start",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-05T05:03:17.369Z"
-    },
-    {
-      "slug": "markdown-formatting-for-ai-prompts",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-05T05:02:45.676Z"
-    },
-    {
-      "slug": "how-to-build-an-authentic-personal-brand-as-a-creator",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-05T04:58:37.240Z"
-    },
-    {
-      "slug": "how-to-write-ai-prompts-for-creative-projects",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-05T02:27:37.436Z"
-    },
-    {
-      "slug": "ai-music-production-tools-for-independent-artists-2026",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-05T02:25:55.285Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-set-up-chatgpt-memory-for-creative-projects",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-07-06T16:28:00.056Z"
+    },
     {
       "slug": "decision-making-framework-for-creative-entrepreneurs",
       "archetype": "premium-quote-card",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-06-11T23:25:42.799Z"
-    },
-    {
-      "slug": "how-to-feel-safe-in-your-body-again",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-11T17:00:27.101Z"
     }
   ]
 }
