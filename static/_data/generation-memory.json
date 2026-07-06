@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-06T23:11:21.491Z",
+  "lastUpdated": "2026-07-06T23:15:56.657Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-content-creation-tools-that-actually-save-time",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-06T23:15:56.657Z"
+    },
+    {
+      "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-06T23:15:29.056Z"
+    },
+    {
+      "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-06T23:14:57.964Z"
+    },
+    {
       "slug": "how-to-use-gemini-25-flash-for-image-generation",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1129,33 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-07-05T17:00:43.237Z"
-    },
-    {
-      "slug": "shadow-work-for-beginners-what-it-actually-is-and-why-it-matters",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-05T17:00:09.867Z"
-    },
-    {
-      "slug": "how-to-set-up-chatgpt-projects-workspace-for-creators",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-05T16:59:44.737Z"
-    },
-    {
-      "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-05T16:57:07.038Z"
     }
   ],
   "recentInstagramArchetypes": [
