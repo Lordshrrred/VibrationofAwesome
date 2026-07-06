@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-06T20:47:07.361Z",
+  "lastUpdated": "2026-07-06T20:48:20.442Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-06T20:48:20.442Z"
+    },
+    {
+      "slug": "how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-06T20:47:54.747Z"
+    },
+    {
+      "slug": "claude-ai-paired-programming-for-independent-musicians",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-06T20:47:31.596Z"
+    },
+    {
       "slug": "how-to-set-up-chatgpt-memory-for-creative-projects",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1129,33 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-07-05T16:51:29.196Z"
-    },
-    {
-      "slug": "how-to-regulate-your-nervous-system-when-life-feels-like-too-much",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-05T14:55:57.284Z"
-    },
-    {
-      "slug": "how-to-create-a-custom-gpt-for-your-business",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-05T14:55:25.495Z"
-    },
-    {
-      "slug": "how-to-create-social-media-ads-with-chatgpt-and-canva",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-05T14:54:53.034Z"
     }
   ],
   "recentInstagramArchetypes": [
