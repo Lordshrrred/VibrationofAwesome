@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-06T16:33:26.496Z",
+  "lastUpdated": "2026-07-06T18:02:38.684Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-set-up-chatgpt-memory-for-creative-projects",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-06T18:02:38.684Z"
+    },
+    {
       "slug": "how-to-make-money-doing-what-you-love-the-real-version",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,15 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-07-05T14:53:54.825Z"
-    },
-    {
-      "slug": "how-to-export-chat-history-from-claude-to-other-platforms",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-05T14:50:13.101Z"
     }
   ],
   "recentInstagramArchetypes": [
