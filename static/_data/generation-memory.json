@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-07T17:54:28.647Z",
+  "lastUpdated": "2026-07-07T20:45:15.019Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "best-ai-prompts-for-music-producers-to-generate-melodies",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-07T20:45:15.019Z"
+    },
+    {
       "slug": "dean-graziosi-net-worth-does-his-success-validate-his-ai-course",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,15 +1156,6 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-07-06T16:31:57.610Z"
-    },
-    {
-      "slug": "chatgpt-prompts-for-music-producers",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-06T16:31:34.752Z"
     }
   ],
   "recentInstagramArchetypes": [
