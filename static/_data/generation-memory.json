@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-07T23:04:36.235Z",
+  "lastUpdated": "2026-07-07T23:09:20.762Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "free-ai-resources-that-cover-what-ai-advantage-teaches",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-07T23:09:20.762Z"
+    },
+    {
+      "slug": "ai-advantage-for-creators-what-it-offers-independent-artists-and-writers",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-07T23:08:52.232Z"
+    },
+    {
+      "slug": "how-the-ai-advantage-clone-builder-system-actually-works",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-07T23:08:25.515Z"
+    },
+    {
       "slug": "how-to-get-a-professional-headshot-for-free",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1129,33 +1156,6 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-07-06T20:47:31.596Z"
-    },
-    {
-      "slug": "how-to-set-up-chatgpt-memory-for-creative-projects",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-06T20:47:07.361Z"
-    },
-    {
-      "slug": "ai-music-production-tools-for-independent-artists-2026",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-06T18:06:12.607Z"
-    },
-    {
-      "slug": "how-to-set-up-chatgpt-memory-for-creative-projects",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-06T18:02:38.684Z"
     }
   ],
   "recentInstagramArchetypes": [
