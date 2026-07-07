@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-07T04:56:29.871Z",
+  "lastUpdated": "2026-07-07T15:52:59.513Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-build-your-own-ai-clone-system-without-paying-a-thousand-dollars",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-07T15:52:59.513Z"
+    },
+    {
+      "slug": "the-free-version-of-everything-the-ai-advantage-bootcamp-actually-teaches",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-07T15:52:36.136Z"
+    },
+    {
+      "slug": "ai-advantage-vs-free-youtube-ai-tutorials-what-you-actually-get-for-995",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-07T15:52:06.658Z"
+    },
+    {
+      "slug": "how-to-generate-fresh-ideas-for-creative-projects",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-07T15:51:43.029Z"
+    },
+    {
+      "slug": "how-to-use-openai-deep-research-for-content-creation",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-07T15:51:15.565Z"
+    },
+    {
+      "slug": "best-ai-prompts-for-music-producers-to-generate-melodies",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-07T15:47:04.610Z"
+    },
+    {
       "slug": "how-to-stop-living-in-survival-mode-for-good",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1102,63 +1156,18 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-07-06T05:10:19.223Z"
-    },
-    {
-      "slug": "why-is-everyone-promoting-ai-advantage-the-affiliate-machine-explained",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-05T23:09:37.618Z"
-    },
-    {
-      "slug": "is-the-ai-advantage-15-hour-guarantee-actually-worth-anything",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-05T23:09:10.140Z"
-    },
-    {
-      "slug": "how-to-train-chatgpt-or-claude-on-your-own-voice-and-style-for-free",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-05T23:08:47.765Z"
-    },
-    {
-      "slug": "decision-making-framework-for-creative-entrepreneurs",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-05T23:04:41.285Z"
-    },
-    {
-      "slug": "ai-advantage-vs-hiring-a-virtual-assistant-which-gives-you-more-time-back",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-05T20:09:25.687Z"
-    },
-    {
-      "slug": "mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-05T20:09:04.727Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "best-ai-prompts-for-music-producers-to-generate-melodies",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-07-07T15:47:19.812Z"
+    },
     {
       "slug": "how-to-use-gemini-25-flash-for-image-generation",
       "archetype": "sacred-tech",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-12T23:20:21.227Z"
-    },
-    {
-      "slug": "why-youre-always-anxious-for-no-reason-theres-always-a-reason",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-12T16:26:46.752Z"
     }
   ]
 }
