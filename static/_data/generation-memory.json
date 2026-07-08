@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-08T04:13:48.155Z",
+  "lastUpdated": "2026-07-08T04:18:18.149Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "why-buying-art-from-independent-artists-actually-matters",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-08T04:18:18.149Z"
+    },
+    {
+      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-08T04:17:47.380Z"
+    },
+    {
+      "slug": "ai-advantage-vs-doing-it-yourself-what-you-would-actually-need-to-learn",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-08T04:17:26.930Z"
+    },
+    {
       "slug": "how-to-get-a-professional-headshot-for-free",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1129,33 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-06T23:14:57.964Z"
-    },
-    {
-      "slug": "how-to-use-gemini-25-flash-for-image-generation",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-06T23:11:07.605Z"
-    },
-    {
-      "slug": "how-to-stop-feeling-lost-and-start-moving-forward",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-06T20:48:20.442Z"
-    },
-    {
-      "slug": "how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-06T20:47:54.747Z"
     }
   ],
   "recentInstagramArchetypes": [
