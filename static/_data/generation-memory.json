@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-08T17:15:31.761Z",
+  "lastUpdated": "2026-07-08T17:20:54.045Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,42 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-use-gamma-ai-for-music-presentations",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-08T17:20:54.045Z"
+    },
+    {
+      "slug": "where-to-buy-original-art-online-without-getting-burned",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-08T17:20:14.672Z"
+    },
+    {
+      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-08T17:19:49.750Z"
+    },
+    {
+      "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-08T17:19:23.300Z"
+    },
+    {
       "slug": "what-worked-playbook-for-indie-musicians",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1120,42 +1156,6 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-07-07T15:52:36.136Z"
-    },
-    {
-      "slug": "ai-advantage-vs-free-youtube-ai-tutorials-what-you-actually-get-for-995",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-07T15:52:06.658Z"
-    },
-    {
-      "slug": "how-to-generate-fresh-ideas-for-creative-projects",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-07T15:51:43.029Z"
-    },
-    {
-      "slug": "how-to-use-openai-deep-research-for-content-creation",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-07T15:51:15.565Z"
-    },
-    {
-      "slug": "best-ai-prompts-for-music-producers-to-generate-melodies",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-07T15:47:04.610Z"
     }
   ],
   "recentInstagramArchetypes": [
