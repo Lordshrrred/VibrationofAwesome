@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-08T04:18:18.149Z",
+  "lastUpdated": "2026-07-08T15:34:31.603Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-tell-if-a-piece-of-art-is-right-for-you",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-08T15:34:31.603Z"
+    },
+    {
+      "slug": "ai-advantage-bootcamp-payment-plan-is-three-payments-of-three-eighty-smart",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-08T15:34:07.530Z"
+    },
+    {
+      "slug": "why-is-everyone-promoting-ai-advantage-the-affiliate-machine-explained",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-08T15:33:40.116Z"
+    },
+    {
+      "slug": "is-the-ai-advantage-15-hour-guarantee-actually-worth-anything",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-08T15:33:14.227Z"
+    },
+    {
+      "slug": "how-to-train-chatgpt-or-claude-on-your-own-voice-and-style-for-free",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-08T15:32:43.082Z"
+    },
+    {
+      "slug": "what-worked-playbook-for-indie-musicians",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-08T15:28:45.317Z"
+    },
+    {
       "slug": "why-buying-art-from-independent-artists-actually-matters",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1102,63 +1156,18 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-07T04:56:29.871Z"
-    },
-    {
-      "slug": "how-to-build-a-landing-page-with-replit-free",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-07T04:56:01.416Z"
-    },
-    {
-      "slug": "how-to-organize-creative-projects-with-chatgpt",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-07T04:55:35.292Z"
-    },
-    {
-      "slug": "how-to-use-gemini-25-flash-for-image-generation",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-07T04:51:39.925Z"
-    },
-    {
-      "slug": "ai-content-creation-tools-that-actually-save-time",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-06T23:15:56.657Z"
-    },
-    {
-      "slug": "how-to-get-out-of-survival-mode-and-actually-start-living",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-06T23:15:29.056Z"
-    },
-    {
-      "slug": "how-to-make-money-as-a-musician-without-compromising-your-art",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-06T23:14:57.964Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "what-worked-playbook-for-indie-musicians",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-07-08T15:29:00.449Z"
+    },
     {
       "slug": "how-to-get-a-professional-headshot-for-free",
       "archetype": "cinematic-ideogram",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-13T23:08:45.166Z"
-    },
-    {
-      "slug": "how-to-build-your-first-gemini-chatbot-for-creators",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "timestamp": "2026-06-13T15:06:09.008Z"
     }
   ]
 }
