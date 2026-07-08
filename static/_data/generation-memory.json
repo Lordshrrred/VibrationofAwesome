@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-08T20:16:38.396Z",
+  "lastUpdated": "2026-07-08T20:17:51.753Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-music-production-tools-for-independent-artists-2026",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-08T20:17:51.753Z"
+    },
+    {
+      "slug": "knowledge-business-blueprint-vs-ai-advantage-how-dean-graziosi-evolved-his-pitch",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-08T20:17:30.756Z"
+    },
+    {
+      "slug": "the-free-version-of-everything-the-ai-advantage-bootcamp-actually-teaches",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-08T20:17:06.290Z"
+    },
+    {
       "slug": "what-worked-playbook-for-indie-musicians",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1129,33 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-07-07T17:53:28.245Z"
-    },
-    {
-      "slug": "the-real-cost-of-ai-advantage-price-time-and-opportunity-cost",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-07T17:52:57.326Z"
-    },
-    {
-      "slug": "best-ai-prompts-for-music-producers-to-generate-melodies",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-07T17:49:17.349Z"
-    },
-    {
-      "slug": "how-to-build-your-own-ai-clone-system-without-paying-a-thousand-dollars",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-07T15:52:59.513Z"
     }
   ],
   "recentInstagramArchetypes": [
