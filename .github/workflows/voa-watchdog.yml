@@ -62,7 +62,13 @@ jobs:
         run: npm ci
 
       # ── 4. Run self-healer ────────────────────────────────────────────────
+      # auto-heal.js self-gates on cooldown (1hr, via scripts/.last-autoheal-timestamp)
+      # and a daily cap (3/day, via static/_data/heal-log.json) before doing
+      # anything, including the Claude call. It prints AUTOHEAL_STATUS=<status>
+      # (ran / skipped-cooldown / skipped-max-attempts) as its last line so this
+      # step can log the outcome below regardless of which path was taken.
       - name: Run self-healer
+        id: heal
         env:
           # Passed to auto-heal.js for context in email + re-trigger logic
           FAILED_WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
@@ -117,4 +123,30 @@ jobs:
           WORDPRESS_BLOG:              ${{ secrets.WORDPRESS_BLOG }}
           DASHBOARD_PASSWORD:          ${{ secrets.DASHBOARD_PASSWORD }}
           IDEOGRAM_API_KEY:            ${{ secrets.IDEOGRAM_API_KEY }}
-        run: node scripts/auto-heal.js
+        run: |
+          set +e
+          node scripts/auto-heal.js 2>&1 | tee autoheal-run.log
+          STATUS_EXIT=${PIPESTATUS[0]}
+          set -e
+
+          AUTOHEAL_STATUS=$(grep '^AUTOHEAL_STATUS=' autoheal-run.log | tail -1 | cut -d= -f2)
+          echo "status=${AUTOHEAL_STATUS:-unknown}" >> "$GITHUB_OUTPUT"
+          rm -f autoheal-run.log
+          exit $STATUS_EXIT
+
+      # ── 5. Log auto-heal outcome ──────────────────────────────────────────
+      # Runs regardless of the status above (including cooldown/max-attempts
+      # skips) so there's always a paper trail of every trigger, not just the
+      # ones that actually executed.
+      - name: Log auto-heal status
+        if: always() && steps.heal.outputs.status != ''
+        run: |
+          git config user.name  "voa-auto-healer[bot]"
+          git config user.email "auto-healer@voa.invalid"
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          echo "Auto-heal check on ${TIMESTAMP}: ${{ steps.heal.outputs.status }}" >> scripts/syndication_log.txt
+          git add scripts/syndication_log.txt
+          git diff --staged --quiet || git commit -m "Auto-heal status log [automated]"
+          git fetch origin main
+          git merge --no-edit -X ours origin/main
+          git push

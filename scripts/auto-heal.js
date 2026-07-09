@@ -38,13 +38,15 @@ const GITHUB_TOKEN    = process.env.GITHUB_TOKEN    || process.env.GH_PAT || "";
 
 const HEALTH_FILE    = path.join(ROOT, "static", "_data", "syndication-health.json");
 const HEAL_LOG_FILE  = path.join(ROOT, "static", "_data", "heal-log.json");
+const TIMESTAMP_FILE = path.join(ROOT, "scripts", ".last-autoheal-timestamp");
 
 // ── Cooldown / rate cap ──────────────────────────────────────────────────────
 // voa-watchdog.yml can trigger this on every drip/catchup failure PLUS a daily
 // schedule PLUS manual dispatch ~ with no cap that's an unbounded self-retrigger
 // risk (tier1's retriggerDrip() can cause the very workflow that re-triggers us).
-// Gate on heal-log.json's own history before doing anything else, including the
-// Claude call.
+// Gate on TIMESTAMP_FILE (last-run cooldown) and HEAL_LOG_FILE (today's run
+// count, naturally resets at UTC midnight since it's an ISO-date string match)
+// before doing anything else, including the Claude call.
 const HEAL_COOLDOWN_MS   = 60 * 60 * 1000; // 1 hour between runs
 const HEAL_MAX_PER_DAY   = 3;              // hard cap; beyond this, log and stop
 
@@ -139,29 +141,45 @@ function writeJson(p, data) {
 }
 
 /**
- * Returns { blocked: true, reason } if this run should stop before doing
+ * Returns { blocked: true, status, reason } if this run should stop before doing
  * anything (including the Claude call) ~ either the daily cap is hit or the
- * last run was too recent. Returns { blocked: false } otherwise.
+ * last run was too recent. Returns { blocked: false, status: "ran" } otherwise.
+ *
+ * Daily cap is checked first: an outage that keeps tripping the cooldown boundary
+ * every ~61 minutes should still hit the hard 3/day ceiling, not just cycle
+ * cooldown skips forever.
  */
 function checkHealCooldown() {
-  const healLog = readJson(HEAL_LOG_FILE) || [];
-  const today = new Date().toISOString().slice(0, 10);
+  const today = new Date().toISOString().slice(0, 10); // resets naturally at UTC midnight
 
+  const healLog = readJson(HEAL_LOG_FILE) || [];
   const todayRuns = healLog.filter((r) => r.healedAt && r.healedAt.slice(0, 10) === today);
   if (todayRuns.length >= HEAL_MAX_PER_DAY) {
-    return { blocked: true, reason: `Already ran ${todayRuns.length} time(s) today (max ${HEAL_MAX_PER_DAY}/day). Logging and stopping ~ no Claude call, no retrigger.` };
+    return {
+      blocked: true,
+      status: "skipped-max-attempts",
+      reason: `Auto-heal max attempts reached for today ~ manual intervention needed (${todayRuns.length}/${HEAL_MAX_PER_DAY} already run today).`,
+    };
   }
 
-  const lastRun = healLog[healLog.length - 1];
-  if (lastRun?.healedAt) {
-    const elapsedMs = Date.now() - new Date(lastRun.healedAt).getTime();
-    if (elapsedMs < HEAL_COOLDOWN_MS) {
+  let lastRunAt = null;
+  try {
+    lastRunAt = fs.readFileSync(TIMESTAMP_FILE, "utf8").trim() || null;
+  } catch { /* no prior run recorded */ }
+
+  if (lastRunAt) {
+    const elapsedMs = Date.now() - new Date(lastRunAt).getTime();
+    if (Number.isFinite(elapsedMs) && elapsedMs >= 0 && elapsedMs < HEAL_COOLDOWN_MS) {
       const waitMin = Math.ceil((HEAL_COOLDOWN_MS - elapsedMs) / 60000);
-      return { blocked: true, reason: `Last heal run was ${Math.round(elapsedMs / 60000)} min ago (cooldown is ${HEAL_COOLDOWN_MS / 60000} min). ~${waitMin} min remaining. Logging and stopping.` };
+      return {
+        blocked: true,
+        status: "skipped-cooldown",
+        reason: `Auto-heal skipped ~ cooldown active (last run ${Math.round(elapsedMs / 60000)} min ago, ${HEAL_COOLDOWN_MS / 60000} min required, ~${waitMin} min remaining).`,
+      };
     }
   }
 
-  return { blocked: false };
+  return { blocked: false, status: "ran" };
 }
 
 function run(cmd, { cwd = ROOT, silent = true } = {}) {
@@ -465,9 +483,13 @@ async function main() {
   const cooldown = checkHealCooldown();
   if (cooldown.blocked) {
     console.log(`[HEAL] ${cooldown.reason}`);
+    console.log(`AUTOHEAL_STATUS=${cooldown.status}`);
     return;
   }
 
+  // Timestamp file is written only when a run actually executes (below, after
+  // the run completes) ~ never on a skip, so the cooldown always measures from
+  // the last real run, not from a skip that did nothing.
   const healRecord = {
     healedAt: new Date().toISOString(),
     trigger: FAILED_WORKFLOW || "scheduled",
@@ -576,8 +598,12 @@ async function main() {
   const trimmed = healLog.slice(-50);
   writeJson(HEAL_LOG_FILE, trimmed);
 
+  // Cooldown timestamp: only written here, on an actual completed run ~ never
+  // on a skip (see checkHealCooldown() above), so a skip never resets the clock.
+  fs.writeFileSync(TIMESTAMP_FILE, healRecord.healedAt, "utf8");
+
   gitConfig();
-  run(`git add "${HEAL_LOG_FILE}"`);
+  run(`git add "${HEAL_LOG_FILE}" "${TIMESTAMP_FILE}"`);
   const staged = spawnSync("git", ["diff", "--staged", "--quiet"], { cwd: ROOT });
   if (staged.status !== 0) {
     const tmpMsg = path.join(ROOT, ".git", "HEALLOG_MSG");
@@ -588,6 +614,8 @@ async function main() {
     run("git merge --no-edit -X ours origin/main");
     run("git push");
   }
+
+  console.log("AUTOHEAL_STATUS=ran");
 
   // ── Email summary ─────────────────────────────────────────────────────────
   const anyHealed    = tier1Result.healed || tier2Results.some(r => r.appliedPatch);
