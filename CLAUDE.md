@@ -386,6 +386,18 @@ npm run links:apply
 
 Posts should carry `niche` and `cluster` metadata in `boom-posts.json` whenever the queue/source item knows it. Older posts without metadata are cluster-inferred.
 
+**Reciprocal back-linking (added 2026-07-10):** `ensureDeterministicInternalLinks()` only makes the *new* post link forward to 2-3 older ones. `backlinkOlderPosts()` in the same file does the reverse ~ after a boom post is generated (published, not draft), it mutates each of those older posts' HTML files on disk to add a link back to the new post's `Related reading` section (creating the section if the older post doesn't have one). Idempotent (skips a post that already links to the new one), and skips rather than corrupts a file with no recognizable insertion point. Wired into `generate-post.js` right after the forward-link step, gated on `!isDraft`.
+
+### AI-search-optimized content structure (added 2026-07-10)
+
+Audited against 6 criteria (direct-answer-first per H2, FAQ schema, Article/HowTo schema, named/specific detail per post, question-phrased H2s, topic-cluster interlinking) by checking 3 real live posts per lane against the actual HTML output, not just the prompt. Findings: schema was BlogPosting-only (no FAQ/HowTo), H2s were 0% question-phrased, zero data points/named specifics in the 2 most recent posts, internal linking existed but was forward-only (no back-links), and none of this applied to Matt lane (personal-voice blog, intentionally excluded from these SEO-structure requirements ~ see below).
+
+`BOOMBOT_SYSTEM` in `generate-post.js` now has an "AI-SEARCH-OPTIMIZED STRUCTURE" block requiring: H2s phrased as natural questions (not topic labels); the first 1-2 sentences under each H2 directly answering that H2's question, before any story/setup (this is per-section, and does not override the existing opening-hook rule for the article's intro); at least one concrete named tool/technique/fact per post (never a fabricated statistic ~ works alongside the existing TRUTHFULNESS RULES); `Step 1:`/`Step 2:`-style headers for genuine how-to posts; and a `## FAQ` section (3-5 `**Q: ...?**` pairs) before the closing CTA.
+
+**Schema pipeline:** `extractFaqPairs()` and `extractHowToSteps()` parse the FAQ section and any `Step N:` headers out of the raw markdown (before HTML conversion) and `buildFaqSchema()`/`buildHowToSchema()` turn them into FAQPage/HowTo JSON-LD, injected into `buildHtml()`'s `<head>` via a new `extraSchemas` parameter (only when the corresponding content is actually present ~ HowTo needs ≥2 steps, FAQ needs ≥1 parsed pair). The existing BlogPosting schema block's `@type` is now `["BlogPosting","Article"]` (BlogPosting is already an Article subtype in schema.org; the array makes it explicit rather than implicit). **Boom-only** ~ Matt lane doesn't get FAQ/HowTo schema or the new structural prompt rules; it's personal-voice writing, not SEO-targeting content, and forcing FAQ sections into personal essays would fight the lane's actual purpose.
+
+Verified live 2026-07-10 with two real generations: a draft (FAQPage + HowTo schema both generated, all 5 H2s question-phrased and direct-answer-first, named tools present) and a published post (confirmed `backlinkOlderPosts()` correctly mutated 3 older posts' HTML on disk, verified balanced `<section>` tags after).
+
 ---
 
 ## COMPANION ECOSYSTEM ARCHITECTURE
