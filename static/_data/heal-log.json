@@ -1000,5 +1000,51 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-07-08T09:43:53.232Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "The environment variable DEVTO2_API_KEY is not set in the deployment or local environment.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "your_devto_api_key_here",
+          "reason": "Dev.to account 2 requires a separate API key in environment variables for authentication during syndication; the key is currently missing causing the health check to fail"
+        }
+      }
+    ],
+    "retriggered": false
+  },
+  {
+    "healedAt": "2026-07-09T10:50:06.418Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "The environment variable DEVTO2_API_KEY is not set in the deployment environment.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "required: obtain from https://dev.to/settings/extensions and paste here",
+          "reason": "Second Dev.to account syndication requires dedicated API key stored as environment variable"
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
