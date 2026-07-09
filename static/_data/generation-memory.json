@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-09T20:55:08.023Z",
+  "lastUpdated": "2026-07-09T23:15:19.357Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-clone-your-voice-with-elevenlabs-and-heygen",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-09T23:15:05.210Z"
+    },
+    {
       "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,18 +1156,18 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-08T17:20:54.045Z"
-    },
-    {
-      "slug": "where-to-buy-original-art-online-without-getting-burned",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-08T17:20:14.672Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-clone-your-voice-with-elevenlabs-and-heygen",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-07-09T23:15:19.357Z"
+    },
     {
       "slug": "ai-tools-to-start-a-creative-business-with-no-experience",
       "archetype": "minimalist-philosophy",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-15T18:01:25.936Z"
-    },
-    {
-      "slug": "how-to-generate-consistent-ai-images-for-your-brand",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-14T23:13:02.219Z"
     }
   ]
 }
