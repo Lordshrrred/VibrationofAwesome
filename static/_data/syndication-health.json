@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-07-09T17:44:38.834Z",
+  "lastChecked": "2026-07-09T20:41:45.922Z",
   "status": "ok",
   "passed": 16,
   "failed": 0,
@@ -9,7 +9,7 @@
     "status": "active",
     "rate": 1,
     "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
-    "remaining": 26,
+    "remaining": 49,
     "published": 143,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
@@ -18,7 +18,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=26"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=49"
     },
     {
       "name": "Publer accounts",
@@ -106,12 +106,5 @@
       "label": "Refresh dashboard health",
       "command": "npm run check:syndication -- --write"
     }
-  },
-  "queue_warning": {
-    "level": "warning",
-    "queue_remaining": 26,
-    "days_remaining": 13,
-    "checked_at": "2026-07-09T17:44:38.887Z",
-    "message": "Queue has 26 post(s) left (~13 days). Replenish with generate-all-drafts.js."
   }
 }
