@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-09T04:51:49.040Z",
+  "lastUpdated": "2026-07-09T04:56:09.735Z",
   "recentHooks": [
     {
       "slug": "ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-the-ai-advantage-clone-builder-system-actually-works",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-09T04:56:09.735Z"
+    },
+    {
+      "slug": "what-to-do-before-you-buy-the-ai-advantage-bootcamp",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-09T04:55:50.982Z"
+    },
+    {
+      "slug": "ai-for-the-rest-of-us-what-tony-robbins-is-actually-selling-in-2026",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-09T04:55:23.043Z"
+    },
+    {
       "slug": "how-to-use-elevenlabs-v3-for-podcast-voiceovers",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1129,33 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-07-07T23:08:25.515Z"
-    },
-    {
-      "slug": "how-to-get-a-professional-headshot-for-free",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-07T23:04:21.741Z"
-    },
-    {
-      "slug": "what-to-do-before-you-buy-the-ai-advantage-bootcamp",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-07T20:46:27.908Z"
-    },
-    {
-      "slug": "ai-for-the-rest-of-us-what-tony-robbins-is-actually-selling-in-2026",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-07T20:45:58.597Z"
     }
   ],
   "recentInstagramArchetypes": [
