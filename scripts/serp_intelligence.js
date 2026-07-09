@@ -91,11 +91,16 @@ function buildPrompt(keyword) {
   return `Search for "${keyword}".`;
 }
 
-/** Pull the last text block out of a response that may contain web_search_tool_result blocks too. */
+/**
+ * Join all text blocks (a web-search response often has commentary text before
+ * the JSON fence, sometimes across more than one text block interleaved with
+ * tool-use/tool-result blocks) so parseJsonLoose can find the JSON regardless
+ * of which block or position it landed in.
+ */
 function extractFinalText(message) {
   const textBlocks = message.content.filter((b) => b.type === "text");
   if (textBlocks.length === 0) return null;
-  return textBlocks[textBlocks.length - 1].text;
+  return textBlocks.map((b) => b.text).join("\n");
 }
 
 function parseJsonLoose(raw) {
@@ -118,7 +123,11 @@ function parseJsonLoose(raw) {
 async function checkKeyword(client, item) {
   const message = await client.messages.create({
     model: MODEL,
-    max_tokens: 2048,
+    // 2048 was too tight: adaptive thinking (on by default for Sonnet 5) plus
+    // 1-3 rounds of web_search tool use can burn the whole budget before any
+    // text block is emitted, leaving extractFinalText() with nothing. 4096
+    // confirmed sufficient in live testing on 2026-07-09.
+    max_tokens: 4096,
     tools: [{ type: "web_search_20260209", name: "web_search" }],
     system: [{ type: "text", text: SYSTEM_INSTRUCTIONS, cache_control: { type: "ephemeral" } }],
     messages: [{ role: "user", content: buildPrompt(item.keyword) }],
@@ -127,7 +136,7 @@ async function checkKeyword(client, item) {
   const raw = extractFinalText(message);
   const parsed = parseJsonLoose(raw);
   if (!parsed || typeof parsed !== "object" || !Array.isArray(parsed.top3)) {
-    throw new Error(`Malformed response for "${item.keyword}" ~ could not parse JSON from: ${(raw || "").slice(0, 200)}`);
+    throw new Error(`Malformed response for "${item.keyword}" (stop_reason: ${message.stop_reason}) ~ could not parse JSON from: ${(raw || "(empty ~ no text block in response)").slice(0, 200)}`);
   }
 
   // Normalize/defend against missing fields so the report builder never crashes
