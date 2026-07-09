@@ -18,7 +18,7 @@ import fs          from "fs";
 import path        from "path";
 import { fileURLToPath } from "url";
 import { execSync, spawnSync } from "child_process";
-import Anthropic   from "@anthropic-ai/sdk";
+import { createAnthropicClient } from "./lib/anthropic-client.js";
 import nodemailer  from "nodemailer";
 import dotenv      from "dotenv";
 
@@ -38,6 +38,15 @@ const GITHUB_TOKEN    = process.env.GITHUB_TOKEN    || process.env.GH_PAT || "";
 
 const HEALTH_FILE    = path.join(ROOT, "static", "_data", "syndication-health.json");
 const HEAL_LOG_FILE  = path.join(ROOT, "static", "_data", "heal-log.json");
+
+// ── Cooldown / rate cap ──────────────────────────────────────────────────────
+// voa-watchdog.yml can trigger this on every drip/catchup failure PLUS a daily
+// schedule PLUS manual dispatch ~ with no cap that's an unbounded self-retrigger
+// risk (tier1's retriggerDrip() can cause the very workflow that re-triggers us).
+// Gate on heal-log.json's own history before doing anything else, including the
+// Claude call.
+const HEAL_COOLDOWN_MS   = 60 * 60 * 1000; // 1 hour between runs
+const HEAL_MAX_PER_DAY   = 3;              // hard cap; beyond this, log and stop
 
 // Only these script files may receive Claude-generated code patches
 const PATCHABLE_FILES = new Set([
@@ -127,6 +136,32 @@ function readJson(p) {
 
 function writeJson(p, data) {
   fs.writeFileSync(p, JSON.stringify(data, null, 2) + "\n", "utf8");
+}
+
+/**
+ * Returns { blocked: true, reason } if this run should stop before doing
+ * anything (including the Claude call) ~ either the daily cap is hit or the
+ * last run was too recent. Returns { blocked: false } otherwise.
+ */
+function checkHealCooldown() {
+  const healLog = readJson(HEAL_LOG_FILE) || [];
+  const today = new Date().toISOString().slice(0, 10);
+
+  const todayRuns = healLog.filter((r) => r.healedAt && r.healedAt.slice(0, 10) === today);
+  if (todayRuns.length >= HEAL_MAX_PER_DAY) {
+    return { blocked: true, reason: `Already ran ${todayRuns.length} time(s) today (max ${HEAL_MAX_PER_DAY}/day). Logging and stopping ~ no Claude call, no retrigger.` };
+  }
+
+  const lastRun = healLog[healLog.length - 1];
+  if (lastRun?.healedAt) {
+    const elapsedMs = Date.now() - new Date(lastRun.healedAt).getTime();
+    if (elapsedMs < HEAL_COOLDOWN_MS) {
+      const waitMin = Math.ceil((HEAL_COOLDOWN_MS - elapsedMs) / 60000);
+      return { blocked: true, reason: `Last heal run was ${Math.round(elapsedMs / 60000)} min ago (cooldown is ${HEAL_COOLDOWN_MS / 60000} min). ~${waitMin} min remaining. Logging and stopping.` };
+    }
+  }
+
+  return { blocked: false };
 }
 
 function run(cmd, { cwd = ROOT, silent = true } = {}) {
@@ -244,7 +279,7 @@ async function askClaude(failingChecks) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return null;
 
-  const client = new Anthropic({ apiKey });
+  const client = createAnthropicClient({ apiKey, label: "auto-heal" });
 
   const healthJson = JSON.stringify(readJson(HEALTH_FILE) || {}, null, 2);
   const syndicateSnip = readHead(path.join(ROOT, "scripts", "syndicate.js"), 80);
@@ -426,6 +461,12 @@ function buildEmailBody({ trigger, tier1Result, tier2Results, retriggered }) {
 async function main() {
   console.log("[HEAL] VOA Self-Healer starting...");
   console.log(`[HEAL] Trigger: ${FAILED_WORKFLOW || "scheduled/manual"}`);
+
+  const cooldown = checkHealCooldown();
+  if (cooldown.blocked) {
+    console.log(`[HEAL] ${cooldown.reason}`);
+    return;
+  }
 
   const healRecord = {
     healedAt: new Date().toISOString(),

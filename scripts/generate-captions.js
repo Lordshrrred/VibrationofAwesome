@@ -8,7 +8,7 @@
  * CLI:     node scripts/generate-captions.js --lane [matt|boom] --slug <slug>
  */
 
-import Anthropic from "@anthropic-ai/sdk";
+import { createAnthropicClient } from "./lib/anthropic-client.js";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import path from "path";
@@ -251,7 +251,7 @@ function buildUserContent(post, postUrl, laneLabel, threadsInstruction = VOA_THR
 
 async function reviseThreadsCaption(post, currentThread, analysis, anthropic, postUrl, laneLabel, threadsInstruction = VOA_THREADS_INSTRUCTION) {
   const msg = await anthropic.messages.create({
-    model:      "claude-sonnet-4-6",
+    model:      "claude-haiku-4-5-20251001",
     max_tokens: 1200,
     system:     SYSTEM_PROMPT,
     messages:   [{
@@ -292,7 +292,7 @@ async function reviseThreadsCaption(post, currentThread, analysis, anthropic, po
  * @returns {Promise<object>} Captions keyed by platform. Includes `_threads` metadata object.
  */
 export async function generateCaptions(post, client, options = {}) {
-  const anthropic = client || new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const anthropic = client || createAnthropicClient({ label: "generate-captions" });
   const postUrl   = post.url.startsWith("http")
     ? post.url
     : `https://vibrationofawesome.com${post.url}`;
@@ -329,7 +329,7 @@ export async function generateCaptions(post, client, options = {}) {
   const userContent = buildUserContent(post, postUrl, laneLabel, threadsInstruction);
 
   const msg = await anthropic.messages.create({
-    model:      "claude-sonnet-4-6",
+    model:      "claude-haiku-4-5-20251001",
     max_tokens: 2048,
     system:     SYSTEM_PROMPT,
     messages:   [{ role: "user", content: userContent }],
@@ -423,7 +423,7 @@ if (isCli) {
 
   if (argv["threads-preview"]) {
     const previewPost = { ...post, lane: argv.lane };
-    const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+    const anthropic = createAnthropicClient({ label: "generate-captions" });
     const postUrl = previewPost.url.startsWith("http")
       ? previewPost.url
       : `https://vibrationofawesome.com${previewPost.url}`;
@@ -431,7 +431,7 @@ if (isCli) {
       ? "From the Forest Temple (raw personal blog by Matt EarthStar)"
       : "Boom Frequency (AI/creator-tools blog by Matty BoomBoom)";
     const legacyMsg = await anthropic.messages.create({
-      model:      "claude-sonnet-4-6",
+      model:      "claude-haiku-4-5-20251001",
       max_tokens: 2048,
       system:     SYSTEM_PROMPT,
       messages:   [{ role: "user", content: buildUserContent(previewPost, postUrl, laneLabel, LEGACY_THREADS_INSTRUCTION) }],

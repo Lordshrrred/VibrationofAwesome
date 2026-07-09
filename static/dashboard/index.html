@@ -391,6 +391,28 @@
       padding: 0.12rem 0.4rem; border-radius: 999px; border: 1px solid transparent;
     }
     .item-pill.score { color: var(--success); border-color: rgba(57,255,20,0.2); background: rgba(57,255,20,0.08); }
+    /* ── SEO Intelligence ── */
+    .seo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    @media (max-width: 720px) { .seo-grid { grid-template-columns: 1fr; } }
+    .cluster-row { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(0,229,204,0.05); }
+    .cluster-row:last-child { border-bottom: none; }
+    .cluster-row-head { display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 0.35rem; }
+    .cluster-row-name { color: var(--text); font-weight: 600; }
+    .cluster-row-count { color: var(--text-muted); }
+    .cluster-bar-track { height: 6px; border-radius: 999px; background: var(--surface3); overflow: hidden; }
+    .cluster-bar-fill { height: 100%; background: var(--accent); border-radius: 999px; }
+    .seo-trend-row { display: flex; align-items: flex-end; gap: 0.3rem; height: 90px; padding: 1rem; }
+    .seo-trend-bar { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 0.3rem; }
+    .seo-trend-fill { width: 100%; max-width: 22px; border-radius: 3px 3px 0 0; background: var(--accent); min-height: 3px; }
+    .seo-trend-label { font-size: 0.6rem; color: var(--text-muted); white-space: nowrap; }
+    .seo-kw-item { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.7rem 1rem; border-bottom: 1px solid rgba(0,229,204,0.05); }
+    .seo-kw-item:last-child { border-bottom: none; }
+    .seo-kw-title { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+    .seo-kw-gap { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .seo-flag { font-size: 0.78rem; white-space: nowrap; flex-shrink: 0; }
+    .seo-flag.ranking { color: var(--success); }
+    .seo-flag.not_found { color: var(--danger); }
+    .seo-flag.ai_overview { color: var(--purple); }
     .item-pill.queue { color: var(--warn); border-color: rgba(255,179,0,0.2); background: rgba(255,179,0,0.08); }
     .item-pill.lane-matt { color: var(--warn); border-color: rgba(255,179,0,0.2); background: rgba(255,179,0,0.08); }
     .item-pill.lane-boom { color: var(--accent2); border-color: rgba(0,180,216,0.22); background: rgba(0,180,216,0.08); }
@@ -944,6 +966,61 @@
         </div>
       </div>
 
+      <!-- ── SEO Intelligence ── -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-title">SEO Intelligence</span>
+          <span style="font-size:0.75rem;color:var(--text-muted)" id="seo-last-checked">Weekly SERP + AI Search Visibility check</span>
+        </div>
+
+        <div class="stats-strip">
+          <div class="stat-card">
+            <div class="stat-label">Ranking</div>
+            <div class="stat-value" id="seo-stat-ranking">~</div>
+            <div class="stat-sub">of keywords checked</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">AI Overview Mentions</div>
+            <div class="stat-value" id="seo-stat-ai">~</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Not Found</div>
+            <div class="stat-value" id="seo-stat-missing">~</div>
+          </div>
+        </div>
+
+        <div class="seo-grid">
+          <div class="queue-panel">
+            <div class="panel-header">
+              <span class="panel-title" style="color:var(--accent)">Cluster Coverage</span>
+              <span class="panel-count" id="seo-clusters-count">~</span>
+            </div>
+            <div class="panel-body" id="seo-clusters">
+              <div class="loading dot-pulse">Loading</div>
+            </div>
+          </div>
+          <div class="queue-panel">
+            <div class="panel-header">
+              <span class="panel-title" style="color:var(--accent)">Visibility Trend</span>
+              <span class="panel-count" id="seo-trend-count">last checks</span>
+            </div>
+            <div class="seo-trend-row" id="seo-trend">
+              <div class="loading dot-pulse">Loading</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="queue-panel">
+          <div class="panel-header">
+            <span class="panel-title" style="color:var(--accent)">Keyword Visibility (most recent check)</span>
+            <span class="panel-count" id="seo-keywords-count">~</span>
+          </div>
+          <div class="panel-body" id="seo-keywords">
+            <div class="loading dot-pulse">Loading</div>
+          </div>
+        </div>
+      </div>
+
       <!-- ESC Recommendations removed ~ future automation phase will replace this -->
 
       <!-- ── Manual Syndication ── -->
@@ -1087,6 +1164,8 @@ const FEEDER_SUFFIXES = ["-signal", "-shift", "-insight", "-guide"];
 const WORDPRESS_SITE_URL = "https://earthstarrisingsun.wordpress.com";
 const WORDPRESS_POSTS_API = "https://public-api.wordpress.com/rest/v1.1/sites/earthstarrisingsun.wordpress.com/posts?number=100";
 const BACKLINK_API_URL = "/api/backlinks";
+const CLUSTERS_URL  = "/_data/topic-clusters.json";
+const SERP_URL      = "/_data/serp-intelligence.json";
 const VERIFY_CACHE  = "voa_url_verify_cache_v4"; // v4: free browser-side checks, no Netlify function usage
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
 
@@ -1163,7 +1242,7 @@ document.getElementById("lock-btn").addEventListener("click", () => {
 
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts] = await Promise.all([
+  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, serpData] = await Promise.all([
     fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
     fetch(RESULTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
@@ -1171,6 +1250,8 @@ async function loadDashboard() {
     fetch(BOOM_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(MATT_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(FEEDER_POSTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
+    fetch(CLUSTERS_URL).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch(SERP_URL).then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
   const feederMerged = mergeFeederStatuses(resultsDataRaw, feederPosts);
   const resultsData = await mergeWordPressStatuses(feederMerged);
@@ -1203,6 +1284,7 @@ async function loadDashboard() {
   renderQueue(entries, allPosts, dripData);
   renderTrigger(allPosts);
   renderFeederSection(resultsData, dripData, boomPosts, mattPosts);
+  renderSeoIntelligence(boomPosts, clustersData, serpData);
   // ESC recommendations disabled ~ future automation phase will handle this
 }
 
@@ -2017,6 +2099,114 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
       <span class="site-stat-label">Status</span>
       <span class="site-stat-value">${statusBadge}</span>
     </div>`;
+}
+
+// ── SEO Intelligence ─────────────────────────────────────────────────────────
+//
+// Reads static/_data/topic-clusters.json (cluster definitions) and
+// static/_data/serp-intelligence.json (written weekly by scripts/serp_intelligence.js
+// via .github/workflows/weekly-serp-check.yml). No live API calls happen from the
+// browser ~ this panel is a read-only view of data already generated on a schedule.
+const SEO_FLAG_LABEL = { ranking: "✅ Ranking", not_found: "❌ Not found", ai_overview: "🤖 AI Overview" };
+
+function renderSeoIntelligence(boomPosts, clustersData, serpData) {
+  renderClusterCoverage(boomPosts, clustersData);
+  renderSeoTrend(serpData);
+  renderSeoKeywords(serpData);
+
+  const lastCheckedEl = document.getElementById("seo-last-checked");
+  if (serpData?.latest?.date) {
+    lastCheckedEl.textContent = `Last checked ${new Date(serpData.latest.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}`;
+  }
+
+  const results = serpData?.latest?.results || [];
+  const rankingCount = results.filter(r => r.visibility === "ranking" || r.visibility === "ai_overview").length;
+  const aiCount = results.filter(r => r.visibility === "ai_overview").length;
+  const missingCount = results.filter(r => r.visibility === "not_found").length;
+
+  document.getElementById("seo-stat-ranking").textContent = results.length ? `${rankingCount}/${results.length}` : "~";
+  document.getElementById("seo-stat-ai").textContent = results.length ? String(aiCount) : "~";
+  document.getElementById("seo-stat-missing").textContent = results.length ? String(missingCount) : "~";
+}
+
+function renderClusterCoverage(boomPosts, clustersData) {
+  const el = document.getElementById("seo-clusters");
+  const countEl = document.getElementById("seo-clusters-count");
+  const clusters = clustersData?.clusters || [];
+  if (!clusters.length) {
+    el.innerHTML = `<div class="empty-state">No cluster data found.</div>`;
+    countEl.textContent = "~";
+    return;
+  }
+
+  const counts = new Map(clusters.map(c => [c.key, 0]));
+  let unclustered = 0;
+  for (const p of boomPosts) {
+    if (p.cluster && counts.has(p.cluster)) counts.set(p.cluster, counts.get(p.cluster) + 1);
+    else unclustered++;
+  }
+
+  const maxCount = Math.max(1, ...counts.values());
+  const rows = clusters
+    .map(c => ({ ...c, count: counts.get(c.key) || 0 }))
+    .sort((a, b) => b.count - a.count)
+    .map(c => `
+      <div class="cluster-row">
+        <div class="cluster-row-head">
+          <span class="cluster-row-name">${esc(c.displayName)}</span>
+          <span class="cluster-row-count">${c.count} post${c.count === 1 ? "" : "s"}</span>
+        </div>
+        <div class="cluster-bar-track">
+          <div class="cluster-bar-fill" style="width:${Math.round((c.count / maxCount) * 100)}%"></div>
+        </div>
+      </div>`)
+    .join("");
+
+  el.innerHTML = rows + (unclustered > 0
+    ? `<div class="cluster-row"><span class="cluster-row-count" style="font-size:0.72rem">+ ${unclustered} post${unclustered === 1 ? "" : "s"} with no cluster assigned</span></div>`
+    : "");
+  countEl.textContent = `${clusters.length} clusters`;
+}
+
+function renderSeoTrend(serpData) {
+  const el = document.getElementById("seo-trend");
+  const history = serpData?.history || [];
+  if (!history.length) {
+    el.innerHTML = `<div class="empty-state">No SERP checks recorded yet ~ runs every Wednesday.</div>`;
+    return;
+  }
+
+  el.innerHTML = history.map(h => {
+    const pct = h.total > 0 ? Math.round((h.ranking / h.total) * 100) : 0;
+    const label = new Date(h.date).toLocaleDateString("en-US", { month: "numeric", day: "numeric" });
+    return `
+      <div class="seo-trend-bar" title="${h.ranking}/${h.total} ranking on ${esc(h.date)}">
+        <div class="seo-trend-fill" style="height:${Math.max(pct, 4)}%"></div>
+        <div class="seo-trend-label">${label}</div>
+      </div>`;
+  }).join("");
+}
+
+function renderSeoKeywords(serpData) {
+  const el = document.getElementById("seo-keywords");
+  const countEl = document.getElementById("seo-keywords-count");
+  const results = serpData?.latest?.results || [];
+
+  if (!results.length) {
+    el.innerHTML = `<div class="empty-state">No SERP check has run yet. It runs every Wednesday, or trigger one with <code>npm run serp-check</code>.</div>`;
+    countEl.textContent = "~";
+    return;
+  }
+
+  el.innerHTML = results.map(r => `
+    <div class="seo-kw-item">
+      <div>
+        <div class="seo-kw-title">${esc(r.keyword)}</div>
+        ${r.topGap ? `<div class="seo-kw-gap">Gap: ${esc(r.topGap)}</div>` : ""}
+      </div>
+      <span class="seo-flag ${r.visibility}">${SEO_FLAG_LABEL[r.visibility] || r.visibility}${r.voaPosition ? ` (#${r.voaPosition})` : ""}</span>
+    </div>`).join("");
+  countEl.textContent = `${results.length} keywords`;
 }
 
 // ── ESC Recommendations (Phase 7Z / 8B / 8C / 8D) ───────────────────────────

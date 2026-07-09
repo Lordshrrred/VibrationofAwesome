@@ -24,7 +24,7 @@
  *   npm run instagram:archetypes
  */
 
-import Anthropic  from "@anthropic-ai/sdk";
+import { createAnthropicClient } from "./lib/anthropic-client.js";
 import dotenv     from "dotenv";
 import fs         from "fs";
 import path       from "path";
@@ -331,7 +331,7 @@ async function previewPost(slug, forceArchetypeId = null, generate = false) {
       console.log(hr("═") + "\n");
       return;
     }
-    const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+    const anthropic = createAnthropicClient({ label: "preview-instagram" });
     process.stdout.write("\n  Generating Instagram visual... ");
     const result = await generateInstagramVisual({ ...post }, anthropic, contentType);
     if (result) {

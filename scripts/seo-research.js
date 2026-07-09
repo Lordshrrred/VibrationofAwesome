@@ -9,7 +9,7 @@
  *   node scripts/seo-research.js --topic "AI tools for musicians"
  */
 
-import Anthropic from "@anthropic-ai/sdk";
+import { createAnthropicClient } from "./lib/anthropic-client.js";
 import minimist from "minimist";
 import dotenv from "dotenv";
 import fs from "fs";
@@ -171,14 +171,18 @@ async function researchWithClaude(client, topicName, niche) {
     : "";
 
   const message = await client.messages.create({
-    model: "claude-opus-4-5",
+    model: "claude-sonnet-5",
     max_tokens: 4096,
-    system: [
-      "You are an SEO strategist for vibrationofawesome.com.",
-      "The site targets spiritually awakening creators, neurodivergent entrepreneurs,",
-      "AI-curious creators, and EarthStar-aligned outliers who want grounded, useful work.",
-      "Return only valid JSON. No markdown fences, no commentary.",
-    ].join(" "),
+    system: [{
+      type: "text",
+      text: [
+        "You are an SEO strategist for vibrationofawesome.com.",
+        "The site targets spiritually awakening creators, neurodivergent entrepreneurs,",
+        "AI-curious creators, and EarthStar-aligned outliers who want grounded, useful work.",
+        "Return only valid JSON. No markdown fences, no commentary.",
+      ].join(" "),
+      cache_control: { type: "ephemeral" },
+    }],
     messages: [{
       role: "user",
       content: [
@@ -219,7 +223,7 @@ async function main() {
     return;
   }
 
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const client = createAnthropicClient({ label: "seo-research" });
 
   const selectedNiche = argv.niche ? findNiche(argv.niche) : findNiche(topic);
   if (argv.niche && !selectedNiche) {

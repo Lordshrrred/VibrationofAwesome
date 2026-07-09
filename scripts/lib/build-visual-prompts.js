@@ -45,7 +45,7 @@
  *   import { buildVisualPrompts, generateAndStoreVisuals } from "./build-visual-prompts.js"
  */
 
-import Anthropic from "@anthropic-ai/sdk";
+import { createAnthropicClient } from "./anthropic-client.js";
 import dotenv    from "dotenv";
 import fs        from "fs";
 import path      from "path";
@@ -595,7 +595,7 @@ if (isCli) {
     postBody = fullText.split(/\s+/).slice(0, 700).join(" ");
   }
 
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const anthropic = createAnthropicClient({ label: "build-visual-prompts" });
   const options   = {
     dryRun:     argv["dry-run"],
     typeFilter: argv.type || null,

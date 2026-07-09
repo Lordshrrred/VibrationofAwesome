@@ -93,6 +93,44 @@ Copy `.env.example` to `.env`. Required keys:
 - `DEVTO_API_KEY` ~ primary Dev.to account
 - `DEVTO2_API_KEY` ~ second Dev.to account used only by art-buyer extra slots unless explicitly requested
 
+## Claude API usage & cost architecture
+
+All Claude API call sites construct their client via `scripts/lib/anthropic-client.js` (`createAnthropicClient({ label })`), not `new Anthropic()` directly ~ it pins `maxRetries: 3` and logs a warning on every 429/5xx the SDK retries, so a runaway retry loop shows up in logs instead of silently burning spend. `api/chat.js` (AURA, raw `fetch` rather than the SDK) has its own equivalent `callAnthropicWithRetry()` with the same cap and logging.
+
+Model tiers by task:
+- **Full long-form generation, flagship reader-facing content** (blog post bodies in `generate-post.js`, `generate-from-inspiration.js`) ~ Opus. Do not downgrade without asking first.
+- **Full-length but backlink/SEO-plumbing content, not reader-facing** (Blogger/WordPress companion articles in `syndicate.js`) ~ downgraded from Opus 4.6 to **Sonnet 5** on 2026-07-09. This call site fires unconditionally on every syndication run (5x/day via `drip-posts.yml`'s always-on backlink tier) ~ it was the single largest recurring Opus cost line in the system (10 Opus calls/day), and companion articles aren't what a reader judges the brand by, so the quality/cost tradeoff favors Sonnet here specifically.
+- **Lighter tasks** (social captions in `generate-captions.js`, Pinterest/Instagram visual prompts, health-check diagnosis in `auto-heal.js`, one-off cluster classification) ~ Haiku.
+- **Keyword/search research** (`seo-research.js`, `serp_intelligence.js`) ~ **Sonnet 5**, not Sonnet 4.6 ~ Sonnet 5's introductory pricing ($2/$10 per MTok through 2026-08-31) is currently *cheaper* than Sonnet 4.6 ($3/$15) as well as newer/better, so there's no cost argument for using 4.6 anywhere in this repo right now.
+
+Prompt caching (`cache_control: {type: "ephemeral"}`) is applied where it can actually engage. Caching is a **prefix match with a model-dependent minimum** (Opus-tier needs ~4096 tokens in the cached prefix, Sonnet-tier needs ~2048) ~ a short system prompt marked `cache_control` on its own often sits below that floor and silently never caches. `generate-post.js` is the one call site big enough to matter: the existing-posts list (`buildExistingPostsList()`, several thousand tokens, byte-identical across an entire `generate-all-drafts.js` batch run) is placed first in the user message behind a cache breakpoint via `buildCachedUserContent()`, combined with the system prompt, so the combined prefix clears the Opus minimum. Check `usage.cache_read_input_tokens` on a batch run to confirm hits before assuming caching is helping. Verified live on 2026-07-07: a real two-call test against `generate-post.js`'s exact code path showed `cache_creation_input_tokens: 13294` on call 1 and `cache_read_input_tokens: 13294` on call 2 ~ confirmed working. AURA's system prompt in `api/chat.js`, and the system prompts added 2026-07-09 to `seo-research.js` and `serp_intelligence.js`, are all marked with `cache_control` but measure well under the ~2048-token Sonnet floor (AURA ~534, the other two ~45-120) ~ harmless, structurally correct, but currently a no-op until those prompts grow. `syndicate.js`'s Blogger/WordPress system prompts were deliberately left uncached: each fires once per `syndicate.js` invocation, not in a loop within a single run, so there's no repeated-prefix-in-one-run benefit to capture.
+
+`scripts/auto-heal.js` has a hard cooldown as of 2026-07-09: minimum 1 hour between runs, max 3 runs/day, checked against `static/_data/heal-log.json` before anything else happens (including the Claude call). Without it, `voa-watchdog.yml` could self-retrigger without limit ~ it fires on every `drip-posts.yml`/`syndication-catchup.yml` failure via `workflow_run`, plus a daily 3:30am schedule, plus manual dispatch, and Tier 1's `retriggerDrip()` can itself cause the very workflow that re-triggers the watchdog.
+
+### SERP Intelligence + AI Search Visibility (`scripts/serp_intelligence.js`)
+
+Weekly check (`.github/workflows/weekly-serp-check.yml`, every Wednesday 9am UTC + manual dispatch) that takes the 10 most recently published Boom Frequency posts, uses each post's title as its target keyword (see note below), and asks Claude (`claude-sonnet-5` + the `web_search_20260209` server tool) to identify the top 3 organic results per keyword, what gaps they leave open, and whether vibrationofawesome.com shows up in organic results or an AI Overview. Writes `reports/serp-intelligence-[date].md` and appends a one-line summary to `scripts/syndication_log.txt` (a separate plain-text log, not to be confused with `static/_data/syndication-log.json`).
+
+**Keyword source caveat**: there is no `keywords.txt` or priority-scored keyword file in this repo. `static/_data/topic-queue.json` holds pre-publish candidate keywords not tied to what's live; `static/_data/boom-posts.json` (published posts) has no dedicated `keyword` field. Post title is used as the keyword proxy, prioritized by most recent publish date. If a real keyword-tracking file is added later, update `loadTopKeywords()` in `serp_intelligence.js` accordingly.
+
+Run manually: `npm run serp-check` (or `node scripts/serp_intelligence.js --count 5` for a cheaper test run).
+
+`serp_intelligence.js` also writes `static/_data/serp-intelligence.json` (`{ history: [...capped at 12 weekly entries], latest: { date, results, errors } }`) purely for the dashboard below to read ~ no extra API calls, same data as the markdown report.
+
+### SEO Intelligence dashboard panel (`static/dashboard/index.html`)
+
+Added to the existing password-gated dashboard (not a separate page). Reads three static JSON files client-side, no API calls from the browser:
+- `static/_data/topic-clusters.json` + `static/_data/boom-posts.json` ~ **cluster coverage**: post count per cluster, sorted descending, unclustered-post count called out separately.
+- `static/_data/serp-intelligence.json` ~ **visibility stats + trend** (ranking/AI-Overview/not-found counts, last 12 weekly checks as a bar trend) and **per-keyword visibility** (most recent check, with the top competitive gap per keyword).
+
+All three panels render an empty/loading state gracefully before the first `weekly-serp-check.yml` run has produced `serp-intelligence.json`. Render function: `renderSeoIntelligence()` (calls `renderClusterCoverage()`, `renderSeoTrend()`, `renderSeoKeywords()`), wired into `loadDashboard()`.
+
+### Cluster metadata backfill (`scripts/backfill-cluster-metadata.js`)
+
+Zero-API-cost fix for posts missing a `cluster` field in `boom-posts.json` ~ runs the existing local `inferCluster()` keyword heuristic (`scripts/lib/internal-linking.js`, no Claude calls) and writes the result back. Dry run by default, `--execute` to write, same convention as `backfill-feeder.js`/`backfill-backlinks.js`.
+
+Run 2026-07-08: 68 of 80 unclustered posts matched and were backfilled for free. 12 posts remain unmatched (titles too generic for the regex rules ~ e.g. "Why You Feel Stuck in Life") and would need either better `KEYWORD_CLUSTER_RULES` patterns or a cheap Haiku classification pass to resolve. **Real, non-labeling gap surfaced by this run**: even with full backfill applied, `creator-automation` and `consciousness-technology` have zero posts, and `ai-creator-tools` now holds 112/145 posts (77%) ~ the site's cluster distribution is genuinely lopsided, not just mislabeled. Closing that requires new content in the empty/thin clusters, which costs real Opus spend per post ~ get budget/count confirmation before generating, don't auto-generate a batch.
+
 ## AGENT STANDING ORDERS
 
 ### Prime directive: read and maintain repo memory before building

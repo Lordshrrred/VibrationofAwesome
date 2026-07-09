@@ -31,7 +31,7 @@
   Every syndicated post is posted as DRAFT first.
 */
 
-import Anthropic from "@anthropic-ai/sdk";
+import { createAnthropicClient } from "./lib/anthropic-client.js";
 import crypto    from "crypto";
 import dotenv    from "dotenv";
 import { fileURLToPath } from "url";
@@ -963,7 +963,7 @@ async function getBloggerAccessToken() {
  */
 async function generateBloggerArticle(sourceTitle, sourceText, sourceUrl, anthropic) {
   const msg = await anthropic.messages.create({
-    model:      "claude-opus-4-6",
+    model:      "claude-sonnet-5",
     max_tokens: 3000,
     system: `You are Matt EarthStar, the voice behind Vibration of Awesome (vibrationofawesome.com). Write in Matt's authentic personal voice: reflective, honest, spiritual but grounded ~ the voice of someone who has lived through real struggles and found genuine insight. Not corporate motivation or new-age fluff. Raw, direct, human.`,
     messages: [
@@ -1011,7 +1011,7 @@ Requirements:
  */
 async function generateWordPressArticle(sourceTitle, sourceText, sourceUrl, anthropic) {
   const msg = await anthropic.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-sonnet-5",
     max_tokens: 3000,
     system: `You are Matt EarthStar, writing for EarthStarRising. Keep the voice human, direct, spiritual-but-grounded, and rooted in lived experience instead of generic inspiration.`,
     messages: [
@@ -1294,7 +1294,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   console.log(`URL: ${postUrl}\n`);
 
   // ── 3. Generate captions ──
-  const anthropic = options.anthropic || new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const anthropic = options.anthropic || createAnthropicClient({ label: "syndicate" });
   let captions;
   if (options.captions) {
     console.log("Using pre-supplied captions (API bypass)...");

@@ -16,7 +16,7 @@
  *   node scripts/preview-threads.js --history               # show recent format history + monotony analysis
  */
 
-import Anthropic from "@anthropic-ai/sdk";
+import { createAnthropicClient } from "./lib/anthropic-client.js";
 import dotenv    from "dotenv";
 import fs        from "fs";
 import path      from "path";
@@ -281,7 +281,7 @@ ${THREADS_FORMATS.map(f => `  ${f.id.padEnd(30)} ${dim(f.label)}`).join("\n")}
     process.exit(1);
   }
 
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const anthropic = createAnthropicClient({ label: "preview-threads" });
   console.log(`\n${b("Post:")} ${post.title}`);
   console.log(`${b("Slug:")} ${post.slug}   ${b("Lane:")} ${post.lane}\n`);
 

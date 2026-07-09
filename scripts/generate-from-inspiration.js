@@ -13,7 +13,7 @@
  * Processes in batches of 5 with a 3s delay between batches.
  */
 
-import Anthropic from '@anthropic-ai/sdk';
+import { createAnthropicClient } from './lib/anthropic-client.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -424,7 +424,7 @@ async function main() {
     return;
   }
 
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const client = createAnthropicClient({ label: "generate-from-inspiration" });
   fs.mkdirSync(DRAFTS_DIR, { recursive: true });
 
   let generated = 0;

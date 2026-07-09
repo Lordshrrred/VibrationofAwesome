@@ -6,7 +6,7 @@
  *   node scripts/generate-post.js --lane matt --title "My Post Title"
  *   node scripts/generate-post.js --lane boom --keyword "ai tools for musicians" --topic "AI music creation"
  */
-import Anthropic from "@anthropic-ai/sdk";
+import { createAnthropicClient } from "./lib/anthropic-client.js";
 import { marked } from "marked";
 import minimist from "minimist";
 import dotenv from "dotenv";
@@ -150,6 +150,22 @@ function buildExistingPostsList() {
     } catch (_) {}
   }
   return lines.join("\n");
+}
+
+/**
+ * Build a user message `content` array with the large, stable block (the
+ * existing-posts list) first under a cache breakpoint, and the per-request
+ * variable instructions after. Falls back to a single plain-text block when
+ * there's no stable content to cache.
+ */
+function buildCachedUserContent(stableText, variableText) {
+  if (!stableText || !stableText.trim()) {
+    return variableText;
+  }
+  return [
+    { type: "text", text: stableText, cache_control: { type: "ephemeral" } },
+    { type: "text", text: variableText },
+  ];
 }
 
 /** Extract first real paragraph (skip headings/META/rules), truncate at 150 chars */
@@ -621,7 +637,7 @@ async function main() {
     return;
   }
 
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const client = createAnthropicClient({ label: "generate-post" });
   let postTitle, userMessage, systemPrompt;
   const requestedNiche = lane === "boom" && argv.niche ? findNiche(argv.niche) : null;
   if (lane === "boom" && argv.niche && !requestedNiche) {
@@ -696,17 +712,21 @@ async function main() {
   if (differentiationContext) console.log("[memory] Differentiation context loaded (recent patterns will be avoided).");
   if (clusterContext)         console.log("[cluster] Cluster context loaded: " + clusterKey);
 
+  // internalLinkingInstruction (the existing-posts list) is large (thousands of
+  // tokens once the blog has a real archive) and byte-identical across every
+  // generation call until a post is published, so it's placed first with a cache
+  // breakpoint ~ combined with the system prompt it clears the ~4096-token
+  // minimum a prefix needs before Opus-tier models will actually cache it.
   if (lane === "matt") {
     postTitle    = argv.title;
     systemPrompt = MATT_SYSTEM;
-    userMessage  = [
+    userMessage  = buildCachedUserContent(internalLinkingInstruction, [
       "Write a full blog post with the title: \"" + argv.title + "\"",
       rantInstruction,
-      internalLinkingInstruction,
       clusterContext,
       differentiationContext,
       ctaInstruction,
-    ].join("\n");
+    ].join("\n"));
   } else {
     postTitle    = argv.keyword;
     systemPrompt = BOOMBOT_SYSTEM;
@@ -715,17 +735,16 @@ async function main() {
     const titleLine = argv.title
       ? "Use this exact H1 title: \"" + argv.title + "\""
       : "Make the H1 title compelling and include the keyword naturally.";
-    userMessage  = [
+    userMessage  = buildCachedUserContent(internalLinkingInstruction, [
       "Write a long-form SEO blog post targeting the long-tail keyword: \"" + argv.keyword + "\"",
       "Broader topic context: \"" + topicContext + "\"",
       nicheContext,
       titleLine,
       rantInstruction,
-      internalLinkingInstruction,
       clusterContext,
       differentiationContext,
       ctaInstruction,
-    ].join("\n");
+    ].join("\n"));
   }
 
   console.log("\nGenerating " + (lane === "matt" ? "Forest Temple" : "Boom Frequency") + " post...");
@@ -737,7 +756,7 @@ async function main() {
     const message = await client.messages.create({
       model: "claude-opus-4-8",
       max_tokens: 4096,
-      system: systemPrompt,
+      system: [{ type: "text", text: systemPrompt, cache_control: { type: "ephemeral" } }],
       messages: [{ role: "user", content: userMessage }],
     });
     markdown = message.content[0].text;

@@ -44,6 +44,47 @@ function setCors(res) {
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
 }
 
+const MAX_RETRIES = 3;
+
+/** POST to the Anthropic Messages API, retrying 429/5xx with capped exponential backoff. */
+async function callAnthropicWithRetry(apiKey, body) {
+  let lastError;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    let response;
+    try {
+      response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": apiKey,
+          "anthropic-version": "2023-06-01",
+        },
+        body: JSON.stringify(body),
+      });
+    } catch (err) {
+      lastError = err;
+      if (attempt === MAX_RETRIES) throw err;
+      const delayMs = 300 * 2 ** attempt;
+      console.warn(`chat: network error (attempt ${attempt + 1}/${MAX_RETRIES + 1}): ${err.message} ~ retrying in ${delayMs}ms`);
+      await new Promise((r) => setTimeout(r, delayMs));
+      continue;
+    }
+
+    if (response.status === 429 || response.status >= 500) {
+      const data = await response.json().catch(() => ({}));
+      if (attempt === MAX_RETRIES) return { response, data };
+      const retryAfter = Number(response.headers.get("retry-after"));
+      const delayMs = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 300 * 2 ** attempt;
+      console.warn(`chat: Anthropic HTTP ${response.status} (attempt ${attempt + 1}/${MAX_RETRIES + 1}) ~ retrying in ${delayMs}ms`);
+      await new Promise((r) => setTimeout(r, delayMs));
+      continue;
+    }
+
+    return { response, data: await response.json().catch(() => ({})) };
+  }
+  throw lastError;
+}
+
 export default async function handler(req, res) {
   setCors(res);
   if (req.method === "OPTIONS") return res.status(200).end();
@@ -70,22 +111,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 1024,
-        system: AURA_SYSTEM,
-        messages: sanitized,
-      }),
+    const { response, data } = await callAnthropicWithRetry(apiKey, {
+      model: "claude-sonnet-4-6",
+      max_tokens: 1024,
+      system: [{ type: "text", text: AURA_SYSTEM, cache_control: { type: "ephemeral" } }],
+      messages: sanitized,
     });
 
-    const data = await response.json().catch(() => ({}));
     if (!response.ok) {
       const msg = data?.error?.message || `Anthropic error ${response.status}`;
       console.error(`chat: Anthropic ${response.status}: ${msg}`);
