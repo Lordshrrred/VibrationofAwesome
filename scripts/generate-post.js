@@ -20,6 +20,7 @@ import { fetchNasaImages, fetchForestImages, fetchBoomImages } from "./select-im
 import { findNiche, getDefaultNiche, getNichePromptContext, EARTHSTAR_NICHES } from "./content-niches.js";
 import {
   ensureDeterministicInternalLinks,
+  backlinkOlderPosts,
   inferCluster,
   loadTopicClusters,
 } from "./lib/internal-linking.js";
@@ -118,6 +119,13 @@ const BOOMBOT_SYSTEM = [
   "- Make every article grounded, human, specific, slightly contrarian, useful, and emotionally resonant",
   "- Use the provided niche context as the article's spine. Do not flatten every niche into AI tools or vague personal growth.",
   "",
+  "AI-SEARCH-OPTIMIZED STRUCTURE (non-negotiable):",
+  "- Phrase every H2 as a natural question a person would actually type into an AI assistant or search bar, not a generic topic label. Example: 'How do I start a creative business with no design experience?' not 'Getting Started as a Creative'. Use H3s for sub-points within an H2's answer.",
+  "- Under EVERY H2, the first 1-2 sentences must directly answer the question that H2 poses ~ state the answer plainly before any story, setup, or context. This applies section by section throughout the body. It does NOT override the opening-hook rule above, which is about the article's intro before the first H2, not about each H2's own answer.",
+  "- Include at least one concrete, specific detail somewhere in the post: a named tool or platform, a specific technique or framework name, or a well-known general fact. Never invent a statistic, study, or number you cannot be reasonably confident is true ~ specificity comes from naming real things, not fabricating data. This works alongside the TRUTHFULNESS RULES below, which still apply in full.",
+  "- If the post is genuinely a step-by-step process (the keyword or title implies 'how to'), structure the main steps as H2 or H3 headers written exactly as 'Step 1: <action>', 'Step 2: <action>', etc., in order.",
+  "- After the main body and before the closing CTA, add a section titled exactly '## FAQ' with 3 to 5 question-and-answer pairs. Format each pair as a line '**Q: <question>?**' immediately followed by a plain-text answer paragraph whose first sentence directly answers the question. Base these on real, commonly asked questions about the topic, not filler.",
+  "",
   "TRUTHFULNESS RULES (non-negotiable):",
   "- Never invent personal experience claims for Matt EarthStar or Matty BoomBoom.",
   "- Never write 'I tested [tool]', 'I use this daily', 'my stack', 'I have personally tried', 'after years of testing', or 'I've been using [specific tool]'.",
@@ -194,8 +202,77 @@ function stripMeta(markdown) {
   return { metaDescription, cleanMarkdown: cleanLines.join("\n") };
 }
 
+/**
+ * Extract Q&A pairs from a "## FAQ" section in the generated markdown
+ * (format instructed in BOOMBOT_SYSTEM: "**Q: ...?**" followed by a plain
+ * answer paragraph). Used to generate FAQPage JSON-LD ~ the visible FAQ
+ * section stays in the body as-is via the normal markdown->HTML pass;
+ * this only extracts the same content for schema.
+ */
+function extractFaqPairs(markdown) {
+  const headingMatch = markdown.match(/^##\s+FAQ\s*$/mi);
+  if (!headingMatch) return [];
+  const sectionStart = headingMatch.index + headingMatch[0].length;
+  const rest = markdown.slice(sectionStart);
+  const nextHeadingMatch = rest.match(/^##\s+/m);
+  const section = nextHeadingMatch ? rest.slice(0, nextHeadingMatch.index) : rest;
+
+  const pairs = [];
+  const qaRegex = /\*\*Q:\s*(.+?)\*\*\s*\n+([\s\S]*?)(?=\n\*\*Q:|\s*$)/gi;
+  let m;
+  while ((m = qaRegex.exec(section)) !== null) {
+    const question = m[1].trim();
+    const answer = m[2].trim().split(/\n\s*\n/)[0].trim();
+    if (question && answer) pairs.push({ question, answer });
+  }
+  return pairs;
+}
+
+function buildFaqSchema(pairs) {
+  if (!pairs.length) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: pairs.map((p) => ({
+      "@type": "Question",
+      name: p.question,
+      acceptedAnswer: { "@type": "Answer", text: p.answer },
+    })),
+  };
+}
+
+/**
+ * Extract "Step N: ..." H2/H3 headers and the text immediately following each,
+ * for HowTo schema. Only meaningful for genuine step-by-step posts ~ requires
+ * at least 2 steps to avoid emitting HowTo schema on non-tutorial content.
+ */
+function extractHowToSteps(markdown) {
+  const stepRegex = /^#{2,3}\s+Step\s+\d+[:.\-]?\s*(.+)$/gim;
+  const matches = [...markdown.matchAll(stepRegex)];
+  if (matches.length < 2) return [];
+  const steps = [];
+  for (let i = 0; i < matches.length; i++) {
+    const start = matches[i].index + matches[i][0].length;
+    const end = i + 1 < matches.length ? matches[i + 1].index : markdown.length;
+    const body = markdown.slice(start, end).replace(/^#+\s.*$/gm, "").trim();
+    const firstPara = body.split(/\n\s*\n/)[0].trim();
+    steps.push({ name: matches[i][1].trim(), text: firstPara || matches[i][1].trim() });
+  }
+  return steps;
+}
+
+function buildHowToSchema(steps, title) {
+  if (steps.length < 2) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: title,
+    step: steps.map((s) => ({ "@type": "HowToStep", name: s.name, text: s.text })),
+  };
+}
+
 /** Build complete post HTML. Uses string array join to avoid template-literal/quoting issues. */
-function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, cta) {
+function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, cta, extraSchemas = []) {
   const isMatt      = lane === "matt";
   const accent      = isMatt ? "#ffb300" : "#00e5ff";
   const accentLight = isMatt ? "#ffe082" : "#b2f5ff";
@@ -269,8 +346,16 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push('  <meta name="twitter:image" content="' + socialImageUrl + '">');
   H.push("  <!-- Structured Data -->");
   H.push('  <script type="application/ld+json">');
-  H.push('  {"@context":"https://schema.org","@type":"BlogPosting","headline":"' + title.replace(/"/g, '\\"') + '","description":"' + metaContent.replace(/"/g, '\\"') + '","url":"' + postUrl + '","datePublished":"' + datePublished + '","author":{"@type":"Person","name":"' + authorName + '","url":"https://vibrationofawesome.com"},"publisher":{"@type":"Organization","name":"Vibration of Awesome","url":"https://vibrationofawesome.com"},"image":"' + socialImageUrl + '","mainEntityOfPage":{"@type":"WebPage","@id":"' + postUrl + '"}}');
+  // @type is an array so this satisfies both BlogPosting and the more generic
+  // Article schema.org type in one block ~ BlogPosting is technically an
+  // Article subtype already, but this makes it explicit rather than implicit.
+  H.push('  {"@context":"https://schema.org","@type":["BlogPosting","Article"],"headline":"' + title.replace(/"/g, '\\"') + '","description":"' + metaContent.replace(/"/g, '\\"') + '","url":"' + postUrl + '","datePublished":"' + datePublished + '","author":{"@type":"Person","name":"' + authorName + '","url":"https://vibrationofawesome.com"},"publisher":{"@type":"Organization","name":"Vibration of Awesome","url":"https://vibrationofawesome.com"},"image":"' + socialImageUrl + '","mainEntityOfPage":{"@type":"WebPage","@id":"' + postUrl + '"}}');
   H.push("  </script>");
+  for (const schema of extraSchemas) {
+    H.push('  <script type="application/ld+json">');
+    H.push("  " + JSON.stringify(schema));
+    H.push("  </script>");
+  }
   H.push("  " + googleFont);
   H.push("  <!-- Google Analytics GA4 -->");
   H.push('  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>');
@@ -783,6 +868,28 @@ async function main() {
   if (h1Match) postTitle = h1Match[1].trim();
   const bodyMarkdown = cleanMarkdown.replace(/^#\s+.+$/m, "").trim();
 
+  // Boom-only: generate FAQPage / HowTo schema from the FAQ section and any
+  // "Step N:" headers BOOMBOT_SYSTEM instructs the model to produce. Matt is
+  // personal-voice writing, not SEO-structured content, so it's exempt.
+  const extraSchemas = [];
+  if (lane === "boom") {
+    const faqPairs = extractFaqPairs(bodyMarkdown);
+    const faqSchema = buildFaqSchema(faqPairs);
+    if (faqSchema) {
+      extraSchemas.push(faqSchema);
+      console.log(`[schema] FAQPage schema generated from ${faqPairs.length} Q&A pair(s).`);
+    } else {
+      console.warn("[schema] No FAQ section found ~ FAQPage schema skipped.");
+    }
+
+    const howToSteps = extractHowToSteps(bodyMarkdown);
+    const howToSchema = buildHowToSchema(howToSteps, postTitle);
+    if (howToSchema) {
+      extraSchemas.push(howToSchema);
+      console.log(`[schema] HowTo schema generated from ${howToSteps.length} step(s).`);
+    }
+  }
+
   // Matt keeps inline forest photos. Boom uses one NASA/space hero plus the
   // floating EarthStar vector body system, so no inline body images are added.
   let bodyHtml = marked.parse(bodyMarkdown);
@@ -851,7 +958,7 @@ async function main() {
 
   const dateStr = new Date().toISOString();
   const heroImageUrl = (inlineImages && inlineImages.length > 0) ? inlineImages[0].url : null;
-	  let outputHtml = buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, selectedCTA);
+	  let outputHtml = buildHtml(lane, postTitle, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, selectedCTA, extraSchemas);
 	  if (lane === "boom") {
 	    outputHtml = normalizeBoomHtml(outputHtml, { slug, title: postTitle, keyword: argv.keyword, niche: ctaNicheSlug });
       const existingPosts = fs.existsSync(dataFile)
@@ -872,6 +979,22 @@ async function main() {
       outputHtml = linkResult.html;
       if (linkResult.inserted) {
         console.log("[links] Related reading inserted: " + linkResult.related.map(r => r.slug).join(", "));
+      }
+
+      // Reciprocal side: make the 2-3 older posts we just linked forward to
+      // also link back to this new one, so the cluster interlinks both ways
+      // instead of only accumulating forward links. Only for published posts
+      // (drafts don't have a live URL yet worth linking to from older posts).
+      if (!isDraft && linkResult.related.length) {
+        const boomPostsDir = path.join(ROOT, "static", "blog", "boom", "posts");
+        const backlinked = backlinkOlderPosts(
+          { url: sourcePost.url, title: postTitle },
+          linkResult.related,
+          { postsDir: boomPostsDir }
+        );
+        if (backlinked.length) {
+          console.log("[links] Back-linked from older post(s): " + backlinked.join(", "));
+        }
       }
 	  }
   fs.writeFileSync(outputFile, outputHtml, "utf8");

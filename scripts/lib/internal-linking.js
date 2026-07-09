@@ -187,6 +187,65 @@ export function ensureDeterministicInternalLinks(html, source, allPosts, options
   return { html, inserted: false, related, cluster };
 }
 
+/**
+ * Reciprocal side of ensureDeterministicInternalLinks(): that function makes
+ * the NEW post link forward to `related` older posts. This makes those older
+ * posts link back to the new one, so topic clusters interlink both ways
+ * instead of only accumulating forward links from whichever post was written
+ * most recently. Mutates each older post's HTML file on disk directly (they're
+ * already published). Idempotent ~ skips a post that already links to the new
+ * one, and skips (rather than corrupts) a file with no recognizable insertion
+ * point. Returns the list of slugs actually updated.
+ */
+export function backlinkOlderPosts(newPost, relatedPosts, { postsDir }) {
+  const updated = [];
+  for (const rel of relatedPosts) {
+    const filePath = path.join(postsDir, `${rel.slug}.html`);
+    if (!fs.existsSync(filePath)) continue;
+
+    const html = fs.readFileSync(filePath, "utf8");
+    if (linkExists(html, newPost.url)) continue;
+
+    const newLi = `            <li><a href="${newPost.url}">${escapeHtml(newPost.title)}</a></li>`;
+    let patched = html;
+
+    if (html.includes(RELATED_MARKER)) {
+      const withNewLi = html.replace(
+        new RegExp(`(<section[^>]*${RELATED_MARKER}[\\s\\S]*?<ul>)`, "i"),
+        `$1\n${newLi}`
+      );
+      if (withNewLi !== html) patched = withNewLi;
+    } else {
+      const block = [
+        `        <section ${RELATED_MARKER} data-cluster="${rel.cluster || "unassigned"}" aria-label="Related reading">`,
+        "          <h2>Related reading</h2>",
+        "          <ul>",
+        newLi,
+        "          </ul>",
+        "        </section>",
+      ].join("\n");
+      const anchors = [
+        /(\s*<div style="height:1rem;"><\/div>\s*<div class="voa-photo-rotator")/i,
+        /(\s*<div class="voa-photo-rotator")/i,
+        /(\s*<div data-ebook-cta)/i,
+        /(\s*<\/article>)/i,
+      ];
+      for (const anchor of anchors) {
+        if (anchor.test(html)) {
+          patched = html.replace(anchor, `\n${block}\n$1`);
+          break;
+        }
+      }
+    }
+
+    if (patched !== html) {
+      fs.writeFileSync(filePath, patched, "utf8");
+      updated.push(rel.slug);
+    }
+  }
+  return updated;
+}
+
 export function countContextualInternalLinks(html) {
   const articleMatch = String(html || "").match(/<article[^>]*>([\s\S]*?)<\/article>/i);
   const scope = articleMatch ? articleMatch[1] : String(html || "");
