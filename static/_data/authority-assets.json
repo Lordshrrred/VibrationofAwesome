@@ -14,7 +14,22 @@
       "syndicated",
       "measuring",
       "update required"
-    ]
+    ],
+    "experienceSchema": {
+      "description": "Optional `experience` object on any published interactive asset (planner/ritual/assessment, not a static reference/glossary). Every field is optional; add what genuinely applies. Purely descriptive metadata for editorial planning and future automation ~ not read by any generator yet, but keep it accurate so it can be.",
+      "fields": {
+        "category": "Short kind label, e.g. ritual, assessment, planner, timer",
+        "primaryPurpose": "One sentence: what problem this actually solves for the reader",
+        "emotionalOutcome": "The feeling it should leave someone with",
+        "practicalOutcome": "The concrete thing they walk away with",
+        "estimatedMinutes": "Realistic completion time as a string or number",
+        "artifactType": "The signature saveable/printable payoff this experience produces, if any",
+        "replayValue": "low | medium | high, plus why",
+        "printable": "true/false ~ does it have a working print button",
+        "neighboringExperiences": "Array of other asset slugs a reader of this one would plausibly want next",
+        "recommendedFollowUp": "Single asset slug for the one best next step, if one exists yet"
+      }
+    }
   },
   "assets": [
     {
@@ -26,7 +41,19 @@
       "hub": "dopamine-attention",
       "description": "A reflection tool for noticing where digital inputs are draining focus, self-trust, and creative energy. Not a clinical assessment.",
       "syndicationStrategy": "tease-and-link",
-      "clinicalDisclaimer": "This is an educational reflection tool, not a medical, psychological, or diagnostic instrument."
+      "clinicalDisclaimer": "This is an educational reflection tool, not a medical, psychological, or diagnostic instrument.",
+      "experience": {
+        "category": "assessment",
+        "primaryPurpose": "Help a reader notice which digital inputs are draining their focus and self-trust.",
+        "emotionalOutcome": "Clarity without shame ~ a named pattern instead of vague self-criticism.",
+        "practicalOutcome": "One concrete action and one deeper practice to try this week.",
+        "estimatedMinutes": 2,
+        "artifactType": "none (text-based result profile, copyable)",
+        "replayValue": "medium ~ worth retaking after a few weeks of real change",
+        "printable": false,
+        "neighboringExperiences": ["adhd-focus-session-planner"],
+        "recommendedFollowUp": "adhd-focus-session-planner"
+      }
     },
     {
       "slug": "nervous-system-regulation-hub",
@@ -47,7 +74,19 @@
       "hub": "adhd-focus",
       "description": "A ritual for starting deep work when your attention is scattered ~ five small decisions, one breath, a real focus session, and a personal Focus Card at the end.",
       "syndicationStrategy": "tease-and-link",
-      "clinicalDisclaimer": "This is a reflective ritual, not a medical or clinical tool. It does not diagnose ADHD or any other condition."
+      "clinicalDisclaimer": "This is a reflective ritual, not a medical or clinical tool. It does not diagnose ADHD or any other condition.",
+      "experience": {
+        "category": "ritual",
+        "primaryPurpose": "Turn the decision paralysis before deep work into a five-step ritual that ends in actually starting.",
+        "emotionalOutcome": "Permission and momentum ~ the work already got broken into a size that feels doable.",
+        "practicalOutcome": "A real timed focus session plus one tiny commitment to open with.",
+        "estimatedMinutes": "5 to 95 (ritual setup ~5 min plus the chosen session length)",
+        "artifactType": "Focus Star constellation + Focus Card",
+        "replayValue": "high ~ designed to be used every real working session",
+        "printable": true,
+        "neighboringExperiences": ["digital-attention-audit"],
+        "recommendedFollowUp": "digital-attention-audit"
+      }
     },
     {
       "slug": "nervous-system-reset",
@@ -58,7 +97,19 @@
       "hub": "nervous-system-regulation",
       "description": "A short grounding ritual that turns five small decisions into a personalized reset sequence and a Reset Mandala built from your own answers.",
       "syndicationStrategy": "tease-and-link",
-      "clinicalDisclaimer": "This is a reflective ritual, not a medical or clinical tool. It does not diagnose anxiety, trauma, or any other condition."
+      "clinicalDisclaimer": "This is a reflective ritual, not a medical or clinical tool. It does not diagnose anxiety, trauma, or any other condition.",
+      "experience": {
+        "category": "ritual",
+        "primaryPurpose": "Match how someone's nervous system feels right now to an actual short practice, not a generic breathing GIF.",
+        "emotionalOutcome": "Being met where they are instead of being told to just calm down.",
+        "practicalOutcome": "A 1 to 4 step reset sequence sized to their actual available time.",
+        "estimatedMinutes": "4 to 22 (2 to 20 minute chosen duration plus ~2 min setup)",
+        "artifactType": "Reset Mandala + Reset Card",
+        "replayValue": "high ~ built to give a different, state-matched result each time",
+        "printable": true,
+        "neighboringExperiences": [],
+        "recommendedFollowUp": null
+      }
     },
     {
       "slug": "meditation-breathwork-timer",

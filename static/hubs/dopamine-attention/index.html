@@ -108,6 +108,15 @@
       .voa-nav { position: sticky; }
     }
 
+    /* BREADCRUMB (visible wayfinding, not a nav item ~ small and quiet) */
+    .voa-breadcrumb { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0.9rem 1.5rem 0; }
+    .voa-breadcrumb ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .voa-breadcrumb li { display: flex; align-items: center; gap: 0.4rem; }
+    .voa-breadcrumb li:not(:last-child)::after { content: '/'; opacity: 0.4; margin-left: 0.4rem; }
+    .voa-breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .voa-breadcrumb a:hover { color: var(--cyan); }
+    .voa-breadcrumb li[aria-current="page"] { color: var(--cyan-light); }
+
     /* SECTION CONVENTIONS (matches homepage) */
     .voa-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.78rem; letter-spacing: 0.32em; text-transform: uppercase; display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem; }
     .voa-eyebrow::before { content: ''; width: 26px; height: 1px; background: currentColor; opacity: 0.6; }
@@ -255,6 +264,13 @@
       <li><a href="/earthstar/">EarthStar &#10022;</a></li>
       <li><a href="/blog/">Blog</a></li>
     </ul>
+  </nav>
+  <nav class="voa-breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/hubs/">Resources</a></li>
+      <li aria-current="page">Dopamine &amp; Attention</li>
+    </ol>
   </nav>
   <main class="voa-shell">
     <section class="voa-hero voa-reveal">

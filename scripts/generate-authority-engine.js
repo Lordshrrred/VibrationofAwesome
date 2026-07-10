@@ -189,8 +189,17 @@ const TYPE_LABELS = {
 
 // ── Shared page chrome ───────────────────────────────────────────────────────
 
-function pageChrome({ title, description, canonical, type = "website", body, schema = [], extraStyle = "" }) {
+function pageChrome({ title, description, canonical, type = "website", body, schema = [], extraStyle = "", breadcrumbTrail = [] }) {
   const jsonLd = schema.map(item => `  <script type="application/ld+json">\n${JSON.stringify(item)}\n  </script>`).join("\n");
+  const breadcrumbHtml = breadcrumbTrail.length
+    ? `  <nav class="voa-breadcrumb" aria-label="Breadcrumb">
+    <ol>
+${breadcrumbTrail.map((item, i) => i === breadcrumbTrail.length - 1
+  ? `      <li aria-current="page">${escapeHtml(item.name)}</li>`
+  : `      <li><a href="${item.url}">${escapeHtml(item.name)}</a></li>`).join("\n")}
+    </ol>
+  </nav>`
+    : "";
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -255,6 +264,7 @@ ${extraStyle}
       <li><a href="/blog/">Blog</a></li>
     </ul>
   </nav>
+${breadcrumbHtml}
   <main class="voa-shell">
 ${body}
   </main>
@@ -381,6 +391,15 @@ const AUTHORITY_CSS = `
       .voa-nav-links li { width: 100%; }
       .voa-nav { position: sticky; }
     }
+
+    /* BREADCRUMB (visible wayfinding, not a nav item ~ small and quiet) */
+    .voa-breadcrumb { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0.9rem 1.5rem 0; }
+    .voa-breadcrumb ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .voa-breadcrumb li { display: flex; align-items: center; gap: 0.4rem; }
+    .voa-breadcrumb li:not(:last-child)::after { content: '/'; opacity: 0.4; margin-left: 0.4rem; }
+    .voa-breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .voa-breadcrumb a:hover { color: var(--cyan); }
+    .voa-breadcrumb li[aria-current="page"] { color: var(--cyan-light); }
 
     /* SECTION CONVENTIONS (matches homepage) */
     .voa-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.78rem; letter-spacing: 0.32em; text-transform: uppercase; display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem; }
@@ -591,9 +610,10 @@ ${publishedTools.map(asset => `<a class="voa-card border-cyan" href="${cleanPubl
       </div>
     </section>`;
 
+  const trail = [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }];
   return pageChrome({
-    title, description, canonical: "/hubs/", body,
-    schema: [...baseSchema({ title, description, canonical: "/hubs/" }), breadcrumbs([{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }])],
+    title, description, canonical: "/hubs/", body, breadcrumbTrail: trail,
+    schema: [...baseSchema({ title, description, canonical: "/hubs/" }), breadcrumbs(trail)],
   });
 }
 
@@ -700,11 +720,12 @@ ${relatedPathways}
       </div>
     </section>`;
 
+  const hubTrail = [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: hub.title, url: canonical }];
   return pageChrome({
-    title, description, canonical, body,
+    title, description, canonical, body, breadcrumbTrail: hubTrail,
     schema: [
       ...baseSchema({ title, description, canonical }),
-      breadcrumbs([{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: hub.title, url: canonical }]),
+      breadcrumbs(hubTrail),
       {
         "@context": "https://schema.org", "@type": "CollectionPage", name: title, description, url: absoluteUrl(canonical), about: hub.title,
         hasPart: posts.slice(0, 12).map(post => ({ "@type": "Article", name: post.title, url: absoluteUrl(post.url) })),
@@ -764,9 +785,10 @@ ${upcoming.map(asset => `<div class="voa-card voa-tool-preview border-amber">
       </div>
     </section>`;
 
+  const toolsTrail = [{ name: "Home", url: "/" }, { name: "Tools", url: "/tools/" }];
   return pageChrome({
-    title, description, canonical: "/tools/", body,
-    schema: [...baseSchema({ title, description, canonical: "/tools/" }), breadcrumbs([{ name: "Home", url: "/" }, { name: "Tools", url: "/tools/" }])],
+    title, description, canonical: "/tools/", body, breadcrumbTrail: toolsTrail,
+    schema: [...baseSchema({ title, description, canonical: "/tools/" }), breadcrumbs(toolsTrail)],
   });
 }
 
@@ -838,6 +860,24 @@ ${stageMarkup}
     <section class="voa-section voa-reveal">
       <div class="voa-section-head"><h2 class="voa-h2">What to Do With the Result</h2></div>
       <p class="voa-section-note">Use the result as a signal, not a verdict. Pick one digital input to reduce for seven days, then replace that slot with a physical cue: a walk, a notebook, one song, one breath practice, or one unfinished creative action.</p>
+    </section>
+
+    <section class="voa-section voa-reveal">
+      <div class="voa-section-head"><h2 class="voa-h2">Related Pathways</h2></div>
+      <div class="voa-pathways">
+        <a class="voa-pathway border-amber" href="/hubs/dopamine-attention/">
+          <span class="voa-pathway-icon accent-amber">${ICONS.pulse}</span>
+          <span class="voa-pathway-text">Dopamine &amp; Attention Hub</span>
+        </a>
+        <a class="voa-pathway border-violet" href="/hubs/adhd-focus/">
+          <span class="voa-pathway-icon accent-violet">${ICONS.compass}</span>
+          <span class="voa-pathway-text">ADHD &amp; Focus Hub</span>
+        </a>
+        <a class="voa-pathway border-violet" href="/tools/adhd-focus-session-planner/">
+          <span class="voa-pathway-icon accent-violet">${ICONS.compass}</span>
+          <span class="voa-pathway-text">ADHD Focus Session Planner</span>
+        </a>
+      </div>
     </section>
 
     <section class="voa-continue voa-reveal">
@@ -1026,11 +1066,12 @@ ${stageMarkup}
     })();
     </script>`;
 
+  const auditTrail = [{ name: "Home", url: "/" }, { name: "Tools", url: "/tools/" }, { name: title, url: canonical }];
   return pageChrome({
-    title, description, canonical, body,
+    title, description, canonical, body, breadcrumbTrail: auditTrail,
     schema: [
       ...baseSchema({ title, description, canonical }),
-      breadcrumbs([{ name: "Home", url: "/" }, { name: "Tools", url: "/tools/" }, { name: title, url: canonical }]),
+      breadcrumbs(auditTrail),
       { "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: absoluteUrl(canonical), applicationCategory: "EducationalApplication", operatingSystem: "Any", isAccessibleForFree: true },
     ],
   });
@@ -1590,11 +1631,12 @@ ${stage4}
     })();
     </script>`;
 
+  const plannerTrail = [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "ADHD & Focus", url: "/hubs/adhd-focus/" }, { name: title, url: canonical }];
   return pageChrome({
-    title, description, canonical, body: body + scriptBlock, extraStyle,
+    title, description, canonical, body: body + scriptBlock, extraStyle, breadcrumbTrail: plannerTrail,
     schema: [
       ...baseSchema({ title, description, canonical }),
-      breadcrumbs([{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "ADHD & Focus", url: "/hubs/adhd-focus/" }, { name: title, url: canonical }]),
+      breadcrumbs(plannerTrail),
       { "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: absoluteUrl(canonical), applicationCategory: "LifestyleApplication", operatingSystem: "Any", isAccessibleForFree: true },
     ],
   });
@@ -2090,11 +2132,12 @@ ${stage5}
     })();
     </script>`;
 
+  const resetTrail = [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "Nervous System Regulation", url: "/hubs/nervous-system-regulation/" }, { name: title, url: canonical }];
   return pageChrome({
-    title, description, canonical, body: body + scriptBlock, extraStyle,
+    title, description, canonical, body: body + scriptBlock, extraStyle, breadcrumbTrail: resetTrail,
     schema: [
       ...baseSchema({ title, description, canonical }),
-      breadcrumbs([{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "Nervous System Regulation", url: "/hubs/nervous-system-regulation/" }, { name: title, url: canonical }]),
+      breadcrumbs(resetTrail),
       { "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: absoluteUrl(canonical), applicationCategory: "LifestyleApplication", operatingSystem: "Any", isAccessibleForFree: true },
     ],
   });

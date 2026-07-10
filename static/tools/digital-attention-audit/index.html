@@ -108,6 +108,15 @@
       .voa-nav { position: sticky; }
     }
 
+    /* BREADCRUMB (visible wayfinding, not a nav item ~ small and quiet) */
+    .voa-breadcrumb { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0.9rem 1.5rem 0; }
+    .voa-breadcrumb ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .voa-breadcrumb li { display: flex; align-items: center; gap: 0.4rem; }
+    .voa-breadcrumb li:not(:last-child)::after { content: '/'; opacity: 0.4; margin-left: 0.4rem; }
+    .voa-breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .voa-breadcrumb a:hover { color: var(--cyan); }
+    .voa-breadcrumb li[aria-current="page"] { color: var(--cyan-light); }
+
     /* SECTION CONVENTIONS (matches homepage) */
     .voa-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.78rem; letter-spacing: 0.32em; text-transform: uppercase; display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem; }
     .voa-eyebrow::before { content: ''; width: 26px; height: 1px; background: currentColor; opacity: 0.6; }
@@ -255,6 +264,13 @@
       <li><a href="/earthstar/">EarthStar &#10022;</a></li>
       <li><a href="/blog/">Blog</a></li>
     </ul>
+  </nav>
+  <nav class="voa-breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">Tools</a></li>
+      <li aria-current="page">Digital Attention Audit</li>
+    </ol>
   </nav>
   <main class="voa-shell">
     <section class="voa-hero voa-reveal">
@@ -426,6 +442,24 @@
     <section class="voa-section voa-reveal">
       <div class="voa-section-head"><h2 class="voa-h2">What to Do With the Result</h2></div>
       <p class="voa-section-note">Use the result as a signal, not a verdict. Pick one digital input to reduce for seven days, then replace that slot with a physical cue: a walk, a notebook, one song, one breath practice, or one unfinished creative action.</p>
+    </section>
+
+    <section class="voa-section voa-reveal">
+      <div class="voa-section-head"><h2 class="voa-h2">Related Pathways</h2></div>
+      <div class="voa-pathways">
+        <a class="voa-pathway border-amber" href="/hubs/dopamine-attention/">
+          <span class="voa-pathway-icon accent-amber"><svg viewBox="0 0 48 48" fill="none"><path d="M4 24H14L18 8L26 40L30 24H44" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+          <span class="voa-pathway-text">Dopamine &amp; Attention Hub</span>
+        </a>
+        <a class="voa-pathway border-violet" href="/hubs/adhd-focus/">
+          <span class="voa-pathway-icon accent-violet"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" stroke="currentColor" stroke-width="1"/><path d="M31 17L26 26L17 31L22 22L31 17Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+          <span class="voa-pathway-text">ADHD &amp; Focus Hub</span>
+        </a>
+        <a class="voa-pathway border-violet" href="/tools/adhd-focus-session-planner/">
+          <span class="voa-pathway-icon accent-violet"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" stroke="currentColor" stroke-width="1"/><path d="M31 17L26 26L17 31L22 22L31 17Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+          <span class="voa-pathway-text">ADHD Focus Session Planner</span>
+        </a>
+      </div>
     </section>
 
     <section class="voa-continue voa-reveal">
