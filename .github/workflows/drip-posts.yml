@@ -4,30 +4,25 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 # ── PUBLISH RATE CONFIG ────────────────────────────────────────────────────────
-# Phase Three: 2 AI Advantage/day + 2 normal social/day (active July 4 2026)
+# Cost-control mode: 2 normal social/day only (active July 10 2026)
 #
 #  SLOT  TIME (ET)  UTC   NICHE/TYPE          SOCIAL  DEVTO        BACKLINKS
 #  ────  ─────────  ───   ──────────────────  ──────  ─────────    ─────────
 #  A     9:00 AM    13h   Normal drip          YES    Account 1    all
-#  B     12:00 PM   16h   AI Advantage camp    no     Account 2    all
-#  C     3:00 PM    19h   AI Advantage camp    no     Account 2    all
+#  B     12:00 PM   16h   paused               no     paused       paused
+#  C     3:00 PM    19h   paused               no     paused       paused
 #  D     6:00 PM    22h   Normal drip          YES    Account 1    all
-#  E     9:00 PM    01h   Art buyer            no     Account 2    all (no social, no feeder)
+#  E     9:00 PM    01h   paused               no     paused       paused
 #
-# Dev.to safety: Account 1 = 2/day (slots A+D). Account 2 = up to 3/day (slots B+C+E).
+# Dev.to safety: Account 1 = 2/day (slots A+D). Account 2 paused for cost control.
 # Social safety: 2 posts/day max (slots A+D only).
-#
-# AI Advantage queue: ~36 posts remaining as of July 4 2026 → finishes ~July 22 at this rate.
-# Normal queue: ~44 posts remaining → finishes ~July 26.
+# Extra backlink-only companion article slots are manual only while API spend is under audit.
 # ──────────────────────────────────────────────────────────────────────────────
 
 on:
   schedule:
     - cron: '0 13 * * *'    # 9:00 AM ET  (UTC-4 EDT)  ~ slot A: normal, full social
-    - cron: '0 16 * * *'    # 12:00 PM ET (UTC-4 EDT)  ~ slot B: AI Advantage campaign
-    - cron: '0 19 * * *'    # 3:00 PM ET  (UTC-4 EDT)  ~ slot C: normal, SEO backlinks only (no social)
     - cron: '0 22 * * *'    # 6:00 PM ET  (UTC-4 EDT)  ~ slot D: normal, full social
-    - cron: '0 1 * * *'     # 9:00 PM ET  (UTC-4 EDT)  ~ slot E: art buyer, SEO backlinks only (no social, no feeder)
   workflow_dispatch:          # Manual trigger for testing or emergency publish
 
 # Prevent any VOA publishing/syndication run from overlapping.

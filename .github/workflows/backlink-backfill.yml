@@ -1,14 +1,13 @@
 name: Backlink Backfill
 
 on:
-  schedule:
-    # Every 4 hours — clears 3 posts per run, 26-post backlog done in ~9 runs (~36 hrs)
-    - cron: "0 */4 * * *"
+  # Manual only while API spend is under audit. This job can generate Blogger /
+  # WordPress companion articles, so do not run it on a recurring timer.
   workflow_dispatch:
     inputs:
       batch:
-        description: "Posts per run (default 3)"
-        default: "3"
+        description: "Posts per run (default 1 during cost-control mode)"
+        default: "1"
       platforms:
         description: "Comma-separated platforms (default: all backlink platforms)"
         default: ""
@@ -25,7 +24,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Install dependencies
         run: npm ci
@@ -58,7 +57,7 @@ jobs:
           WP_APP_PASSWORD:             ${{ secrets.WP_APP_PASSWORD }}
           PEXELS_API_KEY:              ${{ secrets.PEXELS_API_KEY }}
         run: |
-          BATCH="${{ github.event.inputs.batch || '3' }}"
+          BATCH="${{ github.event.inputs.batch || '1' }}"
           PLATFORMS="${{ github.event.inputs.platforms }}"
           ARGS="--execute --batch $BATCH"
           [ -n "$PLATFORMS" ] && ARGS="$ARGS --platforms $PLATFORMS"
@@ -67,12 +66,22 @@ jobs:
         continue-on-error: true
 
       - name: Commit results
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Backfill backlinks batch [automated]"
-          file_pattern: "static/_data/syndication-results.json static/_data/syndication-log.json"
-          commit_user_name: "voa-bot"
-          commit_user_email: "bot@vibrationofawesome.com"
+        run: |
+          git config user.name  "voa-bot"
+          git config user.email "bot@vibrationofawesome.com"
+          git add static/_data/syndication-results.json static/_data/syndication-log.json || true
+          if git diff --staged --quiet; then
+            echo "No backlink result changes to commit."
+            exit 0
+          fi
+          git commit -m "Backfill backlinks batch [automated]"
+          for attempt in 1 2 3; do
+            git push && exit 0
+            echo "Push rejected (attempt $attempt) ~ rebasing onto origin/main and retrying."
+            git pull --rebase --autostash origin main
+          done
+          echo "::error::Unable to push backlink backfill results after 3 attempts"
+          exit 1
 
       - name: Report status
         run: |
