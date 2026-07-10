@@ -28,6 +28,7 @@ import { getNextCTA, detectContentType } from "./lib/policy.js";
 import { getDifferentiationContext, getClusterContext, recordGeneration } from "./lib/generation-memory.js";
 import { slugify, firstWords } from "./lib/utils.js";
 import { buildBoomCtaInstruction, getBoomConversionTarget, normalizeBoomHtml } from "./lib/boom-format.js";
+import { resolveFaqEligibility } from "./lib/faq-eligibility.js";
 
 dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
@@ -36,10 +37,13 @@ const ROOT = path.resolve(__dirname, "..");
 
 // ── CLI ARGS ──
 const argv = minimist(process.argv.slice(2), {
-  string:  ["lane", "title", "keyword", "topic", "rant", "niche", "cluster"],
+  string:  ["lane", "title", "keyword", "topic", "rant", "niche", "cluster", "faq"],
   boolean: ["skip-syndicate", "test-feeder-only", "draft"],
   alias:   { l: "lane", t: "title", k: "keyword", p: "topic", r: "rant", n: "niche", c: "cluster" },
 });
+if (argv.faq && !["on", "off"].includes(argv.faq)) {
+  console.error('Error: --faq must be "on" or "off" (omit to auto-detect eligibility)'); process.exit(1);
+}
 const lane = argv.lane;
 if (!lane || !["matt", "boom"].includes(lane)) {
   console.error('Error: --lane must be "matt" or "boom"'); process.exit(1);
@@ -124,7 +128,6 @@ const BOOMBOT_SYSTEM = [
   "- Under EVERY H2, the first 1-2 sentences must directly answer the question that H2 poses ~ state the answer plainly before any story, setup, or context. This applies section by section throughout the body. It does NOT override the opening-hook rule above, which is about the article's intro before the first H2, not about each H2's own answer.",
   "- Include at least one concrete, specific detail somewhere in the post: a named tool or platform, a specific technique or framework name, or a well-known general fact. Never invent a statistic, study, or number you cannot be reasonably confident is true ~ specificity comes from naming real things, not fabricating data. This works alongside the TRUTHFULNESS RULES below, which still apply in full.",
   "- If the post is genuinely a step-by-step process (the keyword or title implies 'how to'), structure the main steps as H2 or H3 headers written exactly as 'Step 1: <action>', 'Step 2: <action>', etc., in order.",
-  "- After the main body and before the closing CTA, add a section titled exactly '## FAQ' with 3 to 5 question-and-answer pairs. Format each pair as a line '**Q: <question>?**' immediately followed by a plain-text answer paragraph whose first sentence directly answers the question. Base these on real, commonly asked questions about the topic, not filler.",
   "",
   "TRUTHFULNESS RULES (non-negotiable):",
   "- Never invent personal experience claims for Matt EarthStar or Matty BoomBoom.",
@@ -229,7 +232,7 @@ function extractFaqPairs(markdown) {
 }
 
 function buildFaqSchema(pairs) {
-  if (!pairs.length) return null;
+  if (pairs.length < 2) return null;
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -807,6 +810,19 @@ async function main() {
   if (differentiationContext) console.log("[memory] Differentiation context loaded (recent patterns will be avoided).");
   if (clusterContext)         console.log("[cluster] Cluster context loaded: " + clusterKey);
 
+  // Deterministic FAQ eligibility ~ no API call, decided from title/keyword/
+  // cluster before generation starts. Only eligible posts get the "write an
+  // FAQ section" instruction, in the same generation call (no second request).
+  // Matt lane is personal-voice writing and is exempt entirely, same as the
+  // existing FAQ/HowTo schema exemption below.
+  const faqAssessment = lane === "boom"
+    ? resolveFaqEligibility({ title: argv.title, keyword: argv.keyword, cluster: clusterKey }, argv.faq)
+    : { eligible: false, format: "n/a", reason: "Matt lane is exempt from FAQ/HowTo structure" };
+  console.log(`[faq] eligible=${faqAssessment.eligible} format=${faqAssessment.format} (${faqAssessment.reason})`);
+  const faqInstruction = faqAssessment.eligible
+    ? "After the main body and before the closing CTA, add a section titled exactly '## FAQ' with 3 to 5 question-and-answer pairs. Format each pair as a line '**Q: <question>?**' immediately followed by a plain-text answer paragraph whose first sentence directly answers the question. Base these on real, commonly asked questions about the topic, not filler. Every question must add clarity beyond the article title and body, not repeat it."
+    : "";
+
   // internalLinkingInstruction (the existing-posts list) is large (thousands of
   // tokens once the blog has a real archive) and byte-identical across every
   // generation call until a post is published, so it's placed first with a cache
@@ -838,6 +854,7 @@ async function main() {
       rantInstruction,
       clusterContext,
       differentiationContext,
+      faqInstruction,
       ctaInstruction,
     ].join("\n"));
   }
@@ -881,15 +898,21 @@ async function main() {
   // Boom-only: generate FAQPage / HowTo schema from the FAQ section and any
   // "Step N:" headers BOOMBOT_SYSTEM instructs the model to produce. Matt is
   // personal-voice writing, not SEO-structured content, so it's exempt.
+  // FAQ schema additionally requires the post to have been assessed eligible
+  // (or manually forced on) ~ if the model wrote an FAQ-shaped section on an
+  // ineligible post anyway, schema still stays off by design; no FAQ schema
+  // by default, ever, regardless of what the body happens to contain.
   const extraSchemas = [];
   if (lane === "boom") {
-    const faqPairs = extractFaqPairs(bodyMarkdown);
+    const faqPairs = faqAssessment.eligible ? extractFaqPairs(bodyMarkdown) : [];
     const faqSchema = buildFaqSchema(faqPairs);
     if (faqSchema) {
       extraSchemas.push(faqSchema);
       console.log(`[schema] FAQPage schema generated from ${faqPairs.length} Q&A pair(s).`);
+    } else if (faqAssessment.eligible) {
+      console.warn("[schema] Eligible for FAQ but fewer than 2 usable Q&A pairs were found ~ FAQPage schema skipped.");
     } else {
-      console.warn("[schema] No FAQ section found ~ FAQPage schema skipped.");
+      console.log("[schema] Post not FAQ-eligible ~ FAQPage schema skipped by design.");
     }
 
     const howToSteps = extractHowToSteps(bodyMarkdown);
@@ -984,6 +1007,8 @@ async function main() {
         niche: selectedNiche ? selectedNiche.slug : undefined,
         cluster: clusterKey || undefined,
         keyword: argv.keyword,
+        articleFormat: faqAssessment.format,
+        faqEligible: faqAssessment.eligible,
       };
       const linkResult = ensureDeterministicInternalLinks(outputHtml, sourcePost, [sourcePost, ...existingPosts], { minRelated: 1, limit: 3 });
       outputHtml = linkResult.html;
@@ -1027,6 +1052,7 @@ async function main() {
       tags:    selectedNiche ? [selectedNiche.slug] : [],
       niche:   selectedNiche ? selectedNiche.slug : undefined,
       cluster: clusterKey || undefined,
+      ...(lane === "boom" ? { articleFormat: faqAssessment.format, faqEligible: faqAssessment.eligible } : {}),
     });
     fs.writeFileSync(dataFile, JSON.stringify(posts, null, 2), "utf8");
     console.log("JSON index updated: static/_data/" + lane + "-posts.json");

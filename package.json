@@ -17,6 +17,7 @@
     "research": "node scripts/seo-research.js",
     "research:niches": "node scripts/seo-research.js --all-niches",
     "links:audit": "node scripts/internal-linking.js --audit --scope all",
+    "faq:audit": "node scripts/audit-faq.js",
     "links:apply": "node scripts/internal-linking.js --apply --scope all",
     "authority": "node scripts/generate-authority-engine.js",
     "authority:links": "node scripts/check-authority-links.js",
