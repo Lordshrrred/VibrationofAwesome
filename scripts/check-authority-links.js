@@ -27,7 +27,9 @@ const AUTHORITY_FILES = [
     .filter(f => fs.statSync(path.join(ROOT, "static/hubs", f)).isDirectory())
     .map(slug => `static/hubs/${slug}/index.html`),
   "static/tools/index.html",
-  "static/tools/digital-attention-audit/index.html",
+  ...fs.readdirSync(path.join(ROOT, "static/tools"))
+    .filter(f => fs.statSync(path.join(ROOT, "static/tools", f)).isDirectory())
+    .map(slug => `static/tools/${slug}/index.html`),
 ];
 
 // Binary/static assets (icons, manifest, images) are not navigational routes

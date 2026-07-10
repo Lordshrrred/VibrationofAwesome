@@ -1012,6 +1012,570 @@ ${stageMarkup}
   });
 }
 
+// ── ADHD Focus Session Planner ───────────────────────────────────────────────
+//
+// A ritual, not a form. Five small decisions revealed one at a time, each one
+// deterministically placing a point in a personal "Focus Star" constellation
+// (same stage+choice always draws the same point ~ intentional, not random
+// noise), a synthesized Web Audio ambient tone chosen instead of a real audio
+// file (no external assets, no network requests, no library), a breathing
+// pause, a real wall-clock session timer, and a closing Focus Card built from
+// the session's own answers ~ copyable and printable, no accounts, nothing
+// persisted past the tab.
+
+function renderAdhdFocusSessionPlanner() {
+  const title = "ADHD Focus Session Planner";
+  const description = "A short ritual for starting deep work when your attention is scattered ~ five small decisions, one breath, then a real focus session that ends with a Focus Card built from your own answers.";
+  const canonical = "/tools/adhd-focus-session-planner/";
+
+  const MISSIONS = [
+    { id: "write", label: "Writing", detail: "Words, a draft, a page that needs to exist." },
+    { id: "music", label: "Music", detail: "A track, a lyric, a sound you can hear but haven't made yet." },
+    { id: "code", label: "Building", detail: "Code, a tool, something that needs to work." },
+    { id: "art", label: "Art", detail: "A visual, a design, something for the eye." },
+    { id: "think", label: "Deep Thinking", detail: "A decision, a plan, a problem worth sitting with." },
+    { id: "other", label: "Something Else", detail: "Whatever it is, it's yours today." },
+  ];
+  const DURATIONS = [
+    { id: "15", label: "15 minutes", minutes: 15, detail: "A small, honest start." },
+    { id: "25", label: "25 minutes", minutes: 25, detail: "One real lap." },
+    { id: "45", label: "45 minutes", minutes: 45, detail: "Enough time to disappear into it." },
+    { id: "90", label: "90 minutes", minutes: 90, detail: "A deep session. Only if it's really realistic today." },
+  ];
+  const DISTRACTIONS = [
+    { id: "phone", label: "My phone", detail: "The reach-for-it-before-you-notice kind." },
+    { id: "tabs", label: "Other tabs", detail: "The nine other things open right now." },
+    { id: "perfection", label: "Perfectionism", detail: "Rewriting the first line for the fifth time." },
+    { id: "start", label: "Not knowing where to start", detail: "The blank-page freeze." },
+    { id: "noise", label: "Someone else's noise", detail: "Messages, notifications, other people's urgency." },
+  ];
+  const ATMOSPHERES = [
+    { id: "space", label: "Deep Space Hum", detail: "A low, steady drone.", audio: "space" },
+    { id: "forest", label: "Forest Undertone", detail: "Soft, filtered, alive.", audio: "forest" },
+    { id: "pulse", label: "Heartbeat Pulse", detail: "A slow, grounding rhythm.", audio: "pulse" },
+    { id: "silence", label: "Still Silence", detail: "No tone. Just the room you're in.", audio: "none" },
+  ];
+
+  const REMINDERS = {
+    phone: "Future you already knows the phone will still be there in {min} minutes. It can wait.",
+    tabs: "Future you doesn't need the other tabs closed ~ just this one open a little longer.",
+    perfection: "Future you would rather have a finished rough thing than a perfect thing that never left this session.",
+    start: "Future you isn't asking for the whole thing. Just the first honest sentence.",
+    noise: "Future you gives you full permission to be unreachable for {min} minutes. That's the whole ritual.",
+  };
+  const COMMITMENTS = {
+    write: "Write one true sentence before you let yourself edit anything.",
+    music: "Get one idea down, even rough, before you judge it.",
+    code: "Make one small thing work before you make it right.",
+    art: "Put one mark down before you second-guess it.",
+    think: "Write the first honest thought, not the polished one.",
+    other: "Take one real step, however small, before you stop.",
+  };
+
+  const stageIndex = (stage, i) => `${stage}-${i}`;
+
+  function optionStage(key, stageNum, question, note, options, field) {
+    return `<fieldset class="fsp-stage" data-fsp-stage="${stageNum}" data-fsp-field="${field}" hidden>
+        <legend class="fsp-stage-label accent-violet">Step ${stageNum} of 6</legend>
+        <p class="fsp-question">${escapeHtml(question)}</p>
+        ${note ? `<p class="fsp-note">${escapeHtml(note)}</p>` : ""}
+        <div class="fsp-options" role="radiogroup" aria-label="${escapeHtml(question)}">
+          ${options.map((opt, i) => `<label class="fsp-option" data-seed="${stageIndex(stageNum, i)}">
+            <input type="radio" name="${field}" value="${opt.id}">
+            <span class="fsp-option-label">${escapeHtml(opt.label)}</span>
+            <span class="fsp-option-detail">${escapeHtml(opt.detail)}</span>
+          </label>`).join("\n          ")}
+        </div>
+      </fieldset>`;
+  }
+
+  const stage1 = optionStage("mission", 1, "What are you creating today?", null, MISSIONS, "mission");
+  const stage2 = optionStage("duration", 2, "How long feels realistic?", "Not ambitious. Realistic.", DURATIONS, "duration");
+  const stage3 = optionStage("distraction", 3, "What's most likely to pull you away?", null, DISTRACTIONS, "distraction");
+  const stage4 = optionStage("atmosphere", 4, "Choose your atmosphere.", "A quiet ambient tone, not music ~ something to sit underneath the work.", ATMOSPHERES, "atmosphere");
+
+  const body = `    <section class="voa-hero voa-reveal">
+      <div class="voa-hero-bg" style="--hero-glow: rgba(167,139,250,0.18);"></div>
+      <div class="voa-hero-icon accent-violet">${ICONS.compass}</div>
+      <div class="voa-hero-inner">
+        <div class="voa-eyebrow accent-violet">A Focus Ritual</div>
+        <h1 class="voa-h1">Begin your Focus Session</h1>
+        <p class="voa-hero-desc">${escapeHtml(description)}</p>
+        <p class="voa-hero-quote">This is a reflective ritual, not a medical or clinical tool. It does not diagnose ADHD or any other condition ~ it's a small, honest way to start.</p>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal" aria-label="Focus Session Planner">
+      <div class="fsp-shell">
+        <canvas id="fsp-constellation" class="fsp-constellation" aria-hidden="true"></canvas>
+
+        <div id="fsp-welcome" class="voa-featured border-violet">
+          <div>
+            <div class="voa-featured-label accent-violet">Before You Begin</div>
+            <h3>Five small decisions, one breath, then you begin</h3>
+            <p>Each choice you make quietly becomes part of a small constellation ~ your own Focus Star, built from nothing but your own answers. At the end you'll get a Focus Card to keep, copy, or print. Nothing is saved, tracked, or sent anywhere.</p>
+            <button class="voa-btn voa-btn-primary" id="fsp-start" type="button">Begin the Ritual</button>
+          </div>
+        </div>
+
+        <form id="fsp-form" class="fsp-form" hidden>
+          <div class="fsp-progress" aria-hidden="true"><div class="fsp-progress-bar" id="fsp-progress-bar" style="width:0%"></div></div>
+${stage1}
+${stage2}
+${stage3}
+${stage4}
+
+          <fieldset class="fsp-stage" data-fsp-stage="5" hidden>
+            <legend class="fsp-stage-label accent-violet">Step 5 of 6</legend>
+            <p class="fsp-question">Take one breath.</p>
+            <p class="fsp-note">In for four. Hold for four. Out for six. Then continue whenever you're ready.</p>
+            <div class="fsp-breath-wrap">
+              <div class="fsp-breath-circle" id="fsp-breath-circle" aria-hidden="true"></div>
+            </div>
+          </fieldset>
+
+          <div class="fsp-nav">
+            <button class="voa-btn voa-btn-secondary" id="fsp-back" type="button">Back</button>
+            <button class="voa-btn voa-btn-primary" id="fsp-next" type="button">Continue</button>
+          </div>
+        </form>
+
+        <div id="fsp-session" class="fsp-session" hidden>
+          <div class="fsp-session-label accent-violet">Session in progress</div>
+          <div class="fsp-timer" id="fsp-timer">25:00</div>
+          <p class="fsp-session-note" id="fsp-session-note">Come back here when you're done, or let it run out on its own.</p>
+          <button class="voa-btn voa-btn-secondary" id="fsp-finish-early" type="button">I'm Done</button>
+        </div>
+
+        <div id="fsp-card-wrap" class="fsp-card-wrap" hidden>
+          <div class="fsp-card" id="fsp-card">
+            <div class="fsp-card-eyebrow">Your Focus Star</div>
+            <div class="fsp-card-star" id="fsp-card-star"></div>
+            <h3 class="fsp-card-title">Today's Mission</h3>
+            <p class="fsp-card-value" id="fsp-card-mission"></p>
+            <div class="fsp-card-grid">
+              <div><h4>Estimated Focus Time</h4><p id="fsp-card-duration"></p></div>
+              <div><h4>Chosen Atmosphere</h4><p id="fsp-card-atmosphere"></p></div>
+              <div><h4>Primary Distraction</h4><p id="fsp-card-distraction"></p></div>
+              <div><h4>One Tiny Commitment</h4><p id="fsp-card-commitment"></p></div>
+            </div>
+            <p class="fsp-card-reminder" id="fsp-card-reminder"></p>
+          </div>
+          <div class="fsp-card-actions">
+            <button class="voa-btn voa-btn-primary" id="fsp-copy" type="button">Copy Focus Card</button>
+            <button class="voa-btn voa-btn-secondary" id="fsp-print" type="button">Print Focus Card</button>
+            <button class="voa-btn voa-btn-secondary" id="fsp-restart" type="button">Begin Another Session</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal">
+      <div class="voa-section-head"><h2 class="voa-h2">Related Pathways</h2></div>
+      <div class="voa-pathways">
+        <a class="voa-pathway border-violet" href="/hubs/adhd-focus/">
+          <span class="voa-pathway-icon accent-violet">${ICONS.compass}</span>
+          <span class="voa-pathway-text">ADHD &amp; Focus Hub</span>
+        </a>
+        <a class="voa-pathway border-amber" href="/hubs/dopamine-attention/">
+          <span class="voa-pathway-icon accent-amber">${ICONS.pulse}</span>
+          <span class="voa-pathway-text">Dopamine &amp; Attention</span>
+        </a>
+        <a class="voa-pathway border-cyan" href="/tools/digital-attention-audit/">
+          <span class="voa-pathway-icon accent-cyan">${ICONS.pulse}</span>
+          <span class="voa-pathway-text">Digital Attention Audit</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="voa-continue voa-reveal">
+      <p>Ready to go deeper on the same subject?</p>
+      <div class="voa-continue-cta">
+        <a class="voa-btn voa-btn-primary" href="/hubs/adhd-focus/">Explore ADHD &amp; Focus</a>
+        <a class="voa-btn voa-btn-secondary" href="/tools/">Browse the Tools Library</a>
+      </div>
+    </section>`;
+
+  const extraStyle = `
+    .fsp-shell { position: relative; max-width: 720px; margin: 0 auto; }
+    .fsp-constellation { position: absolute; inset: -4rem -2rem auto -2rem; height: 220px; width: calc(100% + 4rem); pointer-events: none; opacity: 0.9; }
+    .fsp-progress { height: 4px; background: rgba(255,255,255,0.08); margin-bottom: 2.2rem; border-radius: 2px; overflow: hidden; }
+    .fsp-progress-bar { height: 100%; background: linear-gradient(90deg, var(--violet), var(--cyan)); transition: width 0.4s ease; }
+    .fsp-stage { border: none; padding: 0; margin: 0 0 1.5rem; }
+    .fsp-stage-label { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; padding: 0; }
+    .fsp-question { font-family: 'Cinzel', serif; font-size: clamp(1.25rem, 2.8vw, 1.7rem); line-height: 1.4; color: var(--cream); margin: 0 0 0.6rem; }
+    .fsp-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--muted); margin: 0 0 1.4rem; }
+    .fsp-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    .fsp-option { display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--line); padding: 1.1rem 1.2rem; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s; position: relative; }
+    .fsp-option:hover { transform: translateY(-2px); border-color: rgba(167,139,250,0.4); }
+    .fsp-option:has(input:checked) { border-color: var(--violet); background: rgba(167,139,250,0.08); box-shadow: 0 0 24px rgba(167,139,250,0.18); }
+    .fsp-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .fsp-option input:focus-visible ~ .fsp-option-label { outline: 2px solid var(--violet); outline-offset: 3px; }
+    .fsp-option-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; color: var(--cream); }
+    .fsp-option-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .fsp-nav { display: flex; justify-content: space-between; margin-top: 1rem; }
+
+    .fsp-breath-wrap { display: flex; justify-content: center; padding: 2rem 0 1rem; }
+    .fsp-breath-circle { width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(167,139,250,0.35), rgba(0,229,204,0.08) 70%, transparent 100%); border: 1px solid rgba(167,139,250,0.4); animation: fspBreathe 14s ease-in-out infinite; }
+    @keyframes fspBreathe {
+      0%   { transform: scale(0.7); box-shadow: 0 0 20px rgba(167,139,250,0.15); }
+      28%  { transform: scale(1.15); box-shadow: 0 0 46px rgba(167,139,250,0.4); }
+      57%  { transform: scale(1.15); box-shadow: 0 0 46px rgba(167,139,250,0.4); }
+      100% { transform: scale(0.7); box-shadow: 0 0 20px rgba(167,139,250,0.15); }
+    }
+    @media (prefers-reduced-motion: reduce) { .fsp-breath-circle { animation: none; transform: scale(1); } }
+
+    .fsp-session { text-align: center; padding: 3rem 0; }
+    .fsp-session-label { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 1rem; }
+    .fsp-timer { font-family: 'Cinzel', serif; font-size: clamp(2.4rem, 8vw, 4rem); color: var(--cream); text-shadow: 0 0 30px rgba(167,139,250,0.4); margin-bottom: 0.8rem; letter-spacing: 0.04em; }
+    .fsp-session-note { color: var(--muted); margin-bottom: 1.6rem; }
+
+    .fsp-card-wrap { padding: 1rem 0; }
+    .fsp-card { border: 1px solid rgba(167,139,250,0.4); background: linear-gradient(160deg, rgba(167,139,250,0.06), rgba(0,229,204,0.03)); padding: 2.4rem; text-align: center; position: relative; overflow: hidden; }
+    .fsp-card-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--violet-light); margin-bottom: 1rem; }
+    .fsp-card-star { width: 140px; height: 140px; margin: 0 auto 1.2rem; }
+    .fsp-card-star svg { width: 100%; height: 100%; }
+    .fsp-card-title { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.5rem; }
+    .fsp-card-value { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--cream); margin: 0 0 1.6rem; }
+    .fsp-card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.3rem; text-align: left; margin-bottom: 1.6rem; }
+    .fsp-card-grid h4 { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--violet-light); margin: 0 0 0.4rem; }
+    .fsp-card-grid p { font-size: 0.95rem; color: var(--cream); margin: 0; }
+    .fsp-card-reminder { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: rgba(232,255,249,0.85); border-top: 1px solid var(--line); padding-top: 1.4rem; margin: 0; }
+    .fsp-card-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; }
+
+    @media (max-width: 640px) {
+      .fsp-options { grid-template-columns: 1fr; }
+      .fsp-card-grid { grid-template-columns: 1fr; }
+      .fsp-constellation { height: 140px; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      .fsp-card, .fsp-card * { visibility: visible; }
+      .fsp-card { position: absolute; top: 0; left: 0; width: 100%; border: none; background: white; color: black; }
+      .fsp-card-value, .fsp-card-title, .fsp-card-grid h4, .fsp-card-grid p, .fsp-card-reminder, .fsp-card-eyebrow { color: black !important; }
+    }
+  `;
+
+  const scriptBlock = `<script>
+    (function () {
+      var MISSIONS = ${JSON.stringify(MISSIONS)};
+      var DURATIONS = ${JSON.stringify(DURATIONS)};
+      var DISTRACTIONS = ${JSON.stringify(DISTRACTIONS)};
+      var ATMOSPHERES = ${JSON.stringify(ATMOSPHERES)};
+      var REMINDERS = ${JSON.stringify(REMINDERS)};
+      var COMMITMENTS = ${JSON.stringify(COMMITMENTS)};
+      var STAGES = 5;
+      var current = 0;
+      var answers = {};
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var welcome = document.getElementById('fsp-welcome');
+      var form = document.getElementById('fsp-form');
+      var startBtn = document.getElementById('fsp-start');
+      var backBtn = document.getElementById('fsp-back');
+      var nextBtn = document.getElementById('fsp-next');
+      var progressBar = document.getElementById('fsp-progress-bar');
+      var sessionEl = document.getElementById('fsp-session');
+      var timerEl = document.getElementById('fsp-timer');
+      var sessionNote = document.getElementById('fsp-session-note');
+      var finishEarlyBtn = document.getElementById('fsp-finish-early');
+      var cardWrap = document.getElementById('fsp-card-wrap');
+      var canvas = document.getElementById('fsp-constellation');
+
+      function trackEvent(name, params) {
+        if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+      }
+
+      // ── Constellation (deterministic points from stage+choice index, not random) ──
+      function seedPoint(seed) {
+        var parts = seed.split('-').map(Number);
+        var stage = parts[0], idx = parts[1];
+        var angle = ((stage * 67 + idx * 41) % 360) * (Math.PI / 180);
+        var radius = 20 + ((stage * 13 + idx * 7) % 26);
+        return { x: 50 + Math.cos(angle) * radius, y: 50 + Math.sin(angle) * radius };
+      }
+
+      function drawConstellation(target, seeds, size) {
+        if (!target) return;
+        var w = size || 300, h = size || 120;
+        var ctx = target.getContext('2d');
+        var dpr = window.devicePixelRatio || 1;
+        var displayW = target.clientWidth || w, displayH = target.clientHeight || h;
+        target.width = displayW * dpr;
+        target.height = displayH * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, displayW, displayH);
+
+        var points = seeds.map(function (s) {
+          var p = seedPoint(s);
+          return { x: (p.x / 100) * displayW, y: (p.y / 100) * displayH };
+        });
+
+        ctx.strokeStyle = 'rgba(167,139,250,0.35)';
+        ctx.lineWidth = 1;
+        for (var i = 1; i < points.length; i++) {
+          ctx.beginPath();
+          ctx.moveTo(points[i - 1].x, points[i - 1].y);
+          ctx.lineTo(points[i].x, points[i].y);
+          ctx.stroke();
+        }
+        points.forEach(function (p, i) {
+          var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 10);
+          grad.addColorStop(0, 'rgba(232,255,249,0.95)');
+          grad.addColorStop(1, 'rgba(167,139,250,0)');
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = 'white';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      function currentSeeds() {
+        var seeds = [];
+        ['mission', 'duration', 'distraction', 'atmosphere'].forEach(function (field, stageNum) {
+          var checked = form.querySelector('input[name="' + field + '"]:checked');
+          if (checked) {
+            var label = checked.closest('.fsp-option');
+            if (label) seeds.push(label.getAttribute('data-seed'));
+          }
+        });
+        return seeds;
+      }
+
+      function updateConstellation() {
+        drawConstellation(canvas, currentSeeds());
+      }
+      window.addEventListener('resize', function () { if (!form.hidden) updateConstellation(); });
+
+      // ── Ambient tone (Web Audio synthesis only ~ no files, no network) ──
+      var audioCtx = null, audioNodes = [];
+      function stopAmbient() {
+        audioNodes.forEach(function (n) { try { n.stop && n.stop(); n.disconnect && n.disconnect(); } catch (e) {} });
+        audioNodes = [];
+      }
+      function startAmbient(kind) {
+        stopAmbient();
+        if (kind === 'none' || prefersReduced) return;
+        try {
+          audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+          var master = audioCtx.createGain();
+          master.gain.value = 0.05;
+          master.connect(audioCtx.destination);
+          audioNodes.push(master);
+
+          if (kind === 'space') {
+            var osc1 = audioCtx.createOscillator(); osc1.type = 'sine'; osc1.frequency.value = 60;
+            var osc2 = audioCtx.createOscillator(); osc2.type = 'sine'; osc2.frequency.value = 90;
+            osc1.connect(master); osc2.connect(master);
+            osc1.start(); osc2.start();
+            audioNodes.push(osc1, osc2);
+          } else if (kind === 'forest') {
+            var bufferSize = 2 * audioCtx.sampleRate;
+            var buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            var data = buffer.getChannelData(0);
+            for (var i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.3;
+            var noise = audioCtx.createBufferSource(); noise.buffer = buffer; noise.loop = true;
+            var filter = audioCtx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 500;
+            noise.connect(filter); filter.connect(master);
+            noise.start();
+            audioNodes.push(noise, filter);
+          } else if (kind === 'pulse') {
+            var osc = audioCtx.createOscillator(); osc.type = 'sine'; osc.frequency.value = 110;
+            var pulseGain = audioCtx.createGain();
+            osc.connect(pulseGain); pulseGain.connect(master);
+            osc.start();
+            var t0 = audioCtx.currentTime;
+            var lfo = audioCtx.createOscillator(); lfo.frequency.value = 0.9;
+            var lfoGain = audioCtx.createGain(); lfoGain.gain.value = 0.5;
+            lfo.connect(lfoGain); lfoGain.connect(pulseGain.gain);
+            pulseGain.gain.value = 0.5;
+            lfo.start();
+            audioNodes.push(osc, pulseGain, lfo, lfoGain);
+          }
+        } catch (e) { /* Web Audio unavailable ~ silently continue without ambient tone */ }
+      }
+      function chime() {
+        if (prefersReduced) return;
+        try {
+          audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+          var g = audioCtx.createGain(); g.gain.value = 0.001; g.connect(audioCtx.destination);
+          [523.25, 659.25, 783.99].forEach(function (freq, i) {
+            var o = audioCtx.createOscillator(); o.type = 'sine'; o.frequency.value = freq;
+            var og = audioCtx.createGain();
+            var start = audioCtx.currentTime + i * 0.18;
+            og.gain.setValueAtTime(0, start);
+            og.gain.linearRampToValueAtTime(0.08, start + 0.05);
+            og.gain.exponentialRampToValueAtTime(0.0001, start + 1.4);
+            o.connect(og); og.connect(audioCtx.destination);
+            o.start(start); o.stop(start + 1.5);
+          });
+        } catch (e) {}
+      }
+
+      function showStage(i) {
+        document.querySelectorAll('.fsp-stage').forEach(function (el) {
+          el.hidden = Number(el.getAttribute('data-fsp-stage')) !== i + 1;
+        });
+        backBtn.style.visibility = i === 0 ? 'hidden' : 'visible';
+        nextBtn.textContent = i === STAGES - 1 ? 'Begin' : 'Continue';
+        progressBar.style.width = (((i + 1) / STAGES) * 100) + '%';
+        updateConstellation();
+      }
+
+      startBtn.addEventListener('click', function () {
+        trackEvent('adhd_focus_planner_start', {});
+        welcome.hidden = true;
+        form.hidden = false;
+        showStage(0);
+        form.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      backBtn.addEventListener('click', function () {
+        if (current > 0) { current -= 1; showStage(current); }
+      });
+
+      nextBtn.addEventListener('click', function () {
+        var isBreathStage = current === STAGES - 1;
+        if (!isBreathStage) {
+          var stageEl = document.querySelector('.fsp-stage[data-fsp-stage="' + (current + 1) + '"]');
+          var checked = stageEl.querySelector('input:checked');
+          if (!checked) {
+            stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+            setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
+            return;
+          }
+          if (checked.name === 'atmosphere') startAmbient(checked.value === 'none' ? 'none' : (ATMOSPHERES.filter(function (a) { return a.id === checked.value; })[0] || {}).audio);
+        }
+        if (current < STAGES - 1) {
+          current += 1;
+          showStage(current);
+        } else {
+          beginSession();
+        }
+      });
+
+      function collectAnswers() {
+        var data = new FormData(form);
+        answers.mission = MISSIONS.filter(function (m) { return m.id === data.get('mission'); })[0];
+        answers.duration = DURATIONS.filter(function (d) { return d.id === data.get('duration'); })[0];
+        answers.distraction = DISTRACTIONS.filter(function (d) { return d.id === data.get('distraction'); })[0];
+        answers.atmosphere = ATMOSPHERES.filter(function (a) { return a.id === data.get('atmosphere'); })[0];
+      }
+
+      var timerInterval = null, endTime = null;
+      function beginSession() {
+        collectAnswers();
+        form.hidden = true;
+        sessionEl.hidden = false;
+        var minutes = answers.duration.minutes;
+        endTime = Date.now() + minutes * 60 * 1000;
+        sessionNote.textContent = 'Creating: ' + answers.mission.label + '. Come back here when you\\'re done, or let it run out on its own.';
+        updateTimer();
+        timerInterval = setInterval(updateTimer, 500);
+        sessionEl.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      function updateTimer() {
+        var remaining = Math.max(0, endTime - Date.now());
+        var mins = Math.floor(remaining / 60000);
+        var secs = Math.floor((remaining % 60000) / 1000);
+        timerEl.textContent = (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
+        if (remaining <= 0) {
+          clearInterval(timerInterval);
+          finishSession();
+        }
+      }
+
+      finishEarlyBtn.addEventListener('click', function () {
+        clearInterval(timerInterval);
+        finishSession();
+      });
+
+      function finishSession() {
+        stopAmbient();
+        chime();
+        sessionEl.hidden = true;
+        cardWrap.hidden = false;
+        renderCard();
+        trackEvent('adhd_focus_planner_complete', {
+          mission: answers.mission.id,
+          duration_minutes: answers.duration.minutes,
+          distraction: answers.distraction.id,
+          atmosphere: answers.atmosphere.id
+        });
+        cardWrap.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      function renderCard() {
+        document.getElementById('fsp-card-mission').textContent = answers.mission.label;
+        document.getElementById('fsp-card-duration').textContent = answers.duration.label;
+        document.getElementById('fsp-card-atmosphere').textContent = answers.atmosphere.label;
+        document.getElementById('fsp-card-distraction').textContent = answers.distraction.label;
+        document.getElementById('fsp-card-commitment').textContent = COMMITMENTS[answers.mission.id] || COMMITMENTS.other;
+        var reminder = (REMINDERS[answers.distraction.id] || '').replace('{min}', answers.duration.minutes);
+        document.getElementById('fsp-card-reminder').textContent = reminder;
+
+        var starEl = document.getElementById('fsp-card-star');
+        var seeds = currentSeeds();
+        var svgPoints = seeds.map(function (s) { return seedPoint(s); });
+        var lines = '';
+        for (var i = 1; i < svgPoints.length; i++) {
+          lines += '<line x1="' + svgPoints[i - 1].x + '" y1="' + svgPoints[i - 1].y + '" x2="' + svgPoints[i].x + '" y2="' + svgPoints[i].y + '" stroke="rgba(167,139,250,0.45)" stroke-width="0.6"/>';
+        }
+        var dots = svgPoints.map(function (p) {
+          return '<circle cx="' + p.x + '" cy="' + p.y + '" r="2.2" fill="white"/><circle cx="' + p.x + '" cy="' + p.y + '" r="5" fill="rgba(167,139,250,0.25)"/>';
+        }).join('');
+        starEl.innerHTML = '<svg viewBox="0 0 100 100">' + lines + dots + '</svg>';
+      }
+
+      document.getElementById('fsp-copy').addEventListener('click', function () {
+        var btn = this;
+        var text = 'FOCUS CARD\\n\\nToday\\'s Mission: ' + answers.mission.label +
+          '\\nEstimated Focus Time: ' + answers.duration.label +
+          '\\nChosen Atmosphere: ' + answers.atmosphere.label +
+          '\\nPrimary Distraction: ' + answers.distraction.label +
+          '\\nOne Tiny Commitment: ' + (COMMITMENTS[answers.mission.id] || COMMITMENTS.other) +
+          '\\n\\n' + (REMINDERS[answers.distraction.id] || '').replace('{min}', answers.duration.minutes);
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () {
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = 'Copy Focus Card'; }, 1800);
+          });
+        }
+      });
+
+      document.getElementById('fsp-print').addEventListener('click', function () { window.print(); });
+
+      document.getElementById('fsp-restart').addEventListener('click', function () {
+        stopAmbient();
+        current = 0;
+        answers = {};
+        form.reset();
+        cardWrap.hidden = true;
+        welcome.hidden = false;
+        welcome.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      form.addEventListener('submit', function (e) { e.preventDefault(); });
+      window.addEventListener('beforeunload', stopAmbient);
+    })();
+    </script>`;
+
+  return pageChrome({
+    title, description, canonical, body: body + scriptBlock, extraStyle,
+    schema: [
+      ...baseSchema({ title, description, canonical }),
+      breadcrumbs([{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "ADHD & Focus", url: "/hubs/adhd-focus/" }, { name: title, url: canonical }]),
+      { "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: absoluteUrl(canonical), applicationCategory: "LifestyleApplication", operatingSystem: "Any", isAccessibleForFree: true },
+    ],
+  });
+}
+
 function main() {
   const clusterData = loadTopicClusters();
   const hubs = readJson("static/_data/authority-hubs.json", { hubs: [] }).hubs || [];
@@ -1030,6 +1594,7 @@ function main() {
 
   writePage("static/tools/index.html", renderToolsIndex(assets));
   writePage("static/tools/digital-attention-audit/index.html", renderDigitalAttentionAudit());
+  writePage("static/tools/adhd-focus-session-planner/index.html", renderAdhdFocusSessionPlanner());
 }
 
 main();
