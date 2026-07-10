@@ -31,10 +31,17 @@ execSync("hugo --gc", { cwd: ROOT, stdio: "inherit" });
 
 const app = express();
 
-// Emulate vercel.json's cleanUrls:true ~ requests with no extension and no
-// trailing slash fall back to the matching .html file, same as production.
+// Emulate vercel.json's cleanUrls:true ~ legacy .html requests redirect to the
+// clean URL and extensionless requests fall back to the matching .html file.
 app.use((req, res, next) => {
   const reqPath = decodeURIComponent(req.path);
+  if (reqPath.endsWith(".html")) {
+    const candidate = path.join(PUBLIC_DIR, reqPath);
+    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+      const cleanPath = reqPath.replace(/\.html$/i, "");
+      return res.redirect(308, cleanPath + req.url.slice(req.path.length));
+    }
+  }
   if (path.extname(reqPath) || reqPath.endsWith("/")) return next();
   const candidate = path.join(PUBLIC_DIR, reqPath + ".html");
   if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {

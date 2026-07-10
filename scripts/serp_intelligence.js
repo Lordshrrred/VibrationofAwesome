@@ -18,6 +18,12 @@
  * Usage:
  *   node scripts/serp_intelligence.js
  *   node scripts/serp_intelligence.js --count 5   (fewer keywords, cheaper test run)
+ *   node scripts/serp_intelligence.js --old       (sample old-structure posts by
+ *                                                   oldest publish date instead of
+ *                                                   most-recent-10 ~ for finding
+ *                                                   backfill candidates; one-off,
+ *                                                   does not change the scheduled
+ *                                                   weekly-serp-check.yml default)
  */
 
 import { createAnthropicClient } from "./lib/anthropic-client.js";
@@ -35,8 +41,10 @@ const ROOT       = path.resolve(__dirname, "..");
 
 const argv = minimist(process.argv.slice(2), {
   string: ["count"],
+  boolean: ["old"],
 });
 const KEYWORD_COUNT = Math.max(1, parseInt(argv.count, 10) || 10);
+const USE_OLD_SAMPLE = !!argv.old;
 
 if (!process.env.ANTHROPIC_API_KEY) {
   console.error("Error: ANTHROPIC_API_KEY not set. Copy .env.example to .env and add your key.");
@@ -44,6 +52,13 @@ if (!process.env.ANTHROPIC_API_KEY) {
 }
 
 const MODEL = "claude-sonnet-5";
+
+function cleanPublicUrl(url) {
+  if (!url) return url;
+  return String(url)
+    .replace(/\/index\.html(?=([?#]|$))/gi, "/")
+    .replace(/\.html(?=([?#\s"').,!]|$))/gi, "");
+}
 
 // ── Keyword source ───────────────────────────────────────────────────────────
 
@@ -70,7 +85,44 @@ function loadTopKeywords(count) {
   return sorted.slice(0, count).map((p) => ({
     keyword: p.title,
     slug: p.slug,
-    url: p.url && p.url.startsWith("http") ? p.url : `https://vibrationofawesome.com${p.url || "/blog/boom/posts/" + p.slug}`,
+    url: cleanPublicUrl(p.url && p.url.startsWith("http") ? p.url : `https://vibrationofawesome.com${p.url || "/blog/boom/posts/" + p.slug}`),
+  }));
+}
+
+/**
+ * Backfill-candidate sample: old-structure posts (no FAQPage schema on disk,
+ * i.e. published before the 2026-07-10 AI-search-structure rewrite), sorted
+ * by OLDEST publish date first ~ those have had the most time to accumulate
+ * whatever ranking they're going to get, so they're the most informative
+ * sample for finding "close to page 1" backfill candidates. One-off / manual
+ * use (--old flag) ~ does not change loadTopKeywords()'s default behavior
+ * used by the scheduled weekly-serp-check.yml run.
+ */
+function loadOldStructureSample(count) {
+  const file = path.join(ROOT, "static", "_data", "boom-posts.json");
+  if (!fs.existsSync(file)) {
+    throw new Error(`Cannot find ${file} ~ no published Boom posts to check yet.`);
+  }
+  const posts = JSON.parse(fs.readFileSync(file, "utf8"));
+  if (!Array.isArray(posts) || posts.length === 0) {
+    throw new Error("boom-posts.json is empty ~ nothing to check.");
+  }
+
+  const postsDir = path.join(ROOT, "static", "blog", "boom", "posts");
+  const oldStructure = posts.filter((p) => {
+    if (!p || !p.title || !p.slug) return false;
+    const filePath = path.join(postsDir, `${p.slug}.html`);
+    if (!fs.existsSync(filePath)) return false;
+    const html = fs.readFileSync(filePath, "utf8");
+    return !html.includes('"@type":"FAQPage"');
+  });
+
+  const sorted = oldStructure.sort((a, b) => new Date(a.date || 0) - new Date(b.date || 0));
+
+  return sorted.slice(0, count).map((p) => ({
+    keyword: p.title,
+    slug: p.slug,
+    url: cleanPublicUrl(p.url && p.url.startsWith("http") ? p.url : `https://vibrationofawesome.com${p.url || "/blog/boom/posts/" + p.slug}`),
   }));
 }
 
@@ -82,7 +134,7 @@ function loadTopKeywords(count) {
 // cacheable-prefix floor (see shared prompt-caching docs), so cache_control
 // here is structurally correct but likely won't produce real cache_read hits
 // until this instruction block grows ~ same caveat as api/chat.js's AURA prompt.
-const SYSTEM_INSTRUCTIONS = `Identify the top 3 organic results for the search query you're given. For each: summarize what angle/structure they use, approximate word count, and what they cover that a competing post might be missing. Then note whether vibrationofawesome.com or any Boom Frequency content appears anywhere in the search results or in an AI Overview if one is shown. Return structured JSON:
+const SYSTEM_INSTRUCTIONS = `Identify the top 3 organic results for the search query you're given. For each: summarize what angle/structure they use, approximate word count, and what they cover that a competing post might be missing. Then determine whether vibrationofawesome.com or any Boom Frequency content ranks anywhere in the search results or in an AI Overview if one is shown. If it's not in the top 3, keep checking further down the organic results (up to position 30) before concluding it's absent ~ report the specific position number if you find it within the top 30, and only use null if you checked through position 30 and did not find it there. Return structured JSON:
 { "keyword": string, "top3": [{"url": string, "angle": string, "gaps": string}], "voa_present": boolean, "voa_position": number or null, "ai_overview_mentions_voa": boolean }
 
 Return ONLY the JSON object. No markdown fences, no commentary before or after it.`;
@@ -226,9 +278,10 @@ function buildMarkdownReport(date, results, errors) {
 const DASHBOARD_HISTORY_CAP = 12; // ~ a quarter's worth of weekly checks
 
 /**
- * Writes a machine-readable snapshot for the dashboard (static/dashboard/index.html)
- * to consume via fetch ~ no extra API calls, this is the same data as the markdown
- * report, just structured for the browser instead of prose for a human.
+ * Writes a public-safe machine-readable summary for the existing password-gated
+ * dashboard (static/dashboard/index.html) to consume via fetch ~ no extra API
+ * calls. This intentionally contains visibility status and top-gap summaries,
+ * not Search Console exports, private query data, or raw Anthropic responses.
  */
 function writeDashboardSnapshot(today, keywordTotal, results, errors) {
   const dataDir = path.join(ROOT, "static", "_data");
@@ -273,9 +326,10 @@ function writeDashboardSnapshot(today, keywordTotal, results, errors) {
 
 async function main() {
   const today = new Date().toISOString().slice(0, 10);
-  console.log(`[serp-intelligence] Loading top ${KEYWORD_COUNT} keyword(s) from live Boom posts...`);
+  const mode = USE_OLD_SAMPLE ? "oldest old-structure" : "most recent";
+  console.log(`[serp-intelligence] Loading ${KEYWORD_COUNT} ${mode} keyword(s) from live Boom posts...`);
 
-  const keywords = loadTopKeywords(KEYWORD_COUNT);
+  const keywords = USE_OLD_SAMPLE ? loadOldStructureSample(KEYWORD_COUNT) : loadTopKeywords(KEYWORD_COUNT);
   console.log(`[serp-intelligence] ${keywords.length} keyword(s) loaded:`);
   keywords.forEach((k, i) => console.log(`  ${i + 1}. ${k.keyword}`));
 

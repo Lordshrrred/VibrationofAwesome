@@ -13,11 +13,11 @@ const POSTS_DIR  = path.resolve(__dirname, "..", "static", "blog", "matt", "post
 
 // slug -> HTML paragraph to insert before the closing <hr>
 const RELATED = {
-  "vibration-of-awesome": `<p>Years later, the same questions that started here shaped how I built the <a href="/blog/matt/posts/why-i-built-forest-temple/">Forest Temple system</a> - and eventually led to the honest reckoning in <a href="/blog/matt/posts/twenty-years-internet-marketing.html">Why I Spent 20 Years Doing Internet Marketing Wrong</a>.</p>`,
+  "vibration-of-awesome": `<p>Years later, the same questions that started here shaped how I built the <a href="/blog/matt/posts/why-i-built-forest-temple/">Forest Temple system</a> - and eventually led to the honest reckoning in <a href="/blog/matt/posts/twenty-years-internet-marketing">Why I Spent 20 Years Doing Internet Marketing Wrong</a>.</p>`,
 
   "empower-your-life": `<p>This philosophy later became the foundation for the <a href="/blog/matt/posts/why-i-built-forest-temple/">Forest Temple</a> - a personal operating system built around the same idea: structure your life around who you actually are, not who you think you should be.</p>`,
 
-  "paradigm-of-abundance": `<p>The scarcity-vs-abundance tension I was working through here eventually shaped everything I came to understand about <a href="/blog/matt/posts/twenty-years-internet-marketing.html">twenty years of doing internet marketing wrong</a>. Worth reading side by side.</p>`,
+  "paradigm-of-abundance": `<p>The scarcity-vs-abundance tension I was working through here eventually shaped everything I came to understand about <a href="/blog/matt/posts/twenty-years-internet-marketing">twenty years of doing internet marketing wrong</a>. Worth reading side by side.</p>`,
 
   "law-of-attraction-manifesting-abundance": `<p>If this topic resonates, the <a href="/blog/matt/posts/paradigm-of-abundance/">Paradigm of Abundance</a> post from the same era goes deeper into the mindset shift that makes manifestation more than wishful thinking.</p>`,
 

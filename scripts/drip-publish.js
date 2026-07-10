@@ -251,7 +251,7 @@ async function main() {
       console.log(`  ✓ Internal links: ${item.slug} → ${linkResult.related.map(r => r.slug).join(", ")}`);
     }
     fs.writeFileSync(postFile, html, "utf8");
-    console.log(`  ✓ Published: /blog/boom/posts/${item.slug}.html`);
+    console.log(`  ✓ Published: /blog/boom/posts/${item.slug}`);
 
     // Add to boom-posts index
     boomPosts.unshift({

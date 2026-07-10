@@ -414,7 +414,7 @@ if (isCli) {
         title: queued.title,
         slug: queued.slug,
         excerpt: paragraph.replace(/<[^>]+>/g, "").trim().slice(0, 300),
-        url: `/blog/boom/posts/${queued.slug}.html`,
+        url: `/blog/boom/posts/${queued.slug}`,
         tags: [],
       };
     }
