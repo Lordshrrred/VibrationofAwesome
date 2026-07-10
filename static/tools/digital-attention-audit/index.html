@@ -38,131 +38,607 @@
   <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Digital Attention Audit","description":"A non-clinical reflection tool for noticing which digital inputs are draining focus, self-trust, and creative energy.","url":"https://vibrationofawesome.com/tools/digital-attention-audit/","applicationCategory":"EducationalApplication","operatingSystem":"Any","isAccessibleForFree":true}
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --bg:#020a0a; --panel:#061312; --line:rgba(0,229,204,.16); --text:#e8fff9; --muted:rgba(232,255,249,.72); --cyan:#00e5cc; --green:#30ff54; }
-    * { box-sizing:border-box; }
-    body { margin:0; background:radial-gradient(circle at 50% -10%, rgba(0,229,204,.18), transparent 34%), var(--bg); color:var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.65; }
-    a { color:var(--cyan); text-underline-offset:3px; }
-    .shell { width:min(1080px, calc(100% - 32px)); margin:0 auto; }
-    .nav { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1rem 0; border-bottom:1px solid var(--line); }
-    .brand { color:var(--text); text-decoration:none; font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.82rem; }
-    .navlinks { display:flex; gap:.9rem; flex-wrap:wrap; justify-content:flex-end; }
-    .navlinks a { color:var(--muted); text-decoration:none; font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; }
-    .hero { padding:5.5rem 0 3rem; }
-    .eyebrow { color:var(--green); text-transform:uppercase; letter-spacing:.18em; font-size:.78rem; font-weight:800; }
-    h1 { font-size:clamp(2.2rem, 7vw, 4.7rem); line-height:1.02; margin:.75rem 0 1rem; max-width:920px; }
-    h2 { margin-top:2.5rem; font-size:clamp(1.35rem, 3vw, 2rem); }
-    p { color:var(--muted); max-width:780px; }
-    .grid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1rem; margin:1.5rem 0 3rem; }
-    .card { border:1px solid var(--line); background:rgba(255,255,255,.025); padding:1.1rem; min-height:100%; }
-    .card h3 { margin:.1rem 0 .55rem; font-size:1rem; line-height:1.35; }
-    .card p { margin:0; font-size:.92rem; }
-    .meta { color:rgba(232,255,249,.52); font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; }
-    .button { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:.75rem 1rem; border:1px solid rgba(48,255,84,.34); color:var(--green); text-decoration:none; text-transform:uppercase; letter-spacing:.08em; font-weight:800; font-size:.8rem; }
-    .tool { border:1px solid var(--line); background:rgba(0,0,0,.25); padding:1.25rem; margin:1.5rem 0 3rem; }
-    .question { padding:1rem 0; border-top:1px solid rgba(255,255,255,.08); }
-    .answers { display:grid; grid-template-columns:repeat(4, 1fr); gap:.5rem; margin-top:.7rem; }
-    label { display:flex; gap:.45rem; align-items:center; border:1px solid rgba(255,255,255,.12); padding:.65rem; color:var(--muted); cursor:pointer; }
-    .result { display:none; border:1px solid rgba(48,255,84,.28); padding:1rem; background:rgba(48,255,84,.04); }
-    footer { padding:3rem 0; color:rgba(232,255,249,.55); border-top:1px solid var(--line); margin-top:3rem; }
-    @media (max-width:820px) { .grid, .answers { grid-template-columns:1fr; } .hero { padding-top:3rem; } }
+
+    :root {
+      --deep: #020a0a; --panel: rgba(255,255,255,0.025); --line: rgba(201,168,76,0.14);
+      --cream: #e8fff9; --muted: rgba(232,255,249,0.68);
+      --cyan: #00e5cc; --cyan-light: #4dfff0;
+      --amber: #ffb300; --amber-light: #ffd76b;
+      --violet: #a78bfa; --violet-light: #cdbcff;
+      --moss: #22c06a; --moss-light: #6fe6a0;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--deep); color: var(--cream); overflow-x: hidden;
+      font-family: 'Lora', Georgia, serif; line-height: 1.7;
+    }
+    .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .voa-star { position: absolute; background: white; border-radius: 50%; animation: voaTwinkle var(--dur, 3s) ease-in-out infinite; animation-delay: var(--delay, 0s); opacity: 0; }
+    @keyframes voaTwinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: var(--brightness, 0.6); transform: scale(1); } }
+    @media (prefers-reduced-motion: reduce) { .voa-star { animation: none; opacity: 0.35; } }
+
+    a { color: var(--cyan); }
+    .voa-shell { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* NAV */
+    .voa-nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.5rem; background: linear-gradient(to bottom, rgba(2,10,10,0.97), rgba(2,10,10,0.9)); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+    .voa-nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--cyan); letter-spacing: 0.15em; text-decoration: none; text-shadow: 0 0 16px rgba(0,229,204,0.35); }
+    .voa-nav-links { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+    .voa-nav-links a { font-family: 'Rajdhani', sans-serif; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; position: relative; display: inline-flex; align-items: center; }
+    .voa-nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--cyan); transition: width 0.3s; }
+    .voa-nav-links a:hover { color: var(--cyan); }
+    .voa-nav-links a:hover::after { width: 100%; }
+    .voa-nav-links a.voa-field-guide-link { color: var(--deep) !important; background: var(--cyan); padding: 0.3rem 0.8rem; border-radius: 2px; font-weight: 700; animation: voaNavGuidePulse 3s ease-in-out infinite; }
+    .voa-nav-links a.voa-field-guide-link:hover { box-shadow: 0 0 22px rgba(0,229,204,0.55); }
+    .voa-nav-links a.voa-field-guide-link::after { display: none; }
+    @keyframes voaNavGuidePulse { 0%, 100% { box-shadow: 0 0 6px rgba(0,229,204,0.3); } 50% { box-shadow: 0 0 16px rgba(0,229,204,0.6); } }
+    .voa-nav-links a.voa-aura-link { color: var(--cyan); border: 1px solid rgba(0,229,204,0.32); padding: 0.28rem 0.7rem; border-radius: 2px; }
+    .voa-nav-links a.voa-aura-link::after { display: none; }
+    .voa-nav-links a.voa-ai-engine-link { color: rgba(0,229,204,0.75); border: 1px solid rgba(0,229,204,0.18); padding: 0.28rem 0.7rem; border-radius: 4px; gap: 0.32rem; background: rgba(0,229,204,0.04); animation: voaNavCyberPulse 4s ease-in-out infinite; }
+    .voa-nav-links a.voa-ai-engine-link::after { display: none; }
+    .voa-nav-hex { width: 10px; height: 10px; flex-shrink: 0; opacity: 0.8; }
+    @keyframes voaNavCyberPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,204,0); } 50% { box-shadow: 0 0 0 2px rgba(0,229,204,0.08); } }
+    .voa-nav-links a.voa-resources-link { color: var(--amber-light); }
+    .voa-nav-links a.voa-resources-link::after { background: var(--amber); }
+    .voa-nav-links a.voa-resources-link:hover { color: var(--amber); }
+    .voa-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .voa-hamburger span { display: block; width: 22px; height: 2px; background: var(--cyan); border-radius: 2px; }
+    @media (min-width: 901px) and (max-width: 1180px) {
+      .voa-nav-links { gap: 1rem; }
+      .voa-nav-links a { font-size: 0.7rem; }
+      .voa-nav-links a.voa-field-guide-link, .voa-nav-links a.voa-aura-link, .voa-nav-links a.voa-ai-engine-link { padding: 0.26rem 0.55rem; }
+    }
+    @media (max-width: 900px) {
+      .voa-hamburger { display: flex; }
+      .voa-nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: flex-start; background: rgba(2,10,10,0.98); border-bottom: 1px solid var(--line); padding: 0.5rem 1.2rem 1rem; }
+      .voa-nav-links.open { display: flex; }
+      .voa-nav-links li { width: 100%; }
+      .voa-nav { position: sticky; }
+    }
+
+    /* SECTION CONVENTIONS (matches homepage) */
+    .voa-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.78rem; letter-spacing: 0.32em; text-transform: uppercase; display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem; }
+    .voa-eyebrow::before { content: ''; width: 26px; height: 1px; background: currentColor; opacity: 0.6; }
+    .voa-divider { width: 54px; height: 1px; background: linear-gradient(to right, currentColor, transparent); margin: 1.6rem 0; opacity: 0.6; }
+    .voa-reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .voa-reveal.voa-visible { opacity: 1; transform: translateY(0); }
+
+    /* ACCENT UTILITIES */
+    .accent-cyan   { color: var(--cyan); }
+    .accent-amber  { color: var(--amber); }
+    .accent-violet { color: var(--violet); }
+    .accent-moss   { color: var(--moss); }
+    .border-cyan   { border-color: rgba(0,229,204,0.28) !important; }
+    .border-amber  { border-color: rgba(255,179,0,0.28) !important; }
+    .border-violet { border-color: rgba(167,139,250,0.28) !important; }
+    .border-moss   { border-color: rgba(34,192,106,0.28) !important; }
+    .glow-cyan   { box-shadow: 0 0 32px rgba(0,229,204,0.14); }
+    .glow-amber  { box-shadow: 0 0 32px rgba(255,179,0,0.14); }
+    .glow-violet { box-shadow: 0 0 32px rgba(167,139,250,0.14); }
+    .glow-moss   { box-shadow: 0 0 32px rgba(34,192,106,0.14); }
+
+    /* HERO */
+    .voa-hero { position: relative; padding: 7rem 0 3.5rem; overflow: hidden; }
+    .voa-hero-bg { position: absolute; inset: -20% -10%; z-index: -1; opacity: 0.9; background:
+      radial-gradient(ellipse 60% 55% at 22% 15%, var(--hero-glow, rgba(0,229,204,0.14)) 0%, transparent 65%),
+      radial-gradient(ellipse 45% 40% at 85% 80%, rgba(201,168,76,0.06) 0%, transparent 60%); }
+    .voa-hero-icon { position: absolute; right: -40px; top: 10%; width: 260px; height: 260px; opacity: 0.08; }
+    .voa-hero-icon svg { width: 100%; height: 100%; }
+    .voa-hero-inner { max-width: 760px; position: relative; }
+    .voa-h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5.2vw, 3.6rem); line-height: 1.08; margin: 0 0 1.1rem; color: var(--cream); letter-spacing: 0.01em; }
+    .voa-hero-desc { font-size: 1.08rem; line-height: 1.8; color: var(--muted); max-width: 680px; margin-bottom: 1.6rem; }
+    .voa-hero-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.05rem, 2vw, 1.28rem); line-height: 1.7; color: rgba(232,255,249,0.82); border-left: 2px solid currentColor; padding-left: 1.2rem; margin: 1.6rem 0; max-width: 640px; }
+
+    /* BUTTONS */
+    .voa-btn { font-family: 'Rajdhani', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.95rem 1.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer; }
+    .voa-btn-primary {
+      color: var(--deep);
+      background: linear-gradient(110deg, var(--cyan) 0%, var(--cyan) 35%, var(--cyan-light) 50%, var(--cyan) 65%, var(--cyan) 100%);
+      background-size: 250% 100%; background-position: 140% center;
+      animation: voaBtnShimmer 3.5s ease-in-out infinite, voaBtnGlow 2.5s ease-in-out infinite;
+    }
+    @keyframes voaBtnShimmer { 0% { background-position: 140% center; } 55%, 100% { background-position: -40% center; } }
+    @keyframes voaBtnGlow { 0%, 100% { box-shadow: 0 0 12px rgba(0,229,204,0.4), 0 4px 16px rgba(0,0,0,0.3); } 50% { box-shadow: 0 0 34px rgba(0,229,204,0.85), 0 0 60px rgba(0,229,204,0.3), 0 4px 16px rgba(0,0,0,0.3); } }
+    .voa-btn-primary:hover { background: var(--cyan-light); background-size: 100% 100%; box-shadow: 0 0 46px rgba(0,229,204,0.9), 0 0 90px rgba(0,229,204,0.4) !important; transform: translateY(-3px) scale(1.03); }
+    .voa-btn-secondary { color: var(--cyan); border: 1px solid rgba(0,229,204,0.35); background: transparent; }
+    .voa-btn-secondary:hover { transform: translateY(-2px); border-color: var(--cyan); background: rgba(0,229,204,0.05); }
+    @media (prefers-reduced-motion: reduce) { .voa-btn-primary { animation: none; background-position: center; } }
+
+    /* SECTION */
+    .voa-section { padding: 3.2rem 0; border-top: 1px solid var(--line); }
+    .voa-section:first-of-type { border-top: none; }
+    .voa-section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+    .voa-h2 { font-family: 'Cinzel', serif; font-size: clamp(1.3rem, 3vw, 1.9rem); margin: 0; color: var(--cream); }
+    .voa-section-note { color: var(--muted); font-size: 0.95rem; max-width: 640px; }
+
+    /* HUB PATHWAY GRID (index page) ~ asymmetric, not uniform */
+    .voa-hub-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+    .voa-hub-card { grid-column: span 3; border: 1px solid var(--line); background: var(--panel); padding: 1.6rem; text-decoration: none; color: inherit; position: relative; overflow: hidden; transition: transform 0.25s, border-color 0.25s, background 0.25s; display: flex; flex-direction: column; min-height: 100%; }
+    .voa-hub-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.04); }
+    .voa-hub-card--feature { grid-column: span 6; padding: 2.4rem; }
+    .voa-hub-card--feature .voa-hub-title { font-size: 1.5rem; }
+    @media (min-width: 700px) { .voa-hub-card:nth-child(5n+3), .voa-hub-card:nth-child(5n+4) { grid-column: span 3; } }
+    .voa-hub-icon { width: 34px; height: 34px; margin-bottom: 1rem; opacity: 0.85; }
+    .voa-hub-icon svg { width: 100%; height: 100%; }
+    .voa-hub-label { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 0.5rem; opacity: 0.85; }
+    .voa-hub-title { font-family: 'Cinzel', serif; font-size: 1.12rem; color: var(--cream); margin-bottom: 0.6rem; line-height: 1.3; }
+    .voa-hub-desc { font-size: 0.92rem; line-height: 1.65; color: var(--muted); margin-bottom: 1rem; flex-grow: 1; }
+    .voa-hub-meta { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); opacity: 0.75; display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+    @media (max-width: 760px) { .voa-hub-grid { grid-template-columns: 1fr; } .voa-hub-card, .voa-hub-card--feature { grid-column: span 1 !important; } }
+
+    /* RESOURCE / ARTICLE CARDS */
+    .voa-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+    .voa-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 1.25rem; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s; }
+    .voa-card:hover { transform: translateY(-3px); }
+    .voa-card-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .voa-card h3 { font-family: 'Cinzel', serif; font-size: 1rem; margin: 0 0 0.5rem; line-height: 1.4; color: var(--cream); }
+    .voa-card p { font-size: 0.9rem; line-height: 1.6; color: var(--muted); margin: 0; }
+
+    /* FEATURED / START HERE */
+    .voa-featured { display: grid; grid-template-columns: 1fr; gap: 1.5rem; border: 1px solid var(--line); background: var(--panel); padding: 1.75rem; }
+    .voa-featured-label { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .voa-featured h3 { font-family: 'Cinzel', serif; font-size: 1.4rem; margin: 0 0 0.7rem; color: var(--cream); }
+    .voa-featured p { color: var(--muted); font-size: 1rem; line-height: 1.75; margin-bottom: 1.2rem; }
+
+    /* BADGES */
+    .voa-badge { display: inline-block; font-family: 'Rajdhani', sans-serif; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.22em 0.65em; border: 1px solid currentColor; border-radius: 2px; opacity: 0.9; }
+
+    /* SUBTHEME GROUPS */
+    .voa-subtheme { margin-bottom: 2rem; }
+    .voa-subtheme-label { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--line); }
+
+    /* RELATED PATHWAYS */
+    .voa-pathways { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .voa-pathway { display: flex; align-items: center; gap: 0.6rem; border: 1px solid var(--line); padding: 0.8rem 1.1rem; text-decoration: none; color: inherit; transition: border-color 0.2s, transform 0.2s; }
+    .voa-pathway:hover { transform: translateY(-2px); }
+    .voa-pathway-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .voa-pathway-icon svg { width: 100%; height: 100%; }
+    .voa-pathway-text { font-family: 'Rajdhani', sans-serif; font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    /* TOOL STATUS PREVIEW (honest, non-clickable future items) */
+    .voa-tool-preview { border: 1px dashed var(--line); background: transparent; padding: 1.25rem; opacity: 0.75; }
+    .voa-tool-preview .voa-card-eyebrow { color: var(--muted); }
+
+    /* CONTINUE THE JOURNEY */
+    .voa-continue { text-align: center; padding: 3rem 0; }
+    .voa-continue p { max-width: 560px; margin: 0 auto 1.5rem; color: var(--muted); }
+    .voa-continue-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    .voa-footer { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .voa-footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.1rem; color: var(--cyan); text-shadow: 0 0 16px rgba(0,229,204,0.3); }
+    .voa-footer-tagline { font-family: 'Lora', serif; font-style: italic; font-size: 0.92rem; color: rgba(208,255,248,0.7); margin-top: 0.4rem; }
+    .voa-footer-nav { display: flex; gap: 1.3rem; flex-wrap: wrap; }
+    .voa-footer-nav a { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+    .voa-footer-nav a:hover { color: var(--cyan); }
+
+    @media (max-width: 640px) {
+      .voa-hero { padding-top: 5.5rem; }
+      .voa-hero-icon { width: 160px; height: 160px; opacity: 0.06; }
+      .voa-section { padding: 2.2rem 0; }
+    }
+
+
   </style>
 </head>
 <body>
-  <div class="shell">
-    <nav class="nav" aria-label="Site navigation">
-      <a class="brand" href="/">Vibration of Awesome</a>
-      <div class="navlinks">
-        <a href="/hubs/">Hubs</a>
-        <a href="/tools/">Tools</a>
-        <a href="/field-guide/">Field Guide</a>
-        <a href="/blog/">Blog</a>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <nav class="voa-nav" aria-label="Site navigation">
+    <a href="/" class="voa-nav-logo">VOA</a>
+    <button class="voa-hamburger" id="voaHamburger" onclick="voaToggleNav()" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="voa-nav-links" id="voaNavLinks">
+      <li><a href="/field-guide/" class="voa-field-guide-link">Field Guide &#10022;</a></li>
+      <li><a href="/ai-engine/" class="voa-ai-engine-link">AI Engine
+        <svg class="voa-nav-hex" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <polygon points="6,0.8 10.4,3.3 10.4,8.5 6,11 1.6,8.5 1.6,3.3" stroke="currentColor" stroke-width="0.9"/>
+          <circle cx="6" cy="5.9" r="1.3" fill="currentColor"/>
+          <line x1="6" y1="0.8" x2="6" y2="3.2" stroke="currentColor" stroke-width="0.7" opacity="0.6"/>
+        </svg>
+      </a></li>
+      <li><a href="/hubs/" class="voa-resources-link">Resources</a></li>
+      <li><a href="/art-store/">Art Store</a></li>
+      <li><a href="/aura/" class="voa-aura-link">AURA &#10022;</a></li>
+      <li><a href="/earthstar/">EarthStar &#10022;</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </nav>
+  <main class="voa-shell">
+    <section class="voa-hero voa-reveal">
+      <div class="voa-hero-bg" style="--hero-glow: rgba(0,229,204,0.16);"></div>
+      <div class="voa-hero-icon accent-cyan"><svg viewBox="0 0 48 48" fill="none"><path d="M4 24H14L18 8L26 40L30 24H44" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+      <div class="voa-hero-inner">
+        <div class="voa-eyebrow accent-cyan">Reflection Tool</div>
+        <h1 class="voa-h1">Digital Attention Audit</h1>
+        <p class="voa-hero-desc">A non-clinical reflection tool for noticing which digital inputs are draining focus, self-trust, and creative energy.</p>
+        <p class="voa-hero-quote">This is a reflective, educational tool ~ not a medical, psychological, or diagnostic instrument. It does not assess or diagnose ADHD, anxiety, addiction, or any other condition.</p>
       </div>
-    </nav>
-    <main>
-      <section class="hero">
-        <div class="eyebrow">Reflection Tool</div>
-        <h1>Digital Attention Audit</h1>
-        <p>A non-clinical reflection tool for noticing which digital inputs are draining focus, self-trust, and creative energy.</p>
-        <p><strong>Important:</strong> this is an educational reflection tool, not a medical, psychological, or diagnostic instrument.</p>
-      </section>
-      <section class="tool" aria-label="Digital Attention Audit questions">
-        <form id="attention-audit">
-<div class="question">
-  <p><strong>1.</strong> I reach for a screen before I know what I am actually feeling.</p>
-  <div class="answers">
-    <label><input type="radio" name="q0" value="0"> Rarely</label><label><input type="radio" name="q0" value="1"> Sometimes</label><label><input type="radio" name="q0" value="2"> Often</label><label><input type="radio" name="q0" value="3"> Very often</label>
-  </div>
-</div>
-<div class="question">
-  <p><strong>2.</strong> My attention feels split even when I have time to focus.</p>
-  <div class="answers">
-    <label><input type="radio" name="q1" value="0"> Rarely</label><label><input type="radio" name="q1" value="1"> Sometimes</label><label><input type="radio" name="q1" value="2"> Often</label><label><input type="radio" name="q1" value="3"> Very often</label>
-  </div>
-</div>
-<div class="question">
-  <p><strong>3.</strong> Digital inputs make it harder to hear my own creative signal.</p>
-  <div class="answers">
-    <label><input type="radio" name="q2" value="0"> Rarely</label><label><input type="radio" name="q2" value="1"> Sometimes</label><label><input type="radio" name="q2" value="2"> Often</label><label><input type="radio" name="q2" value="3"> Very often</label>
-  </div>
-</div>
-<div class="question">
-  <p><strong>4.</strong> I use scrolling, feeds, or videos to avoid a decision I already know I need to make.</p>
-  <div class="answers">
-    <label><input type="radio" name="q3" value="0"> Rarely</label><label><input type="radio" name="q3" value="1"> Sometimes</label><label><input type="radio" name="q3" value="2"> Often</label><label><input type="radio" name="q3" value="3"> Very often</label>
-  </div>
-</div>
-<div class="question">
-  <p><strong>5.</strong> After being online, I often feel flatter, foggier, or less self-trusting.</p>
-  <div class="answers">
-    <label><input type="radio" name="q4" value="0"> Rarely</label><label><input type="radio" name="q4" value="1"> Sometimes</label><label><input type="radio" name="q4" value="2"> Often</label><label><input type="radio" name="q4" value="3"> Very often</label>
-  </div>
-</div>
-<div class="question">
-  <p><strong>6.</strong> My tools are controlling the rhythm of my day more than my actual priorities are.</p>
-  <div class="answers">
-    <label><input type="radio" name="q5" value="0"> Rarely</label><label><input type="radio" name="q5" value="1"> Sometimes</label><label><input type="radio" name="q5" value="2"> Often</label><label><input type="radio" name="q5" value="3"> Very often</label>
-  </div>
-</div>
-          <button class="button" type="submit">See reflection</button>
-        </form>
-        <div id="audit-result" class="result" tabindex="-1"></div>
-      </section>
-      <section>
-        <h2>What to do with the result</h2>
-        <p>Use the score as a signal, not a verdict. Pick one digital input to reduce for seven days, then replace that slot with a physical cue: a walk, a notebook, one song, one breath practice, or one unfinished creative action.</p>
-        <p><a href="/hubs/dopamine-attention/">Continue into the Dopamine & Attention hub</a>.</p>
-      </section>
-    </main>
+    </section>
+
+    <section class="voa-section voa-reveal" aria-label="Digital Attention Audit">
+      <div id="audit-welcome" class="voa-featured border-cyan">
+        <div>
+          <div class="voa-featured-label accent-cyan">Before You Start</div>
+          <h3>Six short reflections, about two minutes</h3>
+          <p>There's no score to pass or fail here. Answer honestly, based on the last couple of weeks, and see what pattern shows up. You can go back and change an answer at any point before you finish.</p>
+          <button class="voa-btn voa-btn-primary" id="audit-start" type="button">Begin the Audit</button>
+        </div>
+      </div>
+
+      <form id="attention-audit" class="voa-audit-form" hidden>
+        <div class="voa-audit-progress" aria-hidden="true">
+          <div class="voa-audit-progress-bar" id="audit-progress-bar" style="width: 0%"></div>
+        </div>
+<fieldset class="voa-audit-stage" data-stage="0" >
+        <legend class="voa-audit-stage-label accent-cyan">Stage 1 of 6 &middot; Attention Environment</legend>
+        <p class="voa-audit-question">I reach for a screen before I know what I am actually feeling.</p>
+        <div class="voa-audit-answers" role="radiogroup" aria-label="I reach for a screen before I know what I am actually feeling.">
+          <label class="voa-audit-answer">
+            <input type="radio" name="q0" value="0">
+            <span>Rarely</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q0" value="1">
+            <span>Sometimes</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q0" value="2">
+            <span>Often</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q0" value="3">
+            <span>Very often</span>
+          </label>
+        </div>
+      </fieldset>
+<fieldset class="voa-audit-stage" data-stage="1" hidden>
+        <legend class="voa-audit-stage-label accent-cyan">Stage 2 of 6 &middot; Habit Patterns</legend>
+        <p class="voa-audit-question">My attention feels split even when I have time to focus.</p>
+        <div class="voa-audit-answers" role="radiogroup" aria-label="My attention feels split even when I have time to focus.">
+          <label class="voa-audit-answer">
+            <input type="radio" name="q1" value="0">
+            <span>Rarely</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q1" value="1">
+            <span>Sometimes</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q1" value="2">
+            <span>Often</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q1" value="3">
+            <span>Very often</span>
+          </label>
+        </div>
+      </fieldset>
+<fieldset class="voa-audit-stage" data-stage="2" hidden>
+        <legend class="voa-audit-stage-label accent-cyan">Stage 3 of 6 &middot; Creative Signal</legend>
+        <p class="voa-audit-question">Digital inputs make it harder to hear my own creative signal.</p>
+        <div class="voa-audit-answers" role="radiogroup" aria-label="Digital inputs make it harder to hear my own creative signal.">
+          <label class="voa-audit-answer">
+            <input type="radio" name="q2" value="0">
+            <span>Rarely</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q2" value="1">
+            <span>Sometimes</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q2" value="2">
+            <span>Often</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q2" value="3">
+            <span>Very often</span>
+          </label>
+        </div>
+      </fieldset>
+<fieldset class="voa-audit-stage" data-stage="3" hidden>
+        <legend class="voa-audit-stage-label accent-cyan">Stage 4 of 6 &middot; Emotional Triggers</legend>
+        <p class="voa-audit-question">I use scrolling, feeds, or videos to avoid a decision I already know I need to make.</p>
+        <div class="voa-audit-answers" role="radiogroup" aria-label="I use scrolling, feeds, or videos to avoid a decision I already know I need to make.">
+          <label class="voa-audit-answer">
+            <input type="radio" name="q3" value="0">
+            <span>Rarely</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q3" value="1">
+            <span>Sometimes</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q3" value="2">
+            <span>Often</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q3" value="3">
+            <span>Very often</span>
+          </label>
+        </div>
+      </fieldset>
+<fieldset class="voa-audit-stage" data-stage="4" hidden>
+        <legend class="voa-audit-stage-label accent-cyan">Stage 5 of 6 &middot; After-Effects</legend>
+        <p class="voa-audit-question">After being online, I often feel flatter, foggier, or less self-trusting.</p>
+        <div class="voa-audit-answers" role="radiogroup" aria-label="After being online, I often feel flatter, foggier, or less self-trusting.">
+          <label class="voa-audit-answer">
+            <input type="radio" name="q4" value="0">
+            <span>Rarely</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q4" value="1">
+            <span>Sometimes</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q4" value="2">
+            <span>Often</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q4" value="3">
+            <span>Very often</span>
+          </label>
+        </div>
+      </fieldset>
+<fieldset class="voa-audit-stage" data-stage="5" hidden>
+        <legend class="voa-audit-stage-label accent-cyan">Stage 6 of 6 &middot; Daily Rhythm</legend>
+        <p class="voa-audit-question">My tools are controlling the rhythm of my day more than my actual priorities are.</p>
+        <div class="voa-audit-answers" role="radiogroup" aria-label="My tools are controlling the rhythm of my day more than my actual priorities are.">
+          <label class="voa-audit-answer">
+            <input type="radio" name="q5" value="0">
+            <span>Rarely</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q5" value="1">
+            <span>Sometimes</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q5" value="2">
+            <span>Often</span>
+          </label>
+          <label class="voa-audit-answer">
+            <input type="radio" name="q5" value="3">
+            <span>Very often</span>
+          </label>
+        </div>
+      </fieldset>
+        <div class="voa-audit-nav">
+          <button class="voa-btn voa-btn-secondary" id="audit-back" type="button">Back</button>
+          <button class="voa-btn voa-btn-primary" id="audit-next" type="button">Next</button>
+        </div>
+      </form>
+
+      <div id="audit-result" class="voa-audit-result" tabindex="-1" hidden></div>
+    </section>
+
+    <section class="voa-section voa-reveal">
+      <div class="voa-section-head"><h2 class="voa-h2">What to Do With the Result</h2></div>
+      <p class="voa-section-note">Use the result as a signal, not a verdict. Pick one digital input to reduce for seven days, then replace that slot with a physical cue: a walk, a notebook, one song, one breath practice, or one unfinished creative action.</p>
+    </section>
+
+    <section class="voa-continue voa-reveal">
+      <p>Ready to go deeper on the same subject?</p>
+      <div class="voa-continue-cta">
+        <a class="voa-btn voa-btn-primary" href="/hubs/dopamine-attention/">Continue into Dopamine &amp; Attention</a>
+        <a class="voa-btn voa-btn-secondary" href="/hubs/adhd-focus/">Explore ADHD &amp; Focus</a>
+      </div>
+    </section>
+
+    <style>
+      .voa-audit-progress { height: 4px; background: rgba(255,255,255,0.08); margin-bottom: 2rem; border-radius: 2px; overflow: hidden; }
+      .voa-audit-progress-bar { height: 100%; background: var(--cyan); transition: width 0.3s ease; }
+      .voa-audit-stage { border: none; padding: 0; margin: 0 0 1.5rem; }
+      .voa-audit-stage-label { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1rem; padding: 0; }
+      .voa-audit-question { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 2.4vw, 1.5rem); line-height: 1.5; color: var(--cream); margin-bottom: 1.6rem; }
+      .voa-audit-answers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; }
+      .voa-audit-answer { display: flex; align-items: center; justify-content: center; text-align: center; gap: 0.5rem; border: 1px solid var(--line); padding: 1rem 0.6rem; cursor: pointer; min-height: 56px; font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; transition: border-color 0.2s, background 0.2s; }
+      .voa-audit-answer:has(input:checked) { border-color: var(--cyan); background: rgba(0,229,204,0.08); color: var(--cyan); }
+      .voa-audit-answer input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+      .voa-audit-answer input:focus-visible ~ span { outline: 2px solid var(--cyan); outline-offset: 3px; }
+      .voa-audit-nav { display: flex; justify-content: space-between; margin-top: 2rem; }
+      .voa-audit-result { border: 1px solid rgba(0,229,204,0.3); background: rgba(0,229,204,0.04); padding: 2rem; margin-top: 1.5rem; }
+      .voa-audit-result h3 { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--cream); margin-bottom: 0.8rem; }
+      .voa-audit-result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 1.5rem 0; }
+      .voa-audit-result-grid h4 { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+      .voa-audit-result-grid p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+      .voa-audit-result-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.5rem; }
+      @media (max-width: 640px) {
+        .voa-audit-answers { grid-template-columns: repeat(2, 1fr); }
+        .voa-audit-result-grid { grid-template-columns: 1fr; }
+      }
+    </style>
     <script>
-      document.getElementById("attention-audit").addEventListener("submit", function (event) {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        let total = 0;
-        let answered = 0;
-        for (let i = 0; i < 6; i += 1) {
-          if (data.has("q" + i)) {
-            total += Number(data.get("q" + i));
-            answered += 1;
-          }
-        }
-        const box = document.getElementById("audit-result");
-        if (answered < 6) {
-          box.innerHTML = "<h2>Finish the audit</h2><p>Answer each prompt so the reflection has enough signal to be useful.</p>";
-        } else if (total <= 5) {
-          box.innerHTML = "<h2>Your attention has some room around it</h2><p>Your current digital inputs may be manageable. Keep protecting the parts of your day where your own signal is clearest.</p>";
-        } else if (total <= 12) {
-          box.innerHTML = "<h2>Your attention is asking for cleaner boundaries</h2><p>Choose one repeat input that reliably leaves you foggier, then give it a smaller container for the next seven days.</p>";
-        } else {
-          box.innerHTML = "<h2>Your system may be overloaded by input</h2><p>Start gently. Reduce one noisy source, add one grounding practice, and avoid turning this into another perfection project.</p>";
-        }
-        box.style.display = "block";
-        box.focus();
+    (function () {
+      var STAGES = 6;
+      var current = 0;
+      var welcome = document.getElementById('audit-welcome');
+      var form = document.getElementById('attention-audit');
+      var startBtn = document.getElementById('audit-start');
+      var backBtn = document.getElementById('audit-back');
+      var nextBtn = document.getElementById('audit-next');
+      var progressBar = document.getElementById('audit-progress-bar');
+      var resultBox = document.getElementById('audit-result');
+      var STORAGE_KEY = 'voa-attention-audit-progress';
+
+      function showStage(i) {
+        document.querySelectorAll('.voa-audit-stage').forEach(function (el, idx) {
+          el.hidden = idx !== i;
+        });
+        backBtn.style.visibility = i === 0 ? 'hidden' : 'visible';
+        nextBtn.textContent = i === STAGES - 1 ? 'See Reflection' : 'Next';
+        progressBar.style.width = (((i + 1) / STAGES) * 100) + '%';
+        saveProgress();
+      }
+
+      function saveProgress() {
+        try {
+          var data = new FormData(form);
+          var answers = {};
+          for (var i = 0; i < STAGES; i++) { if (data.has('q' + i)) answers['q' + i] = data.get('q' + i); }
+          sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ current: current, answers: answers }));
+        } catch (e) { /* storage unavailable ~ progress just won't persist across refresh */ }
+      }
+
+      function restoreProgress() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          var data = JSON.parse(raw);
+          Object.keys(data.answers || {}).forEach(function (name) {
+            var input = form.querySelector('input[name="' + name + '"][value="' + data.answers[name] + '"]');
+            if (input) input.checked = true;
+          });
+        } catch (e) { /* ignore corrupt/blocked storage */ }
+      }
+
+      startBtn.addEventListener('click', function () {
+        welcome.hidden = true;
+        form.hidden = false;
+        restoreProgress();
+        showStage(0);
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
+
+      backBtn.addEventListener('click', function () {
+        if (current > 0) { current -= 1; showStage(current); }
+      });
+
+      nextBtn.addEventListener('click', function () {
+        var checked = form.querySelector('input[name="q' + current + '"]:checked');
+        if (!checked) {
+          var stage = document.querySelector('.voa-audit-stage[data-stage="' + current + '"]');
+          stage.style.outline = '1px solid rgba(255,179,0,0.5)';
+          setTimeout(function () { stage.style.outline = 'none'; }, 900);
+          return;
+        }
+        if (current < STAGES - 1) {
+          current += 1;
+          showStage(current);
+        } else {
+          finish();
+        }
+      });
+
+      function finish() {
+        var data = new FormData(form);
+        var total = 0;
+        for (var i = 0; i < STAGES; i++) { total += Number(data.get('q' + i)) || 0; }
+
+        var profile;
+        if (total <= 5) {
+          profile = {
+            name: 'Signal Guardian',
+            summary: 'Your attention has real room around it right now.',
+            strengths: 'You are noticing your own patterns before they become a problem ~ that awareness is most of the work.',
+            drains: 'Watch for the one input that quietly creeps up during busy weeks.',
+            action: 'Protect the block of time where your own signal is clearest, and keep it screen-free.',
+            practice: 'Once a week, notice one moment your attention felt fully yours. Write it down.',
+          };
+        } else if (total <= 12) {
+          profile = {
+            name: 'Steady but Splitting',
+            summary: 'Your attention is asking for cleaner boundaries, not a full overhaul.',
+            strengths: 'You already know which input is the repeat offender ~ that clarity is valuable.',
+            drains: 'Fragmented focus after digital inputs, especially feeds and notifications.',
+            action: 'Choose one repeat input that reliably leaves you foggier and give it a smaller container for the next seven days.',
+            practice: 'Before opening the app you reach for automatically, name what you are actually feeling first.',
+          };
+        } else {
+          profile = {
+            name: 'Static Overload',
+            summary: 'Your system may be carrying more digital noise than it can process right now.',
+            strengths: 'Finishing this audit honestly is itself a signal that you are ready for something to shift.',
+            drains: 'Likely candidates: reactive scrolling, notification pull, and using screens to avoid a feeling or decision.',
+            action: 'Start gently. Reduce one noisy source this week and add one grounding practice in its place.',
+            practice: 'Avoid turning this into another perfection project. One honest change beats a total reset that does not stick.',
+          };
+        }
+
+        resultBox.innerHTML =
+          '<h3>' + profile.name + '</h3>' +
+          '<p>' + profile.summary + '</p>' +
+          '<div class="voa-audit-result-grid">' +
+            '<div><h4>Strength</h4><p>' + profile.strengths + '</p></div>' +
+            '<div><h4>Likely Drain</h4><p>' + profile.drains + '</p></div>' +
+            '<div><h4>One Immediate Action</h4><p>' + profile.action + '</p></div>' +
+            '<div><h4>One Deeper Practice</h4><p>' + profile.practice + '</p></div>' +
+          '</div>' +
+          '<p style="font-size:0.85rem;opacity:0.7;">This is a reflective, educational read on your answers today ~ not a diagnosis, a score to compare against others, or a scientific measurement.</p>' +
+          '<div class="voa-audit-result-actions">' +
+            '<button class="voa-btn voa-btn-secondary" id="audit-copy" type="button">Copy My Result</button>' +
+          '</div>';
+        form.hidden = true;
+        resultBox.hidden = false;
+        resultBox.focus();
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        try { sessionStorage.removeItem(STORAGE_KEY); } catch (e) {}
+
+        var copyBtn = document.getElementById('audit-copy');
+        if (copyBtn) {
+          copyBtn.addEventListener('click', function () {
+            var text = profile.name + ': ' + profile.summary + '\n\nStrength: ' + profile.strengths + '\nLikely drain: ' + profile.drains + '\nOne immediate action: ' + profile.action + '\nOne deeper practice: ' + profile.practice;
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText(text).then(function () {
+                copyBtn.textContent = 'Copied';
+                setTimeout(function () { copyBtn.textContent = 'Copy My Result'; }, 1800);
+              });
+            }
+          });
+        }
+      }
+
+      form.addEventListener('submit', function (e) { e.preventDefault(); });
+    })();
     </script>
-    <footer>
-      <p>Vibration of Awesome builds original reference material, reflection tools, and creative systems for humans reclaiming their signal.</p>
-    </footer>
-  </div>
+  </main>
+  <footer class="voa-footer">
+    <div class="voa-footer-left">
+      <div class="voa-footer-logo">Vibration of Awesome</div>
+      <div class="voa-footer-tagline">Empower Thyself. Empower the Earth.</div>
+    </div>
+    <nav class="voa-footer-nav" aria-label="Footer navigation">
+      <a href="/field-guide/">Field Guide</a>
+      <a href="/hubs/">Resources</a>
+      <a href="/blog/">Blog</a>
+      <a href="/art-store/" style="color:var(--cyan);opacity:0.75;">Art Store &#10022;</a>
+    </nav>
+  </footer>
+  <script>
+    (function () {
+      var el = document.getElementById('stars');
+      if (el) {
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < 50; i++) {
+          var star = document.createElement('div');
+          star.className = 'voa-star';
+          var size = Math.random() * 2.2 + 0.5;
+          star.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) + '%;--dur:' + (Math.random() * 4 + 2) + 's;--delay:' + (Math.random() * 5) + 's;--brightness:' + (Math.random() * 0.5 + 0.25) + ';';
+          frag.appendChild(star);
+        }
+        el.appendChild(frag);
+      }
+      function voaToggleNav() {
+        document.getElementById('voaNavLinks').classList.toggle('open');
+        document.getElementById('voaHamburger').classList.toggle('open');
+      }
+      window.voaToggleNav = voaToggleNav;
+
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced && 'IntersectionObserver' in window) {
+        var reveals = document.querySelectorAll('.voa-reveal');
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) { if (entry.isIntersecting) entry.target.classList.add('voa-visible'); });
+        }, { threshold: 0.12 });
+        reveals.forEach(function (r) { observer.observe(r); });
+      } else {
+        document.querySelectorAll('.voa-reveal').forEach(function (r) { r.classList.add('voa-visible'); });
+      }
+    })();
+  </script>
 </body>
 </html>

@@ -19,6 +19,8 @@
     "links:audit": "node scripts/internal-linking.js --audit --scope all",
     "links:apply": "node scripts/internal-linking.js --apply --scope all",
     "authority": "node scripts/generate-authority-engine.js",
+    "authority:links": "node scripts/check-authority-links.js",
+    "preview": "node scripts/preview-server.js",
     "sitemap": "node scripts/update-sitemap.js",
     "redirects": "node scripts/generate-legacy-redirects.js",
     "fb-token": "node scripts/get-facebook-token.js",
