@@ -16,7 +16,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { inferCluster, loadTopicClusters } from "./lib/internal-linking.js";
+import { inferCluster, keywordMatches, loadTopicClusters } from "./lib/internal-linking.js";
 import { absoluteVoaUrl, cleanPublicPath } from "./lib/clean-url.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -65,7 +65,15 @@ function normalizePost(post, lane, clusterData) {
 function matchesHub(post, hub) {
   if (hub.clusterKeys?.includes(post.cluster)) return true;
   const haystack = [post.title, post.slug, post.excerpt, ...(post.tags || [])].join(" ").toLowerCase();
-  return (hub.keywords || []).some(keyword => haystack.includes(String(keyword).toLowerCase()));
+  return (hub.keywords || []).some(keyword => keywordMatches(haystack, keyword));
+}
+
+// How many of the hub's own keywords a post's text actually contains ~ used
+// to pick the most representative "Start Here" post instead of just the
+// newest one, which is arbitrary rather than curated.
+function hubRelevanceScore(post, hub) {
+  const haystack = [post.title, post.slug, post.excerpt, ...(post.tags || [])].join(" ").toLowerCase();
+  return (hub.keywords || []).filter(keyword => keywordMatches(haystack, keyword)).length;
 }
 
 function sortPosts(posts) {
@@ -598,7 +606,13 @@ function renderHub(hub, posts, assets, hubsBySlug) {
   const relatedAssets = assets.filter(asset => asset.hub === hub.slug);
   const publishedAssets = relatedAssets.filter(a => a.status === "published");
   const upcomingAssets = relatedAssets.filter(a => a.status !== "published");
-  const [featuredPost, ...restPosts] = posts;
+  // "Start Here" should be the post that most clearly represents this hub's
+  // subject, not simply whichever published most recently ~ rank by keyword
+  // relevance first (stable sort keeps recency as the tiebreaker for equal
+  // scores, since `posts` arrives already sorted newest-first).
+  const rankedPosts = [...posts].sort((a, b) => hubRelevanceScore(b, hub) - hubRelevanceScore(a, hub));
+  const featuredPost = rankedPosts[0];
+  const restPosts = posts.filter(post => post.slug !== featuredPost?.slug);
   const subthemeGroups = groupBySubtheme(hub.slug, restPosts);
   const relatedHubSlugs = RELATED_HUBS[hub.slug] || [];
 

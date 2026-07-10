@@ -103,14 +103,40 @@ export function getMoneyTarget(post = {}, clusterKey = null, clusterData = loadT
   return MONEY_TARGETS.default;
 }
 
+export function keywordMatches(haystack, keyword) {
+  const kw = String(keyword).toLowerCase();
+  if (/\s/.test(kw)) return haystack.includes(kw);
+  const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`\\b${escaped}\\b`, "i").test(haystack);
+}
+
+// Several hubs deliberately share a clusterKey (e.g. both "creativity" and
+// "ai-creator-workflows" claim "ai-creator-tools"; both "adhd-focus" and
+// "dopamine-attention" claim "dopamine-attention") because a post can
+// genuinely belong to either depending on its actual content. Picking the
+// first array match ignored that and silently routed ~all AI-creator-tools
+// posts to Creativity and every dopamine/attention post to ADHD & Focus,
+// regardless of fit. Score instead: clusterKey membership is a small base
+// signal, real keyword evidence in the post's own text is the dominant
+// signal, and hub specialization (fewer clusterKeys = more specific hub)
+// only breaks ties when no keyword evidence exists either way.
+function scoreHubMatch(item, clusterKey, haystack) {
+  let score = 0;
+  if (clusterKey && item.clusterKeys?.includes(clusterKey)) score += 10;
+  const hits = (item.keywords || []).filter(keyword => keywordMatches(haystack, keyword));
+  score += hits.length * 25;
+  score += (10 - (item.clusterKeys?.length || 0)) * 0.5;
+  return score;
+}
+
 export function getAuthorityTargets(post = {}, clusterKey = null) {
   const hubData = loadAuthorityHubs();
   const assetData = loadAuthorityAssets();
   const haystack = [post.title, post.slug, post.excerpt, post.keyword, ...(post.tags || [])].filter(Boolean).join(" ").toLowerCase();
-  const hub = hubData.hubs.find(item => {
-    if (clusterKey && item.clusterKeys?.includes(clusterKey)) return true;
-    return (item.keywords || []).some(keyword => haystack.includes(String(keyword).toLowerCase()));
-  });
+  const hub = hubData.hubs
+    .map(item => ({ item, score: scoreHubMatch(item, clusterKey, haystack) }))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)[0]?.item || null;
   const asset = assetData.assets.find(item => {
     if (!["published", "ready"].includes(item.status)) return false;
     return hub?.slug && item.hub === hub.slug;
@@ -176,12 +202,28 @@ function linkExists(html, url) {
   return html.includes(`href="${url}"`) || html.includes(`href="${full}"`);
 }
 
+// Contextual "Related reading" heading ~ what it's actually offering decides
+// the wording, instead of one repeated generic label for every post.
+const EMOTIONAL_CLUSTERS = new Set([
+  "nervous-system-creativity", "emotional-regulation", "dopamine-attention",
+  "building-life-that-fits", "authentic-self-expression", "spiritual-productivity",
+  "purpose-direction",
+]);
+
+function relatedHeading(clusterKey, authority) {
+  if (authority.asset) return "Try This Reflection";
+  if (clusterKey && EMOTIONAL_CLUSTERS.has(clusterKey)) return "If This Resonated...";
+  if (authority.hub) return "Go Deeper";
+  return "Continue Exploring";
+}
+
 function buildRelatedBlock(source, related, clusterKey, clusterData) {
   const money = getMoneyTarget(source, clusterKey, clusterData);
   const authority = getAuthorityTargets(source, clusterKey);
+  const heading = relatedHeading(clusterKey, authority);
   const lines = [
-    `        <section ${RELATED_MARKER} data-cluster="${clusterKey || "unassigned"}" aria-label="Related reading">`,
-    "          <h2>Related reading</h2>",
+    `        <section ${RELATED_MARKER} data-cluster="${clusterKey || "unassigned"}" aria-label="${escapeHtml(heading)}">`,
+    `          <h2>${escapeHtml(heading)}</h2>`,
     "          <ul>",
     ...related.map(item => `            <li><a href="${item.url}">${escapeHtml(item.title)}</a></li>`),
   ];
@@ -273,9 +315,10 @@ export function backlinkOlderPosts(newPost, relatedPosts, { postsDir }) {
       );
       if (withNewLi !== html) patched = withNewLi;
     } else {
+      const heading = rel.cluster && EMOTIONAL_CLUSTERS.has(rel.cluster) ? "If This Resonated..." : "Continue Exploring";
       const block = [
-        `        <section ${RELATED_MARKER} data-cluster="${rel.cluster || "unassigned"}" aria-label="Related reading">`,
-        "          <h2>Related reading</h2>",
+        `        <section ${RELATED_MARKER} data-cluster="${rel.cluster || "unassigned"}" aria-label="${escapeHtml(heading)}">`,
+        `          <h2>${escapeHtml(heading)}</h2>`,
         "          <ul>",
         newLi,
         "          </ul>",
