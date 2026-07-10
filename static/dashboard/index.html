@@ -2199,7 +2199,10 @@ function renderSeoKeywords(seoData) {
   const results = seoData?.topOpportunities || [];
 
   if (!results.length) {
-    el.innerHTML = `<div class="empty-state">No SEO opportunities yet. Run <code>npm run seo:intelligence</code> after Search Console and GA4 credentials are configured.</div>`;
+    const bothConnected = seoData?.status?.gsc?.ok && seoData?.status?.ga?.ok;
+    el.innerHTML = bothConnected
+      ? `<div class="empty-state">Search Console and GA4 are connected, but traffic is still too early-stage for opportunities to clear the reporting thresholds. Awaiting more data.</div>`
+      : `<div class="empty-state">No SEO opportunities yet. Run <code>npm run seo:intelligence</code> after Search Console and GA4 credentials are configured.</div>`;
     countEl.textContent = "~";
     return;
   }

@@ -493,8 +493,13 @@ function buildReport(payload) {
 
   lines.push("## Top Five Prioritized Actions");
   lines.push("");
-  if (opportunities.topActions.length) opportunities.topActions.forEach((a, i) => lines.push(`${i + 1}. ${a}`));
-  else lines.push("1. Connect Search Console and GA4 credentials, then rerun the report.");
+  if (opportunities.topActions.length) {
+    opportunities.topActions.forEach((a, i) => lines.push(`${i + 1}. ${a}`));
+  } else if (status.gsc.ok && status.ga.ok) {
+    lines.push("1. Search Console and GA4 are connected, but no rows yet cross the opportunity thresholds ~ traffic is still very early-stage. Rerun after more data accumulates.");
+  } else {
+    lines.push("1. Connect Search Console and GA4 credentials, then rerun the report.");
+  }
   lines.push("");
 
   lines.push("## Existing Operational Context");
