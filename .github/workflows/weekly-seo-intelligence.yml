@@ -79,7 +79,11 @@ jobs:
           git add reports/ scripts/syndication_log.txt static/_data/seo-intelligence.json || true
           git diff --staged --quiet \
             || git commit -m "Weekly SEO intelligence report [automated]"
-          git push
+          for attempt in 1 2 3; do
+            git push && break
+            echo "Push rejected (attempt $attempt) ~ another workflow likely landed a commit while this run was queued. Rebasing onto origin/main and retrying."
+            git pull --rebase origin main
+          done
 
       - name: Fail if the check itself failed
         if: steps.seo.outputs.status != '0'
