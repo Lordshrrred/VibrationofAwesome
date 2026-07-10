@@ -17,6 +17,12 @@
 <meta name="robots" content="index, follow">
 <meta name="facebook-domain-verification" content="ownhqsod3yr3yr7usw7q95ppctbmog" />
 <meta name="theme-color" content="#00e5cc">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 {{ $socialImage := "https://vibrationofawesome.com/images/StarLogo.png" }}
 {{ $socialImageWidth := "1072" }}
 {{ $socialImageHeight := "960" }}
@@ -71,9 +77,63 @@
 <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 <meta name="twitter:image" content="{{ $socialImage }}">
 <!-- Structured Data -->
-{{ if .IsHome }}<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"Vibration of Awesome","url":"https://vibrationofawesome.com","description":"{{ .Site.Params.description }}","author":{"@type":"Person","name":"Matt EarthStar","url":"https://vibrationofawesome.com"}}
-</script>{{ end }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vibrationofawesome.com/#organization",
+      "name": "Vibration of Awesome",
+      "url": "https://vibrationofawesome.com/",
+      "logo": "https://vibrationofawesome.com/images/StarLogo.png",
+      "sameAs": [
+        "https://bsky.app/profile/vibrationofawesome.com",
+        "https://vibrationofawesome.tumblr.com"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://vibrationofawesome.com/#matt-earthstar",
+      "name": "Matt EarthStar",
+      "alternateName": "Matty BoomBoom",
+      "url": "https://vibrationofawesome.com/",
+      "affiliation": { "@id": "https://vibrationofawesome.com/#organization" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vibrationofawesome.com/#website",
+      "name": "Vibration of Awesome",
+      "url": "https://vibrationofawesome.com/",
+      "description": "{{ .Site.Params.description }}",
+      "publisher": { "@id": "https://vibrationofawesome.com/#organization" },
+      "author": { "@id": "https://vibrationofawesome.com/#matt-earthstar" }
+    }
+  ]
+}
+</script>
+{{ if not .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://vibrationofawesome.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ .Title }}",
+      "item": "{{ .Permalink }}"
+    }
+  ]
+}
+</script>
+{{ end }}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Rajdhani:wght@300;400;500&display=swap" rel="stylesheet">

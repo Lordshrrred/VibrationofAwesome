@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Authority asset backlog and publishing workflow for VOA-specific tools, assessments, planners, worksheets, journals, glossaries, protocol libraries, timers, and downloadable resources.",
+    "lastUpdated": "2026-07-10",
+    "workflow": [
+      "proposed",
+      "researched",
+      "approved",
+      "in development",
+      "validating",
+      "ready",
+      "published",
+      "syndicated",
+      "measuring",
+      "update required"
+    ]
+  },
+  "assets": [
+    {
+      "slug": "digital-attention-audit",
+      "title": "Digital Attention Audit",
+      "type": "assessment",
+      "status": "published",
+      "canonical": "/tools/digital-attention-audit/",
+      "hub": "dopamine-attention",
+      "description": "A reflection tool for noticing where digital inputs are draining focus, self-trust, and creative energy. Not a clinical assessment.",
+      "syndicationStrategy": "tease-and-link",
+      "clinicalDisclaimer": "This is an educational reflection tool, not a medical, psychological, or diagnostic instrument."
+    },
+    {
+      "slug": "nervous-system-regulation-hub",
+      "title": "Nervous System Regulation Hub",
+      "type": "reference",
+      "status": "published",
+      "canonical": "/hubs/nervous-system-regulation/",
+      "hub": "nervous-system-regulation",
+      "description": "A pillar hub for regulation resources, related posts, and future protocols.",
+      "syndicationStrategy": "summarize-and-link"
+    },
+    {
+      "slug": "adhd-focus-session-planner",
+      "title": "ADHD Focus Session Planner",
+      "type": "planner",
+      "status": "approved",
+      "canonical": "/tools/adhd-focus-session-planner/",
+      "hub": "adhd-focus",
+      "description": "A short-session planning tool for scattered creative work.",
+      "syndicationStrategy": "tease-and-link"
+    },
+    {
+      "slug": "meditation-breathwork-timer",
+      "title": "Meditation / Breathwork Timer",
+      "type": "timer",
+      "status": "approved",
+      "canonical": "/tools/meditation-breathwork-timer/",
+      "hub": "meditation",
+      "description": "A simple, accessible timer for grounded breathing and meditation protocols.",
+      "syndicationStrategy": "tease-and-link"
+    },
+    {
+      "slug": "voa-core-concepts-glossary",
+      "title": "Vibration of Awesome Core Concepts Glossary",
+      "type": "glossary",
+      "status": "approved",
+      "canonical": "/glossary/",
+      "hub": "voa-concepts",
+      "description": "Definitions and internal links for the language of the VOA ecosystem.",
+      "syndicationStrategy": "summarize-and-link"
+    },
+    {
+      "slug": "personal-values-sorter",
+      "title": "Personal Values Sorter",
+      "type": "assessment",
+      "status": "proposed",
+      "canonical": "/tools/personal-values-sorter/",
+      "hub": "purpose",
+      "description": "A sorting exercise for distinguishing inherited values from lived values.",
+      "syndicationStrategy": "tease-and-link"
+    },
+    {
+      "slug": "weekly-life-review",
+      "title": "Weekly Life Review",
+      "type": "journal",
+      "status": "proposed",
+      "canonical": "/tools/weekly-life-review/",
+      "hub": "personal-growth",
+      "description": "A weekly reflection flow for noticing alignment, avoidance, and one honest next move.",
+      "syndicationStrategy": "tease-and-link"
+    },
+    {
+      "slug": "digital-detox-planner",
+      "title": "Digital Detox Planner",
+      "type": "planner",
+      "status": "proposed",
+      "canonical": "/tools/digital-detox-planner/",
+      "hub": "dopamine-attention",
+      "description": "A practical reset planner for reducing digital noise without purity-culture extremes.",
+      "syndicationStrategy": "tease-and-link"
+    },
+    {
+      "slug": "creative-energy-assessment",
+      "title": "Creative Energy Assessment",
+      "type": "assessment",
+      "status": "proposed",
+      "canonical": "/tools/creative-energy-assessment/",
+      "hub": "creativity",
+      "description": "A reflection tool for creative bandwidth, friction, and signal strength.",
+      "syndicationStrategy": "tease-and-link"
+    },
+    {
+      "slug": "breathwork-protocol-library",
+      "title": "Breathwork Protocol Library",
+      "type": "protocol-library",
+      "status": "proposed",
+      "canonical": "/tools/breathwork-protocol-library/",
+      "hub": "meditation",
+      "description": "A reference library for simple breathwork protocols with safety notes and use cases.",
+      "syndicationStrategy": "summarize-and-link"
+    }
+  ]
+}

@@ -327,6 +327,12 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push('  <link rel="canonical" href="' + postUrl + '">');
   H.push('  <meta name="robots" content="index, follow">');
   H.push('  <meta name="theme-color" content="' + accent + '">');
+  H.push('  <link rel="icon" href="/favicon.ico" sizes="any">');
+  H.push('  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">');
+  H.push('  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">');
+  H.push('  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">');
+  H.push('  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">');
+  H.push('  <link rel="manifest" href="/site.webmanifest">');
   if (heroImageUrl) {
     H.push('  <link rel="preload" as="image" fetchpriority="high" href="' + heroImageUrl + '">');
   }
@@ -349,7 +355,10 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   // @type is an array so this satisfies both BlogPosting and the more generic
   // Article schema.org type in one block ~ BlogPosting is technically an
   // Article subtype already, but this makes it explicit rather than implicit.
-  H.push('  {"@context":"https://schema.org","@type":["BlogPosting","Article"],"headline":"' + title.replace(/"/g, '\\"') + '","description":"' + metaContent.replace(/"/g, '\\"') + '","url":"' + postUrl + '","datePublished":"' + datePublished + '","author":{"@type":"Person","name":"' + authorName + '","url":"https://vibrationofawesome.com"},"publisher":{"@type":"Organization","name":"Vibration of Awesome","url":"https://vibrationofawesome.com"},"image":"' + socialImageUrl + '","mainEntityOfPage":{"@type":"WebPage","@id":"' + postUrl + '"}}');
+  H.push('  {"@context":"https://schema.org","@type":["BlogPosting","Article"],"headline":"' + title.replace(/"/g, '\\"') + '","description":"' + metaContent.replace(/"/g, '\\"') + '","url":"' + postUrl + '","datePublished":"' + datePublished + '","dateModified":"' + datePublished + '","articleSection":"' + laneName.replace(/"/g, '\\"') + '","author":{"@type":"Person","@id":"https://vibrationofawesome.com/#matt-earthstar","name":"' + authorName + '","url":"https://vibrationofawesome.com"},"publisher":{"@type":"Organization","@id":"https://vibrationofawesome.com/#organization","name":"Vibration of Awesome","url":"https://vibrationofawesome.com","logo":"https://vibrationofawesome.com/images/StarLogo.png"},"image":"' + socialImageUrl + '","mainEntityOfPage":{"@type":"WebPage","@id":"' + postUrl + '"}}');
+  H.push("  </script>");
+  H.push('  <script type="application/ld+json">');
+  H.push('  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vibrationofawesome.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://vibrationofawesome.com/blog/"},{"@type":"ListItem","position":3,"name":"' + laneName.replace(/"/g, '\\"') + '","item":"https://vibrationofawesome.com/blog/' + lane + '/"},{"@type":"ListItem","position":4,"name":"' + title.replace(/"/g, '\\"') + '","item":"' + postUrl + '"}]}');
   H.push("  </script>");
   for (const schema of extraSchemas) {
     H.push('  <script type="application/ld+json">');

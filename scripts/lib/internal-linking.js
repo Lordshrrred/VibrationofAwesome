@@ -6,6 +6,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "../..");
 const CLUSTERS_FILE = path.join(ROOT, "static", "_data", "topic-clusters.json");
+const HUBS_FILE = path.join(ROOT, "static", "_data", "authority-hubs.json");
+const ASSETS_FILE = path.join(ROOT, "static", "_data", "authority-assets.json");
 
 const RELATED_MARKER = "data-internal-related";
 
@@ -49,6 +51,34 @@ export function loadTopicClusters() {
   }
 }
 
+export function loadAuthorityHubs() {
+  try {
+    const data = JSON.parse(fs.readFileSync(HUBS_FILE, "utf8"));
+    const hubs = Array.isArray(data.hubs) ? data.hubs : [];
+    return {
+      ...data,
+      hubs,
+      bySlug: Object.fromEntries(hubs.map(hub => [hub.slug, hub])),
+    };
+  } catch (_) {
+    return { hubs: [], bySlug: {} };
+  }
+}
+
+export function loadAuthorityAssets() {
+  try {
+    const data = JSON.parse(fs.readFileSync(ASSETS_FILE, "utf8"));
+    const assets = Array.isArray(data.assets) ? data.assets : [];
+    return {
+      ...data,
+      assets,
+      bySlug: Object.fromEntries(assets.map(asset => [asset.slug, asset])),
+    };
+  } catch (_) {
+    return { assets: [], bySlug: {} };
+  }
+}
+
 export function inferCluster(post = {}, clusterData = loadTopicClusters()) {
   if (post.cluster && clusterData.byKey[post.cluster]) return post.cluster;
 
@@ -70,6 +100,25 @@ export function getMoneyTarget(post = {}, clusterKey = null, clusterData = loadT
   if (clusterKey && MONEY_TARGETS[clusterKey]) return MONEY_TARGETS[clusterKey];
   if (cluster?.contentType && MONEY_TARGETS[cluster.contentType]) return MONEY_TARGETS[cluster.contentType];
   return MONEY_TARGETS.default;
+}
+
+export function getAuthorityTargets(post = {}, clusterKey = null) {
+  const hubData = loadAuthorityHubs();
+  const assetData = loadAuthorityAssets();
+  const haystack = [post.title, post.slug, post.excerpt, post.keyword, ...(post.tags || [])].filter(Boolean).join(" ").toLowerCase();
+  const hub = hubData.hubs.find(item => {
+    if (clusterKey && item.clusterKeys?.includes(clusterKey)) return true;
+    return (item.keywords || []).some(keyword => haystack.includes(String(keyword).toLowerCase()));
+  });
+  const asset = assetData.assets.find(item => {
+    if (!["published", "ready"].includes(item.status)) return false;
+    return hub?.slug && item.hub === hub.slug;
+  });
+
+  return {
+    hub: hub ? { url: `/hubs/${hub.slug}/`, label: `${hub.title} hub` } : null,
+    asset: asset ? { url: asset.canonical, label: asset.title } : null,
+  };
 }
 
 function wordSet(value) {
@@ -128,6 +177,7 @@ function linkExists(html, url) {
 
 function buildRelatedBlock(source, related, clusterKey, clusterData) {
   const money = getMoneyTarget(source, clusterKey, clusterData);
+  const authority = getAuthorityTargets(source, clusterKey);
   const lines = [
     `        <section ${RELATED_MARKER} data-cluster="${clusterKey || "unassigned"}" aria-label="Related reading">`,
     "          <h2>Related reading</h2>",
@@ -136,6 +186,12 @@ function buildRelatedBlock(source, related, clusterKey, clusterData) {
   ];
   if (money && !related.some(item => item.url === money.url)) {
     lines.push(`            <li><a href="${money.url}">${escapeHtml(money.label)}</a></li>`);
+  }
+  if (authority.hub && !linkExists(lines.join("\n"), authority.hub.url)) {
+    lines.push(`            <li><a href="${authority.hub.url}">${escapeHtml(authority.hub.label)}</a></li>`);
+  }
+  if (authority.asset && !linkExists(lines.join("\n"), authority.asset.url)) {
+    lines.push(`            <li><a href="${authority.asset.url}">${escapeHtml(authority.asset.label)}</a></li>`);
   }
   lines.push("          </ul>");
   lines.push("        </section>");

@@ -18,6 +18,7 @@
     "research:niches": "node scripts/seo-research.js --all-niches",
     "links:audit": "node scripts/internal-linking.js --audit --scope all",
     "links:apply": "node scripts/internal-linking.js --apply --scope all",
+    "authority": "node scripts/generate-authority-engine.js",
     "sitemap": "node scripts/update-sitemap.js",
     "redirects": "node scripts/generate-legacy-redirects.js",
     "fb-token": "node scripts/get-facebook-token.js",
@@ -50,6 +51,8 @@
     "backfill:backlinks:run": "node scripts/backfill-backlinks.js --execute",
     "backfill:feeder": "node scripts/backfill-feeder.js",
     "backfill:feeder:run": "node scripts/backfill-feeder.js --execute",
+    "backfill:authority-metadata": "node scripts/backfill-authority-metadata.js",
+    "backfill:authority-metadata:run": "node scripts/backfill-authority-metadata.js --execute",
     "serp-check": "node scripts/serp_intelligence.js"
   },
   "dependencies": {
