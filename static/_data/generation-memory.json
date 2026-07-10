@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-10T04:57:17.765Z",
+  "lastUpdated": "2026-07-10T15:36:14.403Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-write-ai-prompts-that-actually-work-for-creators",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-10T15:36:00.732Z"
+    },
+    {
       "slug": "why-buying-art-from-independent-artists-actually-matters",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,18 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-07-09T04:56:09.735Z"
-    },
-    {
-      "slug": "what-to-do-before-you-buy-the-ai-advantage-bootcamp",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-09T04:55:50.982Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-write-ai-prompts-that-actually-work-for-creators",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-07-10T15:36:14.403Z"
+    },
     {
       "slug": "how-to-clone-your-voice-with-elevenlabs-and-heygen",
       "archetype": "sacred-tech",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "stillness",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-15T23:48:45.426Z"
-    },
-    {
-      "slug": "how-to-make-faceless-videos-with-pictory-ai",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-15T18:01:25.936Z"
     }
   ]
 }
