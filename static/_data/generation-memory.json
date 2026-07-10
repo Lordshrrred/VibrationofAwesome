@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-10T20:22:16.826Z",
+  "lastUpdated": "2026-07-10T23:01:12.270Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-repurpose-messy-notes-into-linkedin-posts",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-10T23:00:58.244Z"
+    },
+    {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,18 +1156,18 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-07-09T23:18:05.279Z"
-    },
-    {
-      "slug": "how-to-clone-your-voice-with-elevenlabs-and-heygen",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-09T23:15:05.210Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-repurpose-messy-notes-into-linkedin-posts",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-07-10T23:01:12.270Z"
+    },
     {
       "slug": "how-to-write-ai-prompts-that-actually-work-for-creators",
       "archetype": "premium-quote-card",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "regulation",
       "emotionalCluster": "somatic",
       "timestamp": "2026-06-16T18:10:01.908Z"
-    },
-    {
-      "slug": "how-to-stop-ai-hallucinations-in-content-creation",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-15T23:48:45.426Z"
     }
   ]
 }
