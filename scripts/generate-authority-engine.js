@@ -184,6 +184,7 @@ const ICONS = {
 const TYPE_LABELS = {
   assessment: "Assessment", planner: "Planner", timer: "Timer", glossary: "Glossary",
   journal: "Journal", "protocol-library": "Protocol Library", reference: "Reference", guide: "Guide",
+  ritual: "Ritual",
 };
 
 // ── Shared page chrome ───────────────────────────────────────────────────────
@@ -1590,6 +1591,506 @@ ${stage4}
   });
 }
 
+// ── Nervous System Reset ──────────────────────────────────────────────────────
+//
+// A short grounding ritual, not a medical assessment. Five small decisions
+// (energy, body location, need, time, environment) deterministically pick a
+// short reset sequence from a fixed practice library and render a "Reset
+// Mandala" ~ a concentric radial artifact built from the same five choices
+// (ring count from duration, petals per ring from body location, rotation
+// from energy type, color from mode). Deliberately not the Focus Star
+// constellation again ~ different geometry, different payoff.
+
+function renderNervousSystemReset() {
+  const title = "Nervous System Reset";
+  const description = "A short grounding ritual for whatever your nervous system is doing right now ~ five small decisions, then a personalized reset sequence and a Reset Mandala built from your own answers.";
+  const canonical = "/tools/nervous-system-reset/";
+
+  const ENERGY = [
+    { id: "wired", label: "Wired", detail: "Buzzing, can't settle, mind racing." },
+    { id: "foggy", label: "Foggy", detail: "Slow, unclear, hard to think straight." },
+    { id: "heavy", label: "Heavy", detail: "Weighted down, low, hard to move." },
+    { id: "scattered", label: "Scattered", detail: "Pulled in six directions at once." },
+    { id: "tight", label: "Tight", detail: "Clenched, braced, on guard." },
+    { id: "numb", label: "Numb", detail: "Flat, far away, hard to feel anything." },
+  ];
+  const LOCATIONS = [
+    { id: "chest", label: "Chest", detail: "Tightness or fluttering right in the center." },
+    { id: "stomach", label: "Stomach", detail: "The knot, the drop, the unsettled feeling." },
+    { id: "shoulders", label: "Shoulders & Neck", detail: "Carried tension, up around the ears." },
+    { id: "head", label: "Head", detail: "Pressure, noise, a mind that won't quiet." },
+    { id: "whole-body", label: "Whole Body", detail: "It's everywhere, not one clear spot." },
+    { id: "hard-to-say", label: "Hard to Say", detail: "You just know something's off." },
+  ];
+  const MODES = [
+    { id: "calming", label: "Calming", detail: "Slow the system down.", accent: "cyan" },
+    { id: "activation", label: "Activation", detail: "Gently wake energy up.", accent: "amber" },
+    { id: "grounding", label: "Grounding", detail: "Come back into your body.", accent: "violet" },
+    { id: "release", label: "Release", detail: "Let go of what's held.", accent: "moss" },
+  ];
+  const DURATIONS = [
+    { id: "2", label: "2 minutes", minutes: 2, steps: 1 },
+    { id: "5", label: "5 minutes", minutes: 5, steps: 2 },
+    { id: "10", label: "10 minutes", minutes: 10, steps: 3 },
+    { id: "20", label: "20 minutes", minutes: 20, steps: 4 },
+  ];
+  const ENVIRONMENTS = [
+    { id: "quiet", label: "Somewhere Quiet" },
+    { id: "movement", label: "Somewhere I Can Move" },
+    { id: "private", label: "Somewhere Private" },
+    { id: "anywhere", label: "Wherever I Am Right Now" },
+  ];
+
+  const REFLECTIONS = {
+    calming: "You don't have to fix this. You just have to slow it down.",
+    activation: "You're allowed to meet low energy with real movement, not more pressure.",
+    grounding: "You are here, in this body, right now. That's enough to start from.",
+    release: "Whatever you're carrying, you're allowed to put some of it down.",
+  };
+  const NEXT_RESOURCE = {
+    calming: { url: "/hubs/nervous-system-regulation/", label: "Nervous System Regulation Hub" },
+    activation: { url: "/tools/adhd-focus-session-planner/", label: "ADHD Focus Session Planner" },
+    grounding: { url: "/hubs/meditation/", label: "Meditation Hub" },
+    release: { url: "/hubs/personal-growth/", label: "Personal Growth Hub" },
+  };
+
+  const stageIndex = (stage, i) => `${stage}-${i}`;
+
+  function optionStage(stageNum, question, note, options, field) {
+    return `<fieldset class="nsr-stage" data-nsr-stage="${stageNum}" data-nsr-field="${field}" hidden>
+        <legend class="nsr-stage-label accent-cyan">Step ${stageNum} of 5</legend>
+        <p class="nsr-question">${escapeHtml(question)}</p>
+        ${note ? `<p class="nsr-note">${escapeHtml(note)}</p>` : ""}
+        <div class="nsr-options" role="radiogroup" aria-label="${escapeHtml(question)}">
+          ${options.map((opt, i) => `<label class="nsr-option" data-seed="${stageIndex(stageNum, i)}">
+            <input type="radio" name="${field}" value="${opt.id}">
+            <span class="nsr-option-label">${escapeHtml(opt.label)}</span>
+            <span class="nsr-option-detail">${escapeHtml(opt.detail)}</span>
+          </label>`).join("\n          ")}
+        </div>
+      </fieldset>`;
+  }
+
+  const stage1 = optionStage(1, "What does your energy feel like right now?", null, ENERGY, "energy");
+  const stage2 = optionStage(2, "Where do you feel it in your body?", null, LOCATIONS, "location");
+  const stage3 = optionStage(3, "What do you need right now?", "There's no wrong answer ~ just what feels true.", MODES, "mode");
+  const stage4 = optionStage(4, "How much time do you have?", null, DURATIONS, "duration");
+  const stage5 = optionStage(5, "Choose your environment.", null, ENVIRONMENTS, "environment");
+
+  const body = `    <section class="voa-hero voa-reveal">
+      <div class="voa-hero-bg" style="--hero-glow: rgba(0,229,204,0.16);"></div>
+      <div class="voa-hero-icon accent-cyan">${ICONS.rings}</div>
+      <div class="voa-hero-inner">
+        <div class="voa-eyebrow accent-cyan">A Grounding Ritual</div>
+        <h1 class="voa-h1">Nervous System Reset</h1>
+        <p class="voa-hero-desc">${escapeHtml(description)}</p>
+        <p class="voa-hero-quote">This is a reflective ritual, not a medical or clinical tool. It does not diagnose anxiety, trauma, or any other condition ~ it's a small, honest way to come back to yourself.</p>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal" aria-label="Nervous System Reset">
+      <div class="nsr-shell">
+        <canvas id="nsr-mandala-preview" class="nsr-mandala-preview" aria-hidden="true"></canvas>
+
+        <div id="nsr-welcome" class="voa-featured border-cyan">
+          <div>
+            <div class="voa-featured-label accent-cyan">Before You Begin</div>
+            <h3>Five small decisions, then a reset built for you</h3>
+            <p>Answer honestly, based on how you feel right this minute. At the end you'll get a short sequence to actually do, plus a Reset Mandala built from your own answers ~ yours to keep, copy, or print. Nothing is saved, tracked, or sent anywhere.</p>
+            <button class="voa-btn voa-btn-primary" id="nsr-start" type="button">Begin the Reset</button>
+          </div>
+        </div>
+
+        <form id="nsr-form" class="nsr-form" hidden>
+          <div class="nsr-progress" aria-hidden="true"><div class="nsr-progress-bar" id="nsr-progress-bar" style="width:0%"></div></div>
+${stage1}
+${stage2}
+${stage3}
+${stage4}
+${stage5}
+          <div class="nsr-nav">
+            <button class="voa-btn voa-btn-secondary" id="nsr-back" type="button">Back</button>
+            <button class="voa-btn voa-btn-primary" id="nsr-next" type="button">Continue</button>
+          </div>
+        </form>
+
+        <div id="nsr-result-wrap" class="nsr-result-wrap" hidden>
+          <div class="nsr-result-grid">
+            <div class="nsr-mandala-card" id="nsr-mandala-card">
+              <div class="nsr-mandala-eyebrow">Your Reset Mandala</div>
+              <div class="nsr-mandala-art" id="nsr-mandala-art"></div>
+            </div>
+            <div class="nsr-sequence-card">
+              <div class="nsr-card-eyebrow">Current State</div>
+              <p class="nsr-card-value" id="nsr-current-state"></p>
+              <div class="nsr-card-eyebrow">Selected Reset Mode</div>
+              <p class="nsr-card-value" id="nsr-mode-value"></p>
+              <div class="nsr-card-eyebrow">Your Sequence</div>
+              <ol class="nsr-sequence-list" id="nsr-sequence-list"></ol>
+              <div class="nsr-card-eyebrow">Duration</div>
+              <p class="nsr-card-value" id="nsr-duration-value"></p>
+              <p class="nsr-reflection" id="nsr-reflection"></p>
+              <a class="nsr-next-link" id="nsr-next-link" href="/hubs/nervous-system-regulation/">Continue into the Nervous System Regulation Hub</a>
+            </div>
+          </div>
+          <div class="nsr-card-actions">
+            <button class="voa-btn voa-btn-primary" id="nsr-copy" type="button">Copy Reset Card</button>
+            <button class="voa-btn voa-btn-secondary" id="nsr-print" type="button">Print Reset Card</button>
+            <button class="voa-btn voa-btn-secondary" id="nsr-restart" type="button">Start Another Reset</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal">
+      <div class="voa-section-head"><h2 class="voa-h2">Related Pathways</h2></div>
+      <div class="voa-pathways">
+        <a class="voa-pathway border-cyan" href="/hubs/nervous-system-regulation/">
+          <span class="voa-pathway-icon accent-cyan">${ICONS.rings}</span>
+          <span class="voa-pathway-text">Nervous System Regulation Hub</span>
+        </a>
+        <a class="voa-pathway border-violet" href="/hubs/meditation/">
+          <span class="voa-pathway-icon accent-violet">${ICONS.lotus}</span>
+          <span class="voa-pathway-text">Meditation Hub</span>
+        </a>
+        <a class="voa-pathway border-amber" href="/tools/adhd-focus-session-planner/">
+          <span class="voa-pathway-icon accent-amber">${ICONS.compass}</span>
+          <span class="voa-pathway-text">ADHD Focus Session Planner</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="voa-continue voa-reveal">
+      <p>Ready to go deeper on the same subject?</p>
+      <div class="voa-continue-cta">
+        <a class="voa-btn voa-btn-primary" href="/hubs/nervous-system-regulation/">Explore Nervous System Regulation</a>
+        <a class="voa-btn voa-btn-secondary" href="/tools/">Browse the Tools Library</a>
+      </div>
+    </section>`;
+
+  const extraStyle = `
+    .nsr-shell { position: relative; max-width: 720px; margin: 0 auto; }
+    .nsr-mandala-preview { position: absolute; inset: -3rem -1rem auto -1rem; height: 180px; width: calc(100% + 2rem); pointer-events: none; opacity: 0.85; }
+    .nsr-progress { height: 4px; background: rgba(255,255,255,0.08); margin-bottom: 2.2rem; border-radius: 2px; overflow: hidden; }
+    .nsr-progress-bar { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--violet)); transition: width 0.4s ease; }
+    .nsr-stage { border: none; padding: 0; margin: 0 0 1.5rem; }
+    .nsr-stage-label { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; padding: 0; }
+    .nsr-question { font-family: 'Cinzel', serif; font-size: clamp(1.25rem, 2.8vw, 1.7rem); line-height: 1.4; color: var(--cream); margin: 0 0 0.6rem; }
+    .nsr-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--muted); margin: 0 0 1.4rem; }
+    .nsr-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    .nsr-option { display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--line); padding: 1.1rem 1.2rem; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s; position: relative; }
+    .nsr-option:hover { transform: translateY(-2px); border-color: rgba(0,229,204,0.4); }
+    .nsr-option:has(input:checked) { border-color: var(--cyan); background: rgba(0,229,204,0.08); box-shadow: 0 0 24px rgba(0,229,204,0.18); }
+    .nsr-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .nsr-option input:focus-visible ~ .nsr-option-label { outline: 2px solid var(--cyan); outline-offset: 3px; }
+    .nsr-option-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; color: var(--cream); }
+    .nsr-option-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .nsr-nav { display: flex; justify-content: space-between; margin-top: 1rem; }
+
+    .nsr-result-wrap { padding: 1rem 0; }
+    .nsr-result-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: start; }
+    .nsr-mandala-card { border: 1px solid rgba(0,229,204,0.35); background: radial-gradient(circle, rgba(0,229,204,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
+    .nsr-mandala-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan-light); margin-bottom: 1rem; }
+    .nsr-mandala-art { width: 100%; aspect-ratio: 1; }
+    .nsr-mandala-art svg { width: 100%; height: 100%; }
+    .nsr-sequence-card { border: 1px solid var(--line); background: var(--panel); padding: 1.5rem; }
+    .nsr-card-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan-light); margin: 1rem 0 0.4rem; }
+    .nsr-card-eyebrow:first-child { margin-top: 0; }
+    .nsr-card-value { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--cream); margin: 0; }
+    .nsr-sequence-list { margin: 0; padding-left: 1.2rem; color: var(--cream); font-size: 0.95rem; line-height: 1.7; }
+    .nsr-sequence-list li { margin-bottom: 0.4rem; }
+    .nsr-reflection { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: rgba(232,255,249,0.85); border-top: 1px solid var(--line); padding-top: 1.2rem; margin-top: 1.2rem; }
+    .nsr-next-link { display: inline-block; margin-top: 1rem; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cyan); }
+    .nsr-card-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; }
+
+    @media (max-width: 700px) {
+      .nsr-options { grid-template-columns: 1fr; }
+      .nsr-result-grid { grid-template-columns: 1fr; }
+      .nsr-mandala-preview { height: 120px; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      .nsr-sequence-card, .nsr-sequence-card * { visibility: visible; }
+      .nsr-sequence-card { position: absolute; top: 0; left: 0; width: 100%; border: none; background: white; color: black; }
+      .nsr-card-value, .nsr-card-eyebrow, .nsr-sequence-list, .nsr-reflection { color: black !important; }
+    }
+  `;
+
+  const scriptBlock = `<script>
+    (function () {
+      var ENERGY = ${JSON.stringify(ENERGY)};
+      var LOCATIONS = ${JSON.stringify(LOCATIONS)};
+      var MODES = ${JSON.stringify(MODES)};
+      var DURATIONS = ${JSON.stringify(DURATIONS)};
+      var ENVIRONMENTS = ${JSON.stringify(ENVIRONMENTS)};
+      var REFLECTIONS = ${JSON.stringify(REFLECTIONS)};
+      var NEXT_RESOURCE = ${JSON.stringify(NEXT_RESOURCE)};
+
+      var STEP_LIBRARY = {
+        calming: [
+          { text: "Breathe out longer than you breathe in ~ in for 4, out for 7.", envs: "all" },
+          { text: "Rest one hand on your chest and one on your belly. Feel them rise and fall.", envs: "all" },
+          { text: "Soften your jaw, drop your shoulders, unclench your hands.", envs: "all" },
+          { text: "Hum low in your throat on the exhale, or let out one long sigh.", envs: ["private", "movement"] }
+        ],
+        activation: [
+          { text: "Roll your shoulders back and shake out your hands.", envs: "all" },
+          { text: "Stand up and stretch both arms toward the ceiling.", envs: ["movement", "private", "anywhere"] },
+          { text: "Splash cool water on your wrists, or press something cold to your skin.", envs: ["private", "anywhere"] },
+          { text: "Play one upbeat song and move for sixty seconds, however that looks for you.", envs: ["movement", "private"] }
+        ],
+        grounding: [
+          { text: "Name 5 things you can actually see around you right now.", envs: "all" },
+          { text: "Press your feet flat into the floor and notice the contact.", envs: "all" },
+          { text: "Hold something solid in your hands for 10 seconds. Notice its weight and texture.", envs: "all" },
+          { text: "Notice the temperature of the air on your skin.", envs: "all" }
+        ],
+        release: [
+          { text: "Clench your fists tight for 5 seconds, then let them go completely.", envs: "all" },
+          { text: "Shake out your whole body for 15 seconds, like you are shaking off water.", envs: ["movement", "private"] },
+          { text: "Sigh out loud, three times, longer and heavier each time.", envs: ["private", "movement"] },
+          { text: "Write one true sentence about how you actually feel right now.", envs: ["quiet", "private", "anywhere"] }
+        ]
+      };
+      var MODE_COLOR = { calming: "0,229,204", activation: "255,179,0", grounding: "167,139,250", release: "34,192,106" };
+
+      var STAGES = 5;
+      var current = 0;
+      var answers = {};
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var welcome = document.getElementById('nsr-welcome');
+      var form = document.getElementById('nsr-form');
+      var startBtn = document.getElementById('nsr-start');
+      var backBtn = document.getElementById('nsr-back');
+      var nextBtn = document.getElementById('nsr-next');
+      var progressBar = document.getElementById('nsr-progress-bar');
+      var resultWrap = document.getElementById('nsr-result-wrap');
+      var previewCanvas = document.getElementById('nsr-mandala-preview');
+
+      function trackEvent(name, params) {
+        var payload = Object.assign({ tool_id: 'nervous-system-reset' }, params || {});
+        if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+      }
+
+      function selectedIndexes() {
+        var idx = {};
+        ['energy', 'location', 'mode', 'duration', 'environment'].forEach(function (field, stageNum) {
+          var checked = form.querySelector('input[name="' + field + '"]:checked');
+          idx[field] = checked ? checked.closest('.nsr-option').getAttribute('data-seed') : null;
+        });
+        return idx;
+      }
+
+      // ── Reset Mandala (concentric radial rings, not a constellation) ──
+      function drawMandala(target, params, size) {
+        if (!target) return;
+        var w = size || target.clientWidth || 200, h = size || target.clientHeight || 200;
+        var ctx = target.getContext('2d');
+        var dpr = window.devicePixelRatio || 1;
+        target.width = w * dpr;
+        target.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+
+        var cx = w / 2, cy = h / 2;
+        var maxRadius = Math.min(w, h) / 2 - 16;
+        var color = MODE_COLOR[params.mode] || MODE_COLOR.calming;
+
+        for (var ring = 0; ring < params.rings; ring++) {
+          var radius = maxRadius * ((ring + 1) / params.rings);
+          var petals = params.petals + ring * 2;
+          var rotation = params.rotation + ring * (Math.PI / params.rings);
+          for (var p = 0; p < petals; p++) {
+            var angle = rotation + (p / petals) * Math.PI * 2;
+            var x = cx + Math.cos(angle) * radius;
+            var y = cy + Math.sin(angle) * radius;
+            var petalSize = 2.4 + (params.rings - ring) * 0.6;
+            var grad = ctx.createRadialGradient(x, y, 0, x, y, petalSize * 2.2);
+            grad.addColorStop(0, 'rgba(' + color + ',0.9)');
+            grad.addColorStop(1, 'rgba(' + color + ',0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(x, y, petalSize * 2.2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = 'rgba(255,255,255,0.9)';
+            ctx.beginPath();
+            ctx.arc(x, y, petalSize * 0.4, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.strokeStyle = 'rgba(' + color + ',0.25)';
+          ctx.lineWidth = 0.75;
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+
+      function mandalaParamsFromAnswers() {
+        var idx = selectedIndexes();
+        var durationIdx = idx.duration ? Number(idx.duration.split('-')[1]) : 0;
+        var locationIdx = idx.location ? Number(idx.location.split('-')[1]) : 0;
+        var energyIdx = idx.energy ? Number(idx.energy.split('-')[1]) : 0;
+        var modeChecked = form.querySelector('input[name="mode"]:checked');
+        return {
+          rings: durationIdx + 1,
+          petals: 5 + locationIdx,
+          rotation: energyIdx * (Math.PI * 2 / 6),
+          mode: modeChecked ? modeChecked.value : 'calming'
+        };
+      }
+
+      function updatePreview() {
+        if (form.hidden) return;
+        drawMandala(previewCanvas, mandalaParamsFromAnswers());
+      }
+      window.addEventListener('resize', updatePreview);
+
+      function showStage(i) {
+        document.querySelectorAll('.nsr-stage').forEach(function (el) {
+          el.hidden = Number(el.getAttribute('data-nsr-stage')) !== i + 1;
+        });
+        backBtn.style.visibility = i === 0 ? 'hidden' : 'visible';
+        nextBtn.textContent = i === STAGES - 1 ? 'Receive My Reset' : 'Continue';
+        progressBar.style.width = (((i + 1) / STAGES) * 100) + '%';
+        updatePreview();
+      }
+
+      startBtn.addEventListener('click', function () {
+        trackEvent('experience_start', {});
+        welcome.hidden = true;
+        form.hidden = false;
+        showStage(0);
+        form.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      backBtn.addEventListener('click', function () {
+        if (current > 0) { current -= 1; showStage(current); }
+      });
+
+      nextBtn.addEventListener('click', function () {
+        var fields = ['energy', 'location', 'mode', 'duration', 'environment'];
+        var stageEl = document.querySelector('.nsr-stage[data-nsr-stage="' + (current + 1) + '"]');
+        var checked = stageEl.querySelector('input:checked');
+        if (!checked) {
+          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
+          return;
+        }
+        updatePreview();
+        if (current < STAGES - 1) {
+          current += 1;
+          showStage(current);
+        } else {
+          finish();
+        }
+      });
+
+      function pickSequence(mode, envId, stepCount) {
+        var library = STEP_LIBRARY[mode] || STEP_LIBRARY.calming;
+        var compatible = library.filter(function (step) { return step.envs === 'all' || step.envs.indexOf(envId) !== -1; });
+        var chosen = compatible.slice(0, stepCount);
+        if (chosen.length < stepCount) {
+          library.forEach(function (step) {
+            if (chosen.length >= stepCount) return;
+            if (chosen.indexOf(step) === -1) chosen.push(step);
+          });
+        }
+        return chosen.slice(0, stepCount);
+      }
+
+      function finish() {
+        var data = new FormData(form);
+        answers.energy = ENERGY.filter(function (e) { return e.id === data.get('energy'); })[0];
+        answers.location = LOCATIONS.filter(function (l) { return l.id === data.get('location'); })[0];
+        answers.mode = MODES.filter(function (m) { return m.id === data.get('mode'); })[0];
+        answers.duration = DURATIONS.filter(function (d) { return d.id === data.get('duration'); })[0];
+        answers.environment = ENVIRONMENTS.filter(function (e) { return e.id === data.get('environment'); })[0];
+
+        var sequence = pickSequence(answers.mode.id, answers.environment.id, answers.duration.steps);
+
+        document.getElementById('nsr-current-state').textContent = answers.energy.label + ' in the ' + answers.location.label.toLowerCase();
+        document.getElementById('nsr-mode-value').textContent = answers.mode.label;
+        document.getElementById('nsr-duration-value').textContent = answers.duration.label;
+        var list = document.getElementById('nsr-sequence-list');
+        list.innerHTML = sequence.map(function (s) { return '<li>' + s.text + '</li>'; }).join('');
+        document.getElementById('nsr-reflection').textContent = REFLECTIONS[answers.mode.id];
+        var nextResource = NEXT_RESOURCE[answers.mode.id];
+        var nextLink = document.getElementById('nsr-next-link');
+        nextLink.href = nextResource.url;
+        nextLink.textContent = 'Continue into ' + nextResource.label;
+        nextLink.addEventListener('click', function () {
+          trackEvent('related_resource_click', { destination: nextResource.url });
+        });
+
+        var params = mandalaParamsFromAnswers();
+        drawMandala(document.getElementById('nsr-mandala-art'), params, 320);
+        // Re-render as a static <canvas> element sized for the result card
+        var artHost = document.getElementById('nsr-mandala-art');
+        artHost.innerHTML = '';
+        var artCanvas = document.createElement('canvas');
+        artCanvas.width = 320; artCanvas.height = 320;
+        artCanvas.style.width = '100%'; artCanvas.style.height = '100%';
+        artHost.appendChild(artCanvas);
+        drawMandala(artCanvas, params, 320);
+
+        form.hidden = true;
+        resultWrap.hidden = false;
+        trackEvent('experience_complete', {
+          energy: answers.energy.id,
+          location: answers.location.id,
+          mode: answers.mode.id,
+          duration_minutes: answers.duration.minutes,
+          environment: answers.environment.id
+        });
+        resultWrap.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      document.getElementById('nsr-copy').addEventListener('click', function () {
+        var btn = this;
+        var sequenceText = Array.prototype.map.call(document.querySelectorAll('#nsr-sequence-list li'), function (li, i) {
+          return (i + 1) + '. ' + li.textContent;
+        }).join('\\n');
+        var text = 'RESET CARD\\n\\nCurrent State: ' + answers.energy.label + ' in the ' + answers.location.label.toLowerCase() +
+          '\\nSelected Reset Mode: ' + answers.mode.label +
+          '\\nDuration: ' + answers.duration.label +
+          '\\n\\nYour Sequence:\\n' + sequenceText +
+          '\\n\\n' + REFLECTIONS[answers.mode.id];
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () {
+            trackEvent('artifact_copy', { mode: answers.mode.id });
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = 'Copy Reset Card'; }, 1800);
+          });
+        }
+      });
+
+      document.getElementById('nsr-print').addEventListener('click', function () { window.print(); });
+
+      document.getElementById('nsr-restart').addEventListener('click', function () {
+        current = 0;
+        answers = {};
+        form.reset();
+        resultWrap.hidden = true;
+        welcome.hidden = false;
+        welcome.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      form.addEventListener('submit', function (e) { e.preventDefault(); });
+    })();
+    </script>`;
+
+  return pageChrome({
+    title, description, canonical, body: body + scriptBlock, extraStyle,
+    schema: [
+      ...baseSchema({ title, description, canonical }),
+      breadcrumbs([{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "Nervous System Regulation", url: "/hubs/nervous-system-regulation/" }, { name: title, url: canonical }]),
+      { "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: absoluteUrl(canonical), applicationCategory: "LifestyleApplication", operatingSystem: "Any", isAccessibleForFree: true },
+    ],
+  });
+}
+
 function main() {
   const clusterData = loadTopicClusters();
   const hubs = readJson("static/_data/authority-hubs.json", { hubs: [] }).hubs || [];
@@ -1609,6 +2110,7 @@ function main() {
   writePage("static/tools/index.html", renderToolsIndex(assets));
   writePage("static/tools/digital-attention-audit/index.html", renderDigitalAttentionAudit());
   writePage("static/tools/adhd-focus-session-planner/index.html", renderAdhdFocusSessionPlanner());
+  writePage("static/tools/nervous-system-reset/index.html", renderNervousSystemReset());
 }
 
 main();
