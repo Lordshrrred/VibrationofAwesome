@@ -66,11 +66,25 @@ const LAST_PUBLISHED_FILE = path.join(ROOT, "static", "_data", "drip-last-publis
 const LOCK_TTL_MS = 10 * 60 * 1000; // 10 minutes
 const QUEUE_WARN_THRESHOLD = 30;     // warn when fewer than this many drafts remain
 
+// marked.parse() correctly HTML-escapes the rendered <p> text (so &, <, >, ",
+// ' are valid entities in that HTML) ~ but this function's job is to produce
+// a *plain-text* excerpt for the JSON data index, not a snippet of HTML. Any
+// consumer that later HTML-escapes post.excerpt to embed it in a *different*
+// page (hub cards, related-reading previews, tool descriptions) needs the
+// literal character, not the entity, or it double-escapes into don&amp;#39;t.
+const HTML_ENTITY_MAP = {
+  "&amp;": "&", "&lt;": "<", "&gt;": ">",
+  "&quot;": '"', "&#39;": "'", "&#x27;": "'", "&apos;": "'",
+};
+function decodeHtmlEntities(text) {
+  return String(text || "").replace(/&amp;|&lt;|&gt;|&quot;|&#39;|&#x27;|&apos;/g, (m) => HTML_ENTITY_MAP[m]);
+}
+
 // Extract first paragraph text from rendered HTML for the excerpt
 function extractExcerptFromHtml(html) {
   const match = html.match(/<p[^>]*>([\s\S]*?)<\/p>/);
   if (!match) return "";
-  return match[1].replace(/<[^>]+>/g, "").trim().slice(0, 150);
+  return decodeHtmlEntities(match[1].replace(/<[^>]+>/g, "").trim()).slice(0, 150);
 }
 
 async function main() {
