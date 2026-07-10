@@ -1046,5 +1046,28 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-07-10T10:32:24.228Z",
+    "trigger": "scheduled",
+    "failedRunUrl": null,
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the deployment environment.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "[Dev.to API key for secondary account]",
+          "reason": "Secondary Dev.to account requires separate API authentication; key is missing from environment"
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
