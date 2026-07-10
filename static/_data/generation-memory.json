@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-10T15:45:12.192Z",
+  "lastUpdated": "2026-07-10T17:39:47.681Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-bootcamp-bonuses-whats-actually-included-beyond-the-core-program",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-10T17:39:47.681Z"
+    },
+    {
       "slug": "what-attention-really-means-in-an-attention-economy-and-why-yours-is-worth-more-than-you-think",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,15 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-09T16:13:28.402Z"
-    },
-    {
-      "slug": "why-is-everyone-promoting-ai-advantage-the-affiliate-machine-explained",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-09T16:12:46.458Z"
     }
   ],
   "recentInstagramArchetypes": [
