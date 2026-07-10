@@ -55,7 +55,8 @@
     "backfill:feeder:run": "node scripts/backfill-feeder.js --execute",
     "backfill:authority-metadata": "node scripts/backfill-authority-metadata.js",
     "backfill:authority-metadata:run": "node scripts/backfill-authority-metadata.js --execute",
-    "serp-check": "node scripts/serp_intelligence.js"
+    "seo:intelligence": "node scripts/seo_intelligence.js",
+    "seo:research": "node scripts/seo_research.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",

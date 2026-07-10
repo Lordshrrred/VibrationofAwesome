@@ -1,0 +1,86 @@
+name: Weekly SEO Intelligence Check
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  schedule:
+    - cron: '0 9 * * 3'    # Every Wednesday, 9:00 AM UTC
+  workflow_dispatch:
+
+concurrency:
+  group: voa-publish-and-syndicate
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  seo-intelligence:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run SEO intelligence check
+        id: seo
+        env:
+          GA_CREDENTIALS_JSON: ${{ secrets.GA_CREDENTIALS_JSON }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GA_PROPERTY_ID: ${{ secrets.GA_PROPERTY_ID }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+        run: |
+          set +e
+          npm run seo:intelligence 2>&1 | tee seo-intelligence-run.log
+          STATUS=${PIPESTATUS[0]}
+          set -e
+
+          SUMMARY_LINE=$(grep '^SEO_SUMMARY' seo-intelligence-run.log | tail -1)
+          GSC=$(echo "$SUMMARY_LINE" | sed -n 's/.*gsc=\([^ ]*\).*/\1/p')
+          GA=$(echo "$SUMMARY_LINE" | sed -n 's/.*ga=\([^ ]*\).*/\1/p')
+          OPPORTUNITIES=$(echo "$SUMMARY_LINE" | sed -n 's/.*opportunities=\([0-9]*\).*/\1/p')
+          REQUESTS=$(echo "$SUMMARY_LINE" | sed -n 's/.*requests=\([0-9]*\).*/\1/p')
+          CACHED=$(echo "$SUMMARY_LINE" | sed -n 's/.*cached=\([0-9]*\).*/\1/p')
+
+          echo "gsc=${GSC:-missing}"                   >> "$GITHUB_OUTPUT"
+          echo "ga=${GA:-missing}"                     >> "$GITHUB_OUTPUT"
+          echo "opportunities=${OPPORTUNITIES:-0}"      >> "$GITHUB_OUTPUT"
+          echo "requests=${REQUESTS:-0}"                >> "$GITHUB_OUTPUT"
+          echo "cached=${CACHED:-0}"                    >> "$GITHUB_OUTPUT"
+          echo "status=$STATUS"                        >> "$GITHUB_OUTPUT"
+
+          rm -f seo-intelligence-run.log
+          exit $STATUS
+
+      - name: Append run summary to syndication log
+        if: always()
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          echo "SEO intelligence run: GSC=${{ steps.seo.outputs.gsc }}, GA4=${{ steps.seo.outputs.ga }}, opportunities=${{ steps.seo.outputs.opportunities }}, requests=${{ steps.seo.outputs.requests }}, cache_hits=${{ steps.seo.outputs.cached }} on $DATE" >> scripts/syndication_log.txt
+
+      - name: Commit report and log
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/ scripts/syndication_log.txt static/_data/seo-intelligence.json || true
+          git diff --staged --quiet \
+            || git commit -m "Weekly SEO intelligence report [automated]"
+          git push
+
+      - name: Fail if the check itself failed
+        if: steps.seo.outputs.status != '0'
+        run: exit 1

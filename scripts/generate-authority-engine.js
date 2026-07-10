@@ -187,6 +187,13 @@ function pageChrome({ title, description, canonical, type = "website", body, sch
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G5HF0WKZT9');
+  </script>
   <title>${escapeHtml(title)} | Vibration of Awesome</title>
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="canonical" href="${absoluteUrl(canonical)}">
@@ -273,6 +280,22 @@ ${body}
         document.getElementById('voaHamburger').classList.toggle('open');
       }
       window.voaToggleNav = voaToggleNav;
+
+      function voaTrack(eventName, params) {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', eventName, params || {});
+        }
+      }
+      document.addEventListener('click', function (event) {
+        var link = event.target.closest ? event.target.closest('a[href]') : null;
+        if (!link) return;
+        var href = link.getAttribute('href') || '';
+        if (/^\\/blog\\//.test(href)) {
+          voaTrack('related_article_click', { link_url: href, link_text: (link.textContent || '').trim().slice(0, 80) });
+        } else if (/^\\/(hubs|tools)\\//.test(href)) {
+          voaTrack('authority_resource_click', { link_url: href, link_text: (link.textContent || '').trim().slice(0, 80) });
+        }
+      });
 
       var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!prefersReduced && 'IntersectionObserver' in window) {
@@ -869,6 +892,9 @@ ${stageMarkup}
       }
 
       startBtn.addEventListener('click', function () {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'digital_attention_audit_start', { tool_slug: 'digital-attention-audit' });
+        }
         welcome.hidden = true;
         form.hidden = false;
         restoreProgress();
@@ -929,6 +955,14 @@ ${stageMarkup}
             action: 'Start gently. Reduce one noisy source this week and add one grounding practice in its place.',
             practice: 'Avoid turning this into another perfection project. One honest change beats a total reset that does not stick.',
           };
+        }
+
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'digital_attention_audit_complete', {
+            tool_slug: 'digital-attention-audit',
+            result_profile: profile.name,
+            score_band: total <= 5 ? 'low' : total <= 12 ? 'medium' : 'high'
+          });
         }
 
         resultBox.innerHTML =

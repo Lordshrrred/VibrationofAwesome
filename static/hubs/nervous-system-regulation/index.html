@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5HF0WKZT9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G5HF0WKZT9');
+  </script>
   <title>Nervous System Regulation Hub | Vibration of Awesome</title>
   <meta name="description" content="Grounded resources for getting out of alarm-state living, rebuilding inner safety, and making creativity possible again.">
   <link rel="canonical" href="https://vibrationofawesome.com/hubs/nervous-system-regulation/">
@@ -412,6 +419,22 @@
         document.getElementById('voaHamburger').classList.toggle('open');
       }
       window.voaToggleNav = voaToggleNav;
+
+      function voaTrack(eventName, params) {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', eventName, params || {});
+        }
+      }
+      document.addEventListener('click', function (event) {
+        var link = event.target.closest ? event.target.closest('a[href]') : null;
+        if (!link) return;
+        var href = link.getAttribute('href') || '';
+        if (/^\/blog\//.test(href)) {
+          voaTrack('related_article_click', { link_url: href, link_text: (link.textContent || '').trim().slice(0, 80) });
+        } else if (/^\/(hubs|tools)\//.test(href)) {
+          voaTrack('authority_resource_click', { link_url: href, link_text: (link.textContent || '').trim().slice(0, 80) });
+        }
+      });
 
       var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!prefersReduced && 'IntersectionObserver' in window) {

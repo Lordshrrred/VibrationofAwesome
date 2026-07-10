@@ -970,21 +970,22 @@
       <div class="section">
         <div class="section-header">
           <span class="section-title">SEO Intelligence</span>
-          <span style="font-size:0.75rem;color:var(--text-muted)" id="seo-last-checked">Weekly SERP + AI Search Visibility check</span>
+          <span style="font-size:0.75rem;color:var(--text-muted)" id="seo-last-checked">Search Console + GA4 evidence check</span>
         </div>
 
         <div class="stats-strip">
           <div class="stat-card">
-            <div class="stat-label">Ranking</div>
+            <div class="stat-label">GSC</div>
             <div class="stat-value" id="seo-stat-ranking">~</div>
-            <div class="stat-sub">of keywords checked</div>
+            <div class="stat-sub">connection</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">AI Overview Mentions</div>
+            <div class="stat-label">GA4</div>
             <div class="stat-value" id="seo-stat-ai">~</div>
+            <div class="stat-sub">connection</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">Not Found</div>
+            <div class="stat-label">Opportunities</div>
             <div class="stat-value" id="seo-stat-missing">~</div>
           </div>
         </div>
@@ -1001,8 +1002,8 @@
           </div>
           <div class="queue-panel">
             <div class="panel-header">
-              <span class="panel-title" style="color:var(--accent)">Visibility Trend</span>
-              <span class="panel-count" id="seo-trend-count">last checks</span>
+              <span class="panel-title" style="color:var(--accent)">Opportunity Counts</span>
+              <span class="panel-count" id="seo-trend-count">latest run</span>
             </div>
             <div class="seo-trend-row" id="seo-trend">
               <div class="loading dot-pulse">Loading</div>
@@ -1012,7 +1013,7 @@
 
         <div class="queue-panel">
           <div class="panel-header">
-            <span class="panel-title" style="color:var(--accent)">Keyword Visibility (most recent check)</span>
+            <span class="panel-title" style="color:var(--accent)">Top Opportunities</span>
             <span class="panel-count" id="seo-keywords-count">~</span>
           </div>
           <div class="panel-body" id="seo-keywords">
@@ -1165,7 +1166,7 @@ const WORDPRESS_SITE_URL = "https://earthstarrisingsun.wordpress.com";
 const WORDPRESS_POSTS_API = "https://public-api.wordpress.com/rest/v1.1/sites/earthstarrisingsun.wordpress.com/posts?number=100";
 const BACKLINK_API_URL = "/api/backlinks";
 const CLUSTERS_URL  = "/_data/topic-clusters.json";
-const SERP_URL      = "/_data/serp-intelligence.json";
+const SEO_URL       = "/_data/seo-intelligence.json";
 const VERIFY_CACHE  = "voa_url_verify_cache_v4"; // v4: free browser-side checks, no Netlify function usage
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
 
@@ -1242,7 +1243,7 @@ document.getElementById("lock-btn").addEventListener("click", () => {
 
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, serpData] = await Promise.all([
+  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, seoData] = await Promise.all([
     fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
     fetch(RESULTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
@@ -1251,7 +1252,7 @@ async function loadDashboard() {
     fetch(MATT_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(FEEDER_POSTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(CLUSTERS_URL).then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch(SERP_URL).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch(SEO_URL).then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
   const feederMerged = mergeFeederStatuses(resultsDataRaw, feederPosts);
   const resultsData = await mergeWordPressStatuses(feederMerged);
@@ -1284,7 +1285,7 @@ async function loadDashboard() {
   renderQueue(entries, allPosts, dripData);
   renderTrigger(allPosts);
   renderFeederSection(resultsData, dripData, boomPosts, mattPosts);
-  renderSeoIntelligence(boomPosts, clustersData, serpData);
+  renderSeoIntelligence(boomPosts, clustersData, seoData);
   // ESC recommendations disabled ~ future automation phase will handle this
 }
 
@@ -2104,30 +2105,26 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
 // ── SEO Intelligence ─────────────────────────────────────────────────────────
 //
 // Reads static/_data/topic-clusters.json (cluster definitions) and
-// static/_data/serp-intelligence.json (written weekly by scripts/serp_intelligence.js
-// via .github/workflows/weekly-serp-check.yml). No live API calls happen from the
-// browser ~ this panel reads a public-safe summary generated on a schedule, not
-// Search Console exports, private query data, or raw Anthropic responses.
-const SEO_FLAG_LABEL = { ranking: "✅ Ranking", not_found: "❌ Not found", ai_overview: "🤖 AI Overview" };
-
-function renderSeoIntelligence(boomPosts, clustersData, serpData) {
+// static/_data/seo-intelligence.json (written weekly by scripts/seo_intelligence.js
+// via .github/workflows/weekly-seo-intelligence.yml). No live API calls happen
+// from the browser ~ this panel reads a public-safe summary, not raw Search
+// Console rows, GA4 exports, service-account data, or paid SERP research.
+function renderSeoIntelligence(boomPosts, clustersData, seoData) {
   renderClusterCoverage(boomPosts, clustersData);
-  renderSeoTrend(serpData);
-  renderSeoKeywords(serpData);
+  renderSeoTrend(seoData);
+  renderSeoKeywords(seoData);
 
   const lastCheckedEl = document.getElementById("seo-last-checked");
-  if (serpData?.latest?.date) {
-    lastCheckedEl.textContent = `Last checked ${new Date(serpData.latest.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}`;
+  if (seoData?.generatedAt) {
+    const generated = new Date(seoData.generatedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    lastCheckedEl.textContent = `Last checked ${generated} · ${seoData.period?.current?.startDate || "?"} to ${seoData.period?.current?.endDate || "?"}`;
   }
 
-  const results = serpData?.latest?.results || [];
-  const rankingCount = results.filter(r => r.visibility === "ranking" || r.visibility === "ai_overview").length;
-  const aiCount = results.filter(r => r.visibility === "ai_overview").length;
-  const missingCount = results.filter(r => r.visibility === "not_found").length;
-
-  document.getElementById("seo-stat-ranking").textContent = results.length ? `${rankingCount}/${results.length}` : "~";
-  document.getElementById("seo-stat-ai").textContent = results.length ? String(aiCount) : "~";
-  document.getElementById("seo-stat-missing").textContent = results.length ? String(missingCount) : "~";
+  document.getElementById("seo-stat-ranking").textContent = seoData?.status?.gsc?.ok ? "OK" : "Missing";
+  document.getElementById("seo-stat-ai").textContent = seoData?.status?.ga?.ok ? "OK" : "Missing";
+  const counts = seoData?.counts || {};
+  const totalOpps = (counts.nearPageOne || 0) + (counts.ctr || 0) + (counts.engagementWinners || 0) + (counts.weakEngagement || 0) + (counts.hiddenQueries || 0);
+  document.getElementById("seo-stat-missing").textContent = seoData ? String(totalOpps) : "~";
 }
 
 function renderClusterCoverage(boomPosts, clustersData) {
@@ -2169,32 +2166,40 @@ function renderClusterCoverage(boomPosts, clustersData) {
   countEl.textContent = `${clusters.length} clusters`;
 }
 
-function renderSeoTrend(serpData) {
+function renderSeoTrend(seoData) {
   const el = document.getElementById("seo-trend");
-  const history = serpData?.history || [];
-  if (!history.length) {
-    el.innerHTML = `<div class="empty-state">No SERP checks recorded yet ~ runs every Wednesday.</div>`;
+  const counts = seoData?.counts || null;
+  if (!counts) {
+    el.innerHTML = `<div class="empty-state">No SEO intelligence summary yet ~ runs every Wednesday.</div>`;
     return;
   }
 
-  el.innerHTML = history.map(h => {
-    const pct = h.total > 0 ? Math.round((h.ranking / h.total) * 100) : 0;
-    const label = new Date(h.date).toLocaleDateString("en-US", { month: "numeric", day: "numeric" });
+  const rows = [
+    ["Near 1", counts.nearPageOne || 0],
+    ["CTR", counts.ctr || 0],
+    ["Strong", counts.engagementWinners || 0],
+    ["Weak", counts.weakEngagement || 0],
+    ["Hidden", counts.hiddenQueries || 0],
+    ["Split", counts.cannibalization || 0],
+  ];
+  const max = Math.max(1, ...rows.map((r) => r[1]));
+  el.innerHTML = rows.map(([label, count]) => {
+    const pct = Math.round((count / max) * 100);
     return `
-      <div class="seo-trend-bar" title="${h.ranking}/${h.total} ranking on ${esc(h.date)}">
+      <div class="seo-trend-bar" title="${count} ${esc(label)} opportunities">
         <div class="seo-trend-fill" style="height:${Math.max(pct, 4)}%"></div>
         <div class="seo-trend-label">${label}</div>
       </div>`;
   }).join("");
 }
 
-function renderSeoKeywords(serpData) {
+function renderSeoKeywords(seoData) {
   const el = document.getElementById("seo-keywords");
   const countEl = document.getElementById("seo-keywords-count");
-  const results = serpData?.latest?.results || [];
+  const results = seoData?.topOpportunities || [];
 
   if (!results.length) {
-    el.innerHTML = `<div class="empty-state">No SERP check has run yet. It runs every Wednesday, or trigger one with <code>npm run serp-check</code>.</div>`;
+    el.innerHTML = `<div class="empty-state">No SEO opportunities yet. Run <code>npm run seo:intelligence</code> after Search Console and GA4 credentials are configured.</div>`;
     countEl.textContent = "~";
     return;
   }
@@ -2202,12 +2207,12 @@ function renderSeoKeywords(serpData) {
   el.innerHTML = results.map(r => `
     <div class="seo-kw-item">
       <div>
-        <div class="seo-kw-title">${esc(r.keyword)}</div>
-        ${r.topGap ? `<div class="seo-kw-gap">Gap: ${esc(r.topGap)}</div>` : ""}
+        <div class="seo-kw-title">${esc(r.label)}</div>
+        <div class="seo-kw-gap">${esc(r.type.replace(/_/g, " "))} · ${esc(r.page || "")} · ${esc(r.metric || "")}</div>
       </div>
-      <span class="seo-flag ${r.visibility}">${SEO_FLAG_LABEL[r.visibility] || r.visibility}${r.voaPosition ? ` (#${r.voaPosition})` : ""}</span>
+      <span class="seo-flag ranking">Review</span>
     </div>`).join("");
-  countEl.textContent = `${results.length} keywords`;
+  countEl.textContent = `${results.length} actions`;
 }
 
 // ── ESC Recommendations (Phase 7Z / 8B / 8C / 8D) ───────────────────────────

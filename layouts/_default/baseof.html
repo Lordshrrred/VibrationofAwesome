@@ -761,6 +761,23 @@
     });
   });
 
+  function voaTrack(eventName, params) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params || {});
+    }
+  }
+  document.addEventListener('click', event => {
+    const link = event.target.closest ? event.target.closest('a[href]') : null;
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    const label = (link.textContent || '').trim().slice(0, 80);
+    if (/^\/blog\//.test(href)) {
+      voaTrack('related_article_click', { link_url: href, link_text: label });
+    } else if (/^\/(hubs|tools)\//.test(href)) {
+      voaTrack('authority_resource_click', { link_url: href, link_text: label });
+    }
+  });
+
   // Custom cursor ~ desktop only, rAF only fires when mouse moves
   if (!window.matchMedia('(pointer: coarse)').matches) {
     const cursor = document.getElementById('cursor');
