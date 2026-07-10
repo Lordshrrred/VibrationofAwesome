@@ -8,6 +8,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { cleanPublicPath } from "./lib/clean-url.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
@@ -54,9 +55,10 @@ function readJson(jsonPath, fallback) {
 }
 
 function urlBlock({ loc, lastmod, changefreq, priority }) {
+  const cleanLoc = cleanPublicPath(loc);
   return [
     "  <url>",
-    `    <loc>${BASE}${loc}</loc>`,
+    `    <loc>${BASE}${cleanLoc}</loc>`,
     `    <lastmod>${toDateStr(lastmod)}</lastmod>`,
     `    <changefreq>${changefreq}</changefreq>`,
     `    <priority>${priority}</priority>`,
@@ -82,7 +84,7 @@ export function updateSitemap() {
     ...assets
       .filter(asset => ["published", "ready"].includes(asset.status) && asset.canonical)
       .map(asset => ({
-        loc: asset.canonical,
+        loc: cleanPublicPath(asset.canonical),
         lastmod: "2026-07-10",
         changefreq: asset.type === "glossary" || asset.type === "reference" ? "weekly" : "monthly",
         priority: asset.type === "assessment" ? "0.8" : "0.7",
@@ -92,12 +94,13 @@ export function updateSitemap() {
   const byLoc = new Map();
   for (const page of [...STATIC_PAGES, ...authorityPages]) {
     if (!page.loc || /(?:\/admin\/|\/dashboard\/|\/drafts\/)/.test(page.loc)) continue;
-    byLoc.set(page.loc, page);
+    const loc = cleanPublicPath(page.loc);
+    byLoc.set(loc, { ...page, loc });
   }
 
   const staticBlocks = [...byLoc.values()].map(urlBlock);
   const postBlocks   = [...mattPosts, ...boomPosts].map((p) =>
-    urlBlock({ loc: p.url, lastmod: p.date, changefreq: "monthly", priority: "0.7" })
+    urlBlock({ loc: cleanPublicPath(p.url), lastmod: p.date, changefreq: "monthly", priority: "0.7" })
   );
 
   const xml = [

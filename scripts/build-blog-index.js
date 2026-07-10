@@ -11,6 +11,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { cleanPublicPath } from './lib/clean-url.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -32,11 +33,8 @@ function escapeHtml(str) {
 }
 
 function postUrl(p) {
-  // Current posts use .html paths; archives use directory paths
-  if (p.isArchive) return `/blog/matt/posts/${p.slug}/`;
-  // Use explicit url if it ends in .html, else construct
-  if (p.url && p.url.endsWith('.html')) return p.url;
-  return `/blog/matt/posts/${p.slug}/`;
+  if (p.url) return cleanPublicPath(p.url);
+  return `/blog/matt/posts/${p.slug}`;
 }
 
 const postsPath = path.join(ROOT, 'static', '_data', 'matt-posts.json');

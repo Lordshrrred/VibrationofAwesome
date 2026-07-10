@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { cleanPublicPath } from "./clean-url.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -117,7 +118,7 @@ export function getAuthorityTargets(post = {}, clusterKey = null) {
 
   return {
     hub: hub ? { url: `/hubs/${hub.slug}/`, label: `${hub.title} hub` } : null,
-    asset: asset ? { url: asset.canonical, label: asset.title } : null,
+    asset: asset ? { url: cleanPublicPath(asset.canonical), label: asset.title } : null,
   };
 }
 
@@ -164,7 +165,7 @@ export function selectRelatedPosts(source, posts, { limit = 3 } = {}) {
     .map(item => ({
       title: item.post.title,
       slug: item.post.slug,
-      url: item.post.url,
+      url: cleanPublicPath(item.post.url),
       cluster: inferCluster(item.post, clusterData),
       score: item.score,
     }));

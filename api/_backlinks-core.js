@@ -36,8 +36,11 @@ function cleanSlug(slug) {
 
 function expectedUrls(slug) {
   return [
-    `${VOA_BASE}/blog/boom/posts/${slug}.html`.toLowerCase(),
+    `${VOA_BASE}/blog/boom/posts/${slug}`.toLowerCase(),
     `${VOA_BASE}/blog/matt/posts/${slug}/`.toLowerCase(),
+    `${VOA_BASE}/blog/matt/posts/${slug}`.toLowerCase(),
+    // Backward-compatible legacy shapes still resolve through Vercel cleanUrls.
+    `${VOA_BASE}/blog/boom/posts/${slug}.html`.toLowerCase(),
     `${VOA_BASE}/blog/matt/posts/${slug}.html`.toLowerCase(),
   ];
 }
@@ -201,7 +204,7 @@ async function recoverTumblr(slug) {
     return {
       verified: true,
       reason: "ok",
-      matched: `${VOA_BASE}/blog/boom/posts/${slug}.html`,
+      matched: `${VOA_BASE}/blog/boom/posts/${slug}`,
       url: `https://www.tumblr.com/${TUMBLR_BLOG.replace(/\.tumblr\.com$/i, "")}/${post.id}/${slug}`,
       recovered_live: true,
     };

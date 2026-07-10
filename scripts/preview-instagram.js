@@ -97,7 +97,7 @@ function loadPost(slug) {
       const df = path.join(ROOT, "static", "blog", "boom", "drafts", `${slug}.html`);
       const html = fs.existsSync(df) ? fs.readFileSync(df, "utf8") : "";
       const para = html.match(/<p[^>]*>([\s\S]*?)<\/p>/i)?.[1] || "";
-      return { title: item.title, slug: item.slug, excerpt: para.replace(/<[^>]+>/g, "").trim().slice(0, 250), url: `/blog/boom/posts/${slug}.html`, tags: [], lane: "boom", niche: item.niche };
+      return { title: item.title, slug: item.slug, excerpt: para.replace(/<[^>]+>/g, "").trim().slice(0, 250), url: `/blog/boom/posts/${slug}`, tags: [], lane: "boom", niche: item.niche };
     }
   }
   return null;

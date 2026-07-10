@@ -17,6 +17,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { inferCluster, loadTopicClusters } from "./lib/internal-linking.js";
+import { absoluteVoaUrl, cleanPublicPath } from "./lib/clean-url.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,9 +49,7 @@ function escapeHtml(value) {
 }
 
 function absoluteUrl(url) {
-  if (!url) return BASE + "/";
-  if (url.startsWith("http")) return url;
-  return `${BASE}${url.startsWith("/") ? "" : "/"}${url}`;
+  return absoluteVoaUrl(url);
 }
 
 function normalizePost(post, lane, clusterData) {
@@ -59,7 +58,7 @@ function normalizePost(post, lane, clusterData) {
     ...post,
     lane,
     cluster,
-    url: post.url || `/blog/${lane}/posts/${post.slug}`,
+    url: cleanPublicPath(post.url || `/blog/${lane}/posts/${post.slug}`),
   };
 }
 
@@ -545,7 +544,7 @@ ${cards}
         <p class="voa-section-note">Interactive companions to the hubs above ~ built to be used in a few minutes, not studied for an hour.</p>
       </div>
       <div class="voa-card-grid">
-${publishedTools.map(asset => `<a class="voa-card border-cyan" href="${asset.canonical}">
+${publishedTools.map(asset => `<a class="voa-card border-cyan" href="${cleanPublicPath(asset.canonical)}">
   <div class="voa-card-eyebrow"><span class="voa-badge accent-cyan border-cyan">${escapeHtml(TYPE_LABELS[asset.type] || asset.type)}</span></div>
   <h3>${escapeHtml(asset.title)}</h3>
   <p>${escapeHtml(asset.description)}</p>
@@ -597,7 +596,7 @@ function renderHub(hub, posts, assets, hubsBySlug) {
 </a>`;
   }).join("\n");
 
-  const assetCards = (list, dashed) => list.map(asset => `<a class="voa-card${dashed ? " voa-tool-preview" : ""} border-${accent}" href="${dashed ? "#" : asset.canonical}"${dashed ? " onclick=\"return false\" aria-disabled=\"true\"" : ""}>
+  const assetCards = (list, dashed) => list.map(asset => `<a class="voa-card${dashed ? " voa-tool-preview" : ""} border-${accent}" href="${dashed ? "#" : cleanPublicPath(asset.canonical)}"${dashed ? " onclick=\"return false\" aria-disabled=\"true\"" : ""}>
   <div class="voa-card-eyebrow"><span class="voa-badge accent-${accent} border-${accent}">${escapeHtml(TYPE_LABELS[asset.type] || asset.type)}</span>${dashed ? ` &middot; ${escapeHtml(asset.status)}` : ""}</div>
   <h3>${escapeHtml(asset.title)}</h3>
   <p>${escapeHtml(asset.description)}</p>
@@ -689,7 +688,7 @@ function renderToolsIndex(assets) {
     <section class="voa-section voa-reveal">
       <div class="voa-section-head"><h2 class="voa-h2">Available Now</h2></div>
       <div class="voa-card-grid">
-${published.map(asset => `<a class="voa-card border-cyan" href="${asset.canonical}">
+${published.map(asset => `<a class="voa-card border-cyan" href="${cleanPublicPath(asset.canonical)}">
   <div class="voa-card-eyebrow"><span class="voa-badge accent-cyan border-cyan">${escapeHtml(TYPE_LABELS[asset.type] || asset.type)}</span></div>
   <h3>${escapeHtml(asset.title)}</h3>
   <p>${escapeHtml(asset.description)}</p>

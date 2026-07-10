@@ -142,7 +142,7 @@ function loadPost(slug, lane = "boom") {
         title:   queued.title,
         slug:    queued.slug,
         excerpt: para.replace(/<[^>]+>/g, "").trim().slice(0, 300),
-        url:     `/blog/boom/posts/${queued.slug}.html`,
+        url:     `/blog/boom/posts/${queued.slug}`,
         tags:    [],
         lane:    "boom",
       };
@@ -164,7 +164,7 @@ function pickSamplePosts(count = 3) {
     const queue = JSON.parse(fs.readFileSync(queueFile, "utf8"));
     return (queue.queue || []).slice(0, count).map(item => ({
       title: item.title, slug: item.slug,
-      excerpt: "", url: `/blog/boom/posts/${item.slug}.html`, tags: [], lane: "boom",
+      excerpt: "", url: `/blog/boom/posts/${item.slug}`, tags: [], lane: "boom",
     }));
   }
   return [];
