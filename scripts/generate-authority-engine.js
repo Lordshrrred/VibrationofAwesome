@@ -3097,6 +3097,480 @@ ${stage5}
   });
 }
 
+// ── The Presence Key ───────────────────────────────────────────────────────────
+//
+// Flagship experience for the Meditation hub. Five decisions (what kind of
+// presence, how still you can be, what pulls attention away, time, anchor
+// quality) deterministically pick a short settling sequence and render
+// "Presence Rings" ~ plain concentric rings of varying thickness and
+// spacing, like growth rings, distinct from the Reset Mandala's radial
+// petal pattern even though both are ring-based.
+
+function renderPresenceKey() {
+  const title = "The Presence Key";
+  const description = "A short settling ritual matched to how still you actually are right now ~ five small decisions, then a guided sequence and a set of Presence Rings built from your own answers.";
+  const canonical = "/tools/the-presence-key/";
+
+  const PRESENCE_TYPES = [
+    { id: "settling", label: "Settling Down", detail: "Coming down from wired or scattered." },
+    { id: "waking", label: "Waking Up", detail: "Coming up from foggy or flat." },
+    { id: "returning", label: "Returning to Your Body", detail: "You've been in your head all day." },
+    { id: "space", label: "Making Space", detail: "Between two things, before the next one starts." },
+    { id: "check-in", label: "Just Checking In", detail: "No agenda. Just noticing where you are." },
+  ];
+  const STILLNESS = [
+    { id: "seated", label: "Fully Still, Seated", detail: "You can actually sit down for this." },
+    { id: "lying", label: "Lying Down", detail: "Horizontal is available." },
+    { id: "between", label: "A Few Minutes Between Things", detail: "Not a real pause, but a real gap." },
+    { id: "moving", label: "Moving or Walking", detail: "Stillness isn't available. Movement is." },
+    { id: "not-still", label: "Not Still at All", detail: "That's kind of the point right now." },
+  ];
+  const PULLS = [
+    { id: "later", label: "Thoughts About Later", detail: "What's coming, what's next, what's due." },
+    { id: "earlier", label: "Thoughts About Earlier", detail: "Replaying something already done." },
+    { id: "restless", label: "Physical Restlessness", detail: "The body wants to move, not sit." },
+    { id: "environment", label: "Sound or Environment", detail: "Whatever's happening around you." },
+    { id: "nothing", label: "Nothing in Particular", detail: "Just generally hard to land." },
+  ];
+  const ANCHORS = [
+    { id: "breath", label: "Breath", detail: "The most portable anchor there is." },
+    { id: "sound", label: "Sound", detail: "Whatever's actually audible right now." },
+    { id: "body", label: "Body", detail: "Weight, contact, temperature." },
+    { id: "space", label: "Space", detail: "The room around you, not just you in it." },
+    { id: "silence", label: "Silence", detail: "The gap between sounds and thoughts." },
+  ];
+  const DURATIONS = [
+    { id: "2", label: "2 minutes", minutes: 2, steps: 1 },
+    { id: "5", label: "5 minutes", minutes: 5, steps: 2 },
+    { id: "10", label: "10 minutes", minutes: 10, steps: 3 },
+    { id: "20", label: "20 minutes", minutes: 20, steps: 4 },
+  ];
+
+  const REFLECTIONS = {
+    settling: "You don't have to force the settling. You just have to stop adding to the noise.",
+    waking: "Presence doesn't require high energy. It just requires attention.",
+    returning: "The body was here the whole time. You're just arriving to meet it.",
+    space: "This gap doesn't need to be filled with anything. That's what makes it a gap.",
+    "check-in": "Noticing where you are, without changing it yet, is its own complete practice.",
+  };
+  const NEXT_RESOURCE = {
+    settling: { url: "/hubs/nervous-system-regulation/", label: "Nervous System Regulation Hub" },
+    waking: { url: "/hubs/dopamine-attention/", label: "Dopamine & Attention Hub" },
+    returning: { url: "/hubs/nervous-system-regulation/", label: "Nervous System Regulation Hub" },
+    space: { url: "/hubs/personal-growth/", label: "Personal Growth Hub" },
+    "check-in": { url: "/hubs/personal-growth/", label: "Personal Growth Hub" },
+  };
+
+  const STEP_LIBRARY = {
+    breath: [
+      "Let your next exhale be a little longer than usual. Just the next one.",
+      "Count four breaths without trying to change them at all.",
+      "Notice where the breath is easiest to feel: nose, chest, or belly. Stay there.",
+      "Let the breath get quieter, not slower. See what that does.",
+    ],
+    sound: [
+      "Find the furthest sound you can hear right now.",
+      "Find the closest sound you can hear right now.",
+      "Notice the silence between two sounds, not just the sounds themselves.",
+      "Let sound come to you instead of reaching for it.",
+    ],
+    body: [
+      "Notice where your body is actually touching a surface right now.",
+      "Let your shoulders be exactly as heavy as they actually are.",
+      "Notice one point of warmth and one point of coolness on your skin.",
+      "Let your weight fully arrive into whatever's holding you up.",
+    ],
+    space: [
+      "Notice the furthest wall or edge of the space you're in.",
+      "Notice the light in the room, without judging it.",
+      "Let your peripheral vision open instead of staring at one point.",
+      "Notice that the space was here before you arrived, and will stay after.",
+    ],
+    silence: [
+      "Notice the quietest moment in the last minute.",
+      "Let one thought pass without following it anywhere.",
+      "Notice the gap after this sentence ends, before the next one starts.",
+      "Rest in not needing to produce anything for the rest of this session.",
+    ],
+  };
+
+  function optionStage(stageNum, question, note, options, field) {
+    return `<fieldset class="pky-stage" data-pky-stage="${stageNum}" data-pky-field="${field}" hidden>
+        <legend class="pky-stage-label accent-violet">Step ${stageNum} of 5</legend>
+        <p class="pky-question">${escapeHtml(question)}</p>
+        ${note ? `<p class="pky-note">${escapeHtml(note)}</p>` : ""}
+        <div class="pky-options" role="radiogroup" aria-label="${escapeHtml(question)}">
+          ${options.map((opt, i) => `<label class="pky-option" data-seed="${stageNum}-${i}">
+            <input type="radio" name="${field}" value="${opt.id}">
+            <span class="pky-option-label">${escapeHtml(opt.label)}</span>
+            <span class="pky-option-detail">${escapeHtml(opt.detail)}</span>
+          </label>`).join("\n          ")}
+        </div>
+      </fieldset>`;
+  }
+
+  const stage1 = optionStage(1, "What kind of presence are you looking for right now?", null, PRESENCE_TYPES, "presenceType");
+  const stage2 = optionStage(2, "How still can you actually be right now?", null, STILLNESS, "stillness");
+  const stage3 = optionStage(3, "What tends to pull your attention away?", null, PULLS, "pulls");
+  const stage4 = optionStage(4, "Pick a quality to anchor on.", null, ANCHORS, "anchor");
+  const stage5 = optionStage(5, "How long can you give this?", null, DURATIONS, "duration");
+
+  const body = `    <section class="voa-hero voa-reveal">
+      <div class="voa-hero-bg" style="--hero-glow: rgba(167,139,250,0.16);"></div>
+      <div class="voa-hero-icon accent-violet">${ICONS.lotus}</div>
+      <div class="voa-hero-inner">
+        <div class="voa-eyebrow accent-violet">A Presence Ritual</div>
+        <h1 class="voa-h1">The Presence Key</h1>
+        <p class="voa-hero-desc">${escapeHtml(description)}</p>
+        <p class="voa-hero-quote">This isn't a timer with a bell at the end. It's a short sequence matched to what's actually available to you right now, not the version of stillness a meditation app assumes you have.</p>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal" aria-label="The Presence Key">
+      <div class="pky-shell">
+        <canvas id="pky-rings-preview" class="pky-rings-preview" aria-hidden="true"></canvas>
+
+        <div id="pky-welcome" class="voa-featured border-violet">
+          <div>
+            <div class="voa-featured-label accent-violet">Before You Begin</div>
+            <h3>Five small decisions, then a way to arrive</h3>
+            <p>Answer with what's actually available right now, not the ideal conditions. At the end you'll get a short sequence and a set of Presence Rings built from your own answers ~ yours to keep, copy, or print. Nothing is saved, tracked, or sent anywhere.</p>
+            <button class="voa-btn voa-btn-primary" id="pky-start" type="button">Begin</button>
+          </div>
+        </div>
+
+        <form id="pky-form" class="pky-form" hidden>
+          <div class="pky-progress" aria-hidden="true"><div class="pky-progress-bar" id="pky-progress-bar" style="width:0%"></div></div>
+${stage1}
+${stage2}
+${stage3}
+${stage4}
+${stage5}
+          <div class="pky-nav">
+            <button class="voa-btn voa-btn-secondary" id="pky-back" type="button">Back</button>
+            <button class="voa-btn voa-btn-primary" id="pky-next" type="button">Continue</button>
+          </div>
+        </form>
+
+        <div id="pky-result-wrap" class="pky-result-wrap" hidden>
+          <div class="pky-result-grid">
+            <div class="pky-rings-card">
+              <div class="pky-rings-eyebrow">Your Presence Rings</div>
+              <div class="pky-rings-art" id="pky-rings-art"></div>
+            </div>
+            <div class="pky-sequence-card">
+              <div class="pky-card-eyebrow">Anchor</div>
+              <p class="pky-card-value" id="pky-anchor-value"></p>
+              <div class="pky-card-eyebrow">Your Sequence</div>
+              <ol class="pky-sequence-list" id="pky-sequence-list"></ol>
+              <div class="pky-card-eyebrow">Time</div>
+              <p class="pky-card-value" id="pky-duration-value"></p>
+              <p class="pky-reflection" id="pky-reflection"></p>
+              <a class="pky-next-link" id="pky-next-link" href="/hubs/meditation/">Continue into the Meditation Hub</a>
+            </div>
+          </div>
+          <div class="pky-card-actions">
+            <button class="voa-btn voa-btn-primary" id="pky-copy" type="button">Copy Presence Card</button>
+            <button class="voa-btn voa-btn-secondary" id="pky-print" type="button">Print Presence Card</button>
+            <button class="voa-btn voa-btn-secondary" id="pky-restart" type="button">Begin Again</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal">
+      <div class="voa-section-head"><h2 class="voa-h2">Related Pathways</h2></div>
+      <div class="voa-pathways">
+        <a class="voa-pathway border-violet" href="/hubs/meditation/">
+          <span class="voa-pathway-icon accent-violet">${ICONS.lotus}</span>
+          <span class="voa-pathway-text">Meditation Hub</span>
+        </a>
+        <a class="voa-pathway border-cyan" href="/hubs/nervous-system-regulation/">
+          <span class="voa-pathway-icon accent-cyan">${ICONS.rings}</span>
+          <span class="voa-pathway-text">Nervous System Regulation Hub</span>
+        </a>
+        <a class="voa-pathway border-cyan" href="/tools/nervous-system-reset/">
+          <span class="voa-pathway-icon accent-cyan">${ICONS.rings}</span>
+          <span class="voa-pathway-text">Nervous System Reset</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="voa-continue voa-reveal">
+      <p>Ready to go deeper on the same subject?</p>
+      <div class="voa-continue-cta">
+        <a class="voa-btn voa-btn-primary" href="/hubs/meditation/">Explore Meditation</a>
+        <a class="voa-btn voa-btn-secondary" href="/field-guide/">Get the Field Guide &#10022;</a>
+      </div>
+    </section>`;
+
+  const extraStyle = `
+    .pky-shell { position: relative; max-width: 720px; margin: 0 auto; }
+    .pky-rings-preview { position: absolute; inset: -3rem -1rem auto -1rem; height: 180px; width: calc(100% + 2rem); pointer-events: none; opacity: 0.85; }
+    .pky-progress { height: 4px; background: rgba(255,255,255,0.08); margin-bottom: 2.2rem; border-radius: 2px; overflow: hidden; }
+    .pky-progress-bar { height: 100%; background: linear-gradient(90deg, var(--violet), var(--cyan)); transition: width 0.4s ease; }
+    .pky-stage { border: none; padding: 0; margin: 0 0 1.5rem; }
+    .pky-stage-label { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; padding: 0; }
+    .pky-question { font-family: 'Cinzel', serif; font-size: clamp(1.25rem, 2.8vw, 1.7rem); line-height: 1.4; color: var(--cream); margin: 0 0 0.6rem; }
+    .pky-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--muted); margin: 0 0 1.4rem; }
+    .pky-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    .pky-option { display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--line); padding: 1.1rem 1.2rem; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s; position: relative; }
+    .pky-option:hover { transform: translateY(-2px); border-color: rgba(167,139,250,0.4); }
+    .pky-option:has(input:checked) { border-color: var(--violet); background: rgba(167,139,250,0.08); box-shadow: 0 0 24px rgba(167,139,250,0.18); }
+    .pky-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .pky-option input:focus-visible ~ .pky-option-label { outline: 2px solid var(--violet); outline-offset: 3px; }
+    .pky-option-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; color: var(--cream); }
+    .pky-option-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .pky-nav { display: flex; justify-content: space-between; margin-top: 1rem; }
+
+    .pky-result-wrap { padding: 1rem 0; }
+    .pky-result-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: start; }
+    .pky-rings-card { border: 1px solid rgba(167,139,250,0.35); background: radial-gradient(circle, rgba(167,139,250,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
+    .pky-rings-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--violet-light); margin-bottom: 1rem; }
+    .pky-rings-art { width: 100%; aspect-ratio: 1; }
+    .pky-rings-art canvas { width: 100%; height: 100%; }
+    .pky-sequence-card { border: 1px solid var(--line); background: var(--panel); padding: 1.5rem; }
+    .pky-card-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--violet-light); margin: 1rem 0 0.4rem; }
+    .pky-card-eyebrow:first-child { margin-top: 0; }
+    .pky-card-value { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--cream); margin: 0; }
+    .pky-sequence-list { margin: 0; padding-left: 1.2rem; color: var(--cream); font-size: 0.95rem; line-height: 1.7; }
+    .pky-sequence-list li { margin-bottom: 0.4rem; }
+    .pky-reflection { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: rgba(232,255,249,0.85); border-top: 1px solid var(--line); padding-top: 1.2rem; margin-top: 1.2rem; }
+    .pky-next-link { display: inline-block; margin-top: 1rem; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--violet); }
+    .pky-card-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; }
+
+    @media (max-width: 700px) {
+      .pky-options { grid-template-columns: 1fr; }
+      .pky-result-grid { grid-template-columns: 1fr; }
+      .pky-rings-preview { height: 120px; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      .pky-sequence-card, .pky-sequence-card * { visibility: visible; }
+      .pky-sequence-card { position: absolute; top: 0; left: 0; width: 100%; border: none; background: white; color: black; }
+      .pky-card-value, .pky-card-eyebrow, .pky-sequence-list, .pky-reflection { color: black !important; }
+    }
+  `;
+
+  const scriptBlock = `<script>
+    (function () {
+      var PRESENCE_TYPES = ${JSON.stringify(PRESENCE_TYPES)};
+      var STILLNESS = ${JSON.stringify(STILLNESS)};
+      var PULLS = ${JSON.stringify(PULLS)};
+      var ANCHORS = ${JSON.stringify(ANCHORS)};
+      var DURATIONS = ${JSON.stringify(DURATIONS)};
+      var REFLECTIONS = ${JSON.stringify(REFLECTIONS)};
+      var NEXT_RESOURCE = ${JSON.stringify(NEXT_RESOURCE)};
+      var STEP_LIBRARY = ${JSON.stringify(STEP_LIBRARY)};
+      var ANCHOR_COLOR = { breath: "0,229,204", sound: "255,179,0", body: "34,192,106", space: "167,139,250", silence: "232,255,249" };
+
+      var STAGES = 5;
+      var current = 0;
+      var answers = {};
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var welcome = document.getElementById('pky-welcome');
+      var form = document.getElementById('pky-form');
+      var startBtn = document.getElementById('pky-start');
+      var backBtn = document.getElementById('pky-back');
+      var nextBtn = document.getElementById('pky-next');
+      var progressBar = document.getElementById('pky-progress-bar');
+      var resultWrap = document.getElementById('pky-result-wrap');
+      var previewCanvas = document.getElementById('pky-rings-preview');
+
+      function trackEvent(name, params) {
+        var payload = Object.assign({ tool_id: 'the-presence-key' }, params || {});
+        if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+      }
+
+      function selectedIndexes() {
+        var idx = {};
+        ['presenceType', 'stillness', 'pulls', 'anchor', 'duration'].forEach(function (field) {
+          var checked = form.querySelector('input[name="' + field + '"]:checked');
+          idx[field] = checked ? checked.closest('.pky-option').getAttribute('data-seed') : null;
+        });
+        return idx;
+      }
+
+      // ── Presence Rings (plain concentric rings, thickness/spacing vary) ──
+      function drawRings(target, params, size) {
+        if (!target) return;
+        var w = size || target.clientWidth || 200, h = size || target.clientHeight || 200;
+        var ctx = target.getContext('2d');
+        var dpr = window.devicePixelRatio || 1;
+        target.width = w * dpr;
+        target.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+
+        var cx = w / 2, cy = h / 2;
+        var maxRadius = Math.min(w, h) / 2 - 12;
+        var color = params.color;
+
+        for (var i = 0; i < params.ringCount; i++) {
+          var radius = maxRadius * ((i + 1) / params.ringCount);
+          var thickness = 1 + (params.ringCount - i) * params.thicknessScale;
+          ctx.strokeStyle = 'rgba(' + color + ',' + (0.85 - i * (0.5 / params.ringCount)) + ')';
+          ctx.lineWidth = thickness;
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        var coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxRadius * 0.1);
+        coreGrad.addColorStop(0, 'rgba(255,255,255,0.9)');
+        coreGrad.addColorStop(1, 'rgba(' + color + ',0)');
+        ctx.fillStyle = coreGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, maxRadius * 0.1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function ringParamsFromAnswers() {
+        var idx = selectedIndexes();
+        var durationIdx = idx.duration ? Number(idx.duration.split('-')[1]) : 0;
+        var pullsIdx = idx.pulls ? Number(idx.pulls.split('-')[1]) : 0;
+        var anchorChecked = form.querySelector('input[name="anchor"]:checked');
+        return {
+          ringCount: 3 + durationIdx * 2,
+          thicknessScale: 0.4 + pullsIdx * 0.15,
+          color: ANCHOR_COLOR[anchorChecked ? anchorChecked.value : 'breath']
+        };
+      }
+
+      function updatePreview() {
+        if (form.hidden) return;
+        drawRings(previewCanvas, ringParamsFromAnswers());
+      }
+      window.addEventListener('resize', updatePreview);
+
+      function showStage(i) {
+        document.querySelectorAll('.pky-stage').forEach(function (el) {
+          el.hidden = Number(el.getAttribute('data-pky-stage')) !== i + 1;
+        });
+        backBtn.style.visibility = i === 0 ? 'hidden' : 'visible';
+        nextBtn.textContent = i === STAGES - 1 ? 'Begin the Sequence' : 'Continue';
+        progressBar.style.width = (((i + 1) / STAGES) * 100) + '%';
+        updatePreview();
+      }
+
+      startBtn.addEventListener('click', function () {
+        trackEvent('experience_start', {});
+        welcome.hidden = true;
+        form.hidden = false;
+        showStage(0);
+        form.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      backBtn.addEventListener('click', function () {
+        if (current > 0) { current -= 1; showStage(current); }
+      });
+
+      nextBtn.addEventListener('click', function () {
+        var stageEl = document.querySelector('.pky-stage[data-pky-stage="' + (current + 1) + '"]');
+        var checked = stageEl.querySelector('input:checked');
+        if (!checked) {
+          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
+          return;
+        }
+        updatePreview();
+        if (current < STAGES - 1) {
+          current += 1;
+          showStage(current);
+        } else {
+          finish();
+        }
+      });
+
+      function finish() {
+        var data = new FormData(form);
+        answers.presenceType = PRESENCE_TYPES.filter(function (p) { return p.id === data.get('presenceType'); })[0];
+        answers.stillness = STILLNESS.filter(function (s) { return s.id === data.get('stillness'); })[0];
+        answers.pulls = PULLS.filter(function (p) { return p.id === data.get('pulls'); })[0];
+        answers.anchor = ANCHORS.filter(function (a) { return a.id === data.get('anchor'); })[0];
+        answers.duration = DURATIONS.filter(function (d) { return d.id === data.get('duration'); })[0];
+
+        var sequence = (STEP_LIBRARY[answers.anchor.id] || STEP_LIBRARY.breath).slice(0, answers.duration.steps);
+
+        document.getElementById('pky-anchor-value').textContent = answers.anchor.label;
+        var list = document.getElementById('pky-sequence-list');
+        list.innerHTML = sequence.map(function (s) { return '<li>' + s + '</li>'; }).join('');
+        document.getElementById('pky-duration-value').textContent = answers.duration.label;
+        document.getElementById('pky-reflection').textContent = REFLECTIONS[answers.presenceType.id];
+        var nextResource = NEXT_RESOURCE[answers.presenceType.id];
+        var nextLink = document.getElementById('pky-next-link');
+        nextLink.href = nextResource.url;
+        nextLink.textContent = 'Continue into ' + nextResource.label;
+        nextLink.addEventListener('click', function () {
+          trackEvent('related_resource_click', { destination: nextResource.url });
+        });
+
+        var params = ringParamsFromAnswers();
+        var artHost = document.getElementById('pky-rings-art');
+        artHost.innerHTML = '';
+        var artCanvas = document.createElement('canvas');
+        artCanvas.width = 320; artCanvas.height = 320;
+        artCanvas.style.width = '100%'; artCanvas.style.height = '100%';
+        artHost.appendChild(artCanvas);
+        drawRings(artCanvas, params, 320);
+
+        form.hidden = true;
+        resultWrap.hidden = false;
+        trackEvent('experience_complete', {
+          presence_type: answers.presenceType.id,
+          stillness: answers.stillness.id,
+          pulls: answers.pulls.id,
+          anchor: answers.anchor.id,
+          duration_minutes: answers.duration.minutes
+        });
+        resultWrap.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      document.getElementById('pky-copy').addEventListener('click', function () {
+        var btn = this;
+        var sequenceText = Array.prototype.map.call(document.querySelectorAll('#pky-sequence-list li'), function (li, i) {
+          return (i + 1) + '. ' + li.textContent;
+        }).join('\\n');
+        var text = 'PRESENCE CARD\\n\\nAnchor: ' + answers.anchor.label +
+          '\\nTime: ' + answers.duration.label +
+          '\\n\\nYour Sequence:\\n' + sequenceText +
+          '\\n\\n' + REFLECTIONS[answers.presenceType.id];
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () {
+            trackEvent('artifact_copy', { anchor: answers.anchor.id });
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = 'Copy Presence Card'; }, 1800);
+          });
+        }
+      });
+
+      document.getElementById('pky-print').addEventListener('click', function () { window.print(); });
+
+      document.getElementById('pky-restart').addEventListener('click', function () {
+        current = 0;
+        answers = {};
+        form.reset();
+        resultWrap.hidden = true;
+        welcome.hidden = false;
+        welcome.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      form.addEventListener('submit', function (e) { e.preventDefault(); });
+    })();
+    </script>`;
+
+  const pkyTrail = [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "Meditation", url: "/hubs/meditation/" }, { name: title, url: canonical }];
+  return pageChrome({
+    title, description, canonical, body: body + scriptBlock, extraStyle, breadcrumbTrail: pkyTrail,
+    schema: [
+      ...baseSchema({ title, description, canonical }),
+      breadcrumbs(pkyTrail),
+      { "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: absoluteUrl(canonical), applicationCategory: "LifestyleApplication", operatingSystem: "Any", isAccessibleForFree: true },
+    ],
+  });
+}
+
 function main() {
   const clusterData = loadTopicClusters();
   const hubs = readJson("static/_data/authority-hubs.json", { hubs: [] }).hubs || [];
@@ -3119,6 +3593,7 @@ function main() {
   writePage("static/tools/nervous-system-reset/index.html", renderNervousSystemReset());
   writePage("static/tools/creative-signal-finder/index.html", renderCreativeSignalFinder());
   writePage("static/tools/the-compass-point/index.html", renderCompassPoint());
+  writePage("static/tools/the-presence-key/index.html", renderPresenceKey());
 }
 
 main();
