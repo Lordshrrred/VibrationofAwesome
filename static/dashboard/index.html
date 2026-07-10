@@ -2106,7 +2106,8 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
 // Reads static/_data/topic-clusters.json (cluster definitions) and
 // static/_data/serp-intelligence.json (written weekly by scripts/serp_intelligence.js
 // via .github/workflows/weekly-serp-check.yml). No live API calls happen from the
-// browser ~ this panel is a read-only view of data already generated on a schedule.
+// browser ~ this panel reads a public-safe summary generated on a schedule, not
+// Search Console exports, private query data, or raw Anthropic responses.
 const SEO_FLAG_LABEL = { ranking: "✅ Ranking", not_found: "❌ Not found", ai_overview: "🤖 AI Overview" };
 
 function renderSeoIntelligence(boomPosts, clustersData, serpData) {
