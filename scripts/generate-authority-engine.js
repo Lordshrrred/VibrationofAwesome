@@ -2143,6 +2143,495 @@ ${stage5}
   });
 }
 
+// ── Creative Signal Finder ────────────────────────────────────────────────────
+//
+// Flagship experience for the Creativity hub. Five decisions (medium,
+// blocker, how the block shows up, what would help, time available)
+// deterministically pick a short unblocking sequence and render a "Spark
+// Pattern" ~ radiating rays from a center point, distinct from both the
+// Focus Star constellation and the Reset Mandala's concentric rings.
+
+function renderCreativeSignalFinder() {
+  const title = "Creative Signal Finder";
+  const description = "A short ritual for finding what's actually blocking your creative output right now ~ five small decisions, then a personalized unblocking sequence and a Spark Pattern built from your own answers.";
+  const canonical = "/tools/creative-signal-finder/";
+
+  const MEDIUMS = [
+    { id: "music", label: "Music", detail: "A track, a lyric, a sound only you can hear." },
+    { id: "writing", label: "Writing", detail: "A page, a story, a message worth finishing." },
+    { id: "visual", label: "Visual Art", detail: "A piece, a design, something for the eye." },
+    { id: "brand", label: "A Business or Brand", detail: "Something you're building that needs your voice in it." },
+    { id: "unnamed", label: "Something You Can't Name Yet", detail: "You just know something wants to be made." },
+  ];
+  const BLOCKERS = [
+    { id: "perfectionism", label: "Perfectionism", detail: "Rewriting the first move before it's even real." },
+    { id: "comparison", label: "Comparison", detail: "Measuring your start against someone else's finished thing." },
+    { id: "burnout", label: "Burnout", detail: "The well is genuinely dry right now, not just resistant." },
+    { id: "vision", label: "Unclear Vision", detail: "You want to make something but can't see the shape of it yet." },
+    { id: "judgment", label: "Fear of Judgment", detail: "What if it's actually bad, and someone sees it." },
+  ];
+  const SHOWS_UP = [
+    { id: "overthinking", label: "Overthinking every detail", detail: "Stuck in revision before there's anything to revise." },
+    { id: "avoiding", label: "Avoiding starting at all", detail: "The blank page keeps winning." },
+    { id: "abandoning", label: "Starting, then abandoning", detail: "You get partway in and quietly let it die." },
+    { id: "copying", label: "Copying others instead of trusting your voice", detail: "Borrowing a shape that isn't quite yours." },
+    { id: "numbing", label: "Numbing out instead of making", detail: "Scrolling where the making used to happen." },
+  ];
+  const PRACTICES = [
+    { id: "tiny-start", label: "A tiny, low-stakes start", detail: "Something so small it can't fail." },
+    { id: "permission", label: "Permission to make something bad on purpose", detail: "Lower the bar until you can clear it." },
+    { id: "distance", label: "Distance from comparison", detail: "Close the tabs. Make in a room with no mirrors." },
+    { id: "reconnect", label: "Reconnecting with why this matters", detail: "Remembering the actual reason, not the audience." },
+    { id: "rest", label: "Rest before more output", detail: "The block might just be a body asking to stop." },
+  ];
+  const DURATIONS = [
+    { id: "5", label: "5 minutes", minutes: 5, steps: 1 },
+    { id: "15", label: "15 minutes", minutes: 15, steps: 2 },
+    { id: "30", label: "30 minutes", minutes: 30, steps: 3 },
+    { id: "60", label: "60 minutes", minutes: 60, steps: 4 },
+  ];
+
+  const REFLECTIONS = {
+    perfectionism: "The rough version is allowed to exist. It's not the final one.",
+    comparison: "Their finished thing was also once an unfinished, uncertain thing.",
+    burnout: "An empty well isn't a character flaw. It's information.",
+    vision: "Clarity usually shows up after you start, not before.",
+    judgment: "The people worth making this for were never judging the rough draft.",
+  };
+  const NEXT_RESOURCE = {
+    perfectionism: { url: "/hubs/self-trust/", label: "Self Trust Hub" },
+    comparison: { url: "/hubs/self-trust/", label: "Self Trust Hub" },
+    burnout: { url: "/hubs/nervous-system-regulation/", label: "Nervous System Regulation Hub" },
+    vision: { url: "/hubs/purpose/", label: "Purpose Hub" },
+    judgment: { url: "/ai-engine/", label: "AI Engine" },
+  };
+
+  function optionStage(stageNum, question, note, options, field) {
+    return `<fieldset class="csf-stage" data-csf-stage="${stageNum}" data-csf-field="${field}" hidden>
+        <legend class="csf-stage-label accent-cyan">Step ${stageNum} of 5</legend>
+        <p class="csf-question">${escapeHtml(question)}</p>
+        ${note ? `<p class="csf-note">${escapeHtml(note)}</p>` : ""}
+        <div class="csf-options" role="radiogroup" aria-label="${escapeHtml(question)}">
+          ${options.map((opt, i) => `<label class="csf-option" data-seed="${stageNum}-${i}">
+            <input type="radio" name="${field}" value="${opt.id}">
+            <span class="csf-option-label">${escapeHtml(opt.label)}</span>
+            <span class="csf-option-detail">${escapeHtml(opt.detail)}</span>
+          </label>`).join("\n          ")}
+        </div>
+      </fieldset>`;
+  }
+
+  const stage1 = optionStage(1, "What are you trying to create right now?", null, MEDIUMS, "medium");
+  const stage2 = optionStage(2, "What's actually stopping you?", null, BLOCKERS, "blocker");
+  const stage3 = optionStage(3, "How does the block show up?", null, SHOWS_UP, "showsUp");
+  const stage4 = optionStage(4, "What would genuinely help right now?", "Not what should help. What would actually help.", PRACTICES, "practice");
+  const stage5 = optionStage(5, "How much time do you have?", null, DURATIONS, "duration");
+
+  const body = `    <section class="voa-hero voa-reveal">
+      <div class="voa-hero-bg" style="--hero-glow: rgba(0,229,204,0.16);"></div>
+      <div class="voa-hero-icon accent-cyan">${ICONS.spark}</div>
+      <div class="voa-hero-inner">
+        <div class="voa-eyebrow accent-cyan">A Creative Ritual</div>
+        <h1 class="voa-h1">Creative Signal Finder</h1>
+        <p class="voa-hero-desc">${escapeHtml(description)}</p>
+        <p class="voa-hero-quote">This is a reflective ritual, not a productivity system. It won't fix a genuinely empty well ~ it's here to help you tell the difference between resistance and depletion, and meet whichever one is real.</p>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal" aria-label="Creative Signal Finder">
+      <div class="csf-shell">
+        <canvas id="csf-spark-preview" class="csf-spark-preview" aria-hidden="true"></canvas>
+
+        <div id="csf-welcome" class="voa-featured border-cyan">
+          <div>
+            <div class="voa-featured-label accent-cyan">Before You Begin</div>
+            <h3>Five small decisions, then a way back in</h3>
+            <p>Answer honestly, based on what's actually true right now, not what you wish were true. At the end you'll get a short unblocking sequence and a Spark Pattern built from your own answers ~ yours to keep, copy, or print. Nothing is saved, tracked, or sent anywhere.</p>
+            <button class="voa-btn voa-btn-primary" id="csf-start" type="button">Find the Signal</button>
+          </div>
+        </div>
+
+        <form id="csf-form" class="csf-form" hidden>
+          <div class="csf-progress" aria-hidden="true"><div class="csf-progress-bar" id="csf-progress-bar" style="width:0%"></div></div>
+${stage1}
+${stage2}
+${stage3}
+${stage4}
+${stage5}
+          <div class="csf-nav">
+            <button class="voa-btn voa-btn-secondary" id="csf-back" type="button">Back</button>
+            <button class="voa-btn voa-btn-primary" id="csf-next" type="button">Continue</button>
+          </div>
+        </form>
+
+        <div id="csf-result-wrap" class="csf-result-wrap" hidden>
+          <div class="csf-result-grid">
+            <div class="csf-spark-card">
+              <div class="csf-spark-eyebrow">Your Spark Pattern</div>
+              <div class="csf-spark-art" id="csf-spark-art"></div>
+            </div>
+            <div class="csf-sequence-card">
+              <div class="csf-card-eyebrow">What's Actually Blocking You</div>
+              <p class="csf-card-value" id="csf-current-block"></p>
+              <div class="csf-card-eyebrow">Your Unblocking Sequence</div>
+              <ol class="csf-sequence-list" id="csf-sequence-list"></ol>
+              <div class="csf-card-eyebrow">Time</div>
+              <p class="csf-card-value" id="csf-duration-value"></p>
+              <p class="csf-reflection" id="csf-reflection"></p>
+              <a class="csf-next-link" id="csf-next-link" href="/hubs/creativity/">Continue into the Creativity Hub</a>
+            </div>
+          </div>
+          <div class="csf-card-actions">
+            <button class="voa-btn voa-btn-primary" id="csf-copy" type="button">Copy Spark Card</button>
+            <button class="voa-btn voa-btn-secondary" id="csf-print" type="button">Print Spark Card</button>
+            <button class="voa-btn voa-btn-secondary" id="csf-restart" type="button">Find Another Signal</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal">
+      <div class="voa-section-head"><h2 class="voa-h2">Related Pathways</h2></div>
+      <div class="voa-pathways">
+        <a class="voa-pathway border-cyan" href="/hubs/creativity/">
+          <span class="voa-pathway-icon accent-cyan">${ICONS.spark}</span>
+          <span class="voa-pathway-text">Creativity Hub</span>
+        </a>
+        <a class="voa-pathway border-amber" href="/hubs/purpose/">
+          <span class="voa-pathway-icon accent-amber">${ICONS.star}</span>
+          <span class="voa-pathway-text">Purpose Hub</span>
+        </a>
+        <a class="voa-pathway border-violet" href="/hubs/self-trust/">
+          <span class="voa-pathway-icon accent-violet">${ICONS.anchor}</span>
+          <span class="voa-pathway-text">Self Trust Hub</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="voa-continue voa-reveal">
+      <p>Ready to go deeper on the same subject?</p>
+      <div class="voa-continue-cta">
+        <a class="voa-btn voa-btn-primary" href="/hubs/creativity/">Explore Creativity</a>
+        <a class="voa-btn voa-btn-secondary" href="/tools/">Browse the Tools Library</a>
+      </div>
+    </section>`;
+
+  const extraStyle = `
+    .csf-shell { position: relative; max-width: 720px; margin: 0 auto; }
+    .csf-spark-preview { position: absolute; inset: -3rem -1rem auto -1rem; height: 180px; width: calc(100% + 2rem); pointer-events: none; opacity: 0.85; }
+    .csf-progress { height: 4px; background: rgba(255,255,255,0.08); margin-bottom: 2.2rem; border-radius: 2px; overflow: hidden; }
+    .csf-progress-bar { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--amber)); transition: width 0.4s ease; }
+    .csf-stage { border: none; padding: 0; margin: 0 0 1.5rem; }
+    .csf-stage-label { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; padding: 0; }
+    .csf-question { font-family: 'Cinzel', serif; font-size: clamp(1.25rem, 2.8vw, 1.7rem); line-height: 1.4; color: var(--cream); margin: 0 0 0.6rem; }
+    .csf-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--muted); margin: 0 0 1.4rem; }
+    .csf-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    .csf-option { display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--line); padding: 1.1rem 1.2rem; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s; position: relative; }
+    .csf-option:hover { transform: translateY(-2px); border-color: rgba(0,229,204,0.4); }
+    .csf-option:has(input:checked) { border-color: var(--cyan); background: rgba(0,229,204,0.08); box-shadow: 0 0 24px rgba(0,229,204,0.18); }
+    .csf-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .csf-option input:focus-visible ~ .csf-option-label { outline: 2px solid var(--cyan); outline-offset: 3px; }
+    .csf-option-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; color: var(--cream); }
+    .csf-option-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .csf-nav { display: flex; justify-content: space-between; margin-top: 1rem; }
+
+    .csf-result-wrap { padding: 1rem 0; }
+    .csf-result-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: start; }
+    .csf-spark-card { border: 1px solid rgba(0,229,204,0.35); background: radial-gradient(circle, rgba(0,229,204,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
+    .csf-spark-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan-light); margin-bottom: 1rem; }
+    .csf-spark-art { width: 100%; aspect-ratio: 1; }
+    .csf-spark-art svg, .csf-spark-art canvas { width: 100%; height: 100%; }
+    .csf-sequence-card { border: 1px solid var(--line); background: var(--panel); padding: 1.5rem; }
+    .csf-card-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan-light); margin: 1rem 0 0.4rem; }
+    .csf-card-eyebrow:first-child { margin-top: 0; }
+    .csf-card-value { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--cream); margin: 0; }
+    .csf-sequence-list { margin: 0; padding-left: 1.2rem; color: var(--cream); font-size: 0.95rem; line-height: 1.7; }
+    .csf-sequence-list li { margin-bottom: 0.4rem; }
+    .csf-reflection { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: rgba(232,255,249,0.85); border-top: 1px solid var(--line); padding-top: 1.2rem; margin-top: 1.2rem; }
+    .csf-next-link { display: inline-block; margin-top: 1rem; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cyan); }
+    .csf-card-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; }
+
+    @media (max-width: 700px) {
+      .csf-options { grid-template-columns: 1fr; }
+      .csf-result-grid { grid-template-columns: 1fr; }
+      .csf-spark-preview { height: 120px; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      .csf-sequence-card, .csf-sequence-card * { visibility: visible; }
+      .csf-sequence-card { position: absolute; top: 0; left: 0; width: 100%; border: none; background: white; color: black; }
+      .csf-card-value, .csf-card-eyebrow, .csf-sequence-list, .csf-reflection { color: black !important; }
+    }
+  `;
+
+  const scriptBlock = `<script>
+    (function () {
+      var MEDIUMS = ${JSON.stringify(MEDIUMS)};
+      var BLOCKERS = ${JSON.stringify(BLOCKERS)};
+      var SHOWS_UP = ${JSON.stringify(SHOWS_UP)};
+      var PRACTICES = ${JSON.stringify(PRACTICES)};
+      var DURATIONS = ${JSON.stringify(DURATIONS)};
+      var REFLECTIONS = ${JSON.stringify(REFLECTIONS)};
+      var NEXT_RESOURCE = ${JSON.stringify(NEXT_RESOURCE)};
+
+      var UNBLOCK_LIBRARY = {
+        perfectionism: [
+          { text: "Set a timer for the time you chose. When it ends, stop, even mid-sentence.", envs: "all" },
+          { text: "Make the worst possible first line on purpose, then keep going past it.", envs: "all" },
+          { text: "Turn off spellcheck, grid lines, or whatever tool is inviting you to fix instead of make.", envs: "all" },
+          { text: "Show the rough version to no one yet. That rule alone changes what you're willing to attempt.", envs: "all" }
+        ],
+        comparison: [
+          { text: "Close every tab that shows someone else's finished work.", envs: "all" },
+          { text: "Make one small thing that is only for you, not for an audience yet.", envs: "all" },
+          { text: "Name one thing your unfinished thing has that theirs doesn't: your actual voice.", envs: "all" },
+          { text: "Set the comparison down for the length of this session. It'll still be there after." },
+        ],
+        burnout: [
+          { text: "Do the smallest possible version: one line, one note, one stroke. Nothing more.", envs: "all" },
+          { text: "Step away from the screen for a few minutes before you try to make anything.", envs: "all" },
+          { text: "Ask honestly: is this resistance, or is this a body that needs rest? Answer before continuing.", envs: "all" },
+          { text: "If it's genuinely rest you need, let this session be that instead. That still counts.", envs: "all" }
+        ],
+        vision: [
+          { text: "Describe the finished thing in one sentence, badly, without trying to get it right.", envs: "all" },
+          { text: "Make three tiny, different versions instead of one perfect one.", envs: "all" },
+          { text: "Pick the version that felt most alive to make, not most correct.", envs: "all" },
+          { text: "Start there. The vision usually arrives partway through, not before.", envs: "all" }
+        ],
+        judgment: [
+          { text: "Name the specific person or crowd you're afraid of. Naming it shrinks it.", envs: "all" },
+          { text: "Make the thing as if no one would ever see it.", envs: "all" },
+          { text: "Remember one piece of work you once judged that turned out to matter to someone.", envs: "all" },
+          { text: "Let this version exist unpublished for now. Publishing is a separate decision.", envs: "all" }
+        ]
+      };
+
+      var STAGES = 5;
+      var current = 0;
+      var answers = {};
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var welcome = document.getElementById('csf-welcome');
+      var form = document.getElementById('csf-form');
+      var startBtn = document.getElementById('csf-start');
+      var backBtn = document.getElementById('csf-back');
+      var nextBtn = document.getElementById('csf-next');
+      var progressBar = document.getElementById('csf-progress-bar');
+      var resultWrap = document.getElementById('csf-result-wrap');
+      var previewCanvas = document.getElementById('csf-spark-preview');
+
+      function trackEvent(name, params) {
+        var payload = Object.assign({ tool_id: 'creative-signal-finder' }, params || {});
+        if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+      }
+
+      function selectedIndexes() {
+        var idx = {};
+        ['medium', 'blocker', 'showsUp', 'practice', 'duration'].forEach(function (field) {
+          var checked = form.querySelector('input[name="' + field + '"]:checked');
+          idx[field] = checked ? checked.closest('.csf-option').getAttribute('data-seed') : null;
+        });
+        return idx;
+      }
+
+      // ── Spark Pattern (radiating rays from center, not points or rings) ──
+      function drawSpark(target, params, size) {
+        if (!target) return;
+        var w = size || target.clientWidth || 200, h = size || target.clientHeight || 200;
+        var ctx = target.getContext('2d');
+        var dpr = window.devicePixelRatio || 1;
+        target.width = w * dpr;
+        target.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+
+        var cx = w / 2, cy = h / 2;
+        var maxLen = Math.min(w, h) / 2 - 14;
+        var color = params.color;
+
+        for (var i = 0; i < params.rayCount; i++) {
+          var angle = params.rotation + (i / params.rayCount) * Math.PI * 2;
+          var lenVariance = 0.55 + 0.45 * Math.abs(Math.sin(angle * params.lengthWave + params.rotation));
+          var len = maxLen * lenVariance;
+          var x1 = cx + Math.cos(angle) * (maxLen * 0.12);
+          var y1 = cy + Math.sin(angle) * (maxLen * 0.12);
+          var x2 = cx + Math.cos(angle) * len;
+          var y2 = cy + Math.sin(angle) * len;
+          var grad = ctx.createLinearGradient(x1, y1, x2, y2);
+          grad.addColorStop(0, 'rgba(' + color + ',0.9)');
+          grad.addColorStop(1, 'rgba(' + color + ',0)');
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 1.6;
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+        }
+        var coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxLen * 0.14);
+        coreGrad.addColorStop(0, 'rgba(255,255,255,0.95)');
+        coreGrad.addColorStop(1, 'rgba(' + color + ',0)');
+        ctx.fillStyle = coreGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, maxLen * 0.14, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      var MEDIUM_COLOR = { music: "0,229,204", writing: "255,179,0", visual: "167,139,250", brand: "34,192,106", unnamed: "0,229,204" };
+
+      function sparkParamsFromAnswers() {
+        var idx = selectedIndexes();
+        var blockerIdx = idx.blocker ? Number(idx.blocker.split('-')[1]) : 0;
+        var showsUpIdx = idx.showsUp ? Number(idx.showsUp.split('-')[1]) : 0;
+        var durationIdx = idx.duration ? Number(idx.duration.split('-')[1]) : 0;
+        var mediumChecked = form.querySelector('input[name="medium"]:checked');
+        return {
+          rayCount: 10 + durationIdx * 6,
+          rotation: showsUpIdx * (Math.PI * 2 / 5),
+          lengthWave: 1 + blockerIdx,
+          color: MEDIUM_COLOR[mediumChecked ? mediumChecked.value : 'music']
+        };
+      }
+
+      function updatePreview() {
+        if (form.hidden) return;
+        drawSpark(previewCanvas, sparkParamsFromAnswers());
+      }
+      window.addEventListener('resize', updatePreview);
+
+      function showStage(i) {
+        document.querySelectorAll('.csf-stage').forEach(function (el) {
+          el.hidden = Number(el.getAttribute('data-csf-stage')) !== i + 1;
+        });
+        backBtn.style.visibility = i === 0 ? 'hidden' : 'visible';
+        nextBtn.textContent = i === STAGES - 1 ? 'Find My Signal' : 'Continue';
+        progressBar.style.width = (((i + 1) / STAGES) * 100) + '%';
+        updatePreview();
+      }
+
+      startBtn.addEventListener('click', function () {
+        trackEvent('experience_start', {});
+        welcome.hidden = true;
+        form.hidden = false;
+        showStage(0);
+        form.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      backBtn.addEventListener('click', function () {
+        if (current > 0) { current -= 1; showStage(current); }
+      });
+
+      nextBtn.addEventListener('click', function () {
+        var stageEl = document.querySelector('.csf-stage[data-csf-stage="' + (current + 1) + '"]');
+        var checked = stageEl.querySelector('input:checked');
+        if (!checked) {
+          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
+          return;
+        }
+        updatePreview();
+        if (current < STAGES - 1) {
+          current += 1;
+          showStage(current);
+        } else {
+          finish();
+        }
+      });
+
+      function pickSequence(blockerId, stepCount) {
+        var library = UNBLOCK_LIBRARY[blockerId] || UNBLOCK_LIBRARY.perfectionism;
+        return library.slice(0, stepCount);
+      }
+
+      function finish() {
+        var data = new FormData(form);
+        answers.medium = MEDIUMS.filter(function (m) { return m.id === data.get('medium'); })[0];
+        answers.blocker = BLOCKERS.filter(function (b) { return b.id === data.get('blocker'); })[0];
+        answers.showsUp = SHOWS_UP.filter(function (s) { return s.id === data.get('showsUp'); })[0];
+        answers.practice = PRACTICES.filter(function (p) { return p.id === data.get('practice'); })[0];
+        answers.duration = DURATIONS.filter(function (d) { return d.id === data.get('duration'); })[0];
+
+        var sequence = pickSequence(answers.blocker.id, answers.duration.steps);
+
+        document.getElementById('csf-current-block').textContent = answers.blocker.label + ' (' + answers.showsUp.label.toLowerCase() + ')';
+        var list = document.getElementById('csf-sequence-list');
+        list.innerHTML = sequence.map(function (s) { return '<li>' + s.text + '</li>'; }).join('');
+        document.getElementById('csf-duration-value').textContent = answers.duration.label;
+        document.getElementById('csf-reflection').textContent = REFLECTIONS[answers.blocker.id];
+        var nextResource = NEXT_RESOURCE[answers.blocker.id];
+        var nextLink = document.getElementById('csf-next-link');
+        nextLink.href = nextResource.url;
+        nextLink.textContent = 'Continue into ' + nextResource.label;
+        nextLink.addEventListener('click', function () {
+          trackEvent('related_resource_click', { destination: nextResource.url });
+        });
+
+        var params = sparkParamsFromAnswers();
+        var artHost = document.getElementById('csf-spark-art');
+        artHost.innerHTML = '';
+        var artCanvas = document.createElement('canvas');
+        artCanvas.width = 320; artCanvas.height = 320;
+        artCanvas.style.width = '100%'; artCanvas.style.height = '100%';
+        artHost.appendChild(artCanvas);
+        drawSpark(artCanvas, params, 320);
+
+        form.hidden = true;
+        resultWrap.hidden = false;
+        trackEvent('experience_complete', {
+          medium: answers.medium.id,
+          blocker: answers.blocker.id,
+          shows_up: answers.showsUp.id,
+          practice: answers.practice.id,
+          duration_minutes: answers.duration.minutes
+        });
+        resultWrap.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      document.getElementById('csf-copy').addEventListener('click', function () {
+        var btn = this;
+        var sequenceText = Array.prototype.map.call(document.querySelectorAll('#csf-sequence-list li'), function (li, i) {
+          return (i + 1) + '. ' + li.textContent;
+        }).join('\\n');
+        var text = 'SPARK CARD\\n\\nWhat\\'s Actually Blocking You: ' + answers.blocker.label + ' (' + answers.showsUp.label.toLowerCase() + ')' +
+          '\\nTime: ' + answers.duration.label +
+          '\\n\\nYour Unblocking Sequence:\\n' + sequenceText +
+          '\\n\\n' + REFLECTIONS[answers.blocker.id];
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () {
+            trackEvent('artifact_copy', { blocker: answers.blocker.id });
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = 'Copy Spark Card'; }, 1800);
+          });
+        }
+      });
+
+      document.getElementById('csf-print').addEventListener('click', function () { window.print(); });
+
+      document.getElementById('csf-restart').addEventListener('click', function () {
+        current = 0;
+        answers = {};
+        form.reset();
+        resultWrap.hidden = true;
+        welcome.hidden = false;
+        welcome.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      form.addEventListener('submit', function (e) { e.preventDefault(); });
+    })();
+    </script>`;
+
+  const csfTrail = [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "Creativity", url: "/hubs/creativity/" }, { name: title, url: canonical }];
+  return pageChrome({
+    title, description, canonical, body: body + scriptBlock, extraStyle, breadcrumbTrail: csfTrail,
+    schema: [
+      ...baseSchema({ title, description, canonical }),
+      breadcrumbs(csfTrail),
+      { "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: absoluteUrl(canonical), applicationCategory: "LifestyleApplication", operatingSystem: "Any", isAccessibleForFree: true },
+    ],
+  });
+}
+
 function main() {
   const clusterData = loadTopicClusters();
   const hubs = readJson("static/_data/authority-hubs.json", { hubs: [] }).hubs || [];
@@ -2163,6 +2652,7 @@ function main() {
   writePage("static/tools/digital-attention-audit/index.html", renderDigitalAttentionAudit());
   writePage("static/tools/adhd-focus-session-planner/index.html", renderAdhdFocusSessionPlanner());
   writePage("static/tools/nervous-system-reset/index.html", renderNervousSystemReset());
+  writePage("static/tools/creative-signal-finder/index.html", renderCreativeSignalFinder());
 }
 
 main();
