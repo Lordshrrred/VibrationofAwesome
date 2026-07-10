@@ -6,9 +6,9 @@ Default source: Google Search Console + GA4. No Anthropic, OpenAI, SERP vendor, 
 
 - Period: 2026-06-10 to 2026-07-07
 - Comparison: 2026-05-13 to 2026-06-09
-- Search Console: not available (missing GA_CREDENTIALS_JSON or GOOGLE_SERVICE_ACCOUNT_JSON)
-- GA4: not available (missing GA_CREDENTIALS_JSON or GOOGLE_SERVICE_ACCOUNT_JSON)
-- API requests attempted this run: 0
+- Search Console: not available (Search Console: Google Search Console API has not been used in project 777914553480 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/searchconsole.googleapis.com/overview?project=777914553480 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.)
+- GA4: connected
+- API requests attempted this run: 4
 - Cache hits: 0
 
 ## Top Organic Landing Pages
@@ -62,4 +62,4 @@ _None found in this run._
 - Search Console and GA4 use different measurement systems; clicks and sessions will not match exactly.
 - Search Console may omit low-volume queries for privacy and internal thresholds.
 - Current implementation uses cached raw responses under `.cache/seo-intelligence/`; use `--refresh` to force a new pull.
-- No Google service-account credentials were available, so this run produced structure and local context only.
+- Search Console unavailable: Search Console: Google Search Console API has not been used in project 777914553480 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/searchconsole.googleapis.com/overview?project=777914553480 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
