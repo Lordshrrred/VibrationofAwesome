@@ -146,14 +146,35 @@ export function getAuthorityTargets(post = {}, clusterKey = null) {
     .map(item => ({ item, score: scoreHubMatch(item, clusterKey, haystack) }))
     .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score)[0]?.item || null;
-  const asset = assetData.assets.find(item => {
-    if (!["published", "ready"].includes(item.status)) return false;
-    return hub?.slug && item.hub === hub.slug;
+
+  // Some hubs have a "reference" asset that just points back at the hub page
+  // itself (e.g. a hub's own self-descriptive entry). That's never a real
+  // tool recommendation ~ if it wins the match, the "recommendation" is a
+  // duplicate of the hub link already in the block and silently produces no
+  // visible tool link at all. Exclude self-referencing assets from selection.
+  const isSelfReference = (item, hubSlug) => cleanPublicPath(item.canonical) === `/hubs/${hubSlug}/`;
+  const asset = hub
+    ? assetData.assets.find(item =>
+        ["published", "ready"].includes(item.status) &&
+        item.hub === hub.slug &&
+        !isSelfReference(item, hub.slug)
+      )
+    : null;
+
+  // A hub can declare secondaryAssets (asset slugs) for a genuinely adjacent
+  // tool that lives under a different hub ~ e.g. ADHD & Focus's primary is
+  // the ADHD Focus Session Planner, but the Digital Attention Audit (whose
+  // home hub is Dopamine & Attention) is still a natural secondary fit.
+  const secondarySlug = hub?.secondaryAssets?.find(slug => {
+    const item = assetData.bySlug[slug];
+    return item && ["published", "ready"].includes(item.status) && item.slug !== asset?.slug;
   });
+  const secondaryItem = secondarySlug ? assetData.bySlug[secondarySlug] : null;
 
   return {
     hub: hub ? { url: `/hubs/${hub.slug}/`, label: `${hub.title} hub` } : null,
     asset: asset ? { url: cleanPublicPath(asset.canonical), label: asset.title } : null,
+    secondaryAsset: secondaryItem ? { url: cleanPublicPath(secondaryItem.canonical), label: secondaryItem.title } : null,
   };
 }
 
@@ -244,6 +265,9 @@ function buildRelatedBlock(source, related, clusterKey, clusterData) {
   }
   if (authority.asset && !linkExists(lines.join("\n"), authority.asset.url)) {
     lines.push(`            <li><a href="${authority.asset.url}">${escapeHtml(authority.asset.label)}</a></li>`);
+  }
+  if (authority.secondaryAsset && !linkExists(lines.join("\n"), authority.secondaryAsset.url)) {
+    lines.push(`            <li><a href="${authority.secondaryAsset.url}">${escapeHtml(authority.secondaryAsset.label)}</a></li>`);
   }
   lines.push("          </ul>");
   lines.push("        </section>");

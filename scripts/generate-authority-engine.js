@@ -604,7 +604,16 @@ function renderHub(hub, posts, assets, hubsBySlug) {
   const description = hub.description;
   const canonical = `/hubs/${hub.slug}/`;
   const { accent, svg } = iconFor(hub.slug);
-  const relatedAssets = assets.filter(asset => asset.hub === hub.slug);
+  // Exclude an asset that just points back at this hub's own URL ~ that's a
+  // self-reference, never a real tool recommendation, and looks broken as a
+  // "Featured Resource" card linking to the page it's already on.
+  const isSelfReference = (asset) => cleanPublicPath(asset.canonical) === `/hubs/${hub.slug}/`;
+  const sameHubAssets = assets.filter(asset => asset.hub === hub.slug && !isSelfReference(asset));
+  const secondaryAssets = (hub.secondaryAssets || [])
+    .map(slug => assets.find(a => a.slug === slug))
+    .filter(Boolean)
+    .filter(asset => !sameHubAssets.some(a => a.slug === asset.slug));
+  const relatedAssets = [...sameHubAssets, ...secondaryAssets];
   const publishedAssets = relatedAssets.filter(a => a.status === "published");
   const upcomingAssets = relatedAssets.filter(a => a.status !== "published");
   // "Start Here" should be the post that most clearly represents this hub's

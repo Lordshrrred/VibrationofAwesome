@@ -454,7 +454,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push("    .header-nav .header-nav-ai:hover { color: #00e5cc; background: rgba(0,229,204,0.06); border-color: rgba(0,229,204,0.32); }");
   H.push("    .header-nav .header-nav-aura { color: rgba(0,229,204,0.6); border: 1px solid rgba(0,229,204,0.1); }");
   H.push("    .header-nav .header-nav-aura:hover { color: #00e5cc; background: rgba(0,229,204,0.05); }");
-  H.push("    @media (max-width: 640px) { .header-nav .header-nav-ai, .header-nav .header-nav-guide { display: inline-flex; } .header-nav .header-nav-aura, .header-nav .header-nav-blog, .header-nav .header-nav-resources { display: none; } }");
+  H.push("    @media (max-width: 640px) { .header-nav .header-nav-ai, .header-nav .header-nav-guide { display: inline-flex; } .header-nav .header-nav-aura, .header-nav .header-nav-blog { display: none; } }");
   H.push("    .site-footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 0.82rem; color: var(--text-muted); }");
   H.push("    .site-footer p { margin: 0; }");
   H.push("    .site-footer a { color: var(--accent); text-decoration: none; }");
@@ -489,7 +489,6 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   H.push('      <nav class="header-nav" aria-label="Site navigation">');
   H.push('        <a href="/field-guide/" class="header-nav-guide">Field Guide ✦</a>');
   H.push('        <a href="/ai-engine/" class="header-nav-ai">AI Engine</a>');
-  H.push('        <a href="/hubs/" class="header-nav-resources">Resources</a>');
   H.push('        <a href="/aura/" class="header-nav-aura">AURA ✦</a>');
   H.push('        <a href="/blog/" class="header-nav-blog">Blog</a>');
   H.push("      </nav>");
