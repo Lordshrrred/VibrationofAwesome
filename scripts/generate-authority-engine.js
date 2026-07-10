@@ -539,7 +539,7 @@ function renderHubsIndex(hubs, assets) {
     const featured = i === 0 ? " voa-hub-card--feature" : "";
     return `<a class="voa-hub-card${featured} border-${accent}" href="/hubs/${hub.slug}/">
   <div class="voa-hub-icon accent-${accent}">${svg}</div>
-  <div class="voa-hub-label accent-${accent}">Pillar Hub</div>
+  <div class="voa-hub-label accent-${accent}">Pathway</div>
   <h3 class="voa-hub-title">${escapeHtml(hub.title)}</h3>
   <p class="voa-hub-desc">${escapeHtml(hub.description)}</p>
   <div class="voa-hub-meta"><span>Explore the hub</span><span>&rarr;</span></div>
@@ -550,10 +550,10 @@ function renderHubsIndex(hubs, assets) {
       <div class="voa-hero-bg" style="--hero-glow: rgba(0,229,204,0.16);"></div>
       <div class="voa-hero-icon accent-cyan">${ICONS.mandala}</div>
       <div class="voa-hero-inner">
-        <div class="voa-eyebrow accent-cyan">Authority Engine</div>
+        <div class="voa-eyebrow accent-cyan">Begin Here</div>
         <h1 class="voa-h1">Choose the pathway you're ready to explore</h1>
         <p class="voa-hero-desc">${escapeHtml(description)}</p>
-        <p class="voa-hero-desc">Vibration of Awesome holds years of writing across two voices. These hubs are how you follow one thread deeper instead of scrolling through everything at once ~ each one gathers the strongest posts on a subject, plus the tools and resources that keep growing inside it.</p>
+        <p class="voa-hero-desc">Vibration of Awesome holds years of writing across two voices. This is your gateway into it ~ themes to sit with, practices to try, and tools built to go deeper on the same subject, instead of scrolling through everything at once.</p>
       </div>
     </section>
     <section class="voa-section voa-reveal" aria-label="Authority hubs">
@@ -629,7 +629,7 @@ function renderHub(hub, posts, assets, hubsBySlug) {
       <div class="voa-hero-bg" style="--hero-glow: var(--${accent === "moss" ? "moss" : accent});"></div>
       <div class="voa-hero-icon accent-${accent}">${svg}</div>
       <div class="voa-hero-inner">
-        <div class="voa-eyebrow accent-${accent}">VOA Pillar Hub</div>
+        <div class="voa-eyebrow accent-${accent}">Explore This Theme</div>
         <h1 class="voa-h1">${escapeHtml(hub.title)}</h1>
         <p class="voa-hero-desc">${escapeHtml(description)}</p>
         ${hub.primaryAsset ? `<a class="voa-btn voa-btn-primary" href="${hub.primaryAsset}">Open the featured resource</a>` : ""}
@@ -692,7 +692,7 @@ ${relatedPathways}
 // ── /tools/ index ────────────────────────────────────────────────────────────
 
 function renderToolsIndex(assets) {
-  const title = "VOA Tools and Authority Assets";
+  const title = "VOA Reflection Tools";
   const description = "An evolving library of reflection tools, planners, timers, and assessments from Vibration of Awesome ~ built for focus, regulation, creativity, and intentional living.";
   const published = assets.filter(a => a.status === "published");
   const upcoming = assets.filter(a => a.status !== "published");
@@ -701,7 +701,7 @@ function renderToolsIndex(assets) {
       <div class="voa-hero-bg" style="--hero-glow: rgba(0,229,204,0.16);"></div>
       <div class="voa-hero-icon accent-cyan">${ICONS.spark}</div>
       <div class="voa-hero-inner">
-        <div class="voa-eyebrow accent-cyan">Authority Assets</div>
+        <div class="voa-eyebrow accent-cyan">Reflection Tools</div>
         <h1 class="voa-h1">Tools for attention, regulation, and direction</h1>
         <p class="voa-hero-desc">${escapeHtml(description)}</p>
         <p class="voa-hero-desc">This library grows alongside the hubs. Each tool is built to be used in five minutes, not studied for an hour ~ a reflection, not a test.</p>
