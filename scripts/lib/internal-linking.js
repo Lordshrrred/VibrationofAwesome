@@ -116,13 +116,22 @@ export function keywordMatches(haystack, keyword) {
 // genuinely belong to either depending on its actual content. Picking the
 // first array match ignored that and silently routed ~all AI-creator-tools
 // posts to Creativity and every dopamine/attention post to ADHD & Focus,
-// regardless of fit. Score instead: clusterKey membership is a small base
-// signal, real keyword evidence in the post's own text is the dominant
-// signal, and hub specialization (fewer clusterKeys = more specific hub)
-// only breaks ties when no keyword evidence exists either way.
+// regardless of fit. Score instead: clusterKey membership is weighted by
+// its position within the hub's own clusterKeys list (earlier = more
+// central to that hub's identity, e.g. ai-creator-workflows lists
+// "ai-creator-tools" first while creativity lists it second), real keyword
+// evidence in the post's own text is the dominant signal, and hub
+// specialization (fewer clusterKeys = more specific hub) is the final
+// tiebreaker. The position-weighted base matters when two hubs both hit
+// the same single keyword and would otherwise tie exactly (e.g. a post
+// tagged "ai-creator-workflows, creator" hits "ai" for one hub and
+// "creator" for the other with identical keyword-hit counts).
 function scoreHubMatch(item, clusterKey, haystack) {
   let score = 0;
-  if (clusterKey && item.clusterKeys?.includes(clusterKey)) score += 10;
+  if (clusterKey && item.clusterKeys?.includes(clusterKey)) {
+    const position = item.clusterKeys.indexOf(clusterKey);
+    score += Math.max(2, 10 - position * 3);
+  }
   const hits = (item.keywords || []).filter(keyword => keywordMatches(haystack, keyword));
   score += hits.length * 25;
   score += (10 - (item.clusterKeys?.length || 0)) * 0.5;
