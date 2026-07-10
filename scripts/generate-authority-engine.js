@@ -2632,6 +2632,471 @@ ${stage5}
   });
 }
 
+// ── The Compass Point ─────────────────────────────────────────────────────────
+//
+// Flagship experience for the Purpose hub. Five decisions (season of life,
+// where energy wants to go, what's quietly pulling, what it would require,
+// time available) deterministically compute a direction and render a
+// "Direction Card" ~ a compass rose with a single needle pointing toward a
+// named direction, distinct from the spark burst, mandala, and constellation
+// already used elsewhere in the ecosystem.
+
+function renderCompassPoint() {
+  const title = "The Compass Point";
+  const description = "A short ritual for finding which direction your energy is actually asking to move in right now ~ five small decisions, then a personalized direction and a Direction Card built from your own answers.";
+  const canonical = "/tools/the-compass-point/";
+
+  const SEASONS = [
+    { id: "building", label: "Building", detail: "Actively constructing something new." },
+    { id: "rebuilding", label: "Rebuilding", detail: "Starting over after something ended or broke." },
+    { id: "waiting", label: "Waiting", detail: "In-between, unsure what's next." },
+    { id: "searching", label: "Searching", detail: "Actively looking, nothing has landed yet." },
+    { id: "restless", label: "Settled but Restless", detail: "Things are fine. Something still feels unfinished." },
+  ];
+  const ENERGY = [
+    { id: "people", label: "Toward People", detail: "Connection, community, being known." },
+    { id: "making", label: "Toward Making Something", detail: "Building, creating, producing real output." },
+    { id: "stillness", label: "Toward Stillness", detail: "Inward, quiet, less noise." },
+    { id: "goal", label: "Toward a Specific Goal", detail: "You already know the target." },
+    { id: "away", label: "Away From Something", detail: "Less clear on the destination. Very clear on what you're leaving." },
+  ];
+  const PULLING = [
+    { id: "unused-skill", label: "A skill you're not using", detail: "Something real that's sitting idle." },
+    { id: "outgrown-self", label: "A version of yourself you've outgrown", detail: "Who you were doesn't fit anymore." },
+    { id: "someday", label: "Something you keep saying 'someday' to", detail: "It's been someday for a while now." },
+    { id: "misfit-commitment", label: "A relationship or commitment that doesn't fit", detail: "Something you're in that isn't quite right." },
+    { id: "vague-feeling", label: "Nothing specific, just a feeling", detail: "Hard to name. Still real." },
+  ];
+  const REQUIRES = [
+    { id: "time", label: "Time", detail: "The direction is clear. The hours aren't there yet." },
+    { id: "courage", label: "Courage", detail: "You know what it would take. It's scary." },
+    { id: "permission", label: "Permission", detail: "Mostly you need to let yourself want this." },
+    { id: "clarity", label: "Clarity", detail: "You genuinely don't know the shape of it yet." },
+    { id: "support", label: "Support", detail: "Not meant to do this part alone." },
+  ];
+  const DURATIONS = [
+    { id: "2", label: "2 minutes", minutes: 2 },
+    { id: "5", label: "5 minutes", minutes: 5 },
+    { id: "10", label: "10 minutes", minutes: 10 },
+    { id: "20", label: "20 minutes", minutes: 20 },
+  ];
+
+  const DIRECTION_NAMES = ["Toward Making", "Toward Connection", "Toward Rest", "Toward Truth", "Toward Release", "Toward Courage", "Toward Depth", "Toward Home"];
+
+  const REQUIRES_REFLECTIONS = {
+    time: "The direction doesn't have to be walked all at once. It just has to stay pointed the right way.",
+    courage: "Courage isn't the absence of fear here. It's moving anyway, at whatever pace is honest.",
+    permission: "You don't need anyone else to grant this. You're allowed to want it out loud.",
+    clarity: "Clarity is usually a byproduct of moving, not a requirement for starting.",
+    support: "Needing people for this part isn't a failure of independence. It's just true.",
+  };
+  const NEXT_RESOURCE = {
+    time: { url: "/hubs/personal-growth/", label: "Personal Growth Hub" },
+    courage: { url: "/hubs/self-trust/", label: "Self Trust Hub" },
+    permission: { url: "/hubs/self-trust/", label: "Self Trust Hub" },
+    clarity: { url: "/hubs/creativity/", label: "Creativity Hub" },
+    support: { url: "/hubs/personal-growth/", label: "Personal Growth Hub" },
+  };
+
+  function optionStage(stageNum, question, note, options, field) {
+    return `<fieldset class="cpt-stage" data-cpt-stage="${stageNum}" data-cpt-field="${field}" hidden>
+        <legend class="cpt-stage-label accent-amber">Step ${stageNum} of 5</legend>
+        <p class="cpt-question">${escapeHtml(question)}</p>
+        ${note ? `<p class="cpt-note">${escapeHtml(note)}</p>` : ""}
+        <div class="cpt-options" role="radiogroup" aria-label="${escapeHtml(question)}">
+          ${options.map((opt, i) => `<label class="cpt-option" data-seed="${stageNum}-${i}">
+            <input type="radio" name="${field}" value="${opt.id}">
+            <span class="cpt-option-label">${escapeHtml(opt.label)}</span>
+            <span class="cpt-option-detail">${escapeHtml(opt.detail)}</span>
+          </label>`).join("\n          ")}
+        </div>
+      </fieldset>`;
+  }
+
+  const stage1 = optionStage(1, "What season of life are you actually in right now?", null, SEASONS, "season");
+  const stage2 = optionStage(2, "Where does your energy actually want to go?", null, ENERGY, "energy");
+  const stage3 = optionStage(3, "What's been quietly pulling at you?", null, PULLING, "pulling");
+  const stage4 = optionStage(4, "What would moving in that direction actually require?", "Not what you should need. What it would actually take.", REQUIRES, "requires");
+  const stage5 = optionStage(5, "How much time do you have to reflect right now?", null, DURATIONS, "duration");
+
+  const body = `    <section class="voa-hero voa-reveal">
+      <div class="voa-hero-bg" style="--hero-glow: rgba(255,179,0,0.16);"></div>
+      <div class="voa-hero-icon accent-amber">${ICONS.star}</div>
+      <div class="voa-hero-inner">
+        <div class="voa-eyebrow accent-amber">A Direction Ritual</div>
+        <h1 class="voa-h1">The Compass Point</h1>
+        <p class="voa-hero-desc">${escapeHtml(description)}</p>
+        <p class="voa-hero-quote">This won't hand you a five-year plan. It's here to name the one direction your energy is already leaning, so you can stop guessing and start there.</p>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal" aria-label="The Compass Point">
+      <div class="cpt-shell">
+        <canvas id="cpt-compass-preview" class="cpt-compass-preview" aria-hidden="true"></canvas>
+
+        <div id="cpt-welcome" class="voa-featured border-amber">
+          <div>
+            <div class="voa-featured-label accent-amber">Before You Begin</div>
+            <h3>Five small decisions, then a direction</h3>
+            <p>Answer with what's actually true right now, not what sounds ambitious. At the end you'll get a named direction and a Direction Card built from your own answers ~ yours to keep, copy, or print. Nothing is saved, tracked, or sent anywhere.</p>
+            <button class="voa-btn voa-btn-primary" id="cpt-start" type="button">Find My Direction</button>
+          </div>
+        </div>
+
+        <form id="cpt-form" class="cpt-form" hidden>
+          <div class="cpt-progress" aria-hidden="true"><div class="cpt-progress-bar" id="cpt-progress-bar" style="width:0%"></div></div>
+${stage1}
+${stage2}
+${stage3}
+${stage4}
+${stage5}
+          <div class="cpt-nav">
+            <button class="voa-btn voa-btn-secondary" id="cpt-back" type="button">Back</button>
+            <button class="voa-btn voa-btn-primary" id="cpt-next" type="button">Continue</button>
+          </div>
+        </form>
+
+        <div id="cpt-result-wrap" class="cpt-result-wrap" hidden>
+          <div class="cpt-result-grid">
+            <div class="cpt-compass-card">
+              <div class="cpt-compass-eyebrow">Your Direction</div>
+              <div class="cpt-compass-art" id="cpt-compass-art"></div>
+              <p class="cpt-direction-name" id="cpt-direction-name"></p>
+            </div>
+            <div class="cpt-sequence-card">
+              <div class="cpt-card-eyebrow">Current Season</div>
+              <p class="cpt-card-value" id="cpt-current-season"></p>
+              <div class="cpt-card-eyebrow">What's Pulling at You</div>
+              <p class="cpt-card-value" id="cpt-current-pull"></p>
+              <div class="cpt-card-eyebrow">What This Requires</div>
+              <p class="cpt-card-value" id="cpt-requires-value"></p>
+              <p class="cpt-reflection" id="cpt-reflection"></p>
+              <a class="cpt-next-link" id="cpt-next-link" href="/hubs/purpose/">Continue into the Purpose Hub</a>
+            </div>
+          </div>
+          <div class="cpt-card-actions">
+            <button class="voa-btn voa-btn-primary" id="cpt-copy" type="button">Copy Direction Card</button>
+            <button class="voa-btn voa-btn-secondary" id="cpt-print" type="button">Print Direction Card</button>
+            <button class="voa-btn voa-btn-secondary" id="cpt-restart" type="button">Find Another Direction</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal">
+      <div class="voa-section-head"><h2 class="voa-h2">Related Pathways</h2></div>
+      <div class="voa-pathways">
+        <a class="voa-pathway border-amber" href="/hubs/purpose/">
+          <span class="voa-pathway-icon accent-amber">${ICONS.star}</span>
+          <span class="voa-pathway-text">Purpose Hub</span>
+        </a>
+        <a class="voa-pathway border-cyan" href="/hubs/creativity/">
+          <span class="voa-pathway-icon accent-cyan">${ICONS.spark}</span>
+          <span class="voa-pathway-text">Creativity Hub</span>
+        </a>
+        <a class="voa-pathway border-violet" href="/hubs/self-trust/">
+          <span class="voa-pathway-icon accent-violet">${ICONS.anchor}</span>
+          <span class="voa-pathway-text">Self Trust Hub</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="voa-continue voa-reveal">
+      <p>Ready to go deeper on the same subject?</p>
+      <div class="voa-continue-cta">
+        <a class="voa-btn voa-btn-primary" href="/hubs/purpose/">Explore Purpose</a>
+        <a class="voa-btn voa-btn-secondary" href="/field-guide/">Get the Field Guide &#10022;</a>
+      </div>
+    </section>`;
+
+  const extraStyle = `
+    .cpt-shell { position: relative; max-width: 720px; margin: 0 auto; }
+    .cpt-compass-preview { position: absolute; inset: -3rem -1rem auto -1rem; height: 180px; width: calc(100% + 2rem); pointer-events: none; opacity: 0.85; }
+    .cpt-progress { height: 4px; background: rgba(255,255,255,0.08); margin-bottom: 2.2rem; border-radius: 2px; overflow: hidden; }
+    .cpt-progress-bar { height: 100%; background: linear-gradient(90deg, var(--amber), var(--cyan)); transition: width 0.4s ease; }
+    .cpt-stage { border: none; padding: 0; margin: 0 0 1.5rem; }
+    .cpt-stage-label { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; padding: 0; }
+    .cpt-question { font-family: 'Cinzel', serif; font-size: clamp(1.25rem, 2.8vw, 1.7rem); line-height: 1.4; color: var(--cream); margin: 0 0 0.6rem; }
+    .cpt-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--muted); margin: 0 0 1.4rem; }
+    .cpt-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    .cpt-option { display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--line); padding: 1.1rem 1.2rem; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s; position: relative; }
+    .cpt-option:hover { transform: translateY(-2px); border-color: rgba(255,179,0,0.4); }
+    .cpt-option:has(input:checked) { border-color: var(--amber); background: rgba(255,179,0,0.08); box-shadow: 0 0 24px rgba(255,179,0,0.18); }
+    .cpt-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .cpt-option input:focus-visible ~ .cpt-option-label { outline: 2px solid var(--amber); outline-offset: 3px; }
+    .cpt-option-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; color: var(--cream); }
+    .cpt-option-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .cpt-nav { display: flex; justify-content: space-between; margin-top: 1rem; }
+
+    .cpt-result-wrap { padding: 1rem 0; }
+    .cpt-result-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: start; }
+    .cpt-compass-card { border: 1px solid rgba(255,179,0,0.35); background: radial-gradient(circle, rgba(255,179,0,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
+    .cpt-compass-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber-light); margin-bottom: 1rem; }
+    .cpt-compass-art { width: 100%; aspect-ratio: 1; }
+    .cpt-compass-art canvas { width: 100%; height: 100%; }
+    .cpt-direction-name { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--cream); margin-top: 1rem; }
+    .cpt-sequence-card { border: 1px solid var(--line); background: var(--panel); padding: 1.5rem; }
+    .cpt-card-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber-light); margin: 1rem 0 0.4rem; }
+    .cpt-card-eyebrow:first-child { margin-top: 0; }
+    .cpt-card-value { font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--cream); margin: 0; }
+    .cpt-reflection { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: rgba(232,255,249,0.85); border-top: 1px solid var(--line); padding-top: 1.2rem; margin-top: 1.2rem; }
+    .cpt-next-link { display: inline-block; margin-top: 1rem; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
+    .cpt-card-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; }
+
+    @media (max-width: 700px) {
+      .cpt-options { grid-template-columns: 1fr; }
+      .cpt-result-grid { grid-template-columns: 1fr; }
+      .cpt-compass-preview { height: 120px; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      .cpt-sequence-card, .cpt-sequence-card * { visibility: visible; }
+      .cpt-sequence-card { position: absolute; top: 0; left: 0; width: 100%; border: none; background: white; color: black; }
+      .cpt-card-value, .cpt-card-eyebrow, .cpt-reflection { color: black !important; }
+    }
+  `;
+
+  const scriptBlock = `<script>
+    (function () {
+      var SEASONS = ${JSON.stringify(SEASONS)};
+      var ENERGY = ${JSON.stringify(ENERGY)};
+      var PULLING = ${JSON.stringify(PULLING)};
+      var REQUIRES = ${JSON.stringify(REQUIRES)};
+      var DURATIONS = ${JSON.stringify(DURATIONS)};
+      var DIRECTION_NAMES = ${JSON.stringify(DIRECTION_NAMES)};
+      var REQUIRES_REFLECTIONS = ${JSON.stringify(REQUIRES_REFLECTIONS)};
+      var NEXT_RESOURCE = ${JSON.stringify(NEXT_RESOURCE)};
+
+      var STAGES = 5;
+      var current = 0;
+      var answers = {};
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var welcome = document.getElementById('cpt-welcome');
+      var form = document.getElementById('cpt-form');
+      var startBtn = document.getElementById('cpt-start');
+      var backBtn = document.getElementById('cpt-back');
+      var nextBtn = document.getElementById('cpt-next');
+      var progressBar = document.getElementById('cpt-progress-bar');
+      var resultWrap = document.getElementById('cpt-result-wrap');
+      var previewCanvas = document.getElementById('cpt-compass-preview');
+
+      function trackEvent(name, params) {
+        var payload = Object.assign({ tool_id: 'the-compass-point' }, params || {});
+        if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+      }
+
+      function selectedIndexes() {
+        var idx = {};
+        ['season', 'energy', 'pulling', 'requires', 'duration'].forEach(function (field) {
+          var checked = form.querySelector('input[name="' + field + '"]:checked');
+          idx[field] = checked ? checked.closest('.cpt-option').getAttribute('data-seed') : null;
+        });
+        return idx;
+      }
+
+      function directionFromAnswers() {
+        var idx = selectedIndexes();
+        var energyIdx = idx.energy ? Number(idx.energy.split('-')[1]) : 0;
+        var pullingIdx = idx.pulling ? Number(idx.pulling.split('-')[1]) : 0;
+        var seasonIdx = idx.season ? Number(idx.season.split('-')[1]) : 0;
+        var directionIndex = (energyIdx * 3 + pullingIdx + seasonIdx) % DIRECTION_NAMES.length;
+        var angle = (directionIndex / DIRECTION_NAMES.length) * Math.PI * 2 - Math.PI / 2;
+        return { name: DIRECTION_NAMES[directionIndex], angle: angle };
+      }
+
+      // ── Direction Card (compass rose + single needle) ──
+      function drawCompass(target, direction, size) {
+        if (!target) return;
+        var w = size || target.clientWidth || 200, h = size || target.clientHeight || 200;
+        var ctx = target.getContext('2d');
+        var dpr = window.devicePixelRatio || 1;
+        target.width = w * dpr;
+        target.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+
+        var cx = w / 2, cy = h / 2;
+        var radius = Math.min(w, h) / 2 - 20;
+
+        ctx.strokeStyle = 'rgba(255,179,0,0.3)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        for (var t = 0; t < 8; t++) {
+          var tickAngle = (t / 8) * Math.PI * 2;
+          var inner = radius - 8;
+          var outer = radius + (t % 2 === 0 ? 8 : 3);
+          ctx.strokeStyle = 'rgba(255,179,0,0.4)';
+          ctx.lineWidth = t % 2 === 0 ? 1.4 : 0.8;
+          ctx.beginPath();
+          ctx.moveTo(cx + Math.cos(tickAngle) * inner, cy + Math.sin(tickAngle) * inner);
+          ctx.lineTo(cx + Math.cos(tickAngle) * outer, cy + Math.sin(tickAngle) * outer);
+          ctx.stroke();
+        }
+
+        var needleLen = radius - 14;
+        var nx = cx + Math.cos(direction.angle) * needleLen;
+        var ny = cy + Math.sin(direction.angle) * needleLen;
+        var grad = ctx.createLinearGradient(cx, cy, nx, ny);
+        grad.addColorStop(0, 'rgba(255,179,0,0.15)');
+        grad.addColorStop(1, 'rgba(255,255,255,0.95)');
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2.4;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(nx, ny);
+        ctx.stroke();
+
+        var tipGrad = ctx.createRadialGradient(nx, ny, 0, nx, ny, 9);
+        tipGrad.addColorStop(0, 'rgba(255,255,255,0.95)');
+        tipGrad.addColorStop(1, 'rgba(255,179,0,0)');
+        ctx.fillStyle = tipGrad;
+        ctx.beginPath();
+        ctx.arc(nx, ny, 9, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(255,179,0,0.9)';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function updatePreview() {
+        if (form.hidden) return;
+        drawCompass(previewCanvas, directionFromAnswers());
+      }
+      window.addEventListener('resize', updatePreview);
+
+      function showStage(i) {
+        document.querySelectorAll('.cpt-stage').forEach(function (el) {
+          el.hidden = Number(el.getAttribute('data-cpt-stage')) !== i + 1;
+        });
+        backBtn.style.visibility = i === 0 ? 'hidden' : 'visible';
+        nextBtn.textContent = i === STAGES - 1 ? 'Find My Direction' : 'Continue';
+        progressBar.style.width = (((i + 1) / STAGES) * 100) + '%';
+        updatePreview();
+      }
+
+      startBtn.addEventListener('click', function () {
+        trackEvent('experience_start', {});
+        welcome.hidden = true;
+        form.hidden = false;
+        showStage(0);
+        form.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      backBtn.addEventListener('click', function () {
+        if (current > 0) { current -= 1; showStage(current); }
+      });
+
+      nextBtn.addEventListener('click', function () {
+        var stageEl = document.querySelector('.cpt-stage[data-cpt-stage="' + (current + 1) + '"]');
+        var checked = stageEl.querySelector('input:checked');
+        if (!checked) {
+          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
+          return;
+        }
+        updatePreview();
+        if (current < STAGES - 1) {
+          current += 1;
+          showStage(current);
+        } else {
+          finish();
+        }
+      });
+
+      function finish() {
+        var data = new FormData(form);
+        answers.season = SEASONS.filter(function (s) { return s.id === data.get('season'); })[0];
+        answers.energy = ENERGY.filter(function (e) { return e.id === data.get('energy'); })[0];
+        answers.pulling = PULLING.filter(function (p) { return p.id === data.get('pulling'); })[0];
+        answers.requires = REQUIRES.filter(function (r) { return r.id === data.get('requires'); })[0];
+        answers.duration = DURATIONS.filter(function (d) { return d.id === data.get('duration'); })[0];
+
+        var direction = directionFromAnswers();
+        document.getElementById('cpt-direction-name').textContent = direction.name;
+        document.getElementById('cpt-current-season').textContent = answers.season.label;
+        document.getElementById('cpt-current-pull').textContent = answers.pulling.label;
+        document.getElementById('cpt-requires-value').textContent = answers.requires.label;
+        document.getElementById('cpt-reflection').textContent = REQUIRES_REFLECTIONS[answers.requires.id];
+        var nextResource = NEXT_RESOURCE[answers.requires.id];
+        var nextLink = document.getElementById('cpt-next-link');
+        nextLink.href = nextResource.url;
+        nextLink.textContent = 'Continue into ' + nextResource.label;
+        nextLink.addEventListener('click', function () {
+          trackEvent('related_resource_click', { destination: nextResource.url });
+        });
+
+        var artHost = document.getElementById('cpt-compass-art');
+        artHost.innerHTML = '';
+        var artCanvas = document.createElement('canvas');
+        artCanvas.width = 320; artCanvas.height = 320;
+        artCanvas.style.width = '100%'; artCanvas.style.height = '100%';
+        artHost.appendChild(artCanvas);
+        drawCompass(artCanvas, direction, 320);
+
+        form.hidden = true;
+        resultWrap.hidden = false;
+        trackEvent('experience_complete', {
+          season: answers.season.id,
+          energy: answers.energy.id,
+          pulling: answers.pulling.id,
+          requires: answers.requires.id,
+          duration_minutes: answers.duration.minutes,
+          direction: direction.name
+        });
+        resultWrap.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      document.getElementById('cpt-copy').addEventListener('click', function () {
+        var btn = this;
+        var direction = directionFromAnswers();
+        var text = 'DIRECTION CARD\\n\\nDirection: ' + direction.name +
+          '\\nCurrent Season: ' + answers.season.label +
+          '\\nWhat\\'s Pulling at You: ' + answers.pulling.label +
+          '\\nWhat This Requires: ' + answers.requires.label +
+          '\\n\\n' + REQUIRES_REFLECTIONS[answers.requires.id];
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () {
+            trackEvent('artifact_copy', { direction: direction.name });
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = 'Copy Direction Card'; }, 1800);
+          });
+        }
+      });
+
+      document.getElementById('cpt-print').addEventListener('click', function () { window.print(); });
+
+      document.getElementById('cpt-restart').addEventListener('click', function () {
+        current = 0;
+        answers = {};
+        form.reset();
+        resultWrap.hidden = true;
+        welcome.hidden = false;
+        welcome.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      form.addEventListener('submit', function (e) { e.preventDefault(); });
+    })();
+    </script>`;
+
+  const cptTrail = [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "Purpose", url: "/hubs/purpose/" }, { name: title, url: canonical }];
+  return pageChrome({
+    title, description, canonical, body: body + scriptBlock, extraStyle, breadcrumbTrail: cptTrail,
+    schema: [
+      ...baseSchema({ title, description, canonical }),
+      breadcrumbs(cptTrail),
+      { "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: absoluteUrl(canonical), applicationCategory: "LifestyleApplication", operatingSystem: "Any", isAccessibleForFree: true },
+    ],
+  });
+}
+
 function main() {
   const clusterData = loadTopicClusters();
   const hubs = readJson("static/_data/authority-hubs.json", { hubs: [] }).hubs || [];
@@ -2653,6 +3118,7 @@ function main() {
   writePage("static/tools/adhd-focus-session-planner/index.html", renderAdhdFocusSessionPlanner());
   writePage("static/tools/nervous-system-reset/index.html", renderNervousSystemReset());
   writePage("static/tools/creative-signal-finder/index.html", renderCreativeSignalFinder());
+  writePage("static/tools/the-compass-point/index.html", renderCompassPoint());
 }
 
 main();
