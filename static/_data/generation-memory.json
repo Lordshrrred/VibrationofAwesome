@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-11T04:20:07.466Z",
+  "lastUpdated": "2026-07-11T14:29:12.716Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-free-version-of-everything-the-ai-advantage-bootcamp-actually-teaches",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-11T14:29:12.716Z"
+    },
+    {
+      "slug": "how-to-train-chatgpt-or-claude-on-your-own-voice-and-style-for-free",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-11T14:28:56.810Z"
+    },
+    {
+      "slug": "when-to-automate-your-content-as-a-solo-creator-without-turning-into-a-content-machine",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-11T14:28:35.762Z"
+    },
+    {
+      "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-11T14:28:14.168Z"
+    },
+    {
+      "slug": "how-to-write-ai-prompts-that-actually-work-for-creators",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-11T14:27:55.180Z"
+    },
+    {
+      "slug": "ai-tools-to-organize-scattered-creative-ideas",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-11T14:25:53.727Z"
+    },
+    {
       "slug": "what-attention-really-means-in-an-attention-economy-and-why-yours-is-worth-more-than-you-think",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1102,63 +1156,18 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-07-10T17:39:47.681Z"
-    },
-    {
-      "slug": "what-attention-really-means-in-an-attention-economy-and-why-yours-is-worth-more-than-you-think",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-10T15:45:12.192Z"
-    },
-    {
-      "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-10T15:43:45.186Z"
-    },
-    {
-      "slug": "ai-advantage-discount-and-coupon-codes-what-deals-actually-exist",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-10T15:42:22.188Z"
-    },
-    {
-      "slug": "how-to-clone-your-voice-with-elevenlabs-and-heygen",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-10T15:40:44.271Z"
-    },
-    {
-      "slug": "how-to-write-ai-prompts-that-actually-work-for-creators",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-10T15:39:09.277Z"
-    },
-    {
-      "slug": "how-to-write-ai-prompts-that-actually-work-for-creators",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-10T15:36:00.732Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "ai-tools-to-organize-scattered-creative-ideas",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "timestamp": "2026-07-11T14:26:07.819Z"
+    },
     {
       "slug": "how-to-repurpose-messy-notes-into-linkedin-posts",
       "archetype": "field-guide-aesthetic",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-06-16T23:27:42.414Z"
-    },
-    {
-      "slug": "how-to-create-instagram-stories-with-canva-ai",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "timestamp": "2026-06-16T18:10:01.908Z"
     }
   ]
 }
