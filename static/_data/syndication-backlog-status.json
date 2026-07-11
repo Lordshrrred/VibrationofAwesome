@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T01:04:04.892Z",
+  "generatedAt": "2026-07-11T05:31:12.667Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -15,21 +15,21 @@
   },
   "summary": {
     "totalTrackedPosts": 144,
-    "backlogPosts": 29,
-    "backlinkCapableMissingUnits": 54,
-    "backlinkVerificationGaps": 499,
+    "backlogPosts": 15,
+    "backlinkCapableMissingUnits": 25,
+    "backlinkVerificationGaps": 528,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 45,
-    "freshPostsAwaitingBacklinks": 23,
-    "freshMissingBacklinkUnits": 47,
-    "completedBacklinkUnitsInWindow": 192,
-    "completedBacklinkUnitsPerDay": 13.7,
+    "freshPostsAwaitingBacklinks": 3,
+    "freshMissingBacklinkUnits": 9,
+    "completedBacklinkUnitsInWindow": 221,
+    "completedBacklinkUnitsPerDay": 15.8,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 6.3,
+    "netBacklogChangePerDay": 4.2,
     "estimatedCatchUpDays": null,
-    "largestDelayPlatform": "WordPress",
-    "largestDelayMissingUnits": 29
+    "largestDelayPlatform": "Mastodon VOA",
+    "largestDelayMissingUnits": 18
   },
   "platformTable": {
     "backlinkCapable": [
@@ -37,48 +37,48 @@
         "key": "blogger",
         "platform": "Blogger",
         "eligiblePosts": 144,
-        "complete": 136,
-        "missing": 8,
-        "successRate": 94.4,
-        "averagePerDay": 4.7,
+        "complete": 142,
+        "missing": 2,
+        "successRate": 98.6,
+        "averagePerDay": 5.1,
         "confirmed": 7,
-        "verificationGaps": 129,
-        "mainBlocker": "Cannot read properties of undefined (reading 'match')"
+        "verificationGaps": 135,
+        "mainBlocker": "missing local success record"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 144,
-        "complete": 115,
-        "missing": 29,
-        "successRate": 79.9,
-        "averagePerDay": 1.8,
+        "complete": 129,
+        "missing": 15,
+        "successRate": 89.6,
+        "averagePerDay": 2.8,
         "confirmed": 5,
-        "verificationGaps": 110,
+        "verificationGaps": 124,
         "mainBlocker": "Cannot read properties of undefined (reading 'trim')"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 144,
-        "complete": 129,
-        "missing": 15,
-        "successRate": 89.6,
-        "averagePerDay": 4.3,
+        "complete": 137,
+        "missing": 7,
+        "successRate": 95.1,
+        "averagePerDay": 4.9,
         "confirmed": 6,
-        "verificationGaps": 123,
+        "verificationGaps": 131,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 115,
-        "complete": 113,
-        "missing": 2,
-        "successRate": 98.3,
-        "averagePerDay": 2.3,
+        "complete": 114,
+        "missing": 1,
+        "successRate": 99.1,
+        "averagePerDay": 2.4,
         "confirmed": 4,
-        "verificationGaps": 109,
+        "verificationGaps": 110,
         "mainBlocker": "missing local success record"
       },
       {
@@ -102,7 +102,7 @@
         "complete": 115,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.4,
+        "averagePerDay": 2.3,
         "confirmed": 115,
         "verificationGaps": 0,
         "mainBlocker": ""
@@ -112,82 +112,78 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 126,
-        "complete": 112,
+        "eligiblePosts": 127,
+        "complete": 113,
         "missing": 14,
-        "successRate": 88.9,
-        "averagePerDay": 4,
+        "successRate": 89,
+        "averagePerDay": 4.1,
         "confirmed": 4,
-        "verificationGaps": 108,
+        "verificationGaps": 109,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 126,
-        "complete": 108,
+        "eligiblePosts": 127,
+        "complete": 109,
         "missing": 18,
-        "successRate": 85.7,
-        "averagePerDay": 3.7,
+        "successRate": 85.8,
+        "averagePerDay": 3.8,
         "confirmed": 4,
-        "verificationGaps": 104,
+        "verificationGaps": 105,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 96,
-        "complete": 83,
+        "eligiblePosts": 97,
+        "complete": 84,
         "missing": 13,
-        "successRate": 86.5,
+        "successRate": 86.6,
         "averagePerDay": 1.4,
         "confirmed": 3,
-        "verificationGaps": 80,
+        "verificationGaps": 81,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 118,
-        "complete": 118,
+        "eligiblePosts": 119,
+        "complete": 119,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
+        "averagePerDay": 2.1,
         "confirmed": 0,
-        "verificationGaps": 118,
+        "verificationGaps": 119,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 95,
-        "complete": 95,
+        "eligiblePosts": 96,
+        "complete": 96,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.4,
         "confirmed": 0,
-        "verificationGaps": 95,
+        "verificationGaps": 96,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 93,
-        "complete": 93,
+        "eligiblePosts": 94,
+        "complete": 94,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.4,
         "confirmed": 0,
-        "verificationGaps": 93,
+        "verificationGaps": 94,
         "mainBlocker": ""
       }
     ]
   },
   "blockers": [
-    {
-      "reason": "wordpress_earthstar: Cannot read properties of undefined (reading 'trim')",
-      "count": 21
-    },
     {
       "reason": "bluesky_voa: env vars not set",
       "count": 14
@@ -197,15 +193,15 @@
       "count": 14
     },
     {
-      "reason": "tumblr_voa: env vars not set",
-      "count": 13
-    },
-    {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
     },
     {
-      "reason": "blogger: Cannot read properties of undefined (reading 'match')",
+      "reason": "wordpress_earthstar: Cannot read properties of undefined (reading 'trim')",
+      "count": 8
+    },
+    {
+      "reason": "tumblr_voa: env vars not set",
       "count": 6
     },
     {
@@ -215,138 +211,13 @@
     {
       "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
       "count": 3
+    },
+    {
+      "reason": "blogger: Cannot read properties of undefined (reading 'match')",
+      "count": 1
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "how-to-train-chatgpt-or-claude-on-your-own-voice-and-style-for-free",
-      "lane": "boom",
-      "title": "How to Train ChatGPT or Claude on Your Own Voice and Style for Free",
-      "date": "2026-07-01",
-      "missing": [
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "ai-advantage-bootcamp-bonuses-whats-actually-included-beyond-the-core-program",
-      "lane": "boom",
-      "title": "AI Advantage Bootcamp Bonuses: What's Actually Included Beyond the Core Program",
-      "date": "2026-07-10",
-      "missing": [
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "how-to-clone-your-voice-with-elevenlabs-and-heygen",
-      "lane": "boom",
-      "title": "How To Clone Your Voice With Elevenlabs And Heygen",
-      "date": "2026-07-10",
-      "missing": [
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "ai-advantage-discount-and-coupon-codes-what-deals-actually-exist",
-      "lane": "boom",
-      "title": "AI Advantage Discount and Coupon Codes: What Deals Actually Exist",
-      "date": "2026-07-10",
-      "missing": [
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
-      "lane": "boom",
-      "title": "How to Keep a Music Release Calendar Organized Without a Team (When It's Just You Doing All of It)",
-      "date": "2026-07-10",
-      "missing": [
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "what-attention-really-means-in-an-attention-economy-and-why-yours-is-worth-more-than-you-think",
-      "lane": "boom",
-      "title": "What Attention Really Means in an Attention Economy (And Why Yours Is Worth More Than You Think)",
-      "date": "2026-07-10",
-      "missing": [
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "the-free-version-of-everything-the-ai-advantage-bootcamp-actually-teaches",
-      "lane": "boom",
-      "title": "The Free Version of Everything the AI Advantage Bootcamp Actually Teaches",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "is-the-ai-advantage-15-hour-guarantee-actually-worth-anything",
-      "lane": "boom",
-      "title": "Is the AI Advantage 15-Hour Guarantee Actually Worth Anything",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "why-is-everyone-promoting-ai-advantage-the-affiliate-machine-explained",
-      "lane": "boom",
-      "title": "Why Is Everyone Promoting AI Advantage: The Affiliate Machine Explained",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "knowledge-business-blueprint-vs-ai-advantage-how-dean-graziosi-evolved-his-pitch",
-      "lane": "boom",
-      "title": "Knowledge Business Blueprint vs AI Advantage: How Dean Graziosi Evolved His Pitch",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "is-tony-robbins-actually-an-ai-expert-or-just-a-famous-face-on-a-sales-page",
-      "lane": "boom",
-      "title": "Is Tony Robbins Actually an AI Expert or Just a Famous Face on a Sales Page",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "dean-graziosi-net-worth-does-his-success-validate-his-ai-course",
-      "lane": "boom",
-      "title": "Dean Graziosi Net Worth: Does His Success Validate His AI Course",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "ai-advantage-bootcamp-refund-policy-what-the-fifteen-hour-guarantee-actually-means",
-      "lane": "boom",
-      "title": "AI Advantage Bootcamp Refund Policy: What the Fifteen Hour Guarantee Actually Means",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
     {
       "slug": "ai-for-the-rest-of-us-what-tony-robbins-is-actually-selling-in-2026",
       "lane": "boom",
@@ -354,75 +225,6 @@
       "date": "2026-07-10",
       "missing": [
         "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "ai-advantage-bootcamp-payment-plan-is-three-payments-of-three-eighty-smart",
-      "lane": "boom",
-      "title": "AI Advantage Bootcamp Payment Plan: Is Three Payments of Three Eighty Smart",
-      "date": "2026-07-10",
-      "missing": [
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
-      "lane": "boom",
-      "title": "Affordable Original Art: What to Look For and Where to Find It",
-      "date": "2026-07-10",
-      "missing": [
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "why-buying-art-from-independent-artists-actually-matters",
-      "lane": "boom",
-      "title": "Why Buying Art From Independent Artists Actually Matters",
-      "date": "2026-07-10",
-      "missing": [
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "where-to-buy-original-art-online-without-getting-burned",
-      "lane": "boom",
-      "title": "Where to Buy Original Art Online Without Getting Burned",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "how-to-use-gamma-ai-for-music-presentations",
-      "lane": "boom",
-      "title": "How To Use Gamma Ai For Music Presentations",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "ai-music-production-tools-for-independent-artists-2026",
-      "lane": "boom",
-      "title": "Ai Music Production Tools For Independent Artists 2026",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "how-to-repurpose-messy-notes-into-linkedin-posts",
-      "lane": "boom",
-      "title": "How To Repurpose Messy Notes Into Linkedin Posts",
-      "date": "2026-07-10",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
         "wordpress_earthstar"
       ]
     },
@@ -499,6 +301,63 @@
       "lane": "boom",
       "title": "How to Choose Art for Your Home When You Don't Know Where to Start",
       "date": "2026-07-09",
+      "missing": [
+        "tumblr_voa",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "ai-advantage-bootcamp-payment-plan-is-three-payments-of-three-eighty-smart",
+      "lane": "boom",
+      "title": "AI Advantage Bootcamp Payment Plan: Is Three Payments of Three Eighty Smart",
+      "date": "2026-07-10",
+      "missing": [
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
+      "lane": "boom",
+      "title": "Affordable Original Art: What to Look For and Where to Find It",
+      "date": "2026-07-10",
+      "missing": [
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "why-buying-art-from-independent-artists-actually-matters",
+      "lane": "boom",
+      "title": "Why Buying Art From Independent Artists Actually Matters",
+      "date": "2026-07-10",
+      "missing": [
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "where-to-buy-original-art-online-without-getting-burned",
+      "lane": "boom",
+      "title": "Where to Buy Original Art Online Without Getting Burned",
+      "date": "2026-07-10",
+      "missing": [
+        "tumblr_voa",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "how-to-use-gamma-ai-for-music-presentations",
+      "lane": "boom",
+      "title": "How To Use Gamma Ai For Music Presentations",
+      "date": "2026-07-10",
+      "missing": [
+        "tumblr_voa",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "ai-music-production-tools-for-independent-artists-2026",
+      "lane": "boom",
+      "title": "Ai Music Production Tools For Independent Artists 2026",
+      "date": "2026-07-10",
       "missing": [
         "tumblr_voa",
         "wordpress_earthstar"
