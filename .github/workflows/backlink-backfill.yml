@@ -1,13 +1,16 @@
 name: Backlink Backfill
 
 on:
-  # Manual only while API spend is under audit. This job can generate Blogger /
-  # WordPress companion articles, so do not run it on a recurring timer.
+  schedule:
+    # Automatic backlink coverage is part of the growth system. Keep it running;
+    # cost controls belong inside the generation/syndication calls, not by
+    # disabling the backlink automation itself.
+    - cron: "0 */4 * * *"
   workflow_dispatch:
     inputs:
       batch:
-        description: "Posts per run (default 1 during cost-control mode)"
-        default: "1"
+        description: "Posts per run (default 3)"
+        default: "3"
       platforms:
         description: "Comma-separated platforms (default: all backlink platforms)"
         default: ""
@@ -57,7 +60,7 @@ jobs:
           WP_APP_PASSWORD:             ${{ secrets.WP_APP_PASSWORD }}
           PEXELS_API_KEY:              ${{ secrets.PEXELS_API_KEY }}
         run: |
-          BATCH="${{ github.event.inputs.batch || '1' }}"
+          BATCH="${{ github.event.inputs.batch || '3' }}"
           PLATFORMS="${{ github.event.inputs.platforms }}"
           ARGS="--execute --batch $BATCH"
           [ -n "$PLATFORMS" ] && ARGS="$ARGS --platforms $PLATFORMS"
