@@ -23,7 +23,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "..");
 const BASE = "https://vibrationofawesome.com";
-const TODAY = new Date().toISOString().slice(0, 10);
+const TODAY = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "America/Denver",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+}).format(new Date());
 
 function readJson(rel, fallback) {
   try {
@@ -3571,6 +3576,917 @@ ${stage5}
   });
 }
 
+// ── The Honest Mirror ─────────────────────────────────────────────────────────
+//
+// Flagship experience for the Personal Growth hub. Five decisions (what's
+// working, what's being avoided, how long, what facing it would cost, one
+// honest next step) deterministically render a "Growth Waypoint" ~ a single
+// winding path with connected waypoint markers running left to right,
+// distinct from every radial artifact (spark, compass, rings, mandala,
+// constellation) already in the ecosystem.
+
+function renderHonestMirror() {
+  const title = "The Honest Mirror";
+  const description = "A short, honest check-in ~ what's working, what you're avoiding, and one real next step, ending with a Growth Waypoint built from your own answers.";
+  const canonical = "/tools/the-honest-mirror/";
+
+  const WORKING = [
+    { id: "work", label: "Work or Craft", detail: "The thing you make or do is landing." },
+    { id: "relationships", label: "Relationships", detail: "The people in your life feel steady." },
+    { id: "body", label: "Body or Health", detail: "You feel physically okay, at least." },
+    { id: "money", label: "Money or Stability", detail: "The ground under you feels solid." },
+    { id: "nothing", label: "Nothing Feels Like It's Working", detail: "Honestly, all of it feels off right now." },
+  ];
+  const AVOIDING = [
+    { id: "conversation", label: "A Conversation", detail: "Something that needs to be said out loud." },
+    { id: "decision", label: "A Decision", detail: "A choice you keep deferring." },
+    { id: "truth", label: "A Truth About a Situation", detail: "You already know. You haven't said it, even to yourself." },
+    { id: "feeling", label: "A Feeling", detail: "Something you keep staying busy enough to not feel." },
+    { id: "looking", label: "Looking at It Directly", detail: "You know roughly what 'it' is. You haven't looked straight at it." },
+  ];
+  const DURATION_TRUE = [
+    { id: "days", label: "Days", detail: "This is fairly new." },
+    { id: "weeks", label: "Weeks", detail: "Long enough to notice a pattern." },
+    { id: "months", label: "Months", detail: "This has had time to settle in." },
+    { id: "years", label: "Years", detail: "This is an old, familiar shape." },
+    { id: "longer", label: "Longer Than You Want to Admit", detail: "You know exactly how long. That's the point." },
+  ];
+  const COSTS = [
+    { id: "comfort", label: "Comfort", detail: "Facing it means giving up the easier version." },
+    { id: "relationship", label: "A Relationship", detail: "This might genuinely change how you relate to someone." },
+    { id: "identity", label: "An Identity You've Built", detail: "You'd have to stop being the person who has it handled." },
+    { id: "time", label: "Time", detail: "It would take real time you'd rather spend elsewhere." },
+    { id: "wrong", label: "Being Wrong", detail: "You'd have to admit you misjudged this." },
+  ];
+  const NEXT_STEPS = [
+    { id: "say", label: "Say the Thing", detail: "Out loud, to the actual person, this week." },
+    { id: "decide", label: "Make the Decision", detail: "Even the smaller, reversible version of it." },
+    { id: "ask", label: "Ask for Help", detail: "Name it to one person you trust." },
+    { id: "rest", label: "Rest First", detail: "You're not ready to act. You're ready to stop pretending you are." },
+    { id: "admit", label: "Just Admit It to Yourself", detail: "No action yet. Just stop looking away." },
+  ];
+
+  const REFLECTIONS = {
+    say: "Saying it doesn't require having it all figured out first. It just requires saying it.",
+    decide: "A small, reversible decision still counts as a real one.",
+    ask: "Asking for help is not the failure. Pretending you don't need it is the harder path.",
+    rest: "Rest isn't avoidance here. It's honest information about where you actually are.",
+    admit: "Admitting it to yourself, with no plan attached yet, is a complete and real step.",
+  };
+  const NEXT_RESOURCE = {
+    say: { url: "/hubs/self-trust/", label: "Self Trust Hub" },
+    decide: { url: "/hubs/purpose/", label: "Purpose Hub" },
+    ask: { url: "/hubs/self-trust/", label: "Self Trust Hub" },
+    rest: { url: "/hubs/nervous-system-regulation/", label: "Nervous System Regulation Hub" },
+    admit: { url: "/hubs/self-trust/", label: "Self Trust Hub" },
+  };
+
+  function optionStage(stageNum, question, note, options, field) {
+    return `<fieldset class="hnm-stage" data-hnm-stage="${stageNum}" data-hnm-field="${field}" hidden>
+        <legend class="hnm-stage-label accent-amber">Step ${stageNum} of 5</legend>
+        <p class="hnm-question">${escapeHtml(question)}</p>
+${note ? `        <p class="hnm-note">${escapeHtml(note)}</p>\n` : ""}        <div class="hnm-options" role="radiogroup" aria-label="${escapeHtml(question)}">
+          ${options.map((opt, i) => `<label class="hnm-option" data-seed="${stageNum}-${i}">
+            <input type="radio" name="${field}" value="${opt.id}">
+            <span class="hnm-option-label">${escapeHtml(opt.label)}</span>
+            <span class="hnm-option-detail">${escapeHtml(opt.detail)}</span>
+          </label>`).join("\n          ")}
+        </div>
+      </fieldset>`;
+  }
+
+  const stage1 = optionStage(1, "What's actually working in your life right now?", null, WORKING, "working");
+  const stage2 = optionStage(2, "What are you quietly avoiding?", null, AVOIDING, "avoiding");
+  const stage3 = optionStage(3, "How long has this been true?", null, DURATION_TRUE, "durationTrue");
+  const stage4 = optionStage(4, "What would facing it actually cost you?", "Not what it should cost. What it actually would.", COSTS, "cost");
+  const stage5 = optionStage(5, "What's one honest next step, even a small one?", null, NEXT_STEPS, "nextStep");
+
+  const body = `    <section class="voa-hero voa-reveal">
+      <div class="voa-hero-bg" style="--hero-glow: rgba(255,179,0,0.16);"></div>
+      <div class="voa-hero-icon accent-amber">${ICONS.spiral}</div>
+      <div class="voa-hero-inner">
+        <div class="voa-eyebrow accent-amber">An Honest Check-In</div>
+        <h1 class="voa-h1">The Honest Mirror</h1>
+        <p class="voa-hero-desc">${escapeHtml(description)}</p>
+        <p class="voa-hero-quote">No performance spirituality. No hustle cosplay. Just five honest questions and one real next step, whatever size it actually is.</p>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal" aria-label="The Honest Mirror">
+      <div class="hnm-shell">
+        <canvas id="hnm-path-preview" class="hnm-path-preview" aria-hidden="true"></canvas>
+
+        <div id="hnm-welcome" class="voa-featured border-amber">
+          <div>
+            <div class="voa-featured-label accent-amber">Before You Begin</div>
+            <h3>Five honest questions, then one real step</h3>
+            <p>Answer with what's actually true, not the version you'd say out loud to someone else. At the end you'll get a reflection and a Growth Waypoint built from your own answers ~ yours to keep, copy, or print. Nothing is saved, tracked, or sent anywhere.</p>
+            <button class="voa-btn voa-btn-primary" id="hnm-start" type="button">Begin</button>
+          </div>
+        </div>
+
+        <form id="hnm-form" class="hnm-form" hidden>
+          <div class="hnm-progress" aria-hidden="true"><div class="hnm-progress-bar" id="hnm-progress-bar" style="width:0%"></div></div>
+${stage1}
+${stage2}
+${stage3}
+${stage4}
+${stage5}
+          <div class="hnm-nav">
+            <button class="voa-btn voa-btn-secondary" id="hnm-back" type="button">Back</button>
+            <button class="voa-btn voa-btn-primary" id="hnm-next" type="button">Continue</button>
+          </div>
+        </form>
+
+        <div id="hnm-result-wrap" class="hnm-result-wrap" hidden>
+          <div class="hnm-result-grid">
+            <div class="hnm-path-card">
+              <div class="hnm-path-eyebrow">Your Growth Waypoint</div>
+              <div class="hnm-path-art" id="hnm-path-art"></div>
+            </div>
+            <div class="hnm-sequence-card">
+              <div class="hnm-card-eyebrow">What You're Avoiding</div>
+              <p class="hnm-card-value" id="hnm-avoiding-value"></p>
+              <div class="hnm-card-eyebrow">What It Would Cost</div>
+              <p class="hnm-card-value" id="hnm-cost-value"></p>
+              <div class="hnm-card-eyebrow">One Honest Next Step</div>
+              <p class="hnm-card-value" id="hnm-nextstep-value"></p>
+              <p class="hnm-reflection" id="hnm-reflection"></p>
+              <a class="hnm-next-link" id="hnm-next-link" href="/hubs/personal-growth/">Continue into the Personal Growth Hub</a>
+            </div>
+          </div>
+          <div class="hnm-card-actions">
+            <button class="voa-btn voa-btn-primary" id="hnm-copy" type="button">Copy Waypoint Card</button>
+            <button class="voa-btn voa-btn-secondary" id="hnm-print" type="button">Print Waypoint Card</button>
+            <button class="voa-btn voa-btn-secondary" id="hnm-restart" type="button">Reflect Again</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal">
+      <div class="voa-section-head"><h2 class="voa-h2">Related Pathways</h2></div>
+      <div class="voa-pathways">
+        <a class="voa-pathway border-amber" href="/hubs/personal-growth/">
+          <span class="voa-pathway-icon accent-amber">${ICONS.spiral}</span>
+          <span class="voa-pathway-text">Personal Growth Hub</span>
+        </a>
+        <a class="voa-pathway border-violet" href="/hubs/self-trust/">
+          <span class="voa-pathway-icon accent-violet">${ICONS.anchor}</span>
+          <span class="voa-pathway-text">Self Trust Hub</span>
+        </a>
+        <a class="voa-pathway border-amber" href="/hubs/purpose/">
+          <span class="voa-pathway-icon accent-amber">${ICONS.star}</span>
+          <span class="voa-pathway-text">Purpose Hub</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="voa-continue voa-reveal">
+      <p>Ready to go deeper on the same subject?</p>
+      <div class="voa-continue-cta">
+        <a class="voa-btn voa-btn-primary" href="/hubs/personal-growth/">Explore Personal Growth</a>
+        <a class="voa-btn voa-btn-secondary" href="/field-guide/">Get the Field Guide &#10022;</a>
+      </div>
+    </section>`;
+
+  const extraStyle = `
+    .hnm-shell { position: relative; max-width: 720px; margin: 0 auto; }
+    .hnm-path-preview { position: absolute; inset: -3rem -1rem auto -1rem; height: 180px; width: calc(100% + 2rem); pointer-events: none; opacity: 0.85; }
+    .hnm-progress { height: 4px; background: rgba(255,255,255,0.08); margin-bottom: 2.2rem; border-radius: 2px; overflow: hidden; }
+    .hnm-progress-bar { height: 100%; background: linear-gradient(90deg, var(--amber), var(--violet)); transition: width 0.4s ease; }
+    .hnm-stage { border: none; padding: 0; margin: 0 0 1.5rem; }
+    .hnm-stage-label { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; padding: 0; }
+    .hnm-question { font-family: 'Cinzel', serif; font-size: clamp(1.25rem, 2.8vw, 1.7rem); line-height: 1.4; color: var(--cream); margin: 0 0 0.6rem; }
+    .hnm-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--muted); margin: 0 0 1.4rem; }
+    .hnm-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    .hnm-option { display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--line); padding: 1.1rem 1.2rem; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s; position: relative; }
+    .hnm-option:hover { transform: translateY(-2px); border-color: rgba(255,179,0,0.4); }
+    .hnm-option:has(input:checked) { border-color: var(--amber); background: rgba(255,179,0,0.08); box-shadow: 0 0 24px rgba(255,179,0,0.18); }
+    .hnm-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .hnm-option input:focus-visible ~ .hnm-option-label { outline: 2px solid var(--amber); outline-offset: 3px; }
+    .hnm-option-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; color: var(--cream); }
+    .hnm-option-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .hnm-nav { display: flex; justify-content: space-between; margin-top: 1rem; }
+
+    .hnm-result-wrap { padding: 1rem 0; }
+    .hnm-result-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: start; }
+    .hnm-path-card { border: 1px solid rgba(255,179,0,0.35); background: radial-gradient(circle, rgba(255,179,0,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
+    .hnm-path-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber-light); margin-bottom: 1rem; }
+    .hnm-path-art { width: 100%; aspect-ratio: 1.4; }
+    .hnm-path-art canvas { width: 100%; height: 100%; }
+    .hnm-sequence-card { border: 1px solid var(--line); background: var(--panel); padding: 1.5rem; }
+    .hnm-card-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber-light); margin: 1rem 0 0.4rem; }
+    .hnm-card-eyebrow:first-child { margin-top: 0; }
+    .hnm-card-value { font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--cream); margin: 0; }
+    .hnm-reflection { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: rgba(232,255,249,0.85); border-top: 1px solid var(--line); padding-top: 1.2rem; margin-top: 1.2rem; }
+    .hnm-next-link { display: inline-block; margin-top: 1rem; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
+    .hnm-card-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; }
+
+    @media (max-width: 700px) {
+      .hnm-options { grid-template-columns: 1fr; }
+      .hnm-result-grid { grid-template-columns: 1fr; }
+      .hnm-path-preview { height: 120px; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      .hnm-sequence-card, .hnm-sequence-card * { visibility: visible; }
+      .hnm-sequence-card { position: absolute; top: 0; left: 0; width: 100%; border: none; background: white; color: black; }
+      .hnm-card-value, .hnm-card-eyebrow, .hnm-reflection { color: black !important; }
+    }
+  `;
+
+  const scriptBlock = `<script>
+    (function () {
+      var WORKING = ${JSON.stringify(WORKING)};
+      var AVOIDING = ${JSON.stringify(AVOIDING)};
+      var DURATION_TRUE = ${JSON.stringify(DURATION_TRUE)};
+      var COSTS = ${JSON.stringify(COSTS)};
+      var NEXT_STEPS = ${JSON.stringify(NEXT_STEPS)};
+      var REFLECTIONS = ${JSON.stringify(REFLECTIONS)};
+      var NEXT_RESOURCE = ${JSON.stringify(NEXT_RESOURCE)};
+
+      var STAGES = 5;
+      var current = 0;
+      var answers = {};
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var welcome = document.getElementById('hnm-welcome');
+      var form = document.getElementById('hnm-form');
+      var startBtn = document.getElementById('hnm-start');
+      var backBtn = document.getElementById('hnm-back');
+      var nextBtn = document.getElementById('hnm-next');
+      var progressBar = document.getElementById('hnm-progress-bar');
+      var resultWrap = document.getElementById('hnm-result-wrap');
+      var previewCanvas = document.getElementById('hnm-path-preview');
+
+      function trackEvent(name, params) {
+        var payload = Object.assign({ tool_id: 'the-honest-mirror' }, params || {});
+        if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+      }
+
+      function selectedIndexes() {
+        var idx = {};
+        ['working', 'avoiding', 'durationTrue', 'cost', 'nextStep'].forEach(function (field) {
+          var checked = form.querySelector('input[name="' + field + '"]:checked');
+          idx[field] = checked ? checked.closest('.hnm-option').getAttribute('data-seed') : null;
+        });
+        return idx;
+      }
+
+      // ── Growth Waypoint (single winding path, left to right, with markers) ──
+      function drawPath(target, params, w, h) {
+        if (!target) return;
+        w = w || target.clientWidth || 320;
+        h = h || target.clientHeight || 220;
+        var ctx = target.getContext('2d');
+        var dpr = window.devicePixelRatio || 1;
+        target.width = w * dpr;
+        target.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+
+        var padding = 24;
+        var points = [];
+        for (var i = 0; i < params.waypointCount; i++) {
+          var t = i / (params.waypointCount - 1);
+          var x = padding + t * (w - padding * 2);
+          var y = h / 2 + Math.sin(t * Math.PI * params.waveFrequency + params.phase) * params.amplitude;
+          points.push({ x: x, y: y });
+        }
+
+        ctx.strokeStyle = 'rgba(255,179,0,0.4)';
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (var p = 1; p < points.length; p++) {
+          var midX = (points[p - 1].x + points[p].x) / 2;
+          var midY = (points[p - 1].y + points[p].y) / 2;
+          ctx.quadraticCurveTo(points[p - 1].x, points[p - 1].y, midX, midY);
+        }
+        ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+        ctx.stroke();
+
+        points.forEach(function (pt, i) {
+          var isLast = i === points.length - 1;
+          var r = isLast ? 7 : 4;
+          var grad = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, r * 2.5);
+          grad.addColorStop(0, isLast ? 'rgba(255,255,255,0.95)' : 'rgba(255,179,0,0.8)');
+          grad.addColorStop(1, 'rgba(255,179,0,0)');
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, r * 2.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = isLast ? 'rgba(255,255,255,0.95)' : 'rgba(255,179,0,0.9)';
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, r * 0.5, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      function pathParamsFromAnswers() {
+        var idx = selectedIndexes();
+        var durationIdx = idx.durationTrue ? Number(idx.durationTrue.split('-')[1]) : 0;
+        var costIdx = idx.cost ? Number(idx.cost.split('-')[1]) : 0;
+        var avoidingIdx = idx.avoiding ? Number(idx.avoiding.split('-')[1]) : 0;
+        return {
+          waypointCount: 4 + durationIdx,
+          waveFrequency: 1 + costIdx * 0.4,
+          amplitude: 14 + avoidingIdx * 6,
+          phase: avoidingIdx
+        };
+      }
+
+      function updatePreview() {
+        if (form.hidden) return;
+        drawPath(previewCanvas, pathParamsFromAnswers());
+      }
+      window.addEventListener('resize', updatePreview);
+
+      function showStage(i) {
+        document.querySelectorAll('.hnm-stage').forEach(function (el) {
+          el.hidden = Number(el.getAttribute('data-hnm-stage')) !== i + 1;
+        });
+        backBtn.style.visibility = i === 0 ? 'hidden' : 'visible';
+        nextBtn.textContent = i === STAGES - 1 ? 'See My Reflection' : 'Continue';
+        progressBar.style.width = (((i + 1) / STAGES) * 100) + '%';
+        updatePreview();
+      }
+
+      startBtn.addEventListener('click', function () {
+        trackEvent('experience_start', {});
+        welcome.hidden = true;
+        form.hidden = false;
+        showStage(0);
+        form.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      backBtn.addEventListener('click', function () {
+        if (current > 0) { current -= 1; showStage(current); }
+      });
+
+      nextBtn.addEventListener('click', function () {
+        var stageEl = document.querySelector('.hnm-stage[data-hnm-stage="' + (current + 1) + '"]');
+        var checked = stageEl.querySelector('input:checked');
+        if (!checked) {
+          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
+          return;
+        }
+        updatePreview();
+        if (current < STAGES - 1) {
+          current += 1;
+          showStage(current);
+        } else {
+          finish();
+        }
+      });
+
+      function finish() {
+        var data = new FormData(form);
+        answers.working = WORKING.filter(function (w) { return w.id === data.get('working'); })[0];
+        answers.avoiding = AVOIDING.filter(function (a) { return a.id === data.get('avoiding'); })[0];
+        answers.durationTrue = DURATION_TRUE.filter(function (d) { return d.id === data.get('durationTrue'); })[0];
+        answers.cost = COSTS.filter(function (c) { return c.id === data.get('cost'); })[0];
+        answers.nextStep = NEXT_STEPS.filter(function (n) { return n.id === data.get('nextStep'); })[0];
+
+        document.getElementById('hnm-avoiding-value').textContent = answers.avoiding.label;
+        document.getElementById('hnm-cost-value').textContent = answers.cost.label;
+        document.getElementById('hnm-nextstep-value').textContent = answers.nextStep.label;
+        document.getElementById('hnm-reflection').textContent = REFLECTIONS[answers.nextStep.id];
+        var nextResource = NEXT_RESOURCE[answers.nextStep.id];
+        var nextLink = document.getElementById('hnm-next-link');
+        nextLink.href = nextResource.url;
+        nextLink.textContent = 'Continue into ' + nextResource.label;
+        nextLink.addEventListener('click', function () {
+          trackEvent('related_resource_click', { destination: nextResource.url });
+        });
+
+        var params = pathParamsFromAnswers();
+        var artHost = document.getElementById('hnm-path-art');
+        artHost.innerHTML = '';
+        var artCanvas = document.createElement('canvas');
+        artCanvas.width = 420; artCanvas.height = 300;
+        artCanvas.style.width = '100%'; artCanvas.style.height = '100%';
+        artHost.appendChild(artCanvas);
+        drawPath(artCanvas, params, 420, 300);
+
+        form.hidden = true;
+        resultWrap.hidden = false;
+        trackEvent('experience_complete', {
+          working: answers.working.id,
+          avoiding: answers.avoiding.id,
+          duration_true: answers.durationTrue.id,
+          cost: answers.cost.id,
+          next_step: answers.nextStep.id
+        });
+        resultWrap.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      document.getElementById('hnm-copy').addEventListener('click', function () {
+        var btn = this;
+        var text = 'GROWTH WAYPOINT\\n\\nWhat You\\'re Avoiding: ' + answers.avoiding.label +
+          '\\nWhat It Would Cost: ' + answers.cost.label +
+          '\\nOne Honest Next Step: ' + answers.nextStep.label +
+          '\\n\\n' + REFLECTIONS[answers.nextStep.id];
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () {
+            trackEvent('artifact_copy', { next_step: answers.nextStep.id });
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = 'Copy Waypoint Card'; }, 1800);
+          });
+        }
+      });
+
+      document.getElementById('hnm-print').addEventListener('click', function () { window.print(); });
+
+      document.getElementById('hnm-restart').addEventListener('click', function () {
+        current = 0;
+        answers = {};
+        form.reset();
+        resultWrap.hidden = true;
+        welcome.hidden = false;
+        welcome.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      form.addEventListener('submit', function (e) { e.preventDefault(); });
+    })();
+    </script>`;
+
+  const hnmTrail = [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "Personal Growth", url: "/hubs/personal-growth/" }, { name: title, url: canonical }];
+  return pageChrome({
+    title, description, canonical, body: body + scriptBlock, extraStyle: extraStyle.trim(), breadcrumbTrail: hnmTrail,
+    schema: [
+      ...baseSchema({ title, description, canonical }),
+      breadcrumbs(hnmTrail),
+      { "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: absoluteUrl(canonical), applicationCategory: "LifestyleApplication", operatingSystem: "Any", isAccessibleForFree: true },
+    ],
+  });
+}
+
+// ── The Inner Yes ─────────────────────────────────────────────────────────────
+//
+// Flagship experience for the Self Trust hub. Five decisions (decision field,
+// body signal, pressure source, old pattern, next boundary) deterministically
+// render a "Signal Mark" ~ an asymmetric shield glyph with internal signal
+// lines, distinct from the spark, compass, rings, path, and mandala artifacts.
+
+function renderInnerYes() {
+  const title = "The Inner Yes";
+  const description = "A short self-trust ritual for separating your actual signal from pressure, guilt, habit, and over-explaining ~ ending with a Boundary Card and a Signal Mark built from your answers.";
+  const canonical = "/tools/the-inner-yes/";
+
+  const DECISIONS = [
+    { id: "relationship", label: "A Relationship", detail: "How close, available, or honest to be." },
+    { id: "work", label: "Work or Money", detail: "A yes, no, rate, offer, exit, or next move." },
+    { id: "creative", label: "A Creative Choice", detail: "What to make, share, protect, or stop forcing." },
+    { id: "body", label: "Body or Energy", detail: "What your body is asking for before your mind edits it." },
+    { id: "life", label: "A Life Direction", detail: "The larger path that keeps asking for your attention." },
+  ];
+  const SIGNALS = [
+    { id: "open", label: "Open", detail: "There is breath, space, or a small quiet yes." },
+    { id: "tight", label: "Tight", detail: "Your body contracts before your mind explains why." },
+    { id: "foggy", label: "Foggy", detail: "You cannot hear yourself through the noise yet." },
+    { id: "charged", label: "Charged", detail: "There is energy here, but it is tangled with fear." },
+    { id: "quiet", label: "Very Quiet", detail: "The real answer is small and easily talked over." },
+  ];
+  const PRESSURES = [
+    { id: "pleasing", label: "Keeping Someone Pleased", detail: "The answer changes when you imagine disappointing them." },
+    { id: "image", label: "Protecting an Image", detail: "You are trying to stay consistent with who people think you are." },
+    { id: "scarcity", label: "Fear of Losing Something", detail: "Money, attention, belonging, momentum, or safety." },
+    { id: "urgency", label: "Artificial Urgency", detail: "It feels like you must answer before you can feel." },
+    { id: "habit", label: "Old Habit", detail: "This is familiar because it has run the room before." },
+  ];
+  const PATTERNS = [
+    { id: "overexplain", label: "Over-Explaining", detail: "Trying to make your no impossible to question." },
+    { id: "override", label: "Overriding Your Body", detail: "Knowing the answer, then negotiating against it." },
+    { id: "outsource", label: "Outsourcing the Decision", detail: "Asking everyone else until your own voice disappears." },
+    { id: "delay", label: "Delaying Forever", detail: "Calling it patience when it is actually self-abandonment." },
+    { id: "appease", label: "Choosing the Peace That Costs You", detail: "Keeping the room calm by leaving yourself out." },
+  ];
+  const BOUNDARIES = [
+    { id: "pause", label: "Pause Before Answering", detail: "Buy enough time to hear yourself again." },
+    { id: "short-no", label: "Use a Short No", detail: "No speech, no case file, no apology spiral." },
+    { id: "body-first", label: "Check the Body First", detail: "Let sensation speak before the story does." },
+    { id: "one-person", label: "Ask One Clean Witness", detail: "Not a committee. One person who will not take over." },
+    { id: "small-yes", label: "Take the Small Honest Yes", detail: "Follow the smallest version you actually mean." },
+  ];
+
+  const PRACTICES = {
+    pause: "You do not owe instant access to your answer. A pause is not avoidance when it protects the truth.",
+    "short-no": "A clean no is kinder than a resentful yes. It does not need a costume.",
+    "body-first": "The body is not always the whole answer, but it is almost always useful evidence.",
+    "one-person": "Choose the witness who helps you hear yourself, not the one who becomes the new authority.",
+    "small-yes": "A small true yes rebuilds more self-trust than a giant borrowed plan.",
+  };
+  const NEXT_RESOURCE = {
+    pause: { url: "/hubs/personal-growth/", label: "Personal Growth Hub" },
+    "short-no": { url: "/field-guide/", label: "Field Guide" },
+    "body-first": { url: "/hubs/nervous-system-regulation/", label: "Nervous System Regulation Hub" },
+    "one-person": { url: "/hubs/personal-growth/", label: "Personal Growth Hub" },
+    "small-yes": { url: "/hubs/purpose/", label: "Purpose Hub" },
+  };
+
+  function optionStage(stageNum, question, note, options, field) {
+    return `<fieldset class="iny-stage" data-iny-stage="${stageNum}" data-iny-field="${field}" hidden>
+        <legend class="iny-stage-label accent-violet">Step ${stageNum} of 5</legend>
+        <p class="iny-question">${escapeHtml(question)}</p>
+${note ? `        <p class="iny-note">${escapeHtml(note)}</p>\n` : ""}        <div class="iny-options" role="radiogroup" aria-label="${escapeHtml(question)}">
+          ${options.map((opt, i) => `<label class="iny-option" data-seed="${stageNum}-${i}">
+            <input type="radio" name="${field}" value="${opt.id}">
+            <span class="iny-option-label">${escapeHtml(opt.label)}</span>
+            <span class="iny-option-detail">${escapeHtml(opt.detail)}</span>
+          </label>`).join("\n          ")}
+        </div>
+      </fieldset>`;
+  }
+
+  const stage1 = optionStage(1, "Where do you need to hear yourself more clearly?", null, DECISIONS, "decision");
+  const stage2 = optionStage(2, "What does your body do when you imagine saying yes?", null, SIGNALS, "signal");
+  const stage3 = optionStage(3, "What pressure is loudest around this?", null, PRESSURES, "pressure");
+  const stage4 = optionStage(4, "What old pattern is most likely to take over?", null, PATTERNS, "pattern");
+  const stage5 = optionStage(5, "What boundary would help you stay with yourself?", "Choose the one you would actually practice.", BOUNDARIES, "boundary");
+
+  const body = `    <section class="voa-hero voa-reveal">
+      <div class="voa-hero-bg" style="--hero-glow: rgba(167,139,250,0.16);"></div>
+      <div class="voa-hero-icon accent-violet">${ICONS.anchor}</div>
+      <div class="voa-hero-inner">
+        <div class="voa-eyebrow accent-violet">A Self-Trust Ritual</div>
+        <h1 class="voa-h1">The Inner Yes</h1>
+        <p class="voa-hero-desc">${escapeHtml(description)}</p>
+        <p class="voa-hero-quote">Self-trust is not confidence theater. It is the practice of not abandoning the quiet thing you already know just because pressure got louder.</p>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal" aria-label="The Inner Yes">
+      <div class="iny-shell">
+        <canvas id="iny-signal-preview" class="iny-signal-preview" aria-hidden="true"></canvas>
+
+        <div id="iny-welcome" class="voa-featured border-violet">
+          <div>
+            <div class="voa-featured-label accent-violet">Before You Begin</div>
+            <h3>Five questions, then a clean boundary</h3>
+            <p>Answer based on what is true before you explain it away. At the end you will get a Boundary Card and a Signal Mark built from your answers. Nothing is saved, tracked, or sent anywhere.</p>
+            <button class="voa-btn voa-btn-primary" id="iny-start" type="button">Hear the Inner Yes</button>
+          </div>
+        </div>
+
+        <form id="iny-form" class="iny-form" hidden>
+          <div class="iny-progress" aria-hidden="true"><div class="iny-progress-bar" id="iny-progress-bar" style="width:0%"></div></div>
+${stage1}
+${stage2}
+${stage3}
+${stage4}
+${stage5}
+          <div class="iny-nav">
+            <button class="voa-btn voa-btn-secondary" id="iny-back" type="button">Back</button>
+            <button class="voa-btn voa-btn-primary" id="iny-next" type="button">Continue</button>
+          </div>
+        </form>
+
+        <div id="iny-result-wrap" class="iny-result-wrap" hidden>
+          <div class="iny-result-grid">
+            <div class="iny-signal-card">
+              <div class="iny-signal-eyebrow">Your Signal Mark</div>
+              <div class="iny-signal-art" id="iny-signal-art"></div>
+            </div>
+            <div class="iny-sequence-card">
+              <div class="iny-card-eyebrow">Decision Field</div>
+              <p class="iny-card-value" id="iny-decision-value"></p>
+              <div class="iny-card-eyebrow">Loudest Pressure</div>
+              <p class="iny-card-value" id="iny-pressure-value"></p>
+              <div class="iny-card-eyebrow">Boundary to Practice</div>
+              <p class="iny-card-value" id="iny-boundary-value"></p>
+              <p class="iny-reflection" id="iny-reflection"></p>
+              <a class="iny-next-link" id="iny-next-link" href="/hubs/self-trust/">Continue into the Self Trust Hub</a>
+            </div>
+          </div>
+          <div class="iny-card-actions">
+            <button class="voa-btn voa-btn-primary" id="iny-copy" type="button">Copy Boundary Card</button>
+            <button class="voa-btn voa-btn-secondary" id="iny-print" type="button">Print Boundary Card</button>
+            <button class="voa-btn voa-btn-secondary" id="iny-restart" type="button">Listen Again</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="voa-section voa-reveal">
+      <div class="voa-section-head"><h2 class="voa-h2">Related Pathways</h2></div>
+      <div class="voa-pathways">
+        <a class="voa-pathway border-violet" href="/hubs/self-trust/">
+          <span class="voa-pathway-icon accent-violet">${ICONS.anchor}</span>
+          <span class="voa-pathway-text">Self Trust Hub</span>
+        </a>
+        <a class="voa-pathway border-amber" href="/hubs/personal-growth/">
+          <span class="voa-pathway-icon accent-amber">${ICONS.spiral}</span>
+          <span class="voa-pathway-text">Personal Growth Hub</span>
+        </a>
+        <a class="voa-pathway border-amber" href="/hubs/purpose/">
+          <span class="voa-pathway-icon accent-amber">${ICONS.star}</span>
+          <span class="voa-pathway-text">Purpose Hub</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="voa-continue voa-reveal">
+      <p>Ready to go deeper on the same subject?</p>
+      <div class="voa-continue-cta">
+        <a class="voa-btn voa-btn-primary" href="/hubs/self-trust/">Explore Self Trust</a>
+        <a class="voa-btn voa-btn-secondary" href="/field-guide/">Get the Field Guide &#10022;</a>
+      </div>
+    </section>`;
+
+  const extraStyle = `
+    .iny-shell { position: relative; max-width: 720px; margin: 0 auto; }
+    .iny-signal-preview { position: absolute; inset: -3rem -1rem auto -1rem; height: 180px; width: calc(100% + 2rem); pointer-events: none; opacity: 0.82; }
+    .iny-progress { height: 4px; background: rgba(255,255,255,0.08); margin-bottom: 2.2rem; border-radius: 2px; overflow: hidden; }
+    .iny-progress-bar { height: 100%; background: linear-gradient(90deg, var(--violet), var(--cyan)); transition: width 0.4s ease; }
+    .iny-stage { border: none; padding: 0; margin: 0 0 1.5rem; }
+    .iny-stage-label { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; padding: 0; }
+    .iny-question { font-family: 'Cinzel', serif; font-size: clamp(1.25rem, 2.8vw, 1.7rem); line-height: 1.4; color: var(--cream); margin: 0 0 0.6rem; }
+    .iny-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--muted); margin: 0 0 1.4rem; }
+    .iny-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    .iny-option { display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--line); padding: 1.1rem 1.2rem; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s; position: relative; }
+    .iny-option:hover { transform: translateY(-2px); border-color: rgba(167,139,250,0.45); }
+    .iny-option:has(input:checked) { border-color: var(--violet); background: rgba(167,139,250,0.08); box-shadow: 0 0 24px rgba(167,139,250,0.18); }
+    .iny-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .iny-option input:focus-visible ~ .iny-option-label { outline: 2px solid var(--violet); outline-offset: 3px; }
+    .iny-option-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; color: var(--cream); }
+    .iny-option-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .iny-nav { display: flex; justify-content: space-between; margin-top: 1rem; }
+
+    .iny-result-wrap { padding: 1rem 0; }
+    .iny-result-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: start; }
+    .iny-signal-card { border: 1px solid rgba(167,139,250,0.38); background: radial-gradient(circle, rgba(167,139,250,0.08), transparent 70%); padding: 1.5rem; text-align: center; }
+    .iny-signal-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--violet-light); margin-bottom: 1rem; }
+    .iny-signal-art { width: 100%; aspect-ratio: 1; }
+    .iny-signal-art canvas { width: 100%; height: 100%; }
+    .iny-sequence-card { border: 1px solid var(--line); background: var(--panel); padding: 1.5rem; }
+    .iny-card-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--violet-light); margin: 1rem 0 0.4rem; }
+    .iny-card-eyebrow:first-child { margin-top: 0; }
+    .iny-card-value { font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--cream); margin: 0; }
+    .iny-reflection { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: rgba(232,255,249,0.85); border-top: 1px solid var(--line); padding-top: 1.2rem; margin-top: 1.2rem; }
+    .iny-next-link { display: inline-block; margin-top: 1rem; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--violet); }
+    .iny-card-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; }
+
+    @media (max-width: 700px) {
+      .iny-options { grid-template-columns: 1fr; }
+      .iny-result-grid { grid-template-columns: 1fr; }
+      .iny-signal-preview { height: 120px; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      .iny-sequence-card, .iny-sequence-card * { visibility: visible; }
+      .iny-sequence-card { position: absolute; top: 0; left: 0; width: 100%; border: none; background: white; color: black; }
+      .iny-card-value, .iny-card-eyebrow, .iny-reflection { color: black !important; }
+    }
+  `;
+
+  const scriptBlock = `<script>
+    (function () {
+      var DECISIONS = ${JSON.stringify(DECISIONS)};
+      var SIGNALS = ${JSON.stringify(SIGNALS)};
+      var PRESSURES = ${JSON.stringify(PRESSURES)};
+      var PATTERNS = ${JSON.stringify(PATTERNS)};
+      var BOUNDARIES = ${JSON.stringify(BOUNDARIES)};
+      var PRACTICES = ${JSON.stringify(PRACTICES)};
+      var NEXT_RESOURCE = ${JSON.stringify(NEXT_RESOURCE)};
+
+      var STAGES = 5;
+      var current = 0;
+      var answers = {};
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var welcome = document.getElementById('iny-welcome');
+      var form = document.getElementById('iny-form');
+      var startBtn = document.getElementById('iny-start');
+      var backBtn = document.getElementById('iny-back');
+      var nextBtn = document.getElementById('iny-next');
+      var progressBar = document.getElementById('iny-progress-bar');
+      var resultWrap = document.getElementById('iny-result-wrap');
+      var previewCanvas = document.getElementById('iny-signal-preview');
+
+      function trackEvent(name, params) {
+        var payload = Object.assign({ tool_id: 'the-inner-yes' }, params || {});
+        if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+      }
+
+      function selectedIndexes() {
+        var idx = {};
+        ['decision', 'signal', 'pressure', 'pattern', 'boundary'].forEach(function (field) {
+          var checked = form.querySelector('input[name="' + field + '"]:checked');
+          idx[field] = checked ? checked.closest('.iny-option').getAttribute('data-seed') : null;
+        });
+        return idx;
+      }
+
+      // ── Signal Mark (asymmetric shield glyph + internal signal lines) ──
+      function drawSignal(target, params, size) {
+        if (!target) return;
+        var w = size || target.clientWidth || 240, h = size || target.clientHeight || 240;
+        var ctx = target.getContext('2d');
+        var dpr = window.devicePixelRatio || 1;
+        target.width = w * dpr;
+        target.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+
+        var cx = w / 2, cy = h / 2;
+        var r = Math.min(w, h) * 0.34;
+        var skew = params.skew;
+        var pts = [
+          { x: cx - r * 0.72 + skew, y: cy - r * 0.86 },
+          { x: cx + r * 0.74 + skew * 0.25, y: cy - r * 0.72 },
+          { x: cx + r * 0.58 - skew * 0.2, y: cy + r * 0.35 },
+          { x: cx, y: cy + r * 0.98 },
+          { x: cx - r * 0.66 + skew * 0.1, y: cy + r * 0.28 },
+        ];
+
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(params.rotation);
+        ctx.translate(-cx, -cy);
+
+        var glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 1.5);
+        glow.addColorStop(0, 'rgba(167,139,250,0.22)');
+        glow.addColorStop(1, 'rgba(167,139,250,0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r * 1.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = 'rgba(167,139,250,0.86)';
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        for (var i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+        ctx.closePath();
+        ctx.stroke();
+
+        for (var line = 0; line < params.lineCount; line++) {
+          var t = (line + 1) / (params.lineCount + 1);
+          var y = cy - r * 0.55 + t * r * 1.12;
+          var span = r * (0.32 + t * 0.34);
+          ctx.strokeStyle = line === params.brightLine ? 'rgba(255,255,255,0.94)' : 'rgba(0,229,204,0.45)';
+          ctx.lineWidth = line === params.brightLine ? 2.1 : 1;
+          ctx.beginPath();
+          ctx.moveTo(cx - span, y + Math.sin(t * Math.PI) * params.pulse);
+          ctx.lineTo(cx + span, y - Math.sin(t * Math.PI) * params.pulse);
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = 'rgba(255,255,255,0.92)';
+        ctx.beginPath();
+        ctx.arc(cx, cy + r * 0.76, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function signalParamsFromAnswers() {
+        var idx = selectedIndexes();
+        var signalIdx = idx.signal ? Number(idx.signal.split('-')[1]) : 0;
+        var pressureIdx = idx.pressure ? Number(idx.pressure.split('-')[1]) : 0;
+        var patternIdx = idx.pattern ? Number(idx.pattern.split('-')[1]) : 0;
+        var boundaryIdx = idx.boundary ? Number(idx.boundary.split('-')[1]) : 0;
+        return {
+          lineCount: 3 + signalIdx,
+          brightLine: boundaryIdx % Math.max(1, 3 + signalIdx),
+          rotation: (pressureIdx - 2) * 0.05,
+          skew: (patternIdx - 2) * 4,
+          pulse: 4 + boundaryIdx * 2
+        };
+      }
+
+      function updatePreview() {
+        if (form.hidden) return;
+        drawSignal(previewCanvas, signalParamsFromAnswers());
+      }
+      window.addEventListener('resize', updatePreview);
+
+      function showStage(i) {
+        document.querySelectorAll('.iny-stage').forEach(function (el) {
+          el.hidden = Number(el.getAttribute('data-iny-stage')) !== i + 1;
+        });
+        backBtn.style.visibility = i === 0 ? 'hidden' : 'visible';
+        nextBtn.textContent = i === STAGES - 1 ? 'Build My Boundary Card' : 'Continue';
+        progressBar.style.width = (((i + 1) / STAGES) * 100) + '%';
+        updatePreview();
+      }
+
+      startBtn.addEventListener('click', function () {
+        trackEvent('experience_start', {});
+        welcome.hidden = true;
+        form.hidden = false;
+        showStage(0);
+        form.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      backBtn.addEventListener('click', function () {
+        if (current > 0) { current -= 1; showStage(current); }
+      });
+
+      nextBtn.addEventListener('click', function () {
+        var stageEl = document.querySelector('.iny-stage[data-iny-stage="' + (current + 1) + '"]');
+        var checked = stageEl.querySelector('input:checked');
+        if (!checked) {
+          stageEl.style.outline = '1px solid rgba(167,139,250,0.55)';
+          setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
+          return;
+        }
+        updatePreview();
+        if (current < STAGES - 1) {
+          current += 1;
+          showStage(current);
+        } else {
+          finish();
+        }
+      });
+
+      function finish() {
+        var data = new FormData(form);
+        answers.decision = DECISIONS.filter(function (d) { return d.id === data.get('decision'); })[0];
+        answers.signal = SIGNALS.filter(function (s) { return s.id === data.get('signal'); })[0];
+        answers.pressure = PRESSURES.filter(function (p) { return p.id === data.get('pressure'); })[0];
+        answers.pattern = PATTERNS.filter(function (p) { return p.id === data.get('pattern'); })[0];
+        answers.boundary = BOUNDARIES.filter(function (b) { return b.id === data.get('boundary'); })[0];
+
+        document.getElementById('iny-decision-value').textContent = answers.decision.label + ' / ' + answers.signal.label;
+        document.getElementById('iny-pressure-value').textContent = answers.pressure.label + ' (' + answers.pattern.label.toLowerCase() + ')';
+        document.getElementById('iny-boundary-value').textContent = answers.boundary.label;
+        document.getElementById('iny-reflection').textContent = PRACTICES[answers.boundary.id];
+        var nextResource = NEXT_RESOURCE[answers.boundary.id];
+        var nextLink = document.getElementById('iny-next-link');
+        nextLink.href = nextResource.url;
+        nextLink.textContent = 'Continue into ' + nextResource.label;
+        nextLink.addEventListener('click', function () {
+          trackEvent('related_resource_click', { destination: nextResource.url });
+        });
+
+        var artHost = document.getElementById('iny-signal-art');
+        artHost.innerHTML = '';
+        var artCanvas = document.createElement('canvas');
+        artCanvas.width = 320; artCanvas.height = 320;
+        artCanvas.style.width = '100%'; artCanvas.style.height = '100%';
+        artHost.appendChild(artCanvas);
+        drawSignal(artCanvas, signalParamsFromAnswers(), 320);
+
+        form.hidden = true;
+        resultWrap.hidden = false;
+        trackEvent('experience_complete', {
+          decision: answers.decision.id,
+          signal: answers.signal.id,
+          pressure: answers.pressure.id,
+          pattern: answers.pattern.id,
+          boundary: answers.boundary.id
+        });
+        resultWrap.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      document.getElementById('iny-copy').addEventListener('click', function () {
+        var btn = this;
+        var text = 'BOUNDARY CARD\\n\\nDecision Field: ' + answers.decision.label +
+          '\\nBody Signal: ' + answers.signal.label +
+          '\\nLoudest Pressure: ' + answers.pressure.label +
+          '\\nOld Pattern: ' + answers.pattern.label +
+          '\\nBoundary to Practice: ' + answers.boundary.label +
+          '\\n\\n' + PRACTICES[answers.boundary.id];
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () {
+            trackEvent('artifact_copy', { boundary: answers.boundary.id });
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = 'Copy Boundary Card'; }, 1800);
+          });
+        }
+      });
+
+      document.getElementById('iny-print').addEventListener('click', function () { window.print(); });
+
+      document.getElementById('iny-restart').addEventListener('click', function () {
+        current = 0;
+        answers = {};
+        form.reset();
+        resultWrap.hidden = true;
+        welcome.hidden = false;
+        welcome.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      form.addEventListener('submit', function (e) { e.preventDefault(); });
+    })();
+    </script>`;
+
+  const inyTrail = [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: "Self Trust", url: "/hubs/self-trust/" }, { name: title, url: canonical }];
+  return pageChrome({
+    title, description, canonical, body: body + scriptBlock, extraStyle: extraStyle.trim(), breadcrumbTrail: inyTrail,
+    schema: [
+      ...baseSchema({ title, description, canonical }),
+      breadcrumbs(inyTrail),
+      { "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: absoluteUrl(canonical), applicationCategory: "LifestyleApplication", operatingSystem: "Any", isAccessibleForFree: true },
+    ],
+  });
+}
+
 function main() {
   const clusterData = loadTopicClusters();
   const hubs = readJson("static/_data/authority-hubs.json", { hubs: [] }).hubs || [];
@@ -3594,6 +4510,8 @@ function main() {
   writePage("static/tools/creative-signal-finder/index.html", renderCreativeSignalFinder());
   writePage("static/tools/the-compass-point/index.html", renderCompassPoint());
   writePage("static/tools/the-presence-key/index.html", renderPresenceKey());
+  writePage("static/tools/the-honest-mirror/index.html", renderHonestMirror());
+  writePage("static/tools/the-inner-yes/index.html", renderInnerYes());
 }
 
 main();
