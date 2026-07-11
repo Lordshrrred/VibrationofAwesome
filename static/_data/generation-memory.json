@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-11T16:43:43.520Z",
+  "lastUpdated": "2026-07-11T22:54:59.726Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "is-tony-robbins-actually-an-ai-expert-or-just-a-famous-face-on-a-sales-page",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-11T22:54:59.726Z"
+    },
+    {
+      "slug": "knowledge-business-blueprint-vs-ai-advantage-how-dean-graziosi-evolved-his-pitch",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-11T22:54:43.220Z"
+    },
+    {
+      "slug": "why-is-everyone-promoting-ai-advantage-the-affiliate-machine-explained",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-11T22:54:31.115Z"
+    },
+    {
+      "slug": "is-the-ai-advantage-15-hour-guarantee-actually-worth-anything",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-11T22:54:21.262Z"
+    },
+    {
+      "slug": "ai-tools-to-organize-scattered-creative-ideas",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-11T22:54:06.444Z"
+    },
+    {
+      "slug": "how-to-build-a-personal-reply-template-library",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-11T22:51:24.913Z"
+    },
+    {
       "slug": "is-the-ai-advantage-15-hour-guarantee-actually-worth-anything",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1102,63 +1156,18 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-07-10T23:00:58.244Z"
-    },
-    {
-      "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-10T20:22:16.826Z"
-    },
-    {
-      "slug": "ai-advantage-discount-and-coupon-codes-what-deals-actually-exist",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-10T20:20:42.655Z"
-    },
-    {
-      "slug": "how-to-clone-your-voice-with-elevenlabs-and-heygen",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-10T20:19:15.477Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-bonuses-whats-actually-included-beyond-the-core-program",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-10T20:17:48.897Z"
-    },
-    {
-      "slug": "ai-advantage-webinar-replay-2026-where-to-watch-it-and-what-youre-really-getting-into",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-10T20:16:29.480Z"
-    },
-    {
-      "slug": "ai-advantage-webinar-replay-2026-where-to-watch-it-and-what-youre-really-getting-into",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-10T20:14:30.380Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-build-a-personal-reply-template-library",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-07-11T22:51:41.717Z"
+    },
     {
       "slug": "ai-tools-to-organize-scattered-creative-ideas",
       "archetype": "nervous-system-atmospheric",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-17T06:13:31.325Z"
-    },
-    {
-      "slug": "markdown-formatting-for-ai-prompts",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-16T23:27:42.414Z"
     }
   ]
 }
