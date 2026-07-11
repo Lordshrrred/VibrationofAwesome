@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T05:31:12.667Z",
+  "generatedAt": "2026-07-11T08:27:28.994Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -15,21 +15,21 @@
   },
   "summary": {
     "totalTrackedPosts": 144,
-    "backlogPosts": 15,
-    "backlinkCapableMissingUnits": 25,
-    "backlinkVerificationGaps": 528,
+    "backlogPosts": 7,
+    "backlinkCapableMissingUnits": 12,
+    "backlinkVerificationGaps": 541,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 45,
-    "freshPostsAwaitingBacklinks": 3,
-    "freshMissingBacklinkUnits": 9,
-    "completedBacklinkUnitsInWindow": 221,
-    "completedBacklinkUnitsPerDay": 15.8,
+    "distributionIncompleteUnits": 56,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
+    "completedBacklinkUnitsInWindow": 234,
+    "completedBacklinkUnitsPerDay": 16.7,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 4.2,
+    "netBacklogChangePerDay": 3.3,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Mastodon VOA",
-    "largestDelayMissingUnits": 18
+    "largestDelayMissingUnits": 23
   },
   "platformTable": {
     "backlinkCapable": [
@@ -37,49 +37,49 @@
         "key": "blogger",
         "platform": "Blogger",
         "eligiblePosts": 144,
-        "complete": 142,
-        "missing": 2,
-        "successRate": 98.6,
-        "averagePerDay": 5.1,
+        "complete": 143,
+        "missing": 1,
+        "successRate": 99.3,
+        "averagePerDay": 5.2,
         "confirmed": 7,
-        "verificationGaps": 135,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 136,
+        "mainBlocker": "Cannot read properties of undefined (reading 'match')"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 144,
-        "complete": 129,
-        "missing": 15,
-        "successRate": 89.6,
-        "averagePerDay": 2.8,
+        "complete": 137,
+        "missing": 7,
+        "successRate": 95.1,
+        "averagePerDay": 3.4,
         "confirmed": 5,
-        "verificationGaps": 124,
+        "verificationGaps": 132,
         "mainBlocker": "Cannot read properties of undefined (reading 'trim')"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 144,
-        "complete": 137,
-        "missing": 7,
-        "successRate": 95.1,
-        "averagePerDay": 4.9,
+        "complete": 140,
+        "missing": 4,
+        "successRate": 97.2,
+        "averagePerDay": 5.1,
         "confirmed": 6,
-        "verificationGaps": 131,
+        "verificationGaps": 134,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 115,
-        "complete": 114,
-        "missing": 1,
-        "successRate": 99.1,
+        "complete": 115,
+        "missing": 0,
+        "successRate": 100,
         "averagePerDay": 2.4,
         "confirmed": 4,
-        "verificationGaps": 110,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 111,
+        "mainBlocker": ""
       },
       {
         "key": "devto2",
@@ -112,25 +112,25 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 127,
-        "complete": 113,
-        "missing": 14,
-        "successRate": 89,
-        "averagePerDay": 4.1,
+        "eligiblePosts": 128,
+        "complete": 108,
+        "missing": 20,
+        "successRate": 84.4,
+        "averagePerDay": 3.7,
         "confirmed": 4,
-        "verificationGaps": 109,
+        "verificationGaps": 104,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 127,
-        "complete": 109,
-        "missing": 18,
-        "successRate": 85.8,
-        "averagePerDay": 3.8,
+        "eligiblePosts": 128,
+        "complete": 105,
+        "missing": 23,
+        "successRate": 82,
+        "averagePerDay": 3.5,
         "confirmed": 4,
-        "verificationGaps": 105,
+        "verificationGaps": 101,
         "mainBlocker": "env vars not set"
       },
       {
@@ -186,11 +186,11 @@
   "blockers": [
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 14
+      "count": 20
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 14
+      "count": 20
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -198,15 +198,11 @@
     },
     {
       "reason": "wordpress_earthstar: Cannot read properties of undefined (reading 'trim')",
-      "count": 8
+      "count": 6
     },
     {
       "reason": "tumblr_voa: env vars not set",
-      "count": 6
-    },
-    {
-      "reason": "wordpress_earthstar: WordPress direct API is not configured. Set WORDPRESS_OAUTH2_TOKEN and WORDPRESS_BLOG.",
-      "count": 6
+      "count": 4
     },
     {
       "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
@@ -215,97 +211,13 @@
     {
       "reason": "blogger: Cannot read properties of undefined (reading 'match')",
       "count": 1
+    },
+    {
+      "reason": "wordpress_earthstar: WordPress direct API is not configured. Set WORDPRESS_OAUTH2_TOKEN and WORDPRESS_BLOG.",
+      "count": 1
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "ai-for-the-rest-of-us-what-tony-robbins-is-actually-selling-in-2026",
-      "lane": "boom",
-      "title": "AI for the Rest of Us: What Tony Robbins Is Actually Selling in 2026",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "how-to-write-ai-prompts-that-actually-work-for-creators",
-      "lane": "boom",
-      "title": "How To Write Ai Prompts That Actually Work For Creators",
-      "date": "2026-07-10",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "when-to-automate-your-content-as-a-solo-creator-without-turning-into-a-content-machine",
-      "lane": "boom",
-      "title": "When to Automate Your Content as a Solo Creator (Without Turning Into a Content Machine)",
-      "date": "2026-07-10",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "what-to-do-before-you-buy-the-ai-advantage-bootcamp",
-      "lane": "boom",
-      "title": "What to Do Before You Buy the AI Advantage Bootcamp",
-      "date": "2026-07-09",
-      "missing": [
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "how-the-ai-advantage-clone-builder-system-actually-works",
-      "lane": "boom",
-      "title": "How the AI Advantage Clone Builder System Actually Works",
-      "date": "2026-07-09",
-      "missing": [
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "ai-advantage-for-creators-what-it-offers-independent-artists-and-writers",
-      "lane": "boom",
-      "title": "AI Advantage for Creators: What It Offers Independent Artists and Writers",
-      "date": "2026-07-09",
-      "missing": [
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "how-to-tell-if-a-piece-of-art-is-right-for-you",
-      "lane": "boom",
-      "title": "How to Tell If a Piece of Art Is Right for You",
-      "date": "2026-07-09",
-      "missing": [
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
-      "lane": "boom",
-      "title": "Digital Art Prints vs Original Art: What Is Actually Worth Buying",
-      "date": "2026-07-09",
-      "missing": [
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
-      "lane": "boom",
-      "title": "How to Choose Art for Your Home When You Don't Know Where to Start",
-      "date": "2026-07-09",
-      "missing": [
-        "tumblr_voa",
-        "wordpress_earthstar"
-      ]
-    },
     {
       "slug": "ai-advantage-bootcamp-payment-plan-is-three-payments-of-three-eighty-smart",
       "lane": "boom",
@@ -360,6 +272,17 @@
       "date": "2026-07-10",
       "missing": [
         "tumblr_voa",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "when-to-automate-your-content-as-a-solo-creator-without-turning-into-a-content-machine",
+      "lane": "boom",
+      "title": "When to Automate Your Content as a Solo Creator (Without Turning Into a Content Machine)",
+      "date": "2026-07-10",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
         "wordpress_earthstar"
       ]
     }
