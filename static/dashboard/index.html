@@ -993,6 +993,27 @@
         <div class="seo-grid">
           <div class="queue-panel">
             <div class="panel-header">
+              <span class="panel-title" style="color:var(--accent)">Keyword Generation</span>
+              <span class="panel-count" id="seo-keyword-generation-status">~</span>
+            </div>
+            <div class="panel-body" id="seo-keyword-generation">
+              <div class="loading dot-pulse">Loading</div>
+            </div>
+          </div>
+          <div class="queue-panel">
+            <div class="panel-header">
+              <span class="panel-title" style="color:var(--accent)">Backlink Throughput</span>
+              <span class="panel-count" id="seo-backlink-throughput-status">~</span>
+            </div>
+            <div class="panel-body" id="seo-backlink-throughput">
+              <div class="loading dot-pulse">Loading</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="seo-grid">
+          <div class="queue-panel">
+            <div class="panel-header">
               <span class="panel-title" style="color:var(--accent)">Cluster Coverage</span>
               <span class="panel-count" id="seo-clusters-count">~</span>
             </div>
@@ -1167,6 +1188,7 @@ const WORDPRESS_POSTS_API = "https://public-api.wordpress.com/rest/v1.1/sites/ea
 const BACKLINK_API_URL = "/api/backlinks";
 const CLUSTERS_URL  = "/_data/topic-clusters.json";
 const SEO_URL       = "/_data/seo-intelligence.json";
+const SEO_STRATEGY_URL = "/_data/seo-strategy.json";
 const VERIFY_CACHE  = "voa_url_verify_cache_v4"; // v4: free browser-side checks, no Netlify function usage
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
 
@@ -1243,7 +1265,7 @@ document.getElementById("lock-btn").addEventListener("click", () => {
 
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, seoData] = await Promise.all([
+  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, seoData, seoStrategy] = await Promise.all([
     fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
     fetch(RESULTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
@@ -1253,6 +1275,7 @@ async function loadDashboard() {
     fetch(FEEDER_POSTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(CLUSTERS_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(SEO_URL).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch(SEO_STRATEGY_URL).then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
   const feederMerged = mergeFeederStatuses(resultsDataRaw, feederPosts);
   const resultsData = await mergeWordPressStatuses(feederMerged);
@@ -1285,7 +1308,7 @@ async function loadDashboard() {
   renderQueue(entries, allPosts, dripData);
   renderTrigger(allPosts);
   renderFeederSection(resultsData, dripData, boomPosts, mattPosts);
-  renderSeoIntelligence(boomPosts, clustersData, seoData);
+  renderSeoIntelligence(boomPosts, clustersData, seoData, seoStrategy);
   // ESC recommendations disabled ~ future automation phase will handle this
 }
 
@@ -2109,10 +2132,11 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
 // via .github/workflows/weekly-seo-intelligence.yml). No live API calls happen
 // from the browser ~ this panel reads a public-safe summary, not raw Search
 // Console rows, GA4 exports, service-account data, or paid web-search research.
-function renderSeoIntelligence(boomPosts, clustersData, seoData) {
+function renderSeoIntelligence(boomPosts, clustersData, seoData, seoStrategy) {
   renderClusterCoverage(boomPosts, clustersData);
   renderSeoTrend(seoData);
   renderSeoKeywords(seoData);
+  renderSeoStrategy(seoStrategy);
 
   const lastCheckedEl = document.getElementById("seo-last-checked");
   if (seoData?.generatedAt) {
@@ -2125,6 +2149,54 @@ function renderSeoIntelligence(boomPosts, clustersData, seoData) {
   const counts = seoData?.counts || {};
   const totalOpps = (counts.nearPageOne || 0) + (counts.ctr || 0) + (counts.engagementWinners || 0) + (counts.weakEngagement || 0) + (counts.hiddenQueries || 0);
   document.getElementById("seo-stat-missing").textContent = seoData ? String(totalOpps) : "~";
+}
+
+function renderSeoStrategy(strategy) {
+  const kwWrap = document.getElementById("seo-keyword-generation");
+  const kwStatus = document.getElementById("seo-keyword-generation-status");
+  const blWrap = document.getElementById("seo-backlink-throughput");
+  const blStatus = document.getElementById("seo-backlink-throughput-status");
+
+  if (!strategy) {
+    kwWrap.innerHTML = `<div class="empty-state">No SEO strategy status yet. Run <code>npm run seo:strategy</code>.</div>`;
+    blWrap.innerHTML = `<div class="empty-state">No backlink throughput status yet.</div>`;
+    kwStatus.textContent = "~";
+    blStatus.textContent = "~";
+    return;
+  }
+
+  const keyword = strategy.keywordGeneration || {};
+  const backlinks = strategy.backlinks || {};
+  const keywordPaused = keyword.status === "paused";
+  kwStatus.textContent = keywordPaused ? "Paused" : "Running";
+  kwWrap.innerHTML = `
+    <div class="seo-kw-item">
+      <div>
+        <div class="seo-kw-title">${keywordPaused ? "✓ Keyword generation paused" : "✓ Keyword generation running"}</div>
+        <div class="seo-kw-gap">${keyword.currentInventory ?? "?"} queued ideas · ≈${keyword.estimatedDaysRemaining ?? "?"} publishing days remaining</div>
+        <div class="seo-kw-gap">Reason: ${esc(keyword.reason || "No reason recorded.")}</div>
+        <div class="seo-kw-gap">Curated expansion: ${esc((strategy.curatedExpansion || {}).script || "supported")}</div>
+      </div>
+    </div>`;
+
+  let title = "Backlink status unavailable";
+  if (backlinks.backlogUnits === 0) title = "✓ Backlinks in maintenance mode";
+  else if ((backlinks.netBacklinkUnitsPerDay ?? 0) < 0) title = "✓ Backlinks catching up";
+  else if ((backlinks.netBacklinkUnitsPerDay ?? 0) === 0) title = "Backlinks keeping pace";
+  else title = "Backlog growing";
+  const catchup = backlinks.estimatedCatchUpDays === "maintenance"
+    ? "maintenance"
+    : backlinks.estimatedCatchUpDays == null ? "not catching up yet" : `≈${backlinks.estimatedCatchUpDays} days`;
+  blStatus.textContent = backlinks.backlogPosts == null ? "~" : `${backlinks.backlogPosts} posts`;
+  blWrap.innerHTML = `
+    <div class="seo-kw-item">
+      <div>
+        <div class="seo-kw-title">${title}</div>
+        <div class="seo-kw-gap">Backlog: ${backlinks.backlogPosts ?? "?"} posts / ${backlinks.backlogUnits ?? "?"} platform links</div>
+        <div class="seo-kw-gap">Completed/day: ${backlinks.completedPerDay ?? "?"} · New/day: ${backlinks.newBacklinkUnitsPerDay ?? "?"} platform links · Net: ${backlinks.netBacklinkUnitsPerDay ?? "?"}/day</div>
+        <div class="seo-kw-gap">Catch-up: ${catchup}. ${esc(backlinks.reason || "")}</div>
+      </div>
+    </div>`;
 }
 
 function renderClusterCoverage(boomPosts, clustersData) {

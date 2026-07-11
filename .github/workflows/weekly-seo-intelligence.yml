@@ -65,6 +65,10 @@ jobs:
           rm -f seo-intelligence-run.log
           exit $STATUS
 
+      - name: Build SEO strategy status
+        if: always()
+        run: npm run seo:strategy
+
       - name: Append run summary to syndication log
         if: always()
         run: |
@@ -76,7 +80,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/ scripts/syndication_log.txt static/_data/seo-intelligence.json || true
+          git add reports/ scripts/syndication_log.txt static/_data/seo-intelligence.json static/_data/seo-strategy.json || true
           git diff --staged --quiet \
             || git commit -m "Weekly SEO intelligence report [automated]"
           for attempt in 1 2 3; do

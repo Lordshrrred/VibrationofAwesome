@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-07-11T00:40:02.287Z",
+  "keywordGeneration": {
+    "currentInventory": 43,
+    "publishedInventory": 149,
+    "estimatedDaysRemaining": 8.6,
+    "publishingCadencePerDay": 5,
+    "pauseThresholdDays": 60,
+    "resumeThresholdDays": 21,
+    "status": "running",
+    "reason": "8.6 publishing days of queue inventory remain. Curated expansion should continue."
+  },
+  "backlinks": {
+    "backlogPosts": 141,
+    "backlogUnits": 560,
+    "completedPerDay": 2.4,
+    "newPostsPerDay": 5,
+    "newBacklinkUnitsPerDay": 24,
+    "netBacklinkUnitsPerDay": 21.6,
+    "estimatedCatchUpDays": null,
+    "reason": "Backlog is growing by 21.6 platform links/day at the current rate.",
+    "windowDays": 14
+  },
+  "curatedExpansion": {
+    "supported": true,
+    "script": "scripts/import-curated-keywords.js",
+    "reason": "Use curated queue additions for new niche clusters, tools, products, AI products, competitor reviews, and intentional trend discoveries."
+  }
+}

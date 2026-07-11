@@ -57,7 +57,9 @@
     "backfill:authority-metadata": "node scripts/backfill-authority-metadata.js",
     "backfill:authority-metadata:run": "node scripts/backfill-authority-metadata.js --execute",
     "seo:intelligence": "node scripts/seo_intelligence.js",
-    "seo:research": "node scripts/seo_research.js"
+    "seo:research": "node scripts/seo_research.js",
+    "seo:strategy": "node scripts/seo-strategy-status.js",
+    "keywords:import": "node scripts/import-curated-keywords.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
