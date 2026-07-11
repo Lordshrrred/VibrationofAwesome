@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-11T14:29:12.716Z",
+  "lastUpdated": "2026-07-11T16:41:06.141Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "dean-graziosi-scam-looking-at-the-evidence-honestly",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-11T16:41:06.141Z"
+    },
+    {
       "slug": "the-free-version-of-everything-the-ai-advantage-bootcamp-actually-teaches",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1147,15 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-10T17:41:47.463Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-bonuses-whats-actually-included-beyond-the-core-program",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-10T17:39:47.681Z"
     }
   ],
   "recentInstagramArchetypes": [
