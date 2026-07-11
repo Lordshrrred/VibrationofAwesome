@@ -135,11 +135,10 @@ jobs:
           exit $STATUS_EXIT
 
       # ── 5. Log auto-heal outcome ──────────────────────────────────────────
-      # Runs regardless of the status above (including cooldown/max-attempts
-      # skips) so there's always a paper trail of every trigger, not just the
-      # ones that actually executed.
+      # Only commit meaningful watchdog activity. Cooldown/max-attempts skips are
+      # visible in the workflow run and no longer create timestamp-only commits.
       - name: Log auto-heal status
-        if: always() && steps.heal.outputs.status != ''
+        if: always() && steps.heal.outputs.status != '' && startsWith(steps.heal.outputs.status, 'skipped-') == false
         run: |
           git config user.name  "voa-auto-healer[bot]"
           git config user.email "auto-healer@voa.invalid"

@@ -492,7 +492,7 @@
     [title] { position: relative; }
 
     /* ── Site & Feeder Stats ── */
-    .site-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+    .site-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
     .site-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem;
     }
@@ -965,6 +965,10 @@
             </div>
             <div class="loading dot-pulse">Loading</div>
           </div>
+          <div class="site-card" id="deployment-health-card">
+            <div class="site-card-title">Deployment Health</div>
+            <div class="loading dot-pulse">Loading</div>
+          </div>
         </div>
       </div>
 
@@ -1191,6 +1195,7 @@ const BACKLINK_API_URL = "/api/backlinks";
 const CLUSTERS_URL  = "/_data/topic-clusters.json";
 const SEO_URL       = "/_data/seo-intelligence.json";
 const SEO_STRATEGY_URL = "/_data/seo-strategy.json";
+const DEPLOYMENT_HEALTH_URL = "/_data/deployment-health.json";
 const VERIFY_CACHE  = "voa_url_verify_cache_v4"; // v4: free browser-side checks, no Netlify function usage
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
 
@@ -1277,7 +1282,7 @@ window.addEventListener("hashchange", updateDashboardTabs);
 
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, seoData, seoStrategy] = await Promise.all([
+  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, seoData, seoStrategy, deploymentHealth] = await Promise.all([
     fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
     fetch(RESULTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
@@ -1288,6 +1293,7 @@ async function loadDashboard() {
     fetch(CLUSTERS_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(SEO_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(SEO_STRATEGY_URL).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch(DEPLOYMENT_HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
   const feederMerged = mergeFeederStatuses(resultsDataRaw, feederPosts);
   const resultsData = await mergeWordPressStatuses(feederMerged);
@@ -1320,6 +1326,7 @@ async function loadDashboard() {
   renderQueue(entries, allPosts, dripData);
   renderTrigger(allPosts);
   renderFeederSection(resultsData, dripData, boomPosts, mattPosts);
+  renderDeploymentHealth(deploymentHealth);
   renderSeoIntelligence(boomPosts, clustersData, seoData, seoStrategy);
   // ESC recommendations disabled ~ future automation phase will handle this
 }
@@ -2134,6 +2141,60 @@ function renderFeederSection(results, drip, boomPosts, mattPosts) {
     <div class="site-stat-row">
       <span class="site-stat-label">Status</span>
       <span class="site-stat-value">${statusBadge}</span>
+    </div>`;
+}
+
+function deploymentBadge(ok, status) {
+  if (ok) return `<span class="stat-badge green">Current</span>`;
+  if (status === "ready") return `<span class="stat-badge gold">Stale</span>`;
+  if (status === "error") return `<span class="stat-badge red">Error</span>`;
+  return `<span class="stat-badge gold">Unknown</span>`;
+}
+
+function renderDeploymentHealth(health) {
+  const card = document.getElementById("deployment-health-card");
+  if (!card) return;
+  if (!health) {
+    card.innerHTML = `
+      <div class="site-card-title">Deployment Health</div>
+      <div class="site-stat-row">
+        <span class="site-stat-label">Status</span>
+        <span class="site-stat-value"><span class="stat-badge gold">No data</span></span>
+      </div>
+      <div class="site-stat-row">
+        <span class="site-stat-label">Refresh</span>
+        <span class="site-stat-value" style="font-size:0.72rem">npm run deployment:health -- --write</span>
+      </div>`;
+    return;
+  }
+
+  const main = health.deployments?.main || {};
+  const mailer = health.deployments?.mailer || {};
+  const generated = health.generatedAt
+    ? new Date(health.generatedAt).toLocaleString("en-US", { month:"short", day:"numeric", hour:"numeric", minute:"2-digit" })
+    : "~";
+
+  card.innerHTML = `
+    <div class="site-card-title">Deployment Health</div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Main Site</span>
+      <span class="site-stat-value">${deploymentBadge(main.currentWithOrigin, main.status)} <span style="font-size:0.72rem;color:var(--text-muted)">${esc(main.commitShort || "~")}</span></span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Mailer</span>
+      <span class="site-stat-value">${deploymentBadge(mailer.currentWithOrigin, mailer.status)} <span style="font-size:0.72rem;color:var(--text-muted)">${esc(mailer.commitShort || "~")}</span></span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Origin main</span>
+      <span class="site-stat-value">${esc(health.repo?.originMainShort || "~")}</span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Ignored Builds</span>
+      <span class="site-stat-value"><span class="stat-badge green">Enabled</span></span>
+    </div>
+    <div class="site-stat-row">
+      <span class="site-stat-label">Checked</span>
+      <span class="site-stat-value" style="font-size:0.78rem">${generated}</span>
     </div>`;
 }
 

@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-07-11T19:23:34.339Z",
+  "repo": {
+    "branch": "main",
+    "head": "bf2c1cfbe0e58441df43c047f147d751309ab808",
+    "headShort": "bf2c1cf",
+    "originMain": "bf2c1cfbe0e58441df43c047f147d751309ab808",
+    "originMainShort": "bf2c1cf"
+  },
+  "deployments": {
+    "main": {
+      "target": "vibrationofawesome.com",
+      "status": "ready",
+      "commit": "1569ac6",
+      "url": "https://vibrationofawesome.com",
+      "checkedAt": "2026-07-11T19:23:32.968Z",
+      "commitShort": "1569ac6",
+      "currentWithOrigin": false
+    },
+    "mailer": {
+      "target": "vibrationofawesome-mailer.vercel.app",
+      "status": "ready",
+      "commit": "1569ac6",
+      "url": "https://vibrationofawesome-mailer.vercel.app",
+      "checkedAt": "2026-07-11T19:23:34.339Z",
+      "commitShort": "1569ac6",
+      "currentWithOrigin": false
+    }
+  },
+  "policy": {
+    "ignoredBuilds": true,
+    "mainDeploysOn": "public site, content, Hugo/layout, API, package, and Vercel config changes",
+    "mailerDeploysOn": "API, package, and Vercel config changes",
+    "operationsSkipped": "reports, workflow-only updates, data/ops, docs, and syndication_log.txt"
+  }
+}
