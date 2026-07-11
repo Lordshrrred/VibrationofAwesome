@@ -3,7 +3,7 @@
  * seo_intelligence.js
  *
  * Low-cost SEO intelligence for VOA. Default run uses Google Search Console
- * and GA4 only. It does not call Anthropic, OpenAI, SERP vendors, or web-search
+ * and GA4 only. It does not call Anthropic, OpenAI, paid web-search, or rank-check
  * APIs. Raw API responses are cached under .cache/seo-intelligence/ and only a
  * small public-safe summary is written to static/_data/seo-intelligence.json.
  *
@@ -396,7 +396,7 @@ function buildReport(payload) {
   const lines = [];
   lines.push(`# SEO Intelligence Report ~ ${RUN_DATE}`);
   lines.push("");
-  lines.push("Default source: Google Search Console + GA4. No Anthropic, OpenAI, SERP vendor, or web-search API calls are made by this report.");
+  lines.push("Default source: Google Search Console + GA4. No Anthropic, OpenAI, paid web-search, or rank-check API calls are made by this report.");
   lines.push("");
   lines.push("## Data Freshness and Connections");
   lines.push("");

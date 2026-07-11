@@ -117,7 +117,7 @@ Prompt caching (`cache_control: {type: "ephemeral"}`) is applied where it can ac
 
 ### SEO Intelligence (`scripts/seo_intelligence.js`)
 
-Weekly check (`.github/workflows/weekly-seo-intelligence.yml`, every Wednesday 9am UTC + manual dispatch) that uses Google Search Console Search Analytics and the GA4 Data API to identify page/query opportunities from actual Google visibility and actual organic visitor behavior. Default run makes zero Anthropic/OpenAI/SERP-provider/web-search calls. It writes `reports/seo-intelligence-latest.md`, a dated report, and a public-safe summary at `static/_data/seo-intelligence.json`, then appends a one-line summary to `scripts/syndication_log.txt`.
+Weekly check (`.github/workflows/weekly-seo-intelligence.yml`, every Wednesday 9am UTC + manual dispatch) that uses Google Search Console Search Analytics and the GA4 Data API to identify page/query opportunities from actual Google visibility and actual organic visitor behavior. Default run makes zero Anthropic/OpenAI/paid web-search/rank-check calls. It writes `reports/seo-intelligence-latest.md`, a dated report, and a public-safe summary at `static/_data/seo-intelligence.json`, then appends a one-line summary to `scripts/syndication_log.txt`.
 
 Required environment variables: `GA_CREDENTIALS_JSON` or `GOOGLE_SERVICE_ACCOUNT_JSON` (service-account JSON), `GA_PROPERTY_ID`, and optionally `GSC_SITE_URL` (defaults to `https://vibrationofawesome.com/`). The service account needs Search Console read access for the property and GA4 read access for the property. Raw/cached API responses stay under `.cache/seo-intelligence/`, which is ignored; only the small summary JSON is public.
 

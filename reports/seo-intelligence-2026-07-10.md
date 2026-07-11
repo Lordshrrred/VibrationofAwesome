@@ -1,6 +1,6 @@
 # SEO Intelligence Report ~ 2026-07-10
 
-Default source: Google Search Console + GA4. No Anthropic, OpenAI, SERP vendor, or web-search API calls are made by this report.
+Default source: Google Search Console + GA4. No Anthropic, OpenAI, paid web-search, or rank-check API calls are made by this report.
 
 ## Data Freshness and Connections
 
