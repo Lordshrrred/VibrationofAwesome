@@ -33,7 +33,20 @@ function changedFilesFromGit() {
   const to = argValue("--to") || process.env.VERCEL_GIT_COMMIT_SHA || "HEAD";
 
   if (from && !/^0+$/.test(from)) {
-    const out = runGit(["diff", "--name-only", `${from}...${to}`]);
+    let out = "";
+    try {
+      out = runGit(["diff", "--name-only", `${from}...${to}`]);
+    } catch (_) {
+      try {
+        runGit(["fetch", "--depth=100", "origin", "main"]);
+        out = runGit(["diff", "--name-only", `${from}...${to}`]);
+      } catch (_) {
+        out = "";
+      }
+    }
+    if (!out) {
+      out = runGit(["diff-tree", "--no-commit-id", "--name-only", "-r", to]);
+    }
     return out ? out.split("\n").filter(Boolean) : [];
   }
 
