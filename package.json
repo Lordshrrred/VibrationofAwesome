@@ -52,6 +52,8 @@
     "gmail-replies": "node scripts/check-gmail-replies.js",
     "backfill:backlinks": "node scripts/backfill-backlinks.js",
     "backfill:backlinks:run": "node scripts/backfill-backlinks.js --execute",
+    "backlog:syndication": "node scripts/syndication-backlog-status.js",
+    "backlog:syndication:write": "node scripts/syndication-backlog-status.js --write",
     "backfill:feeder": "node scripts/backfill-feeder.js",
     "backfill:feeder:run": "node scripts/backfill-feeder.js --execute",
     "backfill:authority-metadata": "node scripts/backfill-authority-metadata.js",

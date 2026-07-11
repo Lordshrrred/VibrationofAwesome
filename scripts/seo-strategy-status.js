@@ -7,6 +7,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { buildSyndicationBacklogStatus } from "./lib/syndication-backlog.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -14,9 +15,6 @@ const ROOT = path.resolve(__dirname, "..");
 const DRIP_QUEUE = path.join(ROOT, "static/_data/drip-queue.json");
 const RESULTS_FILE = path.join(ROOT, "static/_data/syndication-results.json");
 const OUT_FILE = path.join(ROOT, "static/_data/seo-strategy.json");
-
-const REQUIRED_DEFAULT = ["feeder", "devto", "tumblr_voa", "blogger", "wordpress_earthstar"];
-const REQUIRED_ART = ["devto2", "tumblr_voa", "blogger", "wordpress_earthstar"];
 
 function envNumber(key, fallback) {
   const value = Number(process.env[key] || fallback);
@@ -29,15 +27,6 @@ function readJson(file, fallback) {
   } catch (_) {
     return fallback;
   }
-}
-
-function daysBetween(a, b) {
-  return Math.max(1, (b.getTime() - a.getTime()) / 86400000);
-}
-
-function requiredPlatforms(row) {
-  const syn = row.syndication || {};
-  return syn.devto2 || row.niche === "art-buyer-intent" ? REQUIRED_ART : REQUIRED_DEFAULT;
 }
 
 function keywordGenerationStatus() {
@@ -74,60 +63,39 @@ function keywordGenerationStatus() {
 
 function backlinkThroughput() {
   const results = readJson(RESULTS_FILE, []);
-  const now = new Date();
-  const windowDays = envNumber("BACKLINK_THROUGHPUT_WINDOW_DAYS", 14);
-  const cutoff = new Date(now.getTime() - windowDays * 86400000);
-  let backlogPosts = 0;
-  let backlogUnits = 0;
-  let completedUnits = 0;
-
-  for (const row of Array.isArray(results) ? results : []) {
-    const syn = row.syndication || {};
-    const required = requiredPlatforms(row);
-    let missing = 0;
-    for (const key of required) {
-      const item = syn[key] || {};
-      const ok = item.status === "success" && item.backlink_confirmed === true;
-      if (!ok) missing++;
-      const ts = item.timestamp ? new Date(item.timestamp) : null;
-      if (ok && ts && ts >= cutoff) completedUnits++;
-    }
-    if (missing > 0) {
-      backlogPosts++;
-      backlogUnits += missing;
-    }
-  }
-
-  const completedPerDay = Math.round((completedUnits / Math.max(windowDays, 1)) * 10) / 10;
-  const postsPerDay = envNumber("SEO_PUBLISHING_POSTS_PER_DAY", 5);
-  const averageRequired = results.length
-    ? results.reduce((sum, row) => sum + requiredPlatforms(row).length, 0) / results.length
-    : REQUIRED_DEFAULT.length;
-  const newUnitsPerDay = Math.round(postsPerDay * averageRequired * 10) / 10;
-  const net = Math.round((newUnitsPerDay - completedPerDay) * 10) / 10;
-
-  let estimatedCatchUpDays = null;
-  let reason = `Backlog is growing by ${Math.abs(net)} platform links/day at the current rate.`;
-  if (backlogUnits === 0) {
-    estimatedCatchUpDays = "maintenance";
-    reason = "Backlink backlog is clear; new posts can move through publish, syndicate, verify, complete.";
-  } else if (completedPerDay > newUnitsPerDay) {
-    estimatedCatchUpDays = Math.round((backlogUnits / (completedPerDay - newUnitsPerDay)) * 10) / 10;
-    reason = `Backlinks are catching up by ${Math.round((completedPerDay - newUnitsPerDay) * 10) / 10} platform links/day.`;
-  } else if (completedPerDay === newUnitsPerDay) {
+  const status = buildSyndicationBacklogStatus(results);
+  const s = status.summary;
+  const net = s.netBacklogChangePerDay;
+  let reason = `Backlink-capable backlog is growing by ${Math.abs(net)} platform units/day at the current rate.`;
+  if (s.backlinkCapableMissingUnits === 0) {
+    reason = "Backlink-capable backlog is clear; new posts can move through publish, syndicate, verify, complete.";
+  } else if (net < 0) {
+    reason = `Backlinks are catching up by ${Math.abs(net)} backlink-capable platform units/day.`;
+  } else if (net === 0) {
     reason = "Backlinks are keeping pace, but not reducing the historical backlog.";
   }
 
   return {
-    backlogPosts,
-    backlogUnits,
-    completedPerDay,
-    newPostsPerDay: postsPerDay,
-    newBacklinkUnitsPerDay: newUnitsPerDay,
+    mode: status.mode,
+    backlogPosts: s.backlogPosts,
+    backlogUnits: s.backlinkCapableMissingUnits,
+    completedPerDay: s.completedBacklinkUnitsPerDay,
+    newPostsPerDay: s.newPostsPerDay,
+    newBacklinkUnitsPerDay: s.newBacklinkUnitsPerDay,
     netBacklinkUnitsPerDay: net,
-    estimatedCatchUpDays,
+    estimatedCatchUpDays: s.estimatedCatchUpDays ?? "not-catching-up",
+    feederMissingUnits: s.feederMissingUnits,
+    distributionIncompleteUnits: s.distributionIncompleteUnits,
+    verificationGaps: s.backlinkVerificationGaps,
+    freshPostsAwaitingBacklinks: s.freshPostsAwaitingBacklinks,
+    freshMissingBacklinkUnits: s.freshMissingBacklinkUnits,
+    largestDelayPlatform: s.largestDelayPlatform,
+    largestDelayMissingUnits: s.largestDelayMissingUnits,
+    platformTable: status.platformTable,
+    blockers: status.blockers,
+    definitions: status.definitions,
     reason,
-    windowDays,
+    windowDays: status.thresholds.windowDays,
   };
 }
 

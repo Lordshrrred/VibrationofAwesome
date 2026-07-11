@@ -2193,20 +2193,28 @@ function renderSeoStrategy(strategy) {
 
   let title = "Backlink status unavailable";
   if (backlinks.backlogUnits === 0) title = "✓ Backlinks in maintenance mode";
+  else if (backlinks.mode === "catch-up") title = "Catch-Up Mode active";
   else if ((backlinks.netBacklinkUnitsPerDay ?? 0) < 0) title = "✓ Backlinks catching up";
   else if ((backlinks.netBacklinkUnitsPerDay ?? 0) === 0) title = "Backlinks keeping pace";
   else title = "Backlog growing";
-  const catchup = backlinks.estimatedCatchUpDays === "maintenance"
+  const catchup = backlinks.estimatedCatchUpDays === "maintenance" || backlinks.estimatedCatchUpDays === 0
     ? "maintenance"
-    : backlinks.estimatedCatchUpDays == null ? "not catching up yet" : `≈${backlinks.estimatedCatchUpDays} days`;
+    : backlinks.estimatedCatchUpDays == null || backlinks.estimatedCatchUpDays === "not-catching-up" ? "not catching up yet" : `≈${backlinks.estimatedCatchUpDays} days`;
+  const platformRows = (((backlinks.platformTable || {}).backlinkCapable) || [])
+    .map(row => `<div class="seo-kw-gap">${esc(row.platform)}: ${row.complete}/${row.eligiblePosts} complete · ${row.missing} missing${row.mainBlocker ? ` · ${esc(row.mainBlocker).slice(0, 80)}` : ""}</div>`)
+    .join("");
   blStatus.textContent = backlinks.backlogPosts == null ? "~" : `${backlinks.backlogPosts} posts`;
   blWrap.innerHTML = `
     <div class="seo-kw-item">
       <div>
         <div class="seo-kw-title">${title}</div>
-        <div class="seo-kw-gap">Backlog: ${backlinks.backlogPosts ?? "?"} posts / ${backlinks.backlogUnits ?? "?"} platform links</div>
-        <div class="seo-kw-gap">Completed/day: ${backlinks.completedPerDay ?? "?"} · New/day: ${backlinks.newBacklinkUnitsPerDay ?? "?"} platform links · Net: ${backlinks.netBacklinkUnitsPerDay ?? "?"}/day</div>
+        <div class="seo-kw-gap">Backlink-capable backlog: ${backlinks.backlogPosts ?? "?"} posts / ${backlinks.backlogUnits ?? "?"} platform-link units</div>
+        <div class="seo-kw-gap">Fresh-post delay: ${backlinks.freshPostsAwaitingBacklinks ?? "?"} posts / ${backlinks.freshMissingBacklinkUnits ?? "?"} units</div>
+        <div class="seo-kw-gap">Completed/day: ${backlinks.completedPerDay ?? "?"} · New/day: ${backlinks.newBacklinkUnitsPerDay ?? "?"} backlink units · Net: ${backlinks.netBacklinkUnitsPerDay ?? "?"}/day</div>
         <div class="seo-kw-gap">Catch-up: ${catchup}. ${esc(backlinks.reason || "")}</div>
+        <div class="seo-kw-gap">Feeder gaps: ${backlinks.feederMissingUnits ?? 0} · Distribution gaps: ${backlinks.distributionIncompleteUnits ?? 0} · Verification-only gaps: ${backlinks.verificationGaps ?? 0}</div>
+        <div class="seo-kw-gap">Largest delay: ${esc(backlinks.largestDelayPlatform || "none")}${backlinks.largestDelayMissingUnits ? ` (${backlinks.largestDelayMissingUnits})` : ""}</div>
+        ${platformRows}
       </div>
     </div>`;
 }

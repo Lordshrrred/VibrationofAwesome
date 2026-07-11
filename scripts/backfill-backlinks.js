@@ -21,23 +21,26 @@ import path from "path";
 import { fileURLToPath } from "url";
 import minimist from "minimist";
 import { syndicatePost } from "./syndicate.js";
+import {
+  buildSyndicationBacklogStatus,
+  missingBacklinkPlatforms,
+} from "./lib/syndication-backlog.js";
 
 dotenv.config({ override: true });
 
 const __dirname    = path.dirname(fileURLToPath(import.meta.url));
 const ROOT         = path.resolve(__dirname, "..");
 const RESULTS_FILE = path.join(ROOT, "static/_data/syndication-results.json");
+const LOG_FILE     = path.join(ROOT, "static/_data/syndication-log.json");
 
-const BACKLINK_PLATFORMS = ["devto", "tumblr_voa", "blogger", "wordpress_earthstar"];
-// Art-buyer extra posts use devto2 instead of devto — don't backfill devto acct1 for those
-const ART_BACKLINK_PLATFORMS = ["tumblr_voa", "blogger", "wordpress_earthstar"];
-const DEFAULT_BATCH      = 3;   // posts per run — conservative to avoid API rate limits
-const INTER_POST_DELAY   = 15;  // seconds between posts
+const BACKLINK_PLATFORMS = ["devto", "devto2", "tumblr_voa", "blogger", "wordpress_earthstar"];
+const MAINTENANCE_BATCH  = Number(process.env.BACKLINK_MAINTENANCE_BATCH || 3);
+const CATCHUP_BATCH      = Number(process.env.BACKLINK_CATCHUP_BATCH || 8);
+const INTER_POST_DELAY   = Number(process.env.BACKLINK_INTER_POST_DELAY_SECONDS || 10);
 
 const argv    = minimist(process.argv.slice(2), { boolean: ["execute", "force"], string: ["platforms", "batch"] });
 const execute = argv.execute;
 const force   = argv.force;
-const batchSize = parseInt(argv.batch || DEFAULT_BATCH, 10);
 const targetPlatforms = argv.platforms
   ? argv.platforms.split(",").map(s => s.trim())
   : BACKLINK_PLATFORMS;
@@ -49,29 +52,49 @@ function loadResults() {
   } catch (_) { return []; }
 }
 
-function missingPlatforms(result) {
-  const syn = result.syndication || {};
-  const isArtBuyer = !!syn["devto2"];  // art-buyer posts have devto2, not devto
-  const platforms = isArtBuyer ? ART_BACKLINK_PLATFORMS : targetPlatforms;
-  return platforms.filter(k => syn[k]?.status !== "success");
+function loadLog() {
+  try {
+    const d = JSON.parse(fs.readFileSync(LOG_FILE, "utf8"));
+    return Array.isArray(d.entries) ? d.entries : [];
+  } catch (_) { return []; }
+}
+
+function cachedCaptionsForSlug(logEntries, slug) {
+  const match = logEntries
+    .filter(entry => entry.postSlug === slug && entry.captions && typeof entry.captions === "object")
+    .sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0))[0];
+  return match?.captions || null;
+}
+
+function filterTargetPlatforms(platforms) {
+  const allowed = new Set(targetPlatforms);
+  return platforms.filter(key => allowed.has(key));
 }
 
 function sleep(s) { return new Promise(r => setTimeout(r, s * 1000)); }
 
 async function main() {
   const results = loadResults();
+  const logEntries = loadLog();
+  const status = buildSyndicationBacklogStatus(results);
+  const batchSize = parseInt(argv.batch || (status.mode === "catch-up" ? CATCHUP_BATCH : MAINTENANCE_BATCH), 10);
 
-  // Find posts with at least one missing backlink platform, oldest first
-  const backlog = results
-    .map(r => ({ ...r, missing: missingPlatforms(r) }))
-    .filter(r => r.missing.length > 0)
-    .sort((a, b) => (a.date || "").localeCompare(b.date || ""));
+  const bySlug = new Map(results.map(row => [row.slug, row]));
+  const backlog = status.prioritizedBacklog
+    .map(item => {
+      const source = bySlug.get(item.slug) || item;
+      return { ...source, missing: filterTargetPlatforms(missingBacklinkPlatforms(source)) };
+    })
+    .filter(row => row.missing.length > 0);
 
   console.log("\n=== Backlink Backfill ===");
   console.log(`Mode:     ${execute ? "EXECUTE" : "dry run"}${force ? " + force" : ""}`);
+  console.log(`Strategy: ${status.mode}`);
   console.log(`Batch:    ${batchSize} posts per run`);
   console.log(`Platforms: ${targetPlatforms.join(", ")}`);
-  console.log(`Backlog:  ${backlog.length} posts need work\n`);
+  console.log(`Backlog:  ${status.summary.backlogPosts} posts / ${status.summary.backlinkCapableMissingUnits} backlink-capable platform units`);
+  console.log(`Fresh delay: ${status.summary.freshPostsAwaitingBacklinks} posts / ${status.summary.freshMissingBacklinkUnits} units`);
+  console.log(`Net/day: ${status.summary.netBacklogChangePerDay} | ETA: ${status.summary.estimatedCatchUpDays ?? "not catching up"}\n`);
 
   if (backlog.length === 0) {
     console.log("✅ All posts fully syndicated. Nothing to do.");
@@ -97,19 +120,25 @@ async function main() {
 
   for (let i = 0; i < batch.length; i++) {
     const r = batch[i];
+    const cachedCaptions = cachedCaptionsForSlug(logEntries, r.slug);
     console.log(`\n[${i + 1}/${batch.length}] ${r.slug}`);
     console.log(`  Missing: ${r.missing.join(", ")}`);
+    console.log(`  Captions: ${cachedCaptions ? "reusing cached log captions (no caption Claude call)" : "no cache found; syndicate.js will generate captions"}`);
 
     try {
-      await syndicatePost("boom", r.slug, {
+      const entry = await syndicatePost(r.lane || "boom", r.slug, {
         platforms: r.missing,
         force,
         skipLock: false,
+        ...(cachedCaptions ? { captions: cachedCaptions } : {}),
       });
-      succeeded++;
-      console.log(`  ✅ Done`);
+      const attempted = r.missing.length;
+      const ok = r.missing.filter(key => entry.platforms?.[key]?.success).length;
+      succeeded += ok;
+      failed += attempted - ok;
+      console.log(`  ✅ Platform tasks complete: ${ok}/${attempted}`);
     } catch (err) {
-      failed++;
+      failed += r.missing.length;
       console.error(`  ❌ Failed: ${err.message}`);
     }
 
@@ -121,7 +150,7 @@ async function main() {
 
   const remaining = backlog.length - batch.length;
   console.log(`\n=== Run complete ===`);
-  console.log(`  Processed: ${batch.length} | Succeeded: ${succeeded} | Failed: ${failed}`);
+  console.log(`  Processed posts: ${batch.length} | Platform tasks succeeded: ${succeeded} | failed: ${failed}`);
   console.log(`  Remaining in backlog: ${remaining}`);
 
   if (remaining > 0) {

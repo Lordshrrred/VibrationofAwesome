@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T00:40:02.287Z",
+  "generatedAt": "2026-07-11T01:04:05.019Z",
   "keywordGeneration": {
     "currentInventory": 43,
     "publishedInventory": 149,
@@ -11,14 +11,214 @@
     "reason": "8.6 publishing days of queue inventory remain. Curated expansion should continue."
   },
   "backlinks": {
-    "backlogPosts": 141,
-    "backlogUnits": 560,
-    "completedPerDay": 2.4,
+    "mode": "catch-up",
+    "backlogPosts": 29,
+    "backlogUnits": 54,
+    "completedPerDay": 13.7,
     "newPostsPerDay": 5,
-    "newBacklinkUnitsPerDay": 24,
-    "netBacklinkUnitsPerDay": 21.6,
-    "estimatedCatchUpDays": null,
-    "reason": "Backlog is growing by 21.6 platform links/day at the current rate.",
+    "newBacklinkUnitsPerDay": 20,
+    "netBacklinkUnitsPerDay": 6.3,
+    "estimatedCatchUpDays": "not-catching-up",
+    "feederMissingUnits": 0,
+    "distributionIncompleteUnits": 45,
+    "verificationGaps": 499,
+    "freshPostsAwaitingBacklinks": 23,
+    "freshMissingBacklinkUnits": 47,
+    "largestDelayPlatform": "WordPress",
+    "largestDelayMissingUnits": 29,
+    "platformTable": {
+      "backlinkCapable": [
+        {
+          "key": "blogger",
+          "platform": "Blogger",
+          "eligiblePosts": 144,
+          "complete": 136,
+          "missing": 8,
+          "successRate": 94.4,
+          "averagePerDay": 4.7,
+          "confirmed": 7,
+          "verificationGaps": 129,
+          "mainBlocker": "Cannot read properties of undefined (reading 'match')"
+        },
+        {
+          "key": "wordpress_earthstar",
+          "platform": "WordPress",
+          "eligiblePosts": 144,
+          "complete": 115,
+          "missing": 29,
+          "successRate": 79.9,
+          "averagePerDay": 1.8,
+          "confirmed": 5,
+          "verificationGaps": 110,
+          "mainBlocker": "Cannot read properties of undefined (reading 'trim')"
+        },
+        {
+          "key": "tumblr_voa",
+          "platform": "Tumblr",
+          "eligiblePosts": 144,
+          "complete": 129,
+          "missing": 15,
+          "successRate": 89.6,
+          "averagePerDay": 4.3,
+          "confirmed": 6,
+          "verificationGaps": 123,
+          "mainBlocker": "env vars not set"
+        },
+        {
+          "key": "devto",
+          "platform": "Dev.to",
+          "eligiblePosts": 115,
+          "complete": 113,
+          "missing": 2,
+          "successRate": 98.3,
+          "averagePerDay": 2.3,
+          "confirmed": 4,
+          "verificationGaps": 109,
+          "mainBlocker": "missing local success record"
+        },
+        {
+          "key": "devto2",
+          "platform": "Dev.to 2",
+          "eligiblePosts": 29,
+          "complete": 29,
+          "missing": 0,
+          "successRate": 100,
+          "averagePerDay": 0.6,
+          "confirmed": 1,
+          "verificationGaps": 28,
+          "mainBlocker": ""
+        }
+      ],
+      "feeder": [
+        {
+          "key": "feeder",
+          "platform": "VOA Feeder",
+          "eligiblePosts": 115,
+          "complete": 115,
+          "missing": 0,
+          "successRate": 100,
+          "averagePerDay": 2.4,
+          "confirmed": 115,
+          "verificationGaps": 0,
+          "mainBlocker": ""
+        }
+      ],
+      "distribution": [
+        {
+          "key": "bluesky_voa",
+          "platform": "Bluesky VOA",
+          "eligiblePosts": 126,
+          "complete": 112,
+          "missing": 14,
+          "successRate": 88.9,
+          "averagePerDay": 4,
+          "confirmed": 4,
+          "verificationGaps": 108,
+          "mainBlocker": "env vars not set"
+        },
+        {
+          "key": "mastodon_voa",
+          "platform": "Mastodon VOA",
+          "eligiblePosts": 126,
+          "complete": 108,
+          "missing": 18,
+          "successRate": 85.7,
+          "averagePerDay": 3.7,
+          "confirmed": 4,
+          "verificationGaps": 104,
+          "mainBlocker": "env vars not set"
+        },
+        {
+          "key": "facebook_voa",
+          "platform": "Facebook VOA",
+          "eligiblePosts": 96,
+          "complete": 83,
+          "missing": 13,
+          "successRate": 86.5,
+          "averagePerDay": 1.4,
+          "confirmed": 3,
+          "verificationGaps": 80,
+          "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
+        },
+        {
+          "key": "pinterest",
+          "platform": "Pinterest",
+          "eligiblePosts": 118,
+          "complete": 118,
+          "missing": 0,
+          "successRate": 100,
+          "averagePerDay": 2,
+          "confirmed": 0,
+          "verificationGaps": 118,
+          "mainBlocker": ""
+        },
+        {
+          "key": "threads",
+          "platform": "Threads",
+          "eligiblePosts": 95,
+          "complete": 95,
+          "missing": 0,
+          "successRate": 100,
+          "averagePerDay": 1.4,
+          "confirmed": 0,
+          "verificationGaps": 95,
+          "mainBlocker": ""
+        },
+        {
+          "key": "instagram",
+          "platform": "Instagram",
+          "eligiblePosts": 93,
+          "complete": 93,
+          "missing": 0,
+          "successRate": 100,
+          "averagePerDay": 1.4,
+          "confirmed": 0,
+          "verificationGaps": 93,
+          "mainBlocker": ""
+        }
+      ]
+    },
+    "blockers": [
+      {
+        "reason": "wordpress_earthstar: Cannot read properties of undefined (reading 'trim')",
+        "count": 21
+      },
+      {
+        "reason": "bluesky_voa: env vars not set",
+        "count": 14
+      },
+      {
+        "reason": "mastodon_voa: env vars not set",
+        "count": 14
+      },
+      {
+        "reason": "tumblr_voa: env vars not set",
+        "count": 13
+      },
+      {
+        "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
+        "count": 13
+      },
+      {
+        "reason": "blogger: Cannot read properties of undefined (reading 'match')",
+        "count": 6
+      },
+      {
+        "reason": "wordpress_earthstar: WordPress direct API is not configured. Set WORDPRESS_OAUTH2_TOKEN and WORDPRESS_BLOG.",
+        "count": 6
+      },
+      {
+        "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
+        "count": 3
+      }
+    ],
+    "definitions": {
+      "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
+      "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
+      "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
+      "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
+    },
+    "reason": "Backlink-capable backlog is growing by 6.3 platform units/day at the current rate.",
     "windowDays": 14
   },
   "curatedExpansion": {

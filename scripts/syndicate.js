@@ -64,11 +64,13 @@ const __dirname  = path.dirname(__filename);
 const ROOT       = path.resolve(__dirname, "..");
 const LOG_FILE     = path.join(ROOT, "static", "_data", "syndication-log.json");
 const RESULTS_FILE = path.join(ROOT, "static", "_data", "syndication-results.json");
+const COMPANION_CACHE_FILE = path.join(ROOT, "data", "ops", "syndication-companion-cache.json");
 const CACHE_DIR    = path.join(ROOT, ".cache");
 const LOCK_DIR     = path.join(CACHE_DIR, "syndication.lock");
 const LOCK_STALE_MS      = Number(process.env.SYNDICATION_LOCK_STALE_MS || 45 * 60 * 1000);
 const LOCK_WAIT_MS       = Number(process.env.SYNDICATION_LOCK_WAIT_MS  || 60 * 60 * 1000);
 const PLATFORM_TIMEOUT_MS = Number(process.env.PLATFORM_TIMEOUT_MS     || 90_000); // 90 s per platform
+const COMPANION_MODEL = process.env.SYNDICATION_COMPANION_MODEL || "claude-haiku-4-5-20251001";
 
 const IMAGE_REGISTRY_FILE = path.join(ROOT, "static", "_data", "image-registry.json");
 
@@ -181,6 +183,10 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function platformAbortSignal(ms = PLATFORM_TIMEOUT_MS) {
+  return AbortSignal.timeout(Math.max(1000, ms));
+}
+
 /**
  * Race a promise against a hard timeout.
  * Throws Error(`Timed out after Ns`) if the timeout fires first.
@@ -272,6 +278,48 @@ async function acquireSyndicationLock(label) {
 
 function firstNonEmpty(...values) {
   return values.find(v => typeof v === "string" && v.trim()) || null;
+}
+
+function firstTextBlock(message) {
+  const block = Array.isArray(message?.content)
+    ? message.content.find(part => part?.type === "text" || typeof part?.text === "string")
+    : null;
+  const text = block?.text;
+  if (!text || !String(text).trim()) {
+    throw new Error("Claude returned no text content");
+  }
+  return String(text).trim();
+}
+
+function loadCompanionCache() {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(COMPANION_CACHE_FILE, "utf8"));
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+function saveCompanionCache(cache) {
+  fs.mkdirSync(path.dirname(COMPANION_CACHE_FILE), { recursive: true });
+  fs.writeFileSync(COMPANION_CACHE_FILE, JSON.stringify(cache, null, 2), "utf8");
+}
+
+function getCachedCompanion(platform, slug) {
+  const cache = loadCompanionCache();
+  return cache?.[slug]?.[platform]?.article || null;
+}
+
+function setCachedCompanion(platform, slug, article, sourceUrl) {
+  const cache = loadCompanionCache();
+  cache[slug] = cache[slug] || {};
+  cache[slug][platform] = {
+    article,
+    sourceUrl,
+    model: COMPANION_MODEL,
+    generatedAt: new Date().toISOString(),
+  };
+  saveCompanionCache(cache);
 }
 
 function getTumblrConfig(prefix = "") {
@@ -860,6 +908,7 @@ async function postToTumblr(caption, tags, prefix = "VOA", sourceUrl = "", sourc
     method:  "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded", Authorization: authHeader },
     body:    new URLSearchParams(bodyParams).toString(),
+    signal:  platformAbortSignal(),
   });
   const data = await resp.json();
   if (!resp.ok || data.meta?.status >= 400) {
@@ -945,6 +994,7 @@ async function getBloggerAccessToken() {
   const resp = await fetch("https://oauth2.googleapis.com/token", {
     method:  "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    signal:  platformAbortSignal(30_000),
     body:    new URLSearchParams({
       client_id:     clientId,
       client_secret: clientSecret,
@@ -963,7 +1013,7 @@ async function getBloggerAccessToken() {
  */
 async function generateBloggerArticle(sourceTitle, sourceText, sourceUrl, anthropic) {
   const msg = await anthropic.messages.create({
-    model:      "claude-sonnet-5",
+    model:      COMPANION_MODEL,
     max_tokens: 3000,
     system: `You are Matt EarthStar, the voice behind Vibration of Awesome (vibrationofawesome.com). Write in Matt's authentic personal voice: reflective, honest, spiritual but grounded ~ the voice of someone who has lived through real struggles and found genuine insight. Not corporate motivation or new-age fluff. Raw, direct, human.`,
     messages: [
@@ -998,7 +1048,7 @@ Requirements:
     ],
   });
 
-  const raw        = msg.content[0].text;
+  const raw        = firstTextBlock(msg);
   const titleMatch = raw.match(/^TITLE:\s*(.+)/m);
   const title      = titleMatch ? titleMatch[1].trim() : `Reflections on ${sourceTitle}`;
   const html       = raw.replace(/^TITLE:\s*.+\n*/m, "").trim();
@@ -1011,7 +1061,7 @@ Requirements:
  */
 async function generateWordPressArticle(sourceTitle, sourceText, sourceUrl, anthropic) {
   const msg = await anthropic.messages.create({
-    model: "claude-sonnet-5",
+    model: COMPANION_MODEL,
     max_tokens: 3000,
     system: `You are Matt EarthStar, writing for EarthStarRising. Keep the voice human, direct, spiritual-but-grounded, and rooted in lived experience instead of generic inspiration.`,
     messages: [
@@ -1048,7 +1098,7 @@ Requirements:
     ],
   });
 
-  const raw = msg.content[0].text.trim();
+  const raw = firstTextBlock(msg);
   const titleMatch = raw.match(/^TITLE:\s*(.+)$/m);
   const excerptMatch = raw.match(/^EXCERPT:\s*(.+)$/m);
   const title = titleMatch ? titleMatch[1].trim() : `EarthStar reflection on ${sourceTitle}`;
@@ -1090,6 +1140,7 @@ async function postToWordPressDirect(article, imageUrl = null) {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body,
+    signal: platformAbortSignal(),
   });
   const data = await resp.json().catch(() => ({}));
   if (!resp.ok) {
@@ -1117,6 +1168,7 @@ async function postToBlogger(title, htmlContent) {
         Authorization:  `Bearer ${accessToken}`,
       },
       body: JSON.stringify({ title, content: htmlContent }),
+      signal: platformAbortSignal(),
     }
   );
   const data = await resp.json();
@@ -1184,7 +1236,7 @@ function saveResults(slug, title, lane, voaUrl, platforms) {
     slug,
     title,
     lane,
-    date:  timestamp.slice(0, 10),
+    date:  existingEntry?.date || timestamp.slice(0, 10),
     voa_url: voaUrl,
     syndication,
   };
@@ -1716,15 +1768,25 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   // Blogger (auto-publish ~ AI-generated related article inspired by source)
   await attempt("blogger", async () => {
-    const bloggerArticle = options.bloggerArticle
-      || await generateBloggerArticle(post.title, sourceText, postUrl, anthropic);
+    let bloggerArticle = options.bloggerArticle || getCachedCompanion("blogger", slug);
+    if (bloggerArticle) {
+      console.log("  [blogger] Reusing cached companion copy (no companion Claude call).");
+    } else {
+      bloggerArticle = await generateBloggerArticle(post.title, sourceText, postUrl, anthropic);
+      setCachedCompanion("blogger", slug, bloggerArticle, postUrl);
+    }
     return postToBlogger(bloggerArticle.title, bloggerArticle.html);
   });
 
   // WordPress EarthStarRising via direct WordPress.com API
   await attempt("wordpress_earthstar", async () => {
-    const wordpressArticle = options.wordpressArticle
-      || await generateWordPressArticle(post.title, sourceText, postUrl, anthropic);
+    let wordpressArticle = options.wordpressArticle || getCachedCompanion("wordpress_earthstar", slug);
+    if (wordpressArticle) {
+      console.log("  [wordpress] Reusing cached companion copy (no companion Claude call).");
+    } else {
+      wordpressArticle = await generateWordPressArticle(post.title, sourceText, postUrl, anthropic);
+      setCachedCompanion("wordpress_earthstar", slug, wordpressArticle, postUrl);
+    }
     const article = {
       ...wordpressArticle,
       slug: `${slug}-earthstar`,

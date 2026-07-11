@@ -5,7 +5,7 @@ on:
     # Automatic backlink coverage is part of the growth system. Keep it running;
     # cost controls belong inside the generation/syndication calls, not by
     # disabling the backlink automation itself.
-    - cron: "0 */4 * * *"
+    - cron: "37 */2 * * *"
   workflow_dispatch:
     inputs:
       batch:
@@ -18,6 +18,9 @@ on:
 jobs:
   backfill:
     runs-on: ubuntu-latest
+    concurrency:
+      group: voa-backlink-backfill
+      cancel-in-progress: false
     permissions:
       contents: write
     steps:
@@ -45,34 +48,48 @@ jobs:
         id: backfill
         env:
           ANTHROPIC_API_KEY:           ${{ secrets.ANTHROPIC_API_KEY }}
+          SYNDICATION_COMPANION_MODEL:  ${{ vars.SYNDICATION_COMPANION_MODEL || 'claude-haiku-4-5-20251001' }}
+          BACKLINK_CATCHUP_BATCH:       8
+          BACKLINK_MAINTENANCE_BATCH:   3
+          BACKLINK_INTER_POST_DELAY_SECONDS: 8
+          PLATFORM_TIMEOUT_MS:          60000
           BLOGGER_CLIENT_ID:           ${{ secrets.BLOGGER_CLIENT_ID }}
           BLOGGER_CLIENT_SECRET:       ${{ secrets.BLOGGER_CLIENT_SECRET }}
           BLOGGER_REFRESH_TOKEN:       ${{ secrets.BLOGGER_REFRESH_TOKEN }}
           BLOGGER_BLOG_ID:             ${{ secrets.BLOGGER_BLOG_ID }}
           DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
-          TUMBLR_CONSUMER_KEY:         ${{ secrets.TUMBLR_CONSUMER_KEY }}
-          TUMBLR_CONSUMER_SECRET:      ${{ secrets.TUMBLR_CONSUMER_SECRET }}
-          TUMBLR_TOKEN:                ${{ secrets.TUMBLR_TOKEN }}
-          TUMBLR_TOKEN_SECRET:         ${{ secrets.TUMBLR_TOKEN_SECRET }}
-          TUMBLR_BLOG_NAME:            ${{ secrets.TUMBLR_BLOG_NAME }}
-          WP_SITE_URL:                 ${{ secrets.WP_SITE_URL }}
-          WP_USERNAME:                 ${{ secrets.WP_USERNAME }}
-          WP_APP_PASSWORD:             ${{ secrets.WP_APP_PASSWORD }}
+          DEVTO2_API_KEY:              ${{ secrets.DEVTO2_API_KEY }}
+          VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
+          VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
+          VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}
+          VOA_TUMBLR_TOKEN_SECRET:     ${{ secrets.VOA_TUMBLR_TOKEN_SECRET }}
+          VOA_TUMBLR_BLOG_NAME:        ${{ secrets.VOA_TUMBLR_BLOG_NAME }}
+          WORDPRESS_OAUTH2_TOKEN:      ${{ secrets.WORDPRESS_OAUTH2_TOKEN }}
+          WORDPRESS_BLOG:              ${{ secrets.WORDPRESS_BLOG }}
+          WORDPRESS_CATEGORY_NAMES:    ${{ secrets.WORDPRESS_CATEGORY_NAMES }}
+          WORDPRESS_TAG_NAMES:         ${{ secrets.WORDPRESS_TAG_NAMES }}
           PEXELS_API_KEY:              ${{ secrets.PEXELS_API_KEY }}
         run: |
-          BATCH="${{ github.event.inputs.batch || '3' }}"
+          BATCH="${{ github.event.inputs.batch }}"
           PLATFORMS="${{ github.event.inputs.platforms }}"
-          ARGS="--execute --batch $BATCH"
+          ARGS="--execute"
+          [ -n "$BATCH" ] && ARGS="$ARGS --batch $BATCH"
           [ -n "$PLATFORMS" ] && ARGS="$ARGS --platforms $PLATFORMS"
+          set +e
           node scripts/backfill-backlinks.js $ARGS
-          echo "exit_code=$?" >> $GITHUB_OUTPUT
+          BACKFILL_EXIT=$?
+          set -e
+          node scripts/syndication-backlog-status.js --write
+          node scripts/seo-strategy-status.js
+          echo "exit_code=$BACKFILL_EXIT" >> $GITHUB_OUTPUT
+          exit $BACKFILL_EXIT
         continue-on-error: true
 
       - name: Commit results
         run: |
           git config user.name  "voa-bot"
           git config user.email "bot@vibrationofawesome.com"
-          git add static/_data/syndication-results.json static/_data/syndication-log.json || true
+          git add static/_data/syndication-results.json static/_data/syndication-log.json static/_data/syndication-backlog-status.json static/_data/seo-strategy.json data/ops/syndication-companion-cache.json || true
           if git diff --staged --quiet; then
             echo "No backlink result changes to commit."
             exit 0
@@ -88,5 +105,4 @@ jobs:
 
       - name: Report status
         run: |
-          REMAINING=$(node scripts/backfill-backlinks.js 2>/dev/null | grep "Remaining in backlog" | grep -o '[0-9]*' | head -1 || echo "?")
-          echo "Backlog remaining after this run: $REMAINING"
+          node scripts/syndication-backlog-status.js
