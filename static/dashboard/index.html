@@ -155,6 +155,7 @@
 
     /* ── Section headers ── */
     .section { margin-bottom: 2.5rem; }
+    .section[id] { scroll-margin-top: 6rem; }
     .section-header {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
@@ -840,8 +841,9 @@
           <div class="dash-subtitle">Syndication Dashboard</div>
         </div>
         <nav class="dash-tabs">
-          <a href="./index.html" class="dash-tab active">Syndication</a>
-          <a href="./analytics.html" class="dash-tab">Analytics</a>
+          <a href="./index.html" class="dash-tab active" data-dash-tab="syndication">Syndication</a>
+          <a href="./analytics.html" class="dash-tab" data-dash-tab="analytics">Analytics</a>
+          <a href="./index.html#seo" class="dash-tab" data-dash-tab="seo">SEO</a>
           <a href="/admin/" class="dash-tab">Admin</a>
         </nav>
       </div>
@@ -967,7 +969,7 @@
       </div>
 
       <!-- ── SEO Intelligence ── -->
-      <div class="section">
+      <div class="section" id="seo">
         <div class="section-header">
           <span class="section-title">SEO Intelligence</span>
           <span style="font-size:0.75rem;color:var(--text-muted)" id="seo-last-checked">Search Console + GA4 evidence check</span>
@@ -1255,6 +1257,7 @@ function showApp() {
   const app = document.getElementById("app");
   app.style.display = "flex";
   app.style.flexDirection = "column";
+  updateDashboardTabs();
   loadDashboard();
 }
 
@@ -1262,6 +1265,15 @@ document.getElementById("lock-btn").addEventListener("click", () => {
   sessionStorage.removeItem(SESSION_KEY);
   location.reload();
 });
+
+function updateDashboardTabs() {
+  const activeTab = location.hash === "#seo" ? "seo" : "syndication";
+  document.querySelectorAll("[data-dash-tab]").forEach(tab => {
+    tab.classList.toggle("active", tab.dataset.dashTab === activeTab);
+  });
+}
+
+window.addEventListener("hashchange", updateDashboardTabs);
 
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
