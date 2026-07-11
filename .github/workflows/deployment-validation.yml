@@ -1,0 +1,109 @@
+name: Production Impact Validation
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "api/**"
+      - "archetypes/**"
+      - "assets/**"
+      - "content/**"
+      - "layouts/**"
+      - "static/**"
+      - "scripts/build-blog-index.js"
+      - "scripts/check-authority-links.js"
+      - "scripts/deployment-health.js"
+      - "scripts/generate-authority-engine.js"
+      - "scripts/generate-legacy-redirects.js"
+      - "scripts/inject-ai-engine-nudge.js"
+      - "scripts/internal-linking.js"
+      - "scripts/lib/internal-linking.js"
+      - "scripts/lib/orchestration-export.js"
+      - "scripts/optimize-hero-images.js"
+      - "scripts/set-page-social-image.js"
+      - "scripts/update-sitemap.js"
+      - "scripts/vercel-ignore-build.js"
+      - "hugo.toml"
+      - "package.json"
+      - "package-lock.json"
+      - "vercel.json"
+      - ".vercelignore"
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.160.0"
+          extended: true
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate ignored-build classifier
+        run: |
+          node --input-type=module <<'NODE'
+          import { classify } from "./scripts/vercel-ignore-build.js";
+          const cases = [
+            ["main blog deploy", ["static/blog/boom/posts/example.html"], "main", true],
+            ["main hub deploy", ["static/hubs/ai-advantage/index.html"], "main", true],
+            ["main tool deploy", ["static/tools/digital-attention-audit/index.html"], "main", true],
+            ["layout deploy", ["layouts/index.html"], "main", true],
+            ["sitemap deploy", ["static/sitemap.xml"], "main", true],
+            ["api deploy", ["api/capture-email.js"], "main", true],
+            ["report skip", ["reports/weekly.md", "scripts/syndication_log.txt"], "main", false],
+            ["workflow skip", [".github/workflows/voa-watchdog.yml"], "main", false],
+            ["mixed deploy", ["reports/weekly.md", "static/blog/boom/posts/example.html"], "main", true],
+            ["mailer blog skip", ["static/blog/boom/posts/example.html"], "mailer", false],
+            ["mailer api deploy", ["api/capture-email.js"], "mailer", true],
+          ];
+          let failed = 0;
+          for (const [name, files, project, expected] of cases) {
+            const got = classify(files, project).deploy;
+            console.log(`${got === expected ? "ok" : "FAIL"} ${name}: ${got}`);
+            if (got !== expected) failed++;
+          }
+          process.exit(failed ? 1 : 0);
+          NODE
+
+      - name: Enforce no em dashes
+        run: npm run check:emdash
+
+      - name: Build with Hugo
+        env:
+          HUGO_ENVIRONMENT: production
+        run: hugo --minify --baseURL "https://vibrationofawesome.com/"
+
+      - name: Validate authority links
+        run: npm run authority:links
+
+      - name: Generate deployment health artifact
+        run: npm run deployment:health -- --write
+
+      - name: Upload deployment health artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-health
+          path: static/_data/deployment-health.json

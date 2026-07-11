@@ -61,7 +61,9 @@
     "seo:intelligence": "node scripts/seo_intelligence.js",
     "seo:research": "node scripts/seo_research.js",
     "seo:strategy": "node scripts/seo-strategy-status.js",
-    "keywords:import": "node scripts/import-curated-keywords.js"
+    "keywords:import": "node scripts/import-curated-keywords.js",
+    "deployment:health": "node scripts/deployment-health.js",
+    "vercel:ignore": "node scripts/vercel-ignore-build.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
