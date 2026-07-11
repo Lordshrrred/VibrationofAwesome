@@ -1092,5 +1092,28 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-07-11T20:08:10.545Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/29166164927",
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the runtime environment.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "<dev.to-api-key-for-secondary-account>",
+          "reason": "Second Dev.to account requires its own API key for independent authentication and syndication"
+        }
+      }
+    ],
+    "retriggered": false
   }
 ]
