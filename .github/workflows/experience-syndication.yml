@@ -1,0 +1,87 @@
+name: Experience Syndication
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  schedule:
+    - cron: "17 11 * * *" # once daily, away from the five drip publish slots
+  workflow_dispatch:
+    inputs:
+      experience:
+        description: "Optional experience id"
+        default: ""
+      platforms:
+        description: "Comma-separated platforms"
+        default: "wordpress_earthstar"
+
+concurrency:
+  group: voa-publish-and-syndicate
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  experience-syndication:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh experience queue
+        run: npm run experience:status -- --write
+
+      - name: Run one experience campaign
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EXPERIENCE_COMPANION_MODEL: ${{ vars.EXPERIENCE_COMPANION_MODEL || vars.SYNDICATION_COMPANION_MODEL || 'claude-haiku-4-5-20251001' }}
+          BLOGGER_CLIENT_ID: ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET: ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
+          WORDPRESS_OAUTH2_TOKEN: ${{ secrets.WORDPRESS_OAUTH2_TOKEN }}
+          WORDPRESS_BLOG: ${{ secrets.WORDPRESS_BLOG }}
+          WORDPRESS_CATEGORY_NAMES: ${{ secrets.WORDPRESS_CATEGORY_NAMES }}
+          WORDPRESS_TAG_NAMES: ${{ secrets.WORDPRESS_TAG_NAMES }}
+          VOA_TUMBLR_CONSUMER_KEY: ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
+          VOA_TUMBLR_CONSUMER_SECRET: ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
+          VOA_TUMBLR_TOKEN: ${{ secrets.VOA_TUMBLR_TOKEN }}
+          VOA_TUMBLR_TOKEN_SECRET: ${{ secrets.VOA_TUMBLR_TOKEN_SECRET }}
+          VOA_TUMBLR_BLOG_NAME: ${{ secrets.VOA_TUMBLR_BLOG_NAME }}
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+        run: |
+          EXP="${{ github.event.inputs.experience }}"
+          PLATFORMS="${{ github.event.inputs.platforms }}"
+          ARGS="--execute --platforms ${PLATFORMS:-wordpress_earthstar}"
+          [ -n "$EXP" ] && ARGS="$ARGS --experience $EXP"
+          npm run experience:syndicate -- $ARGS
+          npm run experience:status -- --write
+
+      - name: Commit experience syndication state
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add static/_data/experience-syndication.json data/ops/experience-companion-cache.json || true
+          if git diff --staged --quiet; then
+            echo "No experience syndication state changes to commit."
+            exit 0
+          fi
+          git commit -m "Update experience syndication state [automated]"
+          for attempt in 1 2 3; do
+            git push && exit 0
+            git pull --rebase --autostash origin main
+          done
+          exit 1
