@@ -994,6 +994,41 @@
             <div class="stat-label">Opportunities</div>
             <div class="stat-value" id="seo-stat-missing">~</div>
           </div>
+          <div class="stat-card">
+            <div class="stat-label">Clicks</div>
+            <div class="stat-value" id="seo-stat-clicks">~</div>
+            <div class="stat-sub">Search Console</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Impressions</div>
+            <div class="stat-value" id="seo-stat-impressions">~</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Organic Sessions</div>
+            <div class="stat-value" id="seo-stat-sessions">~</div>
+            <div class="stat-sub">GA4</div>
+          </div>
+        </div>
+
+        <div class="seo-grid">
+          <div class="queue-panel">
+            <div class="panel-header">
+              <span class="panel-title" style="color:var(--accent)">Search Console</span>
+              <span class="panel-count">before arrival</span>
+            </div>
+            <div class="panel-body" id="seo-search-console">
+              <div class="loading dot-pulse">Loading</div>
+            </div>
+          </div>
+          <div class="queue-panel">
+            <div class="panel-header">
+              <span class="panel-title" style="color:var(--accent)">GA4</span>
+              <span class="panel-count">after arrival</span>
+            </div>
+            <div class="panel-body" id="seo-ga4">
+              <div class="loading dot-pulse">Loading</div>
+            </div>
+          </div>
         </div>
 
         <div class="seo-grid">
@@ -1045,6 +1080,27 @@
           </div>
           <div class="panel-body" id="seo-keywords">
             <div class="loading dot-pulse">Loading</div>
+          </div>
+        </div>
+
+        <div class="seo-grid" style="margin-top:1rem">
+          <div class="queue-panel">
+            <div class="panel-header">
+              <span class="panel-title" style="color:var(--accent)">Fresh Post Syndication</span>
+              <span class="panel-count" id="fresh-post-status">~</span>
+            </div>
+            <div class="panel-body" id="fresh-post-priority">
+              <div class="loading dot-pulse">Loading</div>
+            </div>
+          </div>
+          <div class="queue-panel">
+            <div class="panel-header">
+              <span class="panel-title" style="color:var(--accent)">Experience Syndication</span>
+              <span class="panel-count" id="experience-syndication-status">~</span>
+            </div>
+            <div class="panel-body" id="experience-syndication">
+              <div class="loading dot-pulse">Loading</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1196,6 +1252,8 @@ const CLUSTERS_URL  = "/_data/topic-clusters.json";
 const SEO_URL       = "/_data/seo-intelligence.json";
 const SEO_STRATEGY_URL = "/_data/seo-strategy.json";
 const DEPLOYMENT_HEALTH_URL = "/_data/deployment-health.json";
+const BACKLINK_ETA_URL = "/_data/backlink-throughput-eta.json";
+const EXPERIENCE_SYNDICATION_URL = "/_data/experience-syndication.json";
 const VERIFY_CACHE  = "voa_url_verify_cache_v4"; // v4: free browser-side checks, no Netlify function usage
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
 
@@ -1282,7 +1340,7 @@ window.addEventListener("hashchange", updateDashboardTabs);
 
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, seoData, seoStrategy, deploymentHealth] = await Promise.all([
+  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, seoData, seoStrategy, deploymentHealth, backlinkEta, experienceSyndication] = await Promise.all([
     fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
     fetch(RESULTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
@@ -1294,6 +1352,8 @@ async function loadDashboard() {
     fetch(SEO_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(SEO_STRATEGY_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(DEPLOYMENT_HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch(BACKLINK_ETA_URL).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch(EXPERIENCE_SYNDICATION_URL).then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
   const feederMerged = mergeFeederStatuses(resultsDataRaw, feederPosts);
   const resultsData = await mergeWordPressStatuses(feederMerged);
@@ -1327,7 +1387,7 @@ async function loadDashboard() {
   renderTrigger(allPosts);
   renderFeederSection(resultsData, dripData, boomPosts, mattPosts);
   renderDeploymentHealth(deploymentHealth);
-  renderSeoIntelligence(boomPosts, clustersData, seoData, seoStrategy);
+  renderSeoIntelligence(boomPosts, clustersData, seoData, seoStrategy, backlinkEta, experienceSyndication);
   // ESC recommendations disabled ~ future automation phase will handle this
 }
 
@@ -2205,11 +2265,26 @@ function renderDeploymentHealth(health) {
 // via .github/workflows/weekly-seo-intelligence.yml). No live API calls happen
 // from the browser ~ this panel reads a public-safe summary, not raw Search
 // Console rows, GA4 exports, service-account data, or paid web-search research.
-function renderSeoIntelligence(boomPosts, clustersData, seoData, seoStrategy) {
+function metricNumber(value) {
+  if (value == null || value === "") return "~";
+  const n = Number(value);
+  if (!Number.isFinite(n)) return esc(value);
+  return n >= 1000 ? n.toLocaleString("en-US") : String(Math.round(n * 10) / 10);
+}
+
+function metricPct(value) {
+  if (value == null || !Number.isFinite(Number(value))) return "unavailable";
+  return `${(Number(value) * 100).toFixed(1)}%`;
+}
+
+function renderSeoIntelligence(boomPosts, clustersData, seoData, seoStrategy, backlinkEta, experienceSyndication) {
   renderClusterCoverage(boomPosts, clustersData);
   renderSeoTrend(seoData);
   renderSeoKeywords(seoData);
   renderSeoStrategy(seoStrategy);
+  renderSeoEvidence(seoData);
+  renderFreshPostPriority(backlinkEta, seoStrategy);
+  renderExperienceSyndication(experienceSyndication);
 
   const lastCheckedEl = document.getElementById("seo-last-checked");
   if (seoData?.generatedAt) {
@@ -2222,6 +2297,60 @@ function renderSeoIntelligence(boomPosts, clustersData, seoData, seoStrategy) {
   const counts = seoData?.counts || {};
   const totalOpps = (counts.nearPageOne || 0) + (counts.ctr || 0) + (counts.engagementWinners || 0) + (counts.weakEngagement || 0) + (counts.hiddenQueries || 0);
   document.getElementById("seo-stat-missing").textContent = seoData ? String(totalOpps) : "~";
+  document.getElementById("seo-stat-clicks").textContent = metricNumber(seoData?.summary?.searchConsole?.clicks);
+  document.getElementById("seo-stat-impressions").textContent = metricNumber(seoData?.summary?.searchConsole?.impressions);
+  document.getElementById("seo-stat-sessions").textContent = metricNumber(seoData?.summary?.ga4?.organicSessions);
+}
+
+function renderSeoEvidence(seoData) {
+  const sc = document.getElementById("seo-search-console");
+  const ga = document.getElementById("seo-ga4");
+  if (!seoData) {
+    sc.innerHTML = `<div class="empty-state">No SEO Intelligence summary yet. The weekly workflow writes <code>/_data/seo-intelligence.json</code>.</div>`;
+    ga.innerHTML = `<div class="empty-state">No GA4 summary yet.</div>`;
+    return;
+  }
+
+  const gscOk = seoData.status?.gsc?.ok;
+  const gaOk = seoData.status?.ga?.ok;
+  const gsc = seoData.summary?.searchConsole || {};
+  const ga4 = seoData.summary?.ga4 || {};
+  const topQueries = Array.isArray(seoData.topQueries) ? seoData.topQueries : [];
+  const topPages = Array.isArray(seoData.topLandingPages) ? seoData.topLandingPages : [];
+
+  sc.innerHTML = `
+    <div class="seo-kw-item">
+      <div>
+        <div class="seo-kw-title">${gscOk ? "Search Console connected" : "Search Console unavailable"}</div>
+        <div class="seo-kw-gap">How people discover VOA in Google before arriving.</div>
+        <div class="seo-kw-gap">Clicks: ${metricNumber(gsc.clicks)} · Impressions: ${metricNumber(gsc.impressions)} · CTR: ${metricPct(gsc.ctr)} · Avg position: ${gsc.averagePosition == null ? "unavailable" : Number(gsc.averagePosition).toFixed(1)}</div>
+        ${gscOk ? "" : `<div class="seo-kw-gap">Why unavailable: ${esc(seoData.status?.gsc?.message || "No Search Console rows in public summary.")}</div>`}
+      </div>
+    </div>
+    ${topQueries.length ? topQueries.map(row => `
+      <div class="seo-kw-item">
+        <div>
+          <div class="seo-kw-title">${esc(row.query || "(query withheld)")}</div>
+          <div class="seo-kw-gap">${metricNumber(row.clicks)} clicks · ${metricNumber(row.impressions)} impressions · CTR ${metricPct(row.ctr)} · avg position ${row.position == null ? "?" : Number(row.position).toFixed(1)}</div>
+        </div>
+      </div>`).join("") : `<div class="empty-state">Search Console is connected, but this run did not expose enough query volume for public-safe top-query rows.</div>`}`;
+
+  ga.innerHTML = `
+    <div class="seo-kw-item">
+      <div>
+        <div class="seo-kw-title">${gaOk ? "GA4 connected" : "GA4 unavailable"}</div>
+        <div class="seo-kw-gap">What people do after they arrive from organic search.</div>
+        <div class="seo-kw-gap">Organic sessions: ${metricNumber(ga4.organicSessions)} · Active users: ${metricNumber(ga4.activeUsers)} · Engaged sessions: ${metricNumber(ga4.engagedSessions)} · Engagement: ${metricPct(ga4.engagementRate)}</div>
+        ${gaOk ? "" : `<div class="seo-kw-gap">Why unavailable: ${esc(seoData.status?.ga?.message || "No GA4 rows in public summary.")}</div>`}
+      </div>
+    </div>
+    ${topPages.length ? topPages.map(row => `
+      <div class="seo-kw-item">
+        <div>
+          <div class="seo-kw-title">${esc(row.title || row.path)}</div>
+          <div class="seo-kw-gap">${esc(row.path)} · ${metricNumber(row.clicks)} clicks · ${metricNumber(row.impressions)} impressions · CTR ${metricPct(row.ctr)} · avg position ${row.position == null ? "?" : Number(row.position).toFixed(1)}</div>
+        </div>
+      </div>`).join("") : `<div class="empty-state">GA4 is connected, but organic landing-page volume is still too low for ranked rows.</div>`}`;
 }
 
 function renderSeoStrategy(strategy) {
@@ -2278,6 +2407,72 @@ function renderSeoStrategy(strategy) {
         ${platformRows}
       </div>
     </div>`;
+}
+
+function renderFreshPostPriority(backlinkEta, seoStrategy) {
+  const statusEl = document.getElementById("fresh-post-status");
+  const wrap = document.getElementById("fresh-post-priority");
+  if (!wrap) return;
+  const backlinks = seoStrategy?.backlinks || {};
+  const eta = backlinkEta || {};
+  const backlog = eta.backlog || {};
+  const throughput = eta.throughput || {};
+  const windows = Array.isArray(throughput.windows) ? throughput.windows : [];
+  statusEl.textContent = (backlinks.freshMissingBacklinkUnits || 0) === 0 ? "Clear" : "Delayed";
+  const windowRows = windows.map(row =>
+    `<div class="seo-kw-gap">${row.hours}h: ${row.successfulBacklinkUnits} backlink units · ${row.postsProgressed} posts progressed · ${row.unitsPerDay}/day pace</div>`
+  ).join("");
+  const estimate = eta.estimates?.measuredDays === 0
+    ? "Maintenance now"
+    : eta.estimates?.measuredDays == null ? "Not enough positive catch-up throughput yet" : `${eta.estimates.measuredDays} days`;
+  wrap.innerHTML = `
+    <div class="seo-kw-item">
+      <div>
+        <div class="seo-kw-title">${(backlinks.freshMissingBacklinkUnits || 0) === 0 ? "Fresh posts are not waiting behind historical debt" : "Fresh posts have pending backlink work"}</div>
+        <div class="seo-kw-gap">Pipeline: queued post → drip publish → live URL verification → immediate syndication → feeder callback → retry/backfill only for failures.</div>
+        <div class="seo-kw-gap">Fresh delay: ${backlinks.freshPostsAwaitingBacklinks ?? 0} posts / ${backlinks.freshMissingBacklinkUnits ?? 0} backlink units.</div>
+        <div class="seo-kw-gap">Meaningful blog backlink debt: ${backlog.postsWithMeaningfulBacklinkDebt ?? backlinks.backlogPosts ?? 0} posts / ${backlog.backlinkCapableMissingUnits ?? backlinks.backlogUnits ?? 0} units.</div>
+        <div class="seo-kw-gap">Current measured ETA: ${estimate}. Net backlog change/day: ${throughput.currentNetBacklogChangePerDay ?? backlinks.netBacklinkUnitsPerDay ?? "?"}.</div>
+        ${windowRows || `<div class="seo-kw-gap">Recent throughput windows unavailable until the ETA script runs.</div>`}
+      </div>
+    </div>`;
+}
+
+function renderExperienceSyndication(data) {
+  const statusEl = document.getElementById("experience-syndication-status");
+  const wrap = document.getElementById("experience-syndication");
+  if (!wrap) return;
+  if (!data) {
+    statusEl.textContent = "~";
+    wrap.innerHTML = `<div class="empty-state">No experience syndication status yet. Run <code>npm run experience:status -- --write</code>.</div>`;
+    return;
+  }
+  const summary = data.summary || {};
+  const campaigns = Array.isArray(data.campaigns) ? data.campaigns : [];
+  statusEl.textContent = `${summary.queued ?? 0} queued`;
+  const rows = campaigns.map(c => {
+    const complete = Object.values(c.platforms || {}).filter(p => p.status === "success").length;
+    const failed = Object.values(c.platforms || {}).filter(p => p.status === "failed").length;
+    return `
+      <div class="seo-kw-item">
+        <div>
+          <div class="seo-kw-title">${esc(c.title)} <span class="seo-flag ${c.status === "complete" ? "ranking" : ""}">${esc(c.status)}</span></div>
+          <div class="seo-kw-gap">${esc(c.hubTitle || c.hub || "unhubbed")} · ${esc(c.path)} · canonical ${c.canonicalStatus}</div>
+          <div class="seo-kw-gap">Backlink destinations complete: ${complete} · failed awaiting retry: ${failed} · cached companion assets: ${c.cachedCompanionAssets || 0}</div>
+          <div class="seo-kw-gap">${esc(c.primaryPurpose || "")}</div>
+        </div>
+      </div>`;
+  }).join("");
+  wrap.innerHTML = `
+    <div class="seo-kw-item">
+      <div>
+        <div class="seo-kw-title">Experience campaigns: ${summary.liveExperiences ?? campaigns.length} live · ${summary.queued ?? 0} queued · ${summary.complete ?? 0} complete</div>
+        <div class="seo-kw-gap">Next scheduled: ${esc(summary.nextExperienceScheduled || "none")} ${summary.nextExperienceScheduledAt ? `· ${new Date(summary.nextExperienceScheduledAt).toLocaleString()}` : ""}</div>
+        <div class="seo-kw-gap">Cached companion assets: ${summary.cachedCompanionAssets ?? 0} · estimated Claude spend: $${Number(summary.estimatedClaudeSpendUsd || 0).toFixed(2)}</div>
+        <div class="seo-kw-gap">${esc(data.cadence?.allocation || "One conservative experience campaign per day.")}</div>
+      </div>
+    </div>
+    ${rows || `<div class="empty-state">No live experiences found in authority metadata.</div>`}`;
 }
 
 function renderClusterCoverage(boomPosts, clustersData) {
