@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Syndication Dashboard | Vibration of Awesome</title>
+  <title>SEO Dashboard | Vibration of Awesome</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -816,7 +816,7 @@
     }
   </style>
 </head>
-<body>
+<body class="seo-route">
 <canvas id="stars-canvas" aria-hidden="true"></canvas>
 
 <div class="wrap">
@@ -825,7 +825,7 @@
   <div id="gate">
     <div class="gate-card">
       <div class="gate-logo">VibrationofAwesome</div>
-      <h1 class="gate-title">Syndication Dashboard</h1>
+      <h1 class="gate-title">SEO Dashboard</h1>
       <p class="gate-sub">Enter dashboard password to continue.</p>
       <input id="pw-input" class="gate-input" type="password" placeholder="Password" autocomplete="current-password">
       <button class="gate-btn" id="pw-submit">Unlock</button>
@@ -843,12 +843,12 @@
       <div class="header-left">
         <div class="header-brand">
           <a href="/dashboard/" class="dash-logo">Vibration<span>of</span>Awesome</a>
-          <div class="dash-subtitle">Syndication Dashboard</div>
+          <div class="dash-subtitle">SEO Dashboard</div>
         </div>
         <nav class="dash-tabs">
-          <a href="/dashboard/" class="dash-tab active" data-dash-tab="syndication">Syndication</a>
+          <a href="/dashboard/" class="dash-tab" data-dash-tab="syndication">Syndication</a>
           <a href="/dashboard/analytics/" class="dash-tab" data-dash-tab="analytics">Analytics</a>
-          <a href="/dashboard/seo/" class="dash-tab" data-dash-tab="seo">SEO</a>
+          <a href="/dashboard/seo/" class="dash-tab active" data-dash-tab="seo">SEO</a>
           <a href="/admin/" class="dash-tab">Admin</a>
         </nav>
       </div>
@@ -1145,7 +1145,7 @@
     </main>
 
     <footer class="dash-footer">
-      Vibration of Awesome &nbsp;·&nbsp; Syndication Dashboard &nbsp;·&nbsp;
+      Vibration of Awesome &nbsp;·&nbsp; SEO Dashboard &nbsp;·&nbsp;
       <a href="/" style="color:var(--accent);text-decoration:none">vibrationofawesome.com</a>
     </footer>
   </div>
@@ -1171,10 +1171,6 @@
 </div>
 
 <script>
-if (location.hash === "#seo") {
-  location.replace("/dashboard/seo/");
-}
-
 // ── Stars ─────────────────────────────────────────────────────────────────────
 (function() {
   const canvas = document.getElementById("stars-canvas");

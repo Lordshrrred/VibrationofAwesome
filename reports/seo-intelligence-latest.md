@@ -69,9 +69,9 @@ _None found in this run._
 
 ## Existing Operational Context
 
-- Published posts indexed locally: 180
+- Published posts indexed locally: 181
 - Authority assets indexed locally: 16
-- Syndication result records available: 147
+- Syndication result records available: 148
 
 ## Data Limitations
 

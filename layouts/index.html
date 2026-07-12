@@ -1041,6 +1041,10 @@
 
 {{ define "foot-extra" }}
 <script>
+if (window.location.hash === '#seo') {
+  history.replaceState(null, document.title, window.location.pathname + window.location.search);
+}
+
 (async function loadBlogFeeds() {
   const lanes = [
     { id: 'matt-feed', url: '/_data/matt-posts.json' },
