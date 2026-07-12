@@ -818,7 +818,7 @@ async function postToFacebookPage(pageId, pageToken, caption, postUrl) {
 }
 
 /** Publish a teaser article on Dev.to */
-async function postToDevTo(postTitle, caption, postUrl, tags, account = "primary") {
+export async function postToDevTo(postTitle, caption, postUrl, tags, account = "primary") {
   const accountKey = account === "secondary" ? "DEVTO2_API_KEY" : "DEVTO_API_KEY";
   const key = process.env[accountKey];
   if (!key) throw new Error(`${accountKey} not set`);
@@ -874,7 +874,7 @@ async function postToDevTo(postTitle, caption, postUrl, tags, account = "primary
 }
 
 /** Post to Tumblr using OAuth 1.0a (legacy /post endpoint with form body) */
-async function postToTumblr(caption, tags, prefix = "VOA", sourceUrl = "", sourceTitle = "") {
+export async function postToTumblr(caption, tags, prefix = "VOA", sourceUrl = "", sourceTitle = "") {
   const { consumerKey, consumerSecret, token, tokenSecret, blogName, label } = getTumblrConfig(prefix);
   if (prefix !== "VOA" || !isVoaTumblrBlog(blogName)) {
     throw new Error(`Tumblr posting is restricted to VOA only; refused ${label}:${blogName || "missing blog"}`);
@@ -1111,7 +1111,7 @@ Requirements:
   return { title, excerpt, html: labelRawSourceAnchors(html, sourceUrl, sourceTitle) };
 }
 
-async function postToWordPressDirect(article, imageUrl = null) {
+export async function postToWordPressDirect(article, imageUrl = null) {
   const { token, blog, baseUrl } = getWordPressDirectConfig();
   const endpoint = `${baseUrl}/sites/${encodeURIComponent(blog)}/posts/new`;
   const categoryNames = parseCsvEnv(process.env.WORDPRESS_CATEGORY_NAMES, []);
@@ -1154,7 +1154,7 @@ async function postToWordPressDirect(article, imageUrl = null) {
 }
 
 /** Publish a post immediately to Blogger using the v3 API */
-async function postToBlogger(title, htmlContent) {
+export async function postToBlogger(title, htmlContent) {
   const blogId = process.env.BLOGGER_BLOG_ID;
   if (!blogId) throw new Error("BLOGGER_BLOG_ID not set");
 
