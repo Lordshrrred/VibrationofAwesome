@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-12T20:03:32.438Z",
+  "lastUpdated": "2026-07-12T22:52:21.284Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-turn-blog-posts-into-podcast-episodes",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-12T22:52:06.858Z"
+    },
+    {
       "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1147,18 +1156,18 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-07-11T22:54:06.444Z"
-    },
-    {
-      "slug": "how-to-build-a-personal-reply-template-library",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-11T22:51:24.913Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-turn-blog-posts-into-podcast-episodes",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-07-12T22:52:21.284Z"
+    },
     {
       "slug": "how-to-get-ai-feedback-on-camera-performance",
       "archetype": "cinematic-ideogram",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-17T23:28:49.853Z"
-    },
-    {
-      "slug": "tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-17T16:43:25.966Z"
     }
   ]
 }

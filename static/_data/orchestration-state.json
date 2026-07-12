@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-12T22:51:08.652Z",
+  "generated_at": "2026-07-12T22:53:47.478Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -559,6 +559,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "how-to-turn-blog-posts-into-podcast-episodes",
+        "title": "How To Turn Blog Posts Into Podcast Episodes",
+        "lane": "boom",
+        "date": "2026-07-12",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-07-12T22:53:47.468Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqibdvexcf2k"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-07-12T22:53:47.468Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/116909457154820632"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-07-12T22:53:47.468Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-07-12T22:53:47.468Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-07-12T22:53:47.468Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-07-12T22:53:47.468Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-07-12T22:53:47.468Z",
+            "url": "https://dev.to/earthstarrising/how-to-turn-blog-posts-into-podcast-episodes-191l"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-07-12T22:53:47.468Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/821975353715245056"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-07-12T22:53:47.468Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-07-12T22:53:47.468Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/07/12/how-to-turn-blog-posts-into-podcast-episodes-earthstar/"
+          }
+        },
+        "success_count": 9,
+        "failed_count": 1
+      },
       {
         "slug": "dean-graziosi-controversy-what-the-critics-actually-say-and-what-to-make-of-it",
         "title": "Dean Graziosi Controversy: What the Critics Actually Say and What to Make of It",
@@ -10462,6 +10528,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "how-to-turn-blog-posts-into-podcast-episodes",
+        "platform": "blogger",
+        "timestamp": "2026-07-12T22:53:47.468Z"
+      },
+      {
         "slug": "dean-graziosi-controversy-what-the-critics-actually-say-and-what-to-make-of-it",
         "platform": "bluesky_voa",
         "timestamp": "2026-07-12T21:26:24.650Z"
@@ -10646,70 +10717,85 @@
       "feeder": {
         "successes": 118,
         "failures": 0,
-        "total": 150
+        "total": 151
       },
       "bluesky_voa": {
-        "successes": 124,
+        "successes": 125,
         "failures": 9,
-        "total": 150
+        "total": 151
       },
       "mastodon_voa": {
-        "successes": 122,
+        "successes": 123,
         "failures": 11,
-        "total": 150
+        "total": 151
       },
       "facebook_voa": {
-        "successes": 85,
+        "successes": 86,
         "failures": 13,
-        "total": 150
+        "total": 151
       },
       "pinterest": {
-        "successes": 123,
+        "successes": 124,
         "failures": 0,
-        "total": 150
+        "total": 151
       },
       "threads": {
-        "successes": 97,
+        "successes": 98,
         "failures": 0,
-        "total": 150
+        "total": 151
       },
       "instagram": {
-        "successes": 95,
+        "successes": 96,
         "failures": 0,
-        "total": 150
+        "total": 151
       },
       "devto": {
-        "successes": 118,
+        "successes": 119,
         "failures": 0,
-        "total": 150
+        "total": 151
       },
       "tumblr_voa": {
-        "successes": 150,
+        "successes": 151,
         "failures": 0,
-        "total": 150
+        "total": 151
       },
       "blogger": {
         "successes": 147,
-        "failures": 3,
-        "total": 150
+        "failures": 4,
+        "total": 151
       },
       "wordpress_earthstar": {
-        "successes": 150,
+        "successes": 151,
         "failures": 0,
-        "total": 150
+        "total": 151
       }
     },
     "summary": {
-      "total_posts": 150,
+      "total_posts": 151,
       "fully_syndicated": 126,
-      "partial": 24,
+      "partial": 25,
       "pending": 0,
-      "retry_backlog_count": 36
+      "retry_backlog_count": 37
     }
   },
   "visuals": {
-    "registry_count": 199,
+    "registry_count": 200,
     "registry_entries": [
+      {
+        "post_slug": "how-to-turn-blog-posts-into-podcast-episodes",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "vibration-of-awesome",
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-07-12T22:52:21.288Z"
+      },
       {
         "post_slug": "dean-graziosi-controversy-what-the-critics-actually-say-and-what-to-make-of-it",
         "source": "ideogram",
@@ -13540,22 +13626,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 199,
+      "total_entries": 200,
       "reused_count": 35,
-      "reuse_rate": 0.176
+      "reuse_rate": 0.175
     },
     "source_breakdown": {
-      "ideogram": 132,
+      "ideogram": 133,
       "boom": 67
     },
     "generation_counts": {
-      "ideogram": 132
+      "ideogram": 133
     },
     "platform_usage": {
-      "pinterest": 166,
-      "bluesky_voa": 167,
-      "mastodon_voa": 167,
-      "instagram": 139
+      "pinterest": 167,
+      "instagram": 140,
+      "bluesky_voa": 168,
+      "mastodon_voa": 168
     }
   },
   "clusters": {
@@ -14009,7 +14095,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-07-12T20:03:32.438Z",
+    "last_updated": "2026-07-12T22:52:21.284Z",
     "recent_hooks": [
       {
         "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -14893,6 +14979,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "how-to-turn-blog-posts-into-podcast-episodes",
+        "format": "short-native-insight",
+        "cadenceProfile": "compact",
+        "density": "light",
+        "openerStyle": "direct",
+        "closerStyle": "resonant",
+        "timestamp": "2026-07-12T22:52:06.858Z"
+      },
+      {
         "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
         "format": "conversational-reflection",
         "cadenceProfile": "casual-spoken",
@@ -15152,18 +15247,18 @@
         "openerStyle": "mid-conversation",
         "closerStyle": "natural-landing",
         "timestamp": "2026-07-11T22:54:06.444Z"
-      },
-      {
-        "slug": "how-to-build-a-personal-reply-template-library",
-        "format": "creative-identity-reflection",
-        "cadenceProfile": "lyrical",
-        "density": "medium",
-        "openerStyle": "identity-confession",
-        "closerStyle": "invitation",
-        "timestamp": "2026-07-11T22:51:24.913Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "how-to-turn-blog-posts-into-podcast-episodes",
+        "archetype": "sacred-tech",
+        "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+        "palette": "circuit-teal",
+        "emotionalTone": "emergence",
+        "emotionalCluster": "mystical",
+        "timestamp": "2026-07-12T22:52:21.284Z"
+      },
       {
         "slug": "how-to-get-ai-feedback-on-camera-performance",
         "archetype": "cinematic-ideogram",
@@ -15424,21 +15519,12 @@
         "emotionalTone": "quiet-discovery",
         "emotionalCluster": "grounded",
         "timestamp": "2026-06-17T23:28:49.853Z"
-      },
-      {
-        "slug": "tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
-        "archetype": "premium-quote-card",
-        "archetypeLabel": "Premium Quote Card",
-        "palette": "teal-on-dark",
-        "emotionalTone": "clarity",
-        "emotionalCluster": "intellectual",
-        "timestamp": "2026-06-17T16:43:25.966Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-07-12T22:51:08.652Z",
+    "as_of": "2026-07-12T22:53:47.478Z",
     "next_estimated_window": "2026-07-13",
     "queue_runway_days": 96,
     "queue_runway_status": "healthy",
@@ -15519,7 +15605,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 36,
+    "retry_backlog_count": 37,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -15579,8 +15665,8 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-07-12T22:51:08.643Z",
-    "source_event": "drip_publish",
+    "last_export_at": "2026-07-12T22:53:47.469Z",
+    "source_event": "syndication",
     "export_duration_ms": 9,
     "schema_version": "1.0",
     "stale_after_minutes": 60
