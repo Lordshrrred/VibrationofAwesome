@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-11T22:55:00.753Z",
+  "generated_at": "2026-07-12T04:27:47.385Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -579,62 +579,62 @@
         "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-07-11T22:52:07.978Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-build-a-personal-reply-template-library-signal.html"
           },
           "bluesky_voa": {
             "status": "success",
-            "timestamp": "2026-07-11T22:53:49.560Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqfqtr3zzx22"
+            "timestamp": "2026-07-12T04:27:47.376Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqgdklklns27"
           },
           "mastodon_voa": {
             "status": "success",
-            "timestamp": "2026-07-11T22:53:49.560Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116903792152640211"
+            "timestamp": "2026-07-12T04:27:47.376Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/116905108937505429"
           },
           "facebook_voa": {
             "status": "success",
-            "timestamp": "2026-07-11T22:53:49.560Z",
+            "timestamp": "2026-07-12T04:27:47.376Z",
             "url": null
           },
           "pinterest": {
             "status": "success",
-            "timestamp": "2026-07-11T22:53:49.560Z",
+            "timestamp": "2026-07-12T04:27:47.376Z",
             "url": null
           },
           "threads": {
             "status": "success",
-            "timestamp": "2026-07-11T22:53:49.560Z",
+            "timestamp": "2026-07-12T04:27:47.376Z",
             "url": null
           },
           "instagram": {
             "status": "success",
-            "timestamp": "2026-07-11T22:53:49.560Z",
+            "timestamp": "2026-07-12T04:27:47.376Z",
             "url": null
           },
           "devto": {
             "status": "success",
-            "timestamp": "2026-07-11T22:53:49.560Z",
+            "timestamp": "2026-07-12T04:27:47.376Z",
             "url": "https://dev.to/earthstarrising/how-to-build-a-personal-reply-template-library-ld4"
           },
           "tumblr_voa": {
             "status": "success",
-            "timestamp": "2026-07-11T22:53:49.560Z",
-            "url": "https://vibrationofawesome.tumblr.com/post/821884756284325888"
+            "timestamp": "2026-07-12T04:27:47.376Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/821887216541384704"
           },
           "blogger": {
             "status": "success",
-            "timestamp": "2026-07-11T22:53:49.560Z",
-            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/the-communication-debt-you-dont-know.html"
+            "timestamp": "2026-07-12T04:27:47.376Z",
+            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/the-communication-debt-you-dont-know_0857593768.html"
           },
           "wordpress_earthstar": {
             "status": "success",
-            "timestamp": "2026-07-11T22:53:49.560Z",
-            "url": "https://earthstarrisingsun.wordpress.com/2026/07/11/how-to-build-a-personal-reply-template-library-earthstar/"
+            "timestamp": "2026-07-12T04:27:47.376Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/07/11/how-to-build-a-personal-reply-template-library-earthstar-2/"
           }
         },
-        "success_count": 10,
+        "success_count": 11,
         "failed_count": 0
       },
       {
@@ -10503,7 +10503,7 @@
     ],
     "platform_coverage": {
       "feeder": {
-        "successes": 116,
+        "successes": 117,
         "failures": 0,
         "total": 147
       },
@@ -10567,8 +10567,36 @@
     }
   },
   "visuals": {
-    "registry_count": 194,
+    "registry_count": 196,
     "registry_entries": [
+      {
+        "post_slug": "how-to-build-a-personal-reply-template-library",
+        "source": "boom",
+        "asset_type": "fallback",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": true,
+        "reused_from": "instagram",
+        "timestamp": "2026-07-12T04:26:34.602Z"
+      },
+      {
+        "post_slug": "how-to-build-a-personal-reply-template-library",
+        "source": "boom",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "vibration-of-awesome",
+        "reused": true,
+        "reused_from": "instagram",
+        "timestamp": "2026-07-12T04:26:34.599Z"
+      },
       {
         "post_slug": "how-to-build-a-personal-reply-template-library",
         "source": "ideogram",
@@ -13328,22 +13356,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 194,
-      "reused_count": 33,
-      "reuse_rate": 0.17
+      "total_entries": 196,
+      "reused_count": 35,
+      "reuse_rate": 0.179
     },
     "source_breakdown": {
-      "ideogram": 129,
-      "boom": 65
+      "boom": 67,
+      "ideogram": 129
     },
     "generation_counts": {
       "ideogram": 129
     },
     "platform_usage": {
-      "pinterest": 162,
-      "instagram": 137,
-      "bluesky_voa": 162,
-      "mastodon_voa": 162
+      "instagram": 138,
+      "bluesky_voa": 164,
+      "mastodon_voa": 164,
+      "pinterest": 163
     }
   },
   "clusters": {
@@ -13793,7 +13821,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-07-11T22:54:59.726Z",
+    "last_updated": "2026-07-12T04:26:34.591Z",
     "recent_hooks": [
       {
         "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -14677,6 +14705,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "how-to-build-a-personal-reply-template-library",
+        "format": "creative-identity-reflection",
+        "cadenceProfile": "lyrical",
+        "density": "medium",
+        "openerStyle": "identity-confession",
+        "closerStyle": "invitation",
+        "timestamp": "2026-07-12T04:26:34.591Z"
+      },
+      {
         "slug": "is-tony-robbins-actually-an-ai-expert-or-just-a-famous-face-on-a-sales-page",
         "format": "reflective-essay",
         "cadenceProfile": "slow-layered",
@@ -14936,15 +14973,6 @@
         "openerStyle": "identity-confession",
         "closerStyle": "invitation",
         "timestamp": "2026-07-10T23:03:48.581Z"
-      },
-      {
-        "slug": "how-to-repurpose-messy-notes-into-linkedin-posts",
-        "format": "conversational-reflection",
-        "cadenceProfile": "casual-spoken",
-        "density": "light-medium",
-        "openerStyle": "mid-conversation",
-        "closerStyle": "natural-landing",
-        "timestamp": "2026-07-10T23:00:58.244Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -15222,7 +15250,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-07-11T22:55:00.753Z",
+    "as_of": "2026-07-12T04:27:47.385Z",
     "next_estimated_window": "2026-07-12",
     "queue_runway_days": 96,
     "queue_runway_status": "healthy",
@@ -15362,9 +15390,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-07-11T22:55:00.740Z",
-    "source_event": "retry",
-    "export_duration_ms": 12,
+    "last_export_at": "2026-07-12T04:27:47.377Z",
+    "source_event": "syndication",
+    "export_duration_ms": 8,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
