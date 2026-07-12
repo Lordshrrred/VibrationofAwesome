@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T04:08:25.876Z",
+  "generatedAt": "2026-07-12T04:43:21.136Z",
   "keywordGeneration": {
     "currentInventory": 39,
     "publishedInventory": 153,
@@ -20,12 +20,12 @@
     "netBacklinkUnitsPerDay": 1.7,
     "estimatedCatchUpDays": 0,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 47,
+    "distributionIncompleteUnits": 39,
     "verificationGaps": 565,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
     "largestDelayPlatform": "Mastodon VOA",
-    "largestDelayMissingUnits": 18,
+    "largestDelayMissingUnits": 14,
     "platformTable": {
       "backlinkCapable": [
         {
@@ -108,24 +108,24 @@
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
           "eligiblePosts": 130,
-          "complete": 114,
-          "missing": 16,
-          "successRate": 87.7,
-          "averagePerDay": 4.1,
+          "complete": 118,
+          "missing": 12,
+          "successRate": 90.8,
+          "averagePerDay": 4.4,
           "confirmed": 4,
-          "verificationGaps": 110,
+          "verificationGaps": 114,
           "mainBlocker": "env vars not set"
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
           "eligiblePosts": 130,
-          "complete": 112,
-          "missing": 18,
-          "successRate": 86.2,
-          "averagePerDay": 4,
+          "complete": 116,
+          "missing": 14,
+          "successRate": 89.2,
+          "averagePerDay": 4.3,
           "confirmed": 4,
-          "verificationGaps": 108,
+          "verificationGaps": 112,
           "mainBlocker": "env vars not set"
         },
         {
@@ -180,16 +180,16 @@
     },
     "blockers": [
       {
+        "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
+        "count": 13
+      },
+      {
         "reason": "bluesky_voa: env vars not set",
-        "count": 16
+        "count": 12
       },
       {
         "reason": "mastodon_voa: env vars not set",
-        "count": 16
-      },
-      {
-        "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
-        "count": 13
+        "count": 12
       },
       {
         "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",

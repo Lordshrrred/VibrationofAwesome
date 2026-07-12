@@ -1,0 +1,206 @@
+{
+  "generatedAt": "2026-07-12T04:43:20.983Z",
+  "baselineCommit": "e99f5ce",
+  "backlog": {
+    "eligiblePosts": 147,
+    "postsWithMeaningfulBacklinkDebt": 0,
+    "backlinkCapableMissingUnits": 0,
+    "distributionOnlyGaps": 39,
+    "verificationOnlyGaps": 565,
+    "feederBacklog": 0,
+    "mode": "maintenance"
+  },
+  "throughput": {
+    "windows": [
+      {
+        "hours": 6,
+        "successfulBacklinkUnits": 4,
+        "postsProgressed": 1,
+        "unitsPerDay": 16,
+        "postsPerRunProxy": 1
+      },
+      {
+        "hours": 12,
+        "successfulBacklinkUnits": 4,
+        "postsProgressed": 1,
+        "unitsPerDay": 8,
+        "postsPerRunProxy": 1
+      },
+      {
+        "hours": 24,
+        "successfulBacklinkUnits": 52,
+        "postsProgressed": 26,
+        "unitsPerDay": 52,
+        "postsPerRunProxy": 26
+      }
+    ],
+    "averageSuccessfulUnitsPerScheduledRun": 4.33,
+    "averagePostsProgressedPerScheduledRun": 2.17,
+    "currentNewBacklinkDemandPerDay": 20,
+    "currentMeasuredSuccessfulUnitsPerDay": 52,
+    "currentNetBacklogChangePerDay": -32,
+    "existingFourteenDaySuccessfulUnitsPerDay": 18.3
+  },
+  "estimates": {
+    "optimisticDays": 0,
+    "measuredDays": 0,
+    "conservativeDays": 0
+  },
+  "platformTable": {
+    "backlinkCapable": [
+      {
+        "key": "blogger",
+        "platform": "Blogger",
+        "eligiblePosts": 147,
+        "complete": 147,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 5.5,
+        "confirmed": 7,
+        "verificationGaps": 140,
+        "mainBlocker": ""
+      },
+      {
+        "key": "wordpress_earthstar",
+        "platform": "WordPress",
+        "eligiblePosts": 147,
+        "complete": 147,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 4.1,
+        "confirmed": 5,
+        "verificationGaps": 142,
+        "mainBlocker": ""
+      },
+      {
+        "key": "tumblr_voa",
+        "platform": "Tumblr",
+        "eligiblePosts": 147,
+        "complete": 147,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 5.6,
+        "confirmed": 6,
+        "verificationGaps": 141,
+        "mainBlocker": ""
+      },
+      {
+        "key": "devto",
+        "platform": "Dev.to",
+        "eligiblePosts": 117,
+        "complete": 117,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 2.4,
+        "confirmed": 4,
+        "verificationGaps": 113,
+        "mainBlocker": ""
+      },
+      {
+        "key": "devto2",
+        "platform": "Dev.to 2",
+        "eligiblePosts": 30,
+        "complete": 30,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 0.7,
+        "confirmed": 1,
+        "verificationGaps": 29,
+        "mainBlocker": ""
+      }
+    ],
+    "feeder": [
+      {
+        "key": "feeder",
+        "platform": "VOA Feeder",
+        "eligiblePosts": 117,
+        "complete": 117,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 2.4,
+        "confirmed": 117,
+        "verificationGaps": 0,
+        "mainBlocker": ""
+      }
+    ],
+    "distribution": [
+      {
+        "key": "bluesky_voa",
+        "platform": "Bluesky VOA",
+        "eligiblePosts": 130,
+        "complete": 118,
+        "missing": 12,
+        "successRate": 90.8,
+        "averagePerDay": 4.4,
+        "confirmed": 4,
+        "verificationGaps": 114,
+        "mainBlocker": "env vars not set"
+      },
+      {
+        "key": "mastodon_voa",
+        "platform": "Mastodon VOA",
+        "eligiblePosts": 130,
+        "complete": 116,
+        "missing": 14,
+        "successRate": 89.2,
+        "averagePerDay": 4.3,
+        "confirmed": 4,
+        "verificationGaps": 112,
+        "mainBlocker": "env vars not set"
+      },
+      {
+        "key": "facebook_voa",
+        "platform": "Facebook VOA",
+        "eligiblePosts": 97,
+        "complete": 84,
+        "missing": 13,
+        "successRate": 86.6,
+        "averagePerDay": 1.4,
+        "confirmed": 3,
+        "verificationGaps": 81,
+        "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
+      },
+      {
+        "key": "pinterest",
+        "platform": "Pinterest",
+        "eligiblePosts": 120,
+        "complete": 120,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 2.1,
+        "confirmed": 0,
+        "verificationGaps": 120,
+        "mainBlocker": ""
+      },
+      {
+        "key": "threads",
+        "platform": "Threads",
+        "eligiblePosts": 96,
+        "complete": 96,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 1.4,
+        "confirmed": 0,
+        "verificationGaps": 96,
+        "mainBlocker": ""
+      },
+      {
+        "key": "instagram",
+        "platform": "Instagram",
+        "eligiblePosts": 94,
+        "complete": 94,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 1.4,
+        "confirmed": 0,
+        "verificationGaps": 94,
+        "mainBlocker": ""
+      }
+    ]
+  },
+  "definitions": {
+    "scheduledRunProxy": "Backlink backfill runs every two hours, so 24h/12 is used for average scheduled-run estimates.",
+    "meaningfulBacklinkDebt": "Only Dev.to/Dev.to2, Tumblr, Blogger, and WordPress missing success records count as SEO backlink debt.",
+    "excluded": "Pinterest, Instagram, social-only distribution, feeder canonical pages, and verification-only gaps are excluded from meaningful backlink debt."
+  }
+}
