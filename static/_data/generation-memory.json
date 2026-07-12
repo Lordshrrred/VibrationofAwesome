@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-12T16:43:09.037Z",
+  "lastUpdated": "2026-07-12T16:45:44.791Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,51 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-tell-if-a-piece-of-art-is-right-for-you",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-12T16:45:44.791Z"
+    },
+    {
+      "slug": "ai-advantage-bootcamp-payment-plan-is-three-payments-of-three-eighty-smart",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-12T16:45:34.242Z"
+    },
+    {
+      "slug": "what-to-do-before-you-buy-the-ai-advantage-bootcamp",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-12T16:45:16.193Z"
+    },
+    {
+      "slug": "ai-advantage-bootcamp-refund-policy-what-the-fifteen-hour-guarantee-actually-means",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-12T16:45:02.036Z"
+    },
+    {
+      "slug": "how-to-get-ai-feedback-on-camera-performance",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-12T16:44:41.236Z"
+    },
+    {
       "slug": "is-dean-graziosi-legit-a-clear-eyed-look-at-his-track-record",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1111,51 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-07-11T16:41:06.141Z"
-    },
-    {
-      "slug": "the-free-version-of-everything-the-ai-advantage-bootcamp-actually-teaches",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-11T14:29:12.716Z"
-    },
-    {
-      "slug": "how-to-train-chatgpt-or-claude-on-your-own-voice-and-style-for-free",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-11T14:28:56.810Z"
-    },
-    {
-      "slug": "when-to-automate-your-content-as-a-solo-creator-without-turning-into-a-content-machine",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-11T14:28:35.762Z"
-    },
-    {
-      "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-11T14:28:14.168Z"
-    },
-    {
-      "slug": "how-to-write-ai-prompts-that-actually-work-for-creators",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-11T14:27:55.180Z"
     }
   ],
   "recentInstagramArchetypes": [
