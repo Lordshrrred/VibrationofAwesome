@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-12T04:29:03.508Z",
+  "lastUpdated": "2026-07-12T14:37:23.773Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-get-ai-feedback-on-camera-performance",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-12T14:37:09.902Z"
+    },
+    {
       "slug": "ai-for-the-rest-of-us-what-tony-robbins-is-actually-selling-in-2026",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,18 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-11T04:16:02.321Z"
-    },
-    {
-      "slug": "how-to-repurpose-messy-notes-into-linkedin-posts",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-11T04:14:02.802Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-get-ai-feedback-on-camera-performance",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "timestamp": "2026-07-12T14:37:23.773Z"
+    },
     {
       "slug": "how-to-build-a-personal-reply-template-library",
       "archetype": "abstract-creator-life",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-17T16:43:25.966Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-review-what-nobody-is-actually-saying-about-it",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-17T06:13:31.325Z"
     }
   ]
 }
