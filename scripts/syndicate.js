@@ -1305,13 +1305,14 @@ export async function syndicatePost(lane, slug, options = {}) {
   // attempt() uses this to skip platforms that already succeeded for this slug.
   // Prevents Dev.to canonical URL duplicates, Tumblr reposts, etc.
   // Override with options.force = true to re-run all platforms regardless.
+  let existingEntryForSlug = null;
   let existingSyndicationForSlug = {};
   try {
     if (fs.existsSync(RESULTS_FILE)) {
       const existingResults = JSON.parse(fs.readFileSync(RESULTS_FILE, "utf8"));
       if (Array.isArray(existingResults)) {
-        const existingEntry = existingResults.find(e => e.slug === slug);
-        existingSyndicationForSlug = existingEntry?.syndication || {};
+        existingEntryForSlug = existingResults.find(e => e.slug === slug) || null;
+        existingSyndicationForSlug = existingEntryForSlug?.syndication || {};
       }
     }
   } catch (_) { /* no existing results ~ start fresh */ }
@@ -1351,6 +1352,9 @@ export async function syndicatePost(lane, slug, options = {}) {
   if (options.captions) {
     console.log("Using pre-supplied captions (API bypass)...");
     captions = ensureSourceLinks(options.captions, postUrl);
+  } else if (options.platforms && existingEntryForSlug?.captions) {
+    console.log("Reusing cached captions from prior syndication log (no caption Claude call)...");
+    captions = ensureSourceLinks(existingEntryForSlug.captions, postUrl);
   } else {
     console.log("Generating captions...");
     captions = ensureSourceLinks(await generateCaptions({ ...post, lane }, anthropic), postUrl);

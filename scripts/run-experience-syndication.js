@@ -22,8 +22,10 @@ const MODEL = process.env.EXPERIENCE_COMPANION_MODEL || process.env.SYNDICATION_
 const argv = minimist(process.argv.slice(2), {
   boolean: ["execute", "force", "json", "simulate-retry"],
   string: ["experience", "platforms"],
-  default: { platforms: "blogger" },
+  default: { platforms: "" },
 });
+
+const DEFAULT_NEW_CAMPAIGN_PLATFORMS = ["wordpress_earthstar"];
 
 function readJson(file, fallback) {
   try { return JSON.parse(fs.readFileSync(file, "utf8")); } catch (_) { return fallback; }
@@ -57,7 +59,21 @@ function assetById(id) {
 function getQueuedCampaign(status) {
   const campaigns = Array.isArray(status.campaigns) ? status.campaigns : [];
   if (argv.experience) return campaigns.find(c => c.id === argv.experience);
+  const retry = campaigns.find(c =>
+    c.status === "in_progress" &&
+    c.canonicalStatus === 200 &&
+    c.inSitemap &&
+    c.schemaPresent &&
+    failedPlatforms(c).length > 0
+  );
+  if (retry) return retry;
   return campaigns.find(c => c.status === "queued" && c.canonicalStatus === 200 && c.inSitemap && c.schemaPresent);
+}
+
+function failedPlatforms(campaign) {
+  return Object.entries(campaign?.platforms || {})
+    .filter(([, row]) => row?.status === "failed")
+    .map(([platform]) => platform);
 }
 
 function loadCache() {
@@ -205,7 +221,11 @@ async function main() {
   if (!asset) throw new Error(`Authority asset not found: ${campaign.id}`);
   const deterministic = buildExperienceSyndicationSet(asset);
   const cache = loadCache();
-  const platforms = String(argv.platforms || "blogger").split(",").map(s => s.trim()).filter(Boolean);
+  const requestedPlatforms = String(argv.platforms || "").split(",").map(s => s.trim()).filter(Boolean);
+  const retryPlatforms = failedPlatforms(campaign);
+  const platforms = requestedPlatforms.length
+    ? requestedPlatforms
+    : (retryPlatforms.length ? retryPlatforms : DEFAULT_NEW_CAMPAIGN_PLATFORMS);
   const platformResults = {};
   let generated = 0;
   let reused = 0;
@@ -256,6 +276,7 @@ async function main() {
     queued: status.campaigns.filter(c => c.status === "queued").length,
     inProgress: status.campaigns.filter(c => c.status === "in_progress").length,
     complete: status.campaigns.filter(c => c.status === "complete").length,
+    failedPlatformRetries: status.campaigns.reduce((sum, c) => sum + Object.values(c.platforms || {}).filter(p => p.status === "failed").length, 0),
     cachedCompanionAssets: status.campaigns.reduce((sum, c) => sum + (c.cachedCompanionAssets || 0), 0),
     estimatedClaudeSpendUsd: status.campaigns.reduce((sum, c) => sum + (Number(c.estimatedClaudeSpendUsd) || 0), 0),
     nextExperienceScheduled: status.campaigns.find(c => c.status === "queued")?.title || null,

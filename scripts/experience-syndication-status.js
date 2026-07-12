@@ -156,6 +156,7 @@ async function buildStatus() {
       inProgress: campaigns.filter(c => c.status === "in_progress").length,
       complete: campaigns.filter(c => c.status === "complete").length,
       blocked: campaigns.filter(c => c.status === "blocked").length,
+      failedPlatformRetries: campaigns.reduce((sum, c) => sum + Object.values(c.platforms || {}).filter(p => p.status === "failed").length, 0),
       cachedCompanionAssets: campaigns.reduce((sum, c) => sum + c.cachedCompanionAssets, 0),
       estimatedClaudeSpendUsd: campaigns.reduce((sum, c) => sum + (Number(c.estimatedClaudeSpendUsd) || 0), 0),
       nextExperienceScheduled: queued[0]?.title || null,
@@ -171,4 +172,3 @@ if (argv.write) {
   console.log(`Wrote ${path.relative(ROOT, STATUS_FILE)}`);
 }
 if (argv.json || !argv.write) console.log(JSON.stringify(status, null, 2));
-

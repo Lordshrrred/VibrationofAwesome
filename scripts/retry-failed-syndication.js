@@ -9,6 +9,7 @@
  *   - Only retries platforms with status "failed" (never "success" or "skipped")
  *   - Uses --platforms flag so only failed platforms are attempted
  *   - The existing dedup logic in syndicate.js prevents duplicate posts
+ *   - syndicate.js reuses prior captions and companion cache when available
  *   - Only looks back RETRY_WINDOW_DAYS days to avoid retrying ancient failures
  *
  * Usage:

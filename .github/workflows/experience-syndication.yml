@@ -12,8 +12,8 @@ on:
         description: "Optional experience id"
         default: ""
       platforms:
-        description: "Comma-separated platforms"
-        default: "wordpress_earthstar"
+        description: "Optional comma-separated platforms. Blank retries failed platforms first, otherwise uses the safe default."
+        default: ""
 
 concurrency:
   group: voa-publish-and-syndicate
@@ -65,8 +65,9 @@ jobs:
         run: |
           EXP="${{ github.event.inputs.experience }}"
           PLATFORMS="${{ github.event.inputs.platforms }}"
-          ARGS="--execute --platforms ${PLATFORMS:-wordpress_earthstar}"
+          ARGS="--execute"
           [ -n "$EXP" ] && ARGS="$ARGS --experience $EXP"
+          [ -n "$PLATFORMS" ] && ARGS="$ARGS --platforms $PLATFORMS"
           npm run experience:syndicate -- $ARGS
           npm run experience:status -- --write
 
