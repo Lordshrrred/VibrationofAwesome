@@ -531,12 +531,66 @@ function writeOutputs(report, opportunities, status, apiRequests) {
   fs.writeFileSync(LATEST_REPORT, report, "utf8");
   fs.writeFileSync(path.join(REPORTS_DIR, `seo-intelligence-${RUN_DATE}.md`), report, "utf8");
 
+  const gscTotals = opportunities.topLandingPages.reduce((sum, row) => ({
+    clicks: sum.clicks + fmt(row.clicks),
+    impressions: sum.impressions + fmt(row.impressions),
+    weightedPos: sum.weightedPos + (fmt(row.position) * Math.max(1, fmt(row.impressions))),
+  }), { clicks: 0, impressions: 0, weightedPos: 0 });
+  const gaTotals = opportunities.engagementWinners
+    .concat(opportunities.weakEngagement)
+    .reduce((sum, row) => ({
+      sessions: sum.sessions + fmt(row.sessions),
+      activeUsers: sum.activeUsers + fmt(row.activeUsers),
+      engagedSessions: sum.engagedSessions + fmt(row.engagedSessions),
+    }), { sessions: 0, activeUsers: 0, engagedSessions: 0 });
+
   const summary = {
     generatedAt: new Date().toISOString(),
     period: PERIOD,
     status,
     apiRequests,
     report: "/reports/seo-intelligence-latest.md",
+    summary: {
+      searchConsole: {
+        clicks: gscTotals.clicks,
+        impressions: gscTotals.impressions,
+        ctr: gscTotals.impressions ? gscTotals.clicks / gscTotals.impressions : null,
+        averagePosition: gscTotals.impressions ? gscTotals.weightedPos / gscTotals.impressions : null,
+        rowCount: opportunities.topLandingPages.length,
+      },
+      ga4: {
+        organicSessions: gaTotals.sessions,
+        activeUsers: gaTotals.activeUsers,
+        engagedSessions: gaTotals.engagedSessions,
+        engagementRate: gaTotals.sessions ? gaTotals.engagedSessions / gaTotals.sessions : null,
+        rowCount: opportunities.engagementWinners.length + opportunities.weakEngagement.length,
+      },
+    },
+    topQueries: opportunities.topRealQueries.slice(0, 8).map((row) => ({
+      query: row.query,
+      clicks: row.clicks,
+      impressions: row.impressions,
+      ctr: row.ctr,
+      position: row.position,
+    })),
+    topLandingPages: opportunities.topLandingPages.slice(0, 8).map((row) => ({
+      title: row.title,
+      path: row.path,
+      clicks: row.clicks,
+      impressions: row.impressions,
+      ctr: row.ctr,
+      position: row.position,
+      topQueries: (row.topQueries || []).slice(0, 3).map((q) => ({
+        query: q.query,
+        clicks: q.clicks,
+        impressions: q.impressions,
+        ctr: q.ctr,
+        position: q.position,
+      })),
+    })),
+    ctrOpportunities: opportunities.ctrOpportunities.slice(0, 8),
+    engagementWinners: opportunities.engagementWinners.slice(0, 8),
+    weakEngagement: opportunities.weakEngagement.slice(0, 8),
     topOpportunities: [
       ...opportunities.nearPageOne.slice(0, 2).map((o) => ({ type: "near_page_one", label: o.query, page: o.path, metric: `avg position ${o.position.toFixed(1)}` })),
       ...opportunities.ctrOpportunities.slice(0, 1).map((o) => ({ type: "ctr", label: o.query, page: o.path, metric: `CTR ${pct(o.ctr)}` })),
