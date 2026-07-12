@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-12T04:29:03.508Z",
+  "lastUpdated": "2026-07-12T14:41:38.416Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-for-creators-what-it-offers-independent-artists-and-writers",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-12T14:41:38.416Z"
+    },
+    {
+      "slug": "how-the-ai-advantage-clone-builder-system-actually-works",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-12T14:41:26.025Z"
+    },
+    {
+      "slug": "what-to-do-before-you-buy-the-ai-advantage-bootcamp",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-12T14:41:06.688Z"
+    },
+    {
+      "slug": "ai-advantage-bootcamp-refund-policy-what-the-fifteen-hour-guarantee-actually-means",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-12T14:40:52.379Z"
+    },
+    {
+      "slug": "is-the-ai-advantage-15-hour-guarantee-actually-worth-anything",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-12T14:40:32.661Z"
+    },
+    {
+      "slug": "how-to-get-ai-feedback-on-camera-performance",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-12T14:37:09.902Z"
+    },
+    {
       "slug": "ai-for-the-rest-of-us-what-tony-robbins-is-actually-selling-in-2026",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1102,63 +1156,18 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-07-11T14:25:53.727Z"
-    },
-    {
-      "slug": "what-attention-really-means-in-an-attention-economy-and-why-yours-is-worth-more-than-you-think",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-11T04:20:07.466Z"
-    },
-    {
-      "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-11T04:19:04.829Z"
-    },
-    {
-      "slug": "ai-advantage-discount-and-coupon-codes-what-deals-actually-exist",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-11T04:18:07.738Z"
-    },
-    {
-      "slug": "how-to-clone-your-voice-with-elevenlabs-and-heygen",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-11T04:17:06.515Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-bonuses-whats-actually-included-beyond-the-core-program",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-11T04:16:02.321Z"
-    },
-    {
-      "slug": "how-to-repurpose-messy-notes-into-linkedin-posts",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-11T04:14:02.802Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-get-ai-feedback-on-camera-performance",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "timestamp": "2026-07-12T14:37:23.773Z"
+    },
     {
       "slug": "how-to-build-a-personal-reply-template-library",
       "archetype": "abstract-creator-life",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-17T16:43:25.966Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-review-what-nobody-is-actually-saying-about-it",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-17T06:13:31.325Z"
     }
   ]
 }
