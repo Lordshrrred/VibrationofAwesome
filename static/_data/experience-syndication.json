@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T05:04:27.185Z",
+  "generatedAt": "2026-07-12T12:07:34.862Z",
   "cadence": {
     "maxCampaignsPerDay": 1,
     "allocation": "Fresh blog posts first; historical blog catch-up second; one queued experience campaign per daily slot.",
@@ -91,7 +91,7 @@
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.664Z",
-      "lastAttemptAt": "2026-07-12T04:38:57.949Z",
+      "lastAttemptAt": "2026-07-12T12:07:34.643Z",
       "completedAt": null,
       "nextScheduledAt": null,
       "platforms": {
@@ -100,9 +100,8 @@
           "url": null,
           "postId": null,
           "error": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-          "cacheReused": false,
-          "generatedBy": "claude",
-          "awaitingRetry": true
+          "cacheReused": true,
+          "generatedBy": "claude"
         },
         "wordpress_earthstar": {
           "status": "success",
