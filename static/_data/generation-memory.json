@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-12T16:45:44.791Z",
+  "lastUpdated": "2026-07-12T20:00:56.532Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "dean-graziosi-controversy-what-the-critics-actually-say-and-what-to-make-of-it",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-12T20:00:56.532Z"
+    },
+    {
       "slug": "how-to-tell-if-a-piece-of-art-is-right-for-you",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,15 +1156,6 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-07-11T16:42:37.217Z"
-    },
-    {
-      "slug": "dean-graziosi-scam-looking-at-the-evidence-honestly",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-11T16:41:06.141Z"
     }
   ],
   "recentInstagramArchetypes": [
