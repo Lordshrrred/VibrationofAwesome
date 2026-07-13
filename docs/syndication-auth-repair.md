@@ -89,6 +89,13 @@ npm run blogger-token
 4. If GitHub CLI is authenticated, let the helper update the GitHub Actions secret `BLOGGER_REFRESH_TOKEN`.
 5. If the browser or local callback port fails, set `BLOGGER_OAUTH_BROWSER` or `BLOGGER_REDIRECT_PORT` in `.env` and rerun the command.
 6. Re-run the validation commands below.
+7. Running `npm run blogger-token` alone does NOT update the live dashboard ~ it only writes `.env` and the GitHub secret, plus a local (uncommitted) copy of `static/_data/syndication-health.json`. Either commit+push that regenerated file yourself, or trigger `gh workflow run syndication-health.yml --ref main` (or wait for its 12h cron / the next `drip-posts.yml` run), so the committed JSON the dashboard reads actually reflects the fix.
+
+### Why this recurs every 1-2 weeks
+
+This has broken and been re-fixed at least 3 times (2026-06-20, 2026-07-04, 2026-07-13), each time with the exact same `invalid_grant: Token has been expired or revoked.` error and no code change in between. That pattern ~ a refresh token that dies on its own after roughly a week or two of otherwise-normal use ~ is the signature of a Google OAuth client whose **consent screen is still in "Testing" publishing status**. Google enforces a hard 7-day refresh-token expiry for any OAuth client that hasn't been published to "In production," regardless of how often the token is used; this is unrelated to anything this codebase does.
+
+Fix (one-time, done in Google Cloud Console, not in this repo): open the OAuth consent screen for this project (`https://console.cloud.google.com/apis/credentials/consent`) and change **Publishing status** from **Testing** to **In production**. The scope this app requests (`https://www.googleapis.com/auth/blogger`) is not a sensitive or restricted scope, so this does not trigger Google's manual security-review process ~ it's a self-service toggle. Once published, refresh tokens stop expiring on a fixed schedule (they only die if unused for ~6 months, explicitly revoked, or the account's security state changes), which should end the recurring reauth cycle entirely. This step requires Google Cloud Console access and has not been done yet as of 2026-07-13.
 
 ## Validation
 
