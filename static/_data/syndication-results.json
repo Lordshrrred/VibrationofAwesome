@@ -24,13 +24,37 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T17:49:21.582Z",
+        "timestamp": "2026-07-13T18:18:55.008Z",
         "error": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
       },
       "wordpress_earthstar": {
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/07/13/ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks-earthstar/",
         "timestamp": "2026-07-13T17:49:21.582Z"
+      },
+      "bluesky_voa": {
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:55.008Z",
+        "error": "env vars not set"
+      },
+      "mastodon_voa": {
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:55.008Z",
+        "error": "env vars not set"
+      },
+      "bluesky_esr": {
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:55.008Z",
+        "error": "env vars not set"
+      },
+      "mastodon_esr": {
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:55.008Z",
+        "error": "env vars not set"
       }
     }
   },
@@ -42,14 +66,16 @@
     "voa_url": "https://vibrationofawesome.com/blog/boom/posts/automation-audit-for-small-creators",
     "syndication": {
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqjzyponvc2k",
-        "timestamp": "2026-07-13T15:47:44.618Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:19:03.155Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/116913443606494435",
-        "timestamp": "2026-07-13T15:47:44.618Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:19:03.155Z",
+        "error": "env vars not set"
       },
       "facebook_voa": {
         "status": "success",
@@ -72,18 +98,16 @@
         "timestamp": "2026-07-13T15:47:44.618Z"
       },
       "bluesky_esr": {
-        "status": "skipped",
+        "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:47:44.618Z",
-        "error": "skipped by social policy",
-        "skipped": true
+        "timestamp": "2026-07-13T18:19:03.155Z",
+        "error": "env vars not set"
       },
       "mastodon_esr": {
-        "status": "skipped",
+        "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:47:44.618Z",
-        "error": "skipped by social policy",
-        "skipped": true
+        "timestamp": "2026-07-13T18:19:03.155Z",
+        "error": "env vars not set"
       },
       "devto": {
         "status": "success",
@@ -98,7 +122,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:47:44.618Z",
+        "timestamp": "2026-07-13T18:19:03.155Z",
         "error": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
       },
       "wordpress_earthstar": {
@@ -123,31 +147,33 @@
     "voa_url": "https://vibrationofawesome.com/blog/boom/posts/how-to-turn-blog-posts-into-podcast-episodes",
     "syndication": {
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqk23ttnjf2p",
-        "timestamp": "2026-07-13T15:47:57.125Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:22.399Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/116913450309539267",
-        "timestamp": "2026-07-13T15:47:57.125Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:22.399Z",
+        "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:26:10.544Z",
+        "timestamp": "2026-07-13T18:18:22.399Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:26:10.544Z",
+        "timestamp": "2026-07-13T18:18:22.399Z",
         "error": "env vars not set"
       },
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:26:10.544Z",
+        "timestamp": "2026-07-13T18:18:22.399Z",
         "error": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
       },
       "feeder": {
@@ -225,7 +251,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:26:18.610Z",
+        "timestamp": "2026-07-13T18:18:30.539Z",
         "error": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
       },
       "wordpress_earthstar": {
@@ -234,25 +260,27 @@
         "timestamp": "2026-07-12T20:02:06.680Z"
       },
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqk24gid2k2d",
-        "timestamp": "2026-07-13T15:48:17.393Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:30.539Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/116913451596753268",
-        "timestamp": "2026-07-13T15:48:17.393Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:30.539Z",
+        "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:26:18.610Z",
+        "timestamp": "2026-07-13T18:18:30.539Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:26:18.610Z",
+        "timestamp": "2026-07-13T18:18:30.539Z",
         "error": "env vars not set"
       }
     }
@@ -282,7 +310,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:26:26.699Z",
+        "timestamp": "2026-07-13T18:18:38.682Z",
         "error": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
       },
       "wordpress_earthstar": {
@@ -291,25 +319,27 @@
         "timestamp": "2026-07-12T16:44:18.742Z"
       },
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqk24xwuhq22",
-        "timestamp": "2026-07-13T15:48:35.695Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:38.682Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/116913452795051290",
-        "timestamp": "2026-07-13T15:48:35.695Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:38.682Z",
+        "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:26:26.699Z",
+        "timestamp": "2026-07-13T18:18:38.682Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-13T15:26:26.699Z",
+        "timestamp": "2026-07-13T18:18:38.682Z",
         "error": "env vars not set"
       }
     }
@@ -329,25 +359,27 @@
         "backlink_source_url": "https://vibrationofawesome.com/blog/boom/posts/how-to-get-ai-feedback-on-camera-performance"
       },
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqiuhzexgn2r",
-        "timestamp": "2026-07-13T04:34:43.307Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:46.857Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/116910803067267938",
-        "timestamp": "2026-07-13T04:34:43.307Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-13T18:18:46.857Z",
+        "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-12T23:31:19.402Z",
+        "timestamp": "2026-07-13T18:18:46.857Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-12T23:31:19.402Z",
+        "timestamp": "2026-07-13T18:18:46.857Z",
         "error": "env vars not set"
       },
       "devto": {
@@ -363,7 +395,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-12T23:31:19.402Z",
+        "timestamp": "2026-07-13T18:18:46.857Z",
         "error": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
       },
       "wordpress_earthstar": {
