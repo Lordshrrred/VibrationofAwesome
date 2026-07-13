@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-13T18:19:03.196Z",
+  "generatedAt": "2026-07-13T20:01:33.699Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
     "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
     "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
   },
-  "mode": "catch-up",
+  "mode": "maintenance",
   "thresholds": {
     "catchupUnitThreshold": 25,
     "catchupDaysThreshold": 7,
@@ -15,18 +15,18 @@
   },
   "summary": {
     "totalTrackedPosts": 153,
-    "backlogPosts": 6,
-    "backlinkCapableMissingUnits": 6,
-    "backlinkVerificationGaps": 583,
+    "backlogPosts": 1,
+    "backlinkCapableMissingUnits": 1,
+    "backlinkVerificationGaps": 588,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 32,
-    "freshPostsAwaitingBacklinks": 6,
-    "freshMissingBacklinkUnits": 6,
-    "completedBacklinkUnitsInWindow": 272,
-    "completedBacklinkUnitsPerDay": 19.4,
+    "freshPostsAwaitingBacklinks": 1,
+    "freshMissingBacklinkUnits": 1,
+    "completedBacklinkUnitsInWindow": 277,
+    "completedBacklinkUnitsPerDay": 19.8,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 0.6,
+    "netBacklogChangePerDay": 0.2,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -37,13 +37,13 @@
         "key": "blogger",
         "platform": "Blogger",
         "eligiblePosts": 153,
-        "complete": 147,
-        "missing": 6,
-        "successRate": 96.1,
-        "averagePerDay": 5.5,
+        "complete": 152,
+        "missing": 1,
+        "successRate": 99.3,
+        "averagePerDay": 5.9,
         "confirmed": 7,
-        "verificationGaps": 140,
-        "mainBlocker": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
+        "verificationGaps": 145,
+        "mainBlocker": "Blogger: Resource has been exhausted (e.g. check quota)."
       },
       {
         "key": "wordpress_earthstar",
@@ -197,60 +197,15 @@
       "count": 8
     },
     {
-      "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 6
-    },
-    {
       "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
       "count": 3
+    },
+    {
+      "reason": "blogger: Blogger: Resource has been exhausted (e.g. check quota).",
+      "count": 1
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "how-to-turn-blog-posts-into-podcast-episodes",
-      "lane": "boom",
-      "title": "How To Turn Blog Posts Into Podcast Episodes",
-      "date": "2026-07-12",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "dean-graziosi-controversy-what-the-critics-actually-say-and-what-to-make-of-it",
-      "lane": "boom",
-      "title": "Dean Graziosi Controversy: What the Critics Actually Say and What to Make of It",
-      "date": "2026-07-12",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "is-dean-graziosi-legit-a-clear-eyed-look-at-his-track-record",
-      "lane": "boom",
-      "title": "Is Dean Graziosi Legit? A Clear-Eyed Look at His Track Record",
-      "date": "2026-07-12",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-get-ai-feedback-on-camera-performance",
-      "lane": "boom",
-      "title": "How To Get Ai Feedback On Camera Performance",
-      "date": "2026-07-12",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks",
-      "lane": "boom",
-      "title": "AI Advantage Bootcamp Week by Week: What Actually Happens in Each of the 6 Weeks",
-      "date": "2026-07-13",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "automation-audit-for-small-creators",
       "lane": "boom",
