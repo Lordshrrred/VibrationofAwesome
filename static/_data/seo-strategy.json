@@ -1,29 +1,29 @@
 {
-  "generatedAt": "2026-07-13T20:01:33.743Z",
+  "generatedAt": "2026-07-13T21:30:44.206Z",
   "keywordGeneration": {
-    "currentInventory": 33,
-    "publishedInventory": 159,
-    "estimatedDaysRemaining": 6.6,
+    "currentInventory": 32,
+    "publishedInventory": 160,
+    "estimatedDaysRemaining": 6.4,
     "publishingCadencePerDay": 5,
     "pauseThresholdDays": 60,
     "resumeThresholdDays": 21,
     "status": "running",
-    "reason": "6.6 publishing days of queue inventory remain. Curated expansion should continue."
+    "reason": "6.4 publishing days of queue inventory remain. Curated expansion should continue."
   },
   "backlinks": {
     "mode": "maintenance",
-    "backlogPosts": 1,
-    "backlogUnits": 1,
-    "completedPerDay": 19.8,
+    "backlogPosts": 0,
+    "backlogUnits": 0,
+    "completedPerDay": 19.9,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklinkUnitsPerDay": 0.2,
-    "estimatedCatchUpDays": "not-catching-up",
+    "netBacklinkUnitsPerDay": 0.1,
+    "estimatedCatchUpDays": 0,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 32,
-    "verificationGaps": 588,
-    "freshPostsAwaitingBacklinks": 1,
-    "freshMissingBacklinkUnits": 1,
+    "verificationGaps": 589,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13,
     "platformTable": {
@@ -32,13 +32,13 @@
           "key": "blogger",
           "platform": "Blogger",
           "eligiblePosts": 153,
-          "complete": 152,
-          "missing": 1,
-          "successRate": 99.3,
+          "complete": 153,
+          "missing": 0,
+          "successRate": 100,
           "averagePerDay": 5.9,
           "confirmed": 7,
-          "verificationGaps": 145,
-          "mainBlocker": "Blogger: Resource has been exhausted (e.g. check quota)."
+          "verificationGaps": 146,
+          "mainBlocker": ""
         },
         {
           "key": "wordpress_earthstar",
@@ -194,10 +194,6 @@
       {
         "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
         "count": 3
-      },
-      {
-        "reason": "blogger: Blogger: Resource has been exhausted (e.g. check quota).",
-        "count": 1
       }
     ],
     "definitions": {
@@ -206,7 +202,7 @@
       "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
       "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
     },
-    "reason": "Backlink-capable backlog is growing by 0.2 platform units/day at the current rate.",
+    "reason": "Backlink-capable backlog is clear; new posts can move through publish, syndicate, verify, complete.",
     "windowDays": 14
   },
   "curatedExpansion": {

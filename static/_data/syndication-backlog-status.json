@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T20:01:33.699Z",
+  "generatedAt": "2026-07-13T21:30:44.175Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -15,19 +15,19 @@
   },
   "summary": {
     "totalTrackedPosts": 153,
-    "backlogPosts": 1,
-    "backlinkCapableMissingUnits": 1,
-    "backlinkVerificationGaps": 588,
+    "backlogPosts": 0,
+    "backlinkCapableMissingUnits": 0,
+    "backlinkVerificationGaps": 589,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 32,
-    "freshPostsAwaitingBacklinks": 1,
-    "freshMissingBacklinkUnits": 1,
-    "completedBacklinkUnitsInWindow": 277,
-    "completedBacklinkUnitsPerDay": 19.8,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
+    "completedBacklinkUnitsInWindow": 278,
+    "completedBacklinkUnitsPerDay": 19.9,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 0.2,
-    "estimatedCatchUpDays": null,
+    "netBacklogChangePerDay": 0.1,
+    "estimatedCatchUpDays": 0,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
   },
@@ -37,13 +37,13 @@
         "key": "blogger",
         "platform": "Blogger",
         "eligiblePosts": 153,
-        "complete": 152,
-        "missing": 1,
-        "successRate": 99.3,
+        "complete": 153,
+        "missing": 0,
+        "successRate": 100,
         "averagePerDay": 5.9,
         "confirmed": 7,
-        "verificationGaps": 145,
-        "mainBlocker": "Blogger: Resource has been exhausted (e.g. check quota)."
+        "verificationGaps": 146,
+        "mainBlocker": ""
       },
       {
         "key": "wordpress_earthstar",
@@ -199,21 +199,7 @@
     {
       "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
       "count": 3
-    },
-    {
-      "reason": "blogger: Blogger: Resource has been exhausted (e.g. check quota).",
-      "count": 1
     }
   ],
-  "prioritizedBacklog": [
-    {
-      "slug": "automation-audit-for-small-creators",
-      "lane": "boom",
-      "title": "Automation Audit For Small Creators",
-      "date": "2026-07-13",
-      "missing": [
-        "blogger"
-      ]
-    }
-  ]
+  "prioritizedBacklog": []
 }
