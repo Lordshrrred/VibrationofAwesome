@@ -1378,7 +1378,7 @@ async function loadDashboard() {
   }
 
   renderTokenAlerts(resultsData, healthData);
-  renderHealth(healthData);
+  renderHealth(healthData, resultsData);
   renderStats(entries, resultsData, dripData);
   renderDripQueue(dripData);
   renderSyndFeed(entries, resultsData);
@@ -1483,7 +1483,7 @@ async function mergeWordPressStatuses(resultsData) {
 // Platforms to monitor for token health. Order = display order.
 const TOKEN_PLATFORMS = [
   { key: "facebook_voa",        label: "FB-V",  cmd: "See docs/syndication-auth-repair.md#facebook-voa" },
-  { key: "blogger",             label: "Blog",  cmd: "npm run blogger-token"   },
+  { key: "blogger",             label: "Blogger", cmd: "npm run blogger-token" },
   { key: "wordpress_earthstar", label: "WP",    cmd: "npm run wordpress-token" },
   { key: "pinterest",           label: "Pins",  cmd: "npm run pinterest-token" },
 ];
@@ -1501,12 +1501,20 @@ const HEALTH_REPAIR_HINTS = {
   },
   "Blogger token refresh": {
     cmd: "npm run blogger-token",
-    detail: "Blocked: Blogger refresh token expired/revoked. Reconnect Google/Blogger OAuth.",
+    detail: "Blogger: Reauthorization required. The refresh token was revoked/expired and real posts are currently failing to publish to Blogger (confirmed via recent syndication attempts, not just this check). Run npm run blogger-token to reconnect.",
   },
 };
 const TOKEN_REPAIR_HINTS = {
   facebook_voa: HEALTH_REPAIR_HINTS["Facebook VOA"],
   blogger: HEALTH_REPAIR_HINTS["Blogger token refresh"],
+};
+// health.checks names that correspond 1:1 to a TOKEN_PLATFORMS entry ~ renderHealth()
+// must skip these so the same credential doesn't show two separate warning chips
+// (one from the last-real-publish-attempt signal, one from the standalone
+// token-refresh health check). Non-overlapping health failures still render normally.
+const HEALTH_CHECK_DUPLICATES_TOKEN_KEY = {
+  "Blogger token refresh": "blogger",
+  "Facebook VOA": "facebook_voa",
 };
 
 function getTokenDismissed() {
@@ -1607,7 +1615,7 @@ function copyTokCmd(cmd, btn) {
   });
 }
 
-function renderHealth(health) {
+function renderHealth(health, results) {
   // Health failures appear as inline chips in the token bar, not a separate panel.
   // The #health-panel div is hidden via CSS; we inject chips into #health-chips.
   const chipWrap = document.getElementById("health-chips");
@@ -1616,8 +1624,17 @@ function renderHealth(health) {
   if (!health) return;
 
   const checks = Array.isArray(health.checks) ? health.checks : [];
-  const failed  = checks.filter(c => !c.ok);
-  if (failed.length === 0) return; // all passing ~ show nothing
+  // Don't duplicate a warning that renderTokenStatus() already rendered for the
+  // same credential (see HEALTH_CHECK_DUPLICATES_TOKEN_KEY) ~ one accurate
+  // status per real identity, not one per signal that happens to check it.
+  const tokenStatusMap = getTokenStatusMap(results);
+  const failed = checks.filter(c => {
+    if (c.ok) return false;
+    const dupKey = HEALTH_CHECK_DUPLICATES_TOKEN_KEY[c.name];
+    if (dupKey && tokenStatusMap[dupKey]) return false;
+    return true;
+  });
+  if (failed.length === 0) return; // all passing (or already shown as a token chip)
 
   for (const f of failed) {
     const hint    = HEALTH_REPAIR_HINTS[f.name] || {};
