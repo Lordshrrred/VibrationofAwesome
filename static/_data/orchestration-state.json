@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-13T15:45:05.949Z",
+  "generated_at": "2026-07-13T15:47:44.636Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -557,6 +557,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "automation-audit-for-small-creators",
+        "title": "Automation Audit For Small Creators",
+        "lane": "boom",
+        "date": "2026-07-13",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-07-13T15:47:44.626Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqjzyponvc2k"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-07-13T15:47:44.626Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/116913443606494435"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-07-13T15:47:44.626Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-07-13T15:47:44.626Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-07-13T15:47:44.626Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-07-13T15:47:44.626Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-07-13T15:47:44.626Z",
+            "url": "https://dev.to/earthstarrising/automation-audit-for-small-creators-2d70"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-07-13T15:47:44.626Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/822039142655557632"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-07-13T15:47:44.626Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-07-13T15:47:44.626Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/07/13/automation-audit-for-small-creators-earthstar/"
+          }
+        },
+        "success_count": 9,
+        "failed_count": 1
+      },
       {
         "slug": "how-to-turn-blog-posts-into-podcast-episodes",
         "title": "How To Turn Blog Posts Into Podcast Episodes",
@@ -10526,6 +10592,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "automation-audit-for-small-creators",
+        "platform": "blogger",
+        "timestamp": "2026-07-13T15:47:44.626Z"
+      },
+      {
         "slug": "how-to-turn-blog-posts-into-podcast-episodes",
         "platform": "bluesky_voa",
         "timestamp": "2026-07-13T15:26:10.544Z"
@@ -10710,70 +10781,85 @@
       "feeder": {
         "successes": 119,
         "failures": 0,
-        "total": 151
+        "total": 152
       },
       "bluesky_voa": {
-        "successes": 125,
+        "successes": 126,
         "failures": 9,
-        "total": 151
+        "total": 152
       },
       "mastodon_voa": {
-        "successes": 124,
+        "successes": 125,
         "failures": 10,
-        "total": 151
+        "total": 152
       },
       "facebook_voa": {
-        "successes": 86,
+        "successes": 87,
         "failures": 13,
-        "total": 151
+        "total": 152
       },
       "pinterest": {
-        "successes": 124,
+        "successes": 125,
         "failures": 0,
-        "total": 151
+        "total": 152
       },
       "threads": {
-        "successes": 98,
+        "successes": 99,
         "failures": 0,
-        "total": 151
+        "total": 152
       },
       "instagram": {
-        "successes": 96,
+        "successes": 97,
         "failures": 0,
-        "total": 151
+        "total": 152
       },
       "devto": {
-        "successes": 119,
+        "successes": 120,
         "failures": 0,
-        "total": 151
+        "total": 152
       },
       "tumblr_voa": {
-        "successes": 151,
+        "successes": 152,
         "failures": 0,
-        "total": 151
+        "total": 152
       },
       "blogger": {
         "successes": 147,
-        "failures": 4,
-        "total": 151
+        "failures": 5,
+        "total": 152
       },
       "wordpress_earthstar": {
-        "successes": 151,
+        "successes": 152,
         "failures": 0,
-        "total": 151
+        "total": 152
       }
     },
     "summary": {
-      "total_posts": 151,
+      "total_posts": 152,
       "fully_syndicated": 127,
-      "partial": 24,
+      "partial": 25,
       "pending": 0,
-      "retry_backlog_count": 36
+      "retry_backlog_count": 37
     }
   },
   "visuals": {
-    "registry_count": 202,
+    "registry_count": 203,
     "registry_entries": [
+      {
+        "post_slug": "automation-audit-for-small-creators",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-07-13T15:46:10.193Z"
+      },
       {
         "post_slug": "how-to-turn-blog-posts-into-podcast-episodes",
         "source": "boom",
@@ -13647,22 +13733,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 202,
+      "total_entries": 203,
       "reused_count": 37,
-      "reuse_rate": 0.183
+      "reuse_rate": 0.182
     },
     "source_breakdown": {
-      "boom": 69,
-      "ideogram": 133
+      "ideogram": 134,
+      "boom": 69
     },
     "generation_counts": {
-      "ideogram": 133
+      "ideogram": 134
     },
     "platform_usage": {
-      "instagram": 141,
-      "bluesky_voa": 170,
-      "mastodon_voa": 170,
-      "pinterest": 168
+      "pinterest": 169,
+      "instagram": 142,
+      "bluesky_voa": 171,
+      "mastodon_voa": 171
     }
   },
   "clusters": {
@@ -14117,7 +14203,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-07-13T04:35:13.703Z",
+    "last_updated": "2026-07-13T15:46:10.189Z",
     "recent_hooks": [
       {
         "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -15001,6 +15087,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "automation-audit-for-small-creators",
+        "format": "single-native-post",
+        "cadenceProfile": "standalone",
+        "density": "medium",
+        "openerStyle": "any",
+        "closerStyle": "complete",
+        "timestamp": "2026-07-13T15:45:57.055Z"
+      },
+      {
         "slug": "digital-art-prints-vs-original-art-what-is-actually-worth-buying",
         "format": "philosophical-observation",
         "cadenceProfile": "contemplative",
@@ -15260,18 +15355,18 @@
         "openerStyle": "any",
         "closerStyle": "complete",
         "timestamp": "2026-07-12T14:40:32.661Z"
-      },
-      {
-        "slug": "how-to-get-ai-feedback-on-camera-performance",
-        "format": "tension-revelation",
-        "cadenceProfile": "tension-then-release",
-        "density": "medium-dense",
-        "openerStyle": "contradiction",
-        "closerStyle": "earned-realization",
-        "timestamp": "2026-07-12T14:37:09.902Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "automation-audit-for-small-creators",
+        "archetype": "premium-quote-card",
+        "archetypeLabel": "Premium Quote Card",
+        "palette": "teal-on-dark",
+        "emotionalTone": "clarity",
+        "emotionalCluster": "intellectual",
+        "timestamp": "2026-07-13T15:46:10.189Z"
+      },
       {
         "slug": "how-to-turn-blog-posts-into-podcast-episodes",
         "archetype": "sacred-tech",
@@ -15532,21 +15627,12 @@
         "emotionalTone": "stillness",
         "emotionalCluster": "intellectual",
         "timestamp": "2026-06-18T16:41:17.238Z"
-      },
-      {
-        "slug": "ai-advantage-summit-vs-bootcamp-what-is-the-actual-difference",
-        "archetype": "field-guide-aesthetic",
-        "archetypeLabel": "Field Guide Aesthetic",
-        "palette": "warm-archive",
-        "emotionalTone": "quiet-discovery",
-        "emotionalCluster": "grounded",
-        "timestamp": "2026-06-17T23:28:49.853Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-07-13T15:45:05.949Z",
+    "as_of": "2026-07-13T15:47:44.636Z",
     "next_estimated_window": "2026-07-14",
     "queue_runway_days": 96,
     "queue_runway_status": "healthy",
@@ -15628,7 +15714,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 36,
+    "retry_backlog_count": 37,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -15688,9 +15774,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-07-13T15:45:05.939Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 10,
+    "last_export_at": "2026-07-13T15:47:44.628Z",
+    "source_event": "syndication",
+    "export_duration_ms": 8,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
