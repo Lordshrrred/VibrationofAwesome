@@ -53,6 +53,13 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
+function cleanSummary(value) {
+  return String(value || "")
+    .replace(/^\s*(?:\*{1,2})?META:\*{0,2}\s*/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function absoluteUrl(url) {
   return absoluteVoaUrl(url);
 }
@@ -63,6 +70,8 @@ function normalizePost(post, lane, clusterData) {
     ...post,
     lane,
     cluster,
+    excerpt: cleanSummary(post.excerpt),
+    description: cleanSummary(post.description),
     url: cleanPublicPath(post.url || `/blog/${lane}/posts/${post.slug}`),
   };
 }

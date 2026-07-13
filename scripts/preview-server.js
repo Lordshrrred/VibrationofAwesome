@@ -42,6 +42,13 @@ app.use((req, res, next) => {
       return res.redirect(308, cleanPath + req.url.slice(req.path.length));
     }
   }
+  if (reqPath !== "/" && reqPath.endsWith("/")) {
+    const candidate = path.join(PUBLIC_DIR, reqPath.replace(/\/$/i, ".html"));
+    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+      req.url = reqPath.replace(/\/$/i, ".html") + req.url.slice(req.path.length);
+      return next();
+    }
+  }
   if (path.extname(reqPath) || reqPath.endsWith("/")) return next();
   const candidate = path.join(PUBLIC_DIR, reqPath + ".html");
   if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {

@@ -1130,7 +1130,7 @@
           </div>
           <div class="queue-panel">
             <div class="panel-header">
-              <span class="panel-title" style="color:var(--accent)">Experience Syndication</span>
+              <span class="panel-title" style="color:var(--accent)">Tools Syndication</span>
               <span class="panel-count" id="experience-syndication-status">~</span>
             </div>
             <div class="panel-body" id="experience-syndication">
@@ -2472,35 +2472,43 @@ function renderExperienceSyndication(data) {
   if (!wrap) return;
   if (!data) {
     statusEl.textContent = "~";
-    wrap.innerHTML = `<div class="empty-state">No experience syndication status yet. Run <code>npm run experience:status -- --write</code>.</div>`;
+    wrap.innerHTML = `<div class="empty-state">No Tools syndication status yet. Run <code>npm run experience:status -- --write</code>.</div>`;
     return;
   }
   const summary = data.summary || {};
   const campaigns = Array.isArray(data.campaigns) ? data.campaigns : [];
   statusEl.textContent = `${summary.queued ?? 0} queued`;
   const rows = campaigns.map(c => {
-    const complete = Object.values(c.platforms || {}).filter(p => p.status === "success").length;
-    const failed = Object.values(c.platforms || {}).filter(p => p.status === "failed").length;
+    const platformEntries = Object.entries(c.platforms || {});
+    const complete = platformEntries.filter(([, p]) => p.status === "success").length;
+    const failedEntries = platformEntries.filter(([, p]) => p.status === "failed");
+    const failed = failedEntries.length;
+    const failedDetail = failedEntries.length
+      ? ` · retry queue: ${failedEntries.map(([key, p]) => `${esc(key.replace(/_/g, " "))}${p.cacheReused ? " (cached)" : ""}`).join(", ")}`
+      : "";
     return `
       <div class="seo-kw-item">
         <div>
           <div class="seo-kw-title">${esc(c.title)} <span class="seo-flag ${c.status === "complete" ? "ranking" : ""}">${esc(c.status)}</span></div>
           <div class="seo-kw-gap">${esc(c.hubTitle || c.hub || "unhubbed")} · ${esc(c.path)} · canonical ${c.canonicalStatus}</div>
-          <div class="seo-kw-gap">Backlink destinations complete: ${complete} · failed awaiting retry: ${failed} · cached companion assets: ${c.cachedCompanionAssets || 0}</div>
+          <div class="seo-kw-gap">Backlink destinations complete: ${complete} · failed awaiting retry: ${failed}${failedDetail} · cached companion assets: ${c.cachedCompanionAssets || 0}</div>
           <div class="seo-kw-gap">${esc(c.primaryPurpose || "")}</div>
         </div>
       </div>`;
   }).join("");
+  const allocation = String(data.cadence?.allocation || "One conservative tool campaign per day.")
+    .replace(/\bexperiences\b/gi, "tools")
+    .replace(/\bexperience\b/gi, "tool");
   wrap.innerHTML = `
     <div class="seo-kw-item">
       <div>
-        <div class="seo-kw-title">Experience campaigns: ${summary.liveExperiences ?? campaigns.length} live · ${summary.queued ?? 0} queued · ${summary.complete ?? 0} complete</div>
+        <div class="seo-kw-title">Tool campaigns: ${summary.liveExperiences ?? campaigns.length} live · ${summary.queued ?? 0} queued · ${summary.complete ?? 0} complete</div>
         <div class="seo-kw-gap">Next scheduled: ${esc(summary.nextExperienceScheduled || "none")} ${summary.nextExperienceScheduledAt ? `· ${new Date(summary.nextExperienceScheduledAt).toLocaleString()}` : ""}</div>
         <div class="seo-kw-gap">Cached companion assets: ${summary.cachedCompanionAssets ?? 0} · estimated Claude spend: $${Number(summary.estimatedClaudeSpendUsd || 0).toFixed(2)}</div>
-        <div class="seo-kw-gap">${esc(data.cadence?.allocation || "One conservative experience campaign per day.")}</div>
+        <div class="seo-kw-gap">${esc(allocation)}</div>
       </div>
     </div>
-    ${rows || `<div class="empty-state">No live experiences found in authority metadata.</div>`}`;
+    ${rows || `<div class="empty-state">No live tools found in authority metadata.</div>`}`;
 }
 
 function renderClusterCoverage(boomPosts, clustersData) {
