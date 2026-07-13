@@ -860,12 +860,30 @@
 
     <main class="dash-main">
 
+      <!-- ── What this page answers, vs. Analytics ── -->
+      <div class="card" style="margin-bottom:1.5rem;padding:1.25rem 1.5rem;border-color:var(--accent);border-width:1px">
+        <p style="font-size:0.95rem;line-height:1.6;margin:0">
+          <strong style="color:var(--accent)">Analytics</strong> answers
+          <em>"What traffic did the site receive, and what did visitors do?"</em> ~
+          <strong style="color:var(--accent)">SEO Intelligence</strong> (this page) answers
+          <em>"How is content appearing in Google, what's improving, and what should we work on next?"</em>
+        </p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.6rem">
+          Total site traffic is almost always far larger than Search Console's numbers here ~ Search Console only
+          covers Google organic search, while Analytics counts direct visits, social, referrals, and internal
+          navigation too. A quiet week on this page does not mean the site is quiet.
+          <a href="/dashboard/analytics/" style="color:var(--accent)">View all traffic in Analytics &rarr;</a>
+        </p>
+      </div>
+
       <div class="token-status-bar" id="token-alerts">
         <span id="health-chips"></span>
       </div>
 
-      <!-- ── Stats Strip ── -->
-      <div class="stats-strip" id="stats-strip">
+      <!-- ── Stats Strip (legacy operational duplicate ~ kept in DOM so shared
+           render functions don't throw on a missing element, but hidden here;
+           this content lives on /dashboard/ where it belongs) ── -->
+      <div class="stats-strip" id="stats-strip" style="display:none">
         <div class="stat-card">
           <div class="stat-label">Posts Syndicated</div>
           <div class="stat-value" id="stat-total">~</div>
@@ -907,8 +925,8 @@
         </div>
       </div>
 
-      <!-- ── Syndication Feed (unified) ── -->
-      <div class="section">
+      <!-- ── Syndication Feed (unified) ── (operational detail; lives on /dashboard/, hidden here) -->
+      <div class="section" style="display:none">
         <div class="section-header">
           <span class="section-title">Syndication</span>
           <span id="synd-feed-meta" style="font-size:0.75rem;color:var(--text-muted)"></span>
@@ -923,11 +941,11 @@
         </div>
       </div>
 
-      <div class="section-header">
+      <div class="section-header" style="display:none">
         <span class="section-title">Post Queue</span>
         <span style="font-size:0.75rem;color:var(--text-muted)">Recent blog inventory, grouped by state</span>
       </div>
-      <div class="queue-panels" style="grid-template-columns:1fr 1fr">
+      <div class="queue-panels" style="display:none;grid-template-columns:1fr 1fr">
         <div class="queue-panel">
           <div class="panel-header">
             <span class="panel-title" style="color:var(--warn)">In Drip Queue</span>
@@ -951,8 +969,8 @@
       <div id="pq-synced" style="display:none"></div>
       <span id="pq-synced-count" style="display:none"></span>
 
-      <!-- ── Site & Feeder Stats ── -->
-      <div class="section">
+      <!-- ── Site & Feeder Stats ── (operational detail; lives on /dashboard/, hidden here) -->
+      <div class="section" style="display:none">
         <div class="section-header">
           <span class="section-title">Site Status</span>
           <span style="font-size:0.75rem;color:var(--text-muted)">VOA main site, live feeder coverage, and syndication footprint</span>
@@ -986,32 +1004,44 @@
 
         <div class="stats-strip">
           <div class="stat-card">
-            <div class="stat-label">GSC</div>
-            <div class="stat-value" id="seo-stat-ranking">~</div>
-            <div class="stat-sub">connection</div>
+            <div class="stat-label">Organic Sessions</div>
+            <div class="stat-value" id="seo-stat-sessions">~</div>
+            <div class="stat-sub">GA4, from Google search only</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">GA4</div>
-            <div class="stat-value" id="seo-stat-ai">~</div>
-            <div class="stat-sub">connection</div>
+            <div class="stat-label">Search Impressions</div>
+            <div class="stat-value" id="seo-stat-impressions">~</div>
+            <div class="stat-sub">Search Console</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">Opportunities</div>
-            <div class="stat-value" id="seo-stat-missing">~</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Clicks</div>
+            <div class="stat-label">Search Clicks</div>
             <div class="stat-value" id="seo-stat-clicks">~</div>
             <div class="stat-sub">Search Console</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">Impressions</div>
-            <div class="stat-value" id="seo-stat-impressions">~</div>
+            <div class="stat-label">Avg. CTR</div>
+            <div class="stat-value" id="seo-stat-ctr">~</div>
+            <div class="stat-sub">Search Console</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">Organic Sessions</div>
-            <div class="stat-value" id="seo-stat-sessions">~</div>
-            <div class="stat-sub">GA4</div>
+            <div class="stat-label">Avg. Position</div>
+            <div class="stat-value" id="seo-stat-position">~</div>
+            <div class="stat-sub">Search Console</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Opportunities</div>
+            <div class="stat-value" id="seo-stat-missing">~</div>
+            <div class="stat-sub">recommended next actions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Search Console</div>
+            <div class="stat-value" id="seo-stat-ranking">~</div>
+            <div class="stat-sub">connection status</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">GA4</div>
+            <div class="stat-value" id="seo-stat-ai">~</div>
+            <div class="stat-sub">connection status</div>
           </div>
         </div>
 
@@ -1112,8 +1142,8 @@
 
       <!-- ESC Recommendations removed ~ future automation phase will replace this -->
 
-      <!-- ── Manual Syndication ── -->
-      <div class="section">
+      <!-- ── Manual Syndication ── (operational tool; lives on /dashboard/, hidden here) -->
+      <div class="section" style="display:none">
         <div class="section-header">
           <span class="section-title">Manual Syndication</span>
         </div>
@@ -2295,6 +2325,9 @@ function renderSeoIntelligence(boomPosts, clustersData, seoData, seoStrategy, ba
   document.getElementById("seo-stat-clicks").textContent = metricNumber(seoData?.summary?.searchConsole?.clicks);
   document.getElementById("seo-stat-impressions").textContent = metricNumber(seoData?.summary?.searchConsole?.impressions);
   document.getElementById("seo-stat-sessions").textContent = metricNumber(seoData?.summary?.ga4?.organicSessions);
+  document.getElementById("seo-stat-ctr").textContent = metricPct(seoData?.summary?.searchConsole?.ctr);
+  const avgPos = seoData?.summary?.searchConsole?.averagePosition;
+  document.getElementById("seo-stat-position").textContent = avgPos == null ? "~" : Number(avgPos).toFixed(1);
 }
 
 function renderSeoEvidence(seoData) {
