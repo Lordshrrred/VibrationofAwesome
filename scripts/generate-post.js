@@ -16,7 +16,7 @@ import { fileURLToPath } from "url";
 import { spawnSync } from "child_process";
 import { updateSitemap } from "./update-sitemap.js";
 import { syndicatePost } from "./syndicate.js";
-import { fetchNasaImages, fetchForestImages, fetchBoomImages } from "./select-image.js";
+import { fetchNasaImages, fetchForestImages, fetchBoomImages, cacheNasaImageLocally } from "./select-image.js";
 import { findNiche, getDefaultNiche, getNichePromptContext, EARTHSTAR_NICHES } from "./content-niches.js";
 import {
   ensureDeterministicInternalLinks,
@@ -190,14 +190,50 @@ function extractExcerpt(markdown) {
   return "";
 }
 
-/** Strip META: line from BoomBot output. Returns { metaDescription, cleanMarkdown } */
+/**
+ * Some generations ignore "Return raw markdown only" and wrap the entire
+ * response in a single ```html ... ``` (or bare ```...```) fence. If that
+ * fence line happens to carry 4+ leading spaces, CommonMark/marked treats it
+ * as an *indented code block* rather than a fence delimiter (this is the
+ * exact, verified mechanism ~ confirmed against this repo's actual marked
+ * version by testing the indentation threshold directly): the wrapper
+ * markers then survive as visible stray text while raw HTML in between
+ * passes through unescaped as HTML blocks. Whether or not the indentation
+ * happens, an outer fence around the *whole* article is never wanted, so it
+ * is unwrapped here regardless of indentation, before anything else runs.
+ */
+function stripOuterCodeFence(markdown) {
+  const trimmed = markdown.trim();
+  const match = trimmed.match(/^`{3,}[a-zA-Z]*[ \t]*\r?\n([\s\S]*?)\r?\n[ \t]*`{3,}[ \t]*$/);
+  if (match) return { stripped: true, markdown: match[1].trim() };
+  return { stripped: false, markdown };
+}
+
+/**
+ * Extract META: from BoomBot output. The model is instructed to emit a bare
+ * "META: <description>" line, but has been observed emitting it as
+ * "**META:** ..." / "**META: ...**" (markdown bold) or, when it ignores the
+ * "raw markdown only" instruction and returns HTML instead, as
+ * "<p><strong>META:</strong> ...</p>" or "<p><strong>META: ...</strong></p>".
+ * All four forms are recognized so the label can never leak into the
+ * visible article body regardless of which one a given generation used.
+ * Returns { metaDescription, cleanMarkdown }.
+ */
 function stripMeta(markdown) {
   const lines = markdown.split("\n");
   let metaDescription = "";
   const cleanLines = [];
+  const metaPatterns = [
+    /^<p><strong>META:<\/strong>\s*(.*?)<\/p>$/i,
+    /^<p><strong>META:\s*(.*?)<\/strong><\/p>$/i,
+    /^\*{1,2}META:\*{0,2}\s*(.*?)\*{0,2}$/i,
+    /^META:\s*(.*)$/i,
+  ];
   for (const line of lines) {
-    if (line.trim().startsWith("META:")) {
-      metaDescription = line.replace(/^META:\s*/i, "").trim();
+    const trimmed = line.trim();
+    const match = metaPatterns.map(p => trimmed.match(p)).find(Boolean);
+    if (match) {
+      metaDescription = match[1].replace(/<[^>]+>/g, "").trim();
     } else {
       cleanLines.push(line);
     }
@@ -880,6 +916,16 @@ async function main() {
     process.exit(1);
   }
 
+  // Some generations ignore "return raw markdown only" and wrap the whole
+  // response in a code fence. Unwrap it before anything else touches the
+  // content, regardless of the fence line's indentation (see
+  // stripOuterCodeFence's own comment for why indentation matters).
+  const fenceResult = stripOuterCodeFence(markdown);
+  if (fenceResult.stripped) {
+    console.warn("[sanitize] Response was wrapped in an outer code fence ~ stripped before further processing.");
+  }
+  markdown = fenceResult.markdown;
+
   // Strip META line for BoomBot
   let metaDescription = "";
   let cleanMarkdown   = markdown;
@@ -889,10 +935,20 @@ async function main() {
     cleanMarkdown   = result.cleanMarkdown;
   }
 
-  // Extract H1 title from generated content, then remove it from the body
-  const h1Match = cleanMarkdown.match(/^#\s+(.+)$/m);
-  if (h1Match) postTitle = h1Match[1].trim();
-  const bodyMarkdown = cleanMarkdown.replace(/^#\s+.+$/m, "").trim();
+  // Extract H1 title from generated content, then remove it from the body.
+  // Accepts both the requested markdown "# Title" form and a raw "<h1>Title</h1>"
+  // the model sometimes emits when it returns HTML instead of markdown ~
+  // missing the HTML form left the real title stuck in the body as a
+  // visible duplicate heading while the post published under a generic
+  // fallback title instead.
+  const h1MarkdownMatch = cleanMarkdown.match(/^#\s+(.+)$/m);
+  const h1HtmlMatch = !h1MarkdownMatch ? cleanMarkdown.match(/^\s*<h1>([^<]+)<\/h1>\s*$/m) : null;
+  if (h1MarkdownMatch) postTitle = h1MarkdownMatch[1].trim();
+  else if (h1HtmlMatch) postTitle = h1HtmlMatch[1].trim();
+  const bodyMarkdown = cleanMarkdown
+    .replace(/^#\s+.+$/m, "")
+    .replace(/^\s*<h1>([^<]+)<\/h1>\s*$/m, "")
+    .trim();
 
   // Boom-only: generate FAQPage / HowTo schema from the FAQ section and any
   // "Step N:" headers BOOMBOT_SYSTEM instructs the model to produce. Matt is
@@ -922,34 +978,10 @@ async function main() {
     }
   }
 
-  // Matt keeps inline forest photos. Boom uses one NASA/space hero plus the
-  // floating EarthStar vector body system, so no inline body images are added.
-  let bodyHtml = marked.parse(bodyMarkdown);
-  let inlineImages = [];
-  if (lane === "matt") {
-    console.log("Selecting 3 forest images for inline art...");
-    inlineImages = fetchForestImages(3);
-    if (inlineImages.length > 0) {
-      bodyHtml = injectNasaImages(bodyHtml, inlineImages);
-      console.log("Forest images injected: " + inlineImages.map(function(i) { return i.title || path.basename(i.url); }).join(", "));
-    } else {
-      console.warn("No forest images found ~ post will have no inline images.");
-    }
-  } else {
-    console.log("Selecting 1 NASA image for Boom hero art...");
-    inlineImages = await fetchNasaImages(1);
-    if (inlineImages.length === 0) {
-      console.warn("NASA hero unavailable ~ falling back to local boom image.");
-      inlineImages = fetchBoomImages(1);
-    }
-    if (inlineImages.length > 0) {
-      console.log("Boom hero image selected: " + inlineImages.map(function(i) { return i.title || path.basename(i.url); }).join(", "));
-    } else {
-      console.warn("No boom images found ~ post will rely on the vector body system.");
-    }
-  }
   // Deduplicate slug: if a file with this slug already exists in posts/ or drafts/,
   // append -2, -3 etc. rather than silently overwriting it with different content.
+  // Computed here (earlier than the rest of the pipeline used to need it) because
+  // the NASA local-caching step below needs a slug to name the cached file.
   const baseSlug = slugify(postTitle);
   let slug = baseSlug;
   {
@@ -967,6 +999,66 @@ async function main() {
       console.warn(`[slug] "${baseSlug}" already exists ~ using "${slug}" to avoid overwriting existing content.`);
     }
   }
+
+  // Matt keeps inline forest photos. Boom uses one NASA/space hero plus the
+  // floating EarthStar vector body system, so no inline body images are added.
+  let bodyHtml = marked.parse(bodyMarkdown);
+  let inlineImages = [];
+  if (lane === "matt") {
+    console.log("Selecting 3 forest images for inline art...");
+    inlineImages = fetchForestImages(3);
+    if (inlineImages.length > 0) {
+      bodyHtml = injectNasaImages(bodyHtml, inlineImages);
+      console.log("Forest images injected: " + inlineImages.map(function(i) { return i.title || path.basename(i.url); }).join(", "));
+    } else {
+      console.warn("No forest images found ~ post will have no inline images.");
+    }
+  } else {
+    console.log("Selecting 1 NASA image for Boom hero art...");
+    inlineImages = await fetchNasaImages(1);
+    if (inlineImages.length > 0) {
+      // NASA APOD hotlinks are not permanently stable (URLs valid at generation
+      // time have been observed going 404 later) ~ download and re-host locally
+      // so this post never depends on an external URL staying alive.
+      const cachedUrl = await cacheNasaImageLocally(inlineImages[0].url, slug);
+      if (cachedUrl) {
+        inlineImages[0] = { ...inlineImages[0], url: cachedUrl, source: "nasa-cached" };
+      } else {
+        console.warn("NASA image download/cache failed ~ falling back to local boom image.");
+        inlineImages = fetchBoomImages(1);
+      }
+    }
+    if (inlineImages.length === 0) {
+      console.warn("NASA hero unavailable ~ falling back to local boom image.");
+      inlineImages = fetchBoomImages(1);
+    }
+    if (inlineImages.length > 0) {
+      console.log("Boom hero image selected: " + inlineImages.map(function(i) { return i.title || path.basename(i.url); }).join(", "));
+    } else {
+      console.warn("No boom images found ~ post will rely on the vector body system.");
+    }
+  }
+
+  // Pre-publish content-quality gate: scan the RENDERED body (not just the
+  // raw model text) for generator debris that must never reach a reader ~ a
+  // surviving code-fence marker or a visible "META:" label. This is the
+  // safety net for a variant stripOuterCodeFence/stripMeta don't recognize
+  // yet, so a malformed generation is rejected here instead of silently
+  // publishing. A real, legitimate inline code sample renders as actual
+  // <pre><code> tags, never as literal backtick characters in the output,
+  // so this check has no legitimate false-positive case.
+  const debrisChecks = [
+    { name: "stray code-fence marker (```)", found: /```/.test(bodyHtml) },
+    { name: "visible META: label", found: /(^|>)\s*(\*{1,2})?META:/im.test(bodyHtml) },
+  ];
+  const foundDebris = debrisChecks.filter((c) => c.found);
+  if (foundDebris.length > 0) {
+    console.error("[sanitize] REJECTED: rendered body still contains generator debris: " + foundDebris.map((c) => c.name).join(", "));
+    console.error("[sanitize] This generation was not saved. Re-run generation for this post/keyword.");
+    process.exit(1);
+  }
+
+  // (slug already computed above, before hero-image selection)
 
   // Record generation into rolling memory registry for future differentiation
   recordGeneration({

@@ -20,6 +20,7 @@ import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import path from "path";
 import fs from "fs";
+import sharp from "sharp";
 
 dotenv.config({ override: true });
 
@@ -29,8 +30,43 @@ const ROOT        = path.resolve(__dirname, "..");
 const PHOTOS_DIR  = path.join(ROOT, "static", "personal-photos");
 const FOREST_DIR  = path.join(ROOT, "static", "personal-photos", "forest");
 const BOOM_DIR    = path.join(ROOT, "static", "images", "boom");
+const NASA_CACHE_DIR = path.join(ROOT, "static", "images", "nasa-cache");
 const IMAGE_EXTS  = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 const APOD_BASE   = "https://api.nasa.gov/planetary/apod";
+const MAX_DIMENSION = 1600;
+const JPEG_QUALITY  = 80;
+
+/**
+ * NASA APOD hotlinks are not permanently stable ~ URLs that are valid at
+ * generation time have been observed going 404 later (NASA doesn't guarantee
+ * long-term hosting at a given APOD image path). Downloading and re-hosting
+ * the image locally at generation time means the post never depends on an
+ * external URL staying alive.
+ *
+ * Returns the local public path (e.g. "/images/nasa-cache/2026-07-13-abc.jpg")
+ * on success, or null on any failure (caller should fall back to fetchBoomImages).
+ */
+export async function cacheNasaImageLocally(sourceUrl, slug) {
+  try {
+    const resp = await fetch(sourceUrl);
+    if (!resp.ok) {
+      console.warn("[select-image] NASA image download " + resp.status + " for " + sourceUrl);
+      return null;
+    }
+    const buffer = Buffer.from(await resp.arrayBuffer());
+    if (!fs.existsSync(NASA_CACHE_DIR)) fs.mkdirSync(NASA_CACHE_DIR, { recursive: true });
+    const filename = slug + "-hero.jpg";
+    const destPath = path.join(NASA_CACHE_DIR, filename);
+    await sharp(buffer)
+      .resize({ width: MAX_DIMENSION, height: MAX_DIMENSION, fit: "inside", withoutEnlargement: true })
+      .jpeg({ quality: JPEG_QUALITY })
+      .toFile(destPath);
+    return "/images/nasa-cache/" + filename;
+  } catch (err) {
+    console.warn("[select-image] NASA image cache error: " + err.message);
+    return null;
+  }
+}
 
 // ── Personal photos fallback ──────────────────────────────────────────────────
 
