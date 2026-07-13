@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-13T17:47:15.444Z",
+  "generated_at": "2026-07-13T17:49:21.591Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -554,6 +554,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks",
+        "title": "AI Advantage Bootcamp Week by Week: What Actually Happens in Each of the 6 Weeks",
+        "lane": "boom",
+        "date": "2026-07-13",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "facebook_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-07-13T17:49:21.582Z",
+            "url": null
+          },
+          "threads": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "instagram": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "devto": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-07-13T17:49:21.582Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/822046787372302336"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-07-13T17:49:21.582Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-07-13T17:49:21.582Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/07/13/ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks-earthstar/"
+          }
+        },
+        "success_count": 3,
+        "failed_count": 1
+      },
       {
         "slug": "automation-audit-for-small-creators",
         "title": "Automation Audit For Small Creators",
@@ -10589,6 +10655,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks",
+        "platform": "blogger",
+        "timestamp": "2026-07-13T17:49:21.582Z"
+      },
+      {
         "slug": "how-to-turn-blog-posts-into-podcast-episodes",
         "platform": "blogger",
         "timestamp": "2026-07-13T15:26:10.544Z"
@@ -10738,70 +10809,84 @@
       "feeder": {
         "successes": 120,
         "failures": 0,
-        "total": 152
+        "total": 153
       },
       "bluesky_voa": {
         "successes": 129,
         "failures": 5,
-        "total": 152
+        "total": 153
       },
       "mastodon_voa": {
         "successes": 127,
         "failures": 7,
-        "total": 152
+        "total": 153
       },
       "facebook_voa": {
         "successes": 86,
         "failures": 13,
-        "total": 152
+        "total": 153
       },
       "pinterest": {
-        "successes": 124,
+        "successes": 125,
         "failures": 0,
-        "total": 152
+        "total": 153
       },
       "threads": {
         "successes": 98,
         "failures": 0,
-        "total": 152
+        "total": 153
       },
       "instagram": {
         "successes": 96,
         "failures": 0,
-        "total": 152
+        "total": 153
       },
       "devto": {
         "successes": 119,
         "failures": 0,
-        "total": 152
+        "total": 153
       },
       "tumblr_voa": {
-        "successes": 151,
+        "successes": 152,
         "failures": 0,
-        "total": 152
+        "total": 153
       },
       "blogger": {
         "successes": 147,
-        "failures": 4,
-        "total": 152
+        "failures": 5,
+        "total": 153
       },
       "wordpress_earthstar": {
-        "successes": 151,
+        "successes": 152,
         "failures": 0,
-        "total": 152
+        "total": 153
       }
     },
     "summary": {
-      "total_posts": 152,
+      "total_posts": 153,
       "fully_syndicated": 128,
-      "partial": 24,
+      "partial": 25,
       "pending": 0,
-      "retry_backlog_count": 29
+      "retry_backlog_count": 30
     }
   },
   "visuals": {
-    "registry_count": 203,
+    "registry_count": 204,
     "registry_entries": [
+      {
+        "post_slug": "ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "pinterest",
+        "timestamp": "2026-07-13T17:48:20.892Z"
+      },
       {
         "post_slug": "automation-audit-for-small-creators",
         "source": "ideogram",
@@ -13690,22 +13775,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 203,
+      "total_entries": 204,
       "reused_count": 37,
-      "reuse_rate": 0.182
+      "reuse_rate": 0.181
     },
     "source_breakdown": {
-      "ideogram": 134,
+      "ideogram": 135,
       "boom": 69
     },
     "generation_counts": {
-      "ideogram": 134
+      "ideogram": 135
     },
     "platform_usage": {
-      "pinterest": 169,
-      "instagram": 142,
-      "bluesky_voa": 171,
-      "mastodon_voa": 171
+      "pinterest": 170,
+      "bluesky_voa": 172,
+      "mastodon_voa": 172,
+      "instagram": 142
     }
   },
   "clusters": {
@@ -14161,7 +14246,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-07-13T15:49:07.375Z",
+    "last_updated": "2026-07-13T17:48:07.175Z",
     "recent_hooks": [
       {
         "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -15045,6 +15130,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks",
+        "format": "single-native-post",
+        "cadenceProfile": "standalone",
+        "density": "medium",
+        "openerStyle": "any",
+        "closerStyle": "complete",
+        "timestamp": "2026-07-13T17:48:07.175Z"
+      },
+      {
         "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
         "format": "philosophical-observation",
         "cadenceProfile": "contemplative",
@@ -15304,15 +15398,6 @@
         "openerStyle": "contradiction",
         "closerStyle": "earned-realization",
         "timestamp": "2026-07-12T16:44:41.236Z"
-      },
-      {
-        "slug": "is-dean-graziosi-legit-a-clear-eyed-look-at-his-track-record",
-        "format": "manifesto-conviction",
-        "cadenceProfile": "charged-decisive",
-        "density": "medium-dense",
-        "openerStyle": "strong-declarative",
-        "closerStyle": "worldview-shift",
-        "timestamp": "2026-07-12T16:43:09.037Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -15590,7 +15675,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-07-13T17:47:15.444Z",
+    "as_of": "2026-07-13T17:49:21.591Z",
     "next_estimated_window": "2026-07-14",
     "queue_runway_days": 96,
     "queue_runway_status": "healthy",
@@ -15672,7 +15757,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 29,
+    "retry_backlog_count": 30,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -15732,9 +15817,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-07-13T17:47:15.435Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 9,
+    "last_export_at": "2026-07-13T17:49:21.583Z",
+    "source_event": "syndication",
+    "export_duration_ms": 8,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }

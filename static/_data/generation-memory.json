@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-13T15:49:07.375Z",
+  "lastUpdated": "2026-07-13T17:48:07.175Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-13T17:48:07.175Z"
+    },
+    {
       "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,15 +1156,6 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-07-12T16:44:41.236Z"
-    },
-    {
-      "slug": "is-dean-graziosi-legit-a-clear-eyed-look-at-his-track-record",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-12T16:43:09.037Z"
     }
   ],
   "recentInstagramArchetypes": [
