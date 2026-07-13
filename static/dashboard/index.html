@@ -890,11 +890,19 @@
           <div class="stat-value" id="stat-drip">~</div>
           <div id="stat-drip-badge"></div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">Backlink Health</div>
+        <div class="stat-card" id="stat-backlink-card" title="Backlink-capable destinations: Dev.to, Tumblr, Blogger, WordPress. A high 'verification gap' count is normal ~ it means the link almost certainly exists but hasn't been independently re-crawled to confirm it, not that it's missing.">
+          <div class="stat-label">Backlink Debt</div>
           <div class="stat-value" id="stat-backlink">~</div>
           <div id="stat-backlink-badge"></div>
         </div>
+      </div>
+
+      <div class="card" style="margin-bottom:1.5rem" id="backlog-detail-card">
+        <div class="card-head">
+          <div class="card-title">Syndication &amp; Backlink Status</div>
+          <div class="card-sub" id="backlog-detail-updated"></div>
+        </div>
+        <div id="backlog-detail-wrap"><div class="loading dot-pulse">Loading</div></div>
       </div>
 
       <div class="card" style="margin-bottom:1.5rem">
@@ -1262,6 +1270,7 @@ const SEO_URL       = "/_data/seo-intelligence.json";
 const SEO_STRATEGY_URL = "/_data/seo-strategy.json";
 const DEPLOYMENT_HEALTH_URL = "/_data/deployment-health.json";
 const BACKLINK_ETA_URL = "/_data/backlink-throughput-eta.json";
+const BACKLOG_STATUS_URL = "/_data/syndication-backlog-status.json";
 const EXPERIENCE_SYNDICATION_URL = "/_data/experience-syndication.json";
 const VERIFY_CACHE  = "voa_url_verify_cache_v4"; // v4: free browser-side checks, no Netlify function usage
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
@@ -1339,7 +1348,7 @@ document.getElementById("lock-btn").addEventListener("click", () => {
 
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, seoData, seoStrategy, deploymentHealth, backlinkEta, experienceSyndication] = await Promise.all([
+  const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, seoData, seoStrategy, deploymentHealth, backlinkEta, experienceSyndication, backlogStatus] = await Promise.all([
     fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
     fetch(RESULTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
     fetch(HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
@@ -1353,6 +1362,7 @@ async function loadDashboard() {
     fetch(DEPLOYMENT_HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(BACKLINK_ETA_URL).then(r => r.ok ? r.json() : null).catch(() => null),
     fetch(EXPERIENCE_SYNDICATION_URL).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch(BACKLOG_STATUS_URL).then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
   const feederMerged = mergeFeederStatuses(resultsDataRaw, feederPosts);
   const resultsData = await mergeWordPressStatuses(feederMerged);
@@ -1379,7 +1389,7 @@ async function loadDashboard() {
 
   renderTokenAlerts(resultsData, healthData);
   renderHealth(healthData, resultsData);
-  renderStats(entries, resultsData, dripData);
+  renderStats(entries, resultsData, dripData, backlogStatus);
   renderDripQueue(dripData);
   renderSyndFeed(entries, resultsData);
   renderQueue(entries, allPosts, dripData);
@@ -1659,7 +1669,7 @@ function copyDashCommand(cmd, btn) {
 }
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
-function renderStats(entries, results, drip) {
+function renderStats(entries, results, drip, backlogStatus) {
   document.getElementById("stat-total").textContent = entries.length;
 
   const weekAgo = new Date(Date.now() - 7 * 86400000);
@@ -1696,29 +1706,72 @@ function renderStats(entries, results, drip) {
     ? "Social·Backlinks·Reach·Feeder"
     : "Bsky-V·Mast-V·FB·Dev·Tumblr·Blog·WP·Pins·Thrd·Insta";
 
-  // Backlink health card ~ only count backlink-tier platforms (the ones that always fire)
-  if (results.length > 0) {
-    let total = 0, ok = 0;
-    for (const r of results) {
-      for (const [key, s] of Object.entries(r.syndication || {})) {
-        if (!BACKLINK_KEYS.has(key)) continue;
-        if (s.status !== "success") continue;
-        total++;
-        if (s.backlink_confirmed) ok++;
-      }
-    }
-    const pct = total > 0 ? Math.round((ok / total) * 100) : 0;
-    document.getElementById("stat-backlink").textContent = pct + "%";
-    const cls = pct >= 64 ? "green" : pct >= 36 ? "gold" : "red";
-    const backlinksPerPost = results.length > 0
-      ? (results.reduce((sum, r) => {
-          return sum + Object.entries(r.syndication || {})
-            .filter(([k, s]) => BACKLINK_KEYS.has(k) && s.status === "success").length;
-        }, 0) / results.length).toFixed(1)
-      : "~";
-    document.getElementById("stat-backlink-badge").innerHTML =
-      `<span class="stat-badge ${cls}">avg ${backlinksPerPost}/${BACKLINK_KEYS.size}</span>`;
+  renderBacklogStatus(backlogStatus);
+}
+
+// A single "Backlink Health %" that averaged in `backlink_confirmed` (an
+// independent re-crawl check, not "does the link exist") reads as broken even
+// when real backlink debt is at or near zero ~ verification lags behind
+// publishing by design and isn't expected to keep pace. This renders the
+// decomposed reality instead: real missing units vs. distribution-only gaps
+// vs. verification-only gaps, using syndication-backlog-status.json (written
+// by scripts/syndication-backlog-status.js via backlink-backfill.yml).
+function renderBacklogStatus(status) {
+  const card = document.getElementById("stat-backlink-card");
+  const detailWrap = document.getElementById("backlog-detail-wrap");
+  const updatedEl = document.getElementById("backlog-detail-updated");
+  if (!status || !status.summary) {
+    document.getElementById("stat-backlink").textContent = "~";
+    document.getElementById("stat-backlink-badge").innerHTML = "";
+    if (detailWrap) detailWrap.innerHTML = `<div class="empty-state">syndication-backlog-status.json not found yet.</div>`;
+    return;
   }
+
+  const s = status.summary;
+  const missing = s.backlinkCapableMissingUnits ?? 0;
+  const isCaughtUp = missing <= (status.thresholds?.maintenanceThreshold ?? 4);
+
+  document.getElementById("stat-backlink").textContent = missing;
+  const cls = missing === 0 ? "green" : isCaughtUp ? "gold" : "red";
+  const modeLabel = status.mode === "maintenance" ? "Maintenance mode" : "Catch-up mode";
+  document.getElementById("stat-backlink-badge").innerHTML =
+    `<span class="stat-badge ${cls}">${esc(modeLabel)}</span>`;
+
+  if (updatedEl && status.generatedAt) {
+    updatedEl.textContent = "Updated " + new Date(status.generatedAt).toLocaleString();
+  }
+
+  if (!detailWrap) return;
+
+  const headline = missing === 0
+    ? "Backlink-capable destinations are caught up."
+    : `${missing} backlink-capable unit${missing === 1 ? "" : "s"} still missing across ${s.backlogPosts} post${s.backlogPosts === 1 ? "" : "s"}.`;
+
+  const etaLine = s.estimatedCatchUpDays == null
+    ? "No catch-up ETA yet (backlog isn't shrinking fast enough to project one)."
+    : `Estimated ${s.estimatedCatchUpDays} day${s.estimatedCatchUpDays === 1 ? "" : "s"} to fully clear at the current pace.`;
+
+  const rows = [
+    { label: "Fresh-post syndication",     value: s.freshPostsAwaitingBacklinks === 0 ? "On schedule" : `${s.freshPostsAwaitingBacklinks} post(s) awaiting backlinks`, good: s.freshPostsAwaitingBacklinks === 0 },
+    { label: "Historical backlink debt",   value: missing === 0 ? "Caught up" : `${missing} missing unit(s)`, good: missing === 0 },
+    { label: "Distribution tasks pending", value: `${s.distributionIncompleteUnits ?? 0}`, good: (s.distributionIncompleteUnits ?? 0) === 0 },
+    { label: "Links awaiting verification", value: `${s.backlinkVerificationGaps ?? 0} (expected ~ verification lags publishing, not a health signal)`, good: true },
+  ];
+
+  if (s.largestDelayPlatform) {
+    rows.push({ label: "Largest single delay", value: `${esc(s.largestDelayPlatform)} (${s.largestDelayMissingUnits} unit(s))`, good: false });
+  }
+
+  detailWrap.innerHTML = `
+    <p style="margin-bottom:0.75rem;color:var(--text)">${esc(headline)}</p>
+    <p style="margin-bottom:1rem;font-size:0.85rem;color:var(--text-muted)">${esc(etaLine)}</p>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:0.5rem 1rem;font-size:0.88rem">
+      ${rows.map(r => `
+        <div style="color:var(--text-muted)">${esc(r.label)}</div>
+        <div style="text-align:right;color:${r.good ? "var(--accent-light)" : "var(--text)"}">${esc(r.value)}</div>
+      `).join("")}
+    </div>
+  `;
 }
 
 // ── Drip Queue Section ────────────────────────────────────────────────────────
