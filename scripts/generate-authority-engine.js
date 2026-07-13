@@ -268,6 +268,7 @@ ${EXPERIENCE_POLISH_CSS}
       <li><a href="/aura/" class="voa-aura-link">AURA &#10022;</a></li>
       <li><a href="/earthstar/">EarthStar &#10022;</a></li>
       <li><a href="/blog/">Blog</a></li>
+      <li><a href="/tools/">Tools</a></li>
     </ul>
   </nav>
 ${breadcrumbHtml}
