@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T03:45:52.021Z",
+  "generatedAt": "2026-07-14T06:36:43.127Z",
   "keywordGeneration": {
     "currentInventory": 31,
     "publishedInventory": 161,
@@ -20,7 +20,7 @@
     "netBacklinkUnitsPerDay": -0.1,
     "estimatedCatchUpDays": 0,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 28,
+    "distributionIncompleteUnits": 21,
     "verificationGaps": 593,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
@@ -97,7 +97,7 @@
           "complete": 121,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 2.4,
+          "averagePerDay": 2.3,
           "confirmed": 121,
           "verificationGaps": 0,
           "mainBlocker": ""
@@ -108,72 +108,72 @@
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
           "eligiblePosts": 137,
-          "complete": 133,
-          "missing": 4,
-          "successRate": 97.1,
-          "averagePerDay": 5.5,
+          "complete": 135,
+          "missing": 2,
+          "successRate": 98.5,
+          "averagePerDay": 5.6,
           "confirmed": 4,
-          "verificationGaps": 129,
+          "verificationGaps": 131,
           "mainBlocker": "env vars not set"
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
           "eligiblePosts": 137,
-          "complete": 126,
-          "missing": 11,
-          "successRate": 92,
-          "averagePerDay": 5,
+          "complete": 131,
+          "missing": 6,
+          "successRate": 95.6,
+          "averagePerDay": 5.4,
           "confirmed": 4,
-          "verificationGaps": 122,
+          "verificationGaps": 127,
           "mainBlocker": "Mastodon: Validation failed: Text can't be blank"
         },
         {
           "key": "facebook_voa",
           "platform": "Facebook VOA",
-          "eligiblePosts": 100,
-          "complete": 87,
+          "eligiblePosts": 101,
+          "complete": 88,
           "missing": 13,
-          "successRate": 87,
-          "averagePerDay": 1.6,
+          "successRate": 87.1,
+          "averagePerDay": 1.7,
           "confirmed": 3,
-          "verificationGaps": 84,
+          "verificationGaps": 85,
           "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
         },
         {
           "key": "pinterest",
           "platform": "Pinterest",
-          "eligiblePosts": 126,
-          "complete": 126,
+          "eligiblePosts": 127,
+          "complete": 127,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 2.6,
           "confirmed": 0,
-          "verificationGaps": 126,
+          "verificationGaps": 127,
           "mainBlocker": ""
         },
         {
           "key": "threads",
           "platform": "Threads",
-          "eligiblePosts": 99,
-          "complete": 99,
+          "eligiblePosts": 100,
+          "complete": 100,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 1.6,
+          "averagePerDay": 1.7,
           "confirmed": 0,
-          "verificationGaps": 99,
+          "verificationGaps": 100,
           "mainBlocker": ""
         },
         {
           "key": "instagram",
           "platform": "Instagram",
-          "eligiblePosts": 97,
-          "complete": 97,
+          "eligiblePosts": 98,
+          "complete": 98,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 1.6,
+          "averagePerDay": 1.7,
           "confirmed": 0,
-          "verificationGaps": 97,
+          "verificationGaps": 98,
           "mainBlocker": ""
         }
       ]
@@ -185,15 +185,15 @@
       },
       {
         "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-        "count": 7
+        "count": 4
       },
       {
         "reason": "bluesky_voa: env vars not set",
-        "count": 4
+        "count": 2
       },
       {
         "reason": "mastodon_voa: env vars not set",
-        "count": 4
+        "count": 2
       }
     ],
     "definitions": {
