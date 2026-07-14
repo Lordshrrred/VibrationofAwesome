@@ -1272,8 +1272,23 @@ const DEPLOYMENT_HEALTH_URL = "/_data/deployment-health.json";
 const BACKLINK_ETA_URL = "/_data/backlink-throughput-eta.json";
 const BACKLOG_STATUS_URL = "/_data/syndication-backlog-status.json";
 const EXPERIENCE_SYNDICATION_URL = "/_data/experience-syndication.json";
+const GITHUB_DATA_BASE = "https://raw.githubusercontent.com/Lordshrrred/VibrationofAwesome/main/static/_data/";
 const VERIFY_CACHE  = "voa_url_verify_cache_v4"; // v4: free browser-side checks, no Netlify function usage
 const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours ~ these are stable post URLs
+
+async function fetchDataJson(url, fallback) {
+  const rawName = String(url || "").match(/^\/_data\/([^/?#]+)$/)?.[1];
+  const sources = rawName
+    ? [`${GITHUB_DATA_BASE}${rawName}?t=${Date.now()}`, url]
+    : [url];
+  for (const source of sources) {
+    try {
+      const resp = await fetch(source, { cache: "no-store" });
+      if (resp.ok) return await resp.json();
+    } catch (_) {}
+  }
+  return fallback;
+}
 
 function getOpenTarget(primaryUrl) {
   // Only return a target if we have the actual platform post URL.
@@ -1349,20 +1364,20 @@ document.getElementById("lock-btn").addEventListener("click", () => {
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
   const [logData, resultsDataRaw, healthData, dripData, boomPosts, mattPosts, feederPosts, clustersData, seoData, seoStrategy, deploymentHealth, backlinkEta, experienceSyndication, backlogStatus] = await Promise.all([
-    fetch(LOG_URL).then(r => r.ok ? r.json() : { entries: [] }).catch(() => ({ entries: [] })),
-    fetch(RESULTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
-    fetch(HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch(DRIP_URL).then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch(BOOM_URL).then(r => r.ok ? r.json() : []).catch(() => []),
-    fetch(MATT_URL).then(r => r.ok ? r.json() : []).catch(() => []),
+    fetchDataJson(LOG_URL, { entries: [] }),
+    fetchDataJson(RESULTS_URL, []),
+    fetchDataJson(HEALTH_URL, null),
+    fetchDataJson(DRIP_URL, null),
+    fetchDataJson(BOOM_URL, []),
+    fetchDataJson(MATT_URL, []),
     fetch(FEEDER_POSTS_URL).then(r => r.ok ? r.json() : []).catch(() => []),
-    fetch(CLUSTERS_URL).then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch(SEO_URL).then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch(SEO_STRATEGY_URL).then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch(DEPLOYMENT_HEALTH_URL).then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch(BACKLINK_ETA_URL).then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch(EXPERIENCE_SYNDICATION_URL).then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch(BACKLOG_STATUS_URL).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetchDataJson(CLUSTERS_URL, null),
+    fetchDataJson(SEO_URL, null),
+    fetchDataJson(SEO_STRATEGY_URL, null),
+    fetchDataJson(DEPLOYMENT_HEALTH_URL, null),
+    fetchDataJson(BACKLINK_ETA_URL, null),
+    fetchDataJson(EXPERIENCE_SYNDICATION_URL, null),
+    fetchDataJson(BACKLOG_STATUS_URL, null),
   ]);
   const feederMerged = mergeFeederStatuses(resultsDataRaw, feederPosts);
   const resultsData = await mergeWordPressStatuses(feederMerged);

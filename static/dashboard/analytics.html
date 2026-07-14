@@ -476,8 +476,23 @@ const CONFIG_URL    = "/_data/dashboard-config.json";
 const GA_BASE       = "https://vibrationofawesome.vercel.app/api/analytics";
 const REFRESH_MS    = 10 * 60 * 1000;  // full refresh every 10 min (GA4 data has ~4hr delay anyway)
 const RT_REFRESH_MS = 60 * 1000;       // realtime every 60s (GA4 realtime has ~30s latency)
+const GITHUB_DATA_BASE = "https://raw.githubusercontent.com/Lordshrrred/VibrationofAwesome/main/static/_data/";
 
 let currentRange = "30d";
+
+async function fetchDataJson(url, fallback) {
+  const rawName = String(url || "").match(/^\/_data\/([^/?#]+)$/)?.[1];
+  const sources = rawName
+    ? [`${GITHUB_DATA_BASE}${rawName}?t=${Date.now()}`, url]
+    : [url];
+  for (const source of sources) {
+    try {
+      const resp = await fetch(source, { cache: "no-store" });
+      if (resp.ok) return await resp.json();
+    } catch (_) {}
+  }
+  return fallback;
+}
 
 const RANGE_LABELS = {
   "30d":    "last 30 days",
@@ -1005,12 +1020,11 @@ async function loadMailerLite() {
 async function loadGmail() {
   const wrap = document.getElementById("gmail-wrap");
   try {
-    const resp = await fetch("/_data/gmail-subscriber-replies.json");
-    if (!resp.ok) {
+    const d = await fetchDataJson("/_data/gmail-subscriber-replies.json", null);
+    if (!d) {
       wrap.innerHTML = `<div class="gmail-card"><div class="gmail-header"><h3>Inbox Replies</h3></div><div class="error-msg">Not yet available ~ run <code>npm run gmail-token</code> and push the GH secret.</div></div>`;
       return;
     }
-    const d = await resp.json();
     const msgs = (d.messages || []).slice(0, 20);
     const updStr = d.updatedAt ? new Date(d.updatedAt).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "";
 

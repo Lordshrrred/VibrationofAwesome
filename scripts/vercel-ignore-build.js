@@ -80,7 +80,29 @@ const ALWAYS_DEPLOY = [
   "assets/",
   "content/",
   "layouts/",
-  "static/",
+  "static/admin/",
+  "static/ai-engine/",
+  "static/blog/",
+  "static/css/",
+  "static/dashboard/",
+  "static/field-guide/",
+  "static/hubs/",
+  "static/images/",
+  "static/js/",
+  "static/legal/",
+  "static/personal-photos/",
+  "static/tools/",
+  "static/favicon.ico",
+  "static/favicon-16x16.png",
+  "static/favicon-32x32.png",
+  "static/favicon-192x192.png",
+  "static/favicon-512x512.png",
+  "static/apple-touch-icon.png",
+  "static/site.webmanifest",
+  "static/manifest.json",
+  "static/robots.txt",
+  "static/_redirects",
+  "static/sitemap.xml",
   "hugo.toml",
   "config.toml",
   "config.yaml",
@@ -101,6 +123,42 @@ const ALWAYS_DEPLOY = [
   "scripts/set-page-social-image.js",
   "scripts/update-sitemap.js",
   "scripts/vercel-ignore-build.js",
+];
+
+const PUBLIC_DATA_DEPLOY = [
+  "static/_data/authority-assets.json",
+  "static/_data/authority-hubs.json",
+  "static/_data/boom-posts.json",
+  "static/_data/matt-posts.json",
+  "static/_data/portfolio-pieces.json",
+  "static/_data/products.json",
+  "static/_data/topic-clusters.json",
+];
+
+const VOLATILE_DATA_SKIP = [
+  "static/_data/backlink-throughput-eta.json",
+  "static/_data/cta-rotation-state.json",
+  "static/_data/dashboard-config.json",
+  "static/_data/demand-signals.json",
+  "static/_data/deployment-health.json",
+  "static/_data/drip-last-published.json",
+  "static/_data/drip-queue.json",
+  "static/_data/esc-recommendation-review-state.json",
+  "static/_data/experience-syndication.json",
+  "static/_data/generation-memory.json",
+  "static/_data/gmail-subscriber-replies.json",
+  "static/_data/heal-log.json",
+  "static/_data/image-registry.json",
+  "static/_data/latest-voa-recommendations.json",
+  "static/_data/orchestration-health.json",
+  "static/_data/orchestration-state.json",
+  "static/_data/seo-intelligence.json",
+  "static/_data/seo-strategy.json",
+  "static/_data/syndication-backlog-status.json",
+  "static/_data/syndication-catchup-queue.json",
+  "static/_data/syndication-health.json",
+  "static/_data/syndication-log.json",
+  "static/_data/syndication-results.json",
 ];
 
 const OPS_ONLY = [
@@ -140,11 +198,14 @@ function projectKind() {
 function classify(files, project = projectKind()) {
   const normalized = files.map(normalize).filter(Boolean);
   if (!normalized.length) {
-    return { deploy: true, project, reason: "No changed files detected; deploying fail-safe.", files: normalized };
+    return { deploy: false, project, reason: "No changed files detected; empty merge/no-op commit can be skipped.", files: normalized };
   }
 
   const deployPatterns = project === "mailer" ? MAILER_DEPLOY : ALWAYS_DEPLOY;
-  const deployFiles = normalized.filter(file => matchesAny(file, deployPatterns));
+  const deployFiles = normalized.filter(file =>
+    matchesAny(file, deployPatterns) ||
+    (project !== "mailer" && matchesAny(file, PUBLIC_DATA_DEPLOY))
+  );
   if (deployFiles.length) {
     return {
       deploy: true,
@@ -164,7 +225,10 @@ function classify(files, project = projectKind()) {
     };
   }
 
-  const unknownFiles = normalized.filter(file => !matchesAny(file, OPS_ONLY));
+  const unknownFiles = normalized.filter(file =>
+    !matchesAny(file, OPS_ONLY) &&
+    !matchesAny(file, VOLATILE_DATA_SKIP)
+  );
   if (unknownFiles.length) {
     return {
       deploy: true,

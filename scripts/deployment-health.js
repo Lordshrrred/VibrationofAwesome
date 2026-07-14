@@ -90,9 +90,10 @@ function main() {
     },
     policy: {
       ignoredBuilds: true,
-      mainDeploysOn: "public site, content, Hugo/layout, API, package, and Vercel config changes",
+      mainDeploysOn: "public site, content indexes, Hugo/layout, API, package, and Vercel config changes",
       mailerDeploysOn: "API, package, and Vercel config changes",
-      operationsSkipped: "reports, workflow-only updates, data/ops, docs, and syndication_log.txt",
+      operationsSkipped: "reports, workflow-only updates, data/ops, docs, syndication_log.txt, empty merge commits, and volatile dashboard/status JSON",
+      dashboardFreshData: "operator dashboards fetch latest volatile JSON from origin/main raw GitHub with deployed JSON fallback",
     },
   };
 
