@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-14T20:06:18.620Z",
+  "lastUpdated": "2026-07-14T23:01:28.082Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-14T23:01:28.082Z"
+    },
+    {
+      "slug": "7-day-content-plan-for-small-creators",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-14T22:58:49.850Z"
+    },
+    {
+      "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
       "density": "dense",
@@ -1138,27 +1156,18 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-13T17:50:20.090Z"
-    },
-    {
-      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-13T17:49:59.204Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-payment-plan-is-three-payments-of-three-eighty-smart",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-13T17:49:38.265Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "7-day-content-plan-for-small-creators",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "timestamp": "2026-07-14T22:59:03.810Z"
+    },
     {
       "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
       "archetype": "minimalist-philosophy",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-19T23:02:28.427Z"
-    },
-    {
-      "slug": "how-to-reclaim-fifteen-hours-a-week-with-ai-what-the-bootcamp-does-not-tell-you",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-19T16:13:15.651Z"
     }
   ]
 }
