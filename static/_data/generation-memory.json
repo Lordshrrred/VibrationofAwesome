@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-14T15:05:06.392Z",
+  "lastUpdated": "2026-07-14T17:00:17.513Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-certificate-what-you-actually-get-when-you-finish-the-bootcamp",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-14T17:00:17.513Z"
+    },
+    {
       "slug": "how-to-use-gamma-ai-for-music-presentations",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,15 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-13T15:47:56.445Z"
-    },
-    {
-      "slug": "automation-audit-for-small-creators",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-13T15:45:57.055Z"
     }
   ],
   "recentInstagramArchetypes": [
