@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-13T23:01:45.930Z",
+  "generated_at": "2026-07-14T03:58:34.525Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -554,62 +554,62 @@
         "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-07-13T22:58:42.941Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-turn-my-creative-process-into-an-sop-using-ai-signal.html"
           },
           "bluesky_voa": {
             "status": "success",
-            "timestamp": "2026-07-13T23:00:10.317Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqks5dvyya2p"
+            "timestamp": "2026-07-14T03:58:34.515Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqlcvi6vtg22"
           },
           "mastodon_voa": {
             "status": "success",
-            "timestamp": "2026-07-13T23:00:10.317Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116915142650176817"
+            "timestamp": "2026-07-14T03:58:34.515Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/116916321525295225"
           },
           "facebook_voa": {
             "status": "success",
-            "timestamp": "2026-07-13T23:00:10.317Z",
+            "timestamp": "2026-07-14T03:58:34.515Z",
             "url": null
           },
           "pinterest": {
             "status": "success",
-            "timestamp": "2026-07-13T23:00:10.317Z",
+            "timestamp": "2026-07-14T03:58:34.515Z",
             "url": null
           },
           "threads": {
             "status": "success",
-            "timestamp": "2026-07-13T23:00:10.317Z",
+            "timestamp": "2026-07-14T03:58:34.515Z",
             "url": null
           },
           "instagram": {
             "status": "success",
-            "timestamp": "2026-07-13T23:00:10.317Z",
+            "timestamp": "2026-07-14T03:58:34.515Z",
             "url": null
           },
           "devto": {
             "status": "success",
-            "timestamp": "2026-07-13T23:00:10.317Z",
+            "timestamp": "2026-07-14T03:58:34.515Z",
             "url": "https://dev.to/earthstarrising/how-to-turn-my-creative-process-into-an-sop-using-ai-di2"
           },
           "tumblr_voa": {
             "status": "success",
-            "timestamp": "2026-07-13T23:00:10.317Z",
-            "url": "https://vibrationofawesome.tumblr.com/post/822066349116424192"
+            "timestamp": "2026-07-14T03:58:34.515Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/822068192655671296"
           },
           "blogger": {
             "status": "success",
-            "timestamp": "2026-07-13T23:00:10.317Z",
-            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/reflections-on-how-to-turn-my-creative.html"
+            "timestamp": "2026-07-14T03:58:34.515Z",
+            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/reflections-on-how-to-turn-my-creative_01519757404.html"
           },
           "wordpress_earthstar": {
             "status": "success",
-            "timestamp": "2026-07-13T23:00:10.317Z",
-            "url": "https://earthstarrisingsun.wordpress.com/2026/07/13/how-to-turn-my-creative-process-into-an-sop-using-ai-earthstar/"
+            "timestamp": "2026-07-14T03:58:34.515Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/07/13/how-to-turn-my-creative-process-into-an-sop-using-ai-earthstar-2/"
           }
         },
-        "success_count": 10,
+        "success_count": 11,
         "failed_count": 0
       },
       {
@@ -10845,7 +10845,7 @@
     ],
     "platform_coverage": {
       "feeder": {
-        "successes": 120,
+        "successes": 121,
         "failures": 0,
         "total": 154
       },
@@ -10909,8 +10909,36 @@
     }
   },
   "visuals": {
-    "registry_count": 205,
+    "registry_count": 207,
     "registry_entries": [
+      {
+        "post_slug": "how-to-turn-my-creative-process-into-an-sop-using-ai",
+        "source": "boom",
+        "asset_type": "fallback",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": true,
+        "reused_from": "instagram",
+        "timestamp": "2026-07-14T03:58:05.311Z"
+      },
+      {
+        "post_slug": "how-to-turn-my-creative-process-into-an-sop-using-ai",
+        "source": "boom",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "vibration-of-awesome",
+        "reused": true,
+        "reused_from": "instagram",
+        "timestamp": "2026-07-14T03:58:05.307Z"
+      },
       {
         "post_slug": "how-to-turn-my-creative-process-into-an-sop-using-ai",
         "source": "ideogram",
@@ -13828,22 +13856,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 205,
-      "reused_count": 37,
-      "reuse_rate": 0.18
+      "total_entries": 207,
+      "reused_count": 39,
+      "reuse_rate": 0.188
     },
     "source_breakdown": {
-      "ideogram": 136,
-      "boom": 69
+      "boom": 71,
+      "ideogram": 136
     },
     "generation_counts": {
       "ideogram": 136
     },
     "platform_usage": {
-      "pinterest": 171,
-      "instagram": 143,
-      "bluesky_voa": 173,
-      "mastodon_voa": 173
+      "instagram": 144,
+      "bluesky_voa": 175,
+      "mastodon_voa": 175,
+      "pinterest": 172
     }
   },
   "clusters": {
@@ -14301,7 +14329,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-07-13T23:01:45.228Z",
+    "last_updated": "2026-07-14T03:58:05.298Z",
     "recent_hooks": [
       {
         "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -15185,6 +15213,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "how-to-turn-my-creative-process-into-an-sop-using-ai",
+        "format": "single-native-post",
+        "cadenceProfile": "standalone",
+        "density": "medium",
+        "openerStyle": "any",
+        "closerStyle": "complete",
+        "timestamp": "2026-07-14T03:58:05.298Z"
+      },
+      {
         "slug": "is-dean-graziosi-legit-a-clear-eyed-look-at-his-track-record",
         "format": "reflective-essay",
         "cadenceProfile": "slow-layered",
@@ -15444,15 +15481,6 @@
         "openerStyle": "identity-confession",
         "closerStyle": "invitation",
         "timestamp": "2026-07-12T22:54:01.632Z"
-      },
-      {
-        "slug": "how-to-turn-blog-posts-into-podcast-episodes",
-        "format": "short-native-insight",
-        "cadenceProfile": "compact",
-        "density": "light",
-        "openerStyle": "direct",
-        "closerStyle": "resonant",
-        "timestamp": "2026-07-12T22:52:06.858Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -15730,7 +15758,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-07-13T23:01:45.930Z",
+    "as_of": "2026-07-14T03:58:34.525Z",
     "next_estimated_window": "2026-07-14",
     "queue_runway_days": 96,
     "queue_runway_status": "healthy",
@@ -15872,9 +15900,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-07-13T23:01:45.919Z",
-    "source_event": "retry",
-    "export_duration_ms": 11,
+    "last_export_at": "2026-07-14T03:58:34.517Z",
+    "source_event": "syndication",
+    "export_duration_ms": 8,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
