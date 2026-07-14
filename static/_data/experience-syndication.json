@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T13:32:14.920Z",
+  "generatedAt": "2026-07-14T12:38:56.131Z",
   "cadence": {
     "maxCampaignsPerDay": 1,
     "allocation": "Fresh blog posts first; historical blog catch-up second; one queued experience campaign per daily slot.",
@@ -14,10 +14,10 @@
   "summary": {
     "liveExperiences": 8,
     "queued": 7,
-    "inProgress": 1,
-    "complete": 0,
+    "inProgress": 0,
+    "complete": 1,
     "blocked": 0,
-    "failedPlatformRetries": 1,
+    "failedPlatformRetries": 0,
     "cachedCompanionAssets": 2,
     "estimatedClaudeSpendUsd": 0.02,
     "nextExperienceScheduled": "Digital Attention Audit",
@@ -85,23 +85,28 @@
       "hubTitle": "Nervous System Regulation",
       "primaryPurpose": "Match how someone's nervous system feels right now to an actual short practice, not a generic breathing GIF.",
       "sourceHash": "1ccbe10a41e4aa97",
-      "status": "in_progress",
+      "status": "complete",
       "canonicalStatus": 200,
       "localCanonicalStatus": 200,
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.664Z",
-      "lastAttemptAt": "2026-07-13T13:32:14.704Z",
-      "completedAt": null,
+      "lastAttemptAt": "2026-07-14T12:38:55.976Z",
+      "completedAt": "2026-07-14T12:38:55.976Z",
       "nextScheduledAt": null,
       "platforms": {
         "blogger": {
-          "status": "failed",
-          "url": null,
-          "postId": null,
-          "error": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
+          "status": "success",
+          "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/why-your-breathing-exercises-arent.html",
+          "postId": "8586587355565776710",
+          "error": null,
           "cacheReused": true,
-          "generatedBy": "claude"
+          "generatedBy": "claude",
+          "verification": {
+            "ok": true,
+            "status": 200,
+            "canonicalLinkPresent": true
+          }
         },
         "wordpress_earthstar": {
           "status": "success",
@@ -120,7 +125,7 @@
       "cachedCompanionAssets": 2,
       "estimatedClaudeSpendUsd": 0.02,
       "inboundBlogRecommendations": 0,
-      "currentExternalBacklinkCoverage": 1,
+      "currentExternalBacklinkCoverage": 2,
       "dedicatedCompanionContent": true,
       "orphanedFromBacklinkEngine": false
     },
