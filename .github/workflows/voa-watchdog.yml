@@ -15,8 +15,6 @@ on:
       - "Drip Publish ~ Boom Frequency"
       - "Syndication Catch-up ~ Missed Posts"
     types: [completed]
-  schedule:
-    - cron: '30 7 * * *'   # 3:30am ET (07:30 UTC)
   workflow_dispatch:
 
 # Watchdog does NOT use the voa-publish-and-syndicate concurrency group.

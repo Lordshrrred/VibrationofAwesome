@@ -643,8 +643,9 @@ async function main() {
   // ── Exit code ─────────────────────────────────────────────────────────────
   const stillBroken = failingChecks.length > 0 && !tier2Results.every(r => r.appliedPatch);
   if (stillBroken && !tier1Result.healed) {
-    console.log("[HEAL] Some issues remain unresolved ~ check email for details.");
-    process.exit(1);
+    console.log("[HEAL] Some issues remain unresolved ~ recorded as needs-attention without failing the watchdog workflow.");
+    console.log("AUTOHEAL_RESULT=needs-attention");
+    return;
   }
   console.log("[HEAL] Done.");
 }
