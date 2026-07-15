@@ -7,43 +7,49 @@
     "voa_url": "https://vibrationofawesome.com/blog/boom/posts/7-day-content-plan-for-small-creators",
     "syndication": {
       "bluesky_voa": {
-        "status": "failed",
-        "url": null,
-        "timestamp": "2026-07-14T23:27:13.856Z",
-        "error": "env vars not set"
+        "status": "success",
+        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqntttgrsl2u",
+        "timestamp": "2026-07-15T04:07:25.321Z"
       },
       "mastodon_voa": {
-        "status": "failed",
-        "url": null,
-        "timestamp": "2026-07-14T23:27:13.856Z",
-        "error": "env vars not set"
+        "status": "success",
+        "url": "https://mastodon.social/@Vibrationofawesome/116922017781702595",
+        "timestamp": "2026-07-15T04:07:25.321Z"
       },
       "bluesky_esr": {
-        "status": "failed",
+        "status": "skipped",
         "url": null,
-        "timestamp": "2026-07-14T23:27:13.856Z",
-        "error": "env vars not set"
+        "timestamp": "2026-07-15T04:07:25.321Z",
+        "error": "skipped by social policy",
+        "skipped": true
       },
       "mastodon_esr": {
-        "status": "failed",
+        "status": "skipped",
         "url": null,
-        "timestamp": "2026-07-14T23:27:13.856Z",
-        "error": "env vars not set"
+        "timestamp": "2026-07-15T04:07:25.321Z",
+        "error": "skipped by social policy",
+        "skipped": true
       },
       "devto": {
         "status": "success",
         "url": "https://dev.to/earthstarrising/7-day-content-plan-for-small-creators-35ok",
-        "timestamp": "2026-07-14T23:27:13.856Z"
+        "timestamp": "2026-07-15T04:07:25.321Z",
+        "error": "already syndicated",
+        "skipped": true
       },
       "tumblr_voa": {
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/822158690794848256",
-        "timestamp": "2026-07-14T23:27:13.856Z"
+        "timestamp": "2026-07-15T04:07:25.321Z",
+        "error": "already syndicated",
+        "skipped": true
       },
       "blogger": {
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/the-consistency-trap-why-your-content_0294253909.html",
-        "timestamp": "2026-07-14T23:27:13.856Z"
+        "timestamp": "2026-07-15T04:07:25.321Z",
+        "error": "already syndicated",
+        "skipped": true
       },
       "wordpress_earthstar": {
         "status": "success",
@@ -149,7 +155,7 @@
       "mastodon_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-14T23:01:28.575Z",
+        "timestamp": "2026-07-15T04:07:47.913Z",
         "error": "Mastodon: Validation failed: Text can't be blank"
       },
       "bluesky_esr": {

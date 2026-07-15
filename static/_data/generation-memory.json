@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-14T23:01:28.082Z",
+  "lastUpdated": "2026-07-15T04:07:47.641Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-15T04:07:47.641Z"
+    },
+    {
+      "slug": "7-day-content-plan-for-small-creators",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-15T04:06:42.751Z"
+    },
+    {
+      "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
       "density": "light-medium",
@@ -1138,24 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-07-13T17:50:52.729Z"
-    },
-    {
-      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-13T17:50:42.258Z"
-    },
-    {
-      "slug": "why-buying-art-from-independent-artists-actually-matters",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-13T17:50:20.090Z"
     }
   ],
   "recentInstagramArchetypes": [
