@@ -1,16 +1,5 @@
 [
   {
-    "healedAt": "2026-06-01T13:09:19.870Z",
-    "trigger": "scheduled",
-    "failedRunUrl": null,
-    "tier1": {
-      "healed": false,
-      "detail": "No em dashes found."
-    },
-    "tier2": [],
-    "retriggered": false
-  },
-  {
     "healedAt": "2026-06-02T11:48:36.099Z",
     "trigger": "scheduled",
     "failedRunUrl": null,
@@ -1230,6 +1219,39 @@
           "secret_name": "DEVTO2_API_KEY",
           "new_value": "required: obtain from dev.to account 2 settings",
           "reason": "Second Dev.to account requires its own API key for independent syndication; missing key prevents health check from validating the account"
+        }
+      }
+    ],
+    "retriggered": false
+  },
+  {
+    "healedAt": "2026-07-16T23:07:46.427Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/29540958871",
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to auth",
+        "diagnosis": "DEVTO_API_KEY environment variable is invalid, expired, or revoked by Dev.to.",
+        "fix_type": "token_expired",
+        "confidence": "high",
+        "action": {
+          "token_name": "DEVTO_API_KEY",
+          "renewal_command": "Visit https://dev.to/settings/account and regenerate API key in dashboard, then update .env"
+        }
+      },
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "DEVTO2_API_KEY environment variable is missing from .env or deployment secrets.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "[obtain from Dev.to account 2 settings → API tokens]",
+          "reason": "Second Dev.to syndication account requires its own API key; currently undefined"
         }
       }
     ],
