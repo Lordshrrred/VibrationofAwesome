@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-16T17:02:20.899Z",
+  "lastUpdated": "2026-07-16T19:55:42.496Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "ai-advantage-for-freelancers-does-the-bootcamp-actually-help-you-get-more-clients",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-16T19:55:42.496Z"
+    },
+    {
       "slug": "how-to-check-if-an-email-is-a-scam-using-ai",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,15 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-07-14T03:59:52.112Z"
-    },
-    {
-      "slug": "is-dean-graziosi-legit-a-clear-eyed-look-at-his-track-record",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-14T03:59:36.531Z"
     }
   ],
   "recentInstagramArchetypes": [
