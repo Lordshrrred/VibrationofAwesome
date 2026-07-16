@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T03:49:00.699Z",
+  "generatedAt": "2026-07-16T07:04:07.882Z",
   "keywordGeneration": {
     "currentInventory": 23,
     "publishedInventory": 169,
@@ -14,13 +14,13 @@
     "mode": "maintenance",
     "backlogPosts": 0,
     "backlogUnits": 0,
-    "completedPerDay": 21.7,
+    "completedPerDay": 21.6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklinkUnitsPerDay": -1.7,
+    "netBacklinkUnitsPerDay": -1.6,
     "estimatedCatchUpDays": 0,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 15,
+    "distributionIncompleteUnits": 13,
     "verificationGaps": 625,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
@@ -71,7 +71,7 @@
           "complete": 125,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 2.5,
+          "averagePerDay": 2.4,
           "confirmed": 4,
           "verificationGaps": 121,
           "mainBlocker": ""
@@ -97,7 +97,7 @@
           "complete": 125,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 2.4,
+          "averagePerDay": 2.3,
           "confirmed": 125,
           "verificationGaps": 0,
           "mainBlocker": ""
@@ -108,25 +108,25 @@
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
           "eligiblePosts": 141,
-          "complete": 140,
-          "missing": 1,
-          "successRate": 99.3,
-          "averagePerDay": 6,
+          "complete": 141,
+          "missing": 0,
+          "successRate": 100,
+          "averagePerDay": 6.1,
           "confirmed": 4,
-          "verificationGaps": 136,
-          "mainBlocker": "env vars not set"
+          "verificationGaps": 137,
+          "mainBlocker": ""
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
           "eligiblePosts": 141,
-          "complete": 140,
-          "missing": 1,
-          "successRate": 99.3,
-          "averagePerDay": 6,
+          "complete": 141,
+          "missing": 0,
+          "successRate": 100,
+          "averagePerDay": 6.1,
           "confirmed": 4,
-          "verificationGaps": 136,
-          "mainBlocker": "env vars not set"
+          "verificationGaps": 137,
+          "mainBlocker": ""
         },
         {
           "key": "facebook_voa",
@@ -135,7 +135,7 @@
           "complete": 89,
           "missing": 13,
           "successRate": 87.3,
-          "averagePerDay": 1.7,
+          "averagePerDay": 1.6,
           "confirmed": 3,
           "verificationGaps": 86,
           "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
@@ -147,7 +147,7 @@
           "complete": 132,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 2.8,
+          "averagePerDay": 2.7,
           "confirmed": 0,
           "verificationGaps": 132,
           "mainBlocker": ""
@@ -159,7 +159,7 @@
           "complete": 101,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 1.7,
+          "averagePerDay": 1.6,
           "confirmed": 0,
           "verificationGaps": 101,
           "mainBlocker": ""
@@ -171,7 +171,7 @@
           "complete": 99,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 1.7,
+          "averagePerDay": 1.6,
           "confirmed": 0,
           "verificationGaps": 99,
           "mainBlocker": ""
@@ -182,14 +182,6 @@
       {
         "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
         "count": 13
-      },
-      {
-        "reason": "bluesky_voa: env vars not set",
-        "count": 1
-      },
-      {
-        "reason": "mastodon_voa: env vars not set",
-        "count": 1
       }
     ],
     "definitions": {
