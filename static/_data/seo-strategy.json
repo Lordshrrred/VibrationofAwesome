@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-07-16T16:00:58.507Z",
+  "generatedAt": "2026-07-16T17:48:29.505Z",
   "keywordGeneration": {
-    "currentInventory": 22,
-    "publishedInventory": 170,
-    "estimatedDaysRemaining": 4.4,
+    "currentInventory": 21,
+    "publishedInventory": 171,
+    "estimatedDaysRemaining": 4.2,
     "publishingCadencePerDay": 5,
     "pauseThresholdDays": 60,
     "resumeThresholdDays": 21,
     "status": "running",
-    "reason": "4.4 publishing days of queue inventory remain. Curated expansion should continue."
+    "reason": "4.2 publishing days of queue inventory remain. Curated expansion should continue."
   },
   "backlinks": {
     "mode": "maintenance",
     "backlogPosts": 0,
     "backlogUnits": 0,
-    "completedPerDay": 21.6,
+    "completedPerDay": 21.8,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklinkUnitsPerDay": -1.6,
+    "netBacklinkUnitsPerDay": -1.8,
     "estimatedCatchUpDays": 0,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 15,
-    "verificationGaps": 629,
+    "distributionIncompleteUnits": 13,
+    "verificationGaps": 633,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
     "largestDelayPlatform": "Facebook VOA",
@@ -31,37 +31,37 @@
         {
           "key": "blogger",
           "platform": "Blogger",
-          "eligiblePosts": 163,
-          "complete": 163,
+          "eligiblePosts": 164,
+          "complete": 164,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 6.6,
+          "averagePerDay": 6.7,
           "confirmed": 7,
-          "verificationGaps": 156,
+          "verificationGaps": 157,
           "mainBlocker": ""
         },
         {
           "key": "wordpress_earthstar",
           "platform": "WordPress",
-          "eligiblePosts": 163,
-          "complete": 163,
+          "eligiblePosts": 164,
+          "complete": 164,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 4.9,
           "confirmed": 5,
-          "verificationGaps": 158,
+          "verificationGaps": 159,
           "mainBlocker": ""
         },
         {
           "key": "tumblr_voa",
           "platform": "Tumblr",
-          "eligiblePosts": 163,
-          "complete": 163,
+          "eligiblePosts": 164,
+          "complete": 164,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 6.7,
+          "averagePerDay": 6.8,
           "confirmed": 6,
-          "verificationGaps": 157,
+          "verificationGaps": 158,
           "mainBlocker": ""
         },
         {
@@ -79,13 +79,13 @@
         {
           "key": "devto2",
           "platform": "Dev.to 2",
-          "eligiblePosts": 37,
-          "complete": 37,
+          "eligiblePosts": 38,
+          "complete": 38,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 1.1,
           "confirmed": 1,
-          "verificationGaps": 36,
+          "verificationGaps": 37,
           "mainBlocker": ""
         }
       ],
@@ -108,25 +108,25 @@
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
           "eligiblePosts": 142,
-          "complete": 141,
-          "missing": 1,
-          "successRate": 99.3,
+          "complete": 142,
+          "missing": 0,
+          "successRate": 100,
           "averagePerDay": 6.1,
           "confirmed": 4,
-          "verificationGaps": 137,
-          "mainBlocker": "env vars not set"
+          "verificationGaps": 138,
+          "mainBlocker": ""
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
           "eligiblePosts": 142,
-          "complete": 141,
-          "missing": 1,
-          "successRate": 99.3,
+          "complete": 142,
+          "missing": 0,
+          "successRate": 100,
           "averagePerDay": 6.1,
           "confirmed": 4,
-          "verificationGaps": 137,
-          "mainBlocker": "env vars not set"
+          "verificationGaps": 138,
+          "mainBlocker": ""
         },
         {
           "key": "facebook_voa",
@@ -143,13 +143,13 @@
         {
           "key": "pinterest",
           "platform": "Pinterest",
-          "eligiblePosts": 133,
-          "complete": 133,
+          "eligiblePosts": 134,
+          "complete": 134,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 2.7,
           "confirmed": 0,
-          "verificationGaps": 133,
+          "verificationGaps": 134,
           "mainBlocker": ""
         },
         {
@@ -182,14 +182,6 @@
       {
         "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
         "count": 13
-      },
-      {
-        "reason": "bluesky_voa: env vars not set",
-        "count": 1
-      },
-      {
-        "reason": "mastodon_voa: env vars not set",
-        "count": 1
       }
     ],
     "definitions": {
