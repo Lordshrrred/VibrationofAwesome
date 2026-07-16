@@ -1,20 +1,16 @@
 {
-  "lastChecked": "2026-07-16T16:59:44.154Z",
-  "status": "broken",
-  "passed": 14,
-  "failed": 2,
+  "lastChecked": "2026-07-16T19:54:51.077Z",
+  "status": "ok",
+  "passed": 16,
+  "failed": 0,
   "total": 16,
-  "topFix": {
-    "name": "Dev.to auth",
-    "detail": "unauthorized",
-    "repairCommand": "npm run check:syndication -- --write"
-  },
+  "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
     "time": "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
-    "remaining": 22,
-    "published": 170,
+    "remaining": 21,
+    "published": 171,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -22,7 +18,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=22"
+      "detail": "status=active, rate=1/run, time=13:00 UTC (9am ET) and 22:00 UTC (6pm ET), remaining=21"
     },
     {
       "name": "Publer accounts",
@@ -71,15 +67,13 @@
     },
     {
       "name": "Dev.to auth",
-      "ok": false,
-      "detail": "unauthorized",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "earthstarrising"
     },
     {
       "name": "Dev.to account 2 auth",
-      "ok": false,
-      "detail": "unauthorized",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "awesomesaucyvibe"
     },
     {
       "name": "Tumblr VOA auth",
@@ -115,9 +109,9 @@
   },
   "queue_warning": {
     "level": "warning",
-    "queue_remaining": 22,
-    "days_remaining": 11,
-    "checked_at": "2026-07-16T16:59:44.210Z",
-    "message": "Queue has 22 post(s) left (~11 days). Replenish with generate-all-drafts.js."
+    "queue_remaining": 21,
+    "days_remaining": 10,
+    "checked_at": "2026-07-16T19:54:51.135Z",
+    "message": "Queue has 21 post(s) left (~10 days). Replenish with generate-all-drafts.js."
   }
 }
