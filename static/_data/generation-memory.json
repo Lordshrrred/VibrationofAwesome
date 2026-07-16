@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-16T04:10:20.882Z",
+  "lastUpdated": "2026-07-16T15:09:17.150Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-check-if-an-email-is-a-scam-using-ai",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-16T15:09:02.353Z"
+    },
+    {
       "slug": "how-to-organize-scattered-thoughts-for-creative-projects",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,18 +1156,18 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-07-14T03:59:07.251Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-14T03:58:49.792Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-check-if-an-email-is-a-scam-using-ai",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-07-16T15:09:17.150Z"
+    },
     {
       "slug": "how-to-organize-scattered-thoughts-for-creative-projects",
       "archetype": "abstract-creator-life",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-06-21T06:02:30.079Z"
-    },
-    {
-      "slug": "ai-advantage-for-entrepreneurs-does-this-actually-help-your-business",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-20T23:12:33.724Z"
     }
   ]
 }
