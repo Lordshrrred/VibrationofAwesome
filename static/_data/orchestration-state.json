@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-17T19:59:41.145Z",
+  "generated_at": "2026-07-17T19:59:55.960Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -673,7 +673,7 @@
         "title": "Daily News Brief For Creators",
         "lane": "boom",
         "date": "2026-07-17",
-        "publish_status": "partial",
+        "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -686,9 +686,9 @@
             "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqu7xc4lo727"
           },
           "mastodon_voa": {
-            "status": "failed",
-            "timestamp": "2026-07-17T16:59:24.461Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-07-17T19:59:55.924Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/116937090358094688"
           },
           "facebook_voa": {
             "status": "not_attempted",
@@ -731,8 +731,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/07/17/daily-news-brief-for-creators-earthstar-2/"
           }
         },
-        "success_count": 6,
-        "failed_count": 1
+        "success_count": 7,
+        "failed_count": 0
       },
       {
         "slug": "how-to-write-linkedin-headlines-that-get-engagement",
@@ -11693,11 +11693,6 @@
     ],
     "retry_backlog": [
       {
-        "slug": "daily-news-brief-for-creators",
-        "platform": "mastodon_voa",
-        "timestamp": "2026-07-17T16:59:24.461Z"
-      },
-      {
         "slug": "how-to-heal-emotionally-when-you-dont-know-where-to-start",
         "platform": "facebook_voa",
         "timestamp": "2026-06-09T16:31:11.072Z"
@@ -11775,8 +11770,8 @@
         "total": 169
       },
       "mastodon_voa": {
-        "successes": 143,
-        "failures": 1,
+        "successes": 144,
+        "failures": 0,
         "total": 169
       },
       "facebook_voa": {
@@ -11822,10 +11817,10 @@
     },
     "summary": {
       "total_posts": 169,
-      "fully_syndicated": 155,
-      "partial": 14,
+      "fully_syndicated": 156,
+      "partial": 13,
       "pending": 0,
-      "retry_backlog_count": 14
+      "retry_backlog_count": 13
     }
   },
   "visuals": {
@@ -15537,7 +15532,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-07-17T19:58:26.311Z",
+    "last_updated": "2026-07-17T19:59:55.088Z",
     "recent_hooks": [
       {
         "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -16421,6 +16416,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "daily-news-brief-for-creators",
+        "format": "reflective-essay",
+        "cadenceProfile": "slow-layered",
+        "density": "dense",
+        "openerStyle": "grounded-observation",
+        "closerStyle": "quiet-wisdom",
+        "timestamp": "2026-07-17T19:59:55.088Z"
+      },
+      {
         "slug": "ai-advantage-for-authors-and-writers-what-the-bootcamp-teaches-thats-actually-useful",
         "format": "conversational-reflection",
         "cadenceProfile": "casual-spoken",
@@ -16680,15 +16684,6 @@
         "openerStyle": "mid-conversation",
         "closerStyle": "natural-landing",
         "timestamp": "2026-07-14T17:01:46.389Z"
-      },
-      {
-        "slug": "ai-advantage-certificate-what-you-actually-get-when-you-finish-the-bootcamp",
-        "format": "reflective-essay",
-        "cadenceProfile": "slow-layered",
-        "density": "dense",
-        "openerStyle": "grounded-observation",
-        "closerStyle": "quiet-wisdom",
-        "timestamp": "2026-07-14T17:00:17.513Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -16966,7 +16961,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-07-17T19:59:41.145Z",
+    "as_of": "2026-07-17T19:59:55.960Z",
     "next_estimated_window": "2026-07-18",
     "queue_runway_days": 96,
     "queue_runway_status": "healthy",
@@ -17052,7 +17047,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 14,
+    "retry_backlog_count": 13,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -17112,9 +17107,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-07-17T19:59:41.137Z",
-    "source_event": "syndication",
-    "export_duration_ms": 8,
+    "last_export_at": "2026-07-17T19:59:55.949Z",
+    "source_event": "retry",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
