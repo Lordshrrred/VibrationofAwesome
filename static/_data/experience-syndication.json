@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T12:48:48.990Z",
+  "generatedAt": "2026-07-17T12:21:04.502Z",
   "cadence": {
     "maxCampaignsPerDay": 1,
     "allocation": "Fresh blog posts first; historical blog catch-up second; one queued experience campaign per daily slot.",
@@ -13,15 +13,15 @@
   },
   "summary": {
     "liveExperiences": 8,
-    "queued": 5,
+    "queued": 4,
     "inProgress": 0,
-    "complete": 3,
+    "complete": 4,
     "blocked": 0,
     "failedPlatformRetries": 0,
-    "cachedCompanionAssets": 4,
-    "estimatedClaudeSpendUsd": 0.04,
-    "nextExperienceScheduled": "The Presence Key",
-    "nextExperienceScheduledAt": "2026-07-17T12:48:48.990Z"
+    "cachedCompanionAssets": 5,
+    "estimatedClaudeSpendUsd": 0.05,
+    "nextExperienceScheduled": "The Compass Point",
+    "nextExperienceScheduledAt": "2026-07-18T12:21:04.502Z"
   },
   "campaigns": [
     {
@@ -166,22 +166,36 @@
       "hubTitle": "Meditation",
       "primaryPurpose": "Match a short settling sequence to what's actually available right now, not the ideal stillness a meditation app assumes.",
       "sourceHash": "1740cca33f7ba73d",
-      "status": "queued",
+      "status": "complete",
       "canonicalStatus": 200,
       "localCanonicalStatus": 200,
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.664Z",
-      "lastAttemptAt": null,
-      "completedAt": null,
+      "lastAttemptAt": "2026-07-17T12:21:04.348Z",
+      "completedAt": "2026-07-17T12:21:04.348Z",
       "nextScheduledAt": "2026-07-17T12:48:48.990Z",
-      "platforms": {},
-      "cachedCompanionAssets": 0,
-      "estimatedClaudeSpendUsd": 0,
+      "platforms": {
+        "wordpress_earthstar": {
+          "status": "success",
+          "url": "https://earthstarrisingsun.wordpress.com/2026/07/17/the-presence-key-experience-companion/",
+          "postId": "232",
+          "error": null,
+          "cacheReused": false,
+          "generatedBy": "claude",
+          "verification": {
+            "ok": true,
+            "status": 200,
+            "canonicalLinkPresent": true
+          }
+        }
+      },
+      "cachedCompanionAssets": 1,
+      "estimatedClaudeSpendUsd": 0.01,
       "inboundBlogRecommendations": 0,
-      "currentExternalBacklinkCoverage": 0,
-      "dedicatedCompanionContent": false,
-      "orphanedFromBacklinkEngine": true
+      "currentExternalBacklinkCoverage": 1,
+      "dedicatedCompanionContent": true,
+      "orphanedFromBacklinkEngine": false
     },
     {
       "id": "the-compass-point",
@@ -200,7 +214,7 @@
       "queuedAt": "2026-07-12T04:37:51.665Z",
       "lastAttemptAt": null,
       "completedAt": null,
-      "nextScheduledAt": null,
+      "nextScheduledAt": "2026-07-18T12:21:04.502Z",
       "platforms": {},
       "cachedCompanionAssets": 0,
       "estimatedClaudeSpendUsd": 0,
