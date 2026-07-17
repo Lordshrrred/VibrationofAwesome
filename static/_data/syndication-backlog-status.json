@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T19:41:36.743Z",
+  "generatedAt": "2026-07-17T21:24:27.066Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,19 +14,19 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 168,
+    "totalTrackedPosts": 169,
     "backlogPosts": 0,
     "backlinkCapableMissingUnits": 0,
-    "backlinkVerificationGaps": 649,
+    "backlinkVerificationGaps": 653,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 14,
+    "distributionIncompleteUnits": 13,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 314,
-    "completedBacklinkUnitsPerDay": 22.4,
+    "completedBacklinkUnitsInWindow": 316,
+    "completedBacklinkUnitsPerDay": 22.6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": -2.4,
+    "netBacklogChangePerDay": -2.6,
     "estimatedCatchUpDays": 0,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -36,37 +36,37 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 168,
-        "complete": 168,
+        "eligiblePosts": 169,
+        "complete": 169,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 7,
+        "averagePerDay": 7.1,
         "confirmed": 7,
-        "verificationGaps": 161,
+        "verificationGaps": 162,
         "mainBlocker": ""
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 168,
-        "complete": 168,
+        "eligiblePosts": 169,
+        "complete": 169,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 4.9,
         "confirmed": 5,
-        "verificationGaps": 163,
+        "verificationGaps": 164,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 168,
-        "complete": 168,
+        "eligiblePosts": 169,
+        "complete": 169,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 7.1,
         "confirmed": 6,
-        "verificationGaps": 162,
+        "verificationGaps": 163,
         "mainBlocker": ""
       },
       {
@@ -84,13 +84,13 @@
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 40,
-        "complete": 40,
+        "eligiblePosts": 41,
+        "complete": 41,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.1,
         "confirmed": 1,
-        "verificationGaps": 39,
+        "verificationGaps": 40,
         "mainBlocker": ""
       }
     ],
@@ -125,13 +125,13 @@
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
         "eligiblePosts": 144,
-        "complete": 143,
-        "missing": 1,
-        "successRate": 99.3,
-        "averagePerDay": 6.2,
+        "complete": 144,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 6.3,
         "confirmed": 4,
-        "verificationGaps": 139,
-        "mainBlocker": "Mastodon: Validation failed: Text can't be blank"
+        "verificationGaps": 140,
+        "mainBlocker": ""
       },
       {
         "key": "facebook_voa",
@@ -148,13 +148,13 @@
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 136,
-        "complete": 136,
+        "eligiblePosts": 137,
+        "complete": 137,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2.6,
         "confirmed": 0,
-        "verificationGaps": 136,
+        "verificationGaps": 137,
         "mainBlocker": ""
       },
       {
@@ -187,10 +187,6 @@
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
-    },
-    {
-      "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-      "count": 1
     }
   ],
   "prioritizedBacklog": []
