@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T12:21:04.502Z",
+  "generatedAt": "2026-07-18T12:03:29.639Z",
   "cadence": {
     "maxCampaignsPerDay": 1,
     "allocation": "Fresh blog posts first; historical blog catch-up second; one queued experience campaign per daily slot.",
@@ -13,15 +13,15 @@
   },
   "summary": {
     "liveExperiences": 8,
-    "queued": 4,
+    "queued": 3,
     "inProgress": 0,
-    "complete": 4,
+    "complete": 5,
     "blocked": 0,
     "failedPlatformRetries": 0,
-    "cachedCompanionAssets": 5,
-    "estimatedClaudeSpendUsd": 0.05,
-    "nextExperienceScheduled": "The Compass Point",
-    "nextExperienceScheduledAt": "2026-07-18T12:21:04.502Z"
+    "cachedCompanionAssets": 6,
+    "estimatedClaudeSpendUsd": 0.060000000000000005,
+    "nextExperienceScheduled": "The Honest Mirror",
+    "nextExperienceScheduledAt": "2026-07-19T12:03:29.639Z"
   },
   "campaigns": [
     {
@@ -206,22 +206,36 @@
       "hubTitle": "Purpose",
       "primaryPurpose": "Name the one direction a reader's energy is already leaning, instead of demanding a five-year plan.",
       "sourceHash": "4e27de0093c9b973",
-      "status": "queued",
+      "status": "complete",
       "canonicalStatus": 200,
       "localCanonicalStatus": 200,
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.665Z",
-      "lastAttemptAt": null,
-      "completedAt": null,
+      "lastAttemptAt": "2026-07-18T12:03:29.495Z",
+      "completedAt": "2026-07-18T12:03:29.495Z",
       "nextScheduledAt": "2026-07-18T12:21:04.502Z",
-      "platforms": {},
-      "cachedCompanionAssets": 0,
-      "estimatedClaudeSpendUsd": 0,
+      "platforms": {
+        "wordpress_earthstar": {
+          "status": "success",
+          "url": "https://earthstarrisingsun.wordpress.com/2026/07/18/the-compass-point-experience-companion/",
+          "postId": "239",
+          "error": null,
+          "cacheReused": false,
+          "generatedBy": "claude",
+          "verification": {
+            "ok": true,
+            "status": 200,
+            "canonicalLinkPresent": true
+          }
+        }
+      },
+      "cachedCompanionAssets": 1,
+      "estimatedClaudeSpendUsd": 0.01,
       "inboundBlogRecommendations": 0,
-      "currentExternalBacklinkCoverage": 0,
-      "dedicatedCompanionContent": false,
-      "orphanedFromBacklinkEngine": true
+      "currentExternalBacklinkCoverage": 1,
+      "dedicatedCompanionContent": true,
+      "orphanedFromBacklinkEngine": false
     },
     {
       "id": "the-honest-mirror",
@@ -240,7 +254,7 @@
       "queuedAt": "2026-07-12T04:37:51.665Z",
       "lastAttemptAt": null,
       "completedAt": null,
-      "nextScheduledAt": null,
+      "nextScheduledAt": "2026-07-19T12:03:29.639Z",
       "platforms": {},
       "cachedCompanionAssets": 0,
       "estimatedClaudeSpendUsd": 0,
