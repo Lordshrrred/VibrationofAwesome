@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-17T22:54:46.439Z",
+  "generated_at": "2026-07-18T03:57:22.138Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -544,62 +544,62 @@
         "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-07-17T22:53:48.719Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/one-habit-per-month-system-for-creatives-shift.html"
           },
           "bluesky_voa": {
             "status": "success",
-            "timestamp": "2026-07-17T22:54:46.429Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqutqdihpy2e"
+            "timestamp": "2026-07-18T03:57:22.127Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mqveolhazb2e"
           },
           "mastodon_voa": {
             "status": "success",
-            "timestamp": "2026-07-17T22:54:46.429Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116937772745001713"
+            "timestamp": "2026-07-18T03:57:22.127Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/116938965115652437"
           },
           "facebook_voa": {
             "status": "success",
-            "timestamp": "2026-07-17T22:54:46.429Z",
+            "timestamp": "2026-07-18T03:57:22.127Z",
             "url": null
           },
           "pinterest": {
             "status": "success",
-            "timestamp": "2026-07-17T22:54:46.429Z",
+            "timestamp": "2026-07-18T03:57:22.127Z",
             "url": null
           },
           "threads": {
             "status": "success",
-            "timestamp": "2026-07-17T22:54:46.429Z",
+            "timestamp": "2026-07-18T03:57:22.127Z",
             "url": null
           },
           "instagram": {
             "status": "success",
-            "timestamp": "2026-07-17T22:54:46.429Z",
+            "timestamp": "2026-07-18T03:57:22.127Z",
             "url": null
           },
           "devto": {
             "status": "success",
-            "timestamp": "2026-07-17T22:54:46.429Z",
+            "timestamp": "2026-07-18T03:57:22.127Z",
             "url": "https://dev.to/earthstarrising/one-habit-per-month-system-for-creatives-3k02"
           },
           "tumblr_voa": {
             "status": "success",
-            "timestamp": "2026-07-17T22:54:46.429Z",
-            "url": "https://vibrationofawesome.tumblr.com/post/822428395544641536"
+            "timestamp": "2026-07-18T03:57:22.127Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/822430583863066624"
           },
           "blogger": {
             "status": "success",
-            "timestamp": "2026-07-17T22:54:46.429Z",
-            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/reflections-on-one-habit-per-month.html"
+            "timestamp": "2026-07-18T03:57:22.127Z",
+            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/reflections-on-one-habit-per-month_0419379636.html"
           },
           "wordpress_earthstar": {
             "status": "success",
-            "timestamp": "2026-07-17T22:54:46.429Z",
-            "url": "https://earthstarrisingsun.wordpress.com/2026/07/17/one-habit-per-month-system-for-creatives-earthstar/"
+            "timestamp": "2026-07-18T03:57:22.127Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/07/17/one-habit-per-month-system-for-creatives-earthstar-2/"
           }
         },
-        "success_count": 10,
+        "success_count": 11,
         "failed_count": 0
       },
       {
@@ -11826,7 +11826,7 @@
     ],
     "platform_coverage": {
       "feeder": {
-        "successes": 128,
+        "successes": 129,
         "failures": 0,
         "total": 170
       },
@@ -11890,8 +11890,36 @@
     }
   },
   "visuals": {
-    "registry_count": 227,
+    "registry_count": 229,
     "registry_entries": [
+      {
+        "post_slug": "one-habit-per-month-system-for-creatives",
+        "source": "boom",
+        "asset_type": "fallback",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": true,
+        "reused_from": "instagram",
+        "timestamp": "2026-07-18T03:56:38.798Z"
+      },
+      {
+        "post_slug": "one-habit-per-month-system-for-creatives",
+        "source": "boom",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "vibration-of-awesome",
+        "reused": true,
+        "reused_from": "instagram",
+        "timestamp": "2026-07-18T03:56:38.794Z"
+      },
       {
         "post_slug": "one-habit-per-month-system-for-creatives",
         "source": "ideogram",
@@ -15125,22 +15153,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 227,
-      "reused_count": 43,
-      "reuse_rate": 0.189
+      "total_entries": 229,
+      "reused_count": 45,
+      "reuse_rate": 0.197
     },
     "source_breakdown": {
-      "ideogram": 152,
-      "boom": 75
+      "boom": 77,
+      "ideogram": 152
     },
     "generation_counts": {
       "ideogram": 152
     },
     "platform_usage": {
-      "pinterest": 190,
-      "instagram": 154,
-      "bluesky_voa": 195,
-      "mastodon_voa": 195
+      "instagram": 155,
+      "bluesky_voa": 197,
+      "mastodon_voa": 197,
+      "pinterest": 191
     }
   },
   "clusters": {
@@ -15614,7 +15642,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-07-17T22:53:22.846Z",
+    "last_updated": "2026-07-18T03:56:38.785Z",
     "recent_hooks": [
       {
         "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -16499,6 +16527,15 @@
     "recent_threads_formats": [
       {
         "slug": "one-habit-per-month-system-for-creatives",
+        "format": "tension-revelation",
+        "cadenceProfile": "tension-then-release",
+        "density": "medium-dense",
+        "openerStyle": "contradiction",
+        "closerStyle": "earned-realization",
+        "timestamp": "2026-07-18T03:56:38.785Z"
+      },
+      {
+        "slug": "one-habit-per-month-system-for-creatives",
         "format": "single-native-post",
         "cadenceProfile": "standalone",
         "density": "medium",
@@ -16757,15 +16794,6 @@
         "openerStyle": "strong-declarative",
         "closerStyle": "worldview-shift",
         "timestamp": "2026-07-14T17:02:19.585Z"
-      },
-      {
-        "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
-        "format": "tension-revelation",
-        "cadenceProfile": "tension-then-release",
-        "density": "medium-dense",
-        "openerStyle": "contradiction",
-        "closerStyle": "earned-realization",
-        "timestamp": "2026-07-14T17:02:03.460Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -17043,7 +17071,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-07-17T22:54:46.439Z",
+    "as_of": "2026-07-18T03:57:22.138Z",
     "next_estimated_window": "2026-07-18",
     "queue_runway_days": 96,
     "queue_runway_status": "healthy",
@@ -17189,9 +17217,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-07-17T22:54:46.431Z",
+    "last_export_at": "2026-07-18T03:57:22.129Z",
     "source_event": "syndication",
-    "export_duration_ms": 8,
+    "export_duration_ms": 9,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
