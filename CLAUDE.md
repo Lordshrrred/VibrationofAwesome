@@ -90,6 +90,12 @@ Hugo watches `content/posts/*.md` and renders with `layouts/` templates. The `hu
 
 **Known gap, not yet fixed:** no favicon exists anywhere on the site (not in `layouts/_default/baseof.html`, not in any post, no `static/favicon.ico`). Needs actual brand art direction, not a placeholder ~ flagged for a future pass.
 
+## Legacy archive redirects (Matt lane)
+
+The 16 `isArchive: true` posts in `static/_data/matt-posts.json` (old pre-2026 content like `self-love-acceptance`, `vibration-of-awesome`, `indigo-children-*`) live at `static/blog/matt/posts/{slug}/index.html`. Old external links sometimes use a flat `{slug}.html` form for these ~ that compatibility redirect is handled via a `vercel.json` `redirects` entry (`/blog/matt/posts/{slug}.html` → the real directory URL), generated automatically by `scripts/generate-legacy-redirects.js`.
+
+**Do not** create a physical `static/blog/matt/posts/{slug}.html` file for this purpose ~ under Vercel's `cleanUrls: true`, a flat `{slug}.html` file takes routing priority over `{slug}/index.html` for the clean URL, so the flat file silently shadows the real article at its own canonical URL. This exact bug shipped and went undetected until Google Search Console flagged it (`Excluded by 'noindex' tag` for 3 posts already crawled, `Discovered - currently not indexed` for the other 13) ~ found and fixed 2026-07-19. `generate-legacy-redirects.js` now writes to `vercel.json` instead of creating the colliding file, and guards `parseArchiveCanonical()`'s legacy-path branch against writing back over the same file it just read the canonical tag from (the original bug: an archive post's canonical self-references its own URL, so the "legacy path" resolved to the post's own file, and `writeRedirect()` overwrote the real article with a redirect-to-itself stub).
+
 ## Environment Variables
 Copy `.env.example` to `.env`. Required keys:
 - `ANTHROPIC_API_KEY` ~ content generation and AURA chatbot
@@ -283,6 +289,8 @@ The active drip queue currently mixes normal posts and art-buyer extra posts. At
 **To replenish**: `node scripts/generate-all-drafts.js` ~ generates a new batch of boom drafts and adds them to the queue.
 
 Do not wait for the queue to hit zero. Replenish proactively when the warning fires.
+
+**Drafts are deleted on publish (fixed 2026-07-19):** `drip-publish.js` copies a draft from `static/blog/boom/drafts/` to `static/blog/boom/posts/`, then deletes the source draft file (both on a normal publish and on the collision-guard path where `posts/` already has the file). Previously the draft was never deleted, so every published post left a duplicate-content file sitting in the publicly-crawlable `drafts/` directory ~ 163 stale duplicates had accumulated before this was caught via a Google Search Console "Alternate page with proper canonical tag" report and cleaned up. `static/blog/boom/drafts/` is also now blocked in `robots.txt` as defense-in-depth for the legitimate pending queue.
 
 ---
 

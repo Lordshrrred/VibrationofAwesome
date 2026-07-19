@@ -4,6 +4,11 @@
  *
  * Creates compatibility redirects for:
  * - archive Matt posts that now live at directory URLs but are still linked as .html
+ *   (handled via a vercel.json redirect rule, NOT a physical `{slug}.html` file --
+ *   a physical file at that path shadows `{slug}/index.html` under Vercel's cleanUrls
+ *   routing, which silently served the redirect stub instead of the real article at
+ *   the canonical URL for all 16 archive posts. Discovered via GSC "Excluded by
+ *   noindex tag" / "Discovered - currently not indexed" reports 2026-07-18.)
  * - historical root-level archive canonicals from the original site
  * - the old /free-ebook/ CTA path that now lives at /field-guide/
  */
@@ -17,6 +22,7 @@ const ROOT = path.resolve(__dirname, "..");
 const STATIC_ROOT = path.join(ROOT, "static");
 const SITE_ORIGIN = "https://vibrationofawesome.com";
 const MATT_POSTS_FILE = path.join(STATIC_ROOT, "_data", "matt-posts.json");
+const VERCEL_JSON_FILE = path.join(ROOT, "vercel.json");
 
 function ensureDir(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -62,9 +68,32 @@ function parseArchiveCanonical(slug) {
   }
 }
 
+function normalizePath(p) {
+  return p.replace(/\/+$/, "/") || "/";
+}
+
+function upsertVercelRedirects(newRedirects) {
+  if (!newRedirects.length) return 0;
+  const config = JSON.parse(fs.readFileSync(VERCEL_JSON_FILE, "utf8"));
+  config.redirects = config.redirects || [];
+  const existingSources = new Set(config.redirects.map((r) => r.source));
+  let added = 0;
+  for (const r of newRedirects) {
+    if (existingSources.has(r.source)) continue;
+    config.redirects.push(r);
+    existingSources.add(r.source);
+    added += 1;
+  }
+  if (added > 0) {
+    fs.writeFileSync(VERCEL_JSON_FILE, JSON.stringify(config, null, 2) + "\n", "utf8");
+  }
+  return added;
+}
+
 function main() {
   const mattPosts = JSON.parse(fs.readFileSync(MATT_POSTS_FILE, "utf8"));
   let written = 0;
+  const vercelRedirects = [];
 
   for (const post of mattPosts) {
     if (!post?.slug || !post?.url) continue;
@@ -78,18 +107,17 @@ function main() {
 
     if (!post.isArchive) continue;
 
-    const compatibilityHtml = path.join(
-      STATIC_ROOT,
-      "blog",
-      "matt",
-      "posts",
-      `${post.slug}.html`
-    );
-    writeRedirect(compatibilityHtml, post.url, `${post.title} | Redirect`);
-    written += 1;
+    // Old .html-style links to archive posts now redirect via vercel.json instead of a
+    // physical `{slug}.html` file, which would shadow the real `{slug}/index.html` content
+    // under Vercel's cleanUrls routing (see file header note).
+    vercelRedirects.push({
+      source: `/blog/matt/posts/${post.slug}.html`,
+      destination: post.url,
+      permanent: true,
+    });
 
     const legacyPath = parseArchiveCanonical(post.slug);
-    if (legacyPath && legacyPath !== "/") {
+    if (legacyPath && legacyPath !== "/" && normalizePath(legacyPath) !== normalizePath(post.url)) {
       const legacyFile = path.join(STATIC_ROOT, legacyPath.replace(/^\/+/, ""), "index.html");
       writeRedirect(legacyFile, post.url, `${post.title} | Redirect`);
       written += 1;
@@ -103,7 +131,9 @@ function main() {
   );
   written += 1;
 
-  console.log(`Generated ${written} legacy redirect files.`);
+  const addedRedirects = upsertVercelRedirects(vercelRedirects);
+
+  console.log(`Generated ${written} legacy redirect files, added ${addedRedirects} vercel.json redirects.`);
 }
 
 main();

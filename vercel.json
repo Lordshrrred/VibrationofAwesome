@@ -13,9 +13,105 @@
     }
   },
   "redirects": [
-    { "source": "/analytics", "destination": "/dashboard/analytics", "permanent": false },
-    { "source": "/analytics/", "destination": "/dashboard/analytics", "permanent": false },
-    { "source": "/api/orchestration-state", "destination": "/_data/orchestration-state.json", "permanent": false },
-    { "source": "/api/check-url", "destination": "/", "permanent": false }
+    {
+      "source": "/analytics",
+      "destination": "/dashboard/analytics",
+      "permanent": false
+    },
+    {
+      "source": "/analytics/",
+      "destination": "/dashboard/analytics",
+      "permanent": false
+    },
+    {
+      "source": "/api/orchestration-state",
+      "destination": "/_data/orchestration-state.json",
+      "permanent": false
+    },
+    {
+      "source": "/api/check-url",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/blog/matt/posts/best-hair-stylist-in-st-pete.html",
+      "destination": "/blog/matt/posts/best-hair-stylist-in-st-pete/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/how-to-find-happiness-without-a-partner.html",
+      "destination": "/blog/matt/posts/how-to-find-happiness-without-a-partner/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/light-workers-communication-impacting-the-masses.html",
+      "destination": "/blog/matt/posts/light-workers-communication-impacting-the-masses/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/self-love-acceptance.html",
+      "destination": "/blog/matt/posts/self-love-acceptance/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/qi-gong-understanding-chi-energy.html",
+      "destination": "/blog/matt/posts/qi-gong-understanding-chi-energy/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/vibration-of-awesome.html",
+      "destination": "/blog/matt/posts/vibration-of-awesome/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/paradigm-of-abundance.html",
+      "destination": "/blog/matt/posts/paradigm-of-abundance/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/empower-your-life.html",
+      "destination": "/blog/matt/posts/empower-your-life/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/synonyms-for-awesome.html",
+      "destination": "/blog/matt/posts/synonyms-for-awesome/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/law-of-attraction-manifesting-abundance.html",
+      "destination": "/blog/matt/posts/law-of-attraction-manifesting-abundance/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/ayahuasca-experience.html",
+      "destination": "/blog/matt/posts/ayahuasca-experience/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/the-most-awesome-thing-ever.html",
+      "destination": "/blog/matt/posts/the-most-awesome-thing-ever/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/indigo-children-characteristics.html",
+      "destination": "/blog/matt/posts/indigo-children-characteristics/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/indigo-children-test.html",
+      "destination": "/blog/matt/posts/indigo-children-test/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/indigo-children-abilities.html",
+      "destination": "/blog/matt/posts/indigo-children-abilities/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/matt/posts/the-ayahuasca-experience-is-it-your-time.html",
+      "destination": "/blog/matt/posts/the-ayahuasca-experience-is-it-your-time/",
+      "permanent": true
+    }
   ]
 }

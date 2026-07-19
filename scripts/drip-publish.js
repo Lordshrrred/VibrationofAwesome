@@ -237,6 +237,7 @@ async function main() {
     // Collision guard ~ never overwrite an already-published post
     if (fs.existsSync(postFile)) {
       console.warn(`  ~ Collision guard: ${item.slug} already exists in posts/. Removing from queue without re-publishing.`);
+      fs.unlinkSync(draftFile);
       publishedSlugs.push(item.slug);
       continue;
     }
@@ -265,6 +266,7 @@ async function main() {
       console.log(`  ✓ Internal links: ${item.slug} → ${linkResult.related.map(r => r.slug).join(", ")}`);
     }
     fs.writeFileSync(postFile, html, "utf8");
+    fs.unlinkSync(draftFile);
     console.log(`  ✓ Published: /blog/boom/posts/${item.slug}`);
 
     // Add to boom-posts index
