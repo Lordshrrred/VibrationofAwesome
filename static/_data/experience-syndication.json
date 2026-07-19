@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T12:38:56.131Z",
+  "generatedAt": "2026-07-18T12:03:29.639Z",
   "cadence": {
     "maxCampaignsPerDay": 1,
     "allocation": "Fresh blog posts first; historical blog catch-up second; one queued experience campaign per daily slot.",
@@ -13,15 +13,15 @@
   },
   "summary": {
     "liveExperiences": 8,
-    "queued": 7,
+    "queued": 3,
     "inProgress": 0,
-    "complete": 1,
+    "complete": 5,
     "blocked": 0,
     "failedPlatformRetries": 0,
-    "cachedCompanionAssets": 2,
-    "estimatedClaudeSpendUsd": 0.02,
-    "nextExperienceScheduled": "Digital Attention Audit",
-    "nextExperienceScheduledAt": "2026-07-13T04:37:51.666Z"
+    "cachedCompanionAssets": 6,
+    "estimatedClaudeSpendUsd": 0.060000000000000005,
+    "nextExperienceScheduled": "The Honest Mirror",
+    "nextExperienceScheduledAt": "2026-07-19T12:03:29.639Z"
   },
   "campaigns": [
     {
@@ -33,22 +33,36 @@
       "hubTitle": "Dopamine & Attention",
       "primaryPurpose": "Help a reader notice which digital inputs are draining their focus and self-trust.",
       "sourceHash": "bdd4f427b0cbe67a",
-      "status": "queued",
+      "status": "complete",
       "canonicalStatus": 200,
       "localCanonicalStatus": 200,
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.663Z",
-      "lastAttemptAt": null,
-      "completedAt": null,
+      "lastAttemptAt": "2026-07-15T12:41:59.077Z",
+      "completedAt": "2026-07-15T12:41:59.077Z",
       "nextScheduledAt": "2026-07-13T04:37:51.666Z",
-      "platforms": {},
-      "cachedCompanionAssets": 0,
-      "estimatedClaudeSpendUsd": 0,
+      "platforms": {
+        "wordpress_earthstar": {
+          "status": "success",
+          "url": "https://earthstarrisingsun.wordpress.com/2026/07/15/digital-attention-audit-experience-companion/",
+          "postId": "218",
+          "error": null,
+          "cacheReused": false,
+          "generatedBy": "claude",
+          "verification": {
+            "ok": true,
+            "status": 200,
+            "canonicalLinkPresent": true
+          }
+        }
+      },
+      "cachedCompanionAssets": 1,
+      "estimatedClaudeSpendUsd": 0.01,
       "inboundBlogRecommendations": 0,
-      "currentExternalBacklinkCoverage": 0,
-      "dedicatedCompanionContent": false,
-      "orphanedFromBacklinkEngine": true
+      "currentExternalBacklinkCoverage": 1,
+      "dedicatedCompanionContent": true,
+      "orphanedFromBacklinkEngine": false
     },
     {
       "id": "adhd-focus-session-planner",
@@ -59,22 +73,36 @@
       "hubTitle": "ADHD & Focus",
       "primaryPurpose": "Turn the decision paralysis before deep work into a five-step ritual that ends in actually starting.",
       "sourceHash": "4be58a3ebaf6c33e",
-      "status": "queued",
+      "status": "complete",
       "canonicalStatus": 200,
       "localCanonicalStatus": 200,
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.664Z",
-      "lastAttemptAt": null,
-      "completedAt": null,
-      "nextScheduledAt": null,
-      "platforms": {},
-      "cachedCompanionAssets": 0,
-      "estimatedClaudeSpendUsd": 0,
+      "lastAttemptAt": "2026-07-16T12:48:48.839Z",
+      "completedAt": "2026-07-16T12:48:48.839Z",
+      "nextScheduledAt": "2026-07-16T12:41:59.222Z",
+      "platforms": {
+        "wordpress_earthstar": {
+          "status": "success",
+          "url": "https://earthstarrisingsun.wordpress.com/2026/07/16/adhd-focus-session-planner-experience-companion/",
+          "postId": "225",
+          "error": null,
+          "cacheReused": false,
+          "generatedBy": "claude",
+          "verification": {
+            "ok": true,
+            "status": 200,
+            "canonicalLinkPresent": true
+          }
+        }
+      },
+      "cachedCompanionAssets": 1,
+      "estimatedClaudeSpendUsd": 0.01,
       "inboundBlogRecommendations": 0,
-      "currentExternalBacklinkCoverage": 0,
-      "dedicatedCompanionContent": false,
-      "orphanedFromBacklinkEngine": true
+      "currentExternalBacklinkCoverage": 1,
+      "dedicatedCompanionContent": true,
+      "orphanedFromBacklinkEngine": false
     },
     {
       "id": "nervous-system-reset",
@@ -138,22 +166,36 @@
       "hubTitle": "Meditation",
       "primaryPurpose": "Match a short settling sequence to what's actually available right now, not the ideal stillness a meditation app assumes.",
       "sourceHash": "1740cca33f7ba73d",
-      "status": "queued",
+      "status": "complete",
       "canonicalStatus": 200,
       "localCanonicalStatus": 200,
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.664Z",
-      "lastAttemptAt": null,
-      "completedAt": null,
-      "nextScheduledAt": null,
-      "platforms": {},
-      "cachedCompanionAssets": 0,
-      "estimatedClaudeSpendUsd": 0,
+      "lastAttemptAt": "2026-07-17T12:21:04.348Z",
+      "completedAt": "2026-07-17T12:21:04.348Z",
+      "nextScheduledAt": "2026-07-17T12:48:48.990Z",
+      "platforms": {
+        "wordpress_earthstar": {
+          "status": "success",
+          "url": "https://earthstarrisingsun.wordpress.com/2026/07/17/the-presence-key-experience-companion/",
+          "postId": "232",
+          "error": null,
+          "cacheReused": false,
+          "generatedBy": "claude",
+          "verification": {
+            "ok": true,
+            "status": 200,
+            "canonicalLinkPresent": true
+          }
+        }
+      },
+      "cachedCompanionAssets": 1,
+      "estimatedClaudeSpendUsd": 0.01,
       "inboundBlogRecommendations": 0,
-      "currentExternalBacklinkCoverage": 0,
-      "dedicatedCompanionContent": false,
-      "orphanedFromBacklinkEngine": true
+      "currentExternalBacklinkCoverage": 1,
+      "dedicatedCompanionContent": true,
+      "orphanedFromBacklinkEngine": false
     },
     {
       "id": "the-compass-point",
@@ -164,22 +206,36 @@
       "hubTitle": "Purpose",
       "primaryPurpose": "Name the one direction a reader's energy is already leaning, instead of demanding a five-year plan.",
       "sourceHash": "4e27de0093c9b973",
-      "status": "queued",
+      "status": "complete",
       "canonicalStatus": 200,
       "localCanonicalStatus": 200,
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.665Z",
-      "lastAttemptAt": null,
-      "completedAt": null,
-      "nextScheduledAt": null,
-      "platforms": {},
-      "cachedCompanionAssets": 0,
-      "estimatedClaudeSpendUsd": 0,
+      "lastAttemptAt": "2026-07-18T12:03:29.495Z",
+      "completedAt": "2026-07-18T12:03:29.495Z",
+      "nextScheduledAt": "2026-07-18T12:21:04.502Z",
+      "platforms": {
+        "wordpress_earthstar": {
+          "status": "success",
+          "url": "https://earthstarrisingsun.wordpress.com/2026/07/18/the-compass-point-experience-companion/",
+          "postId": "239",
+          "error": null,
+          "cacheReused": false,
+          "generatedBy": "claude",
+          "verification": {
+            "ok": true,
+            "status": 200,
+            "canonicalLinkPresent": true
+          }
+        }
+      },
+      "cachedCompanionAssets": 1,
+      "estimatedClaudeSpendUsd": 0.01,
       "inboundBlogRecommendations": 0,
-      "currentExternalBacklinkCoverage": 0,
-      "dedicatedCompanionContent": false,
-      "orphanedFromBacklinkEngine": true
+      "currentExternalBacklinkCoverage": 1,
+      "dedicatedCompanionContent": true,
+      "orphanedFromBacklinkEngine": false
     },
     {
       "id": "the-honest-mirror",
@@ -198,7 +254,7 @@
       "queuedAt": "2026-07-12T04:37:51.665Z",
       "lastAttemptAt": null,
       "completedAt": null,
-      "nextScheduledAt": null,
+      "nextScheduledAt": "2026-07-19T12:03:29.639Z",
       "platforms": {},
       "cachedCompanionAssets": 0,
       "estimatedClaudeSpendUsd": 0,

@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-14T17:02:32.013Z",
+  "lastUpdated": "2026-07-18T22:52:43.626Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,31 +888,265 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
-      "slug": "ai-music-production-tools-for-independent-artists-2026",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-14T17:02:32.013Z"
+      "slug": "how-to-manage-mental-overload-as-a-creative",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-18T22:52:29.940Z"
     },
     {
-      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
+      "slug": "ai-advantage-vs-russell-brunsons-programs-different-worlds-different-promises",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-18T19:58:37.772Z"
+    },
+    {
+      "slug": "how-to-turn-google-docs-into-a-website",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
       "density": "medium-dense",
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-14T17:02:19.585Z"
+      "timestamp": "2026-07-18T16:43:47.211Z"
     },
     {
-      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
+      "slug": "ai-advantage-vs-brendon-burchard-two-very-different-bets-on-self-improvement",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-18T16:42:17.305Z"
+    },
+    {
+      "slug": "how-to-turn-google-docs-into-a-website",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-18T14:22:58.140Z"
+    },
+    {
+      "slug": "one-habit-per-month-system-for-creatives",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
-      "timestamp": "2026-07-14T17:02:03.460Z"
+      "timestamp": "2026-07-18T03:56:38.785Z"
+    },
+    {
+      "slug": "one-habit-per-month-system-for-creatives",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-17T22:53:08.427Z"
+    },
+    {
+      "slug": "daily-news-brief-for-creators",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-17T19:59:55.088Z"
+    },
+    {
+      "slug": "ai-advantage-for-authors-and-writers-what-the-bootcamp-teaches-thats-actually-useful",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-17T19:58:26.311Z"
+    },
+    {
+      "slug": "daily-news-brief-for-creators",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-17T16:59:23.227Z"
+    },
+    {
+      "slug": "ai-advantage-for-course-creators-a-practical-look-at-what-youd-actually-learn",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-17T16:57:47.298Z"
+    },
+    {
+      "slug": "how-to-write-linkedin-headlines-that-get-engagement",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-17T14:51:23.550Z"
+    },
+    {
+      "slug": "daily-news-brief-for-creators",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-17T14:49:03.309Z"
+    },
+    {
+      "slug": "how-to-write-linkedin-headlines-that-get-engagement",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-17T04:10:41.859Z"
+    },
+    {
+      "slug": "how-to-write-linkedin-headlines-that-get-engagement",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-17T04:08:31.705Z"
+    },
+    {
+      "slug": "ai-advantage-for-freelancers-does-the-bootcamp-actually-help-you-get-more-clients",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-16T19:55:42.496Z"
+    },
+    {
+      "slug": "how-to-check-if-an-email-is-a-scam-using-ai",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-16T17:02:20.899Z"
+    },
+    {
+      "slug": "ai-advantage-for-coaches-what-business-coaches-actually-get-from-the-bootcamp",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-16T17:00:50.091Z"
+    },
+    {
+      "slug": "how-to-check-if-an-email-is-a-scam-using-ai",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-16T15:09:02.353Z"
+    },
+    {
+      "slug": "how-to-organize-scattered-thoughts-for-creative-projects",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-16T04:10:20.882Z"
+    },
+    {
+      "slug": "how-to-organize-scattered-thoughts-for-creative-projects",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-15T22:59:44.681Z"
+    },
+    {
+      "slug": "ai-advantage-for-realtors-is-the-bootcamp-worth-it-for-real-estate-professionals",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-07-15T20:01:58.573Z"
+    },
+    {
+      "slug": "how-to-get-responses-to-cold-dms-as-a-creator",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-07-15T17:04:38.315Z"
+    },
+    {
+      "slug": "how-to-promote-the-ai-advantage-bootcamp-as-an-affiliate-and-whether-you-should",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-15T17:03:09.850Z"
+    },
+    {
+      "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-15T15:01:35.016Z"
+    },
+    {
+      "slug": "how-to-get-responses-to-cold-dms-as-a-creator",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-15T15:01:22.916Z"
+    },
+    {
+      "slug": "how-to-get-responses-to-cold-dms-as-a-creator",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-15T14:58:33.066Z"
+    },
+    {
+      "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-07-15T04:07:47.641Z"
+    },
+    {
+      "slug": "7-day-content-plan-for-small-creators",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-15T04:06:42.751Z"
     },
     {
       "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
@@ -921,244 +1155,91 @@
       "density": "light-medium",
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
-      "timestamp": "2026-07-14T17:01:46.389Z"
-    },
-    {
-      "slug": "ai-advantage-certificate-what-you-actually-get-when-you-finish-the-bootcamp",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-14T17:00:17.513Z"
-    },
-    {
-      "slug": "how-to-use-gamma-ai-for-music-presentations",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-14T15:05:06.392Z"
-    },
-    {
-      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-14T15:04:56.196Z"
-    },
-    {
-      "slug": "why-buying-art-from-independent-artists-actually-matters",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-14T15:04:45.949Z"
-    },
-    {
-      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-14T15:04:31.148Z"
-    },
-    {
-      "slug": "automation-audit-for-small-creators",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-14T15:04:09.197Z"
-    },
-    {
-      "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-14T15:01:35.431Z"
-    },
-    {
-      "slug": "how-to-get-ai-feedback-on-camera-performance",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-14T03:59:52.112Z"
-    },
-    {
-      "slug": "is-dean-graziosi-legit-a-clear-eyed-look-at-his-track-record",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-14T03:59:36.531Z"
-    },
-    {
-      "slug": "how-to-turn-blog-posts-into-podcast-episodes",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-14T03:59:19.432Z"
-    },
-    {
-      "slug": "automation-audit-for-small-creators",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-14T03:59:07.251Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-14T03:58:49.792Z"
-    },
-    {
-      "slug": "how-to-turn-my-creative-process-into-an-sop-using-ai",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-14T03:58:05.298Z"
-    },
-    {
-      "slug": "is-dean-graziosi-legit-a-clear-eyed-look-at-his-track-record",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-13T23:01:45.228Z"
-    },
-    {
-      "slug": "dean-graziosi-controversy-what-the-critics-actually-say-and-what-to-make-of-it",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-13T23:01:23.236Z"
-    },
-    {
-      "slug": "how-to-turn-blog-posts-into-podcast-episodes",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-13T23:01:05.002Z"
-    },
-    {
-      "slug": "automation-audit-for-small-creators",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-13T23:00:48.621Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-13T23:00:29.480Z"
-    },
-    {
-      "slug": "how-to-turn-my-creative-process-into-an-sop-using-ai",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-13T22:57:58.982Z"
-    },
-    {
-      "slug": "where-to-buy-original-art-online-without-getting-burned",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-13T17:50:52.729Z"
-    },
-    {
-      "slug": "how-to-choose-art-for-your-home-when-you-dont-know-where-to-start",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-13T17:50:42.258Z"
-    },
-    {
-      "slug": "why-buying-art-from-independent-artists-actually-matters",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-13T17:50:20.090Z"
-    },
-    {
-      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-13T17:49:59.204Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-payment-plan-is-three-payments-of-three-eighty-smart",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-13T17:49:38.265Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-week-by-week-what-actually-happens-in-each-of-the-6-weeks",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-13T17:48:07.175Z"
-    },
-    {
-      "slug": "affordable-original-art-what-to-look-for-and-where-to-find-it",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-13T15:49:07.375Z"
+      "timestamp": "2026-07-14T23:01:28.082Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-manage-mental-overload-as-a-creative",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-07-18T22:52:43.626Z"
+    },
+    {
+      "slug": "how-to-turn-google-docs-into-a-website",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-07-18T14:23:10.833Z"
+    },
+    {
+      "slug": "one-habit-per-month-system-for-creatives",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "timestamp": "2026-07-17T22:53:22.846Z"
+    },
+    {
+      "slug": "daily-news-brief-for-creators",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "timestamp": "2026-07-17T14:49:17.839Z"
+    },
+    {
+      "slug": "how-to-write-linkedin-headlines-that-get-engagement",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-07-17T04:08:47.842Z"
+    },
+    {
+      "slug": "how-to-check-if-an-email-is-a-scam-using-ai",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-07-16T15:09:17.150Z"
+    },
+    {
+      "slug": "how-to-organize-scattered-thoughts-for-creative-projects",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-07-15T22:59:59.191Z"
+    },
+    {
+      "slug": "how-to-get-responses-to-cold-dms-as-a-creator",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-07-15T14:58:47.233Z"
+    },
+    {
+      "slug": "7-day-content-plan-for-small-creators",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "timestamp": "2026-07-14T22:59:03.810Z"
+    },
     {
       "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
       "archetype": "minimalist-philosophy",
@@ -1347,87 +1428,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-06-23T15:57:48.741Z"
-    },
-    {
-      "slug": "the-clone-builder-system-explained-is-this-actually-a-new-idea",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-22T23:23:02.119Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-complaints-what-critics-say-and-whether-they-are-right",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-22T17:46:07.336Z"
-    },
-    {
-      "slug": "should-you-buy-the-ai-advantage-bootcamp-the-honest-decision-framework",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-21T23:17:42.384Z"
-    },
-    {
-      "slug": "ai-advantage-bootcamp-for-beginners-can-you-do-this-with-zero-tech-background",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "timestamp": "2026-06-21T15:16:15.120Z"
-    },
-    {
-      "slug": "dean-graziosi-ai-tools-what-he-uses-versus-what-he-sells",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-06-21T06:02:30.079Z"
-    },
-    {
-      "slug": "ai-advantage-for-entrepreneurs-does-this-actually-help-your-business",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-20T23:12:33.724Z"
-    },
-    {
-      "slug": "is-the-ai-advantage-bootcamp-a-scam-looking-at-the-actual-evidence",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-20T15:08:41.575Z"
-    },
-    {
-      "slug": "ai-advantage-club-review-is-the-monthly-community-worth-staying-in",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-06-19T23:02:28.427Z"
-    },
-    {
-      "slug": "how-to-reclaim-fifteen-hours-a-week-with-ai-what-the-bootcamp-does-not-tell-you",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-06-19T16:13:15.651Z"
     }
   ]
 }
