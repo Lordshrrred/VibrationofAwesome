@@ -96,6 +96,8 @@ The 16 `isArchive: true` posts in `static/_data/matt-posts.json` (old pre-2026 c
 
 **Do not** create a physical `static/blog/matt/posts/{slug}.html` file for this purpose ~ under Vercel's `cleanUrls: true`, a flat `{slug}.html` file takes routing priority over `{slug}/index.html` for the clean URL, so the flat file silently shadows the real article at its own canonical URL. This exact bug shipped and went undetected until Google Search Console flagged it (`Excluded by 'noindex' tag` for 3 posts already crawled, `Discovered - currently not indexed` for the other 13) ~ found and fixed 2026-07-19. `generate-legacy-redirects.js` now writes to `vercel.json` instead of creating the colliding file, and guards `parseArchiveCanonical()`'s legacy-path branch against writing back over the same file it just read the canonical tag from (the original bug: an archive post's canonical self-references its own URL, so the "legacy path" resolved to the post's own file, and `writeRedirect()` overwrote the real article with a redirect-to-itself stub).
 
+All 16 archive posts also had `<meta name="robots" content="noindex, follow">` baked into their own HTML by `scripts/build-archive.js`'s import template (left over from the original Wayback Machine import, never revisited once they became live canonical content). Flipped to `index, follow` on 2026-07-19, both in the template (so any future rerun doesn't regress it) and in the 16 already-generated files.
+
 ## Environment Variables
 Copy `.env.example` to `.env`. Required keys:
 - `ANTHROPIC_API_KEY` ~ content generation and AURA chatbot

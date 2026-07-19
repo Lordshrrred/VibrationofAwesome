@@ -303,7 +303,7 @@ function buildPostHTML({ post, title, content, imageUrl, imageAttribution, readM
 <title>${pageTitle}</title>
 <meta name="description" content="${description.replace(/"/g, "&quot;")}">
 <link rel="canonical" href="${post.canonicalUrl}">
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="index, follow">
 <meta name="theme-color" content="#ffb300">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Vibration of Awesome">
