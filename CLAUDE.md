@@ -98,6 +98,8 @@ The 16 `isArchive: true` posts in `static/_data/matt-posts.json` (old pre-2026 c
 
 All 16 archive posts also had `<meta name="robots" content="noindex, follow">` baked into their own HTML by `scripts/build-archive.js`'s import template (left over from the original Wayback Machine import, never revisited once they became live canonical content). Flipped to `index, follow` on 2026-07-19, both in the template (so any future rerun doesn't regress it) and in the 16 already-generated files.
 
+**Boombot → boom rename left no redirect (fixed 2026-07-19):** the Boom lane was originally served at `/blog/boombot/` before being renamed to `/blog/boom/` (see `scripts/fix-boombot-urls.cjs` / `scripts/archive/rename-boombot.js`, both migration cleanup scripts, not active). No redirect was ever added for the old namespace, so any old `/blog/boombot/...` backlink 404s. Added `vercel.json` redirects: `/blog/boombot/:path*` → `/blog/boom/:path*`, plus a specific fix for a truncated `/blog/boom/posts/ai` stray link → `/blog/boom/posts/ai-tools-for-independent-artists`. Found via GSC's "Not found (404)" report.
+
 ## Environment Variables
 Copy `.env.example` to `.env`. Required keys:
 - `ANTHROPIC_API_KEY` ~ content generation and AURA chatbot

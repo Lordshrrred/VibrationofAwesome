@@ -112,6 +112,16 @@
       "source": "/blog/matt/posts/the-ayahuasca-experience-is-it-your-time.html",
       "destination": "/blog/matt/posts/the-ayahuasca-experience-is-it-your-time/",
       "permanent": true
+    },
+    {
+      "source": "/blog/boombot/:path*",
+      "destination": "/blog/boom/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/blog/boom/posts/ai",
+      "destination": "/blog/boom/posts/ai-tools-for-independent-artists",
+      "permanent": true
     }
   ]
 }
