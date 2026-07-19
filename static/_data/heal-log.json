@@ -1,27 +1,5 @@
 [
   {
-    "healedAt": "2026-06-02T11:48:36.099Z",
-    "trigger": "scheduled",
-    "failedRunUrl": null,
-    "tier1": {
-      "healed": false,
-      "detail": "No em dashes found."
-    },
-    "tier2": [
-      {
-        "checkName": "Blogger token refresh",
-        "diagnosis": "Blogger OAuth token has expired or been revoked and requires manual re-authentication through the OAuth flow.",
-        "fix_type": "token_expired",
-        "confidence": "high",
-        "action": {
-          "token_name": "BLOGGER_REFRESH_TOKEN",
-          "renewal_command": "npm run blogger-token"
-        }
-      }
-    ],
-    "retriggered": false
-  },
-  {
     "healedAt": "2026-06-03T12:18:07.575Z",
     "trigger": "scheduled",
     "failedRunUrl": null,
@@ -1252,6 +1230,29 @@
           "secret_name": "DEVTO2_API_KEY",
           "new_value": "[obtain from Dev.to account 2 settings → API tokens]",
           "reason": "Second Dev.to syndication account requires its own API key; currently undefined"
+        }
+      }
+    ],
+    "retriggered": false
+  },
+  {
+    "healedAt": "2026-07-19T14:35:51.397Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/29690785393",
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "Environment variable DEVTO2_API_KEY is not set in the runtime configuration.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "YOUR_DEVTO_ACCOUNT_2_API_KEY_HERE",
+          "reason": "The syndication system requires a valid Dev.to API key for the second Dev.to account (vibrationofawesome.com secondary publication channel). This must be added to the environment before the next health check run."
         }
       }
     ],
