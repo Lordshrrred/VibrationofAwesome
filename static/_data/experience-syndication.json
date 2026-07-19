@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T12:03:29.639Z",
+  "generatedAt": "2026-07-19T12:06:08.013Z",
   "cadence": {
     "maxCampaignsPerDay": 1,
     "allocation": "Fresh blog posts first; historical blog catch-up second; one queued experience campaign per daily slot.",
@@ -13,15 +13,15 @@
   },
   "summary": {
     "liveExperiences": 8,
-    "queued": 3,
+    "queued": 2,
     "inProgress": 0,
-    "complete": 5,
+    "complete": 6,
     "blocked": 0,
     "failedPlatformRetries": 0,
-    "cachedCompanionAssets": 6,
-    "estimatedClaudeSpendUsd": 0.060000000000000005,
-    "nextExperienceScheduled": "The Honest Mirror",
-    "nextExperienceScheduledAt": "2026-07-19T12:03:29.639Z"
+    "cachedCompanionAssets": 7,
+    "estimatedClaudeSpendUsd": 0.07,
+    "nextExperienceScheduled": "The Inner Yes",
+    "nextExperienceScheduledAt": "2026-07-20T12:06:08.013Z"
   },
   "campaigns": [
     {
@@ -246,22 +246,36 @@
       "hubTitle": "Personal Growth",
       "primaryPurpose": "Help a reader stop performing growth and name the actual avoided truth plus one honest next step.",
       "sourceHash": "d9784544169d9299",
-      "status": "queued",
+      "status": "complete",
       "canonicalStatus": 200,
       "localCanonicalStatus": 200,
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.665Z",
-      "lastAttemptAt": null,
-      "completedAt": null,
+      "lastAttemptAt": "2026-07-19T12:06:07.863Z",
+      "completedAt": "2026-07-19T12:06:07.863Z",
       "nextScheduledAt": "2026-07-19T12:03:29.639Z",
-      "platforms": {},
-      "cachedCompanionAssets": 0,
-      "estimatedClaudeSpendUsd": 0,
+      "platforms": {
+        "wordpress_earthstar": {
+          "status": "success",
+          "url": "https://earthstarrisingsun.wordpress.com/2026/07/19/the-honest-mirror-experience-companion/",
+          "postId": "246",
+          "error": null,
+          "cacheReused": false,
+          "generatedBy": "claude",
+          "verification": {
+            "ok": true,
+            "status": 200,
+            "canonicalLinkPresent": true
+          }
+        }
+      },
+      "cachedCompanionAssets": 1,
+      "estimatedClaudeSpendUsd": 0.01,
       "inboundBlogRecommendations": 0,
-      "currentExternalBacklinkCoverage": 0,
-      "dedicatedCompanionContent": false,
-      "orphanedFromBacklinkEngine": true
+      "currentExternalBacklinkCoverage": 1,
+      "dedicatedCompanionContent": true,
+      "orphanedFromBacklinkEngine": false
     },
     {
       "id": "the-inner-yes",
@@ -280,7 +294,7 @@
       "queuedAt": "2026-07-12T04:37:51.666Z",
       "lastAttemptAt": null,
       "completedAt": null,
-      "nextScheduledAt": null,
+      "nextScheduledAt": "2026-07-20T12:06:08.013Z",
       "platforms": {},
       "cachedCompanionAssets": 0,
       "estimatedClaudeSpendUsd": 0,
