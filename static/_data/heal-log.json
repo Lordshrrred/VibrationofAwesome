@@ -1,27 +1,5 @@
 [
   {
-    "healedAt": "2026-06-03T12:18:07.575Z",
-    "trigger": "scheduled",
-    "failedRunUrl": null,
-    "tier1": {
-      "healed": false,
-      "detail": "No em dashes found."
-    },
-    "tier2": [
-      {
-        "checkName": "Blogger token refresh",
-        "diagnosis": "OAuth refresh token has expired or been revoked by Google, requiring manual re-authentication.",
-        "fix_type": "token_expired",
-        "confidence": "high",
-        "action": {
-          "token_name": "BLOGGER_REFRESH_TOKEN",
-          "renewal_command": "npm run blogger-token"
-        }
-      }
-    ],
-    "retriggered": false
-  },
-  {
     "healedAt": "2026-06-04T10:46:46.348Z",
     "trigger": "scheduled",
     "failedRunUrl": null,
@@ -1253,6 +1231,59 @@
           "secret_name": "DEVTO2_API_KEY",
           "new_value": "YOUR_DEVTO_ACCOUNT_2_API_KEY_HERE",
           "reason": "The syndication system requires a valid Dev.to API key for the second Dev.to account (vibrationofawesome.com secondary publication channel). This must be added to the environment before the next health check run."
+        }
+      }
+    ],
+    "retriggered": false
+  },
+  {
+    "healedAt": "2026-07-20T20:26:04.766Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/29775357564",
+    "tier1": {
+      "healed": false,
+      "detail": "No em dashes found."
+    },
+    "tier2": [
+      {
+        "checkName": "Blogger token refresh",
+        "diagnosis": "OAuth refresh token expired or revoked. External Google/OAuth consent flow required. AI self-healing cannot repair OAuth tokens.",
+        "fix_type": "auth_reconnect_required",
+        "confidence": "high",
+        "action": {
+          "instructions": "1. Run token renewal locally: npm run blogger-token\n2. Complete the OAuth consent flow in the browser that opens.\n3. Re-run: npm run check:syndication -- --write\nNote: AI self-healing cannot create a new valid OAuth refresh token. This requires external user consent."
+        }
+      },
+      {
+        "checkName": "Dev.to auth",
+        "diagnosis": "DEVTO_API_KEY environment variable is missing or invalid, causing authorization failure.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO_API_KEY",
+          "new_value": "<valid Dev.to API key from https://dev.to/settings/extensions>",
+          "reason": "Dev.to syndication requires a valid personal API key in environment; current key is missing or revoked"
+        }
+      },
+      {
+        "checkName": "Dev.to account 2 auth",
+        "diagnosis": "DEVTO2_API_KEY environment variable is not set, preventing authentication for secondary Dev.to account.",
+        "fix_type": "config_update",
+        "confidence": "high",
+        "action": {
+          "secret_name": "DEVTO2_API_KEY",
+          "new_value": "<valid Dev.to API key for secondary account>",
+          "reason": "Secondary Dev.to account requires its own API key; currently undefined"
+        }
+      },
+      {
+        "checkName": "Blogger token refresh",
+        "diagnosis": "Blogger OAuth token has expired or been revoked by Google; invalid_grant error indicates token is no longer valid.",
+        "fix_type": "token_expired",
+        "confidence": "high",
+        "action": {
+          "token_name": "BLOGGER_REFRESH_TOKEN",
+          "renewal_command": "npm run blogger-token"
         }
       }
     ],
