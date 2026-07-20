@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T12:06:08.013Z",
+  "generatedAt": "2026-07-20T13:16:36.191Z",
   "cadence": {
     "maxCampaignsPerDay": 1,
     "allocation": "Fresh blog posts first; historical blog catch-up second; one queued experience campaign per daily slot.",
@@ -13,15 +13,15 @@
   },
   "summary": {
     "liveExperiences": 8,
-    "queued": 2,
+    "queued": 1,
     "inProgress": 0,
-    "complete": 6,
+    "complete": 7,
     "blocked": 0,
     "failedPlatformRetries": 0,
-    "cachedCompanionAssets": 7,
-    "estimatedClaudeSpendUsd": 0.07,
-    "nextExperienceScheduled": "The Inner Yes",
-    "nextExperienceScheduledAt": "2026-07-20T12:06:08.013Z"
+    "cachedCompanionAssets": 8,
+    "estimatedClaudeSpendUsd": 0.08,
+    "nextExperienceScheduled": "Creative Signal Finder",
+    "nextExperienceScheduledAt": "2026-07-21T13:16:36.191Z"
   },
   "campaigns": [
     {
@@ -286,22 +286,36 @@
       "hubTitle": "Self Trust",
       "primaryPurpose": "Help a reader distinguish their real yes/no from pressure, people-pleasing, and old self-abandonment patterns.",
       "sourceHash": "4a45dda555e6face",
-      "status": "queued",
+      "status": "complete",
       "canonicalStatus": 200,
       "localCanonicalStatus": 200,
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.666Z",
-      "lastAttemptAt": null,
-      "completedAt": null,
+      "lastAttemptAt": "2026-07-20T13:16:36.076Z",
+      "completedAt": "2026-07-20T13:16:36.076Z",
       "nextScheduledAt": "2026-07-20T12:06:08.013Z",
-      "platforms": {},
-      "cachedCompanionAssets": 0,
-      "estimatedClaudeSpendUsd": 0,
+      "platforms": {
+        "wordpress_earthstar": {
+          "status": "success",
+          "url": "https://earthstarrisingsun.wordpress.com/2026/07/20/the-inner-yes-experience-companion/",
+          "postId": "251",
+          "error": null,
+          "cacheReused": false,
+          "generatedBy": "claude",
+          "verification": {
+            "ok": true,
+            "status": 200,
+            "canonicalLinkPresent": true
+          }
+        }
+      },
+      "cachedCompanionAssets": 1,
+      "estimatedClaudeSpendUsd": 0.01,
       "inboundBlogRecommendations": 0,
-      "currentExternalBacklinkCoverage": 0,
-      "dedicatedCompanionContent": false,
-      "orphanedFromBacklinkEngine": true
+      "currentExternalBacklinkCoverage": 1,
+      "dedicatedCompanionContent": true,
+      "orphanedFromBacklinkEngine": false
     },
     {
       "id": "creative-signal-finder",
@@ -320,7 +334,7 @@
       "queuedAt": "2026-07-12T04:37:51.666Z",
       "lastAttemptAt": null,
       "completedAt": null,
-      "nextScheduledAt": null,
+      "nextScheduledAt": "2026-07-21T13:16:36.191Z",
       "platforms": {},
       "cachedCompanionAssets": 0,
       "estimatedClaudeSpendUsd": 0,
