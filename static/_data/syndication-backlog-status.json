@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-20T21:45:32.257Z",
+  "generatedAt": "2026-07-20T23:34:00.455Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,20 +14,20 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 179,
-    "backlogPosts": 0,
-    "backlinkCapableMissingUnits": 0,
-    "backlinkVerificationGaps": 693,
+    "totalTrackedPosts": 180,
+    "backlogPosts": 1,
+    "backlinkCapableMissingUnits": 1,
+    "backlinkVerificationGaps": 696,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 13,
-    "freshPostsAwaitingBacklinks": 0,
-    "freshMissingBacklinkUnits": 0,
+    "distributionIncompleteUnits": 15,
+    "freshPostsAwaitingBacklinks": 1,
+    "freshMissingBacklinkUnits": 1,
     "completedBacklinkUnitsInWindow": 278,
     "completedBacklinkUnitsPerDay": 19.9,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
     "netBacklogChangePerDay": 0.1,
-    "estimatedCatchUpDays": 0,
+    "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
   },
@@ -36,49 +36,49 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 179,
+        "eligiblePosts": 180,
         "complete": 179,
-        "missing": 0,
-        "successRate": 100,
+        "missing": 1,
+        "successRate": 99.4,
         "averagePerDay": 5.2,
         "confirmed": 7,
         "verificationGaps": 172,
-        "mainBlocker": ""
+        "mainBlocker": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 179,
-        "complete": 179,
+        "eligiblePosts": 180,
+        "complete": 180,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 5.1,
         "confirmed": 5,
-        "verificationGaps": 174,
+        "verificationGaps": 175,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 179,
-        "complete": 179,
+        "eligiblePosts": 180,
+        "complete": 180,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 6,
+        "averagePerDay": 5.9,
         "confirmed": 6,
-        "verificationGaps": 173,
+        "verificationGaps": 174,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 133,
-        "complete": 133,
+        "eligiblePosts": 134,
+        "complete": 134,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.1,
+        "averagePerDay": 2.2,
         "confirmed": 4,
-        "verificationGaps": 129,
+        "verificationGaps": 130,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 133,
-        "complete": 133,
+        "eligiblePosts": 134,
+        "complete": 134,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.1,
-        "confirmed": 133,
+        "averagePerDay": 2.2,
+        "confirmed": 134,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,26 +112,26 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 149,
+        "eligiblePosts": 150,
         "complete": 149,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 4.8,
+        "missing": 1,
+        "successRate": 99.3,
+        "averagePerDay": 4.6,
         "confirmed": 4,
         "verificationGaps": 145,
-        "mainBlocker": ""
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 149,
+        "eligiblePosts": 150,
         "complete": 149,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 4.8,
+        "missing": 1,
+        "successRate": 99.3,
+        "averagePerDay": 4.6,
         "confirmed": 4,
         "verificationGaps": 145,
-        "mainBlocker": ""
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -187,7 +187,29 @@
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
+    },
+    {
+      "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
+      "count": 1
+    },
+    {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 1
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 1
     }
   ],
-  "prioritizedBacklog": []
+  "prioritizedBacklog": [
+    {
+      "slug": "how-to-convert-blog-posts-into-lead-magnets",
+      "lane": "boom",
+      "title": "How To Convert Blog Posts Into Lead Magnets",
+      "date": "2026-07-20",
+      "missing": [
+        "blogger"
+      ]
+    }
+  ]
 }
