@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-20T04:36:47.594Z",
+  "lastUpdated": "2026-07-20T15:16:49.804Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "find-my-unique-strengths-as-a-creative",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-20T15:16:34.862Z"
+    },
+    {
       "slug": "how-to-find-untapped-markets-for-music-using-ai",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,18 +1156,18 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-15T17:03:09.850Z"
-    },
-    {
-      "slug": "how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-15T15:01:35.016Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "find-my-unique-strengths-as-a-creative",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-07-20T15:16:49.804Z"
+    },
     {
       "slug": "how-to-find-untapped-markets-for-music-using-ai",
       "archetype": "nervous-system-atmospheric",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "regulation",
       "emotionalCluster": "somatic",
       "timestamp": "2026-07-05T14:50:26.873Z"
-    },
-    {
-      "slug": "how-to-build-an-authentic-personal-brand-as-a-creator",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-07-05T04:58:49.515Z"
     }
   ]
 }
