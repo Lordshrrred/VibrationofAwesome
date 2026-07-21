@@ -1,8 +1,8 @@
 {
-  "lastChecked": "2026-07-21T14:20:59.484Z",
+  "lastChecked": "2026-07-21T15:08:26.756Z",
   "status": "broken",
-  "passed": 13,
-  "failed": 3,
+  "passed": 15,
+  "failed": 1,
   "total": 16,
   "topFix": {
     "name": "Blogger token refresh",
@@ -71,15 +71,13 @@
     },
     {
       "name": "Dev.to auth",
-      "ok": false,
-      "detail": "unauthorized",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "earthstarrising"
     },
     {
       "name": "Dev.to account 2 auth",
-      "ok": false,
-      "detail": "unauthorized",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "awesomesaucyvibe"
     },
     {
       "name": "Tumblr VOA auth",
@@ -113,5 +111,12 @@
       "label": "Refresh dashboard health",
       "command": "npm run check:syndication -- --write"
     }
+  },
+  "queue_warning": {
+    "level": "warning",
+    "queue_remaining": 3,
+    "days_remaining": 1,
+    "checked_at": "2026-07-21T15:08:26.811Z",
+    "message": "Queue has 3 post(s) left (~1 days). Replenish with generate-all-drafts.js."
   }
 }

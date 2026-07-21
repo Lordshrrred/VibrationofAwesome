@@ -1,18 +1,17 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-21T04:17:44.369Z",
+  "generated_at": "2026-07-21T15:08:26.829Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 4,
+      "draft_count": 3,
       "draft_slugs": [
         "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
         "how-to-stop-overthinking-and-make-decisions-fast",
-        "how-to-turn-youtube-videos-into-online-courses",
         "how-to-use-notebooklm-to-learn-faster-as-a-creator"
       ],
-      "runway_days": 2,
+      "runway_days": 1,
       "runway_status": "warning",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -22,6 +21,16 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "how-to-turn-youtube-videos-into-online-courses",
+        "title": "How To Turn Youtube Videos Into Online Courses",
+        "lane": "boom",
+        "date": "2026-07-21T15:08:26.813Z",
+        "url": "/blog/boom/posts/how-to-turn-youtube-videos-into-online-courses",
+        "tags": [],
+        "cluster": "ai-creator-tools",
+        "content_type": null
+      },
       {
         "slug": "how-to-convert-blog-posts-into-lead-magnets",
         "title": "How To Convert Blog Posts Into Lead Magnets",
@@ -231,19 +240,10 @@
         ],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "how-to-check-if-an-email-is-a-scam-using-ai",
-        "title": "How To Check If An Email Is A Scam Using Ai",
-        "lane": "boom",
-        "date": "2026-07-16T15:07:47.126Z",
-        "url": "/blog/boom/posts/how-to-check-if-an-email-is-a-scam-using-ai",
-        "tags": [],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-07-21",
       "2026-07-20",
       "2026-07-19",
       "2026-07-18",
@@ -328,11 +328,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-07-21",
+    "next_estimated_window": "2026-07-22",
     "published_counts": {
-      "boom": 198,
+      "boom": 199,
       "matt": 18,
-      "total": 216
+      "total": 217
     }
   },
   "syndication": {
@@ -359,18 +359,18 @@
         "platform_statuses": {
           "feeder": {
             "status": "success",
-            "timestamp": "2026-07-20T23:03:09.030Z",
+            "timestamp": "2026-07-21T04:17:12.852Z",
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-convert-blog-posts-into-lead-magnets-shift.html"
           },
           "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-07-21T04:17:44.358Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mr4x733j632n"
+            "status": "failed",
+            "timestamp": "2026-07-21T14:36:24.989Z",
+            "url": null
           },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-07-21T04:17:44.358Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116956030670461264"
+            "status": "failed",
+            "timestamp": "2026-07-21T14:36:24.989Z",
+            "url": null
           },
           "facebook_voa": {
             "status": "success",
@@ -404,7 +404,7 @@
           },
           "blogger": {
             "status": "failed",
-            "timestamp": "2026-07-21T04:17:44.358Z",
+            "timestamp": "2026-07-21T14:36:24.989Z",
             "url": null
           },
           "wordpress_earthstar": {
@@ -413,8 +413,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/07/20/how-to-convert-blog-posts-into-lead-magnets-earthstar-2/"
           }
         },
-        "success_count": 10,
-        "failed_count": 1
+        "success_count": 8,
+        "failed_count": 3
       },
       {
         "slug": "ai-advantage-vs-udemy-ai-courses-is-995-actually-better-than-free",
@@ -12234,8 +12234,18 @@
     "retry_backlog": [
       {
         "slug": "how-to-convert-blog-posts-into-lead-magnets",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-07-21T14:36:24.989Z"
+      },
+      {
+        "slug": "how-to-convert-blog-posts-into-lead-magnets",
+        "platform": "mastodon_voa",
+        "timestamp": "2026-07-21T14:36:24.989Z"
+      },
+      {
+        "slug": "how-to-convert-blog-posts-into-lead-magnets",
         "platform": "blogger",
-        "timestamp": "2026-07-21T04:17:44.358Z"
+        "timestamp": "2026-07-21T14:36:24.989Z"
       },
       {
         "slug": "how-to-heal-emotionally-when-you-dont-know-where-to-start",
@@ -12310,13 +12320,13 @@
         "total": 180
       },
       "bluesky_voa": {
-        "successes": 150,
-        "failures": 0,
+        "successes": 149,
+        "failures": 1,
         "total": 180
       },
       "mastodon_voa": {
-        "successes": 150,
-        "failures": 0,
+        "successes": 149,
+        "failures": 1,
         "total": 180
       },
       "facebook_voa": {
@@ -12365,7 +12375,7 @@
       "fully_syndicated": 166,
       "partial": 14,
       "pending": 0,
-      "retry_backlog_count": 14
+      "retry_backlog_count": 16
     }
   },
   "visuals": {
@@ -16142,6 +16152,7 @@
       }
     },
     "post_to_cluster": {
+      "how-to-turn-youtube-videos-into-online-courses": "ai-creator-tools",
       "how-to-convert-blog-posts-into-lead-magnets": "ai-creator-tools",
       "ai-advantage-bootcamp-scam-reddit-what-the-no-filter-crowd-actually-thinks": "ai-creator-tools",
       "ai-advantage-vs-udemy-ai-courses-is-995-actually-better-than-free": "ai-creator-tools",
@@ -16347,7 +16358,7 @@
       "indigo-children-abilities": "purpose-direction"
     },
     "saturation": {
-      "ai-creator-tools": 161,
+      "ai-creator-tools": 162,
       "nervous-system-creativity": 5,
       "dopamine-attention": 1,
       "authentic-self-expression": 5,
@@ -17791,11 +17802,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-07-21T04:17:44.369Z",
-    "next_estimated_window": "2026-07-21",
-    "queue_runway_days": 2,
+    "as_of": "2026-07-21T15:08:26.829Z",
+    "next_estimated_window": "2026-07-22",
+    "queue_runway_days": 1,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-07-21",
       "2026-07-20",
       "2026-07-19",
       "2026-07-18",
@@ -17880,13 +17892,18 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 14,
+    "retry_backlog_count": 16,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "how-to-turn-youtube-videos-into-online-courses",
+        "lane": "boom",
+        "date": "2026-07-21T15:08:26.813Z"
+      },
       {
         "slug": "how-to-convert-blog-posts-into-lead-magnets",
         "lane": "boom",
@@ -17931,18 +17948,13 @@
         "slug": "how-to-manage-mental-overload-as-a-creative",
         "lane": "boom",
         "date": "2026-07-18T22:51:32.396Z"
-      },
-      {
-        "slug": "ai-advantage-vs-russell-brunsons-programs-different-worlds-different-promises",
-        "lane": "boom",
-        "date": "2026-07-18T19:57:40.277Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-07-21T04:17:44.360Z",
-    "source_event": "syndication",
-    "export_duration_ms": 9,
+    "last_export_at": "2026-07-21T15:08:26.818Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
