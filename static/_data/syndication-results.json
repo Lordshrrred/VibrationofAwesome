@@ -7,33 +7,33 @@
     "voa_url": "https://vibrationofawesome.com/blog/boom/posts/how-to-convert-blog-posts-into-lead-magnets",
     "syndication": {
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mr4x733j632n",
-        "timestamp": "2026-07-21T04:17:44.358Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-21T07:14:16.725Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/116956030670461264",
-        "timestamp": "2026-07-21T04:17:44.358Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-07-21T07:14:16.725Z",
+        "error": "env vars not set"
       },
       "bluesky_esr": {
-        "status": "skipped",
+        "status": "failed",
         "url": null,
-        "timestamp": "2026-07-21T04:17:44.358Z",
-        "error": "skipped by social policy",
-        "skipped": true
+        "timestamp": "2026-07-21T07:14:16.725Z",
+        "error": "env vars not set"
       },
       "mastodon_esr": {
-        "status": "skipped",
+        "status": "failed",
         "url": null,
-        "timestamp": "2026-07-21T04:17:44.358Z",
-        "error": "skipped by social policy",
-        "skipped": true
+        "timestamp": "2026-07-21T07:14:16.725Z",
+        "error": "env vars not set"
       },
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-07-21T03:57:54.880Z",
+        "timestamp": "2026-07-21T07:14:16.725Z",
         "error": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
       },
       "feeder": {
