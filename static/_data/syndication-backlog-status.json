@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-21T14:36:25.097Z",
+  "generatedAt": "2026-07-21T16:05:13.580Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,19 +14,19 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 180,
-    "backlogPosts": 1,
-    "backlinkCapableMissingUnits": 1,
-    "backlinkVerificationGaps": 696,
+    "totalTrackedPosts": 181,
+    "backlogPosts": 2,
+    "backlinkCapableMissingUnits": 2,
+    "backlinkVerificationGaps": 699,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 15,
-    "freshPostsAwaitingBacklinks": 1,
-    "freshMissingBacklinkUnits": 1,
-    "completedBacklinkUnitsInWindow": 262,
-    "completedBacklinkUnitsPerDay": 18.7,
+    "distributionIncompleteUnits": 17,
+    "freshPostsAwaitingBacklinks": 2,
+    "freshMissingBacklinkUnits": 2,
+    "completedBacklinkUnitsInWindow": 258,
+    "completedBacklinkUnitsPerDay": 18.4,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 1.3,
+    "netBacklogChangePerDay": 1.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -36,11 +36,11 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 180,
+        "eligiblePosts": 181,
         "complete": 179,
-        "missing": 1,
-        "successRate": 99.4,
-        "averagePerDay": 4.5,
+        "missing": 2,
+        "successRate": 98.9,
+        "averagePerDay": 4.3,
         "confirmed": 7,
         "verificationGaps": 172,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
@@ -48,37 +48,37 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 180,
-        "complete": 180,
+        "eligiblePosts": 181,
+        "complete": 181,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 5.1,
         "confirmed": 5,
-        "verificationGaps": 175,
+        "verificationGaps": 176,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 180,
-        "complete": 180,
+        "eligiblePosts": 181,
+        "complete": 181,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 5.6,
+        "averagePerDay": 5.4,
         "confirmed": 6,
-        "verificationGaps": 174,
+        "verificationGaps": 175,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 134,
-        "complete": 134,
+        "eligiblePosts": 135,
+        "complete": 135,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.1,
+        "averagePerDay": 2.2,
         "confirmed": 4,
-        "verificationGaps": 130,
+        "verificationGaps": 131,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 134,
-        "complete": 134,
+        "eligiblePosts": 135,
+        "complete": 135,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.1,
-        "confirmed": 134,
+        "averagePerDay": 2.2,
+        "confirmed": 135,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,11 +112,11 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 150,
+        "eligiblePosts": 151,
         "complete": 149,
-        "missing": 1,
-        "successRate": 99.3,
-        "averagePerDay": 4.3,
+        "missing": 2,
+        "successRate": 98.7,
+        "averagePerDay": 4,
         "confirmed": 4,
         "verificationGaps": 145,
         "mainBlocker": "env vars not set"
@@ -124,11 +124,11 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 150,
+        "eligiblePosts": 151,
         "complete": 149,
-        "missing": 1,
-        "successRate": 99.3,
-        "averagePerDay": 4.3,
+        "missing": 2,
+        "successRate": 98.7,
+        "averagePerDay": 4,
         "confirmed": 4,
         "verificationGaps": 145,
         "mainBlocker": "env vars not set"
@@ -190,15 +190,15 @@
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 1
+      "count": 2
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 1
+      "count": 2
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 1
+      "count": 2
     }
   ],
   "prioritizedBacklog": [
@@ -207,6 +207,15 @@
       "lane": "boom",
       "title": "How To Convert Blog Posts Into Lead Magnets",
       "date": "2026-07-20",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "how-to-turn-youtube-videos-into-online-courses",
+      "lane": "boom",
+      "title": "How To Turn Youtube Videos Into Online Courses",
+      "date": "2026-07-21",
       "missing": [
         "blogger"
       ]
