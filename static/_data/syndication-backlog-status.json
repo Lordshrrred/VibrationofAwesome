@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-21T21:42:35.920Z",
+  "generatedAt": "2026-07-21T23:32:48.733Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,19 +14,19 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 181,
-    "backlogPosts": 2,
-    "backlinkCapableMissingUnits": 2,
-    "backlinkVerificationGaps": 699,
+    "totalTrackedPosts": 182,
+    "backlogPosts": 3,
+    "backlinkCapableMissingUnits": 3,
+    "backlinkVerificationGaps": 702,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 17,
-    "freshPostsAwaitingBacklinks": 2,
-    "freshMissingBacklinkUnits": 2,
-    "completedBacklinkUnitsInWindow": 247,
-    "completedBacklinkUnitsPerDay": 17.6,
+    "distributionIncompleteUnits": 19,
+    "freshPostsAwaitingBacklinks": 3,
+    "freshMissingBacklinkUnits": 3,
+    "completedBacklinkUnitsInWindow": 249,
+    "completedBacklinkUnitsPerDay": 17.8,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 2.4,
+    "netBacklogChangePerDay": 2.2,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -36,10 +36,10 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 181,
+        "eligiblePosts": 182,
         "complete": 179,
-        "missing": 2,
-        "successRate": 98.9,
+        "missing": 3,
+        "successRate": 98.4,
         "averagePerDay": 3.8,
         "confirmed": 7,
         "verificationGaps": 172,
@@ -48,37 +48,37 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 181,
-        "complete": 181,
+        "eligiblePosts": 182,
+        "complete": 182,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 5.1,
         "confirmed": 5,
-        "verificationGaps": 176,
+        "verificationGaps": 177,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 181,
-        "complete": 181,
+        "eligiblePosts": 182,
+        "complete": 182,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 5.2,
         "confirmed": 6,
-        "verificationGaps": 175,
+        "verificationGaps": 176,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 135,
-        "complete": 135,
+        "eligiblePosts": 136,
+        "complete": 136,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.1,
+        "averagePerDay": 2.2,
         "confirmed": 4,
-        "verificationGaps": 131,
+        "verificationGaps": 132,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 135,
-        "complete": 135,
+        "eligiblePosts": 136,
+        "complete": 136,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.1,
-        "confirmed": 135,
+        "averagePerDay": 2.2,
+        "confirmed": 136,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,11 +112,11 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 151,
+        "eligiblePosts": 152,
         "complete": 149,
-        "missing": 2,
-        "successRate": 98.7,
-        "averagePerDay": 3.9,
+        "missing": 3,
+        "successRate": 98,
+        "averagePerDay": 3.8,
         "confirmed": 4,
         "verificationGaps": 145,
         "mainBlocker": "env vars not set"
@@ -124,11 +124,11 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 151,
+        "eligiblePosts": 152,
         "complete": 149,
-        "missing": 2,
-        "successRate": 98.7,
-        "averagePerDay": 3.9,
+        "missing": 3,
+        "successRate": 98,
+        "averagePerDay": 3.8,
         "confirmed": 4,
         "verificationGaps": 145,
         "mainBlocker": "env vars not set"
@@ -190,15 +190,15 @@
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 2
+      "count": 3
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 2
+      "count": 3
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 2
+      "count": 3
     }
   ],
   "prioritizedBacklog": [
@@ -207,6 +207,15 @@
       "lane": "boom",
       "title": "How To Convert Blog Posts Into Lead Magnets",
       "date": "2026-07-20",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
+      "lane": "boom",
+      "title": "How To Stop Overthinking And Make Decisions Fast",
+      "date": "2026-07-21",
       "missing": [
         "blogger"
       ]
