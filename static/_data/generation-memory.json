@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-21T20:13:50.884Z",
+  "lastUpdated": "2026-07-21T23:07:51.776Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -889,6 +889,42 @@
   "recentThreadsFormats": [
     {
       "slug": "how-to-convert-blog-posts-into-lead-magnets",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-07-21T23:07:51.776Z"
+    },
+    {
+      "slug": "how-to-turn-youtube-videos-into-online-courses",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-21T23:07:33.455Z"
+    },
+    {
+      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-21T23:07:13.098Z"
+    },
+    {
+      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-21T23:03:39.167Z"
+    },
+    {
+      "slug": "how-to-convert-blog-posts-into-lead-magnets",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1120,45 +1156,18 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-07-17T16:57:47.298Z"
-    },
-    {
-      "slug": "how-to-write-linkedin-headlines-that-get-engagement",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-17T14:51:23.550Z"
-    },
-    {
-      "slug": "daily-news-brief-for-creators",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-17T14:49:03.309Z"
-    },
-    {
-      "slug": "how-to-write-linkedin-headlines-that-get-engagement",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-17T04:10:41.859Z"
-    },
-    {
-      "slug": "how-to-write-linkedin-headlines-that-get-engagement",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-17T04:08:31.705Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "timestamp": "2026-07-21T23:03:52.773Z"
+    },
     {
       "slug": "how-to-turn-youtube-videos-into-online-courses",
       "archetype": "premium-quote-card",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-07-06T23:11:21.491Z"
-    },
-    {
-      "slug": "how-to-set-up-chatgpt-memory-for-creative-projects",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-07-06T16:28:00.056Z"
     }
   ]
 }
