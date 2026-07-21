@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-20T13:16:36.191Z",
+  "generatedAt": "2026-07-21T12:43:43.756Z",
   "cadence": {
     "maxCampaignsPerDay": 1,
     "allocation": "Fresh blog posts first; historical blog catch-up second; one queued experience campaign per daily slot.",
@@ -13,15 +13,15 @@
   },
   "summary": {
     "liveExperiences": 8,
-    "queued": 1,
+    "queued": 0,
     "inProgress": 0,
-    "complete": 7,
+    "complete": 8,
     "blocked": 0,
     "failedPlatformRetries": 0,
-    "cachedCompanionAssets": 8,
-    "estimatedClaudeSpendUsd": 0.08,
-    "nextExperienceScheduled": "Creative Signal Finder",
-    "nextExperienceScheduledAt": "2026-07-21T13:16:36.191Z"
+    "cachedCompanionAssets": 9,
+    "estimatedClaudeSpendUsd": 0.09,
+    "nextExperienceScheduled": null,
+    "nextExperienceScheduledAt": null
   },
   "campaigns": [
     {
@@ -326,22 +326,36 @@
       "hubTitle": "Creativity",
       "primaryPurpose": "Help a reader tell the difference between creative resistance and genuine depletion, and meet whichever one is real.",
       "sourceHash": "5fc281db87275e6b",
-      "status": "queued",
+      "status": "complete",
       "canonicalStatus": 200,
       "localCanonicalStatus": 200,
       "inSitemap": true,
       "schemaPresent": true,
       "queuedAt": "2026-07-12T04:37:51.666Z",
-      "lastAttemptAt": null,
-      "completedAt": null,
+      "lastAttemptAt": "2026-07-21T12:43:43.609Z",
+      "completedAt": "2026-07-21T12:43:43.609Z",
       "nextScheduledAt": "2026-07-21T13:16:36.191Z",
-      "platforms": {},
-      "cachedCompanionAssets": 0,
-      "estimatedClaudeSpendUsd": 0,
+      "platforms": {
+        "wordpress_earthstar": {
+          "status": "success",
+          "url": "https://earthstarrisingsun.wordpress.com/2026/07/21/creative-signal-finder-experience-companion/",
+          "postId": "256",
+          "error": null,
+          "cacheReused": false,
+          "generatedBy": "claude",
+          "verification": {
+            "ok": true,
+            "status": 200,
+            "canonicalLinkPresent": true
+          }
+        }
+      },
+      "cachedCompanionAssets": 1,
+      "estimatedClaudeSpendUsd": 0.01,
       "inboundBlogRecommendations": 0,
-      "currentExternalBacklinkCoverage": 0,
-      "dedicatedCompanionContent": false,
-      "orphanedFromBacklinkEngine": true
+      "currentExternalBacklinkCoverage": 1,
+      "dedicatedCompanionContent": true,
+      "orphanedFromBacklinkEngine": false
     }
   ]
 }
