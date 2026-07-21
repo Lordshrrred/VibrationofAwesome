@@ -1,14 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-21T20:13:51.763Z",
+  "generated_at": "2026-07-21T22:58:23.319Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 3,
+      "draft_count": 2,
       "draft_slugs": [
         "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
-        "how-to-stop-overthinking-and-make-decisions-fast",
         "how-to-use-notebooklm-to-learn-faster-as-a-creator"
       ],
       "runway_days": 1,
@@ -21,6 +20,16 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "how-to-stop-overthinking-and-make-decisions-fast",
+        "title": "How To Stop Overthinking And Make Decisions Fast",
+        "lane": "boom",
+        "date": "2026-07-21T22:58:23.302Z",
+        "url": "/blog/boom/posts/how-to-stop-overthinking-and-make-decisions-fast",
+        "tags": [],
+        "cluster": "ai-creator-tools",
+        "content_type": null
+      },
       {
         "slug": "how-to-turn-youtube-videos-into-online-courses",
         "title": "How To Turn Youtube Videos Into Online Courses",
@@ -228,18 +237,6 @@
         ],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "ai-advantage-for-coaches-what-business-coaches-actually-get-from-the-bootcamp",
-        "title": "AI Advantage for Coaches: What Business Coaches Actually Get from the Bootcamp",
-        "lane": "boom",
-        "date": "2026-07-16T16:59:44.213Z",
-        "url": "/blog/boom/posts/ai-advantage-for-coaches-what-business-coaches-actually-get-from-the-bootcamp",
-        "tags": [
-          "ai-advantage-campaign"
-        ],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -330,9 +327,9 @@
     ],
     "next_estimated_window": "2026-07-22",
     "published_counts": {
-      "boom": 199,
+      "boom": 200,
       "matt": 18,
-      "total": 217
+      "total": 218
     }
   },
   "syndication": {
@@ -359,18 +356,18 @@
         "platform_statuses": {
           "feeder": {
             "status": "success",
-            "timestamp": "2026-07-21T17:05:56.089Z",
+            "timestamp": "2026-07-21T20:13:00.132Z",
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-turn-youtube-videos-into-online-courses-signal.html"
           },
           "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-07-21T20:13:31.880Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mr6mlyitz42g"
+            "status": "failed",
+            "timestamp": "2026-07-21T21:42:35.876Z",
+            "url": null
           },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-07-21T20:13:31.880Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116959788556094606"
+            "status": "failed",
+            "timestamp": "2026-07-21T21:42:35.876Z",
+            "url": null
           },
           "facebook_voa": {
             "status": "success",
@@ -404,7 +401,7 @@
           },
           "blogger": {
             "status": "failed",
-            "timestamp": "2026-07-21T20:13:31.880Z",
+            "timestamp": "2026-07-21T21:42:35.876Z",
             "url": null
           },
           "wordpress_earthstar": {
@@ -413,8 +410,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/07/21/how-to-turn-youtube-videos-into-online-courses-earthstar-2/"
           }
         },
-        "success_count": 10,
-        "failed_count": 1
+        "success_count": 8,
+        "failed_count": 3
       },
       {
         "slug": "how-to-convert-blog-posts-into-lead-magnets",
@@ -429,14 +426,14 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-convert-blog-posts-into-lead-magnets-shift.html"
           },
           "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-07-21T20:13:51.723Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mr6moovefj2n"
+            "status": "failed",
+            "timestamp": "2026-07-21T21:42:27.797Z",
+            "url": null
           },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-07-21T20:13:51.723Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/116959794402072140"
+            "status": "failed",
+            "timestamp": "2026-07-21T21:42:27.797Z",
+            "url": null
           },
           "facebook_voa": {
             "status": "success",
@@ -470,7 +467,7 @@
           },
           "blogger": {
             "status": "failed",
-            "timestamp": "2026-07-21T20:03:38.541Z",
+            "timestamp": "2026-07-21T21:42:27.797Z",
             "url": null
           },
           "wordpress_earthstar": {
@@ -479,8 +476,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/07/20/how-to-convert-blog-posts-into-lead-magnets-earthstar-2/"
           }
         },
-        "success_count": 10,
-        "failed_count": 1
+        "success_count": 8,
+        "failed_count": 3
       },
       {
         "slug": "ai-advantage-vs-udemy-ai-courses-is-995-actually-better-than-free",
@@ -12300,13 +12297,33 @@
     "retry_backlog": [
       {
         "slug": "how-to-turn-youtube-videos-into-online-courses",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-07-21T21:42:35.876Z"
+      },
+      {
+        "slug": "how-to-turn-youtube-videos-into-online-courses",
+        "platform": "mastodon_voa",
+        "timestamp": "2026-07-21T21:42:35.876Z"
+      },
+      {
+        "slug": "how-to-turn-youtube-videos-into-online-courses",
         "platform": "blogger",
-        "timestamp": "2026-07-21T20:13:31.880Z"
+        "timestamp": "2026-07-21T21:42:35.876Z"
+      },
+      {
+        "slug": "how-to-convert-blog-posts-into-lead-magnets",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-07-21T21:42:27.797Z"
+      },
+      {
+        "slug": "how-to-convert-blog-posts-into-lead-magnets",
+        "platform": "mastodon_voa",
+        "timestamp": "2026-07-21T21:42:27.797Z"
       },
       {
         "slug": "how-to-convert-blog-posts-into-lead-magnets",
         "platform": "blogger",
-        "timestamp": "2026-07-21T20:03:38.541Z"
+        "timestamp": "2026-07-21T21:42:27.797Z"
       },
       {
         "slug": "how-to-heal-emotionally-when-you-dont-know-where-to-start",
@@ -12381,13 +12398,13 @@
         "total": 181
       },
       "bluesky_voa": {
-        "successes": 151,
-        "failures": 0,
+        "successes": 149,
+        "failures": 2,
         "total": 181
       },
       "mastodon_voa": {
-        "successes": 151,
-        "failures": 0,
+        "successes": 149,
+        "failures": 2,
         "total": 181
       },
       "facebook_voa": {
@@ -12436,7 +12453,7 @@
       "fully_syndicated": 166,
       "partial": 15,
       "pending": 0,
-      "retry_backlog_count": 15
+      "retry_backlog_count": 19
     }
   },
   "visuals": {
@@ -16284,6 +16301,7 @@
       }
     },
     "post_to_cluster": {
+      "how-to-stop-overthinking-and-make-decisions-fast": "ai-creator-tools",
       "how-to-turn-youtube-videos-into-online-courses": "ai-creator-tools",
       "how-to-convert-blog-posts-into-lead-magnets": "ai-creator-tools",
       "ai-advantage-bootcamp-scam-reddit-what-the-no-filter-crowd-actually-thinks": "ai-creator-tools",
@@ -16490,7 +16508,7 @@
       "indigo-children-abilities": "purpose-direction"
     },
     "saturation": {
-      "ai-creator-tools": 162,
+      "ai-creator-tools": 163,
       "nervous-system-creativity": 5,
       "dopamine-attention": 1,
       "authentic-self-expression": 5,
@@ -17934,7 +17952,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-07-21T20:13:51.763Z",
+    "as_of": "2026-07-21T22:58:23.319Z",
     "next_estimated_window": "2026-07-22",
     "queue_runway_days": 1,
     "queue_runway_status": "warning",
@@ -18024,13 +18042,18 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 15,
+    "retry_backlog_count": 19,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "how-to-stop-overthinking-and-make-decisions-fast",
+        "lane": "boom",
+        "date": "2026-07-21T22:58:23.302Z"
+      },
       {
         "slug": "how-to-turn-youtube-videos-into-online-courses",
         "lane": "boom",
@@ -18075,17 +18098,12 @@
         "slug": "how-to-organize-music-ideas-in-chat-conversations",
         "lane": "boom",
         "date": "2026-07-19T14:25:35.054Z"
-      },
-      {
-        "slug": "how-to-manage-mental-overload-as-a-creative",
-        "lane": "boom",
-        "date": "2026-07-18T22:51:32.396Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-07-21T20:13:51.751Z",
-    "source_event": "retry",
+    "last_export_at": "2026-07-21T22:58:23.307Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 12,
     "schema_version": "1.0",
     "stale_after_minutes": 60
