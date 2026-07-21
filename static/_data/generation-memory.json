@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-20T23:02:35.551Z",
+  "lastUpdated": "2026-07-21T04:16:38.129Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -889,6 +889,15 @@
   "recentThreadsFormats": [
     {
       "slug": "how-to-convert-blog-posts-into-lead-magnets",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-21T04:16:38.129Z"
+    },
+    {
+      "slug": "how-to-convert-blog-posts-into-lead-magnets",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
       "density": "light",
@@ -1147,15 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-07-15T22:59:44.681Z"
-    },
-    {
-      "slug": "ai-advantage-for-realtors-is-the-bootcamp-worth-it-for-real-estate-professionals",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-15T20:01:58.573Z"
     }
   ],
   "recentInstagramArchetypes": [
