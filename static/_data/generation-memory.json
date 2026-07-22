@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-22T15:12:37.586Z",
+  "lastUpdated": "2026-07-22T15:15:14.280Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-convert-blog-posts-into-lead-magnets",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-07-22T15:15:14.280Z"
+    },
+    {
+      "slug": "how-to-turn-youtube-videos-into-online-courses",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-07-22T15:14:51.385Z"
+    },
+    {
+      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-07-22T15:14:40.427Z"
+    },
+    {
       "slug": "how-to-use-notebooklm-to-learn-faster-as-a-creator",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1129,33 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-07-18T16:42:17.305Z"
-    },
-    {
-      "slug": "how-to-turn-google-docs-into-a-website",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-18T14:22:58.140Z"
-    },
-    {
-      "slug": "one-habit-per-month-system-for-creatives",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-18T03:56:38.785Z"
-    },
-    {
-      "slug": "one-habit-per-month-system-for-creatives",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-17T22:53:08.427Z"
     }
   ],
   "recentInstagramArchetypes": [
