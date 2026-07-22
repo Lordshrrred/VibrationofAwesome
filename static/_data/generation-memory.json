@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-07-22T04:20:01.313Z",
+  "lastUpdated": "2026-07-22T15:12:37.586Z",
   "recentHooks": [
     {
       "slug": "how-to-keep-a-music-release-calendar-organized-without-a-team-when-its-just-you-doing-all-of-it",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-use-notebooklm-to-learn-faster-as-a-creator",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-07-22T15:12:19.355Z"
+    },
+    {
       "slug": "how-to-convert-blog-posts-into-lead-magnets",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1147,18 +1156,18 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-07-17T22:53:08.427Z"
-    },
-    {
-      "slug": "daily-news-brief-for-creators",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-17T19:59:55.088Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-use-notebooklm-to-learn-faster-as-a-creator",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "timestamp": "2026-07-22T15:12:37.586Z"
+    },
     {
       "slug": "how-to-stop-overthinking-and-make-decisions-fast",
       "archetype": "symbolic-consciousness",
@@ -1419,15 +1428,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-07-07T15:47:19.812Z"
-    },
-    {
-      "slug": "how-to-use-gemini-25-flash-for-image-generation",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-07-06T23:11:21.491Z"
     }
   ]
 }
