@@ -20,8 +20,66 @@
 
 export const INSTAGRAM_ARCHETYPES = [
   {
+    id:                  "list-resource-card",
+    label:               "List / Resource Card",
+    family:              "utility",
+    textRenderMode:      "deterministic",
+    formatId:            "list_resource",
+    palette:             "teal-on-dark",
+    layout:              "numbered-list",
+    emotionalTone:       "practical",
+    emotionalCluster:    "useful",
+    contentTypeAffinity: ["creator", "general", "nervous-system"],
+    description:         "A real numbered list of specific, useful items pulled from the post's own content. Deterministically rendered text, never AI-spelled.",
+    avoidWith:           ["mini-guide-card"], // both numbered-list layouts
+  },
+  {
+    id:                  "curiosity-hook-card",
+    label:               "Curiosity Hook Card",
+    family:              "utility",
+    textRenderMode:      "deterministic",
+    formatId:            "curiosity_hook",
+    palette:             "teal-on-dark",
+    layout:              "single-hook",
+    emotionalTone:       "curiosity",
+    emotionalCluster:    "useful",
+    contentTypeAffinity: ["philosophy", "general", "nervous-system", "creator"],
+    description:         "One sharp, specific hook line drawn from the post ~ minimal, high negative space, makes someone want the rest of the idea.",
+    avoidWith:           [],
+  },
+  {
+    id:                  "mini-guide-card",
+    label:               "Mini Guide / Framework Card",
+    family:              "utility",
+    textRenderMode:      "deterministic",
+    formatId:            "mini_guide",
+    palette:             "teal-on-dark",
+    layout:              "numbered-list",
+    emotionalTone:       "practical",
+    emotionalCluster:    "useful",
+    contentTypeAffinity: ["creator", "nervous-system", "general"],
+    description:         "A short numbered framework or step sequence distilled from the post's actual argument, not a generic template.",
+    avoidWith:           ["list-resource-card"],
+  },
+  {
+    id:                  "comparison-card",
+    label:               "Myth vs Reality Card",
+    family:              "utility",
+    textRenderMode:      "deterministic",
+    formatId:            "comparison",
+    palette:             "teal-on-dark",
+    layout:              "two-column",
+    emotionalTone:       "clarifying",
+    emotionalCluster:    "useful",
+    contentTypeAffinity: ["philosophy", "nervous-system", "general", "creator"],
+    description:         "Myth/reality or before/after pairs drawn directly from the post's actual claims ~ two-column deterministic layout.",
+    avoidWith:           [],
+  },
+  {
     id:                  "premium-quote-card",
     label:               "Premium Quote Card",
+    family:              "art",
+    textRenderMode:      "ideogram",
     palette:             "teal-on-dark",
     layout:              "typography-forward",
     emotionalTone:       "clarity",
@@ -36,6 +94,8 @@ export const INSTAGRAM_ARCHETYPES = [
   {
     id:                  "cinematic-ideogram",
     label:               "Cinematic Artwork",
+    family:              "art",
+    textRenderMode:      "ideogram",
     palette:             "painterly-dark",
     layout:              "environmental-scene",
     emotionalTone:       "liminal",
@@ -50,6 +110,8 @@ export const INSTAGRAM_ARCHETYPES = [
   {
     id:                  "symbolic-consciousness",
     label:               "Symbolic Consciousness",
+    family:              "art",
+    textRenderMode:      "ideogram",
     palette:             "cosmic-teal",
     layout:              "abstract-centered",
     emotionalTone:       "cosmic",
@@ -64,6 +126,8 @@ export const INSTAGRAM_ARCHETYPES = [
   {
     id:                  "minimalist-philosophy",
     label:               "Minimalist Philosophy",
+    family:              "art",
+    textRenderMode:      "ideogram",
     palette:             "near-black-accent",
     layout:              "vast-negative-space",
     emotionalTone:       "stillness",
@@ -78,6 +142,8 @@ export const INSTAGRAM_ARCHETYPES = [
   {
     id:                  "field-guide-aesthetic",
     label:               "Field Guide Aesthetic",
+    family:              "art",
+    textRenderMode:      "ideogram",
     palette:             "warm-archive",
     layout:              "editorial-artifact",
     emotionalTone:       "quiet-discovery",
@@ -92,6 +158,8 @@ export const INSTAGRAM_ARCHETYPES = [
   {
     id:                  "nervous-system-atmospheric",
     label:               "Nervous System Atmospheric",
+    family:              "art",
+    textRenderMode:      "ideogram",
     palette:             "soft-teal-mist",
     layout:              "breathing-space",
     emotionalTone:       "regulation",
@@ -106,6 +174,8 @@ export const INSTAGRAM_ARCHETYPES = [
   {
     id:                  "abstract-creator-life",
     label:               "Abstract Creator Life",
+    family:              "art",
+    textRenderMode:      "ideogram",
     palette:             "studio-cyan",
     layout:              "process-frame",
     emotionalTone:       "craft",
@@ -120,6 +190,8 @@ export const INSTAGRAM_ARCHETYPES = [
   {
     id:                  "sacred-tech",
     label:               "Sacred Tech / Consciousness-Tech",
+    family:              "art",
+    textRenderMode:      "ideogram",
     palette:             "circuit-teal",
     layout:              "organic-digital-hybrid",
     emotionalTone:       "emergence",
@@ -174,12 +246,16 @@ const RECENCY_PENALTIES = [12, 6, 3, 2, 1, 0.5, 0.5, 0.3];
  *  - Content-type affinity (mild preference for content-appropriate archetype)
  *  - avoidWith rules (never immediately follow a pairing-flagged archetype)
  *
- * @param {Array}  recentArchetypes - Array of recent { archetype, palette, emotionalCluster } entries
+ * @param {Array}  recentArchetypes - Array of recent { archetype, palette, emotionalCluster, family } entries
  * @param {string} [contentType]    - Post content type for affinity hint
+ * @param {string} [familyFilter]   - Restrict selection to "art" or "utility" (used when a
+ *                                    utility concept fails content-fit and the caller needs
+ *                                    an art-family fallback without re-running full monotony logic)
  * @returns {object} An archetype from INSTAGRAM_ARCHETYPES
  */
-export function selectInstagramArchetype(recentArchetypes = [], contentType = null) {
+export function selectInstagramArchetype(recentArchetypes = [], contentType = null, familyFilter = null) {
   const recentIds       = (recentArchetypes || []).slice(0, RECENCY_PENALTIES.length).map(e => e.archetype);
+  const recentFamilies  = (recentArchetypes || []).slice(0, RECENCY_PENALTIES.length).map(e => e.family).filter(Boolean);
   const lastId          = recentIds[0] || null;
   const lastArchetype   = lastId ? getInstagramArchetype(lastId) : null;
   const lastPalette     = (recentArchetypes[0]?.palette) || null;
@@ -192,7 +268,17 @@ export function selectInstagramArchetype(recentArchetypes = [], contentType = nu
     penalties[id] = (penalties[id] || 0) + (RECENCY_PENALTIES[i] || 0);
   }
 
-  const scored = INSTAGRAM_ARCHETYPES.map(a => {
+  // Family recency penalty: the same content-mix discipline as individual archetypes,
+  // one level up ~ prevents the feed from becoming all-art or all-utility even when
+  // individual archetype ids within a family keep rotating.
+  const familyPenalties = {};
+  for (let i = 0; i < recentFamilies.length; i++) {
+    familyPenalties[recentFamilies[i]] = (familyPenalties[recentFamilies[i]] || 0) + (RECENCY_PENALTIES[i] || 0);
+  }
+
+  const pool = familyFilter ? INSTAGRAM_ARCHETYPES.filter(a => a.family === familyFilter) : INSTAGRAM_ARCHETYPES;
+
+  const scored = pool.map(a => {
     let score = penalties[a.id] || 0;
 
     // Hard avoid: avoidWith rules from the previous archetype
@@ -208,6 +294,10 @@ export function selectInstagramArchetype(recentArchetypes = [], contentType = nu
     // Emotional cluster penalty: same cluster as last post
     const emoCluster = Object.entries(EMOTIONAL_CLUSTERS).find(([, ids]) => ids.includes(a.id))?.[0];
     if (emoCluster && emoCluster === lastEmoCluster) score += 2;
+
+    // Family-mix penalty (half weight of archetype-level, since some repetition within
+    // a family is fine ~ it's a full-feed monoculture we're avoiding, not variety within art).
+    score += (familyPenalties[a.family] || 0) * 0.5;
 
     // Content-type affinity bonus (mild preference)
     if (contentType && a.contentTypeAffinity.includes(contentType)) score -= 0.7;
@@ -280,6 +370,25 @@ export function analyzeInstagramMonotony(recentArchetypes = []) {
     }
   }
 
+  // Family monoculture: the mission-level guard against becoming either an
+  // all-art feed or an all-list-card feed. Individual archetype/palette/tone
+  // rotation can look varied while every post is still the same family.
+  if (recent.length >= 3) {
+    const lastThreeFamilies = recent.slice(0, 3).map(e => e.family).filter(Boolean);
+    if (lastThreeFamilies.length === 3 && new Set(lastThreeFamilies).size === 1) {
+      warnings.push(`FAMILY MONOCULTURE: "${lastThreeFamilies[0]}" family 3 posts in a row`);
+    }
+  }
+  if (recent.length >= 6) {
+    const last6Families = recent.slice(0, 6).map(e => e.family).filter(Boolean);
+    for (const fam of ["art", "utility"]) {
+      const count = last6Families.filter(f => f === fam).length;
+      if (last6Families.length >= 5 && count >= 5) {
+        warnings.push(`FAMILY OVERUSE: "${fam}" family appears ${count}/${last6Families.length} recent posts`);
+      }
+    }
+  }
+
   return {
     warnings,
     summary:   warnings.length === 0
@@ -293,11 +402,13 @@ function buildDiversityReport(recent) {
   const archetypeCounts = {};
   const paletteCounts   = {};
   const emoCounts       = {};
+  const familyCounts    = {};
 
   for (const e of recent) {
     archetypeCounts[e.archetype]       = (archetypeCounts[e.archetype] || 0) + 1;
     paletteCounts[e.palette]           = (paletteCounts[e.palette] || 0) + 1;
     emoCounts[e.emotionalCluster]      = (emoCounts[e.emotionalCluster] || 0) + 1;
+    if (e.family) familyCounts[e.family] = (familyCounts[e.family] || 0) + 1;
   }
 
   const uniqueArchetypes = Object.keys(archetypeCounts).length;
@@ -314,5 +425,6 @@ function buildDiversityReport(recent) {
     archetypeCounts,
     paletteCounts,
     emoCounts,
+    familyCounts,
   };
 }

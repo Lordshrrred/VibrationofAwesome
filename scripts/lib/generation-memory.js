@@ -240,13 +240,14 @@ export function getRecentInstagramArchetypes(limit = 20) {
  * @param {string} opts.palette
  * @param {string} opts.emotionalTone
  * @param {string} opts.emotionalCluster
+ * @param {string} [opts.family] - "art" | "utility"
  */
-export function recordInstagramArchetype({ slug, archetype, archetypeLabel, palette, emotionalTone, emotionalCluster }) {
+export function recordInstagramArchetype({ slug, archetype, archetypeLabel, palette, emotionalTone, emotionalCluster, family }) {
   try {
     const memory = loadMemory();
     const timestamp = new Date().toISOString();
     if (!Array.isArray(memory.recentInstagramArchetypes)) memory.recentInstagramArchetypes = [];
-    memory.recentInstagramArchetypes.unshift({ slug, archetype, archetypeLabel, palette, emotionalTone, emotionalCluster, timestamp });
+    memory.recentInstagramArchetypes.unshift({ slug, archetype, archetypeLabel, palette, emotionalTone, emotionalCluster, family: family || null, timestamp });
     if (memory.recentInstagramArchetypes.length > MAX_ENTRIES) memory.recentInstagramArchetypes.length = MAX_ENTRIES;
     memory.lastUpdated = timestamp;
     fs.mkdirSync(path.dirname(MEMORY_FILE), { recursive: true });

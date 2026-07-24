@@ -284,6 +284,12 @@ Every backlink platform article must:
 - If Blogger or WordPress returns a duplicate title error → retry with a modified title prompt
 - If any platform has an existing `status: "success"` in `syndication-results.json` → skip unless `--force` is passed
 
+### Publer-platform duplicate root cause and fix (2026-07-24)
+A live Instagram duplicate was traced and fixed. Root cause: `postViaPubler()`'s only guard against re-posting was `attempt()`'s LOCAL check in `syndicate.js` (does this slug already have `status: "success"` in `syndication-results.json`) ~ and `retry-failed-syndication.js` always calls `syndicate.js --force`, which explicitly bypasses that local check by design. Combined with a 60s client-side timeout racing Publer's async publish+poll flow (media upload + `/posts/schedule/publish` + up to 30×2s of job polling), a publish that actually succeeded server-side but responded slowly got recorded locally as "failed" ~ every subsequent retry pass (drip runs, catch-up, `retry-failed-syndication.js`, up to 6×/day) would then force-repost it with no way to know Publer already had it.
+- **The fix, not a workaround:** `findExistingPublerPost()` inside `postViaPubler()` (`scripts/syndicate.js`) reconciles against Publer's own live post list (`GET /posts` for the target account, last 72h, exact normalized-caption match) *before* ever creating a new post ~ on every call path, `--force` or not. This applies to every Publer-routed platform (facebook, pinterest, threads, instagram), not just the one that happened to duplicate. Fails open (never blocks a legitimate post) on any read error.
+- **This is the one duplicate-prevention invariant for Publer platforms going forward:** THIS SOURCE → THIS DESTINATION ACCOUNT → THIS CAPTION already live on Publer is checked via live Publer truth, not the local results file, before any create call. Do not add a second local-only dedup layer ~ extend `findExistingPublerPost()` if the matching logic ever needs to change.
+- **`retry-failed-syndication.js` had no CLI guard** (unlike `syndicate.js`, which checks `process.argv[1]` against its own file path before running). A plain `import` of that file ~ from a test, another script, or a load/syntax check ~ unconditionally executed a real live retry pass. Fixed with the same `isCli` guard pattern. Any future script in this repo with a top-level `main().catch(...)` call must have this guard.
+
 ---
 
 ## QUEUE DEPLETION MONITORING
@@ -484,6 +490,26 @@ VOA Instagram (`@vibrationofawesome`) and VOA Threads (`@vibrationofawesome`) ar
 **When to revisit**: When Instagram has meaningful engagement data (>5k followers or 3+ months of post history), reintroduce content-type filtering based on actual engagement signal ~ not assumptions.
 
 **ESR accounts are unaffected**: This routing change applies ONLY to VOA Instagram and VOA Threads. ESR accounts remain suppressed by default for VOA blog posts.
+
+---
+
+## INSTAGRAM VISUAL CONTENT MIX: ART + UTILITY (2026-07-24)
+
+Before this change, every VOA Instagram post was one of 8 AI-art archetypes (`scripts/lib/instagram-archetypes.js`) generated via Ideogram ~ the feed was 100% AI art + caption, with no first-class useful/list/resource format. `list_card` did not exist anywhere in this repo as a real generator (it was a classifier-only concept in a *different* repo, EarthStar Command).
+
+**Canonical content-mix model:** `INSTAGRAM_ARCHETYPES` now has two `family` values, selected through the same single rotation/anti-monotony engine (`selectInstagramArchetype()`), not a parallel system:
+- `family: "art"` (8 archetypes, unchanged) ~ Ideogram-generated, `textRenderMode: "ideogram"`.
+- `family: "utility"` (4 new archetypes: `list-resource-card`, `curiosity-hook-card`, `mini-guide-card`, `comparison-card`) ~ `textRenderMode: "deterministic"`, no Ideogram call, near-zero cost.
+
+`selectInstagramArchetype()` penalizes family repetition the same way it already penalized individual-archetype/palette/emotional-cluster repetition (half-weight, since some repetition *within* a family is fine ~ it's a full feed monoculture being prevented, in either direction). `analyzeInstagramMonotony()` gained `FAMILY MONOCULTURE` (3 in a row) and `FAMILY OVERUSE` (5+/6) warnings. **Do not build a second selection/rotation system for utility cards ~ extend this one**, exactly like the art archetypes already do.
+
+**Content grounding, not generic AI-slop lists:** `buildUtilityCardConcept()` (`scripts/lib/utility-card-concept.js`) feeds the *actual post body* (needs ~3000 chars, not just the excerpt ~ a short slice reliably judges "no real content" on posts whose specifics appear past the opening hook paragraph) to Claude and asks it to honestly judge fit first. A post with only abstract/philosophical setup and no concrete tools/steps/facts returns `{fit:false}`, and `generate-instagram-visual.js` falls back to an art archetype (`selectInstagramArchetype(recent, contentType, "art")`) rather than forcing a bad list. **Never weaken this fit check to force more utility-card volume** ~ an honest `fit:false` is the mechanism preventing generic disconnected AI-slop lists.
+
+**Deterministic text rendering is the enforcement of the existing visual-text-verification rule**, not a new rule: `scripts/lib/utility-card-renderer.js` renders every utility-card format (list/resource, curiosity hook, mini guide, comparison) as hand-built SVG + `sharp`, composited over a programmatic gradient background (no AI image call for utility cards at all). Every character on the card is the exact string the concept builder produced ~ no image model is ever asked to spell anything, so there is no fake/garbled-AI-text risk on this path by construction. XML-escape all text going into SVG. Text that would overflow a card's fixed formats is truncated with a visible ellipsis (`wrapTextLimited()`) rather than silently dropping words mid-sentence ~ a naive fixed-row-height layout and a naive line-slice truncation both produced real overlapping/mid-sentence-cut renders during local verification before either reached a real post; both are fixed and the fix is load-bearing, not cosmetic.
+
+**Publer upload path:** locally-rendered card buffers have no public URL yet at generation time (the VOA static site hasn't deployed this run's assets), so the existing `/media/from-url` path (used for externally-hosted Ideogram/Pexels URLs) can't be used. `scripts/lib/publer-media-upload.js`'s `uploadPublerMediaBuffer()` uses Publer's `POST /media` multipart endpoint instead (empirically verified against the live API, not guessed from docs ~ the docs proxy tool gave inconsistent answers about whether this endpoint even exists). It returns `{id, path}`, where `path` is itself a real fetchable HTTPS URL, so a rendered card slots into the existing url-based threading (Pinterest shared-asset reuse, generation-memory, results logging) with zero changes to that threading. Kept in its own module (not inside `syndicate.js`) specifically to avoid a circular import with `generate-instagram-visual.js`.
+
+**Measuring utility vs art performance:** reuse the existing Instagram post/media Publer or platform analytics already read elsewhere in the ecosystem (EarthStar Command's Creator Intelligence); `family` and `utilityFormat` are recorded in `generation-memory.json` per post specifically so a future analysis can join on them. Do not build a second analytics system here to answer this ~ it's a join on existing data once that data exists.
 
 ---
 

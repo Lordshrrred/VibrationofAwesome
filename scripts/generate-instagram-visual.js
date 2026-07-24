@@ -26,6 +26,9 @@
 import crypto from "crypto";
 import { INSTAGRAM_ARCHETYPES, getInstagramArchetype, selectInstagramArchetype } from "./lib/instagram-archetypes.js";
 import { getRecentInstagramArchetypes, recordInstagramArchetype } from "./lib/generation-memory.js";
+import { buildUtilityCardConcept } from "./lib/utility-card-concept.js";
+import { renderUtilityCardPNG } from "./lib/utility-card-renderer.js";
+import { uploadPublerMediaBuffer } from "./lib/publer-media-upload.js";
 
 // ── Prompt construction ───────────────────────────────────────────────────────
 
@@ -79,6 +82,25 @@ Respond with ONLY the Ideogram prompt text. No explanation. No preamble.`,
  * @returns {Promise<object|null>} Result object or null on failure
  */
 export async function generateInstagramVisual(post, anthropic, contentType = null) {
+  // Select archetype using recency-penalized anti-monotony rotation. This runs
+  // before any provider-key check ~ utility-card archetypes need no Ideogram
+  // call at all, so they must not be gated behind IDEOGRAM_API_KEY.
+  const recentArchetypes = getRecentInstagramArchetypes(10);
+  let archetype = selectInstagramArchetype(recentArchetypes, contentType);
+
+  console.log(`  [instagram-visual] Archetype: ${archetype.label} (${archetype.family} / ${archetype.palette})`);
+
+  if (archetype.family === "utility") {
+    const result = await generateUtilityCardVisual(post, anthropic, archetype);
+    if (result) return result;
+
+    // Content didn't fit a utility card (or rendering/upload failed) ~ never
+    // force a bad list. Fall back to an art archetype instead of a null visual.
+    console.log("  [instagram-visual] Utility card did not fit this post's content ~ falling back to an art archetype");
+    archetype = selectInstagramArchetype(recentArchetypes, contentType, "art");
+    console.log(`  [instagram-visual] Fallback archetype: ${archetype.label} (${archetype.palette} / ${archetype.emotionalTone})`);
+  }
+
   const apiKey = process.env.IDEOGRAM_API_KEY;
   if (!apiKey) {
     console.log("  [instagram-visual] IDEOGRAM_API_KEY not set ~ using Pinterest/Pexels image for Instagram");
@@ -86,12 +108,6 @@ export async function generateInstagramVisual(post, anthropic, contentType = nul
   }
 
   try {
-    // Select archetype using recency-penalized anti-monotony rotation
-    const recentArchetypes = getRecentInstagramArchetypes(10);
-    const archetype = selectInstagramArchetype(recentArchetypes, contentType);
-
-    console.log(`  [instagram-visual] Archetype: ${archetype.label} (${archetype.palette} / ${archetype.emotionalTone})`);
-
     // Build the Ideogram prompt via Claude Haiku
     const prompt = await buildInstagramPrompt(post, archetype, anthropic);
     console.log(`  [instagram-visual] Prompt: ${prompt.slice(0, 90)}${prompt.length > 90 ? "..." : ""}`);
@@ -140,6 +156,7 @@ export async function generateInstagramVisual(post, anthropic, contentType = nul
         palette:        archetype.palette,
         emotionalTone:  archetype.emotionalTone,
         emotionalCluster: archetype.emotionalCluster,
+        family:         archetype.family,
       });
     }
 
@@ -160,6 +177,58 @@ export async function generateInstagramVisual(post, anthropic, contentType = nul
     };
   } catch (err) {
     console.warn(`  [instagram-visual] Failed: ${err.message} ~ falling back to Pinterest image`);
+    return null;
+  }
+}
+
+// ── Utility card path (list/resource/curiosity/mini-guide/comparison) ────────
+
+/**
+ * Builds a content-grounded utility-card concept, renders it deterministically
+ * (no image model asked to spell anything), and uploads the resulting PNG to
+ * Publer. Returns null if the post doesn't genuinely fit a utility card, or
+ * on any rendering/upload failure ~ caller falls back to an art archetype.
+ */
+async function generateUtilityCardVisual(post, anthropic, archetype) {
+  try {
+    const concept = await buildUtilityCardConcept(post, anthropic, archetype.formatId);
+    if (!concept) return null;
+
+    console.log(`  [instagram-visual] Utility concept: "${concept.headline}" (${concept.format}, ${(concept.items || []).length || 1} item(s))`);
+
+    const buffer = await renderUtilityCardPNG(concept);
+    const uploaded = await uploadPublerMediaBuffer(buffer, `${post.slug || "utility-card"}-${archetype.id}.png`);
+
+    if (post.slug) {
+      recordInstagramArchetype({
+        slug:             post.slug,
+        archetype:        archetype.id,
+        archetypeLabel:   archetype.label,
+        palette:          archetype.palette,
+        emotionalTone:    archetype.emotionalTone,
+        emotionalCluster: archetype.emotionalCluster,
+        family:           archetype.family,
+      });
+    }
+
+    console.log(`  [instagram-visual] ✓ Utility card ready: ${uploaded.url}`);
+
+    return {
+      url:              uploaded.url,
+      archetype:        archetype.id,
+      archetypeLabel:   archetype.label,
+      palette:          archetype.palette,
+      emotionalTone:    archetype.emotionalTone,
+      emotionalCluster: archetype.emotionalCluster,
+      prompt:           null,
+      promptHash:       null,
+      model:            "deterministic-render",
+      style:            "utility-card",
+      aspectRatio:      "ASPECT_1_1",
+      utilityFormat:    concept.format,
+    };
+  } catch (err) {
+    console.warn(`  [instagram-visual] Utility card failed: ${err.message} ~ falling back to art archetype`);
     return null;
   }
 }

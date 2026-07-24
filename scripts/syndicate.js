@@ -922,10 +922,77 @@ export async function postToTumblr(caption, tags, prefix = "VOA", sourceUrl = ""
   };
 }
 
+/**
+ * Remote-truth reconciliation: does this account already have a post with
+ * this exact caption in the recent window?
+ *
+ * Publer's /posts/schedule/publish call has no idempotency key, and a client
+ * timeout (60s PLATFORM_TIMEOUT_MS racing an async publish+poll job that can
+ * legitimately take longer) does not mean the remote call failed ~ it may
+ * have already succeeded. retry-failed-syndication.js's --force retry then
+ * bypasses the local dedup check entirely, so without this remote check a
+ * slow-but-successful publish gets silently duplicated on the next retry
+ * pass. This is the fix: reconcile against live Publer state before ever
+ * creating a new post, for both normal and --force calls, on every platform
+ * routed through Publer (facebook, pinterest, threads, instagram).
+ *
+ * Fails open (returns null / "not found") on any read error ~ a reconciliation
+ * check must never itself block a legitimate post from going out.
+ */
+async function findExistingPublerPost(accountId, platform, caption, headers, baseUrl, lookbackHours = 72) {
+  const normalize = (t) => String(t || "").toLowerCase().replace(/\s+/g, " ").trim();
+  const target = normalize(caption);
+  if (!target) return null;
+
+  const to   = new Date();
+  const from = new Date(to.getTime() - lookbackHours * 60 * 60 * 1000);
+  const seenIds = new Set();
+
+  try {
+    for (let page = 1; page <= 5; page++) {
+      const query = new URLSearchParams();
+      query.set("state", "all");
+      query.set("from", from.toISOString());
+      query.set("to", to.toISOString());
+      query.set("page", String(page));
+      query.set("per_page", "100");
+      query.append("account_ids[]", accountId);
+
+      const { response, data } = await fetchPublerJson(`${baseUrl}/posts?${query.toString()}`, { headers }, 2);
+      if (!response?.ok) return null;
+      const posts = Array.isArray(data) ? data : (data?.posts || []);
+
+      let sawNew = false;
+      for (const p of posts) {
+        if (seenIds.has(p.id)) continue;
+        seenIds.add(p.id);
+        sawNew = true;
+        const text = p.networks?.[platform]?.text ?? p.text ?? "";
+        if (normalize(text) === target) {
+          return { postId: String(p.id), postUrl: p.post_link || p.url || null };
+        }
+      }
+
+      // Same defensive dedup as EarthStar Command's getPublerPostsForAccountsInRange:
+      // a narrow range can omit total_pages, so trust "no new posts" to stop paging.
+      if (!posts.length || !sawNew || (!Array.isArray(data) && data?.total_pages && page >= data.total_pages)) break;
+    }
+  } catch (_) {
+    return null;
+  }
+  return null;
+}
+
 /** Post Pinterest, Instagram, or Threads via Publer API v1 */
 async function postViaPubler(platform, caption, imageUrl, details = {}) {
   const { BASE, headers } = getPublerConfig();
   const accountId = await getPublerAccountId(platform, headers, BASE);
+
+  const existing = await findExistingPublerPost(accountId, platform, caption, headers, BASE);
+  if (existing) {
+    console.log(`  [reconcile] ${platform}: identical caption already live on Publer (post ${existing.postId}) ~ skipping create, not posting again`);
+    return existing;
+  }
 
   let mediaId = null;
   if (imageUrl) mediaId = await uploadPublerMediaFromUrl(imageUrl, headers, BASE);

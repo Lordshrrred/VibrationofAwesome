@@ -8,7 +8,15 @@
  * Safety:
  *   - Only retries platforms with status "failed" (never "success" or "skipped")
  *   - Uses --platforms flag so only failed platforms are attempted
- *   - The existing dedup logic in syndicate.js prevents duplicate posts
+ *   - Passes --force, which bypasses syndicate.js's LOCAL dedup check by design
+ *     (that check only looks at status "success" in this repo's own results
+ *     file, which a client-side timeout can never have recorded even when
+ *     Publer's async publish job actually succeeded). The real duplicate
+ *     guard for Publer-routed platforms (facebook, pinterest, threads,
+ *     instagram) is findExistingPublerPost() inside syndicate.js's
+ *     postViaPubler() ~ it reconciles against Publer's own live post list by
+ *     exact caption match before ever creating a new post, on every call
+ *     path, force or not.
  *   - syndicate.js reuses prior captions and companion cache when available
  *   - Only looks back RETRY_WINDOW_DAYS days to avoid retrying ancient failures
  *
@@ -191,4 +199,10 @@ async function main() {
   await refreshOrchestration("retry");
 }
 
-main().catch(err => { console.error(err); process.exit(1); });
+// CLI-only guard: without this, simply `import`-ing this module (e.g. from a
+// test, another script, or a syntax/load check) unconditionally executes a
+// real live retry pass. Mirrors the isCli guard already used in syndicate.js.
+const isCli = process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url));
+if (isCli) {
+  main().catch(err => { console.error(err); process.exit(1); });
+}
