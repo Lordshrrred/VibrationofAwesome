@@ -1,8 +1,8 @@
 {
-  "lastChecked": "2026-07-25T03:36:17.111Z",
+  "lastChecked": "2026-07-25T14:01:55.309Z",
   "status": "broken",
-  "passed": 15,
-  "failed": 1,
+  "passed": 13,
+  "failed": 3,
   "total": 16,
   "topFix": {
     "name": "Blogger token refresh",
@@ -71,13 +71,15 @@
     },
     {
       "name": "Dev.to auth",
-      "ok": true,
-      "detail": "earthstarrising"
+      "ok": false,
+      "detail": "unauthorized",
+      "failureType": "check_failed"
     },
     {
       "name": "Dev.to account 2 auth",
-      "ok": true,
-      "detail": "awesomesaucyvibe"
+      "ok": false,
+      "detail": "unauthorized",
+      "failureType": "check_failed"
     },
     {
       "name": "Tumblr VOA auth",
