@@ -23,9 +23,9 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-{{ $socialImage := "https://vibrationofawesome.com/images/StarLogo.png" }}
-{{ $socialImageWidth := "1072" }}
-{{ $socialImageHeight := "960" }}
+{{ $socialImage := "https://vibrationofawesome.com/images/eartstarart.jpg" }}
+{{ $socialImageWidth := "1168" }}
+{{ $socialImageHeight := "784" }}
 {{ with .Params.social_image }}
   {{ if hasPrefix . "http" }}
     {{ $socialImage = . }}
@@ -55,7 +55,7 @@
 {{ end }}
 {{ if .IsPage }}
   {{ if eq .Section "posts" }}
-    {{ if eq $socialImage "https://vibrationofawesome.com/images/StarLogo.png" }}
+    {{ if eq $socialImage "https://vibrationofawesome.com/images/eartstarart.jpg" }}
       {{ $socialImage = "https://vibrationofawesome.com/images/eartstarart3.jpg" }}
       {{ $socialImageWidth = "1168" }}
       {{ $socialImageHeight = "784" }}

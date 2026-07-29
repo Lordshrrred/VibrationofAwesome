@@ -76,6 +76,7 @@
       'transform:translateY(-100%);transition:transform 0.35s ease;',
     '}',
     '#voa-announce.visible{transform:translateY(0);}',
+    'body.voa-announce-open{transition:padding-top 0.35s ease;}',
     '#voa-announce .ann-text{color:rgba(232,244,240,0.82);letter-spacing:0.01em;}',
     '#voa-announce .ann-text strong{color:' + bc + ';}',
     '#voa-announce .ann-link{',
@@ -109,14 +110,29 @@
 
     document.body.insertAdjacentHTML('afterbegin', html);
 
-    // Animate in after short delay
+    // Animate in after short delay. Being position:fixed, the bar doesn't
+    // reserve space in normal flow ~ on mobile (the only width it renders at)
+    // it would otherwise slide down on top of the site header. Push the page
+    // down by the bar's actual rendered height instead of overlapping it.
+    function applyBodySpacing() {
+      var bar = document.getElementById('voa-announce');
+      if (!bar || window.innerWidth >= 769) return;
+      document.body.classList.add('voa-announce-open');
+      document.body.style.paddingTop = bar.offsetHeight + 'px';
+    }
+
     setTimeout(function () {
       var bar = document.getElementById('voa-announce');
       if (bar) bar.classList.add('visible');
+      applyBodySpacing();
     }, 800);
+
+    window.addEventListener('resize', applyBodySpacing);
 
     document.getElementById('voa-announce-close').addEventListener('click', function () {
       var bar = document.getElementById('voa-announce');
+      document.body.classList.remove('voa-announce-open');
+      document.body.style.paddingTop = '';
       if (bar) {
         bar.style.transition = 'transform 0.25s ease,opacity 0.25s ease';
         bar.style.transform = 'translateY(-100%)';
