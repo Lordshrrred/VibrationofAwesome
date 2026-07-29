@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-07-22T11:09:23.445Z",
+  "generatedAt": "2026-07-29T11:26:07.052Z",
   "period": {
     "current": {
-      "startDate": "2026-06-22",
-      "endDate": "2026-07-19"
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-26"
     },
     "previous": {
-      "startDate": "2026-05-25",
-      "endDate": "2026-06-21"
+      "startDate": "2026-06-01",
+      "endDate": "2026-06-28"
     }
   },
   "status": {
     "gsc": {
       "ok": true,
-      "message": "47 current query-page rows"
+      "message": "52 current query-page rows"
     },
     "ga": {
       "ok": true,
@@ -28,10 +28,10 @@
   "summary": {
     "searchConsole": {
       "clicks": 0,
-      "impressions": 147,
+      "impressions": 163,
       "ctr": 0,
-      "averagePosition": 33.775510204081634,
-      "rowCount": 11
+      "averagePosition": 33.11656441717791,
+      "rowCount": 14
     },
     "ga4": {
       "organicSessions": 0,
@@ -50,6 +50,13 @@
       "position": 34.15384615384615
     },
     {
+      "query": "tony robbins dean graziosi",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 23.53846153846154
+    },
+    {
       "query": "tony robbins ai advantage bootcamp",
       "clicks": 0,
       "impressions": 12,
@@ -57,11 +64,11 @@
       "position": 31.583333333333332
     },
     {
-      "query": "tony robbins dean graziosi",
+      "query": "dean graziosi tony robbins",
       "clicks": 0,
-      "impressions": 11,
+      "impressions": 10,
       "ctr": 0,
-      "position": 24.727272727272727
+      "position": 25.5
     },
     {
       "query": "knowledge business blueprint tony robbins",
@@ -78,25 +85,18 @@
       "position": 28.333333333333332
     },
     {
+      "query": "dean graziosi and tony robbins",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 28.625
+    },
+    {
       "query": "join ai advantage",
       "clicks": 0,
       "impressions": 8,
       "ctr": 0,
       "position": 48.75
-    },
-    {
-      "query": "ai bootcamp reviews",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 40.142857142857146
-    },
-    {
-      "query": "dean graziosi ai",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 27.714285714285715
     }
   ],
   "topLandingPages": [
@@ -197,30 +197,61 @@
       "title": "Dean Graziosi and Tony Robbins Joint Programs: A Track Record Review",
       "path": "/blog/boom/posts/dean-graziosi-and-tony-robbins-joint-programs-a-track-record-review",
       "clicks": 0,
-      "impressions": 4,
+      "impressions": 11,
       "ctr": 0,
-      "position": 17.75,
+      "position": 17.636363636363637,
       "topQueries": [
         {
           "query": "dean graziosi tony robbins",
           "clicks": 0,
-          "impressions": 2,
+          "impressions": 5,
           "ctr": 0,
-          "position": 16.5
+          "position": 16.8
         },
         {
           "query": "dean graziosi and tony robbins",
           "clicks": 0,
-          "impressions": 1,
+          "impressions": 3,
           "ctr": 0,
           "position": 19
         },
         {
           "query": "tony robbins dean graziosi",
           "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 17.666666666666668
+        }
+      ]
+    },
+    {
+      "title": "Mastermind.com vs AI Advantage: Are Tony and Dean Selling the Same Promise Twice",
+      "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 20.666666666666668,
+      "topQueries": [
+        {
+          "query": "mastermind tony and dean",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 14.25
+        },
+        {
+          "query": "mastermind dean and tony",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 15.333333333333334
+        },
+        {
+          "query": "dean graziosi mastermind",
+          "clicks": 0,
           "impressions": 1,
           "ctr": 0,
-          "position": 19
+          "position": 66
         }
       ]
     },
@@ -281,30 +312,6 @@
           "position": 28
         }
       ]
-    },
-    {
-      "title": "Mastermind.com vs AI Advantage: Are Tony and Dean Selling the Same Promise Twice",
-      "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 14.5,
-      "topQueries": [
-        {
-          "query": "mastermind dean and tony",
-          "clicks": 0,
-          "impressions": 1,
-          "ctr": 0,
-          "position": 15
-        },
-        {
-          "query": "mastermind tony and dean",
-          "clicks": 0,
-          "impressions": 1,
-          "ctr": 0,
-          "position": 14
-        }
-      ]
     }
   ],
   "ctrOpportunities": [],
@@ -317,6 +324,6 @@
     "engagementWinners": 0,
     "weakEngagement": 0,
     "hiddenQueries": 4,
-    "cannibalization": 0
+    "cannibalization": 1
   }
 }
