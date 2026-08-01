@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T14:08:28.813Z",
+  "generatedAt": "2026-08-01T15:39:31.188Z",
   "keywordGeneration": {
     "currentInventory": 0,
     "publishedInventory": 192,
@@ -14,10 +14,10 @@
     "mode": "maintenance",
     "backlogPosts": 4,
     "backlogUnits": 4,
-    "completedPerDay": 3.4,
+    "completedPerDay": 3.1,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklinkUnitsPerDay": 16.6,
+    "netBacklinkUnitsPerDay": 16.9,
     "estimatedCatchUpDays": "not-catching-up",
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 21,
@@ -38,7 +38,7 @@
           "averagePerDay": 0.6,
           "confirmed": 7,
           "verificationGaps": 172,
-          "mainBlocker": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
+          "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
         },
         {
           "key": "wordpress_earthstar",
@@ -71,7 +71,7 @@
           "complete": 137,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 0.6,
+          "averagePerDay": 0.5,
           "confirmed": 4,
           "verificationGaps": 133,
           "mainBlocker": ""
@@ -97,7 +97,7 @@
           "complete": 137,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 0.6,
+          "averagePerDay": 0.5,
           "confirmed": 137,
           "verificationGaps": 0,
           "mainBlocker": ""
@@ -184,16 +184,20 @@
         "count": 13
       },
       {
-        "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-        "count": 4
-      },
-      {
         "reason": "bluesky_voa: env vars not set",
         "count": 4
       },
       {
         "reason": "mastodon_voa: env vars not set",
         "count": 4
+      },
+      {
+        "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
+        "count": 3
+      },
+      {
+        "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
+        "count": 1
       }
     ],
     "definitions": {
@@ -202,7 +206,7 @@
       "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
       "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
     },
-    "reason": "Backlink-capable backlog is growing by 16.6 platform units/day at the current rate.",
+    "reason": "Backlink-capable backlog is growing by 16.9 platform units/day at the current rate.",
     "windowDays": 14
   },
   "curatedExpansion": {

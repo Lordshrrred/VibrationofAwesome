@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T14:08:28.768Z",
+  "generatedAt": "2026-08-01T15:39:31.149Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -22,11 +22,11 @@
     "distributionIncompleteUnits": 21,
     "freshPostsAwaitingBacklinks": 3,
     "freshMissingBacklinkUnits": 3,
-    "completedBacklinkUnitsInWindow": 48,
-    "completedBacklinkUnitsPerDay": 3.4,
+    "completedBacklinkUnitsInWindow": 44,
+    "completedBacklinkUnitsPerDay": 3.1,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 16.6,
+    "netBacklogChangePerDay": 16.9,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -43,7 +43,7 @@
         "averagePerDay": 0.6,
         "confirmed": 7,
         "verificationGaps": 172,
-        "mainBlocker": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
+        "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
@@ -76,7 +76,7 @@
         "complete": 137,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.6,
+        "averagePerDay": 0.5,
         "confirmed": 4,
         "verificationGaps": 133,
         "mainBlocker": ""
@@ -102,7 +102,7 @@
         "complete": 137,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.6,
+        "averagePerDay": 0.5,
         "confirmed": 137,
         "verificationGaps": 0,
         "mainBlocker": ""
@@ -189,16 +189,20 @@
       "count": 13
     },
     {
-      "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 4
-    },
-    {
       "reason": "bluesky_voa: env vars not set",
       "count": 4
     },
     {
       "reason": "mastodon_voa: env vars not set",
       "count": 4
+    },
+    {
+      "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
+      "count": 3
+    },
+    {
+      "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
+      "count": 1
     }
   ],
   "prioritizedBacklog": [
