@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T21:44:00.643Z",
+  "generatedAt": "2026-08-03T22:44:15.000Z",
   "keywordGeneration": {
     "currentInventory": 0,
     "publishedInventory": 192,
@@ -12,18 +12,18 @@
   },
   "backlinks": {
     "mode": "maintenance",
-    "backlogPosts": 4,
-    "backlogUnits": 4,
-    "completedPerDay": 0.9,
+    "backlogPosts": 0,
+    "backlogUnits": 0,
+    "completedPerDay": 1.1,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklinkUnitsPerDay": 19.1,
-    "estimatedCatchUpDays": "not-catching-up",
+    "netBacklinkUnitsPerDay": 18.9,
+    "estimatedCatchUpDays": 0,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 21,
-    "verificationGaps": 705,
-    "freshPostsAwaitingBacklinks": 3,
-    "freshMissingBacklinkUnits": 3,
+    "verificationGaps": 709,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13,
     "platformTable": {
@@ -32,13 +32,13 @@
           "key": "blogger",
           "platform": "Blogger",
           "eligiblePosts": 183,
-          "complete": 179,
-          "missing": 4,
-          "successRate": 97.8,
-          "averagePerDay": 0,
+          "complete": 183,
+          "missing": 0,
+          "successRate": 100,
+          "averagePerDay": 0.3,
           "confirmed": 7,
-          "verificationGaps": 172,
-          "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
+          "verificationGaps": 176,
+          "mainBlocker": ""
         },
         {
           "key": "wordpress_earthstar",
@@ -190,14 +190,6 @@
       {
         "reason": "mastodon_voa: env vars not set",
         "count": 4
-      },
-      {
-        "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-        "count": 3
-      },
-      {
-        "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-        "count": 1
       }
     ],
     "definitions": {
@@ -206,7 +198,7 @@
       "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
       "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
     },
-    "reason": "Backlink-capable backlog is growing by 19.1 platform units/day at the current rate.",
+    "reason": "Backlink-capable backlog is clear; new posts can move through publish, syndicate, verify, complete.",
     "windowDays": 14
   },
   "curatedExpansion": {

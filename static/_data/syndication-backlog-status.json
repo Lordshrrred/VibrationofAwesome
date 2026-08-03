@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T21:44:00.605Z",
+  "generatedAt": "2026-08-03T22:44:14.963Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -15,19 +15,19 @@
   },
   "summary": {
     "totalTrackedPosts": 183,
-    "backlogPosts": 4,
-    "backlinkCapableMissingUnits": 4,
-    "backlinkVerificationGaps": 705,
+    "backlogPosts": 0,
+    "backlinkCapableMissingUnits": 0,
+    "backlinkVerificationGaps": 709,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 21,
-    "freshPostsAwaitingBacklinks": 3,
-    "freshMissingBacklinkUnits": 3,
-    "completedBacklinkUnitsInWindow": 12,
-    "completedBacklinkUnitsPerDay": 0.9,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
+    "completedBacklinkUnitsInWindow": 16,
+    "completedBacklinkUnitsPerDay": 1.1,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 19.1,
-    "estimatedCatchUpDays": null,
+    "netBacklogChangePerDay": 18.9,
+    "estimatedCatchUpDays": 0,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
   },
@@ -37,13 +37,13 @@
         "key": "blogger",
         "platform": "Blogger",
         "eligiblePosts": 183,
-        "complete": 179,
-        "missing": 4,
-        "successRate": 97.8,
-        "averagePerDay": 0,
+        "complete": 183,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 0.3,
         "confirmed": 7,
-        "verificationGaps": 172,
-        "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
+        "verificationGaps": 176,
+        "mainBlocker": ""
       },
       {
         "key": "wordpress_earthstar",
@@ -195,52 +195,7 @@
     {
       "reason": "mastodon_voa: env vars not set",
       "count": 4
-    },
-    {
-      "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 3
-    },
-    {
-      "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 1
     }
   ],
-  "prioritizedBacklog": [
-    {
-      "slug": "how-to-convert-blog-posts-into-lead-magnets",
-      "lane": "boom",
-      "title": "How To Convert Blog Posts Into Lead Magnets",
-      "date": "2026-07-20",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
-      "lane": "boom",
-      "title": "How To Stop Overthinking And Make Decisions Fast",
-      "date": "2026-07-21",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-turn-youtube-videos-into-online-courses",
-      "lane": "boom",
-      "title": "How To Turn Youtube Videos Into Online Courses",
-      "date": "2026-07-21",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-use-notebooklm-to-learn-faster-as-a-creator",
-      "lane": "boom",
-      "title": "How To Use Notebooklm To Learn Faster As A Creator",
-      "date": "2026-07-22",
-      "missing": [
-        "blogger"
-      ]
-    }
-  ]
+  "prioritizedBacklog": []
 }
