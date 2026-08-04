@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-04T04:17:21.022Z",
+  "lastUpdated": "2026-08-04T15:29:25.282Z",
   "recentHooks": [
     {
       "slug": "why-silence-changes-everything",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-stop-betraying-yourself",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-08-04T15:29:10.826Z"
+    },
+    {
       "slug": "how-to-convert-blog-posts-into-lead-magnets",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1147,18 +1156,19 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-07-20T17:16:00.382Z"
-    },
-    {
-      "slug": "find-my-unique-strengths-as-a-creative",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-07-20T15:16:34.862Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-stop-betraying-yourself",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-08-04T15:29:25.282Z"
+    },
     {
       "slug": "why-you-keep-avoiding-what-matters",
       "archetype": "cinematic-ideogram",
@@ -1420,15 +1430,6 @@
       "emotionalTone": "cosmic",
       "emotionalCluster": "mystical",
       "timestamp": "2026-07-08T15:29:00.449Z"
-    },
-    {
-      "slug": "how-to-get-a-professional-headshot-for-free",
-      "archetype": "cinematic-ideogram",
-      "archetypeLabel": "Cinematic Artwork",
-      "palette": "painterly-dark",
-      "emotionalTone": "liminal",
-      "emotionalCluster": "atmospheric",
-      "timestamp": "2026-07-07T23:04:36.235Z"
     }
   ]
 }
