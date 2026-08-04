@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-03T23:16:38.525Z",
+  "lastUpdated": "2026-08-04T00:53:20.491Z",
   "recentHooks": [
     {
       "slug": "why-silence-changes-everything",
@@ -889,6 +889,51 @@
   "recentThreadsFormats": [
     {
       "slug": "how-to-convert-blog-posts-into-lead-magnets",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-08-04T00:53:20.491Z"
+    },
+    {
+      "slug": "how-to-turn-youtube-videos-into-online-courses",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-08-04T00:53:01.003Z"
+    },
+    {
+      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-08-04T00:52:40.000Z"
+    },
+    {
+      "slug": "how-to-use-notebooklm-to-learn-faster-as-a-creator",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-04T00:52:22.383Z"
+    },
+    {
+      "slug": "why-you-keep-avoiding-what-matters",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-08-04T00:50:00.131Z"
+    },
+    {
+      "slug": "how-to-convert-blog-posts-into-lead-magnets",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
       "density": "dense",
@@ -1111,54 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-07-19T16:42:25.466Z"
-    },
-    {
-      "slug": "how-to-manage-mental-overload-as-a-creative",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-07-19T04:22:18.490Z"
-    },
-    {
-      "slug": "how-to-manage-mental-overload-as-a-creative",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-18T22:52:29.940Z"
-    },
-    {
-      "slug": "ai-advantage-vs-russell-brunsons-programs-different-worlds-different-promises",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-18T19:58:37.772Z"
-    },
-    {
-      "slug": "how-to-turn-google-docs-into-a-website",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-18T16:43:47.211Z"
-    },
-    {
-      "slug": "ai-advantage-vs-brendon-burchard-two-very-different-bets-on-self-improvement",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-18T16:42:17.305Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "why-you-keep-avoiding-what-matters",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "family": "art",
+      "timestamp": "2026-08-04T00:50:14.106Z"
+    },
     {
       "slug": "how-to-use-notebooklm-to-learn-faster-as-a-creator",
       "archetype": "abstract-creator-life",
@@ -1419,15 +1429,6 @@
       "emotionalTone": "liminal",
       "emotionalCluster": "atmospheric",
       "timestamp": "2026-07-07T23:04:36.235Z"
-    },
-    {
-      "slug": "best-ai-prompts-for-music-producers-to-generate-melodies",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-07-07T15:47:19.812Z"
     }
   ]
 }
