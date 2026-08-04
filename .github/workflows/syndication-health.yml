@@ -105,6 +105,29 @@ jobs:
               --body "The scheduled syndication health check detected a Blogger OAuth refresh failure.\n\nFailure: $DETAIL\n\nRun: $RUN_URL\n\nRepair locally with: \`npm run blogger-token\`. That helper opens Google consent, saves the new refresh token to \`.env\`, and updates the GitHub Actions \`BLOGGER_REFRESH_TOKEN\` secret."
           fi
 
+      - name: Alert on low publishing inventory
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          QUEUE_OK="$(node -e 'const fs=require("fs"); const h=JSON.parse(fs.readFileSync("static/_data/syndication-health.json","utf8")); const c=(h.checks||[]).find(row=>row.name==="drip queue"); process.stdout.write(c && c.ok ? "1" : "0");')"
+          existing="$(gh issue list --state open --search 'Publishing queue needs new drafts in:title' --json number --jq '.[0].number // empty')"
+          if [ "$QUEUE_OK" = "1" ]; then
+            if [ -n "$existing" ]; then
+              gh issue close "$existing" --comment "Publishing inventory recovered. Latest successful check: $RUN_URL"
+            fi
+            exit 0
+          fi
+
+          DETAIL="$(node -e 'const fs=require("fs"); const h=JSON.parse(fs.readFileSync("static/_data/syndication-health.json","utf8")); const c=(h.checks||[]).find(row=>row.name==="drip queue"); process.stdout.write((c && c.detail) || "Publishing inventory is low.");')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "Publishing inventory is still low: $DETAIL\n\nRun: $RUN_URL"
+          else
+            gh issue create \
+              --title "Publishing queue needs new drafts" \
+              --body "The scheduled health check detected low publishing inventory.\n\nStatus: $DETAIL\n\nRun: $RUN_URL\n\nGenerate and review a new draft batch before the queue reaches zero."
+          fi
+
       - name: Commit health snapshot
         run: |
           git config user.name  "github-actions[bot]"
@@ -112,7 +135,13 @@ jobs:
           git add static/_data/syndication-health.json || true
           git diff --staged --quiet \
             || git commit -m "Update syndication health [automated]"
-          git push
+          for attempt in 1 2 3; do
+            git push && exit 0
+            echo "Push rejected (attempt $attempt) ~ rebasing onto origin/main and retrying."
+            git pull --rebase --autostash origin main
+          done
+          echo "::error::Unable to push health snapshot after 3 attempts"
+          exit 1
 
       - name: Fail if syndication is broken
         if: steps.health.outputs.status != '0'

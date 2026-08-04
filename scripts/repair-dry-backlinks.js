@@ -24,7 +24,7 @@ dotenv.config({ override: true });
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const RESULTS_FILE = path.join(ROOT, "static", "_data", "syndication-results.json");
-const argv = minimist(process.argv.slice(2), { boolean: ["execute"] });
+const argv = minimist(process.argv.slice(2), { boolean: ["execute"], string: ["slug"] });
 const execute = Boolean(argv.execute);
 
 function sleep(ms) {
@@ -75,6 +75,15 @@ function replaceDryHtml(html, sourceUrl) {
     next = next.replace(
       new RegExp(`<a\\s+href=["']${escapeRegExp(sourceUrl)}["']\\s*>\\s*${escapeRegExp(variant)}\\s*<\\/a>`, "gi"),
       htmlWetLink(sourceUrl)
+    );
+  }
+  // Older WordPress posts can contain a labeled backlink whose destination is
+  // a stale/near-match VOA slug. If the expected canonical URL is still absent,
+  // correct that existing VOA blog link without altering its anchor text.
+  if (!next.includes(sourceUrl)) {
+    next = next.replace(
+      /(<a\s+[^>]*href=["'])https:\/\/vibrationofawesome\.com\/blog\/boom\/posts\/[^"']+(["'][^>]*>)/i,
+      `$1${sourceUrl}$2`
     );
   }
   return next;
@@ -164,6 +173,7 @@ async function main() {
   const targets = [];
 
   for (const entry of results) {
+    if (argv.slug && entry.slug !== argv.slug) continue;
     const devto = entry.syndication?.devto;
     if (devto?.status === "success" && devto.url) {
       targets.push({ entry, key: "devto", platform: devto, repair: repairDevTo });

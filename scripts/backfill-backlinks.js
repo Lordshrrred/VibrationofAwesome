@@ -153,6 +153,10 @@ async function main() {
   console.log(`  Processed posts: ${batch.length} | Platform tasks succeeded: ${succeeded} | failed: ${failed}`);
   console.log(`  Remaining in backlog: ${remaining}`);
 
+  if (failed > 0) {
+    console.error(`  ${failed} platform task(s) failed; leaving them in the backlog.`);
+    process.exit(1);
+  }
   if (remaining > 0) {
     console.log(`  Run again to continue. (~${Math.ceil(remaining / batchSize)} more runs needed)`);
     process.exit(2); // exit 2 = more work remains (workflow uses this to decide whether to continue)

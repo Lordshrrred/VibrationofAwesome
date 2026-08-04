@@ -1,5 +1,6 @@
 // api/deliver-ebook.js ~ Secure ebook download token validator
-// GET ?token=XXXXX&product=free|paid
+// GET ?token=XXXXX&product=free|ai
+// "paid" remains an alias for "ai" so old emailed links keep working.
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -19,9 +20,12 @@ export default async function handler(req, res) {
   }
 
   const siteUrl = (process.env.SITE_URL || "https://vibrationofawesome.com").replace(/\/$/, "");
-  const freePath = process.env.FREE_EBOOK_PATH || "/dl/a7f3k9x2m4p8q1w6/field-guide.pdf";
-  const paidPath = process.env.PAID_EBOOK_PATH || "/dl/b2n8h5r7t3y6u1i4/user-manual.pdf";
+  const fieldGuidePath = "/downloads/voa-field-guide.pdf";
+  const aiGuidePath = "/downloads/voa-ai.pdf";
+  const requestedPath = product === "ai" || product === "paid"
+    ? aiGuidePath
+    : fieldGuidePath;
 
   res.setHeader("Cache-Control", "no-store");
-  return res.redirect(302, `${siteUrl}${product === "paid" ? paidPath : freePath}`);
+  return res.redirect(302, `${siteUrl}${requestedPath}`);
 }

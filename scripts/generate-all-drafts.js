@@ -34,8 +34,17 @@ async function main() {
   fs.mkdirSync(draftsDir, { recursive: true });
   fs.mkdirSync(dataDir,   { recursive: true });
 
+  const publishedFile = path.join(dataDir, "boom-posts.json");
+  const publishedSlugs = new Set(
+    JSON.parse(fs.readFileSync(publishedFile, "utf8")).map(post => post.slug)
+  );
+  const queuePath = path.join(dataDir, "drip-queue.json");
+  const existingQueue = fs.existsSync(queuePath)
+    ? JSON.parse(fs.readFileSync(queuePath, "utf8"))
+    : {};
   const total   = POSTS.length;
-  const results = { ok: [], failed: [], skipped: [] };
+  const results = { ok: [], failed: [], skipped: [], published: [] };
+  const queueable = [];
 
   console.log(`\n╔═══════════════════════════════════════════════════════╗`);
   console.log(`║  Generating ${total} Boom Frequency drafts ~ paused queue  ║`);
@@ -48,10 +57,17 @@ async function main() {
     const outFile  = path.join(draftsDir, slug + ".html");
     const progress = `[${String(i + 1).padStart(2, " ")} / ${total}]`;
 
+    if (publishedSlugs.has(slug)) {
+      console.log(`${progress} ⏭  SKIP (already published): ${slug}`);
+      results.published.push({ ...post, slug });
+      continue;
+    }
+
     // Skip if draft already exists (resumable)
     if (fs.existsSync(outFile)) {
       console.log(`${progress} ⏭  SKIP (exists): ${slug}`);
       results.skipped.push({ ...post, slug });
+      queueable.push({ ...post, slug });
       continue;
     }
 
@@ -82,6 +98,7 @@ async function main() {
     } else {
       console.log(`${progress} ✓ Done: ${slug}\n`);
       results.ok.push({ ...post, slug });
+      queueable.push({ ...post, slug });
     }
 
     // Brief pause between Claude API calls to avoid rate-limit bursts
@@ -91,8 +108,8 @@ async function main() {
   }
 
   // ── Write drip-queue.json ─────────────────────────────────────────────────
-  const queue = POSTS.map(post => ({
-    slug:    slugify(post.title),
+  const queue = queueable.map(post => ({
+    slug:    post.slug,
     title:   post.title,
     keyword: post.keyword,
     niche:   post.niche,
@@ -100,18 +117,18 @@ async function main() {
   }));
 
   const dripQueue = {
-    status:                    "paused",
-    drip_rate:                 2,
-    drip_time:                 "10:00 UTC",
-    syndicate_on_publish:      false,
-    trigger_feeder_on_publish: false,
+    ...existingQueue,
+    status:                    existingQueue.status || "paused",
+    drip_rate:                 existingQueue.drip_rate || 1,
+    drip_time:                 existingQueue.drip_time || "13:00 UTC (9am ET) and 22:00 UTC (6pm ET)",
+    syndicate_on_publish:      existingQueue.syndicate_on_publish ?? true,
+    trigger_feeder_on_publish: existingQueue.trigger_feeder_on_publish ?? true,
     queue,
-    published: [],
+    published:                 existingQueue.published || [],
   };
 
-  const queuePath = path.join(dataDir, "drip-queue.json");
   fs.writeFileSync(queuePath, JSON.stringify(dripQueue, null, 2), "utf8");
-  console.log(`\ndrip-queue.json written → status: paused, ${queue.length} posts queued`);
+  console.log(`\ndrip-queue.json written → status: ${dripQueue.status}, ${queue.length} posts queued`);
 
   // ── Summary ───────────────────────────────────────────────────────────────
   const totalDone = results.ok.length + results.skipped.length;
@@ -120,6 +137,7 @@ async function main() {
   console.log(`╚═══════════════════════════════════════════════════════╝`);
   console.log(`  ✓ Generated: ${results.ok.length}`);
   console.log(`  ⏭  Skipped:  ${results.skipped.length}  (already existed)`);
+  console.log(`  ⏭  Published: ${results.published.length}  (not regenerated)`);
   console.log(`  ✗ Failed:   ${results.failed.length}`);
   if (results.failed.length > 0) {
     console.log(`\n  Failed slugs:`);
@@ -127,7 +145,7 @@ async function main() {
     console.log(`\n  Re-run to retry failed posts (existing drafts are skipped).`);
   }
   console.log(`\n  Drafts: static/blog/boom/drafts/     (${totalDone} files)`);
-  console.log(`  Queue:  static/_data/drip-queue.json  (status: paused)`);
+  console.log(`  Queue:  static/_data/drip-queue.json  (status: ${dripQueue.status})`);
   console.log(`\n  Nothing is published. To start the drip:`);
   console.log(`    node scripts/activate-drip.js`);
   console.log(`    node scripts/activate-drip.js --syndicate --feeder\n`);

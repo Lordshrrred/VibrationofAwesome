@@ -1,6 +1,6 @@
 // api/create-checkout.js ~ Stripe Checkout session creator
 // POST { product, priceId?, successUrl?, cancelUrl?, email? }
-// product: "aura_premium" (subscription) | "user_manual" (one-time)
+// product: "aura_premium" (subscription)
 
 import Stripe from "stripe";
 
@@ -45,19 +45,7 @@ export default async function handler(req, res) {
     let session;
 
     if (product === "user_manual") {
-      const ebookPriceId = process.env.STRIPE_PRICE_ID_USER_MANUAL;
-      if (!ebookPriceId) return res.status(503).json({ error: "Ebook checkout not yet configured." });
-
-      session = await stripe.checkout.sessions.create({
-        ...sessionBase,
-        mode: "payment",
-        customer_creation: automaticTax ? "always" : "if_required",
-        line_items: [{ price: ebookPriceId, quantity: 1 }],
-        success_url: successUrl || `${siteUrl}/field-guide/thank-you/?session_id={CHECKOUT_SESSION_ID}&purchased=true`,
-        cancel_url: cancelUrl || `${siteUrl}/user-manual/`,
-        metadata: { product: "user_manual" },
-      });
-
+      return res.status(410).json({ error: "The User Manual product is not available." });
     } else {
       const resolvedPriceId = requestedPriceId || process.env.STRIPE_PRICE_ID_AURA_PREMIUM || process.env.STRIPE_PRICE_ID;
       if (!resolvedPriceId) return res.status(400).json({ error: "STRIPE_PRICE_ID_AURA_PREMIUM is not configured." });

@@ -1,14 +1,10 @@
 {
-  "lastChecked": "2026-08-03T15:15:24.114Z",
-  "status": "broken",
-  "passed": 15,
-  "failed": 1,
+  "lastChecked": "2026-08-03T22:42:56.838Z",
+  "status": "ok",
+  "passed": 16,
+  "failed": 0,
   "total": 16,
-  "topFix": {
-    "name": "Blogger token refresh",
-    "detail": "invalid_grant: Bad Request",
-    "repairCommand": "npm run blogger-token"
-  },
+  "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
@@ -86,9 +82,8 @@
     },
     {
       "name": "Blogger token refresh",
-      "ok": false,
-      "detail": "invalid_grant: Bad Request",
-      "failureType": "auth_reconnect_required"
+      "ok": true,
+      "detail": "token ok"
     },
     {
       "name": "WordPress direct auth",

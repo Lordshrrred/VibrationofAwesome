@@ -106,3 +106,7 @@ jobs:
       - name: Report status
         run: |
           node scripts/syndication-backlog-status.js
+
+      - name: Fail if a backlink task failed
+        if: steps.backfill.outputs.exit_code == '1'
+        run: exit 1

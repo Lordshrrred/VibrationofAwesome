@@ -24,6 +24,7 @@ const RESULTS_FILE = path.join(ROOT, "static", "_data", "syndication-results.jso
 
 const argv = minimist(process.argv.slice(2), {
   boolean: ["execute"],
+  string: ["slug"],
 });
 
 function pctEncode(s) {
@@ -166,6 +167,7 @@ async function main() {
     const knownPostIds = new Set();
     const resultTargets = results
       .map(row => ({ row, tumblr: row.syndication?.tumblr_voa || row.syndication?.tumblr }))
+      .filter(({ row }) => !argv.slug || row.slug === argv.slug)
       .filter(({ row, tumblr }) => row.voa_url && tumblr?.status === "success" && tumblr.url?.includes(host));
 
     for (const target of resultTargets) {
@@ -175,7 +177,7 @@ async function main() {
       if (postId) knownPostIds.add(postId);
     }
 
-    const recentPosts = await tumblrFetchRecent(config, 20);
+    const recentPosts = argv.slug ? [] : await tumblrFetchRecent(config, 20);
     for (const post of recentPosts) {
       const postId = String(post.id_string || post.id || "");
       if (!postId || knownPostIds.has(postId)) continue;
