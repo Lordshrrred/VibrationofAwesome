@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-04T15:29:25.282Z",
+  "lastUpdated": "2026-08-04T15:31:36.087Z",
   "recentHooks": [
     {
       "slug": "why-silence-changes-everything",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-turn-youtube-videos-into-online-courses",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-08-04T15:31:36.087Z"
+    },
+    {
       "slug": "how-to-stop-betraying-yourself",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,15 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-07-20T23:02:22.198Z"
-    },
-    {
-      "slug": "ai-advantage-vs-udemy-ai-courses-is-995-actually-better-than-free",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-20T17:16:00.382Z"
     }
   ],
   "recentInstagramArchetypes": [
