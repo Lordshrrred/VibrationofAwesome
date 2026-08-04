@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-04T23:10:22.523Z",
+  "lastUpdated": "2026-08-04T23:12:24.724Z",
   "recentHooks": [
     {
       "slug": "why-silence-changes-everything",
@@ -889,6 +889,15 @@
   "recentThreadsFormats": [
     {
       "slug": "choosing-discomfort-over-the-familiar-loop",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-04T23:12:24.724Z"
+    },
+    {
+      "slug": "choosing-discomfort-over-the-familiar-loop",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1147,15 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-07-21T17:05:14.919Z"
-    },
-    {
-      "slug": "how-to-convert-blog-posts-into-lead-magnets",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-21T15:11:28.456Z"
     }
   ],
   "recentInstagramArchetypes": [
