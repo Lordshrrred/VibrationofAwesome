@@ -1,16 +1,15 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-04T20:17:09.195Z",
+  "generated_at": "2026-08-04T23:09:11.041Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 29,
+      "draft_count": 28,
       "draft_slugs": [
         "breaking-late-night-dopamine-loops",
         "building-trust-with-yourself-again",
         "choosing-a-path-when-nothing-feels-clear",
-        "choosing-discomfort-over-the-familiar-loop",
         "choosing-truth-over-approval",
         "clarity-through-regulation",
         "committing-before-you-feel-ready",
@@ -47,6 +46,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "choosing-discomfort-over-the-familiar-loop",
+        "title": "Choosing Discomfort Over the Familiar Loop",
+        "lane": "boom",
+        "date": "2026-08-04T23:09:11.024Z",
+        "url": "/blog/boom/posts/choosing-discomfort-over-the-familiar-loop",
+        "tags": [
+          "self-betrayal-avoidance"
+        ],
+        "cluster": "authentic-self-expression",
+        "content_type": null
+      },
       {
         "slug": "how-to-stop-betraying-yourself",
         "title": "How to Stop Betraying Yourself",
@@ -254,18 +265,6 @@
         ],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "ai-advantage-for-course-creators-a-practical-look-at-what-youd-actually-learn",
-        "title": "AI Advantage for Course Creators: A Practical Look at What You'd Actually Learn",
-        "lane": "boom",
-        "date": "2026-07-17T16:56:30.541Z",
-        "url": "/blog/boom/posts/ai-advantage-for-course-creators-a-practical-look-at-what-youd-actually-learn",
-        "tags": [
-          "ai-advantage-campaign"
-        ],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -358,9 +357,9 @@
     ],
     "next_estimated_window": "2026-08-05",
     "published_counts": {
-      "boom": 203,
+      "boom": 204,
       "matt": 18,
-      "total": 221
+      "total": 222
     }
   },
   "syndication": {
@@ -387,7 +386,7 @@
         "platform_statuses": {
           "feeder": {
             "status": "success",
-            "timestamp": "2026-08-04T17:28:58.532Z",
+            "timestamp": "2026-08-04T20:17:47.250Z",
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/how-to-stop-betraying-yourself-insight.html"
           },
           "bluesky_voa": {
@@ -16694,6 +16693,7 @@
       }
     },
     "post_to_cluster": {
+      "choosing-discomfort-over-the-familiar-loop": "authentic-self-expression",
       "how-to-stop-betraying-yourself": "authentic-self-expression",
       "why-you-keep-avoiding-what-matters": "authentic-self-expression",
       "how-to-use-notebooklm-to-learn-faster-as-a-creator": "ai-creator-tools",
@@ -16907,7 +16907,7 @@
       "ai-creator-tools": 164,
       "nervous-system-creativity": 5,
       "dopamine-attention": 1,
-      "authentic-self-expression": 7,
+      "authentic-self-expression": 8,
       "creator-automation": 3,
       "spiritual-productivity": 3,
       "purpose-direction": 7,
@@ -18350,7 +18350,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-04T20:17:09.195Z",
+    "as_of": "2026-08-04T23:09:11.041Z",
     "next_estimated_window": "2026-08-05",
     "queue_runway_days": 14,
     "queue_runway_status": "warning",
@@ -18444,11 +18444,16 @@
     ],
     "retry_backlog_count": 13,
     "cadence_density": {
-      "posts_last_7_days": 2,
+      "posts_last_7_days": 3,
       "posts_last_14_days": 4,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "choosing-discomfort-over-the-familiar-loop",
+        "lane": "boom",
+        "date": "2026-08-04T23:09:11.024Z"
+      },
       {
         "slug": "how-to-stop-betraying-yourself",
         "lane": "boom",
@@ -18493,18 +18498,13 @@
         "slug": "find-my-unique-strengths-as-a-creative",
         "lane": "boom",
         "date": "2026-07-20T15:15:29.712Z"
-      },
-      {
-        "slug": "how-to-find-untapped-markets-for-music-using-ai",
-        "lane": "boom",
-        "date": "2026-07-19T22:54:00.920Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-04T20:17:09.180Z",
-    "source_event": "syndication",
-    "export_duration_ms": 15,
+    "last_export_at": "2026-08-04T23:09:11.028Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 13,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
