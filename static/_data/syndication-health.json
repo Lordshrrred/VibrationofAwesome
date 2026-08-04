@@ -1,14 +1,10 @@
 {
-  "lastChecked": "2026-08-04T03:37:00.626Z",
-  "status": "broken",
-  "passed": 14,
-  "failed": 2,
+  "lastChecked": "2026-08-04T04:15:22.037Z",
+  "status": "ok",
+  "passed": 16,
+  "failed": 0,
   "total": 16,
-  "topFix": {
-    "name": "Dev.to auth",
-    "detail": "fetch failed",
-    "repairCommand": "npm run check:syndication -- --write"
-  },
+  "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
@@ -71,15 +67,13 @@
     },
     {
       "name": "Dev.to auth",
-      "ok": false,
-      "detail": "fetch failed",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "earthstarrising"
     },
     {
       "name": "Dev.to account 2 auth",
-      "ok": false,
-      "detail": "unauthorized",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "awesomesaucyvibe"
     },
     {
       "name": "Tumblr VOA auth",
@@ -112,5 +106,12 @@
       "label": "Refresh dashboard health",
       "command": "npm run check:syndication -- --write"
     }
+  },
+  "queue_warning": {
+    "level": "warning",
+    "queue_remaining": 29,
+    "days_remaining": 14,
+    "checked_at": "2026-08-04T04:15:22.086Z",
+    "message": "Queue has 29 post(s) left (~14 days). Replenish with generate-all-drafts.js."
   }
 }
