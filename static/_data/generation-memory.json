@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-04T00:53:20.491Z",
+  "lastUpdated": "2026-08-04T04:17:21.022Z",
   "recentHooks": [
     {
       "slug": "why-silence-changes-everything",
@@ -889,6 +889,42 @@
   "recentThreadsFormats": [
     {
       "slug": "how-to-convert-blog-posts-into-lead-magnets",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-04T04:17:21.022Z"
+    },
+    {
+      "slug": "how-to-turn-youtube-videos-into-online-courses",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-08-04T04:17:05.400Z"
+    },
+    {
+      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-04T04:16:53.800Z"
+    },
+    {
+      "slug": "why-you-keep-avoiding-what-matters",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-08-04T04:15:44.595Z"
+    },
+    {
+      "slug": "how-to-convert-blog-posts-into-lead-magnets",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1120,42 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-07-20T15:16:34.862Z"
-    },
-    {
-      "slug": "how-to-find-untapped-markets-for-music-using-ai",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-20T04:36:47.594Z"
-    },
-    {
-      "slug": "how-to-find-untapped-markets-for-music-using-ai",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-19T22:55:04.083Z"
-    },
-    {
-      "slug": "ai-advantage-vs-mindvalley-two-philosophies-of-personal-development-in-2026",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-19T20:01:57.071Z"
-    },
-    {
-      "slug": "ai-advantage-vs-amy-porterfield-which-course-investment-makes-more-sense-right-now",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-19T16:42:25.466Z"
     }
   ],
   "recentInstagramArchetypes": [
