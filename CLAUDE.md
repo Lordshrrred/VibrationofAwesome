@@ -145,6 +145,12 @@ Run manually: `npm run seo:intelligence` (or `node scripts/seo_intelligence.js -
 
 Manual competitive/model research is separate and explicitly cost-gated: `npm run seo:research -- --query "example query" --confirm-cost` or the existing lower-level `npm run research` path. Do not schedule it or use it as routine rank tracking.
 
+### Publishing queue reserve (`scripts/replenish-drip-queue.js`)
+
+The queue now has a deterministic depletion fallback. `.github/workflows/queue-replenishment.yml` checks daily before the first publish slot. When inventory reaches 14 posts or fewer, it batch-generates from unused keyword-research phrases already approved in `scripts/content-niches.js`, replenishing toward 28 posts (maximum 14 Opus calls in one cached batch). It never invents a niche and deliberately excludes `ai-advantage-campaign`, because product/campaign topics can become stale and require fresh editorial/search validation. Art-buyer reserve posts automatically retain the art-only syndication profile.
+
+The workflow opens `Publishing queue auto-replenishment failed` if credentials, generation, or approved reserve inventory fail, and closes the issue after recovery. `npm run queue:replenish` previews the next action without API calls; add `-- --execute` only when generation is intended. `seo-strategy-status.js` calculates runway from the effective queue mix: two always-on general slots, plus the two AI Advantage slots and one art slot only when matching inventory exists. Do not treat the five cron entries as five posts/day when their dedicated niches are empty.
+
 ### SEO Intelligence dashboard panel (`static/dashboard/index.html`)
 
 Added to the existing password-gated dashboard (not a separate page). Reads three static JSON files client-side, no API calls from the browser:

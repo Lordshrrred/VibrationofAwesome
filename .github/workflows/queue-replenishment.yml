@@ -1,0 +1,85 @@
+name: Publishing Queue Replenishment
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  schedule:
+    - cron: '30 10 * * *' # Daily, before the first 13:00 UTC publish slot
+  workflow_dispatch:
+
+concurrency:
+  group: voa-publish-and-syndicate
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  replenish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Replenish low inventory from approved evergreen research
+        id: replenish
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          QUEUE_REPLENISH_THRESHOLD: 14
+          QUEUE_REPLENISH_TARGET: 28
+          QUEUE_REPLENISH_MAX: 14
+        run: |
+          set +e
+          node scripts/replenish-drip-queue.js --execute 2>&1 | tee replenish.log
+          STATUS=${PIPESTATUS[0]}
+          set -e
+          echo "exit_code=$STATUS" >> "$GITHUB_OUTPUT"
+
+      - name: Commit replenished inventory
+        if: steps.replenish.outputs.exit_code == '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add static/blog/boom/drafts/ static/images/nasa-cache/ static/_data/drip-queue.json static/_data/generation-memory.json static/_data/image-registry.json || true
+          git diff --staged --quiet || git commit -m "Replenish publishing queue [automated]"
+          for attempt in 1 2 3; do
+            git push && break
+            git pull --rebase --autostash origin main
+          done
+
+      - name: Close resolved queue failure alert
+        if: steps.replenish.outputs.exit_code == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list --state open --search '"Publishing queue auto-replenishment failed" in:title' --json number --jq '.[].number' \
+            | xargs -r -n1 gh issue close --comment "Automatic queue replenishment is healthy again."
+
+      - name: Alert when automatic replenishment fails
+        if: steps.replenish.outputs.exit_code != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh issue list --state open --search '"Publishing queue auto-replenishment failed" in:title' --json title --jq '.[].title' | grep -Fxq 'Publishing queue auto-replenishment failed'; then
+            gh issue create \
+              --title 'Publishing queue auto-replenishment failed' \
+              --body "The approved evergreen reserve could not replenish the publishing queue. Review the failed workflow run, API credentials, and remaining keyword inventory before the queue reaches zero."
+          fi
+          exit 1

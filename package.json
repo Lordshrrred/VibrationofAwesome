@@ -61,6 +61,7 @@
     "seo:intelligence": "node scripts/seo_intelligence.js",
     "seo:research": "node scripts/seo_research.js",
     "seo:strategy": "node scripts/seo-strategy-status.js",
+    "queue:replenish": "node scripts/replenish-drip-queue.js",
     "keywords:import": "node scripts/import-curated-keywords.js",
     "deployment:health": "node scripts/deployment-health.js",
     "vercel:ignore": "node scripts/vercel-ignore-build.js",
