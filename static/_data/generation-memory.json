@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-05T20:20:22.352Z",
+  "lastUpdated": "2026-08-05T23:01:29.143Z",
   "recentHooks": [
     {
       "slug": "why-silence-changes-everything",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "building-trust-with-yourself-again",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-05T23:01:14.391Z"
+    },
+    {
       "slug": "self-respect-through-action",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,18 +1156,19 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-21T23:07:33.455Z"
-    },
-    {
-      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-21T23:07:13.098Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "building-trust-with-yourself-again",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-08-05T23:01:29.143Z"
+    },
     {
       "slug": "self-respect-through-action",
       "archetype": "nervous-system-atmospheric",
@@ -1423,15 +1433,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-07-09T23:15:19.357Z"
-    },
-    {
-      "slug": "ai-tools-to-start-a-creative-business-with-no-experience",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-07-09T16:07:15.234Z"
     }
   ]
 }
