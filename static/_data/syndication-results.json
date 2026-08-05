@@ -16,46 +16,77 @@
       "bluesky_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-04T23:35:21.856Z",
-        "error": "env vars not set"
+        "timestamp": "2026-08-05T04:14:07.750Z",
+        "error": "Bluesky post failed: Invalid app.bsky.feed.post record: blob too big (maximum 2000000, got 2113098) at $.record.embed.images[0].image"
       },
       "mastodon_voa": {
-        "status": "failed",
-        "url": null,
-        "timestamp": "2026-08-04T23:35:21.856Z",
-        "error": "env vars not set"
+        "status": "success",
+        "url": "https://mastodon.social/@Vibrationofawesome/117040949383350107",
+        "timestamp": "2026-08-05T04:14:07.750Z"
       },
       "bluesky_esr": {
-        "status": "failed",
+        "status": "skipped",
         "url": null,
-        "timestamp": "2026-08-04T23:35:21.856Z",
-        "error": "env vars not set"
+        "timestamp": "2026-08-05T04:14:07.750Z",
+        "error": "skipped by social policy",
+        "skipped": true
       },
       "mastodon_esr": {
-        "status": "failed",
+        "status": "skipped",
         "url": null,
-        "timestamp": "2026-08-04T23:35:21.856Z",
-        "error": "env vars not set"
+        "timestamp": "2026-08-05T04:14:07.750Z",
+        "error": "skipped by social policy",
+        "skipped": true
       },
       "devto": {
         "status": "success",
         "url": "https://dev.to/earthstarrising/choosing-discomfort-over-the-familiar-loop-386a",
-        "timestamp": "2026-08-04T23:35:21.856Z"
+        "timestamp": "2026-08-05T04:14:07.750Z",
+        "error": "already syndicated",
+        "skipped": true
       },
       "tumblr_voa": {
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/824061739948785664",
-        "timestamp": "2026-08-04T23:35:21.856Z"
+        "timestamp": "2026-08-05T04:14:07.750Z",
+        "error": "already syndicated",
+        "skipped": true
       },
       "blogger": {
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/08/reflections-on-choosing-discomfort-over_0629769852.html",
-        "timestamp": "2026-08-04T23:35:21.856Z"
+        "timestamp": "2026-08-05T04:14:07.750Z",
+        "error": "already syndicated",
+        "skipped": true
       },
       "wordpress_earthstar": {
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/08/04/choosing-discomfort-over-the-familiar-loop-earthstar-2/",
-        "timestamp": "2026-08-04T23:35:21.856Z"
+        "timestamp": "2026-08-05T04:14:07.750Z",
+        "error": "already syndicated",
+        "skipped": true
+      },
+      "facebook_voa": {
+        "status": "success",
+        "url": null,
+        "timestamp": "2026-08-05T04:14:07.750Z"
+      },
+      "pinterest": {
+        "status": "skipped",
+        "url": null,
+        "timestamp": "2026-08-05T04:14:07.750Z",
+        "error": "skipped by social policy",
+        "skipped": true
+      },
+      "threads": {
+        "status": "success",
+        "url": null,
+        "timestamp": "2026-08-05T04:14:07.750Z"
+      },
+      "instagram": {
+        "status": "success",
+        "url": null,
+        "timestamp": "2026-08-05T04:14:07.750Z"
       }
     }
   },
