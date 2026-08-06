@@ -934,22 +934,12 @@ async function main() {
   let markdown;
   try {
     const message = await client.messages.create({
-      model: "claude-opus-5",
-      // Opus 5 thinks by default, and max_tokens caps thinking + response text
-      // TOGETHER. The old 4096 was sized around the post body alone, so leaving
-      // it would truncate posts mid-sentence. Post bodies run ~3.5k tokens; the
-      // rest is headroom for thinking. (Non-streaming, so stay well under the
-      // SDK HTTP timeout ~ do not raise toward the 128k ceiling without
-      // switching this call to streaming.)
-      max_tokens: 16000,
-      // Opus 5's default effort is "high", which measured at ~$0.127/post vs
-      // ~$0.058 on Opus 4.8 ~ more than double, mostly thinking tokens billed
-      // as output. Measured sweep on this exact prompt (steady-state, cached):
-      //   low $0.071 / 1359 words | medium $0.089 / 1747 | high $0.127 / 1977
-      // Median published Boom post is ~1490 words, so "medium" both tracks the
-      // house length and keeps the upgrade close to cost-neutral. Raise to
-      // "high" only with a reason ~ it buys length, not obviously quality.
-      output_config: { effort: "medium" },
+      // Opus 4.8. Do NOT move this to Opus 5 without re-reading the note in
+      // CLAUDE.md ~ Opus 5 costs the same per token but thinks by default, and
+      // those thinking tokens bill as output, which measured at roughly double
+      // the cost per post. Staying here is a deliberate cost decision.
+      model: "claude-opus-4-8",
+      max_tokens: 4096,
       system: [{ type: "text", text: systemPrompt, cache_control: { type: "ephemeral" } }],
       messages: [{ role: "user", content: userMessage }],
     });

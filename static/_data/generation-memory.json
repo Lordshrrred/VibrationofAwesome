@@ -4,8 +4,15 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-06T15:32:31.498Z",
+  "lastUpdated": "2026-08-06T20:35:23.663Z",
   "recentHooks": [
+    {
+      "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
+      "niche": "dopamine-addiction-numbing",
+      "cluster": "dopamine-attention",
+      "hook": "Your eyes aren't even fully open yet, and your thumb already found the phone. You're reading a text about somebody else's problem, three ads, and a headline that spikes your cortisol before your feet ",
+      "timestamp": "2026-08-06T20:35:23.663Z"
+    },
     {
       "slug": "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
       "niche": "nervous-system-dysregulation",
@@ -208,16 +215,16 @@
       "cluster": "spiritual-productivity",
       "hook": "Six months ago you had a plan. You remember it vaguely, the way you remember a dream ~ something about a project, a move, a version of you that had it together.",
       "timestamp": "2026-08-03T23:10:53.539Z"
-    },
-    {
-      "slug": "purpose-vs-motivation",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "hook": "Motivation is the friend who shows up to help you move, gets bored halfway through, and leaves you standing in the hallway holding one end of a couch.",
-      "timestamp": "2026-08-03T23:09:49.398Z"
     }
   ],
   "recentTitles": [
+    {
+      "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
+      "niche": "dopamine-addiction-numbing",
+      "cluster": "dopamine-attention",
+      "title": "How to Stop Checking Your Phone First Thing in the Morning (Before It Runs Your Whole Day)",
+      "timestamp": "2026-08-06T20:35:23.663Z"
+    },
     {
       "slug": "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
       "niche": "nervous-system-dysregulation",
@@ -420,16 +427,14 @@
       "cluster": "spiritual-productivity",
       "title": "How to Stop Drifting",
       "timestamp": "2026-08-03T23:10:53.539Z"
-    },
-    {
-      "slug": "purpose-vs-motivation",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "title": "Purpose vs Motivation",
-      "timestamp": "2026-08-03T23:09:49.398Z"
     }
   ],
   "recentNarrativeStructures": [
+    {
+      "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-08-06T20:35:23.663Z"
+    },
     {
       "slug": "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
       "structure": "bullet-list driven with multiple sections",
@@ -574,167 +579,167 @@
       "slug": "how-to-stop-drifting",
       "structure": "heavily-sectioned (6+ H2s)",
       "timestamp": "2026-08-03T23:10:53.539Z"
-    },
-    {
-      "slug": "purpose-vs-motivation",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-08-03T23:09:49.398Z"
     }
   ],
   "recentEmotionalArcs": [
     {
+      "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-08-06T20:35:23.663Z"
+    },
+    {
       "slug": "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T15:32:31.498Z"
     },
     {
       "slug": "claude-vs-chatgpt-for-creator-workflows",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T04:10:51.362Z"
     },
     {
       "slug": "simple-creator-automation-stack",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T04:09:53.978Z"
     },
     {
       "slug": "creator-burnout-from-content-production",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T04:08:46.738Z"
     },
     {
       "slug": "why-ai-music-tools-make-everything-sound-the-same",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T04:07:41.689Z"
     },
     {
       "slug": "ai-content-feels-generic-for-creators",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T04:06:45.887Z"
     },
     {
       "slug": "too-many-ai-tools-and-no-clear-workflow",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T04:05:42.375Z"
     },
     {
       "slug": "best-ai-workflow-for-solo-creators",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T04:04:37.836Z"
     },
     {
       "slug": "how-ai-fits-into-a-creator-workflow",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T04:03:28.706Z"
     },
     {
       "slug": "etsy-vs-art-galleries-vs-artist-websites",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T04:02:21.380Z"
     },
     {
       "slug": "digital-art-prints-that-feel-like-originals",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T04:00:07.209Z"
     },
     {
       "slug": "original-art-feels-too-expensive-or-exclusive",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T03:58:59.974Z"
     },
     {
       "slug": "i-want-something-that-actually-means-something-on-my-wall",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:57:49.178Z"
     },
     {
       "slug": "mass-market-prints-feel-generic-and-soulless",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T03:56:54.546Z"
     },
     {
       "slug": "i-want-art-for-my-home-but-do-not-know-where-to-look",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T03:55:57.524Z"
     },
     {
       "slug": "how-independent-artists-sell-their-work-online",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:55:00.557Z"
     },
     {
       "slug": "how-to-cancel-ai-advantage-current-refund-and-subscription-terms",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:53:53.202Z"
     },
     {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:52:56.737Z"
     },
     {
       "slug": "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:51:30.792Z"
     },
     {
       "slug": "ai-advantage-may-2026-bootcamp-workshops-and-replays",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T03:50:22.343Z"
     },
     {
       "slug": "ai-advantage-free-jumpstart-playbook-and-community-review",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:49:31.677Z"
     },
     {
       "slug": "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:48:25.355Z"
     },
     {
       "slug": "why-silence-changes-everything",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:16:38.525Z"
     },
     {
       "slug": "journaling-for-clarity",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:15:43.363Z"
     },
     {
       "slug": "rebuilding-intuition",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:14:52.182Z"
     },
     {
       "slug": "reducing-noise-and-overstimulation",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:13:54.314Z"
     },
     {
       "slug": "how-to-hear-yourself-again",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-03T23:13:00.767Z"
     },
     {
       "slug": "committing-before-you-feel-ready",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:11:49.275Z"
     },
     {
       "slug": "how-to-stop-drifting",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:10:53.539Z"
-    },
-    {
-      "slug": "purpose-vs-motivation",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
-      "timestamp": "2026-08-03T23:09:49.398Z"
     }
   ],
   "recentOpeningStyles": [
     {
+      "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
+      "style": "statement opening",
+      "timestamp": "2026-08-06T20:35:23.663Z"
+    },
+    {
       "slug": "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
       "style": "statement opening",
       "timestamp": "2026-08-06T15:32:31.498Z"
@@ -878,11 +883,6 @@
       "slug": "how-to-stop-drifting",
       "style": "statement opening",
       "timestamp": "2026-08-03T23:10:53.539Z"
-    },
-    {
-      "slug": "purpose-vs-motivation",
-      "style": "statement opening",
-      "timestamp": "2026-08-03T23:09:49.398Z"
     }
   ],
   "recentCTAPatterns": [],
