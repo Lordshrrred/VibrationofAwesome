@@ -100,20 +100,20 @@ function sortPosts(posts) {
 // ── Per-hub visual theme ─────────────────────────────────────────────────────
 // Restrained, purposeful variation ~ not ten identical white cards. Icons are
 // small inline SVGs (no external image requests). Colors stay inside the
-// site's existing accent set (cyan / amber / a single restrained violet for
-// the more inward-facing hubs) rather than inventing a new palette per hub.
+// site's cyan / teal / violet / green palette rather than introducing warm
+// yellow or orange accents that read as a separate brand system.
 const HUB_THEME = {
   "nervous-system-regulation": { accent: "cyan", icon: "rings" },
-  "dopamine-attention":        { accent: "amber", icon: "pulse" },
+  "dopamine-attention":        { accent: "moss", icon: "pulse" },
   "adhd-focus":                { accent: "violet", icon: "compass" },
   "meditation":                { accent: "moss", icon: "lotus" },
   "creativity":                { accent: "cyan", icon: "spark" },
-  "personal-growth":           { accent: "amber", icon: "spiral" },
+  "personal-growth":           { accent: "violet", icon: "spiral" },
   "self-trust":                { accent: "violet", icon: "anchor" },
-  "purpose":                   { accent: "amber", icon: "star" },
+  "purpose":                   { accent: "cyan", icon: "star" },
   "ai-creator-workflows":      { accent: "cyan", icon: "hex" },
-  "ai-advantage":              { accent: "amber", icon: "hex" },
-  "voa-concepts":              { accent: "amber", icon: "mandala" },
+  "ai-advantage":              { accent: "violet", icon: "hex" },
+  "voa-concepts":              { accent: "moss", icon: "mandala" },
 };
 
 const RELATED_HUBS = {
@@ -125,7 +125,7 @@ const RELATED_HUBS = {
   "personal-growth":           ["self-trust", "purpose"],
   "self-trust":                ["personal-growth", "purpose"],
   "purpose":                   ["creativity", "personal-growth"],
-  "ai-creator-workflows":      ["ai-advantage", "creativity"],
+  "ai-creator-workflows":      ["creativity", "purpose"],
   "ai-advantage":              ["ai-creator-workflows", "creativity"],
   "voa-concepts":              ["purpose", "personal-growth"],
 };
@@ -401,10 +401,10 @@ ${body}
 
 const AUTHORITY_CSS = `
     :root {
-      --deep: #020a0a; --panel: rgba(255,255,255,0.025); --line: rgba(201,168,76,0.14);
+      --deep: #020a0a; --panel: rgba(255,255,255,0.025); --line: rgba(0,229,204,0.14);
       --cream: #e8fff9; --muted: rgba(232,255,249,0.68);
       --cyan: #00e5cc; --cyan-light: #4dfff0;
-      --amber: #ffb300; --amber-light: #ffd76b;
+      --amber: #22c06a; --amber-light: #6fe6a0;
       --violet: #a78bfa; --violet-light: #cdbcff;
       --moss: #22c06a; --moss-light: #6fe6a0;
     }
@@ -480,11 +480,11 @@ const AUTHORITY_CSS = `
     .accent-violet { color: var(--violet); }
     .accent-moss   { color: var(--moss); }
     .border-cyan   { border-color: rgba(0,229,204,0.28) !important; }
-    .border-amber  { border-color: rgba(255,179,0,0.28) !important; }
+    .border-amber  { border-color: rgba(34,192,106,0.28) !important; }
     .border-violet { border-color: rgba(167,139,250,0.28) !important; }
     .border-moss   { border-color: rgba(34,192,106,0.28) !important; }
     .glow-cyan   { box-shadow: 0 0 32px rgba(0,229,204,0.14); }
-    .glow-amber  { box-shadow: 0 0 32px rgba(255,179,0,0.14); }
+    .glow-amber  { box-shadow: 0 0 32px rgba(34,192,106,0.14); }
     .glow-violet { box-shadow: 0 0 32px rgba(167,139,250,0.14); }
     .glow-moss   { box-shadow: 0 0 32px rgba(34,192,106,0.14); }
 
@@ -492,12 +492,13 @@ const AUTHORITY_CSS = `
     .voa-hero { position: relative; padding: 7rem 0 3.5rem; overflow: hidden; }
     .voa-hero-bg { position: absolute; inset: -20% -10%; z-index: -1; opacity: 0.9; background:
       radial-gradient(ellipse 60% 55% at 22% 15%, var(--hero-glow, rgba(0,229,204,0.14)) 0%, transparent 65%),
-      radial-gradient(ellipse 45% 40% at 85% 80%, rgba(201,168,76,0.06) 0%, transparent 60%); }
+      radial-gradient(ellipse 45% 40% at 85% 80%, rgba(167,139,250,0.06) 0%, transparent 60%); }
     .voa-hero-icon { position: absolute; right: -40px; top: 10%; width: 260px; height: 260px; opacity: 0.08; }
     .voa-hero-icon svg { width: 100%; height: 100%; }
     .voa-hero-inner { max-width: 760px; position: relative; }
     .voa-h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5.2vw, 3.6rem); line-height: 1.08; margin: 0 0 1.1rem; color: var(--cream); letter-spacing: 0.01em; }
     .voa-hero-desc { font-size: 1.08rem; line-height: 1.8; color: var(--muted); max-width: 680px; margin-bottom: 1.6rem; }
+    .voa-editorial-notice { max-width: 720px; margin: 0 0 1.6rem; padding: 1rem 1.1rem; color: var(--cream); background: rgba(167,139,250,0.07); border: 1px solid rgba(167,139,250,0.28); border-left: 3px solid var(--violet); font-family: 'Rajdhani', sans-serif; font-size: 0.94rem; line-height: 1.6; letter-spacing: 0.02em; }
     .voa-hero-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.05rem, 2vw, 1.28rem); line-height: 1.7; color: rgba(232,255,249,0.82); border-left: 2px solid currentColor; padding-left: 1.2rem; margin: 1.6rem 0; max-width: 640px; }
 
     /* BUTTONS */
@@ -985,10 +986,10 @@ ${posts.slice(0, limit).map(post => `<a class="voa-card" href="${post.url}">
 
 function renderHubsIndex(hubs, assets) {
   const title = "Vibration of Awesome Resources";
-  const description = "Eleven pathways into the deeper writing on Vibration of Awesome ~ nervous system regulation, ADHD and focus, dopamine and attention, meditation, creativity, purpose, self-trust, AI creator workflows, AI Advantage analysis, personal growth, and the core VOA concepts ~ plus the tools library built to go with them.";
+  const description = "Ten pathways into the deeper writing on Vibration of Awesome ~ nervous system regulation, ADHD and focus, dopamine and attention, meditation, creativity, purpose, self-trust, AI creator workflows, personal growth, and the core VOA concepts ~ plus the tools library built to go with them.";
   const publishedTools = assets.filter(a => a.status === "published");
 
-  const cards = hubs.map((hub, i) => {
+  const cards = hubs.filter(hub => hub.showOnIndex !== false).map((hub, i) => {
     const { accent, svg } = iconFor(hub.slug);
     const featured = i === 0 ? " voa-hub-card--feature" : "";
     return `<a class="voa-hub-card${featured} border-${accent}" href="/hubs/${hub.slug}/">
@@ -1102,7 +1103,8 @@ function renderHub(hub, posts, assets, hubsBySlug) {
         <div class="voa-eyebrow accent-${accent}">Explore This Theme</div>
         <h1 class="voa-h1">${escapeHtml(hub.title)}</h1>
         <p class="voa-hero-desc">${escapeHtml(description)}</p>
-        ${hub.primaryAsset ? `<a class="voa-btn voa-btn-primary" href="${hub.primaryAsset}">Open the featured resource</a>` : ""}
+        ${hub.editorialNotice ? `<p class="voa-editorial-notice">${escapeHtml(hub.editorialNotice)}</p>` : ""}
+        ${hub.primaryAsset ? `<a class="voa-btn voa-btn-primary" href="${hub.primaryAsset}">${escapeHtml(hub.primaryAssetLabel || "Open the featured resource")}</a>` : ""}
       </div>
     </section>
 
@@ -1401,7 +1403,7 @@ ${stageMarkup}
         var checked = form.querySelector('input[name="q' + current + '"]:checked');
         if (!checked) {
           var stage = document.querySelector('.voa-audit-stage[data-stage="' + current + '"]');
-          stage.style.outline = '1px solid rgba(255,179,0,0.5)';
+          stage.style.outline = '1px solid rgba(34,192,106,0.5)';
           setTimeout(function () { stage.style.outline = 'none'; }, 900);
           return;
         }
@@ -1946,7 +1948,7 @@ ${stage4}
           var stageEl = document.querySelector('.fsp-stage[data-fsp-stage="' + (current + 1) + '"]');
           var checked = stageEl.querySelector('input:checked');
           if (!checked) {
-            stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+            stageEl.style.outline = '1px solid rgba(34,192,106,0.5)';
             setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
             return;
           }
@@ -2349,7 +2351,7 @@ ${stage5}
           { text: "Write one true sentence about how you actually feel right now.", envs: ["quiet", "private", "anywhere"] }
         ]
       };
-      var MODE_COLOR = { calming: "0,229,204", activation: "255,179,0", grounding: "167,139,250", release: "34,192,106" };
+      var MODE_COLOR = { calming: "0,229,204", activation: "34,192,106", grounding: "167,139,250", release: "34,192,106" };
 
       var STAGES = 5;
       var current = 0;
@@ -2470,7 +2472,7 @@ ${stage5}
         var stageEl = document.querySelector('.nsr-stage[data-nsr-stage="' + (current + 1) + '"]');
         var checked = stageEl.querySelector('input:checked');
         if (!checked) {
-          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          stageEl.style.outline = '1px solid rgba(34,192,106,0.5)';
           setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
           return;
         }
@@ -2923,7 +2925,7 @@ ${stage5}
         ctx.fill();
       }
 
-      var MEDIUM_COLOR = { music: "0,229,204", writing: "255,179,0", visual: "167,139,250", brand: "34,192,106", unnamed: "0,229,204" };
+      var MEDIUM_COLOR = { music: "0,229,204", writing: "34,192,106", visual: "167,139,250", brand: "34,192,106", unnamed: "0,229,204" };
 
       function sparkParamsFromAnswers() {
         var idx = selectedIndexes();
@@ -2971,7 +2973,7 @@ ${stage5}
         var stageEl = document.querySelector('.csf-stage[data-csf-stage="' + (current + 1) + '"]');
         var checked = stageEl.querySelector('input:checked');
         if (!checked) {
-          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          stageEl.style.outline = '1px solid rgba(34,192,106,0.5)';
           setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
           return;
         }
@@ -3165,7 +3167,7 @@ function renderCompassPoint() {
   const stage5 = optionStage(5, "How much time do you have to reflect right now?", null, DURATIONS, "duration");
 
   const body = `    <section class="voa-hero voa-reveal">
-      <div class="voa-hero-bg" style="--hero-glow: rgba(255,179,0,0.16);"></div>
+      <div class="voa-hero-bg" style="--hero-glow: rgba(34,192,106,0.16);"></div>
       <div class="voa-hero-icon accent-amber">${ICONS.star}</div>
       <div class="voa-hero-inner">
         <div class="voa-eyebrow accent-amber">A Direction Ritual</div>
@@ -3265,8 +3267,8 @@ ${stage5}
     .cpt-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--muted); margin: 0 0 1.4rem; }
     .cpt-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
     .cpt-option { display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--line); padding: 1.1rem 1.2rem; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s; position: relative; }
-    .cpt-option:hover { transform: translateY(-2px); border-color: rgba(255,179,0,0.4); }
-    .cpt-option:has(input:checked) { border-color: var(--amber); background: rgba(255,179,0,0.08); box-shadow: 0 0 24px rgba(255,179,0,0.18); }
+    .cpt-option:hover { transform: translateY(-2px); border-color: rgba(34,192,106,0.4); }
+    .cpt-option:has(input:checked) { border-color: var(--amber); background: rgba(34,192,106,0.08); box-shadow: 0 0 24px rgba(34,192,106,0.18); }
     .cpt-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
     .cpt-option input:focus-visible ~ .cpt-option-label { outline: 2px solid var(--amber); outline-offset: 3px; }
     .cpt-option-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; color: var(--cream); }
@@ -3275,7 +3277,7 @@ ${stage5}
 
     .cpt-result-wrap { padding: 1rem 0; }
     .cpt-result-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: start; }
-    .cpt-compass-card { border: 1px solid rgba(255,179,0,0.35); background: radial-gradient(circle, rgba(255,179,0,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
+    .cpt-compass-card { border: 1px solid rgba(34,192,106,0.35); background: radial-gradient(circle, rgba(34,192,106,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
     .cpt-compass-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber-light); margin-bottom: 1rem; }
     .cpt-compass-art { width: 100%; aspect-ratio: 1; }
     .cpt-compass-art canvas { width: 100%; height: 100%; }
@@ -3365,7 +3367,7 @@ ${stage5}
         var cx = w / 2, cy = h / 2;
         var radius = Math.min(w, h) / 2 - 20;
 
-        ctx.strokeStyle = 'rgba(255,179,0,0.3)';
+        ctx.strokeStyle = 'rgba(34,192,106,0.3)';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.arc(cx, cy, radius, 0, Math.PI * 2);
@@ -3375,7 +3377,7 @@ ${stage5}
           var tickAngle = (t / 8) * Math.PI * 2;
           var inner = radius - 8;
           var outer = radius + (t % 2 === 0 ? 8 : 3);
-          ctx.strokeStyle = 'rgba(255,179,0,0.4)';
+          ctx.strokeStyle = 'rgba(34,192,106,0.4)';
           ctx.lineWidth = t % 2 === 0 ? 1.4 : 0.8;
           ctx.beginPath();
           ctx.moveTo(cx + Math.cos(tickAngle) * inner, cy + Math.sin(tickAngle) * inner);
@@ -3387,7 +3389,7 @@ ${stage5}
         var nx = cx + Math.cos(direction.angle) * needleLen;
         var ny = cy + Math.sin(direction.angle) * needleLen;
         var grad = ctx.createLinearGradient(cx, cy, nx, ny);
-        grad.addColorStop(0, 'rgba(255,179,0,0.15)');
+        grad.addColorStop(0, 'rgba(34,192,106,0.15)');
         grad.addColorStop(1, 'rgba(255,255,255,0.95)');
         ctx.strokeStyle = grad;
         ctx.lineWidth = 2.4;
@@ -3399,13 +3401,13 @@ ${stage5}
 
         var tipGrad = ctx.createRadialGradient(nx, ny, 0, nx, ny, 9);
         tipGrad.addColorStop(0, 'rgba(255,255,255,0.95)');
-        tipGrad.addColorStop(1, 'rgba(255,179,0,0)');
+        tipGrad.addColorStop(1, 'rgba(34,192,106,0)');
         ctx.fillStyle = tipGrad;
         ctx.beginPath();
         ctx.arc(nx, ny, 9, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.fillStyle = 'rgba(255,179,0,0.9)';
+        ctx.fillStyle = 'rgba(34,192,106,0.9)';
         ctx.beginPath();
         ctx.arc(cx, cy, 4, 0, Math.PI * 2);
         ctx.fill();
@@ -3443,7 +3445,7 @@ ${stage5}
         var stageEl = document.querySelector('.cpt-stage[data-cpt-stage="' + (current + 1) + '"]');
         var checked = stageEl.querySelector('input:checked');
         if (!checked) {
-          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          stageEl.style.outline = '1px solid rgba(34,192,106,0.5)';
           setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
           return;
         }
@@ -3808,7 +3810,7 @@ ${stage5}
       var REFLECTIONS = ${JSON.stringify(REFLECTIONS)};
       var NEXT_RESOURCE = ${JSON.stringify(NEXT_RESOURCE)};
       var STEP_LIBRARY = ${JSON.stringify(STEP_LIBRARY)};
-      var ANCHOR_COLOR = { breath: "0,229,204", sound: "255,179,0", body: "34,192,106", space: "167,139,250", silence: "232,255,249" };
+      var ANCHOR_COLOR = { breath: "0,229,204", sound: "34,192,106", body: "34,192,106", space: "167,139,250", silence: "232,255,249" };
 
       var STAGES = 5;
       var current = 0;
@@ -3915,7 +3917,7 @@ ${stage5}
         var stageEl = document.querySelector('.pky-stage[data-pky-stage="' + (current + 1) + '"]');
         var checked = stageEl.querySelector('input:checked');
         if (!checked) {
-          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          stageEl.style.outline = '1px solid rgba(34,192,106,0.5)';
           setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
           return;
         }
@@ -4102,7 +4104,7 @@ ${note ? `        <p class="hnm-note">${escapeHtml(note)}</p>\n` : ""}        <d
   const stage5 = optionStage(5, "What's one honest next step, even a small one?", null, NEXT_STEPS, "nextStep");
 
   const body = `    <section class="voa-hero voa-reveal">
-      <div class="voa-hero-bg" style="--hero-glow: rgba(255,179,0,0.16);"></div>
+      <div class="voa-hero-bg" style="--hero-glow: rgba(34,192,106,0.16);"></div>
       <div class="voa-hero-icon accent-amber">${ICONS.spiral}</div>
       <div class="voa-hero-inner">
         <div class="voa-eyebrow accent-amber">An Honest Check-In</div>
@@ -4201,8 +4203,8 @@ ${stage5}
     .hnm-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--muted); margin: 0 0 1.4rem; }
     .hnm-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
     .hnm-option { display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--line); padding: 1.1rem 1.2rem; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s; position: relative; }
-    .hnm-option:hover { transform: translateY(-2px); border-color: rgba(255,179,0,0.4); }
-    .hnm-option:has(input:checked) { border-color: var(--amber); background: rgba(255,179,0,0.08); box-shadow: 0 0 24px rgba(255,179,0,0.18); }
+    .hnm-option:hover { transform: translateY(-2px); border-color: rgba(34,192,106,0.4); }
+    .hnm-option:has(input:checked) { border-color: var(--amber); background: rgba(34,192,106,0.08); box-shadow: 0 0 24px rgba(34,192,106,0.18); }
     .hnm-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
     .hnm-option input:focus-visible ~ .hnm-option-label { outline: 2px solid var(--amber); outline-offset: 3px; }
     .hnm-option-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; color: var(--cream); }
@@ -4211,7 +4213,7 @@ ${stage5}
 
     .hnm-result-wrap { padding: 1rem 0; }
     .hnm-result-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: start; }
-    .hnm-path-card { border: 1px solid rgba(255,179,0,0.35); background: radial-gradient(circle, rgba(255,179,0,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
+    .hnm-path-card { border: 1px solid rgba(34,192,106,0.35); background: radial-gradient(circle, rgba(34,192,106,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
     .hnm-path-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber-light); margin-bottom: 1rem; }
     .hnm-path-art { width: 100%; aspect-ratio: 1.4; }
     .hnm-path-art canvas { width: 100%; height: 100%; }
@@ -4296,7 +4298,7 @@ ${stage5}
           points.push({ x: x, y: y });
         }
 
-        ctx.strokeStyle = 'rgba(255,179,0,0.4)';
+        ctx.strokeStyle = 'rgba(34,192,106,0.4)';
         ctx.lineWidth = 1.6;
         ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
@@ -4312,13 +4314,13 @@ ${stage5}
           var isLast = i === points.length - 1;
           var r = isLast ? 7 : 4;
           var grad = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, r * 2.5);
-          grad.addColorStop(0, isLast ? 'rgba(255,255,255,0.95)' : 'rgba(255,179,0,0.8)');
-          grad.addColorStop(1, 'rgba(255,179,0,0)');
+          grad.addColorStop(0, isLast ? 'rgba(255,255,255,0.95)' : 'rgba(34,192,106,0.8)');
+          grad.addColorStop(1, 'rgba(34,192,106,0)');
           ctx.fillStyle = grad;
           ctx.beginPath();
           ctx.arc(pt.x, pt.y, r * 2.5, 0, Math.PI * 2);
           ctx.fill();
-          ctx.fillStyle = isLast ? 'rgba(255,255,255,0.95)' : 'rgba(255,179,0,0.9)';
+          ctx.fillStyle = isLast ? 'rgba(255,255,255,0.95)' : 'rgba(34,192,106,0.9)';
           ctx.beginPath();
           ctx.arc(pt.x, pt.y, r * 0.5, 0, Math.PI * 2);
           ctx.fill();
@@ -4370,7 +4372,7 @@ ${stage5}
         var stageEl = document.querySelector('.hnm-stage[data-hnm-stage="' + (current + 1) + '"]');
         var checked = stageEl.querySelector('input:checked');
         if (!checked) {
-          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          stageEl.style.outline = '1px solid rgba(34,192,106,0.5)';
           setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
           return;
         }
