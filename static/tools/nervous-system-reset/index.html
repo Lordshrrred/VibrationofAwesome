@@ -957,7 +957,7 @@
           { text: "Write one true sentence about how you actually feel right now.", envs: ["quiet", "private", "anywhere"] }
         ]
       };
-      var MODE_COLOR = { calming: "0,229,204", activation: "255,179,0", grounding: "167,139,250", release: "34,192,106" };
+      var MODE_COLOR = { calming: "0,229,204", activation: "34,192,106", grounding: "167,139,250", release: "34,192,106" };
 
       var STAGES = 5;
       var current = 0;
@@ -1078,7 +1078,7 @@
         var stageEl = document.querySelector('.nsr-stage[data-nsr-stage="' + (current + 1) + '"]');
         var checked = stageEl.querySelector('input:checked');
         if (!checked) {
-          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          stageEl.style.outline = '1px solid rgba(34,192,106,0.5)';
           setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
           return;
         }

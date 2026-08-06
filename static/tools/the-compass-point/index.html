@@ -251,8 +251,8 @@
     .cpt-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--muted); margin: 0 0 1.4rem; }
     .cpt-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
     .cpt-option { display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--line); padding: 1.1rem 1.2rem; cursor: pointer; transition: border-color 0.25s, background 0.25s, transform 0.25s; position: relative; }
-    .cpt-option:hover { transform: translateY(-2px); border-color: rgba(255,179,0,0.4); }
-    .cpt-option:has(input:checked) { border-color: var(--amber); background: rgba(255,179,0,0.08); box-shadow: 0 0 24px rgba(255,179,0,0.18); }
+    .cpt-option:hover { transform: translateY(-2px); border-color: rgba(34,192,106,0.4); }
+    .cpt-option:has(input:checked) { border-color: var(--amber); background: rgba(34,192,106,0.08); box-shadow: 0 0 24px rgba(34,192,106,0.18); }
     .cpt-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
     .cpt-option input:focus-visible ~ .cpt-option-label { outline: 2px solid var(--amber); outline-offset: 3px; }
     .cpt-option-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; color: var(--cream); }
@@ -261,7 +261,7 @@
 
     .cpt-result-wrap { padding: 1rem 0; }
     .cpt-result-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: start; }
-    .cpt-compass-card { border: 1px solid rgba(255,179,0,0.35); background: radial-gradient(circle, rgba(255,179,0,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
+    .cpt-compass-card { border: 1px solid rgba(34,192,106,0.35); background: radial-gradient(circle, rgba(34,192,106,0.06), transparent 70%); padding: 1.5rem; text-align: center; }
     .cpt-compass-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber-light); margin-bottom: 1rem; }
     .cpt-compass-art { width: 100%; aspect-ratio: 1; }
     .cpt-compass-art canvas { width: 100%; height: 100%; }
@@ -682,7 +682,7 @@
   </nav>
   <main class="voa-shell">
     <section class="voa-hero voa-reveal">
-      <div class="voa-hero-bg" style="--hero-glow: rgba(255,179,0,0.16);"></div>
+      <div class="voa-hero-bg" style="--hero-glow: rgba(34,192,106,0.16);"></div>
       <div class="voa-hero-icon accent-amber"><svg viewBox="0 0 48 48" fill="none"><path d="M24 4L28.5 19.5L44 24L28.5 28.5L24 44L19.5 28.5L4 24L19.5 19.5L24 4Z" stroke="currentColor" stroke-width="1"/></svg></div>
       <div class="voa-hero-inner">
         <div class="voa-eyebrow accent-amber">A Direction Ritual</div>
@@ -982,7 +982,7 @@
         var cx = w / 2, cy = h / 2;
         var radius = Math.min(w, h) / 2 - 20;
 
-        ctx.strokeStyle = 'rgba(255,179,0,0.3)';
+        ctx.strokeStyle = 'rgba(34,192,106,0.3)';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.arc(cx, cy, radius, 0, Math.PI * 2);
@@ -992,7 +992,7 @@
           var tickAngle = (t / 8) * Math.PI * 2;
           var inner = radius - 8;
           var outer = radius + (t % 2 === 0 ? 8 : 3);
-          ctx.strokeStyle = 'rgba(255,179,0,0.4)';
+          ctx.strokeStyle = 'rgba(34,192,106,0.4)';
           ctx.lineWidth = t % 2 === 0 ? 1.4 : 0.8;
           ctx.beginPath();
           ctx.moveTo(cx + Math.cos(tickAngle) * inner, cy + Math.sin(tickAngle) * inner);
@@ -1004,7 +1004,7 @@
         var nx = cx + Math.cos(direction.angle) * needleLen;
         var ny = cy + Math.sin(direction.angle) * needleLen;
         var grad = ctx.createLinearGradient(cx, cy, nx, ny);
-        grad.addColorStop(0, 'rgba(255,179,0,0.15)');
+        grad.addColorStop(0, 'rgba(34,192,106,0.15)');
         grad.addColorStop(1, 'rgba(255,255,255,0.95)');
         ctx.strokeStyle = grad;
         ctx.lineWidth = 2.4;
@@ -1016,13 +1016,13 @@
 
         var tipGrad = ctx.createRadialGradient(nx, ny, 0, nx, ny, 9);
         tipGrad.addColorStop(0, 'rgba(255,255,255,0.95)');
-        tipGrad.addColorStop(1, 'rgba(255,179,0,0)');
+        tipGrad.addColorStop(1, 'rgba(34,192,106,0)');
         ctx.fillStyle = tipGrad;
         ctx.beginPath();
         ctx.arc(nx, ny, 9, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.fillStyle = 'rgba(255,179,0,0.9)';
+        ctx.fillStyle = 'rgba(34,192,106,0.9)';
         ctx.beginPath();
         ctx.arc(cx, cy, 4, 0, Math.PI * 2);
         ctx.fill();
@@ -1060,7 +1060,7 @@
         var stageEl = document.querySelector('.cpt-stage[data-cpt-stage="' + (current + 1) + '"]');
         var checked = stageEl.querySelector('input:checked');
         if (!checked) {
-          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          stageEl.style.outline = '1px solid rgba(34,192,106,0.5)';
           setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
           return;
         }

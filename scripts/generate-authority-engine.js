@@ -1047,7 +1047,8 @@ ${publishedTools.map(asset => `<a class="voa-card border-cyan" href="${cleanPubl
 // ── Individual hub page ──────────────────────────────────────────────────────
 
 function renderHub(hub, posts, assets, hubsBySlug) {
-  const title = `${hub.title} Hub`;
+  const isIndependentReview = Boolean(hub.editorialNotice);
+  const title = isIndependentReview ? hub.title : `${hub.title} Hub`;
   const description = hub.description;
   const canonical = `/hubs/${hub.slug}/`;
   const { accent, svg } = iconFor(hub.slug);
@@ -1100,7 +1101,7 @@ function renderHub(hub, posts, assets, hubsBySlug) {
       <div class="voa-hero-bg" style="--hero-glow: var(--${accent === "moss" ? "moss" : accent});"></div>
       <div class="voa-hero-icon accent-${accent}">${svg}</div>
       <div class="voa-hero-inner">
-        <div class="voa-eyebrow accent-${accent}">Explore This Theme</div>
+        <div class="voa-eyebrow accent-${accent}">${isIndependentReview ? "Independent Review Desk" : "Explore This Theme"}</div>
         <h1 class="voa-h1">${escapeHtml(hub.title)}</h1>
         <p class="voa-hero-desc">${escapeHtml(description)}</p>
         ${hub.editorialNotice ? `<p class="voa-editorial-notice">${escapeHtml(hub.editorialNotice)}</p>` : ""}
@@ -1144,11 +1145,13 @@ ${relatedPathways}
       <p>Ready for the next layer? The Field Guide is the short map back to the state this whole site is built around.</p>
       <div class="voa-continue-cta">
         <a class="voa-btn voa-btn-primary" href="/field-guide/">Get the Field Guide &#10022;</a>
-        <a class="voa-btn voa-btn-secondary" href="/hubs/">Back to all Hubs</a>
+        <a class="voa-btn voa-btn-secondary" href="${isIndependentReview ? "/blog/" : "/hubs/"}">${isIndependentReview ? "Browse independent articles" : "Back to all Hubs"}</a>
       </div>
     </section>`;
 
-  const hubTrail = [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: hub.title, url: canonical }];
+  const hubTrail = isIndependentReview
+    ? [{ name: "Home", url: "/" }, { name: "Independent Reviews", url: "/blog/" }, { name: hub.title, url: canonical }]
+    : [{ name: "Home", url: "/" }, { name: "Resources", url: "/hubs/" }, { name: hub.title, url: canonical }];
   return pageChrome({
     title, description, canonical, body, breadcrumbTrail: hubTrail,
     schema: [

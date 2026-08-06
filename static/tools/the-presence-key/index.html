@@ -929,7 +929,7 @@
       var REFLECTIONS = {"settling":"You don't have to force the settling. You just have to stop adding to the noise.","waking":"Presence doesn't require high energy. It just requires attention.","returning":"The body was here the whole time. You're just arriving to meet it.","space":"This gap doesn't need to be filled with anything. That's what makes it a gap.","check-in":"Noticing where you are, without changing it yet, is its own complete practice."};
       var NEXT_RESOURCE = {"settling":{"url":"/hubs/nervous-system-regulation/","label":"Nervous System Regulation Hub"},"waking":{"url":"/hubs/dopamine-attention/","label":"Dopamine & Attention Hub"},"returning":{"url":"/hubs/nervous-system-regulation/","label":"Nervous System Regulation Hub"},"space":{"url":"/hubs/personal-growth/","label":"Personal Growth Hub"},"check-in":{"url":"/hubs/personal-growth/","label":"Personal Growth Hub"}};
       var STEP_LIBRARY = {"breath":["Let your next exhale be a little longer than usual. Just the next one.","Count four breaths without trying to change them at all.","Notice where the breath is easiest to feel: nose, chest, or belly. Stay there.","Let the breath get quieter, not slower. See what that does."],"sound":["Find the furthest sound you can hear right now.","Find the closest sound you can hear right now.","Notice the silence between two sounds, not just the sounds themselves.","Let sound come to you instead of reaching for it."],"body":["Notice where your body is actually touching a surface right now.","Let your shoulders be exactly as heavy as they actually are.","Notice one point of warmth and one point of coolness on your skin.","Let your weight fully arrive into whatever's holding you up."],"space":["Notice the furthest wall or edge of the space you're in.","Notice the light in the room, without judging it.","Let your peripheral vision open instead of staring at one point.","Notice that the space was here before you arrived, and will stay after."],"silence":["Notice the quietest moment in the last minute.","Let one thought pass without following it anywhere.","Notice the gap after this sentence ends, before the next one starts.","Rest in not needing to produce anything for the rest of this session."]};
-      var ANCHOR_COLOR = { breath: "0,229,204", sound: "255,179,0", body: "34,192,106", space: "167,139,250", silence: "232,255,249" };
+      var ANCHOR_COLOR = { breath: "0,229,204", sound: "34,192,106", body: "34,192,106", space: "167,139,250", silence: "232,255,249" };
 
       var STAGES = 5;
       var current = 0;
@@ -1036,7 +1036,7 @@
         var stageEl = document.querySelector('.pky-stage[data-pky-stage="' + (current + 1) + '"]');
         var checked = stageEl.querySelector('input:checked');
         if (!checked) {
-          stageEl.style.outline = '1px solid rgba(255,179,0,0.5)';
+          stageEl.style.outline = '1px solid rgba(34,192,106,0.5)';
           setTimeout(function () { stageEl.style.outline = 'none'; }, 900);
           return;
         }
