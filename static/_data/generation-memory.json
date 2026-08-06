@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-06T04:10:51.362Z",
+  "lastUpdated": "2026-08-06T04:15:37.520Z",
   "recentHooks": [
     {
       "slug": "claude-vs-chatgpt-for-creator-workflows",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-independent-artists-sell-their-work-online",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-08-06T04:15:37.520Z"
+    },
+    {
       "slug": "self-respect-through-action",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,15 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-21T23:07:33.455Z"
-    },
-    {
-      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-21T23:07:13.098Z"
     }
   ],
   "recentInstagramArchetypes": [
