@@ -4,8 +4,71 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-06T04:00:07.209Z",
+  "lastUpdated": "2026-08-06T04:10:51.362Z",
   "recentHooks": [
+    {
+      "slug": "claude-vs-chatgpt-for-creator-workflows",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "You've got both tabs open right now. ChatGPT on the left, Claude on the right, same prompt pasted into both, and you're squinting at the two outputs trying to decide which robot deserves your twenty b",
+      "timestamp": "2026-08-06T04:10:51.362Z"
+    },
+    {
+      "slug": "simple-creator-automation-stack",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "Most creators do not have an automation problem. They have a collection problem. Fourteen tools, three half-built Zapier flows, a Notion dashboard nobody opens, and a nagging feeling that all of it is",
+      "timestamp": "2026-08-06T04:09:53.978Z"
+    },
+    {
+      "slug": "creator-burnout-from-content-production",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "It's Sunday night and you're staring at your content calendar like it's a ransom note. Three reels behind. Newsletter unwritten. That song you actually care about sitting untouched in a folder while y",
+      "timestamp": "2026-08-06T04:08:46.738Z"
+    },
+    {
+      "slug": "why-ai-music-tools-make-everything-sound-the-same",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "Play three AI-generated tracks back to back and you already know the feeling. Same glassy pads. Same polite drum bus. Same emotional temperature that never rises above lukewarm. It is like walking int",
+      "timestamp": "2026-08-06T04:07:41.689Z"
+    },
+    {
+      "slug": "ai-content-feels-generic-for-creators",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "You paste your idea into ChatGPT, hit enter, and out comes something that sounds like a LinkedIn motivational poster wrote a press release. It's grammatically perfect. It's completely dead. And you si",
+      "timestamp": "2026-08-06T04:06:45.887Z"
+    },
+    {
+      "slug": "too-many-ai-tools-and-no-clear-workflow",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "Your bookmarks folder has 23 AI tools in it. Your credit card gets pinged by four of them every month. And when you sit down to actually make something, you stare at the screen and open none of them.",
+      "timestamp": "2026-08-06T04:05:42.375Z"
+    },
+    {
+      "slug": "best-ai-workflow-for-solo-creators",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "What if the reason your AI setup keeps collapsing is that you built it backwards?",
+      "timestamp": "2026-08-06T04:04:37.836Z"
+    },
+    {
+      "slug": "how-ai-fits-into-a-creator-workflow",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "You opened seven browser tabs, signed up for four AI tools, watched a guy on YouTube promise you a \"fully automated content empire,\" and now you have a graveyard of half-used subscriptions and zero cl",
+      "timestamp": "2026-08-06T04:03:28.706Z"
+    },
+    {
+      "slug": "etsy-vs-art-galleries-vs-artist-websites",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "hook": "You found a piece you love. Now you have three tabs open ~ an Etsy listing, a gallery page, and the artist's own website ~ and the same painting somehow costs three different amounts depending on wher",
+      "timestamp": "2026-08-06T04:02:21.380Z"
+    },
     {
       "slug": "digital-art-prints-that-feel-like-originals",
       "niche": "art-buyer-intent",
@@ -152,72 +215,72 @@
       "cluster": "spiritual-productivity",
       "hook": "Here's a question nobody asks you when you say you feel lost: what would you do if you knew the \"wrong\" choice couldn't ruin your life?",
       "timestamp": "2026-08-03T23:08:49.362Z"
-    },
-    {
-      "slug": "how-to-find-direction-when-you-feel-lost",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "hook": "You have thirteen browser tabs open, half of them are \"how to figure out what to do with your life,\" and you have read four of these exact articles this week already. Nothing landed. You closed the la",
-      "timestamp": "2026-08-03T23:07:57.999Z"
-    },
-    {
-      "slug": "choosing-truth-over-approval",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "hook": "Picture the moment. Someone asks how the job is going, or the relationship, or the big plan everyone congratulated you on, and you hear yourself say \"great, really good\" while a quiet voice in your ch",
-      "timestamp": "2026-08-03T23:06:54.917Z"
-    },
-    {
-      "slug": "outgrowing-old-identities",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "hook": "Nobody warns you that success can feel like a costume that stopped fitting somewhere along the way.",
-      "timestamp": "2026-08-03T23:06:01.957Z"
-    },
-    {
-      "slug": "how-to-tell-when-something-is-not-for-you-anymore",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "hook": "There's a specific kind of tired that sleep doesn't fix. You do the thing you're supposed to do, you do it well, people tell you you're lucky to have it, and some small unlit part of you sits in the b",
-      "timestamp": "2026-08-03T23:05:07.025Z"
-    },
-    {
-      "slug": "why-a-good-life-can-still-feel-empty",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "hook": "What if nothing is wrong with your life, and that is exactly the problem?",
-      "timestamp": "2026-08-03T23:03:48.020Z"
-    },
-    {
-      "slug": "signs-your-life-is-misaligned",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "hook": "You close your laptop at the end of another decent day, in your decent apartment, next to your decent life, and something inside you goes quiet in a way that feels less like peace and more like a held",
-      "timestamp": "2026-08-03T23:02:44.354Z"
-    },
-    {
-      "slug": "reducing-inputs-to-restore-focus",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "hook": "Count the things pulling at you right now. The tab you meant to close. The notification badge. The half-heard conversation in the next room. The temperature of the air. The tightness in your jaw you j",
-      "timestamp": "2026-08-03T23:01:44.494Z"
-    },
-    {
-      "slug": "clarity-through-regulation",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "hook": "Try to think of a single good decision you made while your heart was pounding at 2am. You can't, because your brain doesn't do clear thinking when your body has decided you're in danger.",
-      "timestamp": "2026-08-03T23:00:45.328Z"
-    },
-    {
-      "slug": "grounding-practices-for-overwhelmed-people",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "hook": "The fridge hum is too loud. Your phone buzzed twice and you flinched both times. Someone asked you a simple question and your brain went white static. You are not tired exactly. You are lit up like a ",
-      "timestamp": "2026-08-03T22:59:42.577Z"
     }
   ],
   "recentTitles": [
+    {
+      "slug": "claude-vs-chatgpt-for-creator-workflows",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "Claude vs ChatGPT for Creator Workflows",
+      "timestamp": "2026-08-06T04:10:51.362Z"
+    },
+    {
+      "slug": "simple-creator-automation-stack",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "Simple Creator Automation Stack",
+      "timestamp": "2026-08-06T04:09:53.978Z"
+    },
+    {
+      "slug": "creator-burnout-from-content-production",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "Creator Burnout From Content Production",
+      "timestamp": "2026-08-06T04:08:46.738Z"
+    },
+    {
+      "slug": "why-ai-music-tools-make-everything-sound-the-same",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "Why AI Music Tools Make Everything Sound the Same",
+      "timestamp": "2026-08-06T04:07:41.689Z"
+    },
+    {
+      "slug": "ai-content-feels-generic-for-creators",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "AI Content Feels Generic for Creators",
+      "timestamp": "2026-08-06T04:06:45.887Z"
+    },
+    {
+      "slug": "too-many-ai-tools-and-no-clear-workflow",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "Too Many AI Tools and No Clear Workflow",
+      "timestamp": "2026-08-06T04:05:42.375Z"
+    },
+    {
+      "slug": "best-ai-workflow-for-solo-creators",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "Best AI Workflow for Solo Creators",
+      "timestamp": "2026-08-06T04:04:37.836Z"
+    },
+    {
+      "slug": "how-ai-fits-into-a-creator-workflow",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "How AI Fits Into a Creator Workflow",
+      "timestamp": "2026-08-06T04:03:28.706Z"
+    },
+    {
+      "slug": "etsy-vs-art-galleries-vs-artist-websites",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "title": "Etsy vs Art Galleries vs Artist Websites",
+      "timestamp": "2026-08-06T04:02:21.380Z"
+    },
     {
       "slug": "digital-art-prints-that-feel-like-originals",
       "niche": "art-buyer-intent",
@@ -364,73 +427,55 @@
       "cluster": "spiritual-productivity",
       "title": "Choosing a Path When Nothing Feels Clear",
       "timestamp": "2026-08-03T23:08:49.362Z"
-    },
-    {
-      "slug": "how-to-find-direction-when-you-feel-lost",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "title": "How to Find Direction When You Feel Lost",
-      "timestamp": "2026-08-03T23:07:57.999Z"
-    },
-    {
-      "slug": "choosing-truth-over-approval",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "title": "Choosing Truth Over Approval",
-      "timestamp": "2026-08-03T23:06:54.917Z"
-    },
-    {
-      "slug": "outgrowing-old-identities",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "title": "Outgrowing Old Identities",
-      "timestamp": "2026-08-03T23:06:01.957Z"
-    },
-    {
-      "slug": "how-to-tell-when-something-is-not-for-you-anymore",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "title": "How to Tell When Something Is Not for You Anymore",
-      "timestamp": "2026-08-03T23:05:07.025Z"
-    },
-    {
-      "slug": "why-a-good-life-can-still-feel-empty",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "title": "Why a Good Life Can Still Feel Empty",
-      "timestamp": "2026-08-03T23:03:48.020Z"
-    },
-    {
-      "slug": "signs-your-life-is-misaligned",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "title": "Signs Your Life Is Misaligned",
-      "timestamp": "2026-08-03T23:02:44.354Z"
-    },
-    {
-      "slug": "reducing-inputs-to-restore-focus",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "title": "Reducing Inputs to Restore Focus",
-      "timestamp": "2026-08-03T23:01:44.494Z"
-    },
-    {
-      "slug": "clarity-through-regulation",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "title": "Clarity Through Regulation",
-      "timestamp": "2026-08-03T23:00:45.328Z"
-    },
-    {
-      "slug": "grounding-practices-for-overwhelmed-people",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "title": "Grounding Practices for Overwhelmed People",
-      "timestamp": "2026-08-03T22:59:42.577Z"
     }
   ],
   "recentNarrativeStructures": [
     {
+      "slug": "claude-vs-chatgpt-for-creator-workflows",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-08-06T04:10:51.362Z"
+    },
+    {
+      "slug": "simple-creator-automation-stack",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-08-06T04:09:53.978Z"
+    },
+    {
+      "slug": "creator-burnout-from-content-production",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-08-06T04:08:46.738Z"
+    },
+    {
+      "slug": "why-ai-music-tools-make-everything-sound-the-same",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-08-06T04:07:41.689Z"
+    },
+    {
+      "slug": "ai-content-feels-generic-for-creators",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-08-06T04:06:45.887Z"
+    },
+    {
+      "slug": "too-many-ai-tools-and-no-clear-workflow",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-08-06T04:05:42.375Z"
+    },
+    {
+      "slug": "best-ai-workflow-for-solo-creators",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-08-06T04:04:37.836Z"
+    },
+    {
+      "slug": "how-ai-fits-into-a-creator-workflow",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-08-06T04:03:28.706Z"
+    },
+    {
+      "slug": "etsy-vs-art-galleries-vs-artist-websites",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-08-06T04:02:21.380Z"
+    },
+    {
       "slug": "digital-art-prints-that-feel-like-originals",
       "structure": "heavily-sectioned (6+ H2s)",
       "timestamp": "2026-08-06T04:00:07.209Z"
@@ -534,207 +579,207 @@
       "slug": "choosing-a-path-when-nothing-feels-clear",
       "structure": "moderate sections (3-5 H2s)",
       "timestamp": "2026-08-03T23:08:49.362Z"
-    },
-    {
-      "slug": "how-to-find-direction-when-you-feel-lost",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-08-03T23:07:57.999Z"
-    },
-    {
-      "slug": "choosing-truth-over-approval",
-      "structure": "moderate sections (3-5 H2s)",
-      "timestamp": "2026-08-03T23:06:54.917Z"
-    },
-    {
-      "slug": "outgrowing-old-identities",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-08-03T23:06:01.957Z"
-    },
-    {
-      "slug": "how-to-tell-when-something-is-not-for-you-anymore",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-08-03T23:05:07.025Z"
-    },
-    {
-      "slug": "why-a-good-life-can-still-feel-empty",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-08-03T23:03:48.020Z"
-    },
-    {
-      "slug": "signs-your-life-is-misaligned",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-08-03T23:02:44.354Z"
-    },
-    {
-      "slug": "reducing-inputs-to-restore-focus",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-08-03T23:01:44.494Z"
-    },
-    {
-      "slug": "clarity-through-regulation",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-08-03T23:00:45.328Z"
-    },
-    {
-      "slug": "grounding-practices-for-overwhelmed-people",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-08-03T22:59:42.577Z"
     }
   ],
   "recentEmotionalArcs": [
     {
+      "slug": "claude-vs-chatgpt-for-creator-workflows",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-08-06T04:10:51.362Z"
+    },
+    {
+      "slug": "simple-creator-automation-stack",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-08-06T04:09:53.978Z"
+    },
+    {
+      "slug": "creator-burnout-from-content-production",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-08-06T04:08:46.738Z"
+    },
+    {
+      "slug": "why-ai-music-tools-make-everything-sound-the-same",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-08-06T04:07:41.689Z"
+    },
+    {
+      "slug": "ai-content-feels-generic-for-creators",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-08-06T04:06:45.887Z"
+    },
+    {
+      "slug": "too-many-ai-tools-and-no-clear-workflow",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-08-06T04:05:42.375Z"
+    },
+    {
+      "slug": "best-ai-workflow-for-solo-creators",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-08-06T04:04:37.836Z"
+    },
+    {
+      "slug": "how-ai-fits-into-a-creator-workflow",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-08-06T04:03:28.706Z"
+    },
+    {
+      "slug": "etsy-vs-art-galleries-vs-artist-websites",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-08-06T04:02:21.380Z"
+    },
+    {
       "slug": "digital-art-prints-that-feel-like-originals",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T04:00:07.209Z"
     },
     {
       "slug": "original-art-feels-too-expensive-or-exclusive",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T03:58:59.974Z"
     },
     {
       "slug": "i-want-something-that-actually-means-something-on-my-wall",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:57:49.178Z"
     },
     {
       "slug": "mass-market-prints-feel-generic-and-soulless",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T03:56:54.546Z"
     },
     {
       "slug": "i-want-art-for-my-home-but-do-not-know-where-to-look",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T03:55:57.524Z"
     },
     {
       "slug": "how-independent-artists-sell-their-work-online",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:55:00.557Z"
     },
     {
       "slug": "how-to-cancel-ai-advantage-current-refund-and-subscription-terms",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:53:53.202Z"
     },
     {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:52:56.737Z"
     },
     {
       "slug": "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:51:30.792Z"
     },
     {
       "slug": "ai-advantage-may-2026-bootcamp-workshops-and-replays",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-06T03:50:22.343Z"
     },
     {
       "slug": "ai-advantage-free-jumpstart-playbook-and-community-review",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:49:31.677Z"
     },
     {
       "slug": "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-06T03:48:25.355Z"
     },
     {
       "slug": "why-silence-changes-everything",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:16:38.525Z"
     },
     {
       "slug": "journaling-for-clarity",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:15:43.363Z"
     },
     {
       "slug": "rebuilding-intuition",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:14:52.182Z"
     },
     {
       "slug": "reducing-noise-and-overstimulation",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:13:54.314Z"
     },
     {
       "slug": "how-to-hear-yourself-again",
-      "arc": "neutral-open \u2192 action close",
+      "arc": "neutral-open → action close",
       "timestamp": "2026-08-03T23:13:00.767Z"
     },
     {
       "slug": "committing-before-you-feel-ready",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:11:49.275Z"
     },
     {
       "slug": "how-to-stop-drifting",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:10:53.539Z"
     },
     {
       "slug": "purpose-vs-motivation",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:09:49.398Z"
     },
     {
       "slug": "choosing-a-path-when-nothing-feels-clear",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
+      "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-08-03T23:08:49.362Z"
-    },
-    {
-      "slug": "how-to-find-direction-when-you-feel-lost",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
-      "timestamp": "2026-08-03T23:07:57.999Z"
-    },
-    {
-      "slug": "choosing-truth-over-approval",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
-      "timestamp": "2026-08-03T23:06:54.917Z"
-    },
-    {
-      "slug": "outgrowing-old-identities",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
-      "timestamp": "2026-08-03T23:06:01.957Z"
-    },
-    {
-      "slug": "how-to-tell-when-something-is-not-for-you-anymore",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
-      "timestamp": "2026-08-03T23:05:07.025Z"
-    },
-    {
-      "slug": "why-a-good-life-can-still-feel-empty",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
-      "timestamp": "2026-08-03T23:03:48.020Z"
-    },
-    {
-      "slug": "signs-your-life-is-misaligned",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
-      "timestamp": "2026-08-03T23:02:44.354Z"
-    },
-    {
-      "slug": "reducing-inputs-to-restore-focus",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
-      "timestamp": "2026-08-03T23:01:44.494Z"
-    },
-    {
-      "slug": "clarity-through-regulation",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
-      "timestamp": "2026-08-03T23:00:45.328Z"
-    },
-    {
-      "slug": "grounding-practices-for-overwhelmed-people",
-      "arc": "pain-open \u2192 insight \u2192 hope + action close",
-      "timestamp": "2026-08-03T22:59:42.577Z"
     }
   ],
   "recentOpeningStyles": [
     {
+      "slug": "claude-vs-chatgpt-for-creator-workflows",
+      "style": "statement opening",
+      "timestamp": "2026-08-06T04:10:51.362Z"
+    },
+    {
+      "slug": "simple-creator-automation-stack",
+      "style": "social proof / counter-claim opening",
+      "timestamp": "2026-08-06T04:09:53.978Z"
+    },
+    {
+      "slug": "creator-burnout-from-content-production",
+      "style": "statement opening",
+      "timestamp": "2026-08-06T04:08:46.738Z"
+    },
+    {
+      "slug": "why-ai-music-tools-make-everything-sound-the-same",
+      "style": "statement opening",
+      "timestamp": "2026-08-06T04:07:41.689Z"
+    },
+    {
+      "slug": "ai-content-feels-generic-for-creators",
+      "style": "statement opening",
+      "timestamp": "2026-08-06T04:06:45.887Z"
+    },
+    {
+      "slug": "too-many-ai-tools-and-no-clear-workflow",
+      "style": "statement opening",
+      "timestamp": "2026-08-06T04:05:42.375Z"
+    },
+    {
+      "slug": "best-ai-workflow-for-solo-creators",
+      "style": "question opening",
+      "timestamp": "2026-08-06T04:04:37.836Z"
+    },
+    {
+      "slug": "how-ai-fits-into-a-creator-workflow",
+      "style": "statement opening",
+      "timestamp": "2026-08-06T04:03:28.706Z"
+    },
+    {
+      "slug": "etsy-vs-art-galleries-vs-artist-websites",
+      "style": "statement opening",
+      "timestamp": "2026-08-06T04:02:21.380Z"
+    },
+    {
       "slug": "digital-art-prints-that-feel-like-originals",
       "style": "social proof / counter-claim opening",
       "timestamp": "2026-08-06T04:00:07.209Z"
@@ -838,51 +883,6 @@
       "slug": "choosing-a-path-when-nothing-feels-clear",
       "style": "question opening",
       "timestamp": "2026-08-03T23:08:49.362Z"
-    },
-    {
-      "slug": "how-to-find-direction-when-you-feel-lost",
-      "style": "statement opening",
-      "timestamp": "2026-08-03T23:07:57.999Z"
-    },
-    {
-      "slug": "choosing-truth-over-approval",
-      "style": "social proof / counter-claim opening",
-      "timestamp": "2026-08-03T23:06:54.917Z"
-    },
-    {
-      "slug": "outgrowing-old-identities",
-      "style": "social proof / counter-claim opening",
-      "timestamp": "2026-08-03T23:06:01.957Z"
-    },
-    {
-      "slug": "how-to-tell-when-something-is-not-for-you-anymore",
-      "style": "statement opening",
-      "timestamp": "2026-08-03T23:05:07.025Z"
-    },
-    {
-      "slug": "why-a-good-life-can-still-feel-empty",
-      "style": "question opening",
-      "timestamp": "2026-08-03T23:03:48.020Z"
-    },
-    {
-      "slug": "signs-your-life-is-misaligned",
-      "style": "statement opening",
-      "timestamp": "2026-08-03T23:02:44.354Z"
-    },
-    {
-      "slug": "reducing-inputs-to-restore-focus",
-      "style": "statement opening",
-      "timestamp": "2026-08-03T23:01:44.494Z"
-    },
-    {
-      "slug": "clarity-through-regulation",
-      "style": "statement opening",
-      "timestamp": "2026-08-03T23:00:45.328Z"
-    },
-    {
-      "slug": "grounding-practices-for-overwhelmed-people",
-      "style": "statement opening",
-      "timestamp": "2026-08-03T22:59:42.577Z"
     }
   ],
   "recentCTAPatterns": [],
