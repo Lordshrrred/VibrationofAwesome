@@ -3,6 +3,7 @@ import { execFileSync, spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
+import { pathToFileURL as __voaPathToFileURL } from "node:url";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const OUT_FILE = path.join(ROOT, "static", "_data", "deployment-health.json");
 
@@ -106,4 +107,10 @@ function main() {
   }
 }
 
-main();
+// CLI-only guard: without this, merely `import`-ing this module (from a test,
+// another script, or a syntax/load check) executes a real run with real side
+// effects. See CLAUDE.md ~ every script with a top-level main() needs this.
+const __voaIsCli = process.argv[1] && import.meta.url === __voaPathToFileURL(process.argv[1]).href;
+if (__voaIsCli) {
+  main();
+}

@@ -25,6 +25,7 @@ import path from "path";
 import https from "https";
 import { fileURLToPath } from "url";
 
+import { pathToFileURL as __voaPathToFileURL } from "node:url";
 const ROOT      = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT_FILE  = path.join(ROOT, "static/_data/gmail-subscriber-replies.json");
 const DAYS_BACK = parseInt(process.env.GMAIL_DAYS_BACK || "7", 10);
@@ -151,4 +152,10 @@ async function main() {
   console.log(`  Wrote ${output.length} messages → ${OUT_FILE}`);
 }
 
-main().catch(err => { console.error(err.message); process.exit(1); });
+// CLI-only guard: without this, merely `import`-ing this module (from a test,
+// another script, or a syntax/load check) executes a real run with real side
+// effects. See CLAUDE.md ~ every script with a top-level main() needs this.
+const __voaIsCli = process.argv[1] && import.meta.url === __voaPathToFileURL(process.argv[1]).href;
+if (__voaIsCli) {
+  main().catch(err => { console.error(err.message); process.exit(1); });
+}

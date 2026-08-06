@@ -127,8 +127,11 @@ Copy `.env.example` to `.env`. Required keys:
 All Claude API call sites construct their client via `scripts/lib/anthropic-client.js` (`createAnthropicClient({ label })`), not `new Anthropic()` directly ~ it pins `maxRetries: 3` and logs a warning on every 429/5xx the SDK retries, so a runaway retry loop shows up in logs instead of silently burning spend. `api/chat.js` (AURA, raw `fetch` rather than the SDK) has its own equivalent `callAnthropicWithRetry()` with the same cap and logging.
 
 Model tiers by task:
-- **Full long-form generation, flagship reader-facing content** (blog post bodies in `generate-post.js`, `generate-from-inspiration.js`) ~ Opus. Do not downgrade without asking first.
-- **Full-length but backlink/SEO-plumbing content, not reader-facing** (Blogger/WordPress companion articles in `syndicate.js`) ~ downgraded from Opus 4.6 to **Sonnet 5** on 2026-07-09. This call site fires unconditionally on every syndication run (5x/day via `drip-posts.yml`'s always-on backlink tier) ~ it was the single largest recurring Opus cost line in the system (10 Opus calls/day), and companion articles aren't what a reader judges the brand by, so the quality/cost tradeoff favors Sonnet here specifically.
+**Verified against the code on 2026-08-05.** Two entries below had drifted from what the scripts actually do ~ re-check by grepping for `model:` before trusting this list again.
+
+- **Flagship reader-facing content** ~ `generate-post.js` uses **Opus 4.8** (`claude-opus-4-8`, `generate-post.js:910`). Do not downgrade without asking first. Note `claude-opus-5` now exists at the *same* $5/$25 per MTok as 4.8 and is a drop-in upgrade ~ moving up costs nothing extra per token, but re-read the migration notes first (thinking is on by default on Opus 5, which changes `max_tokens` headroom).
+- **`generate-from-inspiration.js` is NOT on Opus** despite what this file previously claimed: it runs **Sonnet 4.6** for the post body (`MODEL_WRITER`) and Haiku for the keyword step (`MODEL_FAST`). It is a manual/occasional path, not part of the drip pipeline.
+- **`syndicate.js` companion articles are NOT on Sonnet 5** despite what this file previously claimed: `COMPANION_MODEL` (`syndicate.js:73`) defaults to **Haiku 4.5**, overridable via the `SYNDICATION_COMPANION_MODEL` env var. This is cheaper than the documented intent, not more expensive ~ the earlier Opus→Sonnet note describes a decision that was later taken further to Haiku. If companion-article quality ever needs raising, set the env var rather than editing the constant.
 - **Lighter tasks** (social captions in `generate-captions.js`, Pinterest/Instagram visual prompts, health-check diagnosis in `auto-heal.js`, one-off cluster classification) ~ Haiku.
 - **Manual keyword/search research** (`seo-research.js`, invoked explicitly through `npm run seo:research`) ~ **Sonnet 5**, not Sonnet 4.6 ~ Sonnet 5's introductory pricing ($2/$10 per MTok through 2026-08-31) is currently *cheaper* than Sonnet 4.6 ($3/$15) as well as newer/better, so there's no cost argument for using 4.6 for opt-in research right now. Routine SEO intelligence does **not** call Claude or web search.
 
@@ -308,6 +311,16 @@ A live Instagram duplicate was traced and fixed. Root cause: `postViaPubler()`'s
 - **The fix, not a workaround:** `findExistingPublerPost()` inside `postViaPubler()` (`scripts/syndicate.js`) reconciles against Publer's own live post list (`GET /posts` for the target account, last 72h, exact normalized-caption match) *before* ever creating a new post ~ on every call path, `--force` or not. This applies to every Publer-routed platform (facebook, pinterest, threads, instagram), not just the one that happened to duplicate. Fails open (never blocks a legitimate post) on any read error.
 - **This is the one duplicate-prevention invariant for Publer platforms going forward:** THIS SOURCE → THIS DESTINATION ACCOUNT → THIS CAPTION already live on Publer is checked via live Publer truth, not the local results file, before any create call. Do not add a second local-only dedup layer ~ extend `findExistingPublerPost()` if the matching logic ever needs to change.
 - **`retry-failed-syndication.js` had no CLI guard** (unlike `syndicate.js`, which checks `process.argv[1]` against its own file path before running). A plain `import` of that file ~ from a test, another script, or a load/syntax check ~ unconditionally executed a real live retry pass. Fixed with the same `isCli` guard pattern. Any future script in this repo with a top-level `main().catch(...)` call must have this guard.
+
+**Swept repo-wide on 2026-08-05.** 37 more scripts had the same hole ~ including `generate-post.js`, `generate-all-drafts.js`, `drip-publish.js`, `post-live-syndicate.js`, `auto-heal.js`, `push-env-to-vercel.js`, and `setup-stripe.js`, i.e. importing any of them would have spent Opus tokens, published posts, or mutated Vercel/Stripe state. All now use one uniform guard, appended after the last import:
+
+```js
+import { pathToFileURL as __voaPathToFileURL } from "node:url";
+const __voaIsCli = process.argv[1] && import.meta.url === __voaPathToFileURL(process.argv[1]).href;
+if (__voaIsCli) { main().catch(...); }
+```
+
+`pathToFileURL` (rather than the older `path.resolve` comparison) is what makes relative, absolute, and bare-name invocations all compare equal. Two pre-existing guards use different idioms and were deliberately left alone: `syndicate.js`/`retry-failed-syndication.js` use `path.resolve`, and `vercel-ignore-build.js` uses `fs.realpathSync`. **When adding a script, copy the `pathToFileURL` form above** ~ and note that a guard audit must look for all three idioms, or it will report false positives.
 
 ---
 

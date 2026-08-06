@@ -14,6 +14,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { pathToFileURL as __voaPathToFileURL } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 const ROOT       = path.resolve(__dirname, "..");
@@ -139,4 +140,10 @@ async function main() {
   console.log(`${"═".repeat(65)}\n`);
 }
 
-main().catch(err => { console.error(err.message); process.exit(1); });
+// CLI-only guard: without this, merely `import`-ing this module (from a test,
+// another script, or a syntax/load check) executes a real run with real side
+// effects. See CLAUDE.md ~ every script with a top-level main() needs this.
+const __voaIsCli = process.argv[1] && import.meta.url === __voaPathToFileURL(process.argv[1]).href;
+if (__voaIsCli) {
+  main().catch(err => { console.error(err.message); process.exit(1); });
+}

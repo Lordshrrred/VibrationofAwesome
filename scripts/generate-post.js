@@ -30,6 +30,7 @@ import { slugify, firstWords } from "./lib/utils.js";
 import { buildBoomCtaInstruction, getBoomConversionTarget, normalizeBoomHtml } from "./lib/boom-format.js";
 import { resolveFaqEligibility } from "./lib/faq-eligibility.js";
 
+import { pathToFileURL as __voaPathToFileURL } from "node:url";
 dotenv.config({ override: true });
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -1201,4 +1202,10 @@ async function main() {
   }
 }
 
-main();
+// CLI-only guard: without this, merely `import`-ing this module (from a test,
+// another script, or a syntax/load check) executes a real run with real side
+// effects. See CLAUDE.md ~ every script with a top-level main() needs this.
+const __voaIsCli = process.argv[1] && import.meta.url === __voaPathToFileURL(process.argv[1]).href;
+if (__voaIsCli) {
+  main();
+}

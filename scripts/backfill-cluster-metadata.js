@@ -22,6 +22,7 @@ import { fileURLToPath } from "url";
 import minimist from "minimist";
 import { inferCluster, loadTopicClusters } from "./lib/internal-linking.js";
 
+import { pathToFileURL as __voaPathToFileURL } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT      = path.resolve(__dirname, "..");
 
@@ -117,4 +118,10 @@ function main() {
   }
 }
 
-main();
+// CLI-only guard: without this, merely `import`-ing this module (from a test,
+// another script, or a syntax/load check) executes a real run with real side
+// effects. See CLAUDE.md ~ every script with a top-level main() needs this.
+const __voaIsCli = process.argv[1] && import.meta.url === __voaPathToFileURL(process.argv[1]).href;
+if (__voaIsCli) {
+  main();
+}
