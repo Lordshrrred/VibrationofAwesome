@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-06T04:16:46.958Z",
+  "lastUpdated": "2026-08-06T15:21:24.119Z",
   "recentHooks": [
     {
       "slug": "claude-vs-chatgpt-for-creator-workflows",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "breaking-late-night-dopamine-loops",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-06T15:21:09.709Z"
+    },
+    {
       "slug": "building-trust-with-yourself-again",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,19 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-07-22T04:18:00.332Z"
-    },
-    {
-      "slug": "how-to-convert-blog-posts-into-lead-magnets",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-21T23:07:51.776Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "breaking-late-night-dopamine-loops",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-08-06T15:21:24.119Z"
+    },
     {
       "slug": "self-respect-through-action",
       "archetype": "nervous-system-atmospheric",
@@ -1423,15 +1433,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-07-09T23:15:19.357Z"
-    },
-    {
-      "slug": "ai-tools-to-start-a-creative-business-with-no-experience",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-07-09T16:07:15.234Z"
     }
   ]
 }
