@@ -111,6 +111,7 @@ const HUB_THEME = {
   "self-trust":                { accent: "violet", icon: "anchor" },
   "purpose":                   { accent: "amber", icon: "star" },
   "ai-creator-workflows":      { accent: "cyan", icon: "hex" },
+  "ai-advantage":              { accent: "amber", icon: "hex" },
   "voa-concepts":              { accent: "amber", icon: "mandala" },
 };
 
@@ -123,7 +124,8 @@ const RELATED_HUBS = {
   "personal-growth":           ["self-trust", "purpose"],
   "self-trust":                ["personal-growth", "purpose"],
   "purpose":                   ["creativity", "personal-growth"],
-  "ai-creator-workflows":      ["creativity"],
+  "ai-creator-workflows":      ["ai-advantage", "creativity"],
+  "ai-advantage":              ["ai-creator-workflows", "creativity"],
   "voa-concepts":              ["purpose", "personal-growth"],
 };
 
@@ -157,6 +159,13 @@ const HUB_SUBTHEMES = {
     { label: "Changing your life", patterns: [/change your life/i, /transform/i, /reinvent/i] },
     { label: "Getting unstuck", patterns: [/stuck/i, /lost/i, /survival mode/i] },
     { label: "Healing and integration", patterns: [/heal/i, /shadow/i, /emotion/i] },
+  ],
+  "ai-advantage": [
+    { label: "Reviews and legitimacy", patterns: [/review/i, /legit/i, /scam/i, /complaint/i, /negative/i] },
+    { label: "Price, refunds, and membership", patterns: [/cost/i, /price/i, /payment/i, /refund/i, /guarantee/i, /club/i, /membership/i, /discount/i] },
+    { label: "Curriculum and outcomes", patterns: [/curriculum/i, /week by week/i, /clone/i, /prompt library/i, /delegation/i, /result/i, /reclaim/i] },
+    { label: "Tony, Dean, Igor, and Mastermind", patterns: [/tony/i, /dean/i, /igor/i, /mastermind/i, /knowledge business/i] },
+    { label: "Alternatives and comparisons", patterns: [/alternative/i, / vs /i, /free/i, /youtube/i, /chatgpt/i, /diy/i] },
   ],
 };
 
@@ -975,7 +984,7 @@ ${posts.slice(0, limit).map(post => `<a class="voa-card" href="${post.url}">
 
 function renderHubsIndex(hubs, assets) {
   const title = "Vibration of Awesome Resources";
-  const description = "Ten pathways into the deeper writing on Vibration of Awesome ~ nervous system regulation, ADHD and focus, dopamine and attention, meditation, creativity, purpose, self-trust, AI creator workflows, personal growth, and the core VOA concepts ~ plus the tools library built to go with them.";
+  const description = "Eleven pathways into the deeper writing on Vibration of Awesome ~ nervous system regulation, ADHD and focus, dopamine and attention, meditation, creativity, purpose, self-trust, AI creator workflows, AI Advantage analysis, personal growth, and the core VOA concepts ~ plus the tools library built to go with them.";
   const publishedTools = assets.filter(a => a.status === "published");
 
   const cards = hubs.map((hub, i) => {

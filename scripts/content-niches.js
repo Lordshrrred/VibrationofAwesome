@@ -593,6 +593,8 @@ export const EARTHSTAR_NICHES = [
       "AI Advantage Bootcamp Reddit",
     ],
     toneNotes: [
+      "Current as of August 2026: AI Advantage is an ecosystem that includes free Jumpstart resources, Club access, the six-week Bootcamp, AI Mastery, and the higher-touch AI Mastermind. Verify changing prices and enrollment dates before stating them.",
+      "For current program claims, prefer the official AI Advantage site, its Help Center schedule, and the current Mastermind.com terms. Never invent prices, guarantees, dates, or participant results.",
       "The core belief: most people do NOT need to spend $995 to get the result AI Advantage promises. They need information, practice, and the right free tools.",
       "Honest and balanced. Do NOT write promotional copy for the program. Do NOT write hit pieces either.",
       "The program is real, the teaching exists, the community exists. But it is also a masterclass in sales funneling — be honest about both.",
@@ -605,6 +607,13 @@ export const EARTHSTAR_NICHES = [
     ],
     keywordResearch: {
       informational: [
+        "AI Advantage Club vs Bootcamp vs AI Mastery",
+        "AI Advantage AI Mastery review curriculum and who it is for",
+        "AI Advantage free Jumpstart Playbook and community review",
+        "AI Advantage May 2026 Bootcamp workshops and replays",
+        "AI Advantage ecosystem Summit Club Bootcamp Mastery Mastermind",
+        "AI Advantage AI Mastermind in person experience who it is for",
+        "how to cancel AI Advantage current refund and subscription terms",
         "what is the AI Advantage Bootcamp",
         "who are Tony Robbins and Dean Graziosi AI program",
         "what is the clone builder system",

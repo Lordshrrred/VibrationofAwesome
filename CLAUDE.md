@@ -58,14 +58,15 @@ Each post is generated as standalone HTML and indexed in `static/_data/[lane]-po
 ### Drip Queue
 Pre-generated Boom posts live in `static/blog/boom/drafts/`. `drip-publish.js` moves selected drafts → posts, updates `boom-posts.json`, regenerates the sitemap, writes `drip-last-published.json`, and lets `post-live-syndicate.js` syndicate only after the canonical VOA URL is live.
 
-Current schedule in `.github/workflows/drip-posts.yml` (Phase Three, active July 4 2026):
+Current schedule in `.github/workflows/drip-posts.yml` (sustainable mix, active 2026-08-05 ~ replaced the 5-slot "Phase Three" schedule):
 - `9:00 AM ET` (`0 13 * * *`) ~ normal Boom post, full social + full backlinks
-- `12:00 PM ET` (`0 16 * * *`) ~ AI Advantage campaign, SEO backlinks only (no social)
-- `3:00 PM ET` (`0 19 * * *`) ~ AI Advantage campaign, SEO backlinks only (no social)
+- `12:00 PM ET` (`0 16 * * *`) ~ practical AI **or** current AI Advantage, SEO backlinks only (no social)
 - `6:00 PM ET` (`0 22 * * *`) ~ normal Boom post, full social + full backlinks
 - `9:00 PM ET` (`0 1 * * *`) ~ art-buyer post, full backlinks only (devto2 + Blogger + WP + Tumblr), no social, no feeder
 
-Social accounts get exactly **2 posts/day** (9am and 6pm slots only). AI Advantage publishes 2/day (noon + 3pm). Normal posts publish 2/day with social distribution. Art buyer publishes 1/day backlinks-only. ~36 AI Advantage posts remaining as of July 4 → campaign finishes ~July 22.
+Social accounts get exactly **2 posts/day** (9am and 6pm slots only). Total cadence is **4 posts/day**, down from 5: the old dual noon + 3pm AI Advantage slots collapsed into a single noon slot that draws from `--niches ai-creator-tools,ai-advantage-campaign` (comma-separated multi-niche selection, supported by `drip-publish.js`'s `--niches` flag). This deliberately caps campaign/AI-tools volume, which is the structural driver of the cluster imbalance noted below. Art buyer publishes 1/day backlinks-only.
+
+**Cluster distribution is genuinely lopsided and is the thing to protect here.** As of 2026-08-05: 164 of 205 published Boom posts (80%) sit in `ai-creator-tools`; `dopamine-attention` has 1. Labeling is *not* the problem ~ `backfill-cluster-metadata.js` already reduced unclustered posts from 80 to 1. The fix is inventory in the thin clusters, which is why the noon slot is capped at one shared AI slot and the replenishment round-robin (below) allocates only ~1 in 4 reserve posts to `ai-creator-tools`. Do not restore a second daily AI slot without a matching plan for the thin clusters.
 
 Art-extra queue items use `syndication_profile: "art-devto2-only"`, `syndicate_on_publish: true`, and `trigger_feeder_on_publish: false`. Despite the profile name, the `art-devto2-only` profile now routes to the full backlink tier (devto2 + blogger + wordpress_earthstar + tumblr_voa) ~ social and feeder remain suppressed.
 
@@ -147,9 +148,11 @@ Manual competitive/model research is separate and explicitly cost-gated: `npm ru
 
 ### Publishing queue reserve (`scripts/replenish-drip-queue.js`)
 
-The queue now has a deterministic depletion fallback. `.github/workflows/queue-replenishment.yml` checks daily before the first publish slot. When inventory reaches 14 posts or fewer, it batch-generates from unused keyword-research phrases already approved in `scripts/content-niches.js`, replenishing toward 28 posts (maximum 14 Opus calls in one cached batch). It never invents a niche and deliberately excludes `ai-advantage-campaign`, because product/campaign topics can become stale and require fresh editorial/search validation. Art-buyer reserve posts automatically retain the art-only syndication profile.
+The queue now has a deterministic depletion fallback. `.github/workflows/queue-replenishment.yml` checks daily before the first publish slot. When inventory reaches **28 posts or fewer**, it batch-generates from unused keyword-research phrases already approved in `scripts/content-niches.js`, replenishing toward **56 posts (maximum 28 Opus calls in one cached batch)**. These thresholds doubled on 2026-08-05 (were 14/28/14) ~ **this doubles the worst-case spend of a single replenishment run**, so treat a triggered run as a real cost event, not routine housekeeping. It never invents a niche and deliberately excludes `ai-advantage-campaign`, because product/campaign topics can become stale and require fresh editorial/search validation. Art-buyer reserve posts automatically retain the art-only syndication profile.
 
-The workflow opens `Publishing queue auto-replenishment failed` if credentials, generation, or approved reserve inventory fail, and closes the issue after recovery. `npm run queue:replenish` previews the next action without API calls; add `-- --execute` only when generation is intended. `seo-strategy-status.js` calculates runway from the effective queue mix: two always-on general slots, plus the two AI Advantage slots and one art slot only when matching inventory exists. Do not treat the five cron entries as five posts/day when their dedicated niches are empty.
+`buildCandidates()` no longer round-robins evenly across every niche. It now mirrors the live 4-slot mix: **2 core evergreen : 1 `ai-creator-tools` : 1 `art-buyer-intent`** per cycle. This is deliberate cluster-balance policy ~ an even round-robin over 8 niches would keep feeding the already-saturated `ai-creator-tools` cluster at the same rate as the starved ones. A `--niche <slug>` flag forces single-niche generation (throws on an unknown slug) for targeted top-ups of a thin cluster.
+
+The workflow opens `Publishing queue auto-replenishment failed` if credentials, generation, or approved reserve inventory fail, and closes the issue after recovery. `npm run queue:replenish` previews the next action without API calls; add `-- --execute` only when generation is intended. `seo-strategy-status.js` calculates runway from the effective queue mix: two always-on general slots, plus one shared AI slot (counted when either `ai-creator-tools` or `ai-advantage-campaign` inventory exists) and one art slot when art inventory exists. Do not treat the four cron entries as four posts/day when their dedicated niches are empty.
 
 ### SEO Intelligence dashboard panel (`static/dashboard/index.html`)
 

@@ -43,7 +43,7 @@ const __dirname  = path.dirname(__filename);
 const ROOT       = path.resolve(__dirname, "..");
 
 const argv = minimist(process.argv.slice(2), {
-  string:  ["slug", "niche", "limit", "syndication-profile"],
+  string:  ["slug", "niche", "niches", "limit", "syndication-profile"],
   boolean: ["dry-run"],
 });
 
@@ -122,7 +122,7 @@ async function main() {
 
   // ── Startup visibility log ───────────────────────────────────────────────
   const queueRemaining = queue.queue.length;
-  const dripsPerDay = 2; // two cron runs per day (9am + 6pm ET)
+  const dripsPerDay = 4; // two evergreen, one practical AI, and one art slot
   const daysRemaining = Math.floor(queueRemaining / dripsPerDay);
 
   console.log("\n╔═ [drip] Drip Publish ~ Phase One ══════════════════");
@@ -174,10 +174,11 @@ async function main() {
       process.exit(1);
     }
     toPublish = [item];
-  } else if (argv.niche) {
+  } else if (argv.niche || argv.niches) {
     const limit = Math.max(1, Number(argv.limit || 1));
+    const allowedNiches = new Set(String(argv.niches || argv.niche).split(",").map(value => value.trim()).filter(Boolean));
     toPublish = queue.queue
-      .filter(q => q.niche === argv.niche)
+      .filter(q => allowedNiches.has(q.niche))
       .slice(0, limit);
   } else {
     const rate = queue.drip_rate || 2;
@@ -185,8 +186,8 @@ async function main() {
   }
 
   if (toPublish.length === 0) {
-    if (argv.niche) {
-      console.log(`No queued posts found for niche "${argv.niche}" ~ nothing to publish.`);
+    if (argv.niche || argv.niches) {
+      console.log(`No queued posts found for niche selection "${argv.niches || argv.niche}" ~ nothing to publish.`);
     } else {
       console.log("Queue is empty ~ all posts have been published!");
     }

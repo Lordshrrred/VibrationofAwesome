@@ -4,18 +4,17 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 # ── PUBLISH RATE CONFIG ────────────────────────────────────────────────────────
-# Phase Three: 2 AI Advantage/day + 2 normal social/day (active July 4 2026)
+# Sustainable mix: 2 evergreen + 1 practical/current AI + 1 art per day
 #
 #  SLOT  TIME (ET)  UTC   NICHE/TYPE          SOCIAL  DEVTO        BACKLINKS
 #  ────  ─────────  ───   ──────────────────  ──────  ─────────    ─────────
 #  A     9:00 AM    13h   Normal drip          YES    Account 1    all
-#  B     12:00 PM   16h   AI Advantage camp    no     Account 2    all
-#  C     3:00 PM    19h   AI Advantage camp    no     Account 2    all
-#  D     6:00 PM    22h   Normal drip          YES    Account 1    all
-#  E     9:00 PM    01h   Art buyer            no     Account 2    all (no social, no feeder)
+#  B     12:00 PM   16h   Practical/current AI no     Account 2    all
+#  C     6:00 PM    22h   Normal drip          YES    Account 1    all
+#  D     9:00 PM    01h   Art buyer            no     Account 2    all (no social, no feeder)
 #
-# Dev.to safety: Account 1 = 2/day (slots A+D). Account 2 = up to 3/day (slots B+C+E).
-# Social safety: 2 posts/day max (slots A+D only).
+# Dev.to safety: Account 1 = 2/day (slots A+C). Account 2 = up to 2/day (slots B+D).
+# Social safety: 2 posts/day max (slots A+C only).
 #
 # AI Advantage queue: intentional authority/backlink cadence. Cost controls
 # should target wasteful optional API calls, not reduce publishing velocity.
@@ -24,10 +23,9 @@ env:
 on:
   schedule:
     - cron: '0 13 * * *'    # 9:00 AM ET  (UTC-4 EDT)  ~ slot A: normal, full social
-    - cron: '0 16 * * *'    # 12:00 PM ET (UTC-4 EDT)  ~ slot B: AI Advantage campaign
-    - cron: '0 19 * * *'    # 3:00 PM ET  (UTC-4 EDT)  ~ slot C: AI Advantage campaign
-    - cron: '0 22 * * *'    # 6:00 PM ET  (UTC-4 EDT)  ~ slot D: normal, full social
-    - cron: '0 1 * * *'     # 9:00 PM ET  (UTC-4 EDT)  ~ slot E: art buyer, SEO backlinks only (no social, no feeder)
+    - cron: '0 16 * * *'    # 12:00 PM ET (UTC-4 EDT)  ~ slot B: practical AI or current AI Advantage
+    - cron: '0 22 * * *'    # 6:00 PM ET  (UTC-4 EDT)  ~ slot C: normal, full social
+    - cron: '0 1 * * *'     # 9:00 PM ET  (UTC-4 EDT)  ~ slot D: art buyer, SEO backlinks only (no social, no feeder)
   workflow_dispatch:          # Manual trigger for testing or emergency publish
 
 # Prevent any VOA publishing/syndication run from overlapping.
@@ -161,13 +159,10 @@ jobs:
         run: |
           npm run check:syndication -- --write || echo "[warn] Syndication health check had non-critical failures ~ continuing drip publish"
           if [ "${{ github.event.schedule }}" = "0 16 * * *" ]; then
-            echo "[drip] Slot B (12pm ET) → AI Advantage campaign, SEO backlinks + devto2, no social"
-            node scripts/drip-publish.js --niche ai-advantage-campaign --limit 1 --syndication-profile campaign-seo
-          elif [ "${{ github.event.schedule }}" = "0 19 * * *" ]; then
-            echo "[drip] Slot C (3pm ET) → AI Advantage campaign, SEO backlinks + devto2, no social"
-            node scripts/drip-publish.js --niche ai-advantage-campaign --limit 1 --syndication-profile campaign-seo
+            echo "[drip] Slot B (12pm ET) → practical AI or current AI Advantage, SEO backlinks + devto2, no social"
+            node scripts/drip-publish.js --niches ai-creator-tools,ai-advantage-campaign --limit 1 --syndication-profile campaign-seo
           elif [ "${{ github.event.schedule }}" = "0 1 * * *" ]; then
-            echo "[drip] Slot E (9pm ET) → art buyer, full backlink tier (devto2 + blogger + wp + tumblr), no social, no feeder"
+            echo "[drip] Slot D (9pm ET) → art buyer, full backlink tier (devto2 + blogger + wp + tumblr), no social, no feeder"
             node scripts/drip-publish.js --niche art-buyer-intent --limit 1 --syndication-profile art-devto2-only
           else
             node scripts/drip-publish.js

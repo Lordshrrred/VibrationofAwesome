@@ -34,10 +34,11 @@ function keywordGenerationStatus() {
   const pending = Array.isArray(queue.queue) ? queue.queue.length : 0;
   const published = Array.isArray(queue.published) ? queue.published.length : 0;
   const campaignCount = queue.queue.filter(item => item.niche === "ai-advantage-campaign").length;
+  const practicalAiCount = queue.queue.filter(item => item.niche === "ai-creator-tools").length;
   const artCount = queue.queue.filter(item => item.niche === "art-buyer-intent").length;
-  // Two general slots always run. The other three workflow slots only consume
-  // inventory when their dedicated campaign/art niche exists in the queue.
-  const scheduledCadence = 2 + (campaignCount > 0 ? 2 : 0) + (artCount > 0 ? 1 : 0);
+  // Two evergreen slots always run. Practical AI and current AI Advantage
+  // share one slot; art owns the fourth slot when inventory is available.
+  const scheduledCadence = 2 + (campaignCount + practicalAiCount > 0 ? 1 : 0) + (artCount > 0 ? 1 : 0);
   const cadence = envNumber("SEO_PUBLISHING_POSTS_PER_DAY", scheduledCadence);
   const pauseDays = envNumber("KEYWORD_RUNWAY_PAUSE_DAYS", 60);
   const resumeDays = envNumber("KEYWORD_RUNWAY_RESUME_DAYS", 21);

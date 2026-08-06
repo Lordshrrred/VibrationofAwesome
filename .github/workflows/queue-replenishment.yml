@@ -42,9 +42,9 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-          QUEUE_REPLENISH_THRESHOLD: 14
-          QUEUE_REPLENISH_TARGET: 28
-          QUEUE_REPLENISH_MAX: 14
+          QUEUE_REPLENISH_THRESHOLD: 28
+          QUEUE_REPLENISH_TARGET: 56
+          QUEUE_REPLENISH_MAX: 28
         run: |
           set +e
           node scripts/replenish-drip-queue.js --execute 2>&1 | tee replenish.log

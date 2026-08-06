@@ -26,7 +26,7 @@ const POSTS_FILE = path.join(ROOT, "static/_data/boom-posts.json");
 const DRAFTS_DIR = path.join(ROOT, "static/blog/boom/drafts");
 const argv = minimist(process.argv.slice(2), {
   boolean: ["execute", "force"],
-  string: ["threshold", "target", "max"],
+  string: ["threshold", "target", "max", "niche"],
 });
 
 const threshold = Math.max(0, Number(argv.threshold || process.env.QUEUE_REPLENISH_THRESHOLD || 14));
@@ -76,7 +76,7 @@ function titleCase(keyword) {
   }).join(" ");
 }
 
-function buildCandidates(existingRows) {
+function buildCandidates(existingRows, onlyNiche = "") {
   const used = new Set();
   for (const row of existingRows) {
     used.add(normalize(row.keyword));
@@ -84,9 +84,12 @@ function buildCandidates(existingRows) {
     used.add(normalize(String(row.slug || "").replace(/-/g, " ")));
   }
 
-  // Round-robin prevents the fallback from flooding one cluster. Campaigns
-  // are excluded even if somebody later adds research phrases to them.
-  const niches = EARTHSTAR_NICHES.filter(niche => niche.slug !== "ai-advantage-campaign");
+  // Campaigns remain editorially curated. The evergreen reserve follows the
+  // live four-slot mix: two core evergreen, one practical AI, and one art.
+  const niches = EARTHSTAR_NICHES.filter(niche =>
+    (!onlyNiche && niche.slug !== "ai-advantage-campaign") || (onlyNiche && niche.slug === onlyNiche)
+  );
+  if (onlyNiche && niches.length === 0) throw new Error(`Unknown niche: ${onlyNiche}`);
   const perNiche = niches.map(niche => {
     const rows = [];
     for (const [intent, keywords] of Object.entries(niche.keywordResearch || {})) {
@@ -98,13 +101,33 @@ function buildCandidates(existingRows) {
   });
 
   const candidates = [];
-  for (let index = 0; perNiche.some(rows => index < rows.length); index += 1) {
-    for (const rows of perNiche) {
-      const row = rows[index];
-      if (!row || used.has(normalize(row.keyword))) continue;
-      used.add(normalize(row.keyword));
-      candidates.push(row);
-    }
+  const append = row => {
+    if (!row || used.has(normalize(row.keyword))) return;
+    used.add(normalize(row.keyword));
+    candidates.push(row);
+  };
+  if (onlyNiche) {
+    perNiche[0].forEach(append);
+    return candidates;
+  }
+
+  const aiIndex = niches.findIndex(niche => niche.slug === "ai-creator-tools");
+  const artIndex = niches.findIndex(niche => niche.slug === "art-buyer-intent");
+  const coreRows = perNiche.filter((_, index) => index !== aiIndex && index !== artIndex);
+  const aiRows = perNiche[aiIndex] || [];
+  const artRows = perNiche[artIndex] || [];
+  let coreNiche = 0;
+  let coreItem = 0;
+  let aiItem = 0;
+  let artItem = 0;
+  while (coreRows.some(rows => coreItem < rows.length) || aiItem < aiRows.length || artItem < artRows.length) {
+    append(coreRows[coreNiche % Math.max(1, coreRows.length)]?.[coreItem]);
+    append(aiRows[aiItem++]);
+    coreNiche += 1;
+    append(coreRows[coreNiche % Math.max(1, coreRows.length)]?.[coreItem]);
+    append(artRows[artItem++]);
+    coreNiche += 1;
+    if (coreRows.length && coreNiche % coreRows.length === 0) coreItem += 1;
   }
   return candidates;
 }
@@ -126,7 +149,7 @@ function main() {
     return;
   }
 
-  const candidates = buildCandidates([...published, ...queue.queue]);
+  const candidates = buildCandidates([...published, ...queue.queue], argv.niche || "");
   const plan = candidates.slice(0, needed);
   if (plan.length < needed) {
     throw new Error(`Only ${plan.length} unused approved keyword(s) remain; ${needed} are needed. Add curated research before the reserve is exhausted.`);

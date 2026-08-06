@@ -714,7 +714,15 @@ async function main() {
   console.log(`SEO_SUMMARY gsc=${status.gsc.ok ? "ok" : "missing"} ga=${status.ga.ok ? "ok" : "missing"} opportunities=${opportunities.topActions.length} requests=${apiRequests.attempted} cached=${apiRequests.cached}`);
 }
 
-main().catch((err) => {
-  console.error("[seo-intelligence] Fatal:", err.message);
-  process.exit(1);
-});
+// CLI-only guard: without this, simply `import`-ing this module (e.g. from a
+// test, another script, or a syntax/load check) unconditionally executes a real
+// report run ~ 5 live Search Console/GA4 API calls that also overwrite
+// reports/seo-intelligence-latest.md. Mirrors the isCli guard already used in
+// syndicate.js and retry-failed-syndication.js.
+const isCli = process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename);
+if (isCli) {
+  main().catch((err) => {
+    console.error("[seo-intelligence] Fatal:", err.message);
+    process.exit(1);
+  });
+}
