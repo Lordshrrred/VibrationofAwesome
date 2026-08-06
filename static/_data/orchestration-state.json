@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-06T04:16:48.634Z",
+  "generated_at": "2026-08-06T15:20:06.456Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 47,
+      "draft_count": 46,
       "draft_slugs": [
         "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for",
@@ -15,7 +15,6 @@
         "ai-content-feels-generic-for-creators",
         "art-buying-guide-for-non-collectors",
         "best-ai-workflow-for-solo-creators",
-        "breaking-late-night-dopamine-loops",
         "choosing-a-path-when-nothing-feels-clear",
         "choosing-truth-over-approval",
         "clarity-through-regulation",
@@ -65,6 +64,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "breaking-late-night-dopamine-loops",
+        "title": "Breaking Late-Night Dopamine Loops",
+        "lane": "boom",
+        "date": "2026-08-06T15:20:06.441Z",
+        "url": "/blog/boom/posts/breaking-late-night-dopamine-loops",
+        "tags": [
+          "dopamine-addiction-numbing"
+        ],
+        "cluster": "dopamine-attention",
+        "content_type": null
+      },
       {
         "slug": "how-independent-artists-sell-their-work-online",
         "title": "How Independent Artists Sell Their Work Online",
@@ -276,18 +287,6 @@
         ],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "ai-advantage-vs-brendon-burchard-two-very-different-bets-on-self-improvement",
-        "title": "AI Advantage vs Brendon Burchard: Two Very Different Bets on Self-Improvement",
-        "lane": "boom",
-        "date": "2026-07-18T16:41:14.792Z",
-        "url": "/blog/boom/posts/ai-advantage-vs-brendon-burchard-two-very-different-bets-on-self-improvement",
-        "tags": [
-          "ai-advantage-campaign"
-        ],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -382,9 +381,9 @@
     ],
     "next_estimated_window": "2026-08-07",
     "published_counts": {
-      "boom": 207,
+      "boom": 208,
       "matt": 18,
-      "total": 225
+      "total": 226
     }
   },
   "syndication": {
@@ -17057,6 +17056,7 @@
       }
     },
     "post_to_cluster": {
+      "breaking-late-night-dopamine-loops": "dopamine-attention",
       "how-independent-artists-sell-their-work-online": "art-buying-online",
       "building-trust-with-yourself-again": "authentic-self-expression",
       "self-respect-through-action": "authentic-self-expression",
@@ -17273,7 +17273,7 @@
     "saturation": {
       "ai-creator-tools": 164,
       "nervous-system-creativity": 5,
-      "dopamine-attention": 1,
+      "dopamine-attention": 2,
       "authentic-self-expression": 10,
       "creator-automation": 3,
       "spiritual-productivity": 3,
@@ -18719,7 +18719,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-06T04:16:48.634Z",
+    "as_of": "2026-08-06T15:20:06.455Z",
     "next_estimated_window": "2026-08-07",
     "queue_runway_days": 23,
     "queue_runway_status": "healthy",
@@ -18815,11 +18815,16 @@
     ],
     "retry_backlog_count": 14,
     "cadence_density": {
-      "posts_last_7_days": 6,
-      "posts_last_14_days": 6,
+      "posts_last_7_days": 7,
+      "posts_last_14_days": 7,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "breaking-late-night-dopamine-loops",
+        "lane": "boom",
+        "date": "2026-08-06T15:20:06.441Z"
+      },
       {
         "slug": "how-independent-artists-sell-their-work-online",
         "lane": "boom",
@@ -18864,18 +18869,13 @@
         "slug": "how-to-turn-youtube-videos-into-online-courses",
         "lane": "boom",
         "date": "2026-07-21T15:08:26.813Z"
-      },
-      {
-        "slug": "how-to-convert-blog-posts-into-lead-magnets",
-        "lane": "boom",
-        "date": "2026-07-20T23:01:26.905Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-06T04:16:48.622Z",
-    "source_event": "retry",
-    "export_duration_ms": 12,
+    "last_export_at": "2026-08-06T15:20:06.445Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
