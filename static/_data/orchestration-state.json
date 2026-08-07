@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-07T16:42:40.245Z",
+  "generated_at": "2026-08-07T22:36:33.017Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 44,
+      "draft_count": 43,
       "draft_slugs": [
         "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
@@ -46,13 +46,12 @@
         "signs-your-life-is-misaligned",
         "simple-creator-automation-stack",
         "too-many-ai-tools-and-no-clear-workflow",
-        "what-to-do-instead-of-numbing",
         "why-a-good-life-can-still-feel-empty",
         "why-ai-music-tools-make-everything-sound-the-same",
         "why-motivation-fails-when-your-nervous-system-is-fried",
         "why-silence-changes-everything"
       ],
-      "runway_days": 22,
+      "runway_days": 21,
       "runway_status": "healthy",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -62,6 +61,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "what-to-do-instead-of-numbing",
+        "title": "What to Do Instead of Numbing",
+        "lane": "boom",
+        "date": "2026-08-07T22:36:33.000Z",
+        "url": "/blog/boom/posts/what-to-do-instead-of-numbing",
+        "tags": [
+          "dopamine-addiction-numbing"
+        ],
+        "cluster": "dopamine-attention",
+        "content_type": null
+      },
       {
         "slug": "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for",
         "title": "AI Advantage AI Mastery Review Curriculum and Who It Is for",
@@ -277,18 +288,6 @@
         "tags": [],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "ai-advantage-vs-mindvalley-two-philosophies-of-personal-development-in-2026",
-        "title": "AI Advantage vs Mindvalley: Two Philosophies of Personal Development in 2026",
-        "lane": "boom",
-        "date": "2026-07-19T20:00:59.116Z",
-        "url": "/blog/boom/posts/ai-advantage-vs-mindvalley-two-philosophies-of-personal-development-in-2026",
-        "tags": [
-          "ai-advantage-campaign"
-        ],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -384,9 +383,9 @@
     ],
     "next_estimated_window": "2026-08-08",
     "published_counts": {
-      "boom": 212,
+      "boom": 213,
       "matt": 18,
-      "total": 230
+      "total": 231
     }
   },
   "syndication": {
@@ -17443,6 +17442,7 @@
       }
     },
     "post_to_cluster": {
+      "what-to-do-instead-of-numbing": "dopamine-attention",
       "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for": "ai-creator-tools",
       "how-to-reclaim-focus-and-masculine-energy": "dopamine-attention",
       "i-want-art-for-my-home-but-do-not-know-where-to-look": "art-buying-online",
@@ -17664,7 +17664,7 @@
     "saturation": {
       "ai-creator-tools": 165,
       "nervous-system-creativity": 5,
-      "dopamine-attention": 4,
+      "dopamine-attention": 5,
       "authentic-self-expression": 10,
       "creator-automation": 3,
       "spiritual-productivity": 3,
@@ -19112,9 +19112,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-07T16:42:40.245Z",
+    "as_of": "2026-08-07T22:36:33.017Z",
     "next_estimated_window": "2026-08-08",
-    "queue_runway_days": 22,
+    "queue_runway_days": 21,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-08-07",
@@ -19209,11 +19209,16 @@
     ],
     "retry_backlog_count": 13,
     "cadence_density": {
-      "posts_last_7_days": 11,
-      "posts_last_14_days": 11,
+      "posts_last_7_days": 12,
+      "posts_last_14_days": 12,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "what-to-do-instead-of-numbing",
+        "lane": "boom",
+        "date": "2026-08-07T22:36:33.000Z"
+      },
       {
         "slug": "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for",
         "lane": "boom",
@@ -19258,18 +19263,13 @@
         "slug": "choosing-discomfort-over-the-familiar-loop",
         "lane": "boom",
         "date": "2026-08-04T23:09:11.024Z"
-      },
-      {
-        "slug": "how-to-stop-betraying-yourself",
-        "lane": "boom",
-        "date": "2026-08-04T15:28:08.249Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-07T16:42:40.229Z",
-    "source_event": "retry",
-    "export_duration_ms": 16,
+    "last_export_at": "2026-08-07T22:36:33.005Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 12,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
