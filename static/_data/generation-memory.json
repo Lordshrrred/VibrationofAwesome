@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-07T16:42:38.798Z",
+  "lastUpdated": "2026-08-07T22:37:49.298Z",
   "recentHooks": [
     {
       "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "what-to-do-instead-of-numbing",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-08-07T22:37:34.576Z"
+    },
+    {
       "slug": "how-to-reclaim-focus-and-masculine-energy",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,18 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-08-04T00:53:20.491Z"
-    },
-    {
-      "slug": "how-to-turn-youtube-videos-into-online-courses",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-08-04T00:53:01.003Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "what-to-do-instead-of-numbing",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-08-07T22:37:49.298Z"
+    },
     {
       "slug": "how-to-reclaim-focus-and-masculine-energy",
       "archetype": "cinematic-ideogram",
@@ -1425,15 +1435,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-07-10T23:01:12.270Z"
-    },
-    {
-      "slug": "how-to-write-ai-prompts-that-actually-work-for-creators",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-07-10T15:36:14.403Z"
     }
   ]
 }
