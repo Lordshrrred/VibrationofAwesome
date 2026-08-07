@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-07T14:27:43.048Z",
+  "generated_at": "2026-08-07T14:27:57.332Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -740,7 +740,7 @@
         "title": "Building Trust With Yourself Again",
         "lane": "boom",
         "date": "2026-08-05",
-        "publish_status": "partial",
+        "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -753,9 +753,9 @@
             "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3msf6o2nu532b"
           },
           "mastodon_voa": {
-            "status": "failed",
-            "timestamp": "2026-08-07T03:52:46.334Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-08-07T14:27:57.290Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117054693505504923"
           },
           "facebook_voa": {
             "status": "not_attempted",
@@ -798,8 +798,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/08/05/building-trust-with-yourself-again-earthstar-2/"
           }
         },
-        "success_count": 6,
-        "failed_count": 1
+        "success_count": 7,
+        "failed_count": 0
       },
       {
         "slug": "self-respect-through-action",
@@ -13146,11 +13146,6 @@
     ],
     "retry_backlog": [
       {
-        "slug": "building-trust-with-yourself-again",
-        "platform": "mastodon_voa",
-        "timestamp": "2026-08-07T03:52:46.334Z"
-      },
-      {
         "slug": "how-to-heal-emotionally-when-you-dont-know-where-to-start",
         "platform": "facebook_voa",
         "timestamp": "2026-06-09T16:31:11.072Z"
@@ -13228,8 +13223,8 @@
         "total": 193
       },
       "mastodon_voa": {
-        "successes": 160,
-        "failures": 1,
+        "successes": 161,
+        "failures": 0,
         "total": 193
       },
       "facebook_voa": {
@@ -13275,10 +13270,10 @@
     },
     "summary": {
       "total_posts": 193,
-      "fully_syndicated": 179,
-      "partial": 14,
+      "fully_syndicated": 180,
+      "partial": 13,
       "pending": 0,
-      "retry_backlog_count": 14
+      "retry_backlog_count": 13
     }
   },
   "visuals": {
@@ -17602,7 +17597,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-07T14:26:07.761Z",
+    "last_updated": "2026-08-07T14:27:56.723Z",
     "recent_hooks": [
       {
         "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -18486,6 +18481,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "building-trust-with-yourself-again",
+        "format": "creative-identity-reflection",
+        "cadenceProfile": "lyrical",
+        "density": "medium",
+        "openerStyle": "identity-confession",
+        "closerStyle": "invitation",
+        "timestamp": "2026-08-07T14:27:56.723Z"
+      },
+      {
         "slug": "how-to-reclaim-focus-and-masculine-energy",
         "format": "conversational-reflection",
         "cadenceProfile": "casual-spoken",
@@ -18745,15 +18749,6 @@
         "openerStyle": "mid-conversation",
         "closerStyle": "natural-landing",
         "timestamp": "2026-08-04T00:52:22.383Z"
-      },
-      {
-        "slug": "why-you-keep-avoiding-what-matters",
-        "format": "manifesto-conviction",
-        "cadenceProfile": "charged-decisive",
-        "density": "medium-dense",
-        "openerStyle": "strong-declarative",
-        "closerStyle": "worldview-shift",
-        "timestamp": "2026-08-04T00:50:00.131Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -19037,7 +19032,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-07T14:27:43.048Z",
+    "as_of": "2026-08-07T14:27:57.332Z",
     "next_estimated_window": "2026-08-08",
     "queue_runway_days": 22,
     "queue_runway_status": "healthy",
@@ -19132,7 +19127,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 14,
+    "retry_backlog_count": 13,
     "cadence_density": {
       "posts_last_7_days": 10,
       "posts_last_14_days": 10,
@@ -19192,9 +19187,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-07T14:27:43.039Z",
-    "source_event": "syndication",
-    "export_duration_ms": 9,
+    "last_export_at": "2026-08-07T14:27:57.320Z",
+    "source_event": "retry",
+    "export_duration_ms": 12,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
