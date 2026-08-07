@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-06T20:35:23.663Z",
+  "lastUpdated": "2026-08-07T01:33:45.283Z",
   "recentHooks": [
     {
       "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -889,6 +889,42 @@
   "recentThreadsFormats": [
     {
       "slug": "building-trust-with-yourself-again",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-08-07T01:33:45.283Z"
+    },
+    {
+      "slug": "breaking-late-night-dopamine-loops",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-08-07T01:33:28.044Z"
+    },
+    {
+      "slug": "why-porn-and-scrolling-destroy-momentum",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-08-07T01:33:11.867Z"
+    },
+    {
+      "slug": "why-porn-and-scrolling-destroy-momentum",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-07T01:31:02.987Z"
+    },
+    {
+      "slug": "building-trust-with-yourself-again",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
       "density": "light",
@@ -1120,45 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-07-22T15:12:19.355Z"
-    },
-    {
-      "slug": "how-to-convert-blog-posts-into-lead-magnets",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-07-22T04:20:01.313Z"
-    },
-    {
-      "slug": "how-to-turn-youtube-videos-into-online-courses",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-07-22T04:19:47.367Z"
-    },
-    {
-      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-07-22T04:18:00.332Z"
-    },
-    {
-      "slug": "how-to-convert-blog-posts-into-lead-magnets",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-07-21T23:07:51.776Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "why-porn-and-scrolling-destroy-momentum",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-08-07T01:31:18.432Z"
+    },
     {
       "slug": "self-respect-through-action",
       "archetype": "nervous-system-atmospheric",
@@ -1423,15 +1433,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-07-09T23:15:19.357Z"
-    },
-    {
-      "slug": "ai-tools-to-start-a-creative-business-with-no-experience",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-07-09T16:07:15.234Z"
     }
   ]
 }
