@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-07T03:52:46.380Z",
+  "generated_at": "2026-08-07T14:24:32.049Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 46,
+      "draft_count": 45,
       "draft_slugs": [
         "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for",
@@ -30,7 +30,6 @@
         "how-to-cancel-ai-advantage-current-refund-and-subscription-terms",
         "how-to-find-direction-when-you-feel-lost",
         "how-to-hear-yourself-again",
-        "how-to-reclaim-focus-and-masculine-energy",
         "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
         "how-to-slow-down-without-quitting",
         "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -54,7 +53,7 @@
         "why-motivation-fails-when-your-nervous-system-is-fried",
         "why-silence-changes-everything"
       ],
-      "runway_days": 23,
+      "runway_days": 22,
       "runway_status": "healthy",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -64,6 +63,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "how-to-reclaim-focus-and-masculine-energy",
+        "title": "How to Reclaim Focus and Masculine Energy",
+        "lane": "boom",
+        "date": "2026-08-07T14:24:32.030Z",
+        "url": "/blog/boom/posts/how-to-reclaim-focus-and-masculine-energy",
+        "tags": [
+          "dopamine-addiction-numbing"
+        ],
+        "cluster": "dopamine-attention",
+        "content_type": null
+      },
       {
         "slug": "i-want-art-for-my-home-but-do-not-know-where-to-look",
         "title": "I Want Art for My Home But Do Not Know Where to Look",
@@ -279,16 +290,6 @@
         ],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "how-to-organize-music-ideas-in-chat-conversations",
-        "title": "How To Organize Music Ideas In Chat Conversations",
-        "lane": "boom",
-        "date": "2026-07-19T14:25:35.054Z",
-        "url": "/blog/boom/posts/how-to-organize-music-ideas-in-chat-conversations",
-        "tags": [],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -384,9 +385,9 @@
     ],
     "next_estimated_window": "2026-08-08",
     "published_counts": {
-      "boom": 210,
+      "boom": 211,
       "matt": 18,
-      "total": 228
+      "total": 229
     }
   },
   "syndication": {
@@ -17287,6 +17288,7 @@
       }
     },
     "post_to_cluster": {
+      "how-to-reclaim-focus-and-masculine-energy": "dopamine-attention",
       "i-want-art-for-my-home-but-do-not-know-where-to-look": "art-buying-online",
       "why-porn-and-scrolling-destroy-momentum": "dopamine-attention",
       "breaking-late-night-dopamine-loops": "dopamine-attention",
@@ -17506,7 +17508,7 @@
     "saturation": {
       "ai-creator-tools": 164,
       "nervous-system-creativity": 5,
-      "dopamine-attention": 3,
+      "dopamine-attention": 4,
       "authentic-self-expression": 10,
       "creator-automation": 3,
       "spiritual-productivity": 3,
@@ -18953,9 +18955,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-07T03:52:46.379Z",
+    "as_of": "2026-08-07T14:24:32.049Z",
     "next_estimated_window": "2026-08-08",
-    "queue_runway_days": 23,
+    "queue_runway_days": 22,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-08-07",
@@ -19050,11 +19052,16 @@
     ],
     "retry_backlog_count": 14,
     "cadence_density": {
-      "posts_last_7_days": 9,
-      "posts_last_14_days": 9,
+      "posts_last_7_days": 10,
+      "posts_last_14_days": 10,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "how-to-reclaim-focus-and-masculine-energy",
+        "lane": "boom",
+        "date": "2026-08-07T14:24:32.030Z"
+      },
       {
         "slug": "i-want-art-for-my-home-but-do-not-know-where-to-look",
         "lane": "boom",
@@ -19099,18 +19106,13 @@
         "slug": "why-you-keep-avoiding-what-matters",
         "lane": "boom",
         "date": "2026-08-04T00:48:38.171Z"
-      },
-      {
-        "slug": "how-to-use-notebooklm-to-learn-faster-as-a-creator",
-        "lane": "boom",
-        "date": "2026-07-22T15:11:24.826Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-07T03:52:46.367Z",
-    "source_event": "retry",
-    "export_duration_ms": 13,
+    "last_export_at": "2026-08-07T14:24:32.035Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 14,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
