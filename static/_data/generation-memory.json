@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-07T03:51:34.652Z",
+  "lastUpdated": "2026-08-07T03:52:45.778Z",
   "recentHooks": [
     {
       "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -888,6 +888,24 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "building-trust-with-yourself-again",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-07T03:52:45.778Z"
+    },
+    {
+      "slug": "why-porn-and-scrolling-destroy-momentum",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-08-07T03:52:27.346Z"
+    },
+    {
       "slug": "i-want-art-for-my-home-but-do-not-know-where-to-look",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1138,24 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-07-22T15:15:14.280Z"
-    },
-    {
-      "slug": "how-to-turn-youtube-videos-into-online-courses",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-07-22T15:14:51.385Z"
-    },
-    {
-      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-07-22T15:14:40.427Z"
     }
   ],
   "recentInstagramArchetypes": [
