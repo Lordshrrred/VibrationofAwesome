@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-08T02:56:52.362Z",
+  "generated_at": "2026-08-08T13:49:53.011Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 42,
+      "draft_count": 41,
       "draft_slugs": [
         "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
@@ -21,7 +21,6 @@
         "committing-before-you-feel-ready",
         "creator-burnout-from-content-production",
         "digital-art-prints-that-feel-like-originals",
-        "dopamine-detox-without-cringe",
         "etsy-vs-art-galleries-vs-artist-websites",
         "grounding-practices-for-overwhelmed-people",
         "how-ai-fits-into-a-creator-workflow",
@@ -50,7 +49,7 @@
         "why-motivation-fails-when-your-nervous-system-is-fried",
         "why-silence-changes-everything"
       ],
-      "runway_days": 21,
+      "runway_days": 20,
       "runway_status": "healthy",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -60,6 +59,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "dopamine-detox-without-cringe",
+        "title": "Dopamine Detox Without Cringe",
+        "lane": "boom",
+        "date": "2026-08-08T13:49:52.990Z",
+        "url": "/blog/boom/posts/dopamine-detox-without-cringe",
+        "tags": [
+          "dopamine-addiction-numbing"
+        ],
+        "cluster": "dopamine-attention",
+        "content_type": null
+      },
       {
         "slug": "mass-market-prints-feel-generic-and-soulless",
         "title": "Mass Market Prints Feel Generic and Soulless",
@@ -279,16 +290,6 @@
         ],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "find-my-unique-strengths-as-a-creative",
-        "title": "Find My Unique Strengths As A Creative",
-        "lane": "boom",
-        "date": "2026-07-20T15:15:29.712Z",
-        "url": "/blog/boom/posts/find-my-unique-strengths-as-a-creative",
-        "tags": [],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -385,9 +386,9 @@
     ],
     "next_estimated_window": "2026-08-09",
     "published_counts": {
-      "boom": 214,
+      "boom": 215,
       "matt": 18,
-      "total": 232
+      "total": 233
     }
   },
   "syndication": {
@@ -17591,6 +17592,7 @@
       }
     },
     "post_to_cluster": {
+      "dopamine-detox-without-cringe": "dopamine-attention",
       "mass-market-prints-feel-generic-and-soulless": "art-buying-online",
       "what-to-do-instead-of-numbing": "dopamine-attention",
       "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for": "ai-creator-tools",
@@ -17814,7 +17816,7 @@
     "saturation": {
       "ai-creator-tools": 165,
       "nervous-system-creativity": 5,
-      "dopamine-attention": 5,
+      "dopamine-attention": 6,
       "authentic-self-expression": 10,
       "creator-automation": 3,
       "spiritual-productivity": 3,
@@ -19263,9 +19265,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-08T02:56:52.362Z",
+    "as_of": "2026-08-08T13:49:53.011Z",
     "next_estimated_window": "2026-08-09",
-    "queue_runway_days": 21,
+    "queue_runway_days": 20,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-08-08",
@@ -19361,11 +19363,16 @@
     ],
     "retry_backlog_count": 13,
     "cadence_density": {
-      "posts_last_7_days": 13,
-      "posts_last_14_days": 13,
+      "posts_last_7_days": 14,
+      "posts_last_14_days": 14,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "dopamine-detox-without-cringe",
+        "lane": "boom",
+        "date": "2026-08-08T13:49:52.990Z"
+      },
       {
         "slug": "mass-market-prints-feel-generic-and-soulless",
         "lane": "boom",
@@ -19410,17 +19417,12 @@
         "slug": "building-trust-with-yourself-again",
         "lane": "boom",
         "date": "2026-08-05T23:00:11.065Z"
-      },
-      {
-        "slug": "self-respect-through-action",
-        "lane": "boom",
-        "date": "2026-08-05T15:19:56.852Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-08T02:56:52.346Z",
-    "source_event": "retry",
+    "last_export_at": "2026-08-08T13:49:52.995Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 16,
     "schema_version": "1.0",
     "stale_after_minutes": 60
