@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-08T02:56:35.875Z",
+  "generated_at": "2026-08-08T02:56:52.362Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -476,7 +476,7 @@
         "title": "What to Do Instead of Numbing",
         "lane": "boom",
         "date": "2026-08-07",
-        "publish_status": "partial",
+        "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -484,14 +484,14 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/what-to-do-instead-of-numbing-insight.html"
           },
           "bluesky_voa": {
-            "status": "failed",
-            "timestamp": "2026-08-07T23:08:17.040Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-08-08T02:56:52.317Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3msk34xv5zw2w"
           },
           "mastodon_voa": {
-            "status": "failed",
-            "timestamp": "2026-08-07T23:08:17.040Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-08-08T02:56:52.317Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117057638348328169"
           },
           "facebook_voa": {
             "status": "not_attempted",
@@ -534,8 +534,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/08/07/what-to-do-instead-of-numbing-earthstar-2/"
           }
         },
-        "success_count": 5,
-        "failed_count": 2
+        "success_count": 7,
+        "failed_count": 0
       },
       {
         "slug": "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for",
@@ -13344,16 +13344,6 @@
     ],
     "retry_backlog": [
       {
-        "slug": "what-to-do-instead-of-numbing",
-        "platform": "bluesky_voa",
-        "timestamp": "2026-08-07T23:08:17.040Z"
-      },
-      {
-        "slug": "what-to-do-instead-of-numbing",
-        "platform": "mastodon_voa",
-        "timestamp": "2026-08-07T23:08:17.040Z"
-      },
-      {
         "slug": "how-to-heal-emotionally-when-you-dont-know-where-to-start",
         "platform": "facebook_voa",
         "timestamp": "2026-06-09T16:31:11.072Z"
@@ -13426,13 +13416,13 @@
         "total": 196
       },
       "bluesky_voa": {
-        "successes": 161,
-        "failures": 1,
+        "successes": 162,
+        "failures": 0,
         "total": 196
       },
       "mastodon_voa": {
-        "successes": 161,
-        "failures": 1,
+        "successes": 162,
+        "failures": 0,
         "total": 196
       },
       "facebook_voa": {
@@ -13478,10 +13468,10 @@
     },
     "summary": {
       "total_posts": 196,
-      "fully_syndicated": 182,
-      "partial": 14,
+      "fully_syndicated": 183,
+      "partial": 13,
       "pending": 0,
-      "retry_backlog_count": 15
+      "retry_backlog_count": 13
     }
   },
   "visuals": {
@@ -17837,7 +17827,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-08T02:55:54.362Z",
+    "last_updated": "2026-08-08T02:56:51.158Z",
     "recent_hooks": [
       {
         "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -18721,6 +18711,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "what-to-do-instead-of-numbing",
+        "format": "short-native-insight",
+        "cadenceProfile": "compact",
+        "density": "light",
+        "openerStyle": "direct",
+        "closerStyle": "resonant",
+        "timestamp": "2026-08-08T02:56:51.158Z"
+      },
+      {
         "slug": "mass-market-prints-feel-generic-and-soulless",
         "format": "manifesto-conviction",
         "cadenceProfile": "charged-decisive",
@@ -18980,15 +18979,6 @@
         "openerStyle": "direct",
         "closerStyle": "resonant",
         "timestamp": "2026-08-04T04:16:53.800Z"
-      },
-      {
-        "slug": "why-you-keep-avoiding-what-matters",
-        "format": "reflective-essay",
-        "cadenceProfile": "slow-layered",
-        "density": "dense",
-        "openerStyle": "grounded-observation",
-        "closerStyle": "quiet-wisdom",
-        "timestamp": "2026-08-04T04:15:44.595Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -19273,7 +19263,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-08T02:56:35.875Z",
+    "as_of": "2026-08-08T02:56:52.362Z",
     "next_estimated_window": "2026-08-09",
     "queue_runway_days": 21,
     "queue_runway_status": "healthy",
@@ -19369,7 +19359,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 15,
+    "retry_backlog_count": 13,
     "cadence_density": {
       "posts_last_7_days": 13,
       "posts_last_14_days": 13,
@@ -19429,9 +19419,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-08T02:56:35.865Z",
-    "source_event": "syndication",
-    "export_duration_ms": 9,
+    "last_export_at": "2026-08-08T02:56:52.346Z",
+    "source_event": "retry",
+    "export_duration_ms": 16,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
