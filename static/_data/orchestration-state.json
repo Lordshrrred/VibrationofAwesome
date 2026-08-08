@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-08T16:22:13.885Z",
+  "generated_at": "2026-08-08T22:30:14.466Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 40,
+      "draft_count": 39,
       "draft_slugs": [
         "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
@@ -45,10 +45,9 @@
         "too-many-ai-tools-and-no-clear-workflow",
         "why-a-good-life-can-still-feel-empty",
         "why-ai-music-tools-make-everything-sound-the-same",
-        "why-motivation-fails-when-your-nervous-system-is-fried",
         "why-silence-changes-everything"
       ],
-      "runway_days": 20,
+      "runway_days": 19,
       "runway_status": "healthy",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -58,6 +57,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "why-motivation-fails-when-your-nervous-system-is-fried",
+        "title": "Why Motivation Fails When Your Nervous System Is Fried",
+        "lane": "boom",
+        "date": "2026-08-08T22:30:14.448Z",
+        "url": "/blog/boom/posts/why-motivation-fails-when-your-nervous-system-is-fried",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "nervous-system-creativity",
+        "content_type": null
+      },
       {
         "slug": "ai-advantage-free-jumpstart-playbook-and-community-review",
         "title": "AI Advantage Free Jumpstart Playbook and Community Review",
@@ -277,18 +288,6 @@
         "tags": [],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "ai-advantage-bootcamp-scam-reddit-what-the-no-filter-crowd-actually-thinks",
-        "title": "AI Advantage Bootcamp Scam Reddit: What the No-Filter Crowd Actually Thinks",
-        "lane": "boom",
-        "date": "2026-07-20T20:15:49.926Z",
-        "url": "/blog/boom/posts/ai-advantage-bootcamp-scam-reddit-what-the-no-filter-crowd-actually-thinks",
-        "tags": [
-          "ai-advantage-campaign"
-        ],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -385,9 +384,9 @@
     ],
     "next_estimated_window": "2026-08-09",
     "published_counts": {
-      "boom": 216,
+      "boom": 217,
       "matt": 18,
-      "total": 234
+      "total": 235
     }
   },
   "syndication": {
@@ -17757,6 +17756,7 @@
       }
     },
     "post_to_cluster": {
+      "why-motivation-fails-when-your-nervous-system-is-fried": "nervous-system-creativity",
       "ai-advantage-free-jumpstart-playbook-and-community-review": "ai-creator-tools",
       "dopamine-detox-without-cringe": "dopamine-attention",
       "mass-market-prints-feel-generic-and-soulless": "art-buying-online",
@@ -17981,7 +17981,7 @@
     },
     "saturation": {
       "ai-creator-tools": 166,
-      "nervous-system-creativity": 5,
+      "nervous-system-creativity": 6,
       "dopamine-attention": 6,
       "authentic-self-expression": 10,
       "creator-automation": 3,
@@ -19432,9 +19432,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-08T16:22:13.885Z",
+    "as_of": "2026-08-08T22:30:14.466Z",
     "next_estimated_window": "2026-08-09",
-    "queue_runway_days": 20,
+    "queue_runway_days": 19,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-08-08",
@@ -19530,11 +19530,16 @@
     ],
     "retry_backlog_count": 14,
     "cadence_density": {
-      "posts_last_7_days": 15,
-      "posts_last_14_days": 15,
+      "posts_last_7_days": 16,
+      "posts_last_14_days": 16,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "why-motivation-fails-when-your-nervous-system-is-fried",
+        "lane": "boom",
+        "date": "2026-08-08T22:30:14.448Z"
+      },
       {
         "slug": "ai-advantage-free-jumpstart-playbook-and-community-review",
         "lane": "boom",
@@ -19579,18 +19584,13 @@
         "slug": "breaking-late-night-dopamine-loops",
         "lane": "boom",
         "date": "2026-08-06T15:20:06.441Z"
-      },
-      {
-        "slug": "how-independent-artists-sell-their-work-online",
-        "lane": "boom",
-        "date": "2026-08-06T04:14:36.762Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-08T16:22:13.869Z",
-    "source_event": "retry",
-    "export_duration_ms": 16,
+    "last_export_at": "2026-08-08T22:30:14.453Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 13,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
