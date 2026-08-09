@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-08T22:33:55.949Z",
+  "lastUpdated": "2026-08-09T03:03:48.572Z",
   "recentHooks": [
     {
       "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "i-want-something-that-actually-means-something-on-my-wall",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-08-09T03:03:48.572Z"
+    },
+    {
       "slug": "dopamine-detox-without-cringe",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,15 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-08-04T20:17:09.166Z"
-    },
-    {
-      "slug": "how-to-stop-betraying-yourself",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-08-04T17:28:17.125Z"
     }
   ],
   "recentInstagramArchetypes": [
