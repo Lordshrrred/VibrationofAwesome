@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-09T03:03:48.572Z",
+  "lastUpdated": "2026-08-09T03:05:17.068Z",
   "recentHooks": [
     {
       "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -888,6 +888,24 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "dopamine-detox-without-cringe",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-09T03:05:17.068Z"
+    },
+    {
+      "slug": "why-motivation-fails-when-your-nervous-system-is-fried",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-08-09T03:05:02.223Z"
+    },
+    {
       "slug": "i-want-something-that-actually-means-something-on-my-wall",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1138,24 +1156,6 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-08-04T23:12:24.724Z"
-    },
-    {
-      "slug": "choosing-discomfort-over-the-familiar-loop",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-08-04T23:10:06.626Z"
-    },
-    {
-      "slug": "how-to-stop-betraying-yourself",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-08-04T20:17:09.166Z"
     }
   ],
   "recentInstagramArchetypes": [
