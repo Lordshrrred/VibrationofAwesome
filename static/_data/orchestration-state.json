@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-09T03:05:17.529Z",
+  "generated_at": "2026-08-09T13:53:13.668Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 38,
+      "draft_count": 37,
       "draft_slugs": [
         "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
@@ -28,7 +28,6 @@
         "how-to-find-direction-when-you-feel-lost",
         "how-to-hear-yourself-again",
         "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
-        "how-to-slow-down-without-quitting",
         "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
         "how-to-stop-drifting",
         "how-to-tell-when-something-is-not-for-you-anymore",
@@ -46,7 +45,7 @@
         "why-ai-music-tools-make-everything-sound-the-same",
         "why-silence-changes-everything"
       ],
-      "runway_days": 19,
+      "runway_days": 18,
       "runway_status": "healthy",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -56,6 +55,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "how-to-slow-down-without-quitting",
+        "title": "How to Slow Down Without Quitting",
+        "lane": "boom",
+        "date": "2026-08-09T13:53:13.651Z",
+        "url": "/blog/boom/posts/how-to-slow-down-without-quitting",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "nervous-system-creativity",
+        "content_type": null
+      },
       {
         "slug": "i-want-something-that-actually-means-something-on-my-wall",
         "title": "I Want Something That Actually Means Something on My Wall",
@@ -279,16 +290,6 @@
         "tags": [],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "how-to-turn-youtube-videos-into-online-courses",
-        "title": "How To Turn Youtube Videos Into Online Courses",
-        "lane": "boom",
-        "date": "2026-07-21T15:08:26.813Z",
-        "url": "/blog/boom/posts/how-to-turn-youtube-videos-into-online-courses",
-        "tags": [],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -386,9 +387,9 @@
     ],
     "next_estimated_window": "2026-08-10",
     "published_counts": {
-      "boom": 218,
+      "boom": 219,
       "matt": 18,
-      "total": 236
+      "total": 237
     }
   },
   "syndication": {
@@ -17905,6 +17906,7 @@
       }
     },
     "post_to_cluster": {
+      "how-to-slow-down-without-quitting": "nervous-system-creativity",
       "i-want-something-that-actually-means-something-on-my-wall": "art-buying-online",
       "why-motivation-fails-when-your-nervous-system-is-fried": "nervous-system-creativity",
       "ai-advantage-free-jumpstart-playbook-and-community-review": "ai-creator-tools",
@@ -18131,7 +18133,7 @@
     },
     "saturation": {
       "ai-creator-tools": 166,
-      "nervous-system-creativity": 6,
+      "nervous-system-creativity": 7,
       "dopamine-attention": 6,
       "authentic-self-expression": 10,
       "creator-automation": 3,
@@ -19583,9 +19585,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-09T03:05:17.529Z",
+    "as_of": "2026-08-09T13:53:13.668Z",
     "next_estimated_window": "2026-08-10",
-    "queue_runway_days": 19,
+    "queue_runway_days": 18,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-08-09",
@@ -19682,11 +19684,16 @@
     ],
     "retry_backlog_count": 14,
     "cadence_density": {
-      "posts_last_7_days": 17,
-      "posts_last_14_days": 17,
+      "posts_last_7_days": 18,
+      "posts_last_14_days": 18,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "how-to-slow-down-without-quitting",
+        "lane": "boom",
+        "date": "2026-08-09T13:53:13.651Z"
+      },
       {
         "slug": "i-want-something-that-actually-means-something-on-my-wall",
         "lane": "boom",
@@ -19731,18 +19738,13 @@
         "slug": "i-want-art-for-my-home-but-do-not-know-where-to-look",
         "lane": "boom",
         "date": "2026-08-07T03:50:29.502Z"
-      },
-      {
-        "slug": "why-porn-and-scrolling-destroy-momentum",
-        "lane": "boom",
-        "date": "2026-08-07T01:30:05.309Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-09T03:05:17.514Z",
-    "source_event": "retry",
-    "export_duration_ms": 15,
+    "last_export_at": "2026-08-09T13:53:13.655Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 13,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
