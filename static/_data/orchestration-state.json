@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-10T03:14:27.998Z",
+  "generated_at": "2026-08-10T14:23:01.243Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 34,
+      "draft_count": 33,
       "draft_slugs": [
         "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
@@ -14,7 +14,6 @@
         "best-ai-workflow-for-solo-creators",
         "choosing-a-path-when-nothing-feels-clear",
         "choosing-truth-over-approval",
-        "clarity-through-regulation",
         "claude-vs-chatgpt-for-creator-workflows",
         "committing-before-you-feel-ready",
         "creator-burnout-from-content-production",
@@ -42,7 +41,7 @@
         "why-ai-music-tools-make-everything-sound-the-same",
         "why-silence-changes-everything"
       ],
-      "runway_days": 17,
+      "runway_days": 16,
       "runway_status": "healthy",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -52,6 +51,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "clarity-through-regulation",
+        "title": "Clarity Through Regulation",
+        "lane": "boom",
+        "date": "2026-08-10T14:23:01.226Z",
+        "url": "/blog/boom/posts/clarity-through-regulation",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "nervous-system-creativity",
+        "content_type": null
+      },
       {
         "slug": "original-art-feels-too-expensive-or-exclusive",
         "title": "Original Art Feels Too Expensive Or Exclusive",
@@ -279,18 +290,6 @@
         ],
         "cluster": "authentic-self-expression",
         "content_type": null
-      },
-      {
-        "slug": "how-to-stop-betraying-yourself",
-        "title": "How to Stop Betraying Yourself",
-        "lane": "boom",
-        "date": "2026-08-04T15:28:08.249Z",
-        "url": "/blog/boom/posts/how-to-stop-betraying-yourself",
-        "tags": [
-          "self-betrayal-avoidance"
-        ],
-        "cluster": "authentic-self-expression",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -389,9 +388,9 @@
     ],
     "next_estimated_window": "2026-08-11",
     "published_counts": {
-      "boom": 222,
+      "boom": 223,
       "matt": 18,
-      "total": 240
+      "total": 241
     }
   },
   "syndication": {
@@ -18216,6 +18215,7 @@
       }
     },
     "post_to_cluster": {
+      "clarity-through-regulation": "nervous-system-creativity",
       "original-art-feels-too-expensive-or-exclusive": "art-buying-online",
       "grounding-practices-for-overwhelmed-people": "nervous-system-creativity",
       "ai-advantage-may-2026-bootcamp-workshops-and-replays": "ai-creator-tools",
@@ -18446,7 +18446,7 @@
     },
     "saturation": {
       "ai-creator-tools": 167,
-      "nervous-system-creativity": 8,
+      "nervous-system-creativity": 9,
       "dopamine-attention": 6,
       "authentic-self-expression": 10,
       "creator-automation": 3,
@@ -19900,9 +19900,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-10T03:14:27.998Z",
+    "as_of": "2026-08-10T14:23:01.243Z",
     "next_estimated_window": "2026-08-11",
-    "queue_runway_days": 17,
+    "queue_runway_days": 16,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-08-10",
@@ -20006,6 +20006,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "clarity-through-regulation",
+        "lane": "boom",
+        "date": "2026-08-10T14:23:01.226Z"
+      },
+      {
         "slug": "original-art-feels-too-expensive-or-exclusive",
         "lane": "boom",
         "date": "2026-08-10T03:12:17.489Z"
@@ -20049,17 +20054,12 @@
         "slug": "mass-market-prints-feel-generic-and-soulless",
         "lane": "boom",
         "date": "2026-08-08T02:54:50.354Z"
-      },
-      {
-        "slug": "what-to-do-instead-of-numbing",
-        "lane": "boom",
-        "date": "2026-08-07T22:36:33.000Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-10T03:14:27.985Z",
-    "source_event": "retry",
+    "last_export_at": "2026-08-10T14:23:01.230Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 13,
     "schema_version": "1.0",
     "stale_after_minutes": 60
