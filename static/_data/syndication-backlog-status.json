@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T02:53:58.948Z",
+  "generatedAt": "2026-08-10T05:57:28.619Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,19 +14,19 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 203,
+    "totalTrackedPosts": 204,
     "backlogPosts": 0,
     "backlinkCapableMissingUnits": 0,
-    "backlinkVerificationGaps": 84,
+    "backlinkVerificationGaps": 88,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 15,
+    "distributionIncompleteUnits": 14,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 84,
-    "completedBacklinkUnitsPerDay": 6,
+    "completedBacklinkUnitsInWindow": 88,
+    "completedBacklinkUnitsPerDay": 6.3,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 14,
+    "netBacklogChangePerDay": 13.7,
     "estimatedCatchUpDays": 0,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -36,37 +36,37 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 203,
-        "complete": 203,
+        "eligiblePosts": 204,
+        "complete": 204,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.7,
+        "averagePerDay": 1.8,
         "confirmed": 182,
-        "verificationGaps": 21,
+        "verificationGaps": 22,
         "mainBlocker": ""
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 203,
-        "complete": 203,
+        "eligiblePosts": 204,
+        "complete": 204,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.4,
+        "averagePerDay": 1.5,
         "confirmed": 182,
-        "verificationGaps": 21,
+        "verificationGaps": 22,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 203,
-        "complete": 203,
+        "eligiblePosts": 204,
+        "complete": 204,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.4,
+        "averagePerDay": 1.5,
         "confirmed": 182,
-        "verificationGaps": 21,
+        "verificationGaps": 22,
         "mainBlocker": ""
       },
       {
@@ -84,13 +84,13 @@
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 53,
-        "complete": 53,
+        "eligiblePosts": 54,
+        "complete": 54,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.5,
+        "averagePerDay": 0.6,
         "confirmed": 46,
-        "verificationGaps": 7,
+        "verificationGaps": 8,
         "mainBlocker": ""
       }
     ],
@@ -113,13 +113,13 @@
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
         "eligiblePosts": 166,
-        "complete": 165,
-        "missing": 1,
-        "successRate": 99.4,
-        "averagePerDay": 1.1,
+        "complete": 166,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 1.2,
         "confirmed": 142,
-        "verificationGaps": 23,
-        "mainBlocker": "env vars not set"
+        "verificationGaps": 24,
+        "mainBlocker": ""
       },
       {
         "key": "mastodon_voa",
@@ -131,7 +131,7 @@
         "averagePerDay": 1.1,
         "confirmed": 142,
         "verificationGaps": 23,
-        "mainBlocker": "env vars not set"
+        "mainBlocker": "Mastodon: Validation failed: Text can't be blank"
       },
       {
         "key": "facebook_voa",
@@ -189,11 +189,7 @@
       "count": 13
     },
     {
-      "reason": "bluesky_voa: env vars not set",
-      "count": 1
-    },
-    {
-      "reason": "mastodon_voa: env vars not set",
+      "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
       "count": 1
     }
   ],
