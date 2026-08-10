@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-10T03:14:27.049Z",
+  "lastUpdated": "2026-08-10T14:26:50.437Z",
   "recentHooks": [
     {
       "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -889,6 +889,33 @@
   "recentThreadsFormats": [
     {
       "slug": "grounding-practices-for-overwhelmed-people",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-08-10T14:26:50.437Z"
+    },
+    {
+      "slug": "clarity-through-regulation",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-08-10T14:26:38.665Z"
+    },
+    {
+      "slug": "clarity-through-regulation",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-10T14:24:19.326Z"
+    },
+    {
+      "slug": "grounding-practices-for-overwhelmed-people",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
       "density": "medium-dense",
@@ -1129,36 +1156,19 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-08-07T01:33:28.044Z"
-    },
-    {
-      "slug": "why-porn-and-scrolling-destroy-momentum",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-08-07T01:33:11.867Z"
-    },
-    {
-      "slug": "why-porn-and-scrolling-destroy-momentum",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-08-07T01:31:02.987Z"
-    },
-    {
-      "slug": "building-trust-with-yourself-again",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-08-06T04:16:46.958Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "clarity-through-regulation",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-08-10T14:24:37.196Z"
+    },
     {
       "slug": "grounding-practices-for-overwhelmed-people",
       "archetype": "nervous-system-atmospheric",
@@ -1430,15 +1440,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-07-13T15:46:10.189Z"
-    },
-    {
-      "slug": "how-to-turn-blog-posts-into-podcast-episodes",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-07-12T22:52:21.284Z"
     }
   ]
 }
