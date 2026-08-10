@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-10T16:43:31.557Z",
+  "generated_at": "2026-08-10T22:38:01.690Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 32,
+      "draft_count": 31,
       "draft_slugs": [
         "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "ai-content-feels-generic-for-creators",
@@ -31,7 +31,6 @@
         "outgrowing-old-identities",
         "purpose-vs-motivation",
         "rebuilding-intuition",
-        "reducing-inputs-to-restore-focus",
         "reducing-noise-and-overstimulation",
         "signs-your-life-is-misaligned",
         "simple-creator-automation-stack",
@@ -40,7 +39,7 @@
         "why-ai-music-tools-make-everything-sound-the-same",
         "why-silence-changes-everything"
       ],
-      "runway_days": 16,
+      "runway_days": 15,
       "runway_status": "healthy",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -50,6 +49,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "reducing-inputs-to-restore-focus",
+        "title": "Reducing Inputs to Restore Focus",
+        "lane": "boom",
+        "date": "2026-08-10T22:38:01.671Z",
+        "url": "/blog/boom/posts/reducing-inputs-to-restore-focus",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "nervous-system-creativity",
+        "content_type": null
+      },
       {
         "slug": "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
         "title": "AI Advantage Ecosystem Summit Club Bootcamp Mastery Mastermind",
@@ -277,18 +288,6 @@
         ],
         "cluster": "authentic-self-expression",
         "content_type": null
-      },
-      {
-        "slug": "self-respect-through-action",
-        "title": "Self-Respect Through Action",
-        "lane": "boom",
-        "date": "2026-08-05T15:19:56.852Z",
-        "url": "/blog/boom/posts/self-respect-through-action",
-        "tags": [
-          "self-betrayal-avoidance"
-        ],
-        "cluster": "authentic-self-expression",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -387,9 +386,9 @@
     ],
     "next_estimated_window": "2026-08-11",
     "published_counts": {
-      "boom": 224,
+      "boom": 225,
       "matt": 18,
-      "total": 242
+      "total": 243
     }
   },
   "syndication": {
@@ -18370,6 +18369,7 @@
       }
     },
     "post_to_cluster": {
+      "reducing-inputs-to-restore-focus": "nervous-system-creativity",
       "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind": "ai-creator-tools",
       "clarity-through-regulation": "nervous-system-creativity",
       "original-art-feels-too-expensive-or-exclusive": "art-buying-online",
@@ -18602,7 +18602,7 @@
     },
     "saturation": {
       "ai-creator-tools": 168,
-      "nervous-system-creativity": 9,
+      "nervous-system-creativity": 10,
       "dopamine-attention": 6,
       "authentic-self-expression": 10,
       "creator-automation": 3,
@@ -20057,9 +20057,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-10T16:43:31.557Z",
+    "as_of": "2026-08-10T22:38:01.689Z",
     "next_estimated_window": "2026-08-11",
-    "queue_runway_days": 16,
+    "queue_runway_days": 15,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-08-10",
@@ -20163,6 +20163,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "reducing-inputs-to-restore-focus",
+        "lane": "boom",
+        "date": "2026-08-10T22:38:01.671Z"
+      },
+      {
         "slug": "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
         "lane": "boom",
         "date": "2026-08-10T16:40:42.211Z"
@@ -20206,18 +20211,13 @@
         "slug": "ai-advantage-free-jumpstart-playbook-and-community-review",
         "lane": "boom",
         "date": "2026-08-08T16:18:58.873Z"
-      },
-      {
-        "slug": "dopamine-detox-without-cringe",
-        "lane": "boom",
-        "date": "2026-08-08T13:49:52.990Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-10T16:43:31.544Z",
-    "source_event": "retry",
-    "export_duration_ms": 13,
+    "last_export_at": "2026-08-10T22:38:01.676Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 14,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
