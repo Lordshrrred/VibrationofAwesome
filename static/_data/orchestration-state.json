@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-10T14:26:25.358Z",
+  "generated_at": "2026-08-10T14:26:51.640Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -413,7 +413,7 @@
         "title": "Clarity Through Regulation",
         "lane": "boom",
         "date": "2026-08-10",
-        "publish_status": "partial",
+        "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
             "status": "not_attempted",
@@ -421,9 +421,9 @@
             "url": null
           },
           "bluesky_voa": {
-            "status": "failed",
-            "timestamp": "2026-08-10T14:26:25.340Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-08-10T14:26:39.126Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3msqcmb3xxm2g"
           },
           "mastodon_voa": {
             "status": "success",
@@ -471,8 +471,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/08/10/clarity-through-regulation-earthstar/"
           }
         },
-        "success_count": 9,
-        "failed_count": 1
+        "success_count": 10,
+        "failed_count": 0
       },
       {
         "slug": "original-art-feels-too-expensive-or-exclusive",
@@ -545,7 +545,7 @@
         "title": "Grounding Practices for Overwhelmed People",
         "lane": "boom",
         "date": "2026-08-09",
-        "publish_status": "partial",
+        "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -558,9 +558,9 @@
             "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3msp52c2t7t2g"
           },
           "mastodon_voa": {
-            "status": "failed",
-            "timestamp": "2026-08-10T03:14:27.955Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-08-10T14:26:51.599Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117071676095886227"
           },
           "facebook_voa": {
             "status": "not_attempted",
@@ -603,8 +603,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/08/09/grounding-practices-for-overwhelmed-people-earthstar-2/"
           }
         },
-        "success_count": 6,
-        "failed_count": 1
+        "success_count": 7,
+        "failed_count": 0
       },
       {
         "slug": "ai-advantage-may-2026-bootcamp-workshops-and-replays",
@@ -13941,16 +13941,6 @@
     ],
     "retry_backlog": [
       {
-        "slug": "clarity-through-regulation",
-        "platform": "bluesky_voa",
-        "timestamp": "2026-08-10T14:26:25.340Z"
-      },
-      {
-        "slug": "grounding-practices-for-overwhelmed-people",
-        "platform": "mastodon_voa",
-        "timestamp": "2026-08-10T03:14:27.955Z"
-      },
-      {
         "slug": "how-to-heal-emotionally-when-you-dont-know-where-to-start",
         "platform": "facebook_voa",
         "timestamp": "2026-06-09T16:31:11.072Z"
@@ -14023,13 +14013,13 @@
         "total": 205
       },
       "bluesky_voa": {
-        "successes": 166,
-        "failures": 1,
+        "successes": 167,
+        "failures": 0,
         "total": 205
       },
       "mastodon_voa": {
-        "successes": 166,
-        "failures": 1,
+        "successes": 167,
+        "failures": 0,
         "total": 205
       },
       "facebook_voa": {
@@ -14075,10 +14065,10 @@
     },
     "summary": {
       "total_posts": 205,
-      "fully_syndicated": 190,
-      "partial": 15,
+      "fully_syndicated": 192,
+      "partial": 13,
       "pending": 0,
-      "retry_backlog_count": 15
+      "retry_backlog_count": 13
     }
   },
   "visuals": {
@@ -18546,7 +18536,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-10T14:24:37.196Z",
+    "last_updated": "2026-08-10T14:26:50.437Z",
     "recent_hooks": [
       {
         "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -19430,6 +19420,24 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "grounding-practices-for-overwhelmed-people",
+        "format": "reflective-essay",
+        "cadenceProfile": "slow-layered",
+        "density": "dense",
+        "openerStyle": "grounded-observation",
+        "closerStyle": "quiet-wisdom",
+        "timestamp": "2026-08-10T14:26:50.437Z"
+      },
+      {
+        "slug": "clarity-through-regulation",
+        "format": "single-native-post",
+        "cadenceProfile": "standalone",
+        "density": "medium",
+        "openerStyle": "any",
+        "closerStyle": "complete",
+        "timestamp": "2026-08-10T14:26:38.665Z"
+      },
+      {
         "slug": "clarity-through-regulation",
         "format": "short-native-insight",
         "cadenceProfile": "compact",
@@ -19680,24 +19688,6 @@
         "openerStyle": "grounded-observation",
         "closerStyle": "quiet-wisdom",
         "timestamp": "2026-08-07T01:33:28.044Z"
-      },
-      {
-        "slug": "why-porn-and-scrolling-destroy-momentum",
-        "format": "single-native-post",
-        "cadenceProfile": "standalone",
-        "density": "medium",
-        "openerStyle": "any",
-        "closerStyle": "complete",
-        "timestamp": "2026-08-07T01:33:11.867Z"
-      },
-      {
-        "slug": "why-porn-and-scrolling-destroy-momentum",
-        "format": "conversational-reflection",
-        "cadenceProfile": "casual-spoken",
-        "density": "light-medium",
-        "openerStyle": "mid-conversation",
-        "closerStyle": "natural-landing",
-        "timestamp": "2026-08-07T01:31:02.987Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -19987,7 +19977,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-10T14:26:25.358Z",
+    "as_of": "2026-08-10T14:26:51.640Z",
     "next_estimated_window": "2026-08-11",
     "queue_runway_days": 16,
     "queue_runway_status": "healthy",
@@ -20085,7 +20075,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 15,
+    "retry_backlog_count": 13,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -20145,9 +20135,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-10T14:26:25.349Z",
-    "source_event": "syndication",
-    "export_duration_ms": 9,
+    "last_export_at": "2026-08-10T14:26:51.627Z",
+    "source_event": "retry",
+    "export_duration_ms": 12,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
