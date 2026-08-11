@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-11T03:06:39.722Z",
+  "generated_at": "2026-08-11T03:07:04.110Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -485,14 +485,14 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/reducing-inputs-to-restore-focus-signal.html"
           },
           "bluesky_voa": {
-            "status": "failed",
-            "timestamp": "2026-08-11T02:36:26.313Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-08-11T03:07:04.059Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3msrn3xhcz32a"
           },
           "mastodon_voa": {
-            "status": "failed",
-            "timestamp": "2026-08-11T02:36:26.313Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-08-11T03:07:04.059Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117074665395289332"
           },
           "facebook_voa": {
             "status": "not_attempted",
@@ -535,8 +535,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/08/10/reducing-inputs-to-restore-focus-earthstar-2/"
           }
         },
-        "success_count": 4,
-        "failed_count": 3
+        "success_count": 6,
+        "failed_count": 1
       },
       {
         "slug": "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
@@ -14143,16 +14143,6 @@
       },
       {
         "slug": "reducing-inputs-to-restore-focus",
-        "platform": "bluesky_voa",
-        "timestamp": "2026-08-11T02:36:26.313Z"
-      },
-      {
-        "slug": "reducing-inputs-to-restore-focus",
-        "platform": "mastodon_voa",
-        "timestamp": "2026-08-11T02:36:26.313Z"
-      },
-      {
-        "slug": "reducing-inputs-to-restore-focus",
         "platform": "blogger",
         "timestamp": "2026-08-11T02:36:26.313Z"
       },
@@ -14229,13 +14219,13 @@
         "total": 208
       },
       "bluesky_voa": {
-        "successes": 167,
-        "failures": 1,
+        "successes": 168,
+        "failures": 0,
         "total": 208
       },
       "mastodon_voa": {
-        "successes": 167,
-        "failures": 1,
+        "successes": 168,
+        "failures": 0,
         "total": 208
       },
       "facebook_voa": {
@@ -14284,7 +14274,7 @@
       "fully_syndicated": 193,
       "partial": 15,
       "pending": 0,
-      "retry_backlog_count": 17
+      "retry_backlog_count": 15
     }
   },
   "visuals": {
@@ -18784,7 +18774,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-11T03:05:48.825Z",
+    "last_updated": "2026-08-11T03:07:02.551Z",
     "recent_hooks": [
       {
         "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -19668,6 +19658,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "reducing-inputs-to-restore-focus",
+        "format": "tension-revelation",
+        "cadenceProfile": "tension-then-release",
+        "density": "medium-dense",
+        "openerStyle": "contradiction",
+        "closerStyle": "earned-realization",
+        "timestamp": "2026-08-11T03:07:02.551Z"
+      },
+      {
         "slug": "digital-art-prints-that-feel-like-originals",
         "format": "philosophical-observation",
         "cadenceProfile": "contemplative",
@@ -19927,15 +19926,6 @@
         "openerStyle": "mid-conversation",
         "closerStyle": "natural-landing",
         "timestamp": "2026-08-07T14:25:52.353Z"
-      },
-      {
-        "slug": "building-trust-with-yourself-again",
-        "format": "short-native-insight",
-        "cadenceProfile": "compact",
-        "density": "light",
-        "openerStyle": "direct",
-        "closerStyle": "resonant",
-        "timestamp": "2026-08-07T03:52:45.778Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -20226,7 +20216,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-11T03:06:39.721Z",
+    "as_of": "2026-08-11T03:07:04.110Z",
     "next_estimated_window": "2026-08-12",
     "queue_runway_days": 15,
     "queue_runway_status": "warning",
@@ -20325,7 +20315,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 17,
+    "retry_backlog_count": 15,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -20385,9 +20375,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-11T03:06:39.712Z",
-    "source_event": "syndication",
-    "export_duration_ms": 10,
+    "last_export_at": "2026-08-11T03:07:04.094Z",
+    "source_event": "retry",
+    "export_duration_ms": 16,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
