@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-11T11:42:25.306Z",
+  "lastUpdated": "2026-08-11T14:25:49.727Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -889,6 +889,33 @@
   "recentThreadsFormats": [
     {
       "slug": "reducing-inputs-to-restore-focus",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-08-11T14:25:49.727Z"
+    },
+    {
+      "slug": "digital-art-prints-that-feel-like-originals",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-11T14:25:40.005Z"
+    },
+    {
+      "slug": "signs-your-life-is-misaligned",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-11T14:23:12.513Z"
+    },
+    {
+      "slug": "reducing-inputs-to-restore-focus",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
@@ -1129,36 +1156,19 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-08-07T16:42:38.798Z"
-    },
-    {
-      "slug": "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-08-07T16:40:06.340Z"
-    },
-    {
-      "slug": "building-trust-with-yourself-again",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-08-07T14:27:56.723Z"
-    },
-    {
-      "slug": "how-to-reclaim-focus-and-masculine-energy",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-08-07T14:25:52.353Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "signs-your-life-is-misaligned",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-08-11T14:23:29.217Z"
+    },
     {
       "slug": "reducing-inputs-to-restore-focus",
       "archetype": "cinematic-ideogram",
@@ -1432,15 +1442,6 @@
       "emotionalTone": "stillness",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-07-14T15:01:48.928Z"
-    },
-    {
-      "slug": "how-to-turn-my-creative-process-into-an-sop-using-ai",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-07-13T22:58:14.628Z"
     }
   ]
 }
