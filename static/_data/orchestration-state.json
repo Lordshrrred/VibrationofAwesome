@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-11T14:21:53.812Z",
+  "generated_at": "2026-08-11T14:25:20.820Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -433,6 +433,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "signs-your-life-is-misaligned",
+        "title": "Signs Your Life Is Misaligned",
+        "lane": "boom",
+        "date": "2026-08-11",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-08-11T14:25:20.806Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3msssvkk2z72g"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-08-11T14:25:20.806Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117077325514571913"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-08-11T14:25:20.806Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "skipped",
+            "timestamp": "2026-08-11T14:25:20.806Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-08-11T14:25:20.806Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-08-11T14:25:20.806Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-08-11T14:25:20.806Z",
+            "url": "https://dev.to/earthstarrising/signs-your-life-is-misaligned-5bno"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-11T14:25:20.806Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/824661270229811200"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-11T14:25:20.806Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-11T14:25:20.806Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/11/signs-your-life-is-misaligned-earthstar/"
+          }
+        },
+        "success_count": 8,
+        "failed_count": 1
+      },
       {
         "slug": "digital-art-prints-that-feel-like-originals",
         "title": "Digital Art Prints That Feel Like Originals",
@@ -14164,6 +14230,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "signs-your-life-is-misaligned",
+        "platform": "blogger",
+        "timestamp": "2026-08-11T14:25:20.806Z"
+      },
+      {
         "slug": "digital-art-prints-that-feel-like-originals",
         "platform": "bluesky_voa",
         "timestamp": "2026-08-11T14:01:43.115Z"
@@ -14263,70 +14334,84 @@
       "feeder": {
         "successes": 152,
         "failures": 0,
-        "total": 208
+        "total": 209
       },
       "bluesky_voa": {
-        "successes": 167,
+        "successes": 168,
         "failures": 2,
-        "total": 208
+        "total": 209
       },
       "mastodon_voa": {
-        "successes": 167,
+        "successes": 168,
         "failures": 2,
-        "total": 208
+        "total": 209
       },
       "facebook_voa": {
-        "successes": 100,
+        "successes": 101,
         "failures": 13,
-        "total": 208
+        "total": 209
       },
       "pinterest": {
         "successes": 153,
         "failures": 0,
-        "total": 208
+        "total": 209
       },
       "threads": {
-        "successes": 112,
+        "successes": 113,
         "failures": 0,
-        "total": 208
+        "total": 209
       },
       "instagram": {
-        "successes": 110,
+        "successes": 111,
         "failures": 0,
-        "total": 208
+        "total": 209
       },
       "devto": {
-        "successes": 152,
+        "successes": 153,
         "failures": 0,
-        "total": 208
+        "total": 209
       },
       "tumblr_voa": {
-        "successes": 208,
+        "successes": 209,
         "failures": 0,
-        "total": 208
+        "total": 209
       },
       "blogger": {
         "successes": 206,
-        "failures": 2,
-        "total": 208
+        "failures": 3,
+        "total": 209
       },
       "wordpress_earthstar": {
-        "successes": 208,
+        "successes": 209,
         "failures": 0,
-        "total": 208
+        "total": 209
       }
     },
     "summary": {
-      "total_posts": 208,
+      "total_posts": 209,
       "fully_syndicated": 193,
-      "partial": 15,
+      "partial": 16,
       "pending": 0,
-      "retry_backlog_count": 19
+      "retry_backlog_count": 20
     }
   },
   "visuals": {
-    "registry_count": 278,
+    "registry_count": 279,
     "registry_entries": [
+      {
+        "post_slug": "signs-your-life-is-misaligned",
+        "source": "ideogram",
+        "asset_type": "archetype-visual",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-11T14:23:29.222Z"
+      },
       {
         "post_slug": "reducing-inputs-to-restore-focus",
         "source": "ideogram",
@@ -18292,22 +18377,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 278,
+      "total_entries": 279,
       "reused_count": 62,
-      "reuse_rate": 0.223
+      "reuse_rate": 0.222
     },
     "source_breakdown": {
-      "ideogram": 184,
+      "ideogram": 185,
       "boom": 94
     },
     "generation_counts": {
-      "ideogram": 184
+      "ideogram": 185
     },
     "platform_usage": {
-      "pinterest": 225,
-      "instagram": 188,
-      "bluesky_voa": 246,
-      "mastodon_voa": 246
+      "instagram": 189,
+      "bluesky_voa": 247,
+      "mastodon_voa": 247,
+      "pinterest": 225
     }
   },
   "clusters": {
@@ -18822,7 +18907,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-11T11:42:25.306Z",
+    "last_updated": "2026-08-11T14:23:29.217Z",
     "recent_hooks": [
       {
         "slug": "my-mind-feels-noisy-all-the-time",
@@ -19706,6 +19791,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "signs-your-life-is-misaligned",
+        "format": "short-native-insight",
+        "cadenceProfile": "compact",
+        "density": "light",
+        "openerStyle": "direct",
+        "closerStyle": "resonant",
+        "timestamp": "2026-08-11T14:23:12.513Z"
+      },
+      {
         "slug": "reducing-inputs-to-restore-focus",
         "format": "tension-revelation",
         "cadenceProfile": "tension-then-release",
@@ -19965,18 +20059,19 @@
         "openerStyle": "identity-confession",
         "closerStyle": "invitation",
         "timestamp": "2026-08-07T14:27:56.723Z"
-      },
-      {
-        "slug": "how-to-reclaim-focus-and-masculine-energy",
-        "format": "conversational-reflection",
-        "cadenceProfile": "casual-spoken",
-        "density": "light-medium",
-        "openerStyle": "mid-conversation",
-        "closerStyle": "natural-landing",
-        "timestamp": "2026-08-07T14:25:52.353Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "signs-your-life-is-misaligned",
+        "archetype": "symbolic-consciousness",
+        "archetypeLabel": "Symbolic Consciousness",
+        "palette": "cosmic-teal",
+        "emotionalTone": "cosmic",
+        "emotionalCluster": "mystical",
+        "family": "art",
+        "timestamp": "2026-08-11T14:23:29.217Z"
+      },
       {
         "slug": "reducing-inputs-to-restore-focus",
         "archetype": "cinematic-ideogram",
@@ -20250,21 +20345,12 @@
         "emotionalTone": "stillness",
         "emotionalCluster": "intellectual",
         "timestamp": "2026-07-14T15:01:48.928Z"
-      },
-      {
-        "slug": "how-to-turn-my-creative-process-into-an-sop-using-ai",
-        "archetype": "field-guide-aesthetic",
-        "archetypeLabel": "Field Guide Aesthetic",
-        "palette": "warm-archive",
-        "emotionalTone": "quiet-discovery",
-        "emotionalCluster": "grounded",
-        "timestamp": "2026-07-13T22:58:14.628Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-11T14:21:53.812Z",
+    "as_of": "2026-08-11T14:25:20.819Z",
     "next_estimated_window": "2026-08-12",
     "queue_runway_days": 28,
     "queue_runway_status": "healthy",
@@ -20363,7 +20449,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 19,
+    "retry_backlog_count": 20,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -20423,9 +20509,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-11T14:21:53.799Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 13,
+    "last_export_at": "2026-08-11T14:25:20.809Z",
+    "source_event": "syndication",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
