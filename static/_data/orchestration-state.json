@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-11T14:25:20.820Z",
+  "generated_at": "2026-08-11T14:25:51.866Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -512,13 +512,13 @@
             "url": null
           },
           "bluesky_voa": {
-            "status": "failed",
-            "timestamp": "2026-08-11T14:01:43.115Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-08-11T14:25:40.496Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mssszggkgq2z"
           },
           "mastodon_voa": {
             "status": "failed",
-            "timestamp": "2026-08-11T14:01:43.115Z",
+            "timestamp": "2026-08-11T14:25:40.496Z",
             "url": null
           },
           "facebook_voa": {
@@ -562,8 +562,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/08/10/digital-art-prints-that-feel-like-originals-earthstar/"
           }
         },
-        "success_count": 2,
-        "failed_count": 3
+        "success_count": 3,
+        "failed_count": 2
       },
       {
         "slug": "reducing-inputs-to-restore-focus",
@@ -578,13 +578,13 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/reducing-inputs-to-restore-focus-signal.html"
           },
           "bluesky_voa": {
-            "status": "failed",
-            "timestamp": "2026-08-11T14:01:35.016Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-08-11T14:25:51.822Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mssszpn44g22"
           },
           "mastodon_voa": {
             "status": "failed",
-            "timestamp": "2026-08-11T14:01:35.016Z",
+            "timestamp": "2026-08-11T14:25:51.822Z",
             "url": null
           },
           "facebook_voa": {
@@ -628,8 +628,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/08/10/reducing-inputs-to-restore-focus-earthstar-2/"
           }
         },
-        "success_count": 4,
-        "failed_count": 3
+        "success_count": 5,
+        "failed_count": 2
       },
       {
         "slug": "ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
@@ -14236,13 +14236,8 @@
       },
       {
         "slug": "digital-art-prints-that-feel-like-originals",
-        "platform": "bluesky_voa",
-        "timestamp": "2026-08-11T14:01:43.115Z"
-      },
-      {
-        "slug": "digital-art-prints-that-feel-like-originals",
         "platform": "mastodon_voa",
-        "timestamp": "2026-08-11T14:01:43.115Z"
+        "timestamp": "2026-08-11T14:25:40.496Z"
       },
       {
         "slug": "digital-art-prints-that-feel-like-originals",
@@ -14251,13 +14246,8 @@
       },
       {
         "slug": "reducing-inputs-to-restore-focus",
-        "platform": "bluesky_voa",
-        "timestamp": "2026-08-11T14:01:35.016Z"
-      },
-      {
-        "slug": "reducing-inputs-to-restore-focus",
         "platform": "mastodon_voa",
-        "timestamp": "2026-08-11T14:01:35.016Z"
+        "timestamp": "2026-08-11T14:25:51.822Z"
       },
       {
         "slug": "reducing-inputs-to-restore-focus",
@@ -14337,8 +14327,8 @@
         "total": 209
       },
       "bluesky_voa": {
-        "successes": 168,
-        "failures": 2,
+        "successes": 170,
+        "failures": 0,
         "total": 209
       },
       "mastodon_voa": {
@@ -14392,7 +14382,7 @@
       "fully_syndicated": 193,
       "partial": 16,
       "pending": 0,
-      "retry_backlog_count": 20
+      "retry_backlog_count": 18
     }
   },
   "visuals": {
@@ -18907,7 +18897,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-11T14:23:29.217Z",
+    "last_updated": "2026-08-11T14:25:49.727Z",
     "recent_hooks": [
       {
         "slug": "my-mind-feels-noisy-all-the-time",
@@ -19791,6 +19781,24 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "reducing-inputs-to-restore-focus",
+        "format": "single-native-post",
+        "cadenceProfile": "standalone",
+        "density": "medium",
+        "openerStyle": "any",
+        "closerStyle": "complete",
+        "timestamp": "2026-08-11T14:25:49.727Z"
+      },
+      {
+        "slug": "digital-art-prints-that-feel-like-originals",
+        "format": "conversational-reflection",
+        "cadenceProfile": "casual-spoken",
+        "density": "light-medium",
+        "openerStyle": "mid-conversation",
+        "closerStyle": "natural-landing",
+        "timestamp": "2026-08-11T14:25:40.005Z"
+      },
+      {
         "slug": "signs-your-life-is-misaligned",
         "format": "short-native-insight",
         "cadenceProfile": "compact",
@@ -20041,24 +20049,6 @@
         "openerStyle": "contradiction",
         "closerStyle": "earned-realization",
         "timestamp": "2026-08-07T16:42:38.798Z"
-      },
-      {
-        "slug": "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for",
-        "format": "single-native-post",
-        "cadenceProfile": "standalone",
-        "density": "medium",
-        "openerStyle": "any",
-        "closerStyle": "complete",
-        "timestamp": "2026-08-07T16:40:06.340Z"
-      },
-      {
-        "slug": "building-trust-with-yourself-again",
-        "format": "creative-identity-reflection",
-        "cadenceProfile": "lyrical",
-        "density": "medium",
-        "openerStyle": "identity-confession",
-        "closerStyle": "invitation",
-        "timestamp": "2026-08-07T14:27:56.723Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -20350,7 +20340,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-11T14:25:20.819Z",
+    "as_of": "2026-08-11T14:25:51.866Z",
     "next_estimated_window": "2026-08-12",
     "queue_runway_days": 28,
     "queue_runway_status": "healthy",
@@ -20449,7 +20439,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 20,
+    "retry_backlog_count": 18,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -20509,9 +20499,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-11T14:25:20.809Z",
-    "source_event": "syndication",
-    "export_duration_ms": 11,
+    "last_export_at": "2026-08-11T14:25:51.852Z",
+    "source_event": "retry",
+    "export_duration_ms": 14,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }

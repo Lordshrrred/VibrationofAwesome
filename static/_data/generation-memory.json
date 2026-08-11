@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-11T14:23:29.217Z",
+  "lastUpdated": "2026-08-11T14:25:49.727Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -888,6 +888,24 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "reducing-inputs-to-restore-focus",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-08-11T14:25:49.727Z"
+    },
+    {
+      "slug": "digital-art-prints-that-feel-like-originals",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-11T14:25:40.005Z"
+    },
+    {
       "slug": "signs-your-life-is-misaligned",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1138,24 +1156,6 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-08-07T16:42:38.798Z"
-    },
-    {
-      "slug": "ai-advantage-ai-mastery-review-curriculum-and-who-it-is-for",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-08-07T16:40:06.340Z"
-    },
-    {
-      "slug": "building-trust-with-yourself-again",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-08-07T14:27:56.723Z"
     }
   ],
   "recentInstagramArchetypes": [
