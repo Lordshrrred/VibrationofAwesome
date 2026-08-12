@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-12T03:25:07.692Z",
+  "lastUpdated": "2026-08-12T03:27:19.629Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -888,6 +888,51 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "reducing-inputs-to-restore-focus",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-08-12T03:27:19.629Z"
+    },
+    {
+      "slug": "digital-art-prints-that-feel-like-originals",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-08-12T03:27:09.423Z"
+    },
+    {
+      "slug": "signs-your-life-is-misaligned",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-12T03:26:49.763Z"
+    },
+    {
+      "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-08-12T03:26:36.868Z"
+    },
+    {
+      "slug": "why-a-good-life-can-still-feel-empty",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-08-12T03:26:12.249Z"
+    },
+    {
       "slug": "art-buying-guide-for-non-collectors",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1111,51 +1156,6 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-08-09T16:19:57.650Z"
-    },
-    {
-      "slug": "why-motivation-fails-when-your-nervous-system-is-fried",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-08-09T13:56:46.093Z"
-    },
-    {
-      "slug": "how-to-slow-down-without-quitting",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-08-09T13:54:12.821Z"
-    },
-    {
-      "slug": "dopamine-detox-without-cringe",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-08-09T03:05:17.068Z"
-    },
-    {
-      "slug": "why-motivation-fails-when-your-nervous-system-is-fried",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-08-09T03:05:02.223Z"
-    },
-    {
-      "slug": "i-want-something-that-actually-means-something-on-my-wall",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-08-09T03:03:48.572Z"
     }
   ],
   "recentInstagramArchetypes": [
