@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T15:31:10.611Z",
+  "generatedAt": "2026-08-12T17:38:46.235Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,19 +14,19 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 213,
-    "backlogPosts": 7,
-    "backlinkCapableMissingUnits": 7,
-    "backlinkVerificationGaps": 117,
+    "totalTrackedPosts": 214,
+    "backlogPosts": 8,
+    "backlinkCapableMissingUnits": 8,
+    "backlinkVerificationGaps": 120,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 27,
-    "freshPostsAwaitingBacklinks": 7,
-    "freshMissingBacklinkUnits": 7,
-    "completedBacklinkUnitsInWindow": 117,
-    "completedBacklinkUnitsPerDay": 8.4,
+    "distributionIncompleteUnits": 29,
+    "freshPostsAwaitingBacklinks": 8,
+    "freshMissingBacklinkUnits": 8,
+    "completedBacklinkUnitsInWindow": 120,
+    "completedBacklinkUnitsPerDay": 8.6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 11.6,
+    "netBacklogChangePerDay": 11.4,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -36,10 +36,10 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 213,
+        "eligiblePosts": 214,
         "complete": 206,
-        "missing": 7,
-        "successRate": 96.7,
+        "missing": 8,
+        "successRate": 96.3,
         "averagePerDay": 1.9,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,25 +48,25 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 213,
-        "complete": 213,
+        "eligiblePosts": 214,
+        "complete": 214,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.1,
+        "averagePerDay": 2.2,
         "confirmed": 182,
-        "verificationGaps": 31,
+        "verificationGaps": 32,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 213,
-        "complete": 213,
+        "eligiblePosts": 214,
+        "complete": 214,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.1,
+        "averagePerDay": 2.2,
         "confirmed": 182,
-        "verificationGaps": 31,
+        "verificationGaps": 32,
         "mainBlocker": ""
       },
       {
@@ -84,13 +84,13 @@
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 58,
-        "complete": 58,
+        "eligiblePosts": 59,
+        "complete": 59,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.9,
         "confirmed": 46,
-        "verificationGaps": 12,
+        "verificationGaps": 13,
         "mainBlocker": ""
       }
     ],
@@ -112,10 +112,10 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 174,
+        "eligiblePosts": 175,
         "complete": 167,
-        "missing": 7,
-        "successRate": 96,
+        "missing": 8,
+        "successRate": 95.4,
         "averagePerDay": 1.3,
         "confirmed": 142,
         "verificationGaps": 25,
@@ -124,10 +124,10 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 174,
+        "eligiblePosts": 175,
         "complete": 167,
-        "missing": 7,
-        "successRate": 96,
+        "missing": 8,
+        "successRate": 95.4,
         "averagePerDay": 1.3,
         "confirmed": 142,
         "verificationGaps": 25,
@@ -148,13 +148,13 @@
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 154,
-        "complete": 154,
+        "eligiblePosts": 155,
+        "complete": 155,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.4,
         "confirmed": 0,
-        "verificationGaps": 154,
+        "verificationGaps": 155,
         "mainBlocker": ""
       },
       {
@@ -190,15 +190,15 @@
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 7
+      "count": 8
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 7
+      "count": 8
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 7
+      "count": 8
     }
   ],
   "prioritizedBacklog": [
@@ -243,6 +243,15 @@
       "lane": "boom",
       "title": "Digital Art Prints That Feel Like Originals",
       "date": "2026-08-11",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "how-to-cancel-ai-advantage-current-refund-and-subscription-terms",
+      "lane": "boom",
+      "title": "How to Cancel AI Advantage Current Refund and Subscription Terms",
+      "date": "2026-08-12",
       "missing": [
         "blogger"
       ]
