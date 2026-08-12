@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T21:24:38.016Z",
+  "generatedAt": "2026-08-12T23:20:10.430Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 214,
-    "backlogPosts": 8,
-    "backlinkCapableMissingUnits": 8,
+    "totalTrackedPosts": 215,
+    "backlogPosts": 9,
+    "backlinkCapableMissingUnits": 12,
     "backlinkVerificationGaps": 120,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 8,
-    "freshMissingBacklinkUnits": 8,
+    "freshPostsAwaitingBacklinks": 9,
+    "freshMissingBacklinkUnits": 12,
     "completedBacklinkUnitsInWindow": 120,
     "completedBacklinkUnitsPerDay": 8.6,
     "newPostsPerDay": 5,
@@ -36,10 +36,10 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 214,
+        "eligiblePosts": 215,
         "complete": 206,
-        "missing": 8,
-        "successRate": 96.3,
+        "missing": 9,
+        "successRate": 95.8,
         "averagePerDay": 1.9,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,38 +48,38 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 214,
+        "eligiblePosts": 215,
         "complete": 214,
-        "missing": 0,
-        "successRate": 100,
+        "missing": 1,
+        "successRate": 99.5,
         "averagePerDay": 2.2,
         "confirmed": 182,
         "verificationGaps": 32,
-        "mainBlocker": ""
+        "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 214,
+        "eligiblePosts": 215,
         "complete": 214,
-        "missing": 0,
-        "successRate": 100,
+        "missing": 1,
+        "successRate": 99.5,
         "averagePerDay": 2.2,
         "confirmed": 182,
         "verificationGaps": 32,
-        "mainBlocker": ""
+        "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 155,
+        "eligiblePosts": 156,
         "complete": 155,
-        "missing": 0,
-        "successRate": 100,
+        "missing": 1,
+        "successRate": 99.4,
         "averagePerDay": 1.3,
         "confirmed": 136,
         "verificationGaps": 19,
-        "mainBlocker": ""
+        "mainBlocker": "missing local success record"
       },
       {
         "key": "devto2",
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 155,
-        "complete": 155,
+        "eligiblePosts": 156,
+        "complete": 156,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.3,
-        "confirmed": 155,
+        "averagePerDay": 1.4,
+        "confirmed": 156,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -272,6 +272,18 @@
       "date": "2026-08-12",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "outgrowing-old-identities",
+      "lane": "boom",
+      "title": "Outgrowing Old Identities",
+      "date": "2026-08-12",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     }
   ]
