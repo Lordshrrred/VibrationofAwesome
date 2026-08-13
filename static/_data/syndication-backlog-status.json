@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T15:32:34.720Z",
+  "generatedAt": "2026-08-13T17:33:28.921Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,19 +14,19 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 217,
-    "backlogPosts": 11,
-    "backlinkCapableMissingUnits": 14,
-    "backlinkVerificationGaps": 126,
+    "totalTrackedPosts": 218,
+    "backlogPosts": 12,
+    "backlinkCapableMissingUnits": 12,
+    "backlinkVerificationGaps": 132,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 30,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 126,
-    "completedBacklinkUnitsPerDay": 9,
+    "distributionIncompleteUnits": 29,
+    "freshPostsAwaitingBacklinks": 12,
+    "freshMissingBacklinkUnits": 12,
+    "completedBacklinkUnitsInWindow": 132,
+    "completedBacklinkUnitsPerDay": 9.4,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 11,
+    "netBacklogChangePerDay": 10.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -36,10 +36,10 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 217,
+        "eligiblePosts": 218,
         "complete": 206,
-        "missing": 11,
-        "successRate": 94.9,
+        "missing": 12,
+        "successRate": 94.5,
         "averagePerDay": 1.9,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,49 +48,49 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 217,
-        "complete": 216,
-        "missing": 1,
-        "successRate": 99.5,
-        "averagePerDay": 2.4,
+        "eligiblePosts": 218,
+        "complete": 218,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 2.5,
         "confirmed": 182,
-        "verificationGaps": 34,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 36,
+        "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 217,
-        "complete": 216,
-        "missing": 1,
-        "successRate": 99.5,
-        "averagePerDay": 2.4,
+        "eligiblePosts": 218,
+        "complete": 218,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 2.5,
         "confirmed": 182,
-        "verificationGaps": 34,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 36,
+        "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 157,
-        "complete": 156,
-        "missing": 1,
-        "successRate": 99.4,
+        "complete": 157,
+        "missing": 0,
+        "successRate": 100,
         "averagePerDay": 1.4,
         "confirmed": 136,
-        "verificationGaps": 20,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 21,
+        "mainBlocker": ""
       },
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 60,
-        "complete": 60,
+        "eligiblePosts": 61,
+        "complete": 61,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1,
+        "averagePerDay": 1.1,
         "confirmed": 46,
-        "verificationGaps": 14,
+        "verificationGaps": 15,
         "mainBlocker": ""
       }
     ],
@@ -112,73 +112,73 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 176,
-        "complete": 168,
+        "eligiblePosts": 177,
+        "complete": 169,
         "missing": 8,
         "successRate": 95.5,
         "averagePerDay": 1.4,
         "confirmed": 142,
-        "verificationGaps": 26,
+        "verificationGaps": 27,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 176,
-        "complete": 167,
-        "missing": 9,
-        "successRate": 94.9,
-        "averagePerDay": 1.3,
+        "eligiblePosts": 177,
+        "complete": 169,
+        "missing": 8,
+        "successRate": 95.5,
+        "averagePerDay": 1.4,
         "confirmed": 142,
-        "verificationGaps": 25,
+        "verificationGaps": 27,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 114,
-        "complete": 101,
+        "eligiblePosts": 115,
+        "complete": 102,
         "missing": 13,
-        "successRate": 88.6,
-        "averagePerDay": 0.3,
+        "successRate": 88.7,
+        "averagePerDay": 0.4,
         "confirmed": 30,
-        "verificationGaps": 71,
+        "verificationGaps": 72,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 155,
-        "complete": 155,
+        "eligiblePosts": 156,
+        "complete": 156,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.4,
+        "averagePerDay": 0.5,
         "confirmed": 0,
-        "verificationGaps": 155,
+        "verificationGaps": 156,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 113,
-        "complete": 113,
+        "eligiblePosts": 114,
+        "complete": 114,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.3,
+        "averagePerDay": 0.4,
         "confirmed": 72,
-        "verificationGaps": 41,
+        "verificationGaps": 42,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 111,
-        "complete": 111,
+        "eligiblePosts": 112,
+        "complete": 112,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.3,
+        "averagePerDay": 0.4,
         "confirmed": 0,
-        "verificationGaps": 111,
+        "verificationGaps": 112,
         "mainBlocker": ""
       }
     ]
@@ -190,7 +190,7 @@
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 10
+      "count": 12
     },
     {
       "reason": "bluesky_voa: env vars not set",
@@ -199,10 +199,6 @@
     {
       "reason": "mastodon_voa: env vars not set",
       "count": 8
-    },
-    {
-      "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-      "count": 1
     }
   ],
   "prioritizedBacklog": [
@@ -288,9 +284,9 @@
       ]
     },
     {
-      "slug": "etsy-vs-art-galleries-vs-artist-websites",
+      "slug": "how-ai-fits-into-a-creator-workflow",
       "lane": "boom",
-      "title": "Etsy vs Art Galleries vs Artist Websites",
+      "title": "How AI Fits Into a Creator Workflow",
       "date": "2026-08-13",
       "missing": [
         "blogger"
@@ -302,10 +298,16 @@
       "title": "Choosing Truth Over Approval",
       "date": "2026-08-13",
       "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
+        "blogger"
+      ]
+    },
+    {
+      "slug": "etsy-vs-art-galleries-vs-artist-websites",
+      "lane": "boom",
+      "title": "Etsy vs Art Galleries vs Artist Websites",
+      "date": "2026-08-13",
+      "missing": [
+        "blogger"
       ]
     }
   ]
