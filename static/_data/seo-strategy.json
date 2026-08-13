@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-08-13T21:26:03.341Z",
+  "generatedAt": "2026-08-13T23:21:32.882Z",
   "keywordGeneration": {
-    "currentInventory": 45,
-    "publishedInventory": 227,
-    "estimatedDaysRemaining": 11.3,
+    "currentInventory": 44,
+    "publishedInventory": 228,
+    "estimatedDaysRemaining": 11,
     "publishingCadencePerDay": 4,
     "pauseThresholdDays": 60,
     "resumeThresholdDays": 21,
     "status": "running",
-    "reason": "11.3 publishing days of queue inventory remain. Curated expansion should continue."
+    "reason": "11 publishing days of queue inventory remain. Curated expansion should continue."
   },
   "backlinks": {
     "mode": "catch-up",
-    "backlogPosts": 12,
-    "backlogUnits": 12,
+    "backlogPosts": 13,
+    "backlogUnits": 16,
     "completedPerDay": 9.4,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
@@ -22,19 +22,19 @@
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "verificationGaps": 132,
-    "freshPostsAwaitingBacklinks": 12,
-    "freshMissingBacklinkUnits": 12,
-    "largestDelayPlatform": "Facebook VOA",
+    "freshPostsAwaitingBacklinks": 13,
+    "freshMissingBacklinkUnits": 16,
+    "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 13,
     "platformTable": {
       "backlinkCapable": [
         {
           "key": "blogger",
           "platform": "Blogger",
-          "eligiblePosts": 218,
+          "eligiblePosts": 219,
           "complete": 206,
-          "missing": 12,
-          "successRate": 94.5,
+          "missing": 13,
+          "successRate": 94.1,
           "averagePerDay": 1.9,
           "confirmed": 182,
           "verificationGaps": 24,
@@ -43,38 +43,38 @@
         {
           "key": "wordpress_earthstar",
           "platform": "WordPress",
-          "eligiblePosts": 218,
+          "eligiblePosts": 219,
           "complete": 218,
-          "missing": 0,
-          "successRate": 100,
+          "missing": 1,
+          "successRate": 99.5,
           "averagePerDay": 2.5,
           "confirmed": 182,
           "verificationGaps": 36,
-          "mainBlocker": ""
+          "mainBlocker": "missing local success record"
         },
         {
           "key": "tumblr_voa",
           "platform": "Tumblr",
-          "eligiblePosts": 218,
+          "eligiblePosts": 219,
           "complete": 218,
-          "missing": 0,
-          "successRate": 100,
+          "missing": 1,
+          "successRate": 99.5,
           "averagePerDay": 2.5,
           "confirmed": 182,
           "verificationGaps": 36,
-          "mainBlocker": ""
+          "mainBlocker": "missing local success record"
         },
         {
           "key": "devto",
           "platform": "Dev.to",
-          "eligiblePosts": 157,
+          "eligiblePosts": 158,
           "complete": 157,
-          "missing": 0,
-          "successRate": 100,
+          "missing": 1,
+          "successRate": 99.4,
           "averagePerDay": 1.4,
           "confirmed": 136,
           "verificationGaps": 21,
-          "mainBlocker": ""
+          "mainBlocker": "missing local success record"
         },
         {
           "key": "devto2",
@@ -93,12 +93,12 @@
         {
           "key": "feeder",
           "platform": "VOA Feeder",
-          "eligiblePosts": 157,
-          "complete": 157,
+          "eligiblePosts": 158,
+          "complete": 158,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 1.4,
-          "confirmed": 157,
+          "averagePerDay": 1.5,
+          "confirmed": 158,
           "verificationGaps": 0,
           "mainBlocker": ""
         }
