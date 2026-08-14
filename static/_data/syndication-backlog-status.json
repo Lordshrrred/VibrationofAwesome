@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T15:25:08.097Z",
+  "generatedAt": "2026-08-14T17:32:30.244Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,32 +14,32 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 221,
-    "backlogPosts": 15,
-    "backlinkCapableMissingUnits": 18,
-    "backlinkVerificationGaps": 138,
+    "totalTrackedPosts": 222,
+    "backlogPosts": 16,
+    "backlinkCapableMissingUnits": 19,
+    "backlinkVerificationGaps": 141,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 13,
-    "freshMissingBacklinkUnits": 16,
-    "completedBacklinkUnitsInWindow": 138,
-    "completedBacklinkUnitsPerDay": 9.9,
+    "freshPostsAwaitingBacklinks": 12,
+    "freshMissingBacklinkUnits": 15,
+    "completedBacklinkUnitsInWindow": 141,
+    "completedBacklinkUnitsPerDay": 10.1,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 10.1,
+    "netBacklogChangePerDay": 9.9,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 15
+    "largestDelayMissingUnits": 16
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 221,
+        "eligiblePosts": 222,
         "complete": 206,
-        "missing": 15,
-        "successRate": 93.2,
+        "missing": 16,
+        "successRate": 92.8,
         "averagePerDay": 1.9,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,25 +48,25 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 221,
-        "complete": 220,
+        "eligiblePosts": 222,
+        "complete": 221,
         "missing": 1,
         "successRate": 99.5,
-        "averagePerDay": 2.6,
+        "averagePerDay": 2.7,
         "confirmed": 182,
-        "verificationGaps": 38,
+        "verificationGaps": 39,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 221,
-        "complete": 220,
+        "eligiblePosts": 222,
+        "complete": 221,
         "missing": 1,
         "successRate": 99.5,
-        "averagePerDay": 2.6,
+        "averagePerDay": 2.7,
         "confirmed": 182,
-        "verificationGaps": 38,
+        "verificationGaps": 39,
         "mainBlocker": "missing local success record"
       },
       {
@@ -84,13 +84,13 @@
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 62,
-        "complete": 62,
+        "eligiblePosts": 63,
+        "complete": 63,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.1,
+        "averagePerDay": 1.2,
         "confirmed": 46,
-        "verificationGaps": 16,
+        "verificationGaps": 17,
         "mainBlocker": ""
       }
     ],
@@ -148,13 +148,13 @@
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 156,
-        "complete": 156,
+        "eligiblePosts": 157,
+        "complete": 157,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.5,
+        "averagePerDay": 0.6,
         "confirmed": 0,
-        "verificationGaps": 156,
+        "verificationGaps": 157,
         "mainBlocker": ""
       },
       {
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 14
+      "count": 15
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -275,15 +275,6 @@
       ]
     },
     {
-      "slug": "art-buying-guide-for-non-collectors",
-      "lane": "boom",
-      "title": "Art Buying Guide for Non-collectors",
-      "date": "2026-08-12",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
       "slug": "how-to-find-direction-when-you-feel-lost",
       "lane": "boom",
       "title": "How to Find Direction When You Feel Lost",
@@ -293,10 +284,10 @@
       ]
     },
     {
-      "slug": "how-ai-fits-into-a-creator-workflow",
+      "slug": "best-ai-workflow-for-solo-creators",
       "lane": "boom",
-      "title": "How AI Fits Into a Creator Workflow",
-      "date": "2026-08-13",
+      "title": "Best AI Workflow for Solo Creators",
+      "date": "2026-08-14",
       "missing": [
         "blogger"
       ]
@@ -320,6 +311,24 @@
         "tumblr_voa",
         "blogger",
         "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "art-buying-guide-for-non-collectors",
+      "lane": "boom",
+      "title": "Art Buying Guide for Non-collectors",
+      "date": "2026-08-12",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "how-ai-fits-into-a-creator-workflow",
+      "lane": "boom",
+      "title": "How AI Fits Into a Creator Workflow",
+      "date": "2026-08-13",
+      "missing": [
+        "blogger"
       ]
     },
     {
