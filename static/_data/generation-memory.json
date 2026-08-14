@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-14T03:28:15.631Z",
+  "lastUpdated": "2026-08-14T14:21:07.985Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "choosing-a-path-when-nothing-feels-clear",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-08-14T14:20:51.418Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,19 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-08-13T03:29:02.772Z"
-    },
-    {
-      "slug": "etsy-vs-art-galleries-vs-artist-websites",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-08-13T03:27:53.163Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "choosing-a-path-when-nothing-feels-clear",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-08-14T14:21:07.985Z"
+    },
     {
       "slug": "how-to-find-direction-when-you-feel-lost",
       "archetype": "sacred-tech",
@@ -1438,15 +1448,6 @@
       "emotionalTone": "clarity",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-07-17T14:49:17.839Z"
-    },
-    {
-      "slug": "how-to-write-linkedin-headlines-that-get-engagement",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-07-17T04:08:47.842Z"
     }
   ]
 }
