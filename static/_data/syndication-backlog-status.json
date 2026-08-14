@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T03:09:52.458Z",
+  "generatedAt": "2026-08-14T06:01:47.918Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,32 +14,32 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 219,
-    "backlogPosts": 13,
-    "backlinkCapableMissingUnits": 16,
-    "backlinkVerificationGaps": 132,
+    "totalTrackedPosts": 220,
+    "backlogPosts": 14,
+    "backlinkCapableMissingUnits": 14,
+    "backlinkVerificationGaps": 138,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 13,
-    "freshMissingBacklinkUnits": 16,
-    "completedBacklinkUnitsInWindow": 132,
-    "completedBacklinkUnitsPerDay": 9.4,
+    "freshMissingBacklinkUnits": 13,
+    "completedBacklinkUnitsInWindow": 138,
+    "completedBacklinkUnitsPerDay": 9.9,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 10.6,
+    "netBacklogChangePerDay": 10.1,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 13
+    "largestDelayMissingUnits": 14
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 219,
+        "eligiblePosts": 220,
         "complete": 206,
-        "missing": 13,
-        "successRate": 94.1,
+        "missing": 14,
+        "successRate": 93.6,
         "averagePerDay": 1.9,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,49 +48,49 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 219,
-        "complete": 218,
-        "missing": 1,
-        "successRate": 99.5,
-        "averagePerDay": 2.5,
+        "eligiblePosts": 220,
+        "complete": 220,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 2.6,
         "confirmed": 182,
-        "verificationGaps": 36,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 38,
+        "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 219,
-        "complete": 218,
-        "missing": 1,
-        "successRate": 99.5,
-        "averagePerDay": 2.5,
+        "eligiblePosts": 220,
+        "complete": 220,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 2.6,
         "confirmed": 182,
-        "verificationGaps": 36,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 38,
+        "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 158,
-        "complete": 157,
-        "missing": 1,
-        "successRate": 99.4,
-        "averagePerDay": 1.4,
+        "complete": 158,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 1.5,
         "confirmed": 136,
-        "verificationGaps": 21,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 22,
+        "mainBlocker": ""
       },
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 61,
-        "complete": 61,
+        "eligiblePosts": 62,
+        "complete": 62,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.1,
         "confirmed": 46,
-        "verificationGaps": 15,
+        "verificationGaps": 16,
         "mainBlocker": ""
       }
     ],
@@ -112,37 +112,37 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 177,
-        "complete": 169,
+        "eligiblePosts": 178,
+        "complete": 170,
         "missing": 8,
         "successRate": 95.5,
-        "averagePerDay": 1.4,
+        "averagePerDay": 1.5,
         "confirmed": 142,
-        "verificationGaps": 27,
+        "verificationGaps": 28,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 177,
-        "complete": 169,
+        "eligiblePosts": 178,
+        "complete": 170,
         "missing": 8,
         "successRate": 95.5,
-        "averagePerDay": 1.4,
+        "averagePerDay": 1.5,
         "confirmed": 142,
-        "verificationGaps": 27,
+        "verificationGaps": 28,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 115,
-        "complete": 102,
+        "eligiblePosts": 116,
+        "complete": 103,
         "missing": 13,
-        "successRate": 88.7,
+        "successRate": 88.8,
         "averagePerDay": 0.4,
         "confirmed": 30,
-        "verificationGaps": 72,
+        "verificationGaps": 73,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
@@ -160,37 +160,37 @@
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 114,
-        "complete": 114,
+        "eligiblePosts": 115,
+        "complete": 115,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.4,
         "confirmed": 72,
-        "verificationGaps": 42,
+        "verificationGaps": 43,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 112,
-        "complete": 112,
+        "eligiblePosts": 113,
+        "complete": 113,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.4,
         "confirmed": 0,
-        "verificationGaps": 112,
+        "verificationGaps": 113,
         "mainBlocker": ""
       }
     ]
   },
   "blockers": [
     {
-      "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
-      "count": 13
+      "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
+      "count": 14
     },
     {
-      "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 12
+      "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
+      "count": 13
     },
     {
       "reason": "bluesky_voa: env vars not set",
@@ -284,6 +284,15 @@
       ]
     },
     {
+      "slug": "how-to-find-direction-when-you-feel-lost",
+      "lane": "boom",
+      "title": "How to Find Direction When You Feel Lost",
+      "date": "2026-08-13",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
       "slug": "how-ai-fits-into-a-creator-workflow",
       "lane": "boom",
       "title": "How AI Fits Into a Creator Workflow",
@@ -302,24 +311,21 @@
       ]
     },
     {
+      "slug": "how-to-choose-art-that-resonates-with-your-space",
+      "lane": "boom",
+      "title": "How to Choose Art That Resonates with Your Space",
+      "date": "2026-08-14",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
       "slug": "etsy-vs-art-galleries-vs-artist-websites",
       "lane": "boom",
       "title": "Etsy vs Art Galleries vs Artist Websites",
       "date": "2026-08-13",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-find-direction-when-you-feel-lost",
-      "lane": "boom",
-      "title": "How to Find Direction When You Feel Lost",
-      "date": "2026-08-13",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     }
   ]
