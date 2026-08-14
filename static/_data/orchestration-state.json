@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-14T22:24:01.421Z",
+  "generated_at": "2026-08-14T22:27:55.551Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -422,6 +422,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "purpose-vs-motivation",
+        "title": "Purpose vs Motivation",
+        "lane": "boom",
+        "date": "2026-08-14",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "failed",
+            "timestamp": "2026-08-14T22:27:55.537Z",
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-08-14T22:27:55.537Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117096206738715685"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-08-14T22:27:55.537Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "skipped",
+            "timestamp": "2026-08-14T22:27:55.537Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-08-14T22:27:55.537Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "failed",
+            "timestamp": "2026-08-14T22:27:55.537Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-08-14T22:27:55.537Z",
+            "url": "https://dev.to/earthstarrising/purpose-vs-motivation-cj4"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-14T22:27:55.537Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/824963422475173888"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-14T22:27:55.537Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-14T22:27:55.537Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/14/purpose-vs-motivation-earthstar/"
+          }
+        },
+        "success_count": 6,
+        "failed_count": 3
+      },
       {
         "slug": "best-ai-workflow-for-solo-creators",
         "title": "Best AI Workflow for Solo Creators",
@@ -15077,6 +15143,21 @@
     ],
     "retry_backlog": [
       {
+        "slug": "purpose-vs-motivation",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-08-14T22:27:55.537Z"
+      },
+      {
+        "slug": "purpose-vs-motivation",
+        "platform": "instagram",
+        "timestamp": "2026-08-14T22:27:55.537Z"
+      },
+      {
+        "slug": "purpose-vs-motivation",
+        "platform": "blogger",
+        "timestamp": "2026-08-14T22:27:55.537Z"
+      },
+      {
         "slug": "best-ai-workflow-for-solo-creators",
         "platform": "blogger",
         "timestamp": "2026-08-14T16:40:17.131Z"
@@ -15301,70 +15382,84 @@
       "feeder": {
         "successes": 159,
         "failures": 0,
-        "total": 222
+        "total": 223
       },
       "bluesky_voa": {
         "successes": 170,
-        "failures": 8,
-        "total": 222
+        "failures": 9,
+        "total": 223
       },
       "mastodon_voa": {
-        "successes": 170,
+        "successes": 171,
         "failures": 8,
-        "total": 222
+        "total": 223
       },
       "facebook_voa": {
-        "successes": 103,
+        "successes": 104,
         "failures": 13,
-        "total": 222
+        "total": 223
       },
       "pinterest": {
         "successes": 157,
         "failures": 0,
-        "total": 222
+        "total": 223
       },
       "threads": {
-        "successes": 115,
+        "successes": 116,
         "failures": 0,
-        "total": 222
+        "total": 223
       },
       "instagram": {
         "successes": 113,
-        "failures": 0,
-        "total": 222
+        "failures": 1,
+        "total": 223
       },
       "devto": {
-        "successes": 158,
+        "successes": 159,
         "failures": 0,
-        "total": 222
+        "total": 223
       },
       "tumblr_voa": {
-        "successes": 221,
+        "successes": 222,
         "failures": 0,
-        "total": 222
+        "total": 223
       },
       "blogger": {
         "successes": 206,
-        "failures": 15,
-        "total": 222
+        "failures": 16,
+        "total": 223
       },
       "wordpress_earthstar": {
-        "successes": 221,
+        "successes": 222,
         "failures": 0,
-        "total": 222
+        "total": 223
       }
     },
     "summary": {
-      "total_posts": 222,
+      "total_posts": 223,
       "fully_syndicated": 194,
-      "partial": 28,
+      "partial": 29,
       "pending": 0,
-      "retry_backlog_count": 44
+      "retry_backlog_count": 47
     }
   },
   "visuals": {
-    "registry_count": 289,
+    "registry_count": 290,
     "registry_entries": [
+      {
+        "post_slug": "purpose-vs-motivation",
+        "source": "ideogram",
+        "asset_type": "archetype-visual",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-14T22:25:14.288Z"
+      },
       {
         "post_slug": "best-ai-workflow-for-solo-creators",
         "source": "ideogram",
@@ -19484,22 +19579,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 289,
+      "total_entries": 290,
       "reused_count": 62,
-      "reuse_rate": 0.215
+      "reuse_rate": 0.214
     },
     "source_breakdown": {
-      "ideogram": 195,
+      "ideogram": 196,
       "boom": 94
     },
     "generation_counts": {
-      "ideogram": 195
+      "ideogram": 196
     },
     "platform_usage": {
-      "pinterest": 229,
-      "bluesky_voa": 257,
-      "mastodon_voa": 257,
-      "instagram": 195
+      "instagram": 196,
+      "bluesky_voa": 258,
+      "mastodon_voa": 258,
+      "pinterest": 229
     }
   },
   "clusters": {
@@ -20028,7 +20123,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-14T16:41:48.487Z",
+    "last_updated": "2026-08-14T22:25:14.285Z",
     "recent_hooks": [
       {
         "slug": "my-mind-feels-noisy-all-the-time",
@@ -20912,6 +21007,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "purpose-vs-motivation",
+        "format": "conversational-reflection",
+        "cadenceProfile": "casual-spoken",
+        "density": "light-medium",
+        "openerStyle": "mid-conversation",
+        "closerStyle": "natural-landing",
+        "timestamp": "2026-08-14T22:25:00.217Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "short-native-insight",
         "cadenceProfile": "compact",
@@ -21171,18 +21275,19 @@
         "openerStyle": "direct",
         "closerStyle": "resonant",
         "timestamp": "2026-08-13T16:45:26.358Z"
-      },
-      {
-        "slug": "how-ai-fits-into-a-creator-workflow",
-        "format": "manifesto-conviction",
-        "cadenceProfile": "charged-decisive",
-        "density": "medium-dense",
-        "openerStyle": "strong-declarative",
-        "closerStyle": "worldview-shift",
-        "timestamp": "2026-08-13T16:43:39.300Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "purpose-vs-motivation",
+        "archetype": "cinematic-ideogram",
+        "archetypeLabel": "Cinematic Artwork",
+        "palette": "painterly-dark",
+        "emotionalTone": "liminal",
+        "emotionalCluster": "atmospheric",
+        "family": "art",
+        "timestamp": "2026-08-14T22:25:14.285Z"
+      },
       {
         "slug": "choosing-a-path-when-nothing-feels-clear",
         "archetype": "field-guide-aesthetic",
@@ -21463,21 +21568,12 @@
         "emotionalTone": "liminal",
         "emotionalCluster": "atmospheric",
         "timestamp": "2026-07-17T22:53:22.846Z"
-      },
-      {
-        "slug": "daily-news-brief-for-creators",
-        "archetype": "premium-quote-card",
-        "archetypeLabel": "Premium Quote Card",
-        "palette": "teal-on-dark",
-        "emotionalTone": "clarity",
-        "emotionalCluster": "intellectual",
-        "timestamp": "2026-07-17T14:49:17.839Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-14T22:24:01.421Z",
+    "as_of": "2026-08-14T22:27:55.551Z",
     "next_estimated_window": "2026-08-15",
     "queue_runway_days": 21,
     "queue_runway_status": "healthy",
@@ -21579,7 +21675,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 44,
+    "retry_backlog_count": 47,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -21639,9 +21735,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-14T22:24:01.407Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 13,
+    "last_export_at": "2026-08-14T22:27:55.540Z",
+    "source_event": "syndication",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }

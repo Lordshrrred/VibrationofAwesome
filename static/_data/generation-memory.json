@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-14T16:41:48.487Z",
+  "lastUpdated": "2026-08-14T22:25:14.285Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "purpose-vs-motivation",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-14T22:25:00.217Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,19 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-08-13T16:45:26.358Z"
-    },
-    {
-      "slug": "how-ai-fits-into-a-creator-workflow",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-08-13T16:43:39.300Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "purpose-vs-motivation",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "family": "art",
+      "timestamp": "2026-08-14T22:25:14.285Z"
+    },
     {
       "slug": "choosing-a-path-when-nothing-feels-clear",
       "archetype": "field-guide-aesthetic",
@@ -1439,15 +1449,6 @@
       "emotionalTone": "liminal",
       "emotionalCluster": "atmospheric",
       "timestamp": "2026-07-17T22:53:22.846Z"
-    },
-    {
-      "slug": "daily-news-brief-for-creators",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-07-17T14:49:17.839Z"
     }
   ]
 }
