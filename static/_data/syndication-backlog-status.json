@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T13:57:42.176Z",
+  "generatedAt": "2026-08-14T15:25:08.097Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 220,
-    "backlogPosts": 14,
-    "backlinkCapableMissingUnits": 14,
+    "totalTrackedPosts": 221,
+    "backlogPosts": 15,
+    "backlinkCapableMissingUnits": 18,
     "backlinkVerificationGaps": 138,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 13,
-    "freshMissingBacklinkUnits": 13,
+    "freshMissingBacklinkUnits": 16,
     "completedBacklinkUnitsInWindow": 138,
     "completedBacklinkUnitsPerDay": 9.9,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 10.1,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 14
+    "largestDelayMissingUnits": 15
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 220,
+        "eligiblePosts": 221,
         "complete": 206,
-        "missing": 14,
-        "successRate": 93.6,
+        "missing": 15,
+        "successRate": 93.2,
         "averagePerDay": 1.9,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,38 +48,38 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 220,
+        "eligiblePosts": 221,
         "complete": 220,
-        "missing": 0,
-        "successRate": 100,
+        "missing": 1,
+        "successRate": 99.5,
         "averagePerDay": 2.6,
         "confirmed": 182,
         "verificationGaps": 38,
-        "mainBlocker": ""
+        "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 220,
+        "eligiblePosts": 221,
         "complete": 220,
-        "missing": 0,
-        "successRate": 100,
+        "missing": 1,
+        "successRate": 99.5,
         "averagePerDay": 2.6,
         "confirmed": 182,
         "verificationGaps": 38,
-        "mainBlocker": ""
+        "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 158,
+        "eligiblePosts": 159,
         "complete": 158,
-        "missing": 0,
-        "successRate": 100,
+        "missing": 1,
+        "successRate": 99.4,
         "averagePerDay": 1.5,
         "confirmed": 136,
         "verificationGaps": 22,
-        "mainBlocker": ""
+        "mainBlocker": "missing local success record"
       },
       {
         "key": "devto2",
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 158,
-        "complete": 158,
+        "eligiblePosts": 159,
+        "complete": 159,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.5,
-        "confirmed": 158,
+        "averagePerDay": 1.6,
+        "confirmed": 159,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -302,19 +302,31 @@
       ]
     },
     {
-      "slug": "choosing-truth-over-approval",
+      "slug": "how-to-choose-art-that-resonates-with-your-space",
       "lane": "boom",
-      "title": "Choosing Truth Over Approval",
-      "date": "2026-08-13",
+      "title": "How to Choose Art That Resonates with Your Space",
+      "date": "2026-08-14",
       "missing": [
         "blogger"
       ]
     },
     {
-      "slug": "how-to-choose-art-that-resonates-with-your-space",
+      "slug": "choosing-a-path-when-nothing-feels-clear",
       "lane": "boom",
-      "title": "How to Choose Art That Resonates with Your Space",
+      "title": "Choosing a Path When Nothing Feels Clear",
       "date": "2026-08-14",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "choosing-truth-over-approval",
+      "lane": "boom",
+      "title": "Choosing Truth Over Approval",
+      "date": "2026-08-13",
       "missing": [
         "blogger"
       ]
