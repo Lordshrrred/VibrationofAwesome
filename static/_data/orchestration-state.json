@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-15T22:22:15.340Z",
+  "generated_at": "2026-08-15T22:27:51.529Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -420,6 +420,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "committing-before-you-feel-ready",
+        "title": "Committing Before You Feel Ready",
+        "lane": "boom",
+        "date": "2026-08-15",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-08-15T22:27:51.516Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mt5pm3wm4x2s"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-08-15T22:27:51.516Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117101863348652349"
+          },
+          "facebook_voa": {
+            "status": "failed",
+            "timestamp": "2026-08-15T22:27:51.516Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "skipped",
+            "timestamp": "2026-08-15T22:27:51.516Z",
+            "url": null
+          },
+          "threads": {
+            "status": "failed",
+            "timestamp": "2026-08-15T22:27:51.516Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "failed",
+            "timestamp": "2026-08-15T22:27:51.516Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-08-15T22:27:51.516Z",
+            "url": "https://dev.to/earthstarrising/committing-before-you-feel-ready-3opd"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-15T22:27:51.516Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825054018207465472"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-15T22:27:51.516Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-15T22:27:51.516Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/15/committing-before-you-feel-ready-earthstar/"
+          }
+        },
+        "success_count": 5,
+        "failed_count": 4
+      },
       {
         "slug": "too-many-ai-tools-and-no-clear-workflow",
         "title": "Too Many AI Tools and No Clear Workflow",
@@ -15273,6 +15339,26 @@
     ],
     "retry_backlog": [
       {
+        "slug": "committing-before-you-feel-ready",
+        "platform": "facebook_voa",
+        "timestamp": "2026-08-15T22:27:51.516Z"
+      },
+      {
+        "slug": "committing-before-you-feel-ready",
+        "platform": "threads",
+        "timestamp": "2026-08-15T22:27:51.516Z"
+      },
+      {
+        "slug": "committing-before-you-feel-ready",
+        "platform": "instagram",
+        "timestamp": "2026-08-15T22:27:51.516Z"
+      },
+      {
+        "slug": "committing-before-you-feel-ready",
+        "platform": "blogger",
+        "timestamp": "2026-08-15T22:27:51.516Z"
+      },
+      {
         "slug": "too-many-ai-tools-and-no-clear-workflow",
         "platform": "blogger",
         "timestamp": "2026-08-15T16:11:50.241Z"
@@ -15512,70 +15598,84 @@
       "feeder": {
         "successes": 161,
         "failures": 0,
-        "total": 225
+        "total": 226
       },
       "bluesky_voa": {
-        "successes": 172,
+        "successes": 173,
         "failures": 8,
-        "total": 225
+        "total": 226
       },
       "mastodon_voa": {
-        "successes": 172,
+        "successes": 173,
         "failures": 8,
-        "total": 225
+        "total": 226
       },
       "facebook_voa": {
         "successes": 105,
-        "failures": 13,
-        "total": 225
+        "failures": 14,
+        "total": 226
       },
       "pinterest": {
         "successes": 158,
         "failures": 0,
-        "total": 225
+        "total": 226
       },
       "threads": {
         "successes": 117,
-        "failures": 0,
-        "total": 225
+        "failures": 1,
+        "total": 226
       },
       "instagram": {
         "successes": 115,
-        "failures": 0,
-        "total": 225
+        "failures": 1,
+        "total": 226
       },
       "devto": {
-        "successes": 160,
+        "successes": 161,
         "failures": 0,
-        "total": 225
+        "total": 226
       },
       "tumblr_voa": {
-        "successes": 224,
+        "successes": 225,
         "failures": 0,
-        "total": 225
+        "total": 226
       },
       "blogger": {
         "successes": 206,
-        "failures": 18,
-        "total": 225
+        "failures": 19,
+        "total": 226
       },
       "wordpress_earthstar": {
-        "successes": 224,
+        "successes": 225,
         "failures": 0,
-        "total": 225
+        "total": 226
       }
     },
     "summary": {
-      "total_posts": 225,
+      "total_posts": 226,
       "fully_syndicated": 194,
-      "partial": 31,
+      "partial": 32,
       "pending": 0,
-      "retry_backlog_count": 47
+      "retry_backlog_count": 51
     }
   },
   "visuals": {
-    "registry_count": 294,
+    "registry_count": 295,
     "registry_entries": [
+      {
+        "post_slug": "committing-before-you-feel-ready",
+        "source": "ideogram",
+        "asset_type": "archetype-visual",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-15T22:23:47.112Z"
+      },
       {
         "post_slug": "too-many-ai-tools-and-no-clear-workflow",
         "source": "ideogram",
@@ -19765,22 +19865,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 294,
+      "total_entries": 295,
       "reused_count": 64,
-      "reuse_rate": 0.218
+      "reuse_rate": 0.217
     },
     "source_breakdown": {
-      "ideogram": 198,
+      "ideogram": 199,
       "boom": 96
     },
     "generation_counts": {
-      "ideogram": 198
+      "ideogram": 199
     },
     "platform_usage": {
-      "pinterest": 230,
-      "bluesky_voa": 262,
-      "mastodon_voa": 262,
-      "instagram": 199
+      "instagram": 200,
+      "bluesky_voa": 263,
+      "mastodon_voa": 263,
+      "pinterest": 230
     }
   },
   "clusters": {
@@ -20312,7 +20412,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-15T16:13:15.674Z",
+    "last_updated": "2026-08-15T22:23:47.109Z",
     "recent_hooks": [
       {
         "slug": "my-mind-feels-noisy-all-the-time",
@@ -21196,6 +21296,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "committing-before-you-feel-ready",
+        "format": "short-native-insight",
+        "cadenceProfile": "compact",
+        "density": "light",
+        "openerStyle": "direct",
+        "closerStyle": "resonant",
+        "timestamp": "2026-08-15T22:23:30.964Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "reflective-essay",
         "cadenceProfile": "slow-layered",
@@ -21455,18 +21564,19 @@
         "openerStyle": "contradiction",
         "closerStyle": "earned-realization",
         "timestamp": "2026-08-14T16:40:38.670Z"
-      },
-      {
-        "slug": "best-ai-workflow-for-solo-creators",
-        "format": "conversational-reflection",
-        "cadenceProfile": "casual-spoken",
-        "density": "light-medium",
-        "openerStyle": "mid-conversation",
-        "closerStyle": "natural-landing",
-        "timestamp": "2026-08-14T16:39:09.170Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "committing-before-you-feel-ready",
+        "archetype": "symbolic-consciousness",
+        "archetypeLabel": "Symbolic Consciousness",
+        "palette": "cosmic-teal",
+        "emotionalTone": "cosmic",
+        "emotionalCluster": "mystical",
+        "family": "art",
+        "timestamp": "2026-08-15T22:23:47.109Z"
+      },
       {
         "slug": "how-to-stop-drifting",
         "archetype": "minimalist-philosophy",
@@ -21749,21 +21859,12 @@
         "emotionalTone": "craft",
         "emotionalCluster": "grounded",
         "timestamp": "2026-07-18T22:52:43.626Z"
-      },
-      {
-        "slug": "how-to-turn-google-docs-into-a-website",
-        "archetype": "minimalist-philosophy",
-        "archetypeLabel": "Minimalist Philosophy",
-        "palette": "near-black-accent",
-        "emotionalTone": "stillness",
-        "emotionalCluster": "intellectual",
-        "timestamp": "2026-07-18T14:23:10.833Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-15T22:22:15.340Z",
+    "as_of": "2026-08-15T22:27:51.529Z",
     "next_estimated_window": "2026-08-16",
     "queue_runway_days": 20,
     "queue_runway_status": "healthy",
@@ -21866,7 +21967,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 47,
+    "retry_backlog_count": 51,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -21926,9 +22027,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-15T22:22:15.326Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 14,
+    "last_export_at": "2026-08-15T22:27:51.519Z",
+    "source_event": "syndication",
+    "export_duration_ms": 10,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }

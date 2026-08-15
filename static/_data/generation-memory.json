@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-15T16:13:15.674Z",
+  "lastUpdated": "2026-08-15T22:23:47.109Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "committing-before-you-feel-ready",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-15T22:23:30.964Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,19 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-08-14T16:40:38.670Z"
-    },
-    {
-      "slug": "best-ai-workflow-for-solo-creators",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-08-14T16:39:09.170Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "committing-before-you-feel-ready",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-08-15T22:23:47.109Z"
+    },
     {
       "slug": "how-to-stop-drifting",
       "archetype": "minimalist-philosophy",
@@ -1441,15 +1451,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-07-18T22:52:43.626Z"
-    },
-    {
-      "slug": "how-to-turn-google-docs-into-a-website",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "timestamp": "2026-07-18T14:23:10.833Z"
     }
   ]
 }
