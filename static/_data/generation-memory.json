@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-15T02:17:29.488Z",
+  "lastUpdated": "2026-08-15T13:36:16.095Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-stop-drifting",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-08-15T13:36:01.823Z"
+    },
+    {
       "slug": "why-a-good-life-can-still-feel-empty",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,18 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-08-14T03:26:46.064Z"
-    },
-    {
-      "slug": "how-to-choose-art-that-resonates-with-your-space",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-08-14T03:25:45.032Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-to-stop-drifting",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-08-15T13:36:16.095Z"
+    },
     {
       "slug": "purpose-vs-motivation",
       "archetype": "cinematic-ideogram",
@@ -1440,15 +1450,6 @@
       "emotionalTone": "stillness",
       "emotionalCluster": "intellectual",
       "timestamp": "2026-07-18T14:23:10.833Z"
-    },
-    {
-      "slug": "one-habit-per-month-system-for-creatives",
-      "archetype": "cinematic-ideogram",
-      "archetypeLabel": "Cinematic Artwork",
-      "palette": "painterly-dark",
-      "emotionalTone": "liminal",
-      "emotionalCluster": "atmospheric",
-      "timestamp": "2026-07-17T22:53:22.846Z"
     }
   ]
 }
