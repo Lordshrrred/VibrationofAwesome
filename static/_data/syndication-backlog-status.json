@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T13:10:40.870Z",
+  "generatedAt": "2026-08-15T14:52:42.728Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,9 +14,9 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 223,
-    "backlogPosts": 17,
-    "backlinkCapableMissingUnits": 20,
+    "totalTrackedPosts": 224,
+    "backlogPosts": 18,
+    "backlinkCapableMissingUnits": 24,
     "backlinkVerificationGaps": 144,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 9.7,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 17
+    "largestDelayMissingUnits": 18
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 223,
+        "eligiblePosts": 224,
         "complete": 206,
-        "missing": 17,
-        "successRate": 92.4,
+        "missing": 18,
+        "successRate": 92,
         "averagePerDay": 1.9,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 223,
+        "eligiblePosts": 224,
         "complete": 222,
-        "missing": 1,
-        "successRate": 99.6,
+        "missing": 2,
+        "successRate": 99.1,
         "averagePerDay": 2.8,
         "confirmed": 182,
         "verificationGaps": 40,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 223,
+        "eligiblePosts": 224,
         "complete": 222,
-        "missing": 1,
-        "successRate": 99.6,
+        "missing": 2,
+        "successRate": 99.1,
         "averagePerDay": 2.8,
         "confirmed": 182,
         "verificationGaps": 40,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 160,
+        "eligiblePosts": 161,
         "complete": 159,
-        "missing": 1,
-        "successRate": 99.4,
+        "missing": 2,
+        "successRate": 98.8,
         "averagePerDay": 1.6,
         "confirmed": 136,
         "verificationGaps": 23,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 160,
-        "complete": 160,
+        "eligiblePosts": 161,
+        "complete": 161,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.6,
-        "confirmed": 160,
+        "averagePerDay": 1.7,
+        "confirmed": 161,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -293,10 +293,10 @@
       ]
     },
     {
-      "slug": "choosing-a-path-when-nothing-feels-clear",
+      "slug": "how-to-stop-drifting",
       "lane": "boom",
-      "title": "Choosing a Path When Nothing Feels Clear",
-      "date": "2026-08-14",
+      "title": "How to Stop Drifting",
+      "date": "2026-08-15",
       "missing": [
         "devto",
         "tumblr_voa",
@@ -356,6 +356,18 @@
       "date": "2026-08-14",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "choosing-a-path-when-nothing-feels-clear",
+      "lane": "boom",
+      "title": "Choosing a Path When Nothing Feels Clear",
+      "date": "2026-08-14",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     }
   ]
