@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-15T16:09:27.139Z",
+  "generated_at": "2026-08-15T16:11:50.256Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -421,6 +421,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "too-many-ai-tools-and-no-clear-workflow",
+        "title": "Too Many AI Tools and No Clear Workflow",
+        "lane": "boom",
+        "date": "2026-08-15",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "facebook_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-08-15T16:11:50.241Z",
+            "url": null
+          },
+          "threads": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "instagram": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "devto": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-15T16:11:50.241Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825030360686542848"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-15T16:11:50.241Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-15T16:11:50.241Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/15/too-many-ai-tools-and-no-clear-workflow-earthstar/"
+          }
+        },
+        "success_count": 3,
+        "failed_count": 1
+      },
       {
         "slug": "how-to-stop-drifting",
         "title": "How to Stop Drifting",
@@ -15208,6 +15274,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "too-many-ai-tools-and-no-clear-workflow",
+        "platform": "blogger",
+        "timestamp": "2026-08-15T16:11:50.241Z"
+      },
+      {
         "slug": "purpose-vs-motivation",
         "platform": "blogger",
         "timestamp": "2026-08-15T02:16:12.904Z"
@@ -15437,70 +15508,84 @@
       "feeder": {
         "successes": 161,
         "failures": 0,
-        "total": 224
+        "total": 225
       },
       "bluesky_voa": {
         "successes": 171,
         "failures": 8,
-        "total": 224
+        "total": 225
       },
       "mastodon_voa": {
         "successes": 171,
         "failures": 8,
-        "total": 224
+        "total": 225
       },
       "facebook_voa": {
         "successes": 104,
         "failures": 13,
-        "total": 224
+        "total": 225
       },
       "pinterest": {
-        "successes": 157,
+        "successes": 158,
         "failures": 0,
-        "total": 224
+        "total": 225
       },
       "threads": {
         "successes": 116,
         "failures": 0,
-        "total": 224
+        "total": 225
       },
       "instagram": {
         "successes": 114,
         "failures": 0,
-        "total": 224
+        "total": 225
       },
       "devto": {
         "successes": 159,
         "failures": 0,
-        "total": 224
+        "total": 225
       },
       "tumblr_voa": {
-        "successes": 222,
+        "successes": 223,
         "failures": 0,
-        "total": 224
+        "total": 225
       },
       "blogger": {
         "successes": 206,
-        "failures": 16,
-        "total": 224
+        "failures": 17,
+        "total": 225
       },
       "wordpress_earthstar": {
-        "successes": 222,
+        "successes": 223,
         "failures": 0,
-        "total": 224
+        "total": 225
       }
     },
     "summary": {
-      "total_posts": 224,
+      "total_posts": 225,
       "fully_syndicated": 195,
-      "partial": 29,
+      "partial": 30,
       "pending": 0,
-      "retry_backlog_count": 45
+      "retry_backlog_count": 46
     }
   },
   "visuals": {
-    "registry_count": 293,
+    "registry_count": 294,
     "registry_entries": [
+      {
+        "post_slug": "too-many-ai-tools-and-no-clear-workflow",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "pinterest",
+        "timestamp": "2026-08-15T16:10:41.165Z"
+      },
       {
         "post_slug": "how-to-stop-drifting",
         "source": "ideogram",
@@ -19676,22 +19761,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 293,
+      "total_entries": 294,
       "reused_count": 64,
       "reuse_rate": 0.218
     },
     "source_breakdown": {
-      "ideogram": 197,
+      "ideogram": 198,
       "boom": 96
     },
     "generation_counts": {
-      "ideogram": 197
+      "ideogram": 198
     },
     "platform_usage": {
-      "instagram": 199,
-      "bluesky_voa": 261,
-      "mastodon_voa": 261,
-      "pinterest": 229
+      "pinterest": 230,
+      "bluesky_voa": 262,
+      "mastodon_voa": 262,
+      "instagram": 199
     }
   },
   "clusters": {
@@ -20222,7 +20307,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-15T13:38:57.766Z",
+    "last_updated": "2026-08-15T16:10:28.098Z",
     "recent_hooks": [
       {
         "slug": "my-mind-feels-noisy-all-the-time",
@@ -21106,6 +21191,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "too-many-ai-tools-and-no-clear-workflow",
+        "format": "creative-identity-reflection",
+        "cadenceProfile": "lyrical",
+        "density": "medium",
+        "openerStyle": "identity-confession",
+        "closerStyle": "invitation",
+        "timestamp": "2026-08-15T16:10:28.098Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "manifesto-conviction",
         "cadenceProfile": "charged-decisive",
@@ -21365,15 +21459,6 @@
         "openerStyle": "contradiction",
         "closerStyle": "earned-realization",
         "timestamp": "2026-08-14T14:23:26.955Z"
-      },
-      {
-        "slug": "choosing-a-path-when-nothing-feels-clear",
-        "format": "creative-identity-reflection",
-        "cadenceProfile": "lyrical",
-        "density": "medium",
-        "openerStyle": "identity-confession",
-        "closerStyle": "invitation",
-        "timestamp": "2026-08-14T14:20:51.418Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -21673,7 +21758,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-15T16:09:27.138Z",
+    "as_of": "2026-08-15T16:11:50.256Z",
     "next_estimated_window": "2026-08-16",
     "queue_runway_days": 20,
     "queue_runway_status": "healthy",
@@ -21776,7 +21861,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 45,
+    "retry_backlog_count": 46,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -21836,9 +21921,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-15T16:09:27.125Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 14,
+    "last_export_at": "2026-08-15T16:11:50.244Z",
+    "source_event": "syndication",
+    "export_duration_ms": 12,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
