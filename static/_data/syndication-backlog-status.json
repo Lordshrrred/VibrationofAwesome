@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T13:11:59.321Z",
+  "generatedAt": "2026-08-16T14:53:04.592Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 226,
-    "backlogPosts": 20,
-    "backlinkCapableMissingUnits": 23,
+    "totalTrackedPosts": 227,
+    "backlogPosts": 21,
+    "backlinkCapableMissingUnits": 27,
     "backlinkVerificationGaps": 153,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 11,
+    "freshMissingBacklinkUnits": 14,
     "completedBacklinkUnitsInWindow": 153,
     "completedBacklinkUnitsPerDay": 10.9,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 9.1,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 20
+    "largestDelayMissingUnits": 21
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 226,
+        "eligiblePosts": 227,
         "complete": 206,
-        "missing": 20,
-        "successRate": 91.2,
+        "missing": 21,
+        "successRate": 90.7,
         "averagePerDay": 1.9,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 226,
+        "eligiblePosts": 227,
         "complete": 225,
-        "missing": 1,
-        "successRate": 99.6,
+        "missing": 2,
+        "successRate": 99.1,
         "averagePerDay": 3,
         "confirmed": 182,
         "verificationGaps": 43,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 226,
+        "eligiblePosts": 227,
         "complete": 225,
-        "missing": 1,
-        "successRate": 99.6,
+        "missing": 2,
+        "successRate": 99.1,
         "averagePerDay": 3,
         "confirmed": 182,
         "verificationGaps": 43,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 162,
+        "eligiblePosts": 163,
         "complete": 161,
-        "missing": 1,
-        "successRate": 99.4,
+        "missing": 2,
+        "successRate": 98.8,
         "averagePerDay": 1.7,
         "confirmed": 136,
         "verificationGaps": 25,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 162,
-        "complete": 162,
+        "eligiblePosts": 163,
+        "complete": 163,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
-        "confirmed": 162,
+        "averagePerDay": 1.9,
+        "confirmed": 163,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -293,12 +293,15 @@
       ]
     },
     {
-      "slug": "how-to-stop-drifting",
+      "slug": "how-to-hear-yourself-again",
       "lane": "boom",
-      "title": "How to Stop Drifting",
-      "date": "2026-08-15",
+      "title": "How to Hear Yourself Again",
+      "date": "2026-08-16",
       "missing": [
-        "blogger"
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
@@ -369,6 +372,15 @@
       "lane": "boom",
       "title": "How to Choose Art That Resonates with Your Space",
       "date": "2026-08-14",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "how-to-stop-drifting",
+      "lane": "boom",
+      "title": "How to Stop Drifting",
+      "date": "2026-08-15",
       "missing": [
         "blogger"
       ]
