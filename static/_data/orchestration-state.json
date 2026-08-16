@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-16T16:09:57.540Z",
+  "generated_at": "2026-08-16T16:12:09.880Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -419,6 +419,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "ai-content-feels-generic-for-creators",
+        "title": "AI Content Feels Generic for Creators",
+        "lane": "boom",
+        "date": "2026-08-16",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "facebook_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-08-16T16:12:09.863Z",
+            "url": null
+          },
+          "threads": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "instagram": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "devto": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-16T16:12:09.863Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825120978306777088"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-16T16:12:09.863Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-16T16:12:09.863Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/16/ai-content-feels-generic-for-creators-earthstar/"
+          }
+        },
+        "success_count": 3,
+        "failed_count": 1
+      },
       {
         "slug": "how-to-hear-yourself-again",
         "title": "How to Hear Yourself Again",
@@ -15404,6 +15470,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "ai-content-feels-generic-for-creators",
+        "platform": "blogger",
+        "timestamp": "2026-08-16T16:12:09.863Z"
+      },
+      {
         "slug": "committing-before-you-feel-ready",
         "platform": "blogger",
         "timestamp": "2026-08-16T02:22:43.312Z"
@@ -15648,70 +15719,84 @@
       "feeder": {
         "successes": 163,
         "failures": 0,
-        "total": 227
+        "total": 228
       },
       "bluesky_voa": {
         "successes": 173,
         "failures": 8,
-        "total": 227
+        "total": 228
       },
       "mastodon_voa": {
         "successes": 173,
         "failures": 8,
-        "total": 227
+        "total": 228
       },
       "facebook_voa": {
         "successes": 106,
         "failures": 13,
-        "total": 227
+        "total": 228
       },
       "pinterest": {
-        "successes": 158,
+        "successes": 159,
         "failures": 0,
-        "total": 227
+        "total": 228
       },
       "threads": {
         "successes": 118,
         "failures": 0,
-        "total": 227
+        "total": 228
       },
       "instagram": {
         "successes": 116,
         "failures": 0,
-        "total": 227
+        "total": 228
       },
       "devto": {
         "successes": 161,
         "failures": 0,
-        "total": 227
+        "total": 228
       },
       "tumblr_voa": {
-        "successes": 225,
+        "successes": 226,
         "failures": 0,
-        "total": 227
+        "total": 228
       },
       "blogger": {
         "successes": 206,
-        "failures": 19,
-        "total": 227
+        "failures": 20,
+        "total": 228
       },
       "wordpress_earthstar": {
-        "successes": 225,
+        "successes": 226,
         "failures": 0,
-        "total": 227
+        "total": 228
       }
     },
     "summary": {
-      "total_posts": 227,
+      "total_posts": 228,
       "fully_syndicated": 195,
-      "partial": 32,
+      "partial": 33,
       "pending": 0,
-      "retry_backlog_count": 48
+      "retry_backlog_count": 49
     }
   },
   "visuals": {
-    "registry_count": 298,
+    "registry_count": 299,
     "registry_entries": [
+      {
+        "post_slug": "ai-content-feels-generic-for-creators",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "pinterest",
+        "timestamp": "2026-08-16T16:11:11.404Z"
+      },
       {
         "post_slug": "how-to-hear-yourself-again",
         "source": "ideogram",
@@ -19957,22 +20042,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 298,
+      "total_entries": 299,
       "reused_count": 66,
       "reuse_rate": 0.221
     },
     "source_breakdown": {
-      "ideogram": 200,
+      "ideogram": 201,
       "boom": 98
     },
     "generation_counts": {
-      "ideogram": 200
+      "ideogram": 201
     },
     "platform_usage": {
-      "instagram": 203,
-      "bluesky_voa": 266,
-      "mastodon_voa": 266,
-      "pinterest": 230
+      "pinterest": 231,
+      "bluesky_voa": 267,
+      "mastodon_voa": 267,
+      "instagram": 203
     }
   },
   "clusters": {
@@ -20506,7 +20591,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-16T13:40:45.262Z",
+    "last_updated": "2026-08-16T16:10:57.868Z",
     "recent_hooks": [
       {
         "slug": "my-mind-feels-noisy-all-the-time",
@@ -21390,6 +21475,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "ai-content-feels-generic-for-creators",
+        "format": "creative-identity-reflection",
+        "cadenceProfile": "lyrical",
+        "density": "medium",
+        "openerStyle": "identity-confession",
+        "closerStyle": "invitation",
+        "timestamp": "2026-08-16T16:10:57.868Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "conversational-reflection",
         "cadenceProfile": "casual-spoken",
@@ -21649,15 +21743,6 @@
         "openerStyle": "conceptual-paradox",
         "closerStyle": "open-question",
         "timestamp": "2026-08-15T13:37:50.858Z"
-      },
-      {
-        "slug": "how-to-stop-drifting",
-        "format": "single-native-post",
-        "cadenceProfile": "standalone",
-        "density": "medium",
-        "openerStyle": "any",
-        "closerStyle": "complete",
-        "timestamp": "2026-08-15T13:36:01.823Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -21959,7 +22044,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-16T16:09:57.540Z",
+    "as_of": "2026-08-16T16:12:09.880Z",
     "next_estimated_window": "2026-08-17",
     "queue_runway_days": 19,
     "queue_runway_status": "healthy",
@@ -22063,7 +22148,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 48,
+    "retry_backlog_count": 49,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -22123,9 +22208,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-16T16:09:57.527Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 13,
+    "last_export_at": "2026-08-16T16:12:09.866Z",
+    "source_event": "syndication",
+    "export_duration_ms": 14,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
