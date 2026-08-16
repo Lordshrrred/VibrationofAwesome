@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-16T16:13:28.631Z",
+  "lastUpdated": "2026-08-16T22:23:17.463Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "reducing-noise-and-overstimulation",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-08-16T22:23:02.819Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,18 +1156,19 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-08-15T16:12:05.079Z"
-    },
-    {
-      "slug": "too-many-ai-tools-and-no-clear-workflow",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-08-15T16:10:28.098Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "reducing-noise-and-overstimulation",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-08-16T22:23:17.463Z"
+    },
     {
       "slug": "how-to-hear-yourself-again",
       "archetype": "nervous-system-atmospheric",
@@ -1443,15 +1453,6 @@
       "emotionalTone": "quiet-discovery",
       "emotionalCluster": "grounded",
       "timestamp": "2026-07-20T15:16:49.804Z"
-    },
-    {
-      "slug": "how-to-find-untapped-markets-for-music-using-ai",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "timestamp": "2026-07-19T22:55:17.989Z"
     }
   ]
 }
