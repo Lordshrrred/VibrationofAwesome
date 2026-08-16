@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-15T22:29:40.179Z",
+  "lastUpdated": "2026-08-16T02:21:30.748Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "committing-before-you-feel-ready",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-08-16T02:21:30.748Z"
+    },
+    {
       "slug": "why-a-good-life-can-still-feel-empty",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,15 +1156,6 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-08-14T22:28:15.388Z"
-    },
-    {
-      "slug": "purpose-vs-motivation",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-08-14T22:25:00.217Z"
     }
   ],
   "recentInstagramArchetypes": [
