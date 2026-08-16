@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T14:53:04.592Z",
+  "generatedAt": "2026-08-16T16:55:00.064Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,32 +14,32 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 227,
-    "backlogPosts": 21,
-    "backlinkCapableMissingUnits": 27,
-    "backlinkVerificationGaps": 153,
+    "totalTrackedPosts": 228,
+    "backlogPosts": 22,
+    "backlinkCapableMissingUnits": 25,
+    "backlinkVerificationGaps": 159,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 153,
-    "completedBacklinkUnitsPerDay": 10.9,
+    "freshMissingBacklinkUnits": 11,
+    "completedBacklinkUnitsInWindow": 159,
+    "completedBacklinkUnitsPerDay": 11.4,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 9.1,
+    "netBacklogChangePerDay": 8.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 21
+    "largestDelayMissingUnits": 22
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 227,
+        "eligiblePosts": 228,
         "complete": 206,
-        "missing": 21,
-        "successRate": 90.7,
+        "missing": 22,
+        "successRate": 90.4,
         "averagePerDay": 1.9,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,49 +48,49 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 227,
-        "complete": 225,
-        "missing": 2,
-        "successRate": 99.1,
-        "averagePerDay": 3,
+        "eligiblePosts": 228,
+        "complete": 227,
+        "missing": 1,
+        "successRate": 99.6,
+        "averagePerDay": 3.1,
         "confirmed": 182,
-        "verificationGaps": 43,
+        "verificationGaps": 45,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 227,
-        "complete": 225,
-        "missing": 2,
-        "successRate": 99.1,
-        "averagePerDay": 3,
+        "eligiblePosts": 228,
+        "complete": 227,
+        "missing": 1,
+        "successRate": 99.6,
+        "averagePerDay": 3.1,
         "confirmed": 182,
-        "verificationGaps": 43,
+        "verificationGaps": 45,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 163,
-        "complete": 161,
-        "missing": 2,
-        "successRate": 98.8,
-        "averagePerDay": 1.7,
+        "complete": 162,
+        "missing": 1,
+        "successRate": 99.4,
+        "averagePerDay": 1.8,
         "confirmed": 136,
-        "verificationGaps": 25,
+        "verificationGaps": 26,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 64,
-        "complete": 64,
+        "eligiblePosts": 65,
+        "complete": 65,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.3,
+        "averagePerDay": 1.4,
         "confirmed": 46,
-        "verificationGaps": 18,
+        "verificationGaps": 19,
         "mainBlocker": ""
       }
     ],
@@ -112,73 +112,73 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 181,
-        "complete": 173,
+        "eligiblePosts": 182,
+        "complete": 174,
         "missing": 8,
         "successRate": 95.6,
-        "averagePerDay": 1.7,
+        "averagePerDay": 1.8,
         "confirmed": 142,
-        "verificationGaps": 31,
+        "verificationGaps": 32,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 181,
-        "complete": 173,
+        "eligiblePosts": 182,
+        "complete": 174,
         "missing": 8,
         "successRate": 95.6,
-        "averagePerDay": 1.7,
+        "averagePerDay": 1.8,
         "confirmed": 142,
-        "verificationGaps": 31,
+        "verificationGaps": 32,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 119,
-        "complete": 106,
+        "eligiblePosts": 120,
+        "complete": 107,
         "missing": 13,
-        "successRate": 89.1,
-        "averagePerDay": 0.6,
+        "successRate": 89.2,
+        "averagePerDay": 0.7,
         "confirmed": 30,
-        "verificationGaps": 76,
+        "verificationGaps": 77,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 158,
-        "complete": 158,
+        "eligiblePosts": 159,
+        "complete": 159,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.6,
+        "averagePerDay": 0.7,
         "confirmed": 0,
-        "verificationGaps": 158,
+        "verificationGaps": 159,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 118,
-        "complete": 118,
+        "eligiblePosts": 119,
+        "complete": 119,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.6,
+        "averagePerDay": 0.7,
         "confirmed": 72,
-        "verificationGaps": 46,
+        "verificationGaps": 47,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 116,
-        "complete": 116,
+        "eligiblePosts": 117,
+        "complete": 117,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.6,
+        "averagePerDay": 0.7,
         "confirmed": 0,
-        "verificationGaps": 116,
+        "verificationGaps": 117,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 19
+      "count": 21
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -284,10 +284,10 @@
       ]
     },
     {
-      "slug": "too-many-ai-tools-and-no-clear-workflow",
+      "slug": "ai-content-feels-generic-for-creators",
       "lane": "boom",
-      "title": "Too Many AI Tools and No Clear Workflow",
-      "date": "2026-08-15",
+      "title": "AI Content Feels Generic for Creators",
+      "date": "2026-08-16",
       "missing": [
         "blogger"
       ]
@@ -298,10 +298,7 @@
       "title": "How to Hear Yourself Again",
       "date": "2026-08-16",
       "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
+        "blogger"
       ]
     },
     {
@@ -372,6 +369,15 @@
       "lane": "boom",
       "title": "How to Choose Art That Resonates with Your Space",
       "date": "2026-08-14",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "too-many-ai-tools-and-no-clear-workflow",
+      "lane": "boom",
+      "title": "Too Many AI Tools and No Clear Workflow",
+      "date": "2026-08-15",
       "missing": [
         "blogger"
       ]
