@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T20:57:37.297Z",
+  "generatedAt": "2026-08-17T22:54:20.120Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,33 +14,33 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 231,
-    "backlogPosts": 25,
-    "backlinkCapableMissingUnits": 31,
+    "totalTrackedPosts": 232,
+    "backlogPosts": 26,
+    "backlinkCapableMissingUnits": 35,
     "backlinkVerificationGaps": 165,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 165,
-    "completedBacklinkUnitsPerDay": 11.8,
+    "freshPostsAwaitingBacklinks": 12,
+    "freshMissingBacklinkUnits": 18,
+    "completedBacklinkUnitsInWindow": 161,
+    "completedBacklinkUnitsPerDay": 11.5,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 8.2,
+    "netBacklogChangePerDay": 8.5,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 25
+    "largestDelayMissingUnits": 26
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 231,
+        "eligiblePosts": 232,
         "complete": 206,
-        "missing": 25,
-        "successRate": 89.2,
-        "averagePerDay": 1.9,
+        "missing": 26,
+        "successRate": 88.8,
+        "averagePerDay": 1.6,
         "confirmed": 182,
         "verificationGaps": 24,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 231,
+        "eligiblePosts": 232,
         "complete": 229,
-        "missing": 2,
-        "successRate": 99.1,
+        "missing": 3,
+        "successRate": 98.7,
         "averagePerDay": 3.3,
         "confirmed": 182,
         "verificationGaps": 47,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 231,
+        "eligiblePosts": 232,
         "complete": 229,
-        "missing": 2,
-        "successRate": 99.1,
+        "missing": 3,
+        "successRate": 98.7,
         "averagePerDay": 3.3,
         "confirmed": 182,
         "verificationGaps": 47,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 165,
+        "eligiblePosts": 166,
         "complete": 163,
-        "missing": 2,
-        "successRate": 98.8,
+        "missing": 3,
+        "successRate": 98.2,
         "averagePerDay": 1.9,
         "confirmed": 136,
         "verificationGaps": 27,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 165,
-        "complete": 165,
+        "eligiblePosts": 166,
+        "complete": 166,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
-        "confirmed": 165,
+        "averagePerDay": 2.1,
+        "confirmed": 166,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -290,6 +290,18 @@
       "date": "2026-08-17",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "journaling-for-clarity",
+      "lane": "boom",
+      "title": "Journaling for Clarity",
+      "date": "2026-08-17",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
