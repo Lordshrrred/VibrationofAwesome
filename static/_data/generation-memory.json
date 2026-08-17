@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-17T02:22:52.703Z",
+  "lastUpdated": "2026-08-17T13:44:57.277Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "rebuilding-intuition",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-17T13:44:40.652Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,18 +1156,19 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-08-16T02:22:56.998Z"
-    },
-    {
-      "slug": "committing-before-you-feel-ready",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-08-16T02:21:30.748Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "rebuilding-intuition",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-08-17T13:44:57.277Z"
+    },
     {
       "slug": "reducing-noise-and-overstimulation",
       "archetype": "premium-quote-card",
@@ -1444,15 +1454,6 @@
       "emotionalTone": "emergence",
       "emotionalCluster": "mystical",
       "timestamp": "2026-07-20T23:02:35.551Z"
-    },
-    {
-      "slug": "find-my-unique-strengths-as-a-creative",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "timestamp": "2026-07-20T15:16:49.804Z"
     }
   ]
 }
