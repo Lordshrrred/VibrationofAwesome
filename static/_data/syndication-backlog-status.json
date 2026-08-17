@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T02:06:46.337Z",
+  "generatedAt": "2026-08-17T03:29:32.811Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -16,17 +16,17 @@
   "summary": {
     "totalTrackedPosts": 229,
     "backlogPosts": 23,
-    "backlinkCapableMissingUnits": 29,
-    "backlinkVerificationGaps": 159,
+    "backlinkCapableMissingUnits": 26,
+    "backlinkVerificationGaps": 162,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 12,
-    "freshMissingBacklinkUnits": 15,
-    "completedBacklinkUnitsInWindow": 159,
-    "completedBacklinkUnitsPerDay": 11.4,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 11,
+    "completedBacklinkUnitsInWindow": 162,
+    "completedBacklinkUnitsPerDay": 11.6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 8.6,
+    "netBacklogChangePerDay": 8.4,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 23
@@ -49,36 +49,36 @@
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 229,
-        "complete": 227,
-        "missing": 2,
-        "successRate": 99.1,
-        "averagePerDay": 3.1,
+        "complete": 228,
+        "missing": 1,
+        "successRate": 99.6,
+        "averagePerDay": 3.2,
         "confirmed": 182,
-        "verificationGaps": 45,
+        "verificationGaps": 46,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 229,
-        "complete": 227,
-        "missing": 2,
-        "successRate": 99.1,
-        "averagePerDay": 3.1,
+        "complete": 228,
+        "missing": 1,
+        "successRate": 99.6,
+        "averagePerDay": 3.2,
         "confirmed": 182,
-        "verificationGaps": 45,
+        "verificationGaps": 46,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 164,
-        "complete": 162,
-        "missing": 2,
-        "successRate": 98.8,
-        "averagePerDay": 1.8,
+        "complete": 163,
+        "missing": 1,
+        "successRate": 99.4,
+        "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 26,
+        "verificationGaps": 27,
         "mainBlocker": "missing local success record"
       },
       {
@@ -112,37 +112,37 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 182,
-        "complete": 174,
+        "eligiblePosts": 183,
+        "complete": 175,
         "missing": 8,
         "successRate": 95.6,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.9,
         "confirmed": 142,
-        "verificationGaps": 32,
+        "verificationGaps": 33,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 182,
-        "complete": 174,
+        "eligiblePosts": 183,
+        "complete": 175,
         "missing": 8,
         "successRate": 95.6,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.9,
         "confirmed": 142,
-        "verificationGaps": 32,
+        "verificationGaps": 33,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 120,
-        "complete": 107,
+        "eligiblePosts": 121,
+        "complete": 108,
         "missing": 13,
-        "successRate": 89.2,
-        "averagePerDay": 0.7,
+        "successRate": 89.3,
+        "averagePerDay": 0.8,
         "confirmed": 30,
-        "verificationGaps": 77,
+        "verificationGaps": 78,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
@@ -160,25 +160,25 @@
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 119,
-        "complete": 119,
+        "eligiblePosts": 120,
+        "complete": 120,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.7,
+        "averagePerDay": 0.8,
         "confirmed": 72,
-        "verificationGaps": 47,
+        "verificationGaps": 48,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 117,
-        "complete": 117,
+        "eligiblePosts": 118,
+        "complete": 118,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.7,
+        "averagePerDay": 0.8,
         "confirmed": 0,
-        "verificationGaps": 117,
+        "verificationGaps": 118,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 21
+      "count": 22
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -275,10 +275,10 @@
       ]
     },
     {
-      "slug": "committing-before-you-feel-ready",
+      "slug": "reducing-noise-and-overstimulation",
       "lane": "boom",
-      "title": "Committing Before You Feel Ready",
-      "date": "2026-08-15",
+      "title": "Reducing Noise and Overstimulation",
+      "date": "2026-08-16",
       "missing": [
         "blogger"
       ]
@@ -299,18 +299,6 @@
       "date": "2026-08-16",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "reducing-noise-and-overstimulation",
-      "lane": "boom",
-      "title": "Reducing Noise and Overstimulation",
-      "date": "2026-08-16",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     },
     {
@@ -381,6 +369,15 @@
       "lane": "boom",
       "title": "How to Choose Art That Resonates with Your Space",
       "date": "2026-08-14",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "committing-before-you-feel-ready",
+      "lane": "boom",
+      "title": "Committing Before You Feel Ready",
+      "date": "2026-08-15",
       "missing": [
         "blogger"
       ]
