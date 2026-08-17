@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-17T22:33:24.180Z",
+  "generated_at": "2026-08-17T22:37:39.005Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -416,6 +416,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "journaling-for-clarity",
+        "title": "Journaling for Clarity",
+        "lane": "boom",
+        "date": "2026-08-17",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-08-17T22:37:38.991Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtcr734vra24"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-08-17T22:37:38.991Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117113234504190083"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-08-17T22:37:38.991Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "skipped",
+            "timestamp": "2026-08-17T22:37:38.991Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-08-17T22:37:38.991Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-08-17T22:37:38.991Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-08-17T22:37:38.991Z",
+            "url": "https://dev.to/earthstarrising/journaling-for-clarity-5caf"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-17T22:37:38.991Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825235816247934976"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-17T22:37:38.991Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-17T22:37:38.991Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/17/journaling-for-clarity-earthstar/"
+          }
+        },
+        "success_count": 8,
+        "failed_count": 1
+      },
       {
         "slug": "why-ai-music-tools-make-everything-sound-the-same",
         "title": "Why AI Music Tools Make Everything Sound the Same",
@@ -15665,6 +15731,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "journaling-for-clarity",
+        "platform": "blogger",
+        "timestamp": "2026-08-17T22:37:38.991Z"
+      },
+      {
         "slug": "why-ai-music-tools-make-everything-sound-the-same",
         "platform": "blogger",
         "timestamp": "2026-08-17T16:15:18.712Z"
@@ -15929,70 +16000,84 @@
       "feeder": {
         "successes": 165,
         "failures": 0,
-        "total": 231
+        "total": 232
       },
       "bluesky_voa": {
-        "successes": 175,
+        "successes": 176,
         "failures": 8,
-        "total": 231
+        "total": 232
       },
       "mastodon_voa": {
-        "successes": 175,
+        "successes": 176,
         "failures": 8,
-        "total": 231
+        "total": 232
       },
       "facebook_voa": {
-        "successes": 108,
+        "successes": 109,
         "failures": 13,
-        "total": 231
+        "total": 232
       },
       "pinterest": {
         "successes": 160,
         "failures": 0,
-        "total": 231
+        "total": 232
       },
       "threads": {
-        "successes": 120,
+        "successes": 121,
         "failures": 0,
-        "total": 231
+        "total": 232
       },
       "instagram": {
-        "successes": 118,
+        "successes": 119,
         "failures": 0,
-        "total": 231
+        "total": 232
       },
       "devto": {
-        "successes": 163,
+        "successes": 164,
         "failures": 0,
-        "total": 231
+        "total": 232
       },
       "tumblr_voa": {
-        "successes": 229,
+        "successes": 230,
         "failures": 0,
-        "total": 231
+        "total": 232
       },
       "blogger": {
         "successes": 206,
-        "failures": 23,
-        "total": 231
+        "failures": 24,
+        "total": 232
       },
       "wordpress_earthstar": {
-        "successes": 229,
+        "successes": 230,
         "failures": 0,
-        "total": 231
+        "total": 232
       }
     },
     "summary": {
-      "total_posts": 231,
+      "total_posts": 232,
       "fully_syndicated": 195,
-      "partial": 36,
+      "partial": 37,
       "pending": 0,
-      "retry_backlog_count": 52
+      "retry_backlog_count": 53
     }
   },
   "visuals": {
-    "registry_count": 303,
+    "registry_count": 304,
     "registry_entries": [
+      {
+        "post_slug": "journaling-for-clarity",
+        "source": "ideogram",
+        "asset_type": "archetype-visual",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-17T22:35:36.922Z"
+      },
       {
         "post_slug": "why-ai-music-tools-make-everything-sound-the-same",
         "source": "ideogram",
@@ -20308,22 +20393,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 303,
+      "total_entries": 304,
       "reused_count": 67,
-      "reuse_rate": 0.221
+      "reuse_rate": 0.22
     },
     "source_breakdown": {
-      "ideogram": 204,
+      "ideogram": 205,
       "boom": 99
     },
     "generation_counts": {
-      "ideogram": 204
+      "ideogram": 205
     },
     "platform_usage": {
-      "pinterest": 232,
-      "bluesky_voa": 271,
-      "mastodon_voa": 271,
-      "instagram": 206
+      "instagram": 207,
+      "bluesky_voa": 272,
+      "mastodon_voa": 272,
+      "pinterest": 232
     }
   },
   "clusters": {
@@ -20861,7 +20946,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-17T16:17:07.923Z",
+    "last_updated": "2026-08-17T22:35:36.918Z",
     "recent_hooks": [
       {
         "slug": "my-mind-feels-noisy-all-the-time",
@@ -21745,6 +21830,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "journaling-for-clarity",
+        "format": "tension-revelation",
+        "cadenceProfile": "tension-then-release",
+        "density": "medium-dense",
+        "openerStyle": "contradiction",
+        "closerStyle": "earned-realization",
+        "timestamp": "2026-08-17T22:35:13.238Z"
+      },
+      {
         "slug": "why-a-good-life-can-still-feel-empty",
         "format": "single-native-post",
         "cadenceProfile": "standalone",
@@ -22004,18 +22098,19 @@
         "openerStyle": "direct",
         "closerStyle": "resonant",
         "timestamp": "2026-08-16T16:12:23.596Z"
-      },
-      {
-        "slug": "ai-content-feels-generic-for-creators",
-        "format": "creative-identity-reflection",
-        "cadenceProfile": "lyrical",
-        "density": "medium",
-        "openerStyle": "identity-confession",
-        "closerStyle": "invitation",
-        "timestamp": "2026-08-16T16:10:57.868Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "journaling-for-clarity",
+        "archetype": "minimalist-philosophy",
+        "archetypeLabel": "Minimalist Philosophy",
+        "palette": "near-black-accent",
+        "emotionalTone": "stillness",
+        "emotionalCluster": "intellectual",
+        "family": "art",
+        "timestamp": "2026-08-17T22:35:36.918Z"
+      },
       {
         "slug": "rebuilding-intuition",
         "archetype": "field-guide-aesthetic",
@@ -22302,21 +22397,12 @@
         "emotionalTone": "clarity",
         "emotionalCluster": "intellectual",
         "timestamp": "2026-07-21T15:09:34.362Z"
-      },
-      {
-        "slug": "how-to-convert-blog-posts-into-lead-magnets",
-        "archetype": "sacred-tech",
-        "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-        "palette": "circuit-teal",
-        "emotionalTone": "emergence",
-        "emotionalCluster": "mystical",
-        "timestamp": "2026-07-20T23:02:35.551Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-17T22:33:24.180Z",
+    "as_of": "2026-08-17T22:37:39.005Z",
     "next_estimated_window": "2026-08-18",
     "queue_runway_days": 17,
     "queue_runway_status": "healthy",
@@ -22421,7 +22507,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 52,
+    "retry_backlog_count": 53,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -22481,9 +22567,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-17T22:33:24.164Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 16,
+    "last_export_at": "2026-08-17T22:37:38.994Z",
+    "source_event": "syndication",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
