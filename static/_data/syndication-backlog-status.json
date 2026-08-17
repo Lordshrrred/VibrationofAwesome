@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T14:56:41.439Z",
+  "generatedAt": "2026-08-17T16:58:37.972Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,32 +14,32 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 230,
-    "backlogPosts": 24,
-    "backlinkCapableMissingUnits": 30,
-    "backlinkVerificationGaps": 162,
+    "totalTrackedPosts": 231,
+    "backlogPosts": 25,
+    "backlinkCapableMissingUnits": 31,
+    "backlinkVerificationGaps": 165,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 11,
     "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 162,
-    "completedBacklinkUnitsPerDay": 11.6,
+    "completedBacklinkUnitsInWindow": 165,
+    "completedBacklinkUnitsPerDay": 11.8,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 8.4,
+    "netBacklogChangePerDay": 8.2,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 24
+    "largestDelayMissingUnits": 25
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 230,
+        "eligiblePosts": 231,
         "complete": 206,
-        "missing": 24,
-        "successRate": 89.6,
+        "missing": 25,
+        "successRate": 89.2,
         "averagePerDay": 1.9,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,25 +48,25 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 230,
-        "complete": 228,
+        "eligiblePosts": 231,
+        "complete": 229,
         "missing": 2,
         "successRate": 99.1,
-        "averagePerDay": 3.2,
+        "averagePerDay": 3.3,
         "confirmed": 182,
-        "verificationGaps": 46,
+        "verificationGaps": 47,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 230,
-        "complete": 228,
+        "eligiblePosts": 231,
+        "complete": 229,
         "missing": 2,
         "successRate": 99.1,
-        "averagePerDay": 3.2,
+        "averagePerDay": 3.3,
         "confirmed": 182,
-        "verificationGaps": 46,
+        "verificationGaps": 47,
         "mainBlocker": "missing local success record"
       },
       {
@@ -84,13 +84,13 @@
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 65,
-        "complete": 65,
+        "eligiblePosts": 66,
+        "complete": 66,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.4,
         "confirmed": 46,
-        "verificationGaps": 19,
+        "verificationGaps": 20,
         "mainBlocker": ""
       }
     ],
@@ -148,13 +148,13 @@
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 159,
-        "complete": 159,
+        "eligiblePosts": 160,
+        "complete": 160,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.7,
+        "averagePerDay": 0.8,
         "confirmed": 0,
-        "verificationGaps": 159,
+        "verificationGaps": 160,
         "mainBlocker": ""
       },
       {
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 22
+      "count": 23
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -284,10 +284,10 @@
       ]
     },
     {
-      "slug": "ai-content-feels-generic-for-creators",
+      "slug": "why-ai-music-tools-make-everything-sound-the-same",
       "lane": "boom",
-      "title": "AI Content Feels Generic for Creators",
-      "date": "2026-08-16",
+      "title": "Why AI Music Tools Make Everything Sound the Same",
+      "date": "2026-08-17",
       "missing": [
         "blogger"
       ]
@@ -399,6 +399,15 @@
       "lane": "boom",
       "title": "How to Stop Drifting",
       "date": "2026-08-15",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "ai-content-feels-generic-for-creators",
+      "lane": "boom",
+      "title": "AI Content Feels Generic for Creators",
+      "date": "2026-08-16",
       "missing": [
         "blogger"
       ]
