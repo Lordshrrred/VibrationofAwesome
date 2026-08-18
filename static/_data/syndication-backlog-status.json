@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T20:53:37.019Z",
+  "generatedAt": "2026-08-18T22:55:32.773Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 234,
-    "backlogPosts": 28,
-    "backlinkCapableMissingUnits": 34,
+    "totalTrackedPosts": 235,
+    "backlogPosts": 29,
+    "backlinkCapableMissingUnits": 38,
     "backlinkVerificationGaps": 174,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 11,
+    "freshPostsAwaitingBacklinks": 12,
+    "freshMissingBacklinkUnits": 15,
     "completedBacklinkUnitsInWindow": 162,
     "completedBacklinkUnitsPerDay": 11.6,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 8.4,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 28
+    "largestDelayMissingUnits": 29
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 234,
+        "eligiblePosts": 235,
         "complete": 206,
-        "missing": 28,
-        "successRate": 88,
+        "missing": 29,
+        "successRate": 87.7,
         "averagePerDay": 1.5,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 234,
+        "eligiblePosts": 235,
         "complete": 232,
-        "missing": 2,
-        "successRate": 99.1,
+        "missing": 3,
+        "successRate": 98.7,
         "averagePerDay": 3.4,
         "confirmed": 182,
         "verificationGaps": 50,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 234,
+        "eligiblePosts": 235,
         "complete": 232,
-        "missing": 2,
-        "successRate": 99.1,
+        "missing": 3,
+        "successRate": 98.7,
         "averagePerDay": 3.4,
         "confirmed": 182,
         "verificationGaps": 50,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 167,
+        "eligiblePosts": 168,
         "complete": 165,
-        "missing": 2,
-        "successRate": 98.8,
+        "missing": 3,
+        "successRate": 98.2,
         "averagePerDay": 1.9,
         "confirmed": 136,
         "verificationGaps": 29,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 167,
-        "complete": 167,
+        "eligiblePosts": 168,
+        "complete": 168,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
-        "confirmed": 167,
+        "averagePerDay": 2.1,
+        "confirmed": 168,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -299,6 +299,18 @@
       "date": "2026-08-18",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "simple-creator-automation-stack",
+      "lane": "boom",
+      "title": "Simple Creator Automation Stack",
+      "date": "2026-08-18",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
