@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T15:04:37.783Z",
+  "generatedAt": "2026-08-18T17:00:41.502Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,32 +14,32 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 233,
-    "backlogPosts": 27,
-    "backlinkCapableMissingUnits": 36,
-    "backlinkVerificationGaps": 168,
+    "totalTrackedPosts": 234,
+    "backlogPosts": 28,
+    "backlinkCapableMissingUnits": 34,
+    "backlinkVerificationGaps": 174,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 160,
-    "completedBacklinkUnitsPerDay": 11.4,
+    "freshMissingBacklinkUnits": 11,
+    "completedBacklinkUnitsInWindow": 166,
+    "completedBacklinkUnitsPerDay": 11.9,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 8.6,
+    "netBacklogChangePerDay": 8.1,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 27
+    "largestDelayMissingUnits": 28
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 233,
+        "eligiblePosts": 234,
         "complete": 206,
-        "missing": 27,
-        "successRate": 88.4,
+        "missing": 28,
+        "successRate": 88,
         "averagePerDay": 1.6,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,49 +48,49 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 233,
-        "complete": 230,
-        "missing": 3,
-        "successRate": 98.7,
-        "averagePerDay": 3.3,
+        "eligiblePosts": 234,
+        "complete": 232,
+        "missing": 2,
+        "successRate": 99.1,
+        "averagePerDay": 3.4,
         "confirmed": 182,
-        "verificationGaps": 48,
+        "verificationGaps": 50,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 233,
-        "complete": 230,
-        "missing": 3,
-        "successRate": 98.7,
-        "averagePerDay": 3.3,
+        "eligiblePosts": 234,
+        "complete": 232,
+        "missing": 2,
+        "successRate": 99.1,
+        "averagePerDay": 3.4,
         "confirmed": 182,
-        "verificationGaps": 48,
+        "verificationGaps": 50,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 167,
-        "complete": 164,
-        "missing": 3,
-        "successRate": 98.2,
+        "complete": 165,
+        "missing": 2,
+        "successRate": 98.8,
         "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 28,
+        "verificationGaps": 29,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 66,
-        "complete": 66,
+        "eligiblePosts": 67,
+        "complete": 67,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.4,
+        "averagePerDay": 1.5,
         "confirmed": 46,
-        "verificationGaps": 20,
+        "verificationGaps": 21,
         "mainBlocker": ""
       }
     ],
@@ -112,73 +112,73 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 184,
-        "complete": 176,
+        "eligiblePosts": 185,
+        "complete": 177,
         "missing": 8,
         "successRate": 95.7,
         "averagePerDay": 1.6,
         "confirmed": 142,
-        "verificationGaps": 34,
+        "verificationGaps": 35,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 184,
-        "complete": 176,
+        "eligiblePosts": 185,
+        "complete": 177,
         "missing": 8,
         "successRate": 95.7,
         "averagePerDay": 1.6,
         "confirmed": 142,
-        "verificationGaps": 34,
+        "verificationGaps": 35,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 122,
-        "complete": 109,
+        "eligiblePosts": 123,
+        "complete": 110,
         "missing": 13,
-        "successRate": 89.3,
-        "averagePerDay": 0.8,
+        "successRate": 89.4,
+        "averagePerDay": 0.9,
         "confirmed": 30,
-        "verificationGaps": 79,
+        "verificationGaps": 80,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 160,
-        "complete": 160,
+        "eligiblePosts": 161,
+        "complete": 161,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.8,
+        "averagePerDay": 0.9,
         "confirmed": 0,
-        "verificationGaps": 160,
+        "verificationGaps": 161,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 121,
-        "complete": 121,
+        "eligiblePosts": 122,
+        "complete": 122,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.8,
+        "averagePerDay": 0.9,
         "confirmed": 72,
-        "verificationGaps": 49,
+        "verificationGaps": 50,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 119,
-        "complete": 119,
+        "eligiblePosts": 120,
+        "complete": 120,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.8,
+        "averagePerDay": 0.9,
         "confirmed": 0,
-        "verificationGaps": 119,
+        "verificationGaps": 120,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 24
+      "count": 26
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -284,10 +284,10 @@
       ]
     },
     {
-      "slug": "why-ai-music-tools-make-everything-sound-the-same",
+      "slug": "creator-burnout-from-content-production",
       "lane": "boom",
-      "title": "Why AI Music Tools Make Everything Sound the Same",
-      "date": "2026-08-17",
+      "title": "Creator Burnout From Content Production",
+      "date": "2026-08-18",
       "missing": [
         "blogger"
       ]
@@ -298,10 +298,7 @@
       "title": "Why Silence Changes Everything",
       "date": "2026-08-18",
       "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
+        "blogger"
       ]
     },
     {
@@ -426,6 +423,15 @@
       "lane": "boom",
       "title": "How to Hear Yourself Again",
       "date": "2026-08-16",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "why-ai-music-tools-make-everything-sound-the-same",
+      "lane": "boom",
+      "title": "Why AI Music Tools Make Everything Sound the Same",
+      "date": "2026-08-17",
       "missing": [
         "blogger"
       ]
