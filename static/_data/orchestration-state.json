@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-18T13:48:05.653Z",
+  "generated_at": "2026-08-18T13:51:30.025Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -416,6 +416,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "why-silence-changes-everything",
+        "title": "Why Silence Changes Everything",
+        "lane": "boom",
+        "date": "2026-08-18",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-08-18T13:51:30.011Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mteec74ord2k"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-08-18T13:51:30.011Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117116830277575511"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-08-18T13:51:30.011Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "skipped",
+            "timestamp": "2026-08-18T13:51:30.011Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-08-18T13:51:30.011Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-08-18T13:51:30.011Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-08-18T13:51:30.011Z",
+            "url": "https://dev.to/earthstarrising/why-silence-changes-everything-3k5k"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-18T13:51:30.011Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825293318174982144"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-18T13:51:30.011Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-18T13:51:30.011Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/18/why-silence-changes-everything-earthstar/"
+          }
+        },
+        "success_count": 8,
+        "failed_count": 1
+      },
       {
         "slug": "journaling-for-clarity",
         "title": "Journaling for Clarity",
@@ -15731,6 +15797,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "why-silence-changes-everything",
+        "platform": "blogger",
+        "timestamp": "2026-08-18T13:51:30.011Z"
+      },
+      {
         "slug": "journaling-for-clarity",
         "platform": "blogger",
         "timestamp": "2026-08-18T02:17:24.944Z"
@@ -16000,70 +16071,84 @@
       "feeder": {
         "successes": 166,
         "failures": 0,
-        "total": 232
+        "total": 233
       },
       "bluesky_voa": {
-        "successes": 176,
+        "successes": 177,
         "failures": 8,
-        "total": 232
+        "total": 233
       },
       "mastodon_voa": {
-        "successes": 176,
+        "successes": 177,
         "failures": 8,
-        "total": 232
+        "total": 233
       },
       "facebook_voa": {
-        "successes": 109,
+        "successes": 110,
         "failures": 13,
-        "total": 232
+        "total": 233
       },
       "pinterest": {
         "successes": 160,
         "failures": 0,
-        "total": 232
+        "total": 233
       },
       "threads": {
-        "successes": 121,
+        "successes": 122,
         "failures": 0,
-        "total": 232
+        "total": 233
       },
       "instagram": {
-        "successes": 119,
+        "successes": 120,
         "failures": 0,
-        "total": 232
+        "total": 233
       },
       "devto": {
-        "successes": 164,
+        "successes": 165,
         "failures": 0,
-        "total": 232
+        "total": 233
       },
       "tumblr_voa": {
-        "successes": 230,
+        "successes": 231,
         "failures": 0,
-        "total": 232
+        "total": 233
       },
       "blogger": {
         "successes": 206,
-        "failures": 24,
-        "total": 232
+        "failures": 25,
+        "total": 233
       },
       "wordpress_earthstar": {
-        "successes": 230,
+        "successes": 231,
         "failures": 0,
-        "total": 232
+        "total": 233
       }
     },
     "summary": {
-      "total_posts": 232,
+      "total_posts": 233,
       "fully_syndicated": 195,
-      "partial": 37,
+      "partial": 38,
       "pending": 0,
-      "retry_backlog_count": 53
+      "retry_backlog_count": 54
     }
   },
   "visuals": {
-    "registry_count": 305,
+    "registry_count": 306,
     "registry_entries": [
+      {
+        "post_slug": "why-silence-changes-everything",
+        "source": "ideogram",
+        "asset_type": "archetype-visual",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-18T13:50:02.809Z"
+      },
       {
         "post_slug": "journaling-for-clarity",
         "source": "boom",
@@ -20407,21 +20492,21 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 305,
+      "total_entries": 306,
       "reused_count": 68,
-      "reuse_rate": 0.223
+      "reuse_rate": 0.222
     },
     "source_breakdown": {
-      "boom": 100,
-      "ideogram": 205
+      "ideogram": 206,
+      "boom": 100
     },
     "generation_counts": {
-      "ideogram": 205
+      "ideogram": 206
     },
     "platform_usage": {
-      "instagram": 208,
-      "bluesky_voa": 273,
-      "mastodon_voa": 273,
+      "instagram": 209,
+      "bluesky_voa": 274,
+      "mastodon_voa": 274,
       "pinterest": 232
     }
   },
@@ -20961,7 +21046,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-18T02:18:47.644Z",
+    "last_updated": "2026-08-18T13:50:02.805Z",
     "recent_hooks": [
       {
         "slug": "my-mind-feels-noisy-all-the-time",
@@ -21845,6 +21930,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "why-silence-changes-everything",
+        "format": "reflective-essay",
+        "cadenceProfile": "slow-layered",
+        "density": "dense",
+        "openerStyle": "grounded-observation",
+        "closerStyle": "quiet-wisdom",
+        "timestamp": "2026-08-18T13:49:47.503Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "conversational-reflection",
         "cadenceProfile": "casual-spoken",
@@ -22104,18 +22198,19 @@
         "openerStyle": "contradiction",
         "closerStyle": "earned-realization",
         "timestamp": "2026-08-17T02:21:46.724Z"
-      },
-      {
-        "slug": "reducing-noise-and-overstimulation",
-        "format": "manifesto-conviction",
-        "cadenceProfile": "charged-decisive",
-        "density": "medium-dense",
-        "openerStyle": "strong-declarative",
-        "closerStyle": "worldview-shift",
-        "timestamp": "2026-08-17T02:20:20.913Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "why-silence-changes-everything",
+        "archetype": "symbolic-consciousness",
+        "archetypeLabel": "Symbolic Consciousness",
+        "palette": "cosmic-teal",
+        "emotionalTone": "cosmic",
+        "emotionalCluster": "mystical",
+        "family": "art",
+        "timestamp": "2026-08-18T13:50:02.805Z"
+      },
       {
         "slug": "journaling-for-clarity",
         "archetype": "minimalist-philosophy",
@@ -22403,21 +22498,12 @@
         "emotionalTone": "cosmic",
         "emotionalCluster": "mystical",
         "timestamp": "2026-07-21T23:03:52.773Z"
-      },
-      {
-        "slug": "how-to-turn-youtube-videos-into-online-courses",
-        "archetype": "premium-quote-card",
-        "archetypeLabel": "Premium Quote Card",
-        "palette": "teal-on-dark",
-        "emotionalTone": "clarity",
-        "emotionalCluster": "intellectual",
-        "timestamp": "2026-07-21T15:09:34.362Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-18T13:48:05.653Z",
+    "as_of": "2026-08-18T13:51:30.025Z",
     "next_estimated_window": "2026-08-19",
     "queue_runway_days": 16,
     "queue_runway_status": "healthy",
@@ -22523,7 +22609,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 53,
+    "retry_backlog_count": 54,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -22583,9 +22669,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-18T13:48:05.639Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 14,
+    "last_export_at": "2026-08-18T13:51:30.014Z",
+    "source_event": "syndication",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
