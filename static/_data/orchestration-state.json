@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-18T22:34:44.817Z",
+  "generated_at": "2026-08-18T22:40:42.370Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -414,6 +414,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "simple-creator-automation-stack",
+        "title": "Simple Creator Automation Stack",
+        "lane": "boom",
+        "date": "2026-08-18",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-08-18T22:40:42.356Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtfbsuz4h624"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-08-18T22:40:42.356Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117118907518601607"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-08-18T22:40:42.356Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-08-18T22:40:42.356Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-08-18T22:40:42.356Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-08-18T22:40:42.356Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-08-18T22:40:42.356Z",
+            "url": "https://dev.to/earthstarrising/simple-creator-automation-stack-4k73"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-18T22:40:42.356Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825326607971598336"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-18T22:40:42.356Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-18T22:40:42.356Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/18/simple-creator-automation-stack-earthstar/"
+          }
+        },
+        "success_count": 9,
+        "failed_count": 1
+      },
       {
         "slug": "creator-burnout-from-content-production",
         "title": "Creator Burnout From Content Production",
@@ -15861,6 +15927,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "simple-creator-automation-stack",
+        "platform": "blogger",
+        "timestamp": "2026-08-18T22:40:42.356Z"
+      },
+      {
         "slug": "creator-burnout-from-content-production",
         "platform": "blogger",
         "timestamp": "2026-08-18T16:18:56.012Z"
@@ -16140,70 +16211,85 @@
       "feeder": {
         "successes": 167,
         "failures": 0,
-        "total": 234
+        "total": 235
       },
       "bluesky_voa": {
-        "successes": 177,
+        "successes": 178,
         "failures": 8,
-        "total": 234
+        "total": 235
       },
       "mastodon_voa": {
-        "successes": 177,
+        "successes": 178,
         "failures": 8,
-        "total": 234
+        "total": 235
       },
       "facebook_voa": {
-        "successes": 110,
+        "successes": 111,
         "failures": 13,
-        "total": 234
+        "total": 235
       },
       "pinterest": {
-        "successes": 161,
+        "successes": 162,
         "failures": 0,
-        "total": 234
+        "total": 235
       },
       "threads": {
-        "successes": 122,
+        "successes": 123,
         "failures": 0,
-        "total": 234
+        "total": 235
       },
       "instagram": {
-        "successes": 120,
+        "successes": 121,
         "failures": 0,
-        "total": 234
+        "total": 235
       },
       "devto": {
-        "successes": 165,
+        "successes": 166,
         "failures": 0,
-        "total": 234
+        "total": 235
       },
       "tumblr_voa": {
-        "successes": 232,
+        "successes": 233,
         "failures": 0,
-        "total": 234
+        "total": 235
       },
       "blogger": {
         "successes": 206,
-        "failures": 26,
-        "total": 234
+        "failures": 27,
+        "total": 235
       },
       "wordpress_earthstar": {
-        "successes": 232,
+        "successes": 233,
         "failures": 0,
-        "total": 234
+        "total": 235
       }
     },
     "summary": {
-      "total_posts": 234,
+      "total_posts": 235,
       "fully_syndicated": 195,
-      "partial": 39,
+      "partial": 40,
       "pending": 0,
-      "retry_backlog_count": 55
+      "retry_backlog_count": 56
     }
   },
   "visuals": {
-    "registry_count": 307,
+    "registry_count": 308,
     "registry_entries": [
+      {
+        "post_slug": "simple-creator-automation-stack",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-18T22:38:20.313Z"
+      },
       {
         "post_slug": "creator-burnout-from-content-production",
         "source": "ideogram",
@@ -20575,22 +20661,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 307,
+      "total_entries": 308,
       "reused_count": 68,
       "reuse_rate": 0.221
     },
     "source_breakdown": {
-      "ideogram": 207,
+      "ideogram": 208,
       "boom": 100
     },
     "generation_counts": {
-      "ideogram": 207
+      "ideogram": 208
     },
     "platform_usage": {
-      "pinterest": 233,
-      "bluesky_voa": 275,
-      "mastodon_voa": 275,
-      "instagram": 209
+      "pinterest": 234,
+      "instagram": 210,
+      "bluesky_voa": 276,
+      "mastodon_voa": 276
     }
   },
   "clusters": {
@@ -21131,7 +21217,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-18T16:20:26.835Z",
+    "last_updated": "2026-08-18T22:38:20.309Z",
     "recent_hooks": [
       {
         "slug": "my-mind-feels-noisy-all-the-time",
@@ -22015,6 +22101,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "simple-creator-automation-stack",
+        "format": "creative-identity-reflection",
+        "cadenceProfile": "lyrical",
+        "density": "medium",
+        "openerStyle": "identity-confession",
+        "closerStyle": "invitation",
+        "timestamp": "2026-08-18T22:38:04.251Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "tension-revelation",
         "cadenceProfile": "tension-then-release",
@@ -22274,18 +22369,19 @@
         "openerStyle": "conceptual-paradox",
         "closerStyle": "open-question",
         "timestamp": "2026-08-17T16:15:43.960Z"
-      },
-      {
-        "slug": "why-ai-music-tools-make-everything-sound-the-same",
-        "format": "conversational-reflection",
-        "cadenceProfile": "casual-spoken",
-        "density": "light-medium",
-        "openerStyle": "mid-conversation",
-        "closerStyle": "natural-landing",
-        "timestamp": "2026-08-17T16:13:54.145Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "simple-creator-automation-stack",
+        "archetype": "abstract-creator-life",
+        "archetypeLabel": "Abstract Creator Life",
+        "palette": "studio-cyan",
+        "emotionalTone": "craft",
+        "emotionalCluster": "grounded",
+        "family": "art",
+        "timestamp": "2026-08-18T22:38:20.309Z"
+      },
       {
         "slug": "why-silence-changes-everything",
         "archetype": "symbolic-consciousness",
@@ -22574,21 +22670,12 @@
         "emotionalTone": "craft",
         "emotionalCluster": "grounded",
         "timestamp": "2026-07-22T15:12:37.586Z"
-      },
-      {
-        "slug": "how-to-stop-overthinking-and-make-decisions-fast",
-        "archetype": "symbolic-consciousness",
-        "archetypeLabel": "Symbolic Consciousness",
-        "palette": "cosmic-teal",
-        "emotionalTone": "cosmic",
-        "emotionalCluster": "mystical",
-        "timestamp": "2026-07-21T23:03:52.773Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-18T22:34:44.817Z",
+    "as_of": "2026-08-18T22:40:42.370Z",
     "next_estimated_window": "2026-08-19",
     "queue_runway_days": 15,
     "queue_runway_status": "healthy",
@@ -22694,7 +22781,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 55,
+    "retry_backlog_count": 56,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -22754,9 +22841,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-18T22:34:44.803Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 14,
+    "last_export_at": "2026-08-18T22:40:42.359Z",
+    "source_event": "syndication",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }

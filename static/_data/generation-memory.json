@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-18T16:20:26.835Z",
+  "lastUpdated": "2026-08-18T22:38:20.309Z",
   "recentHooks": [
     {
       "slug": "my-mind-feels-noisy-all-the-time",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "simple-creator-automation-stack",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-08-18T22:38:04.251Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,18 +1156,19 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-08-17T16:15:43.960Z"
-    },
-    {
-      "slug": "why-ai-music-tools-make-everything-sound-the-same",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-08-17T16:13:54.145Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "simple-creator-automation-stack",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-08-18T22:38:20.309Z"
+    },
     {
       "slug": "why-silence-changes-everything",
       "archetype": "symbolic-consciousness",
@@ -1447,15 +1457,6 @@
       "emotionalTone": "craft",
       "emotionalCluster": "grounded",
       "timestamp": "2026-07-22T15:12:37.586Z"
-    },
-    {
-      "slug": "how-to-stop-overthinking-and-make-decisions-fast",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "timestamp": "2026-07-21T23:03:52.773Z"
     }
   ]
 }
