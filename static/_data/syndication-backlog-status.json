@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T13:26:14.356Z",
+  "generatedAt": "2026-08-18T15:04:37.783Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,9 +14,9 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 232,
-    "backlogPosts": 26,
-    "backlinkCapableMissingUnits": 32,
+    "totalTrackedPosts": 233,
+    "backlogPosts": 27,
+    "backlinkCapableMissingUnits": 36,
     "backlinkVerificationGaps": 168,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 8.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 26
+    "largestDelayMissingUnits": 27
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 232,
+        "eligiblePosts": 233,
         "complete": 206,
-        "missing": 26,
-        "successRate": 88.8,
+        "missing": 27,
+        "successRate": 88.4,
         "averagePerDay": 1.6,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 232,
+        "eligiblePosts": 233,
         "complete": 230,
-        "missing": 2,
-        "successRate": 99.1,
+        "missing": 3,
+        "successRate": 98.7,
         "averagePerDay": 3.3,
         "confirmed": 182,
         "verificationGaps": 48,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 232,
+        "eligiblePosts": 233,
         "complete": 230,
-        "missing": 2,
-        "successRate": 99.1,
+        "missing": 3,
+        "successRate": 98.7,
         "averagePerDay": 3.3,
         "confirmed": 182,
         "verificationGaps": 48,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 166,
+        "eligiblePosts": 167,
         "complete": 164,
-        "missing": 2,
-        "successRate": 98.8,
+        "missing": 3,
+        "successRate": 98.2,
         "averagePerDay": 1.9,
         "confirmed": 136,
         "verificationGaps": 28,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 166,
-        "complete": 166,
+        "eligiblePosts": 167,
+        "complete": 167,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
-        "confirmed": 166,
+        "averagePerDay": 2.1,
+        "confirmed": 167,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -293,10 +293,10 @@
       ]
     },
     {
-      "slug": "rebuilding-intuition",
+      "slug": "why-silence-changes-everything",
       "lane": "boom",
-      "title": "Rebuilding Intuition",
-      "date": "2026-08-17",
+      "title": "Why Silence Changes Everything",
+      "date": "2026-08-18",
       "missing": [
         "devto",
         "tumblr_voa",
@@ -435,6 +435,18 @@
       "lane": "boom",
       "title": "Choosing a Path When Nothing Feels Clear",
       "date": "2026-08-14",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "rebuilding-intuition",
+      "lane": "boom",
+      "title": "Rebuilding Intuition",
+      "date": "2026-08-17",
       "missing": [
         "devto",
         "tumblr_voa",
