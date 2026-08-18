@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-18T16:16:33.615Z",
+  "generated_at": "2026-08-18T16:18:56.022Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -415,6 +415,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "creator-burnout-from-content-production",
+        "title": "Creator Burnout From Content Production",
+        "lane": "boom",
+        "date": "2026-08-18",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "facebook_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-08-18T16:18:56.012Z",
+            "url": null
+          },
+          "threads": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "instagram": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "devto": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-18T16:18:56.012Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825302583532994560"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-18T16:18:56.012Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-18T16:18:56.012Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/18/creator-burnout-from-content-production-earthstar/"
+          }
+        },
+        "success_count": 3,
+        "failed_count": 1
+      },
       {
         "slug": "why-silence-changes-everything",
         "title": "Why Silence Changes Everything",
@@ -15796,6 +15862,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "creator-burnout-from-content-production",
+        "platform": "blogger",
+        "timestamp": "2026-08-18T16:18:56.012Z"
+      },
+      {
         "slug": "journaling-for-clarity",
         "platform": "blogger",
         "timestamp": "2026-08-18T02:17:24.944Z"
@@ -16065,70 +16136,84 @@
       "feeder": {
         "successes": 167,
         "failures": 0,
-        "total": 233
+        "total": 234
       },
       "bluesky_voa": {
         "successes": 176,
         "failures": 8,
-        "total": 233
+        "total": 234
       },
       "mastodon_voa": {
         "successes": 176,
         "failures": 8,
-        "total": 233
+        "total": 234
       },
       "facebook_voa": {
         "successes": 109,
         "failures": 13,
-        "total": 233
+        "total": 234
       },
       "pinterest": {
-        "successes": 160,
+        "successes": 161,
         "failures": 0,
-        "total": 233
+        "total": 234
       },
       "threads": {
         "successes": 121,
         "failures": 0,
-        "total": 233
+        "total": 234
       },
       "instagram": {
         "successes": 119,
         "failures": 0,
-        "total": 233
+        "total": 234
       },
       "devto": {
         "successes": 164,
         "failures": 0,
-        "total": 233
+        "total": 234
       },
       "tumblr_voa": {
-        "successes": 230,
+        "successes": 231,
         "failures": 0,
-        "total": 233
+        "total": 234
       },
       "blogger": {
         "successes": 206,
-        "failures": 24,
-        "total": 233
+        "failures": 25,
+        "total": 234
       },
       "wordpress_earthstar": {
-        "successes": 230,
+        "successes": 231,
         "failures": 0,
-        "total": 233
+        "total": 234
       }
     },
     "summary": {
-      "total_posts": 233,
+      "total_posts": 234,
       "fully_syndicated": 196,
-      "partial": 37,
+      "partial": 38,
       "pending": 0,
-      "retry_backlog_count": 53
+      "retry_backlog_count": 54
     }
   },
   "visuals": {
-    "registry_count": 306,
+    "registry_count": 307,
     "registry_entries": [
+      {
+        "post_slug": "creator-burnout-from-content-production",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "pinterest",
+        "timestamp": "2026-08-18T16:17:48.918Z"
+      },
       {
         "post_slug": "why-silence-changes-everything",
         "source": "ideogram",
@@ -20486,22 +20571,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 306,
+      "total_entries": 307,
       "reused_count": 68,
-      "reuse_rate": 0.222
+      "reuse_rate": 0.221
     },
     "source_breakdown": {
-      "ideogram": 206,
+      "ideogram": 207,
       "boom": 100
     },
     "generation_counts": {
-      "ideogram": 206
+      "ideogram": 207
     },
     "platform_usage": {
-      "instagram": 209,
-      "bluesky_voa": 274,
-      "mastodon_voa": 274,
-      "pinterest": 232
+      "pinterest": 233,
+      "bluesky_voa": 275,
+      "mastodon_voa": 275,
+      "instagram": 209
     }
   },
   "clusters": {
@@ -21041,7 +21126,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-18T13:52:37.585Z",
+    "last_updated": "2026-08-18T16:17:35.079Z",
     "recent_hooks": [
       {
         "slug": "my-mind-feels-noisy-all-the-time",
@@ -21925,6 +22010,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "creator-burnout-from-content-production",
+        "format": "creative-identity-reflection",
+        "cadenceProfile": "lyrical",
+        "density": "medium",
+        "openerStyle": "identity-confession",
+        "closerStyle": "invitation",
+        "timestamp": "2026-08-18T16:17:35.079Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "philosophical-observation",
         "cadenceProfile": "contemplative",
@@ -22184,15 +22278,6 @@
         "openerStyle": "grounded-observation",
         "closerStyle": "quiet-wisdom",
         "timestamp": "2026-08-17T13:47:16.789Z"
-      },
-      {
-        "slug": "rebuilding-intuition",
-        "format": "short-native-insight",
-        "cadenceProfile": "compact",
-        "density": "light",
-        "openerStyle": "direct",
-        "closerStyle": "resonant",
-        "timestamp": "2026-08-17T13:44:40.652Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -22498,7 +22583,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-18T16:16:33.615Z",
+    "as_of": "2026-08-18T16:18:56.022Z",
     "next_estimated_window": "2026-08-19",
     "queue_runway_days": 16,
     "queue_runway_status": "healthy",
@@ -22604,7 +22689,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 53,
+    "retry_backlog_count": 54,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -22664,9 +22749,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-18T16:16:33.604Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 11,
+    "last_export_at": "2026-08-18T16:18:56.014Z",
+    "source_event": "syndication",
+    "export_duration_ms": 8,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
