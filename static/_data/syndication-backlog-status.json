@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T13:29:27.722Z",
+  "generatedAt": "2026-08-19T15:09:58.704Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 235,
-    "backlogPosts": 29,
-    "backlinkCapableMissingUnits": 35,
+    "totalTrackedPosts": 236,
+    "backlogPosts": 30,
+    "backlinkCapableMissingUnits": 39,
     "backlinkVerificationGaps": 177,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 11,
+    "freshMissingBacklinkUnits": 14,
     "completedBacklinkUnitsInWindow": 161,
     "completedBacklinkUnitsPerDay": 11.5,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 8.5,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 29
+    "largestDelayMissingUnits": 30
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 235,
+        "eligiblePosts": 236,
         "complete": 206,
-        "missing": 29,
-        "successRate": 87.7,
+        "missing": 30,
+        "successRate": 87.3,
         "averagePerDay": 1.4,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 235,
+        "eligiblePosts": 236,
         "complete": 233,
-        "missing": 2,
-        "successRate": 99.1,
+        "missing": 3,
+        "successRate": 98.7,
         "averagePerDay": 3.4,
         "confirmed": 182,
         "verificationGaps": 51,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 235,
+        "eligiblePosts": 236,
         "complete": 233,
-        "missing": 2,
-        "successRate": 99.1,
+        "missing": 3,
+        "successRate": 98.7,
         "averagePerDay": 3.4,
         "confirmed": 182,
         "verificationGaps": 51,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 168,
+        "eligiblePosts": 169,
         "complete": 166,
-        "missing": 2,
-        "successRate": 98.8,
+        "missing": 3,
+        "successRate": 98.2,
         "averagePerDay": 1.9,
         "confirmed": 136,
         "verificationGaps": 30,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 168,
-        "complete": 168,
+        "eligiblePosts": 169,
+        "complete": 169,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
-        "confirmed": 168,
+        "averagePerDay": 2.1,
+        "confirmed": 169,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -293,12 +293,15 @@
       ]
     },
     {
-      "slug": "why-silence-changes-everything",
+      "slug": "claude-vs-chatgpt-for-creator-workflows",
       "lane": "boom",
-      "title": "Why Silence Changes Everything",
-      "date": "2026-08-18",
+      "title": "Claude vs ChatGPT for Creator Workflows",
+      "date": "2026-08-19",
       "missing": [
-        "blogger"
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
@@ -441,6 +444,15 @@
       "lane": "boom",
       "title": "Why AI Music Tools Make Everything Sound the Same",
       "date": "2026-08-17",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "why-silence-changes-everything",
+      "lane": "boom",
+      "title": "Why Silence Changes Everything",
+      "date": "2026-08-18",
       "missing": [
         "blogger"
       ]
