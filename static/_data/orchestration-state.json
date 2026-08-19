@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-19T16:16:26.474Z",
+  "generated_at": "2026-08-19T16:19:00.543Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -441,6 +441,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "automation-vs-batch-creation-for-artists",
+        "title": "Automation vs Batch Creation for Artists",
+        "lane": "boom",
+        "date": "2026-08-19",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "facebook_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-08-19T16:19:00.530Z",
+            "url": null
+          },
+          "threads": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "instagram": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "devto": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-19T16:19:00.530Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825393198909292544"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-19T16:19:00.530Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-19T16:19:00.530Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/19/automation-vs-batch-creation-for-artists-earthstar/"
+          }
+        },
+        "success_count": 3,
+        "failed_count": 1
+      },
       {
         "slug": "claude-vs-chatgpt-for-creator-workflows",
         "title": "Claude vs ChatGPT for Creator Workflows",
@@ -16020,6 +16086,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "automation-vs-batch-creation-for-artists",
+        "platform": "blogger",
+        "timestamp": "2026-08-19T16:19:00.530Z"
+      },
+      {
         "slug": "simple-creator-automation-stack",
         "platform": "blogger",
         "timestamp": "2026-08-19T02:20:05.020Z"
@@ -16304,70 +16375,84 @@
       "feeder": {
         "successes": 169,
         "failures": 0,
-        "total": 236
+        "total": 237
       },
       "bluesky_voa": {
         "successes": 178,
         "failures": 8,
-        "total": 236
+        "total": 237
       },
       "mastodon_voa": {
         "successes": 178,
         "failures": 8,
-        "total": 236
+        "total": 237
       },
       "facebook_voa": {
         "successes": 111,
         "failures": 13,
-        "total": 236
+        "total": 237
       },
       "pinterest": {
-        "successes": 162,
+        "successes": 163,
         "failures": 0,
-        "total": 236
+        "total": 237
       },
       "threads": {
         "successes": 123,
         "failures": 0,
-        "total": 236
+        "total": 237
       },
       "instagram": {
         "successes": 121,
         "failures": 0,
-        "total": 236
+        "total": 237
       },
       "devto": {
         "successes": 166,
         "failures": 0,
-        "total": 236
+        "total": 237
       },
       "tumblr_voa": {
-        "successes": 233,
+        "successes": 234,
         "failures": 0,
-        "total": 236
+        "total": 237
       },
       "blogger": {
         "successes": 206,
-        "failures": 27,
-        "total": 236
+        "failures": 28,
+        "total": 237
       },
       "wordpress_earthstar": {
-        "successes": 233,
+        "successes": 234,
         "failures": 0,
-        "total": 236
+        "total": 237
       }
     },
     "summary": {
-      "total_posts": 236,
+      "total_posts": 237,
       "fully_syndicated": 196,
-      "partial": 40,
+      "partial": 41,
       "pending": 0,
-      "retry_backlog_count": 56
+      "retry_backlog_count": 57
     }
   },
   "visuals": {
-    "registry_count": 311,
+    "registry_count": 312,
     "registry_entries": [
+      {
+        "post_slug": "automation-vs-batch-creation-for-artists",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "pinterest",
+        "timestamp": "2026-08-19T16:17:43.709Z"
+      },
       {
         "post_slug": "claude-vs-chatgpt-for-creator-workflows",
         "source": "ideogram",
@@ -20797,22 +20882,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 311,
+      "total_entries": 312,
       "reused_count": 70,
-      "reuse_rate": 0.225
+      "reuse_rate": 0.224
     },
     "source_breakdown": {
-      "ideogram": 209,
+      "ideogram": 210,
       "boom": 102
     },
     "generation_counts": {
-      "ideogram": 209
+      "ideogram": 210
     },
     "platform_usage": {
-      "pinterest": 236,
-      "instagram": 212,
-      "bluesky_voa": 279,
-      "mastodon_voa": 279
+      "pinterest": 237,
+      "bluesky_voa": 280,
+      "mastodon_voa": 280,
+      "instagram": 212
     }
   },
   "clusters": {
@@ -21355,7 +21440,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-19T14:07:11.283Z",
+    "last_updated": "2026-08-19T16:17:28.297Z",
     "recent_hooks": [
       {
         "slug": "contentment-vs-settling",
@@ -22239,6 +22324,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "automation-vs-batch-creation-for-artists",
+        "format": "reflective-essay",
+        "cadenceProfile": "slow-layered",
+        "density": "dense",
+        "openerStyle": "grounded-observation",
+        "closerStyle": "quiet-wisdom",
+        "timestamp": "2026-08-19T16:17:28.297Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "tension-revelation",
         "cadenceProfile": "tension-then-release",
@@ -22498,15 +22592,6 @@
         "openerStyle": "direct",
         "closerStyle": "resonant",
         "timestamp": "2026-08-18T13:51:48.062Z"
-      },
-      {
-        "slug": "why-silence-changes-everything",
-        "format": "reflective-essay",
-        "cadenceProfile": "slow-layered",
-        "density": "dense",
-        "openerStyle": "grounded-observation",
-        "closerStyle": "quiet-wisdom",
-        "timestamp": "2026-08-18T13:49:47.503Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -22814,7 +22899,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-19T16:16:26.474Z",
+    "as_of": "2026-08-19T16:19:00.543Z",
     "next_estimated_window": "2026-08-20",
     "queue_runway_days": 28,
     "queue_runway_status": "healthy",
@@ -22921,7 +23006,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 56,
+    "retry_backlog_count": 57,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -22981,9 +23066,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-19T16:16:26.462Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 12,
+    "last_export_at": "2026-08-19T16:19:00.533Z",
+    "source_event": "syndication",
+    "export_duration_ms": 10,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
