@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-19T13:58:52.130Z",
+  "generated_at": "2026-08-19T14:05:54.173Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -442,6 +442,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "claude-vs-chatgpt-for-creator-workflows",
+        "title": "Claude vs ChatGPT for Creator Workflows",
+        "lane": "boom",
+        "date": "2026-08-19",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-08-19T14:05:54.158Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtgvjqj6oe2k"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-08-19T14:05:54.158Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117122546637015975"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-08-19T14:05:54.158Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-08-19T14:05:54.158Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-08-19T14:05:54.158Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-08-19T14:05:54.158Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-08-19T14:05:54.158Z",
+            "url": "https://dev.to/earthstarrising/claude-vs-chatgpt-for-creator-workflows-2fen"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-19T14:05:54.158Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825384823501848576"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-19T14:05:54.158Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-19T14:05:54.158Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/19/claude-vs-chatgpt-for-creator-workflows-earthstar/"
+          }
+        },
+        "success_count": 9,
+        "failed_count": 1
+      },
       {
         "slug": "simple-creator-automation-stack",
         "title": "Simple Creator Automation Stack",
@@ -15955,6 +16021,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "claude-vs-chatgpt-for-creator-workflows",
+        "platform": "blogger",
+        "timestamp": "2026-08-19T14:05:54.158Z"
+      },
+      {
         "slug": "simple-creator-automation-stack",
         "platform": "blogger",
         "timestamp": "2026-08-19T02:20:05.020Z"
@@ -16239,70 +16310,85 @@
       "feeder": {
         "successes": 168,
         "failures": 0,
-        "total": 235
+        "total": 236
       },
       "bluesky_voa": {
-        "successes": 178,
+        "successes": 179,
         "failures": 8,
-        "total": 235
+        "total": 236
       },
       "mastodon_voa": {
-        "successes": 178,
+        "successes": 179,
         "failures": 8,
-        "total": 235
+        "total": 236
       },
       "facebook_voa": {
-        "successes": 111,
+        "successes": 112,
         "failures": 13,
-        "total": 235
+        "total": 236
       },
       "pinterest": {
-        "successes": 162,
+        "successes": 163,
         "failures": 0,
-        "total": 235
+        "total": 236
       },
       "threads": {
-        "successes": 123,
+        "successes": 124,
         "failures": 0,
-        "total": 235
+        "total": 236
       },
       "instagram": {
-        "successes": 121,
+        "successes": 122,
         "failures": 0,
-        "total": 235
+        "total": 236
       },
       "devto": {
-        "successes": 166,
+        "successes": 167,
         "failures": 0,
-        "total": 235
+        "total": 236
       },
       "tumblr_voa": {
-        "successes": 233,
+        "successes": 234,
         "failures": 0,
-        "total": 235
+        "total": 236
       },
       "blogger": {
         "successes": 206,
-        "failures": 27,
-        "total": 235
+        "failures": 28,
+        "total": 236
       },
       "wordpress_earthstar": {
-        "successes": 233,
+        "successes": 234,
         "failures": 0,
-        "total": 235
+        "total": 236
       }
     },
     "summary": {
-      "total_posts": 235,
+      "total_posts": 236,
       "fully_syndicated": 195,
-      "partial": 40,
+      "partial": 41,
       "pending": 0,
-      "retry_backlog_count": 56
+      "retry_backlog_count": 57
     }
   },
   "visuals": {
-    "registry_count": 310,
+    "registry_count": 311,
     "registry_entries": [
+      {
+        "post_slug": "claude-vs-chatgpt-for-creator-workflows",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-19T14:03:48.273Z"
+      },
       {
         "post_slug": "simple-creator-automation-stack",
         "source": "boom",
@@ -20717,22 +20803,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 310,
+      "total_entries": 311,
       "reused_count": 70,
-      "reuse_rate": 0.226
+      "reuse_rate": 0.225
     },
     "source_breakdown": {
-      "boom": 102,
-      "ideogram": 208
+      "ideogram": 209,
+      "boom": 102
     },
     "generation_counts": {
-      "ideogram": 208
+      "ideogram": 209
     },
     "platform_usage": {
-      "instagram": 211,
-      "bluesky_voa": 278,
-      "mastodon_voa": 278,
-      "pinterest": 235
+      "pinterest": 236,
+      "instagram": 212,
+      "bluesky_voa": 279,
+      "mastodon_voa": 279
     }
   },
   "clusters": {
@@ -21274,7 +21360,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-19T11:18:38.253Z",
+    "last_updated": "2026-08-19T14:03:48.269Z",
     "recent_hooks": [
       {
         "slug": "contentment-vs-settling",
@@ -22158,6 +22244,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "claude-vs-chatgpt-for-creator-workflows",
+        "format": "conversational-reflection",
+        "cadenceProfile": "casual-spoken",
+        "density": "light-medium",
+        "openerStyle": "mid-conversation",
+        "closerStyle": "natural-landing",
+        "timestamp": "2026-08-19T14:03:31.086Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "short-native-insight",
         "cadenceProfile": "compact",
@@ -22417,18 +22512,19 @@
         "openerStyle": "strong-declarative",
         "closerStyle": "worldview-shift",
         "timestamp": "2026-08-18T02:17:47.344Z"
-      },
-      {
-        "slug": "journaling-for-clarity",
-        "format": "tension-revelation",
-        "cadenceProfile": "tension-then-release",
-        "density": "medium-dense",
-        "openerStyle": "contradiction",
-        "closerStyle": "earned-realization",
-        "timestamp": "2026-08-18T02:16:00.445Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "claude-vs-chatgpt-for-creator-workflows",
+        "archetype": "sacred-tech",
+        "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+        "palette": "circuit-teal",
+        "emotionalTone": "emergence",
+        "emotionalCluster": "mystical",
+        "family": "art",
+        "timestamp": "2026-08-19T14:03:48.269Z"
+      },
       {
         "slug": "simple-creator-automation-stack",
         "archetype": "abstract-creator-life",
@@ -22718,21 +22814,12 @@
         "emotionalCluster": "atmospheric",
         "family": "art",
         "timestamp": "2026-08-04T00:50:14.106Z"
-      },
-      {
-        "slug": "how-to-use-notebooklm-to-learn-faster-as-a-creator",
-        "archetype": "abstract-creator-life",
-        "archetypeLabel": "Abstract Creator Life",
-        "palette": "studio-cyan",
-        "emotionalTone": "craft",
-        "emotionalCluster": "grounded",
-        "timestamp": "2026-07-22T15:12:37.586Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-19T13:58:52.130Z",
+    "as_of": "2026-08-19T14:05:54.173Z",
     "next_estimated_window": "2026-08-20",
     "queue_runway_days": 29,
     "queue_runway_status": "healthy",
@@ -22839,7 +22926,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 56,
+    "retry_backlog_count": 57,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -22899,9 +22986,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-19T13:58:52.116Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 14,
+    "last_export_at": "2026-08-19T14:05:54.161Z",
+    "source_event": "syndication",
+    "export_duration_ms": 12,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
