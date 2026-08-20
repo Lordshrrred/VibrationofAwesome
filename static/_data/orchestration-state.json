@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-20T16:19:08.636Z",
+  "generated_at": "2026-08-20T16:21:18.008Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -439,6 +439,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "how-to-build-an-ai-content-workflow",
+        "title": "How to Build an AI Content Workflow",
+        "lane": "boom",
+        "date": "2026-08-20",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "facebook_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-08-20T16:21:17.994Z",
+            "url": null
+          },
+          "threads": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "instagram": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "devto": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-20T16:21:17.994Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825483933938483200"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-20T16:21:17.994Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-20T16:21:17.994Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/20/how-to-build-an-ai-content-workflow-earthstar/"
+          }
+        },
+        "success_count": 3,
+        "failed_count": 1
+      },
       {
         "slug": "what-cheap-dopamine-does-to-motivation",
         "title": "What Cheap Dopamine Does to Motivation",
@@ -16216,6 +16282,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "how-to-build-an-ai-content-workflow",
+        "platform": "blogger",
+        "timestamp": "2026-08-20T16:21:17.994Z"
+      },
+      {
         "slug": "what-self-betrayal-actually-looks-like",
         "platform": "blogger",
         "timestamp": "2026-08-20T02:19:05.889Z"
@@ -16515,70 +16586,84 @@
       "feeder": {
         "successes": 171,
         "failures": 0,
-        "total": 239
+        "total": 240
       },
       "bluesky_voa": {
         "successes": 180,
         "failures": 8,
-        "total": 239
+        "total": 240
       },
       "mastodon_voa": {
         "successes": 180,
         "failures": 8,
-        "total": 239
+        "total": 240
       },
       "facebook_voa": {
         "successes": 113,
         "failures": 13,
-        "total": 239
+        "total": 240
       },
       "pinterest": {
-        "successes": 164,
+        "successes": 165,
         "failures": 0,
-        "total": 239
+        "total": 240
       },
       "threads": {
         "successes": 125,
         "failures": 0,
-        "total": 239
+        "total": 240
       },
       "instagram": {
         "successes": 123,
         "failures": 0,
-        "total": 239
+        "total": 240
       },
       "devto": {
         "successes": 168,
         "failures": 0,
-        "total": 239
+        "total": 240
       },
       "tumblr_voa": {
-        "successes": 236,
+        "successes": 237,
         "failures": 0,
-        "total": 239
+        "total": 240
       },
       "blogger": {
         "successes": 206,
-        "failures": 30,
-        "total": 239
+        "failures": 31,
+        "total": 240
       },
       "wordpress_earthstar": {
-        "successes": 236,
+        "successes": 237,
         "failures": 0,
-        "total": 239
+        "total": 240
       }
     },
     "summary": {
-      "total_posts": 239,
+      "total_posts": 240,
       "fully_syndicated": 196,
-      "partial": 43,
+      "partial": 44,
       "pending": 0,
-      "retry_backlog_count": 59
+      "retry_backlog_count": 60
     }
   },
   "visuals": {
-    "registry_count": 315,
+    "registry_count": 316,
     "registry_entries": [
+      {
+        "post_slug": "how-to-build-an-ai-content-workflow",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "pinterest",
+        "timestamp": "2026-08-20T16:20:17.128Z"
+      },
       {
         "post_slug": "what-cheap-dopamine-does-to-motivation",
         "source": "ideogram",
@@ -21065,22 +21150,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 315,
+      "total_entries": 316,
       "reused_count": 71,
       "reuse_rate": 0.225
     },
     "source_breakdown": {
-      "ideogram": 212,
+      "ideogram": 213,
       "boom": 103
     },
     "generation_counts": {
-      "ideogram": 212
+      "ideogram": 213
     },
     "platform_usage": {
-      "pinterest": 238,
-      "instagram": 215,
-      "bluesky_voa": 283,
-      "mastodon_voa": 283
+      "pinterest": 239,
+      "bluesky_voa": 284,
+      "mastodon_voa": 284,
+      "instagram": 215
     }
   },
   "clusters": {
@@ -21626,7 +21711,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-20T13:55:16.012Z",
+    "last_updated": "2026-08-20T16:20:03.849Z",
     "recent_hooks": [
       {
         "slug": "contentment-vs-settling",
@@ -22510,6 +22595,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "how-to-build-an-ai-content-workflow",
+        "format": "creative-identity-reflection",
+        "cadenceProfile": "lyrical",
+        "density": "medium",
+        "openerStyle": "identity-confession",
+        "closerStyle": "invitation",
+        "timestamp": "2026-08-20T16:20:03.849Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "philosophical-observation",
         "cadenceProfile": "contemplative",
@@ -22769,15 +22863,6 @@
         "openerStyle": "strong-declarative",
         "closerStyle": "worldview-shift",
         "timestamp": "2026-08-19T14:06:07.665Z"
-      },
-      {
-        "slug": "claude-vs-chatgpt-for-creator-workflows",
-        "format": "conversational-reflection",
-        "cadenceProfile": "casual-spoken",
-        "density": "light-medium",
-        "openerStyle": "mid-conversation",
-        "closerStyle": "natural-landing",
-        "timestamp": "2026-08-19T14:03:31.086Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -23085,7 +23170,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-20T16:19:08.636Z",
+    "as_of": "2026-08-20T16:21:18.008Z",
     "next_estimated_window": "2026-08-21",
     "queue_runway_days": 27,
     "queue_runway_status": "healthy",
@@ -23193,7 +23278,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 59,
+    "retry_backlog_count": 60,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -23253,9 +23338,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-20T16:19:08.622Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 14,
+    "last_export_at": "2026-08-20T16:21:17.997Z",
+    "source_event": "syndication",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
