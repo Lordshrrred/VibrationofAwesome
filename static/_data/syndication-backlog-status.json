@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T02:10:33.475Z",
+  "generatedAt": "2026-08-21T03:31:49.060Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -16,17 +16,17 @@
   "summary": {
     "totalTrackedPosts": 241,
     "backlogPosts": 35,
-    "backlinkCapableMissingUnits": 44,
-    "backlinkVerificationGaps": 192,
+    "backlinkCapableMissingUnits": 41,
+    "backlinkVerificationGaps": 195,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 12,
-    "freshMissingBacklinkUnits": 15,
-    "completedBacklinkUnitsInWindow": 160,
-    "completedBacklinkUnitsPerDay": 11.4,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 11,
+    "completedBacklinkUnitsInWindow": 163,
+    "completedBacklinkUnitsPerDay": 11.6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 8.6,
+    "netBacklogChangePerDay": 8.4,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 35
@@ -49,36 +49,36 @@
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 241,
-        "complete": 238,
-        "missing": 3,
-        "successRate": 98.8,
-        "averagePerDay": 3.4,
+        "complete": 239,
+        "missing": 2,
+        "successRate": 99.2,
+        "averagePerDay": 3.5,
         "confirmed": 182,
-        "verificationGaps": 56,
+        "verificationGaps": 57,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 241,
-        "complete": 238,
-        "missing": 3,
-        "successRate": 98.8,
-        "averagePerDay": 3.4,
+        "complete": 239,
+        "missing": 2,
+        "successRate": 99.2,
+        "averagePerDay": 3.5,
         "confirmed": 182,
-        "verificationGaps": 56,
+        "verificationGaps": 57,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 172,
-        "complete": 169,
-        "missing": 3,
-        "successRate": 98.3,
+        "complete": 170,
+        "missing": 2,
+        "successRate": 98.8,
         "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 33,
+        "verificationGaps": 34,
         "mainBlocker": "missing local success record"
       },
       {
@@ -112,73 +112,73 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 189,
-        "complete": 181,
+        "eligiblePosts": 190,
+        "complete": 182,
         "missing": 8,
         "successRate": 95.8,
         "averagePerDay": 1.6,
         "confirmed": 142,
-        "verificationGaps": 39,
+        "verificationGaps": 40,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 189,
-        "complete": 181,
+        "eligiblePosts": 190,
+        "complete": 182,
         "missing": 8,
         "successRate": 95.8,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.7,
         "confirmed": 142,
-        "verificationGaps": 39,
+        "verificationGaps": 40,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 127,
-        "complete": 114,
+        "eligiblePosts": 128,
+        "complete": 115,
         "missing": 13,
         "successRate": 89.8,
-        "averagePerDay": 1,
+        "averagePerDay": 1.1,
         "confirmed": 30,
-        "verificationGaps": 84,
+        "verificationGaps": 85,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 166,
-        "complete": 166,
+        "eligiblePosts": 167,
+        "complete": 167,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.2,
+        "averagePerDay": 1.3,
         "confirmed": 0,
-        "verificationGaps": 166,
+        "verificationGaps": 167,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 126,
-        "complete": 126,
+        "eligiblePosts": 127,
+        "complete": 127,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1,
+        "averagePerDay": 1.1,
         "confirmed": 72,
-        "verificationGaps": 54,
+        "verificationGaps": 55,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 124,
-        "complete": 124,
+        "eligiblePosts": 125,
+        "complete": 125,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1,
+        "averagePerDay": 1.1,
         "confirmed": 0,
-        "verificationGaps": 124,
+        "verificationGaps": 125,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 32
+      "count": 33
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -275,10 +275,10 @@
       ]
     },
     {
-      "slug": "what-self-betrayal-actually-looks-like",
+      "slug": "how-overstimulation-affects-focus",
       "lane": "boom",
-      "title": "What Self Betrayal Actually Looks Like",
-      "date": "2026-08-19",
+      "title": "How Overstimulation Affects Focus",
+      "date": "2026-08-20",
       "missing": [
         "blogger"
       ]
@@ -299,18 +299,6 @@
       "date": "2026-08-20",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "how-overstimulation-affects-focus",
-      "lane": "boom",
-      "title": "How Overstimulation Affects Focus",
-      "date": "2026-08-20",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     },
     {
@@ -480,6 +468,15 @@
       "lane": "boom",
       "title": "Why Silence Changes Everything",
       "date": "2026-08-18",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "what-self-betrayal-actually-looks-like",
+      "lane": "boom",
+      "title": "What Self Betrayal Actually Looks Like",
+      "date": "2026-08-19",
       "missing": [
         "blogger"
       ]
