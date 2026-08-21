@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-21T16:21:10.526Z",
+  "lastUpdated": "2026-08-21T22:30:25.926Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -889,6 +889,60 @@
   "recentThreadsFormats": [
     {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-21T22:30:25.926Z"
+    },
+    {
+      "slug": "why-a-good-life-can-still-feel-empty",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-08-21T22:30:11.372Z"
+    },
+    {
+      "slug": "how-to-tell-when-something-is-not-for-you-anymore",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-08-21T22:29:53.931Z"
+    },
+    {
+      "slug": "how-to-cancel-ai-advantage-current-refund-and-subscription-terms",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-08-21T22:29:34.641Z"
+    },
+    {
+      "slug": "outgrowing-old-identities",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-08-21T22:29:17.921Z"
+    },
+    {
+      "slug": "why-direction-matters-more-than-motivation",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-08-21T22:26:37.322Z"
+    },
+    {
+      "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
       "density": "dense",
@@ -1102,63 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-08-20T22:29:41.725Z"
-    },
-    {
-      "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-08-20T16:22:55.397Z"
-    },
-    {
-      "slug": "why-a-good-life-can-still-feel-empty",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-08-20T16:22:32.494Z"
-    },
-    {
-      "slug": "how-to-tell-when-something-is-not-for-you-anymore",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-08-20T16:22:12.496Z"
-    },
-    {
-      "slug": "how-to-cancel-ai-advantage-current-refund-and-subscription-terms",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-08-20T16:21:55.819Z"
-    },
-    {
-      "slug": "outgrowing-old-identities",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-08-20T16:21:36.867Z"
-    },
-    {
-      "slug": "how-to-build-an-ai-content-workflow",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-08-20T16:20:03.849Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "why-direction-matters-more-than-motivation",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-08-21T22:26:51.523Z"
+    },
     {
       "slug": "how-approval-keeps-people-in-the-wrong-life",
       "archetype": "field-guide-aesthetic",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "atmospheric",
       "family": "art",
       "timestamp": "2026-08-07T14:26:07.761Z"
-    },
-    {
-      "slug": "why-porn-and-scrolling-destroy-momentum",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-08-07T01:31:18.432Z"
     }
   ]
 }
