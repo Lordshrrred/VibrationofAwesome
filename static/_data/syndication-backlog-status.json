@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T13:30:50.329Z",
+  "generatedAt": "2026-08-21T15:06:21.040Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 241,
-    "backlogPosts": 35,
-    "backlinkCapableMissingUnits": 41,
+    "totalTrackedPosts": 242,
+    "backlogPosts": 36,
+    "backlinkCapableMissingUnits": 45,
     "backlinkVerificationGaps": 195,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 11,
+    "freshMissingBacklinkUnits": 14,
     "completedBacklinkUnitsInWindow": 155,
     "completedBacklinkUnitsPerDay": 11.1,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 8.9,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 35
+    "largestDelayMissingUnits": 36
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 241,
+        "eligiblePosts": 242,
         "complete": 206,
-        "missing": 35,
-        "successRate": 85.5,
+        "missing": 36,
+        "successRate": 85.1,
         "averagePerDay": 1,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 241,
+        "eligiblePosts": 242,
         "complete": 239,
-        "missing": 2,
-        "successRate": 99.2,
+        "missing": 3,
+        "successRate": 98.8,
         "averagePerDay": 3.4,
         "confirmed": 182,
         "verificationGaps": 57,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 241,
+        "eligiblePosts": 242,
         "complete": 239,
-        "missing": 2,
-        "successRate": 99.2,
+        "missing": 3,
+        "successRate": 98.8,
         "averagePerDay": 3.4,
         "confirmed": 182,
         "verificationGaps": 57,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 172,
+        "eligiblePosts": 173,
         "complete": 170,
-        "missing": 2,
-        "successRate": 98.8,
+        "missing": 3,
+        "successRate": 98.3,
         "averagePerDay": 1.9,
         "confirmed": 136,
         "verificationGaps": 34,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 172,
-        "complete": 172,
+        "eligiblePosts": 173,
+        "complete": 173,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2,
-        "confirmed": 172,
+        "confirmed": 173,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -293,12 +293,15 @@
       ]
     },
     {
-      "slug": "what-cheap-dopamine-does-to-motivation",
+      "slug": "how-approval-keeps-people-in-the-wrong-life",
       "lane": "boom",
-      "title": "What Cheap Dopamine Does to Motivation",
-      "date": "2026-08-20",
+      "title": "How Approval Keeps People in the Wrong Life",
+      "date": "2026-08-21",
       "missing": [
-        "blogger"
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
@@ -495,6 +498,15 @@
       "lane": "boom",
       "title": "Claude vs ChatGPT for Creator Workflows",
       "date": "2026-08-19",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "what-cheap-dopamine-does-to-motivation",
+      "lane": "boom",
+      "title": "What Cheap Dopamine Does to Motivation",
+      "date": "2026-08-20",
       "missing": [
         "blogger"
       ]
