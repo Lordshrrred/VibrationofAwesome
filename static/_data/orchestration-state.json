@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-21T16:17:20.991Z",
+  "generated_at": "2026-08-21T16:19:37.924Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -437,6 +437,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "how-to-automate-creator-tasks-without-sounding-fake",
+        "title": "How to Automate Creator Tasks Without Sounding Fake",
+        "lane": "boom",
+        "date": "2026-08-21",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "facebook_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-08-21T16:19:37.909Z",
+            "url": null
+          },
+          "threads": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "instagram": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "devto": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-21T16:19:37.909Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825574429641850880"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-21T16:19:37.909Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-21T16:19:37.909Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/21/how-to-automate-creator-tasks-without-sounding-fake-earthstar/"
+          }
+        },
+        "success_count": 3,
+        "failed_count": 1
+      },
       {
         "slug": "how-approval-keeps-people-in-the-wrong-life",
         "title": "How Approval Keeps People in the Wrong Life",
@@ -16412,6 +16478,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "how-to-automate-creator-tasks-without-sounding-fake",
+        "platform": "blogger",
+        "timestamp": "2026-08-21T16:19:37.909Z"
+      },
+      {
         "slug": "how-overstimulation-affects-focus",
         "platform": "blogger",
         "timestamp": "2026-08-21T02:24:32.801Z"
@@ -16726,70 +16797,84 @@
       "feeder": {
         "successes": 173,
         "failures": 0,
-        "total": 242
+        "total": 243
       },
       "bluesky_voa": {
         "successes": 182,
         "failures": 8,
-        "total": 242
+        "total": 243
       },
       "mastodon_voa": {
         "successes": 182,
         "failures": 8,
-        "total": 242
+        "total": 243
       },
       "facebook_voa": {
         "successes": 115,
         "failures": 13,
-        "total": 242
+        "total": 243
       },
       "pinterest": {
-        "successes": 167,
+        "successes": 168,
         "failures": 0,
-        "total": 242
+        "total": 243
       },
       "threads": {
         "successes": 127,
         "failures": 0,
-        "total": 242
+        "total": 243
       },
       "instagram": {
         "successes": 125,
         "failures": 0,
-        "total": 242
+        "total": 243
       },
       "devto": {
         "successes": 170,
         "failures": 0,
-        "total": 242
+        "total": 243
       },
       "tumblr_voa": {
-        "successes": 239,
+        "successes": 240,
         "failures": 0,
-        "total": 242
+        "total": 243
       },
       "blogger": {
         "successes": 206,
-        "failures": 33,
-        "total": 242
+        "failures": 34,
+        "total": 243
       },
       "wordpress_earthstar": {
-        "successes": 239,
+        "successes": 240,
         "failures": 0,
-        "total": 242
+        "total": 243
       }
     },
     "summary": {
-      "total_posts": 242,
+      "total_posts": 243,
       "fully_syndicated": 196,
-      "partial": 46,
+      "partial": 47,
       "pending": 0,
-      "retry_backlog_count": 62
+      "retry_backlog_count": 63
     }
   },
   "visuals": {
-    "registry_count": 320,
+    "registry_count": 321,
     "registry_entries": [
+      {
+        "post_slug": "how-to-automate-creator-tasks-without-sounding-fake",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "conscious-creator-tools",
+        "reused": false,
+        "reused_from": "pinterest",
+        "timestamp": "2026-08-21T16:18:39.548Z"
+      },
       {
         "post_slug": "how-approval-keeps-people-in-the-wrong-life",
         "source": "ideogram",
@@ -21347,22 +21432,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 320,
+      "total_entries": 321,
       "reused_count": 73,
-      "reuse_rate": 0.228
+      "reuse_rate": 0.227
     },
     "source_breakdown": {
-      "ideogram": 215,
+      "ideogram": 216,
       "boom": 105
     },
     "generation_counts": {
-      "ideogram": 215
+      "ideogram": 216
     },
     "platform_usage": {
-      "instagram": 218,
-      "bluesky_voa": 288,
-      "mastodon_voa": 288,
-      "pinterest": 241
+      "pinterest": 242,
+      "bluesky_voa": 289,
+      "mastodon_voa": 289,
+      "instagram": 218
     }
   },
   "clusters": {
@@ -21911,7 +21996,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-21T13:54:27.844Z",
+    "last_updated": "2026-08-21T16:18:25.152Z",
     "recent_hooks": [
       {
         "slug": "contentment-vs-settling",
@@ -22795,6 +22880,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "how-to-automate-creator-tasks-without-sounding-fake",
+        "format": "creative-identity-reflection",
+        "cadenceProfile": "lyrical",
+        "density": "medium",
+        "openerStyle": "identity-confession",
+        "closerStyle": "invitation",
+        "timestamp": "2026-08-21T16:18:25.152Z"
+      },
+      {
         "slug": "why-a-good-life-can-still-feel-empty",
         "format": "single-native-post",
         "cadenceProfile": "standalone",
@@ -23054,15 +23148,6 @@
         "openerStyle": "direct",
         "closerStyle": "resonant",
         "timestamp": "2026-08-20T13:54:16.765Z"
-      },
-      {
-        "slug": "what-cheap-dopamine-does-to-motivation",
-        "format": "tension-revelation",
-        "cadenceProfile": "tension-then-release",
-        "density": "medium-dense",
-        "openerStyle": "contradiction",
-        "closerStyle": "earned-realization",
-        "timestamp": "2026-08-20T13:52:12.605Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -23370,7 +23455,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-21T16:17:20.991Z",
+    "as_of": "2026-08-21T16:19:37.924Z",
     "next_estimated_window": "2026-08-22",
     "queue_runway_days": 25,
     "queue_runway_status": "healthy",
@@ -23479,7 +23564,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 62,
+    "retry_backlog_count": 63,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
@@ -23539,9 +23624,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-21T16:17:20.977Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 14,
+    "last_export_at": "2026-08-21T16:19:37.911Z",
+    "source_event": "syndication",
+    "export_duration_ms": 13,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
