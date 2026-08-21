@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T15:06:21.040Z",
+  "generatedAt": "2026-08-21T17:04:03.246Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,33 +14,33 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 242,
-    "backlogPosts": 36,
-    "backlinkCapableMissingUnits": 45,
-    "backlinkVerificationGaps": 195,
+    "totalTrackedPosts": 243,
+    "backlogPosts": 37,
+    "backlinkCapableMissingUnits": 46,
+    "backlinkVerificationGaps": 198,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 11,
     "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 155,
-    "completedBacklinkUnitsPerDay": 11.1,
+    "completedBacklinkUnitsInWindow": 150,
+    "completedBacklinkUnitsPerDay": 10.7,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 8.9,
+    "netBacklogChangePerDay": 9.3,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 36
+    "largestDelayMissingUnits": 37
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 242,
+        "eligiblePosts": 243,
         "complete": 206,
-        "missing": 36,
-        "successRate": 85.1,
-        "averagePerDay": 1,
+        "missing": 37,
+        "successRate": 84.8,
+        "averagePerDay": 0.9,
         "confirmed": 182,
         "verificationGaps": 24,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
@@ -48,25 +48,25 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 242,
-        "complete": 239,
+        "eligiblePosts": 243,
+        "complete": 240,
         "missing": 3,
         "successRate": 98.8,
-        "averagePerDay": 3.4,
+        "averagePerDay": 3.3,
         "confirmed": 182,
-        "verificationGaps": 57,
+        "verificationGaps": 58,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 242,
-        "complete": 239,
+        "eligiblePosts": 243,
+        "complete": 240,
         "missing": 3,
         "successRate": 98.8,
-        "averagePerDay": 3.4,
+        "averagePerDay": 3.3,
         "confirmed": 182,
-        "verificationGaps": 57,
+        "verificationGaps": 58,
         "mainBlocker": "missing local success record"
       },
       {
@@ -76,7 +76,7 @@
         "complete": 170,
         "missing": 3,
         "successRate": 98.3,
-        "averagePerDay": 1.9,
+        "averagePerDay": 1.8,
         "confirmed": 136,
         "verificationGaps": 34,
         "mainBlocker": "missing local success record"
@@ -84,13 +84,13 @@
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 69,
-        "complete": 69,
+        "eligiblePosts": 70,
+        "complete": 70,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.5,
         "confirmed": 46,
-        "verificationGaps": 23,
+        "verificationGaps": 24,
         "mainBlocker": ""
       }
     ],
@@ -116,7 +116,7 @@
         "complete": 182,
         "missing": 8,
         "successRate": 95.8,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.5,
         "confirmed": 142,
         "verificationGaps": 40,
         "mainBlocker": "env vars not set"
@@ -128,7 +128,7 @@
         "complete": 182,
         "missing": 8,
         "successRate": 95.8,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.5,
         "confirmed": 142,
         "verificationGaps": 40,
         "mainBlocker": "env vars not set"
@@ -148,13 +148,13 @@
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 167,
-        "complete": 167,
+        "eligiblePosts": 168,
+        "complete": 168,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.3,
         "confirmed": 0,
-        "verificationGaps": 167,
+        "verificationGaps": 168,
         "mainBlocker": ""
       },
       {
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 33
+      "count": 34
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -284,10 +284,10 @@
       ]
     },
     {
-      "slug": "how-to-build-an-ai-content-workflow",
+      "slug": "how-to-automate-creator-tasks-without-sounding-fake",
       "lane": "boom",
-      "title": "How to Build an AI Content Workflow",
-      "date": "2026-08-20",
+      "title": "How to Automate Creator Tasks Without Sounding Fake",
+      "date": "2026-08-21",
       "missing": [
         "blogger"
       ]
@@ -498,6 +498,15 @@
       "lane": "boom",
       "title": "Claude vs ChatGPT for Creator Workflows",
       "date": "2026-08-19",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "how-to-build-an-ai-content-workflow",
+      "lane": "boom",
+      "title": "How to Build an AI Content Workflow",
+      "date": "2026-08-20",
       "missing": [
         "blogger"
       ]
