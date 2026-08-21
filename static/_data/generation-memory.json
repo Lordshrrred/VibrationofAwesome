@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-21T16:21:10.526Z",
+  "lastUpdated": "2026-08-21T22:26:51.523Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "why-direction-matters-more-than-motivation",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-08-21T22:26:37.322Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,19 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-08-20T16:21:36.867Z"
-    },
-    {
-      "slug": "how-to-build-an-ai-content-workflow",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-08-20T16:20:03.849Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "why-direction-matters-more-than-motivation",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-08-21T22:26:51.523Z"
+    },
     {
       "slug": "how-approval-keeps-people-in-the-wrong-life",
       "archetype": "field-guide-aesthetic",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "atmospheric",
       "family": "art",
       "timestamp": "2026-08-07T14:26:07.761Z"
-    },
-    {
-      "slug": "why-porn-and-scrolling-destroy-momentum",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-08-07T01:31:18.432Z"
     }
   ]
 }
