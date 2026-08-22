@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-22T16:12:02.465Z",
+  "lastUpdated": "2026-08-22T22:24:03.939Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-avoidance-damages-self-trust",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-22T22:23:48.037Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,18 +1156,19 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-08-21T16:19:56.157Z"
-    },
-    {
-      "slug": "how-to-automate-creator-tasks-without-sounding-fake",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-08-21T16:18:25.152Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-avoidance-damages-self-trust",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "family": "art",
+      "timestamp": "2026-08-22T22:24:03.939Z"
+    },
     {
       "slug": "how-too-many-inputs-disconnect-you-from-yourself",
       "archetype": "symbolic-consciousness",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-08-08T13:51:08.512Z"
-    },
-    {
-      "slug": "what-to-do-instead-of-numbing",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-08-07T22:37:49.298Z"
     }
   ]
 }
