@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T13:11:49.897Z",
+  "generatedAt": "2026-08-22T14:52:11.009Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,9 +14,9 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 244,
-    "backlogPosts": 38,
-    "backlinkCapableMissingUnits": 47,
+    "totalTrackedPosts": 245,
+    "backlogPosts": 39,
+    "backlinkCapableMissingUnits": 51,
     "backlinkVerificationGaps": 201,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 9.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 38
+    "largestDelayMissingUnits": 39
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 244,
+        "eligiblePosts": 245,
         "complete": 206,
-        "missing": 38,
-        "successRate": 84.4,
+        "missing": 39,
+        "successRate": 84.1,
         "averagePerDay": 0.7,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 244,
+        "eligiblePosts": 245,
         "complete": 241,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 3.2,
         "confirmed": 182,
         "verificationGaps": 59,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 244,
+        "eligiblePosts": 245,
         "complete": 241,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 3.2,
         "confirmed": 182,
         "verificationGaps": 59,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 174,
+        "eligiblePosts": 175,
         "complete": 171,
-        "missing": 3,
-        "successRate": 98.3,
+        "missing": 4,
+        "successRate": 97.7,
         "averagePerDay": 1.8,
         "confirmed": 136,
         "verificationGaps": 35,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 174,
-        "complete": 174,
+        "eligiblePosts": 175,
+        "complete": 175,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2,
-        "confirmed": 174,
+        "confirmed": 175,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -293,10 +293,10 @@
       ]
     },
     {
-      "slug": "how-approval-keeps-people-in-the-wrong-life",
+      "slug": "how-too-many-inputs-disconnect-you-from-yourself",
       "lane": "boom",
-      "title": "How Approval Keeps People in the Wrong Life",
-      "date": "2026-08-21",
+      "title": "How Too Many Inputs Disconnect You From Yourself",
+      "date": "2026-08-22",
       "missing": [
         "devto",
         "tumblr_voa",
@@ -546,6 +546,18 @@
       "lane": "boom",
       "title": "Rebuilding Intuition",
       "date": "2026-08-17",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "how-approval-keeps-people-in-the-wrong-life",
+      "lane": "boom",
+      "title": "How Approval Keeps People in the Wrong Life",
+      "date": "2026-08-21",
       "missing": [
         "devto",
         "tumblr_voa",
