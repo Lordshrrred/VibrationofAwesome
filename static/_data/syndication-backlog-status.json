@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T19:01:02.134Z",
+  "generatedAt": "2026-08-22T20:52:44.712Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -186,11 +186,15 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 36
+      "count": 28
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
+    },
+    {
+      "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
+      "count": 8
     },
     {
       "reason": "bluesky_voa: env vars not set",
