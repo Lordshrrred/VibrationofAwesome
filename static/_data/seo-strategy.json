@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T02:02:14.167Z",
+  "generatedAt": "2026-08-22T03:23:51.151Z",
   "keywordGeneration": {
     "currentInventory": 47,
     "publishedInventory": 253,
@@ -13,7 +13,7 @@
   "backlinks": {
     "mode": "catch-up",
     "backlogPosts": 38,
-    "backlogUnits": 50,
+    "backlogUnits": 47,
     "completedPerDay": 10.4,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
@@ -21,9 +21,9 @@
     "estimatedCatchUpDays": "not-catching-up",
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "verificationGaps": 198,
-    "freshPostsAwaitingBacklinks": 12,
-    "freshMissingBacklinkUnits": 18,
+    "verificationGaps": 201,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 14,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 38,
     "platformTable": {
@@ -35,7 +35,7 @@
           "complete": 206,
           "missing": 38,
           "successRate": 84.4,
-          "averagePerDay": 0.8,
+          "averagePerDay": 0.7,
           "confirmed": 182,
           "verificationGaps": 24,
           "mainBlocker": "Blogger token refresh failed (invalid_grant): Token has been expired or revoked."
@@ -44,36 +44,36 @@
           "key": "wordpress_earthstar",
           "platform": "WordPress",
           "eligiblePosts": 244,
-          "complete": 240,
-          "missing": 4,
-          "successRate": 98.4,
+          "complete": 241,
+          "missing": 3,
+          "successRate": 98.8,
           "averagePerDay": 3.2,
           "confirmed": 182,
-          "verificationGaps": 58,
+          "verificationGaps": 59,
           "mainBlocker": "missing local success record"
         },
         {
           "key": "tumblr_voa",
           "platform": "Tumblr",
           "eligiblePosts": 244,
-          "complete": 240,
-          "missing": 4,
-          "successRate": 98.4,
+          "complete": 241,
+          "missing": 3,
+          "successRate": 98.8,
           "averagePerDay": 3.2,
           "confirmed": 182,
-          "verificationGaps": 58,
+          "verificationGaps": 59,
           "mainBlocker": "missing local success record"
         },
         {
           "key": "devto",
           "platform": "Dev.to",
           "eligiblePosts": 174,
-          "complete": 170,
-          "missing": 4,
-          "successRate": 97.7,
-          "averagePerDay": 1.7,
+          "complete": 171,
+          "missing": 3,
+          "successRate": 98.3,
+          "averagePerDay": 1.8,
           "confirmed": 136,
-          "verificationGaps": 34,
+          "verificationGaps": 35,
           "mainBlocker": "missing local success record"
         },
         {
@@ -83,7 +83,7 @@
           "complete": 70,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 1.5,
+          "averagePerDay": 1.4,
           "confirmed": 46,
           "verificationGaps": 24,
           "mainBlocker": ""
@@ -107,37 +107,37 @@
         {
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
-          "eligiblePosts": 190,
-          "complete": 182,
+          "eligiblePosts": 191,
+          "complete": 183,
           "missing": 8,
           "successRate": 95.8,
           "averagePerDay": 1.5,
           "confirmed": 142,
-          "verificationGaps": 40,
+          "verificationGaps": 41,
           "mainBlocker": "env vars not set"
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
-          "eligiblePosts": 190,
-          "complete": 182,
+          "eligiblePosts": 191,
+          "complete": 183,
           "missing": 8,
           "successRate": 95.8,
           "averagePerDay": 1.5,
           "confirmed": 142,
-          "verificationGaps": 40,
+          "verificationGaps": 41,
           "mainBlocker": "env vars not set"
         },
         {
           "key": "facebook_voa",
           "platform": "Facebook VOA",
-          "eligiblePosts": 128,
-          "complete": 115,
+          "eligiblePosts": 129,
+          "complete": 116,
           "missing": 13,
-          "successRate": 89.8,
+          "successRate": 89.9,
           "averagePerDay": 1.1,
           "confirmed": 30,
-          "verificationGaps": 85,
+          "verificationGaps": 86,
           "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
         },
         {
@@ -155,25 +155,25 @@
         {
           "key": "threads",
           "platform": "Threads",
-          "eligiblePosts": 127,
-          "complete": 127,
+          "eligiblePosts": 128,
+          "complete": 128,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 1.1,
           "confirmed": 72,
-          "verificationGaps": 55,
+          "verificationGaps": 56,
           "mainBlocker": ""
         },
         {
           "key": "instagram",
           "platform": "Instagram",
-          "eligiblePosts": 125,
-          "complete": 125,
+          "eligiblePosts": 126,
+          "complete": 126,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 1.1,
           "confirmed": 0,
-          "verificationGaps": 125,
+          "verificationGaps": 126,
           "mainBlocker": ""
         }
       ]
@@ -181,7 +181,7 @@
     "blockers": [
       {
         "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-        "count": 34
+        "count": 35
       },
       {
         "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
