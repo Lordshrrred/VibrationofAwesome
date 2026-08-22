@@ -1,12 +1,12 @@
 {
-  "lastChecked": "2026-08-22T16:09:07.310Z",
+  "lastChecked": "2026-08-22T22:22:46.020Z",
   "status": "broken",
   "passed": 15,
   "failed": 1,
   "total": 16,
   "topFix": {
     "name": "Blogger token refresh",
-    "detail": "invalid_grant: Token has been expired or revoked.",
+    "detail": "invalid_grant: Bad Request",
     "repairCommand": "npm run blogger-token"
   },
   "drip": {
@@ -87,7 +87,7 @@
     {
       "name": "Blogger token refresh",
       "ok": false,
-      "detail": "invalid_grant: Token has been expired or revoked.",
+      "detail": "invalid_grant: Bad Request",
       "failureType": "auth_reconnect_required"
     },
     {
