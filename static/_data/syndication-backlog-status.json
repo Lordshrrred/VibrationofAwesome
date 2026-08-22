@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T20:52:44.712Z",
+  "generatedAt": "2026-08-22T22:52:18.680Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 245,
-    "backlogPosts": 39,
-    "backlinkCapableMissingUnits": 48,
+    "totalTrackedPosts": 246,
+    "backlogPosts": 40,
+    "backlinkCapableMissingUnits": 52,
     "backlinkVerificationGaps": 204,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 10,
-    "freshMissingBacklinkUnits": 10,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 14,
     "completedBacklinkUnitsInWindow": 140,
     "completedBacklinkUnitsPerDay": 10,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 10,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 39
+    "largestDelayMissingUnits": 40
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 245,
+        "eligiblePosts": 246,
         "complete": 206,
-        "missing": 39,
-        "successRate": 84.1,
+        "missing": 40,
+        "successRate": 83.7,
         "averagePerDay": 0.6,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 245,
+        "eligiblePosts": 246,
         "complete": 242,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 3.1,
         "confirmed": 182,
         "verificationGaps": 60,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 245,
+        "eligiblePosts": 246,
         "complete": 242,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 3.1,
         "confirmed": 182,
         "verificationGaps": 60,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 175,
+        "eligiblePosts": 176,
         "complete": 172,
-        "missing": 3,
-        "successRate": 98.3,
+        "missing": 4,
+        "successRate": 97.7,
         "averagePerDay": 1.8,
         "confirmed": 136,
         "verificationGaps": 36,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 175,
-        "complete": 175,
+        "eligiblePosts": 176,
+        "complete": 176,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2,
-        "confirmed": 175,
+        "confirmed": 176,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -294,6 +294,18 @@
       "date": "2026-08-22",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "how-avoidance-damages-self-trust",
+      "lane": "boom",
+      "title": "How Avoidance Damages Self Trust",
+      "date": "2026-08-22",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
