@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T20:52:42.984Z",
+  "generatedAt": "2026-08-23T22:52:15.701Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 247,
-    "backlogPosts": 41,
-    "backlinkCapableMissingUnits": 50,
+    "totalTrackedPosts": 248,
+    "backlogPosts": 42,
+    "backlinkCapableMissingUnits": 54,
     "backlinkVerificationGaps": 210,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 10,
-    "freshMissingBacklinkUnits": 10,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 14,
     "completedBacklinkUnitsInWindow": 130,
     "completedBacklinkUnitsPerDay": 9.3,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 10.7,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 41
+    "largestDelayMissingUnits": 42
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 247,
+        "eligiblePosts": 248,
         "complete": 206,
-        "missing": 41,
-        "successRate": 83.4,
+        "missing": 42,
+        "successRate": 83.1,
         "averagePerDay": 0.3,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 247,
+        "eligiblePosts": 248,
         "complete": 244,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 3,
         "confirmed": 182,
         "verificationGaps": 62,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 247,
+        "eligiblePosts": 248,
         "complete": 244,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 3,
         "confirmed": 182,
         "verificationGaps": 62,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 177,
+        "eligiblePosts": 178,
         "complete": 174,
-        "missing": 3,
-        "successRate": 98.3,
+        "missing": 4,
+        "successRate": 97.8,
         "averagePerDay": 1.8,
         "confirmed": 136,
         "verificationGaps": 38,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 177,
-        "complete": 177,
+        "eligiblePosts": 178,
+        "complete": 178,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2,
-        "confirmed": 177,
+        "confirmed": 178,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -294,6 +294,18 @@
       "date": "2026-08-23",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "i-feel-anxious-scattered-and-overwhelmed",
+      "lane": "boom",
+      "title": "I Feel Anxious Scattered and Overwhelmed",
+      "date": "2026-08-23",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
