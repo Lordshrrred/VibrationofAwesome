@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T13:33:26.546Z",
+  "generatedAt": "2026-08-24T15:20:24.021Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 248,
-    "backlogPosts": 42,
-    "backlinkCapableMissingUnits": 51,
+    "totalTrackedPosts": 249,
+    "backlogPosts": 43,
+    "backlinkCapableMissingUnits": 55,
     "backlinkVerificationGaps": 213,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 10,
-    "freshMissingBacklinkUnits": 10,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 14,
     "completedBacklinkUnitsInWindow": 125,
     "completedBacklinkUnitsPerDay": 8.9,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 11.1,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 42
+    "largestDelayMissingUnits": 43
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 248,
+        "eligiblePosts": 249,
         "complete": 206,
-        "missing": 42,
-        "successRate": 83.1,
+        "missing": 43,
+        "successRate": 82.7,
         "averagePerDay": 0.1,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 248,
+        "eligiblePosts": 249,
         "complete": 245,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 2.9,
         "confirmed": 182,
         "verificationGaps": 63,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 248,
+        "eligiblePosts": 249,
         "complete": 245,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 2.9,
         "confirmed": 182,
         "verificationGaps": 63,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 178,
+        "eligiblePosts": 179,
         "complete": 175,
-        "missing": 3,
-        "successRate": 98.3,
+        "missing": 4,
+        "successRate": 97.8,
         "averagePerDay": 1.8,
         "confirmed": 136,
         "verificationGaps": 39,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 178,
-        "complete": 178,
+        "eligiblePosts": 179,
+        "complete": 179,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2,
-        "confirmed": 178,
+        "confirmed": 179,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -128,7 +128,7 @@
         "complete": 187,
         "missing": 8,
         "successRate": 95.9,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.5,
         "confirmed": 142,
         "verificationGaps": 45,
         "mainBlocker": "env vars not set"
@@ -294,6 +294,18 @@
       "date": "2026-08-23",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "my-life-looks-good-but-feels-wrong",
+      "lane": "boom",
+      "title": "My Life Looks Good But Feels Wrong",
+      "date": "2026-08-24",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
