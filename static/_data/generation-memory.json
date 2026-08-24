@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-24T02:26:19.737Z",
+  "lastUpdated": "2026-08-24T13:57:19.974Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "my-life-looks-good-but-feels-wrong",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-24T13:57:05.423Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,18 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-08-23T02:25:32.380Z"
-    },
-    {
-      "slug": "how-avoidance-damages-self-trust",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-08-23T02:24:32.283Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "my-life-looks-good-but-feels-wrong",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-08-24T13:57:19.974Z"
+    },
     {
       "slug": "i-feel-anxious-scattered-and-overwhelmed",
       "archetype": "nervous-system-atmospheric",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "somatic",
       "family": "art",
       "timestamp": "2026-08-09T22:33:47.190Z"
-    },
-    {
-      "slug": "how-to-slow-down-without-quitting",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-08-09T13:54:27.026Z"
     }
   ]
 }
