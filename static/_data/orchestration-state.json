@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-24T22:28:02.138Z",
+  "generated_at": "2026-08-24T22:31:06.684Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -433,6 +433,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "why-people-drift-without-a-clear-path",
+        "title": "Why People Drift Without a Clear Path",
+        "lane": "boom",
+        "date": "2026-08-24",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-08-24T22:31:06.671Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtue453x3v27"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-08-24T22:31:06.671Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117152845572536065"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-08-24T22:31:06.671Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "skipped",
+            "timestamp": "2026-08-24T22:31:06.671Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-08-24T22:31:06.671Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-08-24T22:31:06.671Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-08-24T22:31:06.671Z",
+            "url": "https://dev.to/earthstarrising/why-people-drift-without-a-clear-path-d0n"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-24T22:31:06.671Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825869598491623424"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-24T22:31:06.671Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-24T22:31:06.671Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/24/why-people-drift-without-a-clear-path-earthstar/"
+          }
+        },
+        "success_count": 8,
+        "failed_count": 1
+      },
       {
         "slug": "my-life-looks-good-but-feels-wrong",
         "title": "My Life Looks Good But Feels Wrong",
@@ -16870,6 +16936,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "why-people-drift-without-a-clear-path",
+        "platform": "blogger",
+        "timestamp": "2026-08-24T22:31:06.671Z"
+      },
+      {
         "slug": "my-life-looks-good-but-feels-wrong",
         "platform": "blogger",
         "timestamp": "2026-08-24T16:24:22.407Z"
@@ -17219,70 +17290,84 @@
       "feeder": {
         "successes": 179,
         "failures": 0,
-        "total": 249
+        "total": 250
       },
       "bluesky_voa": {
-        "successes": 188,
+        "successes": 189,
         "failures": 8,
-        "total": 249
+        "total": 250
       },
       "mastodon_voa": {
-        "successes": 188,
+        "successes": 189,
         "failures": 8,
-        "total": 249
+        "total": 250
       },
       "facebook_voa": {
-        "successes": 121,
+        "successes": 122,
         "failures": 13,
-        "total": 249
+        "total": 250
       },
       "pinterest": {
         "successes": 170,
         "failures": 0,
-        "total": 249
+        "total": 250
       },
       "threads": {
-        "successes": 133,
+        "successes": 134,
         "failures": 0,
-        "total": 249
+        "total": 250
       },
       "instagram": {
-        "successes": 131,
+        "successes": 132,
         "failures": 0,
-        "total": 249
+        "total": 250
       },
       "devto": {
-        "successes": 176,
+        "successes": 177,
         "failures": 0,
-        "total": 249
+        "total": 250
       },
       "tumblr_voa": {
-        "successes": 246,
+        "successes": 247,
         "failures": 0,
-        "total": 249
+        "total": 250
       },
       "blogger": {
         "successes": 206,
-        "failures": 40,
-        "total": 249
+        "failures": 41,
+        "total": 250
       },
       "wordpress_earthstar": {
-        "successes": 246,
+        "successes": 247,
         "failures": 0,
-        "total": 249
+        "total": 250
       }
     },
     "summary": {
-      "total_posts": 249,
+      "total_posts": 250,
       "fully_syndicated": 196,
-      "partial": 53,
+      "partial": 54,
       "pending": 0,
-      "retry_backlog_count": 69
+      "retry_backlog_count": 70
     }
   },
   "visuals": {
-    "registry_count": 335,
+    "registry_count": 336,
     "registry_entries": [
+      {
+        "post_slug": "why-people-drift-without-a-clear-path",
+        "source": "ideogram",
+        "asset_type": "archetype-visual",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-24T22:29:14.294Z"
+      },
       {
         "post_slug": "my-life-looks-good-but-feels-wrong",
         "source": "boom",
@@ -22052,21 +22137,21 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 335,
+      "total_entries": 336,
       "reused_count": 81,
-      "reuse_rate": 0.242
+      "reuse_rate": 0.241
     },
     "source_breakdown": {
-      "boom": 113,
-      "ideogram": 222
+      "ideogram": 223,
+      "boom": 113
     },
     "generation_counts": {
-      "ideogram": 222
+      "ideogram": 223
     },
     "platform_usage": {
-      "instagram": 230,
-      "bluesky_voa": 303,
-      "mastodon_voa": 303,
+      "instagram": 231,
+      "bluesky_voa": 304,
+      "mastodon_voa": 304,
       "pinterest": 246
     }
   },
@@ -22623,7 +22708,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-24T16:25:43.953Z",
+    "last_updated": "2026-08-24T22:29:14.290Z",
     "recent_hooks": [
       {
         "slug": "contentment-vs-settling",
@@ -23507,6 +23592,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "why-people-drift-without-a-clear-path",
+        "format": "manifesto-conviction",
+        "cadenceProfile": "charged-decisive",
+        "density": "medium-dense",
+        "openerStyle": "strong-declarative",
+        "closerStyle": "worldview-shift",
+        "timestamp": "2026-08-24T22:28:59.281Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "single-native-post",
         "cadenceProfile": "standalone",
@@ -23766,18 +23860,19 @@
         "openerStyle": "any",
         "closerStyle": "complete",
         "timestamp": "2026-08-23T16:13:16.022Z"
-      },
-      {
-        "slug": "why-late-night-scrolling-feels-impossible-to-stop",
-        "format": "philosophical-observation",
-        "cadenceProfile": "contemplative",
-        "density": "medium-dense",
-        "openerStyle": "conceptual-paradox",
-        "closerStyle": "open-question",
-        "timestamp": "2026-08-23T16:10:27.878Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "why-people-drift-without-a-clear-path",
+        "archetype": "field-guide-aesthetic",
+        "archetypeLabel": "Field Guide Aesthetic",
+        "palette": "warm-archive",
+        "emotionalTone": "quiet-discovery",
+        "emotionalCluster": "grounded",
+        "family": "art",
+        "timestamp": "2026-08-24T22:29:14.290Z"
+      },
       {
         "slug": "my-life-looks-good-but-feels-wrong",
         "archetype": "premium-quote-card",
@@ -24067,22 +24162,12 @@
         "emotionalCluster": "grounded",
         "family": "art",
         "timestamp": "2026-08-10T14:24:37.196Z"
-      },
-      {
-        "slug": "grounding-practices-for-overwhelmed-people",
-        "archetype": "nervous-system-atmospheric",
-        "archetypeLabel": "Nervous System Atmospheric",
-        "palette": "soft-teal-mist",
-        "emotionalTone": "regulation",
-        "emotionalCluster": "somatic",
-        "family": "art",
-        "timestamp": "2026-08-09T22:33:47.190Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-24T22:28:02.138Z",
+    "as_of": "2026-08-24T22:31:06.684Z",
     "next_estimated_window": "2026-08-25",
     "queue_runway_days": 22,
     "queue_runway_status": "healthy",
@@ -24194,7 +24279,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 69,
+    "retry_backlog_count": 70,
     "cadence_density": {
       "posts_last_7_days": 19,
       "posts_last_14_days": 20,
@@ -24254,9 +24339,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-24T22:28:02.125Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 13,
+    "last_export_at": "2026-08-24T22:31:06.674Z",
+    "source_event": "syndication",
+    "export_duration_ms": 10,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
