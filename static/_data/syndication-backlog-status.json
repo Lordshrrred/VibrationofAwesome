@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T21:02:22.164Z",
+  "generatedAt": "2026-08-24T22:56:28.173Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 249,
-    "backlogPosts": 43,
-    "backlinkCapableMissingUnits": 52,
+    "totalTrackedPosts": 250,
+    "backlogPosts": 44,
+    "backlinkCapableMissingUnits": 56,
     "backlinkVerificationGaps": 216,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 10,
-    "freshMissingBacklinkUnits": 10,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 14,
     "completedBacklinkUnitsInWindow": 120,
     "completedBacklinkUnitsPerDay": 8.6,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 11.4,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 43
+    "largestDelayMissingUnits": 44
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 249,
+        "eligiblePosts": 250,
         "complete": 206,
-        "missing": 43,
-        "successRate": 82.7,
+        "missing": 44,
+        "successRate": 82.4,
         "averagePerDay": 0,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 249,
+        "eligiblePosts": 250,
         "complete": 246,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 2.9,
         "confirmed": 182,
         "verificationGaps": 64,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 249,
+        "eligiblePosts": 250,
         "complete": 246,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 2.9,
         "confirmed": 182,
         "verificationGaps": 64,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 179,
+        "eligiblePosts": 180,
         "complete": 176,
-        "missing": 3,
-        "successRate": 98.3,
+        "missing": 4,
+        "successRate": 97.8,
         "averagePerDay": 1.8,
         "confirmed": 136,
         "verificationGaps": 40,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 179,
-        "complete": 179,
+        "eligiblePosts": 180,
+        "complete": 180,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2,
-        "confirmed": 179,
+        "confirmed": 180,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -294,6 +294,18 @@
       "date": "2026-08-24",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "why-people-drift-without-a-clear-path",
+      "lane": "boom",
+      "title": "Why People Drift Without a Clear Path",
+      "date": "2026-08-24",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
