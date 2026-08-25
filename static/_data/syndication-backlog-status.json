@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T13:30:54.792Z",
+  "generatedAt": "2026-08-25T15:30:27.997Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 250,
-    "backlogPosts": 44,
-    "backlinkCapableMissingUnits": 53,
+    "totalTrackedPosts": 251,
+    "backlogPosts": 45,
+    "backlinkCapableMissingUnits": 57,
     "backlinkVerificationGaps": 219,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 10,
-    "freshMissingBacklinkUnits": 10,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 14,
     "completedBacklinkUnitsInWindow": 117,
     "completedBacklinkUnitsPerDay": 8.4,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 11.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 44
+    "largestDelayMissingUnits": 45
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 250,
+        "eligiblePosts": 251,
         "complete": 206,
-        "missing": 44,
-        "successRate": 82.4,
+        "missing": 45,
+        "successRate": 82.1,
         "averagePerDay": 0,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 250,
+        "eligiblePosts": 251,
         "complete": 247,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 2.8,
         "confirmed": 182,
         "verificationGaps": 65,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 250,
+        "eligiblePosts": 251,
         "complete": 247,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 2.8,
         "confirmed": 182,
         "verificationGaps": 65,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 180,
+        "eligiblePosts": 181,
         "complete": 177,
-        "missing": 3,
-        "successRate": 98.3,
+        "missing": 4,
+        "successRate": 97.8,
         "averagePerDay": 1.8,
         "confirmed": 136,
         "verificationGaps": 41,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 180,
-        "complete": 180,
+        "eligiblePosts": 181,
+        "complete": 181,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2,
-        "confirmed": 180,
+        "confirmed": 181,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -294,6 +294,18 @@
       "date": "2026-08-24",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "what-inner-noise-feels-like",
+      "lane": "boom",
+      "title": "What Inner Noise Feels Like",
+      "date": "2026-08-25",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
