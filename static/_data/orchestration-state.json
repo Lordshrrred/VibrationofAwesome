@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-25T13:54:56.365Z",
+  "generated_at": "2026-08-25T13:57:30.142Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -433,6 +433,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "what-inner-noise-feels-like",
+        "title": "What Inner Noise Feels Like",
+        "lane": "boom",
+        "date": "2026-08-25",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-08-25T13:57:30.128Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtvxvmff3o2s"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-08-25T13:57:30.128Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117156490400793936"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-08-25T13:57:30.128Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "skipped",
+            "timestamp": "2026-08-25T13:57:30.128Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-08-25T13:57:30.128Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-08-25T13:57:30.128Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-08-25T13:57:30.128Z",
+            "url": "https://dev.to/earthstarrising/what-inner-noise-feels-like-4bc0"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-25T13:57:30.128Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/825927881036283904"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-25T13:57:30.128Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-25T13:57:30.128Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/25/what-inner-noise-feels-like-earthstar/"
+          }
+        },
+        "success_count": 8,
+        "failed_count": 1
+      },
       {
         "slug": "why-people-drift-without-a-clear-path",
         "title": "Why People Drift Without a Clear Path",
@@ -16936,6 +17002,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "what-inner-noise-feels-like",
+        "platform": "blogger",
+        "timestamp": "2026-08-25T13:57:30.128Z"
+      },
+      {
         "slug": "why-people-drift-without-a-clear-path",
         "platform": "blogger",
         "timestamp": "2026-08-25T02:19:56.843Z"
@@ -17290,70 +17361,84 @@
       "feeder": {
         "successes": 180,
         "failures": 0,
-        "total": 250
+        "total": 251
       },
       "bluesky_voa": {
-        "successes": 189,
+        "successes": 190,
         "failures": 8,
-        "total": 250
+        "total": 251
       },
       "mastodon_voa": {
-        "successes": 189,
+        "successes": 190,
         "failures": 8,
-        "total": 250
+        "total": 251
       },
       "facebook_voa": {
-        "successes": 122,
+        "successes": 123,
         "failures": 13,
-        "total": 250
+        "total": 251
       },
       "pinterest": {
         "successes": 170,
         "failures": 0,
-        "total": 250
+        "total": 251
       },
       "threads": {
-        "successes": 134,
+        "successes": 135,
         "failures": 0,
-        "total": 250
+        "total": 251
       },
       "instagram": {
-        "successes": 132,
+        "successes": 133,
         "failures": 0,
-        "total": 250
+        "total": 251
       },
       "devto": {
-        "successes": 177,
+        "successes": 178,
         "failures": 0,
-        "total": 250
+        "total": 251
       },
       "tumblr_voa": {
-        "successes": 247,
+        "successes": 248,
         "failures": 0,
-        "total": 250
+        "total": 251
       },
       "blogger": {
         "successes": 206,
-        "failures": 41,
-        "total": 250
+        "failures": 42,
+        "total": 251
       },
       "wordpress_earthstar": {
-        "successes": 247,
+        "successes": 248,
         "failures": 0,
-        "total": 250
+        "total": 251
       }
     },
     "summary": {
-      "total_posts": 250,
+      "total_posts": 251,
       "fully_syndicated": 196,
-      "partial": 54,
+      "partial": 55,
       "pending": 0,
-      "retry_backlog_count": 70
+      "retry_backlog_count": 71
     }
   },
   "visuals": {
-    "registry_count": 337,
+    "registry_count": 338,
     "registry_entries": [
+      {
+        "post_slug": "what-inner-noise-feels-like",
+        "source": "ideogram",
+        "asset_type": "archetype-visual",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-25T13:56:10.126Z"
+      },
       {
         "post_slug": "why-people-drift-without-a-clear-path",
         "source": "boom",
@@ -22151,21 +22236,21 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 337,
+      "total_entries": 338,
       "reused_count": 82,
       "reuse_rate": 0.243
     },
     "source_breakdown": {
-      "boom": 114,
-      "ideogram": 223
+      "ideogram": 224,
+      "boom": 114
     },
     "generation_counts": {
-      "ideogram": 223
+      "ideogram": 224
     },
     "platform_usage": {
-      "instagram": 232,
-      "bluesky_voa": 305,
-      "mastodon_voa": 305,
+      "instagram": 233,
+      "bluesky_voa": 306,
+      "mastodon_voa": 306,
       "pinterest": 246
     }
   },
@@ -22723,7 +22808,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-25T02:21:12.820Z",
+    "last_updated": "2026-08-25T13:56:10.121Z",
     "recent_hooks": [
       {
         "slug": "contentment-vs-settling",
@@ -23607,6 +23692,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "what-inner-noise-feels-like",
+        "format": "short-native-insight",
+        "cadenceProfile": "compact",
+        "density": "light",
+        "openerStyle": "direct",
+        "closerStyle": "resonant",
+        "timestamp": "2026-08-25T13:55:54.428Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "creative-identity-reflection",
         "cadenceProfile": "lyrical",
@@ -23866,18 +23960,19 @@
         "openerStyle": "grounded-observation",
         "closerStyle": "quiet-wisdom",
         "timestamp": "2026-08-24T02:25:11.486Z"
-      },
-      {
-        "slug": "i-feel-anxious-scattered-and-overwhelmed",
-        "format": "short-native-insight",
-        "cadenceProfile": "compact",
-        "density": "light",
-        "openerStyle": "direct",
-        "closerStyle": "resonant",
-        "timestamp": "2026-08-24T02:23:08.275Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "what-inner-noise-feels-like",
+        "archetype": "minimalist-philosophy",
+        "archetypeLabel": "Minimalist Philosophy",
+        "palette": "near-black-accent",
+        "emotionalTone": "stillness",
+        "emotionalCluster": "intellectual",
+        "family": "art",
+        "timestamp": "2026-08-25T13:56:10.121Z"
+      },
       {
         "slug": "why-people-drift-without-a-clear-path",
         "archetype": "field-guide-aesthetic",
@@ -24167,22 +24262,12 @@
         "emotionalCluster": "atmospheric",
         "family": "art",
         "timestamp": "2026-08-10T22:39:38.463Z"
-      },
-      {
-        "slug": "clarity-through-regulation",
-        "archetype": "field-guide-aesthetic",
-        "archetypeLabel": "Field Guide Aesthetic",
-        "palette": "warm-archive",
-        "emotionalTone": "quiet-discovery",
-        "emotionalCluster": "grounded",
-        "family": "art",
-        "timestamp": "2026-08-10T14:24:37.196Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-25T13:54:56.365Z",
+    "as_of": "2026-08-25T13:57:30.142Z",
     "next_estimated_window": "2026-08-26",
     "queue_runway_days": 21,
     "queue_runway_status": "healthy",
@@ -24295,7 +24380,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 70,
+    "retry_backlog_count": 71,
     "cadence_density": {
       "posts_last_7_days": 18,
       "posts_last_14_days": 20,
@@ -24355,9 +24440,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-25T13:54:56.351Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 14,
+    "last_export_at": "2026-08-25T13:57:30.131Z",
+    "source_event": "syndication",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
