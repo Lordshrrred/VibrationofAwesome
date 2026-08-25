@@ -8,80 +8,6 @@
     "syndication": {
       "bluesky_voa": {
         "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtvxvmff3o2s",
-        "timestamp": "2026-08-25T13:57:30.120Z"
-      },
-      "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/117156490400793936",
-        "timestamp": "2026-08-25T13:57:30.120Z"
-      },
-      "facebook_voa": {
-        "status": "success",
-        "url": null,
-        "timestamp": "2026-08-25T13:57:30.120Z"
-      },
-      "pinterest": {
-        "status": "skipped",
-        "url": null,
-        "timestamp": "2026-08-25T13:57:30.120Z",
-        "error": "skipped by social policy",
-        "skipped": true
-      },
-      "threads": {
-        "status": "success",
-        "url": null,
-        "timestamp": "2026-08-25T13:57:30.120Z"
-      },
-      "instagram": {
-        "status": "success",
-        "url": null,
-        "timestamp": "2026-08-25T13:57:30.120Z"
-      },
-      "bluesky_esr": {
-        "status": "skipped",
-        "url": null,
-        "timestamp": "2026-08-25T13:57:30.120Z",
-        "error": "skipped by social policy",
-        "skipped": true
-      },
-      "mastodon_esr": {
-        "status": "skipped",
-        "url": null,
-        "timestamp": "2026-08-25T13:57:30.120Z",
-        "error": "skipped by social policy",
-        "skipped": true
-      },
-      "devto": {
-        "status": "success",
-        "url": "https://dev.to/earthstarrising/what-inner-noise-feels-like-4bc0",
-        "timestamp": "2026-08-25T13:57:30.120Z"
-      },
-      "tumblr_voa": {
-        "status": "success",
-        "url": "https://vibrationofawesome.tumblr.com/post/825927881036283904",
-        "timestamp": "2026-08-25T13:57:30.120Z"
-      },
-      "blogger": {
-        "status": "failed",
-        "url": null,
-        "timestamp": "2026-08-25T13:57:30.120Z",
-        "error": "Blogger token refresh failed (invalid_grant): Bad Request"
-      },
-      "wordpress_earthstar": {
-        "status": "success",
-        "url": "https://earthstarrisingsun.wordpress.com/2026/08/25/what-inner-noise-feels-like-earthstar/",
-        "timestamp": "2026-08-25T13:57:30.120Z"
-      },
-      "feeder": {
-        "status": "success",
-        "url": "https://lordshrrred.github.io/VOA_Feeder/blog/what-inner-noise-feels-like-insight.html",
-        "timestamp": "2026-08-25T16:25:14.829Z",
-        "backlink_confirmed": true,
-        "backlink_source_url": "https://vibrationofawesome.com/blog/boom/posts/what-inner-noise-feels-like"
-      },
-      "bluesky_voa": {
-        "status": "success",
         "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtwa6yjyav2m",
         "timestamp": "2026-08-25T16:26:07.109Z"
       },
@@ -146,6 +72,13 @@
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/08/25/what-inner-noise-feels-like-earthstar-2/",
         "timestamp": "2026-08-25T16:26:07.109Z"
+      },
+      "feeder": {
+        "status": "success",
+        "url": "https://lordshrrred.github.io/VOA_Feeder/blog/what-inner-noise-feels-like-insight.html",
+        "timestamp": "2026-08-25T16:25:14.829Z",
+        "backlink_confirmed": true,
+        "backlink_source_url": "https://vibrationofawesome.com/blog/boom/posts/what-inner-noise-feels-like"
       }
     }
   },
@@ -2311,15 +2244,16 @@
     "voa_url": "https://vibrationofawesome.com/blog/boom/posts/outgrowing-old-identities",
     "syndication": {
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtwacenwz22s",
-        "timestamp": "2026-08-25T16:26:30.229Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-08-25T17:09:07.489Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T16:26:30.229Z",
-        "error": "Mastodon: Validation failed: Text can't be blank"
+        "timestamp": "2026-08-25T17:09:07.489Z",
+        "error": "env vars not set"
       },
       "facebook_voa": {
         "status": "success",
@@ -2346,13 +2280,13 @@
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:11.742Z",
+        "timestamp": "2026-08-25T17:09:07.489Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:11.742Z",
+        "timestamp": "2026-08-25T17:09:07.489Z",
         "error": "env vars not set"
       },
       "devto": {
@@ -2368,7 +2302,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:11.742Z",
+        "timestamp": "2026-08-25T17:09:07.489Z",
         "error": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       "wordpress_earthstar": {
@@ -2410,7 +2344,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:19.860Z",
+        "timestamp": "2026-08-25T17:09:15.663Z",
         "error": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       "wordpress_earthstar": {
@@ -2419,25 +2353,27 @@
         "timestamp": "2026-08-12T16:48:29.768Z"
       },
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtwactbczn2e",
-        "timestamp": "2026-08-25T16:26:45.619Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-08-25T17:09:15.663Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/117157082258681821",
-        "timestamp": "2026-08-25T16:26:45.619Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-08-25T17:09:15.663Z",
+        "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:19.860Z",
+        "timestamp": "2026-08-25T17:09:15.663Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:19.860Z",
+        "timestamp": "2026-08-25T17:09:15.663Z",
         "error": "env vars not set"
       }
     }
@@ -2457,26 +2393,27 @@
         "backlink_source_url": "https://vibrationofawesome.com/blog/boom/posts/how-to-tell-when-something-is-not-for-you-anymore"
       },
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtwadfxgjj2n",
-        "timestamp": "2026-08-25T16:27:04.990Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-08-25T17:09:23.814Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T16:27:04.990Z",
-        "error": "Mastodon: Validation failed: Text can't be blank"
+        "timestamp": "2026-08-25T17:09:23.814Z",
+        "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:27.954Z",
+        "timestamp": "2026-08-25T17:09:23.814Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:27.954Z",
+        "timestamp": "2026-08-25T17:09:23.814Z",
         "error": "env vars not set"
       },
       "devto": {
@@ -2492,7 +2429,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:27.954Z",
+        "timestamp": "2026-08-25T17:09:23.814Z",
         "error": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       "wordpress_earthstar": {
@@ -2569,26 +2506,27 @@
         "backlink_source_url": "https://vibrationofawesome.com/blog/boom/posts/why-a-good-life-can-still-feel-empty"
       },
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtwadtmmx22m",
-        "timestamp": "2026-08-25T16:27:19.310Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-08-25T17:08:34.840Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T16:27:19.310Z",
-        "error": "Mastodon: Validation failed: Text can't be blank"
+        "timestamp": "2026-08-25T17:08:34.840Z",
+        "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:39.368Z",
+        "timestamp": "2026-08-25T17:08:34.840Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:39.368Z",
+        "timestamp": "2026-08-25T17:08:34.840Z",
         "error": "env vars not set"
       },
       "devto": {
@@ -2604,7 +2542,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:39.368Z",
+        "timestamp": "2026-08-25T17:08:34.840Z",
         "error": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       "wordpress_earthstar": {
@@ -2639,7 +2577,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:47.455Z",
+        "timestamp": "2026-08-25T17:08:43.002Z",
         "error": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       "wordpress_earthstar": {
@@ -2648,25 +2586,27 @@
         "timestamp": "2026-08-11T16:49:03.599Z"
       },
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mtwaedmrer2k",
-        "timestamp": "2026-08-25T16:27:36.632Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-08-25T17:08:43.002Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/117157085580244603",
-        "timestamp": "2026-08-25T16:27:36.632Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-08-25T17:08:43.002Z",
+        "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:47.455Z",
+        "timestamp": "2026-08-25T17:08:43.002Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:47.455Z",
+        "timestamp": "2026-08-25T17:08:43.002Z",
         "error": "env vars not set"
       }
     }
@@ -2688,25 +2628,25 @@
       "bluesky_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:55.551Z",
+        "timestamp": "2026-08-25T17:08:51.179Z",
         "error": "env vars not set"
       },
       "mastodon_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:55.551Z",
+        "timestamp": "2026-08-25T17:08:51.179Z",
         "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:55.551Z",
+        "timestamp": "2026-08-25T17:08:51.179Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:55.551Z",
+        "timestamp": "2026-08-25T17:08:51.179Z",
         "error": "env vars not set"
       },
       "devto": {
@@ -2722,7 +2662,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:55.551Z",
+        "timestamp": "2026-08-25T17:08:51.179Z",
         "error": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       "wordpress_earthstar": {
@@ -2752,7 +2692,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:03.643Z",
+        "timestamp": "2026-08-25T17:08:59.335Z",
         "error": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       "wordpress_earthstar": {
@@ -2763,25 +2703,25 @@
       "bluesky_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:03.643Z",
+        "timestamp": "2026-08-25T17:08:59.335Z",
         "error": "env vars not set"
       },
       "mastodon_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:03.643Z",
+        "timestamp": "2026-08-25T17:08:59.335Z",
         "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:03.643Z",
+        "timestamp": "2026-08-25T17:08:59.335Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:30:03.643Z",
+        "timestamp": "2026-08-25T17:08:59.335Z",
         "error": "env vars not set"
       }
     }
@@ -2803,25 +2743,25 @@
       "bluesky_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:31.291Z",
+        "timestamp": "2026-08-25T17:08:26.653Z",
         "error": "env vars not set"
       },
       "mastodon_voa": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:31.291Z",
+        "timestamp": "2026-08-25T17:08:26.653Z",
         "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:31.291Z",
+        "timestamp": "2026-08-25T17:08:26.653Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:31.291Z",
+        "timestamp": "2026-08-25T17:08:26.653Z",
         "error": "env vars not set"
       },
       "devto": {
@@ -2837,7 +2777,7 @@
       "blogger": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-08-25T15:29:31.291Z",
+        "timestamp": "2026-08-25T17:08:26.653Z",
         "error": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       "wordpress_earthstar": {
