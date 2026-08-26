@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-26T02:27:42.717Z",
+  "lastUpdated": "2026-08-26T14:03:58.954Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-numbing-habits-drain-energy",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-08-26T14:03:43.416Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,19 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-08-25T02:20:16.030Z"
-    },
-    {
-      "slug": "why-people-drift-without-a-clear-path",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-08-25T02:18:37.345Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-numbing-habits-drain-energy",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-08-26T14:03:58.954Z"
+    },
     {
       "slug": "why-do-i-keep-breaking-promises-to-myself",
       "archetype": "cinematic-ideogram",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-08-11T22:43:55.881Z"
-    },
-    {
-      "slug": "signs-your-life-is-misaligned",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-08-11T14:23:29.217Z"
     }
   ]
 }
