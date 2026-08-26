@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T02:11:41.554Z",
+  "generatedAt": "2026-08-26T03:34:50.765Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -16,12 +16,12 @@
   "summary": {
     "totalTrackedPosts": 252,
     "backlogPosts": 46,
-    "backlinkCapableMissingUnits": 58,
-    "backlinkVerificationGaps": 222,
+    "backlinkCapableMissingUnits": 55,
+    "backlinkVerificationGaps": 225,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
+    "freshPostsAwaitingBacklinks": 10,
+    "freshMissingBacklinkUnits": 10,
     "completedBacklinkUnitsInWindow": 111,
     "completedBacklinkUnitsPerDay": 7.9,
     "newPostsPerDay": 5,
@@ -49,36 +49,36 @@
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 252,
-        "complete": 248,
-        "missing": 4,
-        "successRate": 98.4,
+        "complete": 249,
+        "missing": 3,
+        "successRate": 98.8,
         "averagePerDay": 2.6,
         "confirmed": 182,
-        "verificationGaps": 66,
+        "verificationGaps": 67,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 252,
-        "complete": 248,
-        "missing": 4,
-        "successRate": 98.4,
+        "complete": 249,
+        "missing": 3,
+        "successRate": 98.8,
         "averagePerDay": 2.6,
         "confirmed": 182,
-        "verificationGaps": 66,
+        "verificationGaps": 67,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 182,
-        "complete": 178,
-        "missing": 4,
-        "successRate": 97.8,
-        "averagePerDay": 1.7,
+        "complete": 179,
+        "missing": 3,
+        "successRate": 98.4,
+        "averagePerDay": 1.8,
         "confirmed": 136,
-        "verificationGaps": 42,
+        "verificationGaps": 43,
         "mainBlocker": "missing local success record"
       },
       {
@@ -112,37 +112,37 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 198,
-        "complete": 190,
+        "eligiblePosts": 199,
+        "complete": 191,
         "missing": 8,
         "successRate": 96,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.7,
         "confirmed": 142,
-        "verificationGaps": 48,
+        "verificationGaps": 49,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 198,
-        "complete": 190,
+        "eligiblePosts": 199,
+        "complete": 191,
         "missing": 8,
         "successRate": 96,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.7,
         "confirmed": 142,
-        "verificationGaps": 48,
+        "verificationGaps": 49,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 136,
-        "complete": 123,
+        "eligiblePosts": 137,
+        "complete": 124,
         "missing": 13,
-        "successRate": 90.4,
-        "averagePerDay": 1.6,
+        "successRate": 90.5,
+        "averagePerDay": 1.7,
         "confirmed": 30,
-        "verificationGaps": 93,
+        "verificationGaps": 94,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
@@ -160,25 +160,25 @@
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 135,
-        "complete": 135,
+        "eligiblePosts": 136,
+        "complete": 136,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.7,
         "confirmed": 72,
-        "verificationGaps": 63,
+        "verificationGaps": 64,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 133,
-        "complete": 133,
+        "eligiblePosts": 134,
+        "complete": 134,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.7,
         "confirmed": 0,
-        "verificationGaps": 133,
+        "verificationGaps": 134,
         "mainBlocker": ""
       }
     ]
@@ -190,7 +190,7 @@
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 14
+      "count": 15
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -279,10 +279,10 @@
       ]
     },
     {
-      "slug": "why-people-drift-without-a-clear-path",
+      "slug": "why-do-i-keep-breaking-promises-to-myself",
       "lane": "boom",
-      "title": "Why People Drift Without a Clear Path",
-      "date": "2026-08-24",
+      "title": "Why Do I Keep Breaking Promises to Myself",
+      "date": "2026-08-25",
       "missing": [
         "blogger"
       ]
@@ -294,18 +294,6 @@
       "date": "2026-08-25",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "why-do-i-keep-breaking-promises-to-myself",
-      "lane": "boom",
-      "title": "Why Do I Keep Breaking Promises to Myself",
-      "date": "2026-08-25",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     },
     {
@@ -583,6 +571,15 @@
       "lane": "boom",
       "title": "Why Late Night Scrolling Feels Impossible to Stop",
       "date": "2026-08-23",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "why-people-drift-without-a-clear-path",
+      "lane": "boom",
+      "title": "Why People Drift Without a Clear Path",
+      "date": "2026-08-24",
       "missing": [
         "blogger"
       ]
