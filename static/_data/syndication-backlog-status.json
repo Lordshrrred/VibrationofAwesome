@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T13:40:56.414Z",
+  "generatedAt": "2026-08-26T16:03:43.173Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,32 +14,32 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 252,
-    "backlogPosts": 46,
-    "backlinkCapableMissingUnits": 55,
+    "totalTrackedPosts": 253,
+    "backlogPosts": 47,
+    "backlinkCapableMissingUnits": 59,
     "backlinkVerificationGaps": 225,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 10,
-    "freshMissingBacklinkUnits": 10,
-    "completedBacklinkUnitsInWindow": 111,
-    "completedBacklinkUnitsPerDay": 7.9,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 14,
+    "completedBacklinkUnitsInWindow": 108,
+    "completedBacklinkUnitsPerDay": 7.7,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 12.1,
+    "netBacklogChangePerDay": 12.3,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 46
+    "largestDelayMissingUnits": 47
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 252,
+        "eligiblePosts": 253,
         "complete": 206,
-        "missing": 46,
-        "successRate": 81.7,
+        "missing": 47,
+        "successRate": 81.4,
         "averagePerDay": 0,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 252,
+        "eligiblePosts": 253,
         "complete": 249,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 2.6,
         "confirmed": 182,
         "verificationGaps": 67,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 252,
+        "eligiblePosts": 253,
         "complete": 249,
-        "missing": 3,
-        "successRate": 98.8,
+        "missing": 4,
+        "successRate": 98.4,
         "averagePerDay": 2.6,
         "confirmed": 182,
         "verificationGaps": 67,
@@ -72,11 +72,11 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 182,
+        "eligiblePosts": 183,
         "complete": 179,
-        "missing": 3,
-        "successRate": 98.4,
-        "averagePerDay": 1.8,
+        "missing": 4,
+        "successRate": 97.8,
+        "averagePerDay": 1.7,
         "confirmed": 136,
         "verificationGaps": 43,
         "mainBlocker": "missing local success record"
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 182,
-        "complete": 182,
+        "eligiblePosts": 183,
+        "complete": 183,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2,
-        "confirmed": 182,
+        "confirmed": 183,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -294,6 +294,18 @@
       "date": "2026-08-25",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "how-numbing-habits-drain-energy",
+      "lane": "boom",
+      "title": "How Numbing Habits Drain Energy",
+      "date": "2026-08-26",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
