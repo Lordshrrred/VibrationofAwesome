@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T21:06:17.815Z",
+  "generatedAt": "2026-08-27T03:32:12.928Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,32 +14,32 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 253,
-    "backlogPosts": 47,
-    "backlinkCapableMissingUnits": 56,
+    "totalTrackedPosts": 254,
+    "backlogPosts": 48,
+    "backlinkCapableMissingUnits": 60,
     "backlinkVerificationGaps": 228,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 10,
-    "freshMissingBacklinkUnits": 10,
-    "completedBacklinkUnitsInWindow": 108,
-    "completedBacklinkUnitsPerDay": 7.7,
+    "freshMissingBacklinkUnits": 13,
+    "completedBacklinkUnitsInWindow": 102,
+    "completedBacklinkUnitsPerDay": 7.3,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 12.3,
+    "netBacklogChangePerDay": 12.7,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 47
+    "largestDelayMissingUnits": 48
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 253,
+        "eligiblePosts": 254,
         "complete": 206,
-        "missing": 47,
-        "successRate": 81.4,
+        "missing": 48,
+        "successRate": 81.1,
         "averagePerDay": 0,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,11 +48,11 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 253,
+        "eligiblePosts": 254,
         "complete": 250,
-        "missing": 3,
-        "successRate": 98.8,
-        "averagePerDay": 2.6,
+        "missing": 4,
+        "successRate": 98.4,
+        "averagePerDay": 2.4,
         "confirmed": 182,
         "verificationGaps": 68,
         "mainBlocker": "missing local success record"
@@ -60,11 +60,11 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 253,
+        "eligiblePosts": 254,
         "complete": 250,
-        "missing": 3,
-        "successRate": 98.8,
-        "averagePerDay": 2.6,
+        "missing": 4,
+        "successRate": 98.4,
+        "averagePerDay": 2.4,
         "confirmed": 182,
         "verificationGaps": 68,
         "mainBlocker": "missing local success record"
@@ -72,11 +72,11 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 183,
+        "eligiblePosts": 184,
         "complete": 180,
-        "missing": 3,
-        "successRate": 98.4,
-        "averagePerDay": 1.8,
+        "missing": 4,
+        "successRate": 97.8,
+        "averagePerDay": 1.7,
         "confirmed": 136,
         "verificationGaps": 44,
         "mainBlocker": "missing local success record"
@@ -88,7 +88,7 @@
         "complete": 70,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.8,
+        "averagePerDay": 0.7,
         "confirmed": 46,
         "verificationGaps": 24,
         "mainBlocker": ""
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 183,
-        "complete": 183,
+        "eligiblePosts": 184,
+        "complete": 184,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2,
-        "confirmed": 183,
+        "confirmed": 184,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -116,7 +116,7 @@
         "complete": 192,
         "missing": 8,
         "successRate": 96,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.7,
         "confirmed": 142,
         "verificationGaps": 50,
         "mainBlocker": "env vars not set"
@@ -140,7 +140,7 @@
         "complete": 125,
         "missing": 13,
         "successRate": 90.6,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.7,
         "confirmed": 30,
         "verificationGaps": 95,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
@@ -164,7 +164,7 @@
         "complete": 137,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.7,
         "confirmed": 72,
         "verificationGaps": 65,
         "mainBlocker": ""
@@ -176,7 +176,7 @@
         "complete": 135,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.7,
         "confirmed": 0,
         "verificationGaps": 135,
         "mainBlocker": ""
@@ -279,21 +279,24 @@
       ]
     },
     {
-      "slug": "why-do-i-keep-breaking-promises-to-myself",
-      "lane": "boom",
-      "title": "Why Do I Keep Breaking Promises to Myself",
-      "date": "2026-08-25",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
       "slug": "how-numbing-habits-drain-energy",
       "lane": "boom",
       "title": "How Numbing Habits Drain Energy",
       "date": "2026-08-26",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "i-cannot-think-clearly-when-overwhelmed",
+      "lane": "boom",
+      "title": "I Cannot Think Clearly When Overwhelmed",
+      "date": "2026-08-27",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
@@ -589,6 +592,15 @@
       "lane": "boom",
       "title": "My Life Looks Good But Feels Wrong",
       "date": "2026-08-24",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "why-do-i-keep-breaking-promises-to-myself",
+      "lane": "boom",
+      "title": "Why Do I Keep Breaking Promises to Myself",
+      "date": "2026-08-25",
       "missing": [
         "blogger"
       ]
