@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-26T16:45:05.770Z",
+  "lastUpdated": "2026-08-27T03:00:15.996Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "i-cannot-think-clearly-when-overwhelmed",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-27T03:00:00.803Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,18 +1156,19 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-08-25T16:26:29.700Z"
-    },
-    {
-      "slug": "what-inner-noise-feels-like",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-08-25T16:24:35.473Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "i-cannot-think-clearly-when-overwhelmed",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "family": "art",
+      "timestamp": "2026-08-27T03:00:15.996Z"
+    },
     {
       "slug": "how-numbing-habits-drain-energy",
       "archetype": "sacred-tech",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "somatic",
       "family": "art",
       "timestamp": "2026-08-12T14:25:46.600Z"
-    },
-    {
-      "slug": "why-a-good-life-can-still-feel-empty",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-08-11T22:43:55.881Z"
     }
   ]
 }
