@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-28T00:41:52.965Z",
+  "lastUpdated": "2026-08-28T06:00:50.654Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-commitment-creates-clarity",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-08-28T06:00:33.660Z"
+    },
+    {
       "slug": "reducing-inputs-to-restore-focus",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,18 +1156,19 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-08-26T16:43:56.945Z"
-    },
-    {
-      "slug": "how-numbing-habits-drain-energy",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-08-26T16:42:37.390Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "how-commitment-creates-clarity",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-08-28T06:00:50.654Z"
+    },
     {
       "slug": "why-do-i-feel-empty-even-though-life-is-fine",
       "archetype": "symbolic-consciousness",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "grounded",
       "family": "art",
       "timestamp": "2026-08-13T14:25:55.743Z"
-    },
-    {
-      "slug": "outgrowing-old-identities",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-08-12T22:42:55.886Z"
     }
   ]
 }
