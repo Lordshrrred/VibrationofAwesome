@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-29T00:14:58.363Z",
+  "lastUpdated": "2026-08-29T03:34:27.826Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "why-do-i-avoid-the-thing-that-would-help-me",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-08-29T03:34:12.397Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,18 +1156,19 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-08-28T00:40:49.262Z"
-    },
-    {
-      "slug": "why-do-i-feel-empty-even-though-life-is-fine",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-08-28T00:39:42.450Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "why-do-i-avoid-the-thing-that-would-help-me",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "family": "art",
+      "timestamp": "2026-08-29T03:34:27.826Z"
+    },
     {
       "slug": "i-cannot-hear-my-intuition-anymore",
       "archetype": "premium-quote-card",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "grounded",
       "family": "art",
       "timestamp": "2026-08-14T14:21:07.985Z"
-    },
-    {
-      "slug": "how-to-find-direction-when-you-feel-lost",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-08-13T22:44:00.748Z"
     }
   ]
 }
