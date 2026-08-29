@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-29T23:55:57.887Z",
+  "generated_at": "2026-08-29T23:59:11.810Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -428,6 +428,72 @@
       "wordpress_earthstar"
     ],
     "per_post": [
+      {
+        "slug": "i-am-overstimulated-and-exhausted",
+        "title": "I Am Overstimulated and Exhausted",
+        "lane": "boom",
+        "date": "2026-08-29",
+        "publish_status": "partial",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "success",
+            "timestamp": "2026-08-29T23:59:11.794Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mub3e2lzm627"
+          },
+          "mastodon_voa": {
+            "status": "success",
+            "timestamp": "2026-08-29T23:59:11.794Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117181503098416076"
+          },
+          "facebook_voa": {
+            "status": "success",
+            "timestamp": "2026-08-29T23:59:11.794Z",
+            "url": null
+          },
+          "pinterest": {
+            "status": "success",
+            "timestamp": "2026-08-29T23:59:11.794Z",
+            "url": null
+          },
+          "threads": {
+            "status": "success",
+            "timestamp": "2026-08-29T23:59:11.794Z",
+            "url": null
+          },
+          "instagram": {
+            "status": "success",
+            "timestamp": "2026-08-29T23:59:11.794Z",
+            "url": null
+          },
+          "devto": {
+            "status": "success",
+            "timestamp": "2026-08-29T23:59:11.794Z",
+            "url": "https://dev.to/earthstarrising/i-am-overstimulated-and-exhausted-198o"
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-08-29T23:59:11.794Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/826328118898868224"
+          },
+          "blogger": {
+            "status": "failed",
+            "timestamp": "2026-08-29T23:59:11.794Z",
+            "url": null
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-08-29T23:59:11.794Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/29/i-am-overstimulated-and-exhausted-earthstar/"
+          }
+        },
+        "success_count": 9,
+        "failed_count": 1
+      },
       {
         "slug": "why-porn-and-scrolling-create-shame-loops",
         "title": "Why Porn and Scrolling Create Shame Loops",
@@ -17525,6 +17591,11 @@
     ],
     "retry_backlog": [
       {
+        "slug": "i-am-overstimulated-and-exhausted",
+        "platform": "blogger",
+        "timestamp": "2026-08-29T23:59:11.794Z"
+      },
+      {
         "slug": "why-porn-and-scrolling-create-shame-loops",
         "platform": "blogger",
         "timestamp": "2026-08-29T18:58:40.920Z"
@@ -17924,70 +17995,85 @@
       "feeder": {
         "successes": 189,
         "failures": 0,
-        "total": 259
+        "total": 260
       },
       "bluesky_voa": {
-        "successes": 198,
+        "successes": 199,
         "failures": 8,
-        "total": 259
+        "total": 260
       },
       "mastodon_voa": {
-        "successes": 198,
+        "successes": 199,
         "failures": 8,
-        "total": 259
+        "total": 260
       },
       "facebook_voa": {
-        "successes": 131,
+        "successes": 132,
         "failures": 13,
-        "total": 259
+        "total": 260
       },
       "pinterest": {
-        "successes": 173,
+        "successes": 174,
         "failures": 0,
-        "total": 259
+        "total": 260
       },
       "threads": {
-        "successes": 143,
+        "successes": 144,
         "failures": 0,
-        "total": 259
+        "total": 260
       },
       "instagram": {
-        "successes": 141,
+        "successes": 142,
         "failures": 0,
-        "total": 259
+        "total": 260
       },
       "devto": {
-        "successes": 186,
+        "successes": 187,
         "failures": 0,
-        "total": 259
+        "total": 260
       },
       "tumblr_voa": {
-        "successes": 256,
+        "successes": 257,
         "failures": 0,
-        "total": 259
+        "total": 260
       },
       "blogger": {
         "successes": 206,
-        "failures": 50,
-        "total": 259
+        "failures": 51,
+        "total": 260
       },
       "wordpress_earthstar": {
-        "successes": 256,
+        "successes": 257,
         "failures": 0,
-        "total": 259
+        "total": 260
       }
     },
     "summary": {
-      "total_posts": 259,
+      "total_posts": 260,
       "fully_syndicated": 196,
-      "partial": 63,
+      "partial": 64,
       "pending": 0,
-      "retry_backlog_count": 79
+      "retry_backlog_count": 80
     }
   },
   "visuals": {
-    "registry_count": 358,
+    "registry_count": 359,
     "registry_entries": [
+      {
+        "post_slug": "i-am-overstimulated-and-exhausted",
+        "source": "ideogram",
+        "asset_type": null,
+        "platforms_used": [
+          "pinterest",
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": "nervous-system-reset",
+        "reused": false,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-29T23:57:13.592Z"
+      },
       {
         "post_slug": "why-porn-and-scrolling-create-shame-loops",
         "source": "boom",
@@ -23082,22 +23168,22 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 358,
+      "total_entries": 359,
       "reused_count": 94,
-      "reuse_rate": 0.263
+      "reuse_rate": 0.262
     },
     "source_breakdown": {
-      "boom": 126,
-      "ideogram": 232
+      "ideogram": 233,
+      "boom": 126
     },
     "generation_counts": {
-      "ideogram": 232
+      "ideogram": 233
     },
     "platform_usage": {
-      "instagram": 250,
-      "bluesky_voa": 326,
-      "mastodon_voa": 326,
-      "pinterest": 252
+      "pinterest": 253,
+      "instagram": 251,
+      "bluesky_voa": 327,
+      "mastodon_voa": 327
     }
   },
   "clusters": {
@@ -23663,7 +23749,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-29T18:59:55.030Z",
+    "last_updated": "2026-08-29T23:57:13.589Z",
     "recent_hooks": [
       {
         "slug": "contentment-vs-settling",
@@ -24547,6 +24633,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "i-am-overstimulated-and-exhausted",
+        "format": "conversational-reflection",
+        "cadenceProfile": "casual-spoken",
+        "density": "light-medium",
+        "openerStyle": "mid-conversation",
+        "closerStyle": "natural-landing",
+        "timestamp": "2026-08-29T23:56:58.547Z"
+      },
+      {
         "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
         "format": "single-native-post",
         "cadenceProfile": "standalone",
@@ -24806,18 +24901,19 @@
         "openerStyle": "direct",
         "closerStyle": "resonant",
         "timestamp": "2026-08-29T00:13:42.727Z"
-      },
-      {
-        "slug": "i-cannot-hear-my-intuition-anymore",
-        "format": "reflective-essay",
-        "cadenceProfile": "slow-layered",
-        "density": "dense",
-        "openerStyle": "grounded-observation",
-        "closerStyle": "quiet-wisdom",
-        "timestamp": "2026-08-29T00:12:20.217Z"
       }
     ],
     "recent_instagram_archetypes": [
+      {
+        "slug": "i-am-overstimulated-and-exhausted",
+        "archetype": "nervous-system-atmospheric",
+        "archetypeLabel": "Nervous System Atmospheric",
+        "palette": "soft-teal-mist",
+        "emotionalTone": "regulation",
+        "emotionalCluster": "somatic",
+        "family": "art",
+        "timestamp": "2026-08-29T23:57:13.589Z"
+      },
       {
         "slug": "why-porn-and-scrolling-create-shame-loops",
         "archetype": "minimalist-philosophy",
@@ -25107,22 +25203,12 @@
         "emotionalCluster": "intellectual",
         "family": "art",
         "timestamp": "2026-08-15T13:36:16.095Z"
-      },
-      {
-        "slug": "purpose-vs-motivation",
-        "archetype": "cinematic-ideogram",
-        "archetypeLabel": "Cinematic Artwork",
-        "palette": "painterly-dark",
-        "emotionalTone": "liminal",
-        "emotionalCluster": "atmospheric",
-        "family": "art",
-        "timestamp": "2026-08-14T22:25:14.285Z"
       }
     ],
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-29T23:55:57.887Z",
+    "as_of": "2026-08-29T23:59:11.810Z",
     "next_estimated_window": "2026-08-30",
     "queue_runway_days": 17,
     "queue_runway_status": "healthy",
@@ -25239,7 +25325,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 79,
+    "retry_backlog_count": 80,
     "cadence_density": {
       "posts_last_7_days": 14,
       "posts_last_14_days": 20,
@@ -25299,9 +25385,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-29T23:55:57.872Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 15,
+    "last_export_at": "2026-08-29T23:59:11.797Z",
+    "source_event": "syndication",
+    "export_duration_ms": 13,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
