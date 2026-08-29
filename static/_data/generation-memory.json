@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-29T07:45:13.288Z",
+  "lastUpdated": "2026-08-29T17:04:33.979Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "why-porn-and-scrolling-create-shame-loops",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-08-29T17:04:18.063Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,18 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-08-28T12:35:36.752Z"
-    },
-    {
-      "slug": "how-commitment-creates-clarity",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-08-28T12:34:07.511Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "why-porn-and-scrolling-create-shame-loops",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-08-29T17:04:33.979Z"
+    },
     {
       "slug": "why-do-i-avoid-the-thing-that-would-help-me",
       "archetype": "cinematic-ideogram",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "atmospheric",
       "family": "art",
       "timestamp": "2026-08-14T22:25:14.285Z"
-    },
-    {
-      "slug": "choosing-a-path-when-nothing-feels-clear",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-08-14T14:21:07.985Z"
     }
   ]
 }
