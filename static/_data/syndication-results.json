@@ -12,6 +12,74 @@
         "timestamp": "2026-08-30T17:19:12.391Z",
         "backlink_confirmed": true,
         "backlink_source_url": "https://vibrationofawesome.com/blog/boom/posts/i-feel-like-i-am-living-someone-elses-life"
+      },
+      "bluesky_voa": {
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-08-30T18:53:58.420Z",
+        "error": "Bluesky post failed: Invalid app.bsky.feed.post record: blob too big (maximum 2000000, got 2227146) at $.record.embed.images[0].image"
+      },
+      "mastodon_voa": {
+        "status": "success",
+        "url": "https://mastodon.social/@Vibrationofawesome/117185968255820247",
+        "timestamp": "2026-08-30T18:53:58.420Z"
+      },
+      "facebook_voa": {
+        "status": "success",
+        "url": null,
+        "timestamp": "2026-08-30T18:53:58.420Z"
+      },
+      "pinterest": {
+        "status": "skipped",
+        "url": null,
+        "timestamp": "2026-08-30T18:53:58.420Z",
+        "error": "skipped by social policy",
+        "skipped": true
+      },
+      "threads": {
+        "status": "success",
+        "url": null,
+        "timestamp": "2026-08-30T18:53:58.420Z"
+      },
+      "instagram": {
+        "status": "success",
+        "url": null,
+        "timestamp": "2026-08-30T18:53:58.420Z"
+      },
+      "bluesky_esr": {
+        "status": "skipped",
+        "url": null,
+        "timestamp": "2026-08-30T18:53:58.420Z",
+        "error": "skipped by social policy",
+        "skipped": true
+      },
+      "mastodon_esr": {
+        "status": "skipped",
+        "url": null,
+        "timestamp": "2026-08-30T18:53:58.420Z",
+        "error": "skipped by social policy",
+        "skipped": true
+      },
+      "devto": {
+        "status": "success",
+        "url": "https://dev.to/earthstarrising/i-feel-like-i-am-living-someone-elses-life-lim",
+        "timestamp": "2026-08-30T18:53:58.420Z"
+      },
+      "tumblr_voa": {
+        "status": "success",
+        "url": "https://vibrationofawesome.tumblr.com/post/826399557255675904",
+        "timestamp": "2026-08-30T18:53:58.420Z"
+      },
+      "blogger": {
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-08-30T18:53:58.420Z",
+        "error": "Blogger token refresh failed (invalid_grant): Bad Request"
+      },
+      "wordpress_earthstar": {
+        "status": "success",
+        "url": "https://earthstarrisingsun.wordpress.com/2026/08/30/i-feel-like-i-am-living-someone-elses-life-earthstar-2/",
+        "timestamp": "2026-08-30T18:53:58.420Z"
       }
     }
   },

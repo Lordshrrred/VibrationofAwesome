@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-30T17:21:55.348Z",
+  "generated_at": "2026-08-30T18:53:58.438Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -436,63 +436,63 @@
         "publish_status": "partial",
         "platform_statuses": {
           "feeder": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-08-30T17:19:12.391Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/i-feel-like-i-am-living-someone-elses-life-insight.html"
           },
           "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-08-30T17:20:55.802Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mucvocmd6k2i"
+            "status": "failed",
+            "timestamp": "2026-08-30T18:53:58.420Z",
+            "url": null
           },
           "mastodon_voa": {
             "status": "success",
-            "timestamp": "2026-08-30T17:20:39.811Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/117185598593404953"
+            "timestamp": "2026-08-30T18:53:58.420Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117185968255820247"
           },
           "facebook_voa": {
             "status": "success",
-            "timestamp": "2026-08-30T17:20:39.811Z",
+            "timestamp": "2026-08-30T18:53:58.420Z",
             "url": null
           },
           "pinterest": {
             "status": "skipped",
-            "timestamp": "2026-08-30T17:20:39.811Z",
+            "timestamp": "2026-08-30T18:53:58.420Z",
             "url": null
           },
           "threads": {
             "status": "success",
-            "timestamp": "2026-08-30T17:20:39.811Z",
+            "timestamp": "2026-08-30T18:53:58.420Z",
             "url": null
           },
           "instagram": {
             "status": "success",
-            "timestamp": "2026-08-30T17:20:39.811Z",
+            "timestamp": "2026-08-30T18:53:58.420Z",
             "url": null
           },
           "devto": {
             "status": "success",
-            "timestamp": "2026-08-30T17:20:39.811Z",
+            "timestamp": "2026-08-30T18:53:58.420Z",
             "url": "https://dev.to/earthstarrising/i-feel-like-i-am-living-someone-elses-life-lim"
           },
           "tumblr_voa": {
             "status": "success",
-            "timestamp": "2026-08-30T17:20:39.811Z",
-            "url": "https://vibrationofawesome.tumblr.com/post/826393645803520000"
+            "timestamp": "2026-08-30T18:53:58.420Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/826399557255675904"
           },
           "blogger": {
             "status": "failed",
-            "timestamp": "2026-08-30T17:20:39.811Z",
+            "timestamp": "2026-08-30T18:53:58.420Z",
             "url": null
           },
           "wordpress_earthstar": {
             "status": "success",
-            "timestamp": "2026-08-30T17:20:39.811Z",
-            "url": "https://earthstarrisingsun.wordpress.com/2026/08/30/i-feel-like-i-am-living-someone-elses-life-earthstar/"
+            "timestamp": "2026-08-30T18:53:58.420Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/08/30/i-feel-like-i-am-living-someone-elses-life-earthstar-2/"
           }
         },
         "success_count": 8,
-        "failed_count": 1
+        "failed_count": 2
       },
       {
         "slug": "i-am-overstimulated-and-exhausted",
@@ -17658,8 +17658,13 @@
     "retry_backlog": [
       {
         "slug": "i-feel-like-i-am-living-someone-elses-life",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-08-30T18:53:58.420Z"
+      },
+      {
+        "slug": "i-feel-like-i-am-living-someone-elses-life",
         "platform": "blogger",
-        "timestamp": "2026-08-30T17:20:39.811Z"
+        "timestamp": "2026-08-30T18:53:58.420Z"
       },
       {
         "slug": "i-am-overstimulated-and-exhausted",
@@ -18029,13 +18034,13 @@
     ],
     "platform_coverage": {
       "feeder": {
-        "successes": 190,
+        "successes": 191,
         "failures": 0,
         "total": 261
       },
       "bluesky_voa": {
-        "successes": 204,
-        "failures": 4,
+        "successes": 203,
+        "failures": 5,
         "total": 261
       },
       "mastodon_voa": {
@@ -18089,12 +18094,26 @@
       "fully_syndicated": 196,
       "partial": 65,
       "pending": 0,
-      "retry_backlog_count": 74
+      "retry_backlog_count": 75
     }
   },
   "visuals": {
-    "registry_count": 362,
+    "registry_count": 363,
     "registry_entries": [
+      {
+        "post_slug": "i-feel-like-i-am-living-someone-elses-life",
+        "source": "boom",
+        "asset_type": "fallback",
+        "platforms_used": [
+          "instagram",
+          "bluesky_voa",
+          "mastodon_voa"
+        ],
+        "pinterest_board": null,
+        "reused": true,
+        "reused_from": "instagram",
+        "timestamp": "2026-08-30T18:52:46.662Z"
+      },
       {
         "post_slug": "i-feel-like-i-am-living-someone-elses-life",
         "source": "ideogram",
@@ -23246,21 +23265,21 @@
       }
     ],
     "reuse_stats": {
-      "total_entries": 362,
-      "reused_count": 96,
-      "reuse_rate": 0.265
+      "total_entries": 363,
+      "reused_count": 97,
+      "reuse_rate": 0.267
     },
     "source_breakdown": {
-      "ideogram": 234,
-      "boom": 128
+      "boom": 129,
+      "ideogram": 234
     },
     "generation_counts": {
       "ideogram": 234
     },
     "platform_usage": {
-      "instagram": 253,
-      "bluesky_voa": 330,
-      "mastodon_voa": 330,
+      "instagram": 254,
+      "bluesky_voa": 331,
+      "mastodon_voa": 331,
       "pinterest": 254
     }
   },
@@ -23828,7 +23847,7 @@
     "unassigned_post_count": 13
   },
   "generation": {
-    "last_updated": "2026-08-30T17:21:54.531Z",
+    "last_updated": "2026-08-30T18:52:46.654Z",
     "recent_hooks": [
       {
         "slug": "contentment-vs-settling",
@@ -24712,6 +24731,15 @@
     "recent_cta_patterns": [],
     "recent_threads_formats": [
       {
+        "slug": "i-feel-like-i-am-living-someone-elses-life",
+        "format": "reflective-essay",
+        "cadenceProfile": "slow-layered",
+        "density": "dense",
+        "openerStyle": "grounded-observation",
+        "closerStyle": "quiet-wisdom",
+        "timestamp": "2026-08-30T18:52:46.654Z"
+      },
+      {
         "slug": "why-a-good-life-can-still-feel-empty",
         "format": "conversational-reflection",
         "cadenceProfile": "casual-spoken",
@@ -24971,15 +24999,6 @@
         "openerStyle": "contradiction",
         "closerStyle": "earned-realization",
         "timestamp": "2026-08-29T17:07:00.678Z"
-      },
-      {
-        "slug": "why-porn-and-scrolling-create-shame-loops",
-        "format": "short-native-insight",
-        "cadenceProfile": "compact",
-        "density": "light",
-        "openerStyle": "direct",
-        "closerStyle": "resonant",
-        "timestamp": "2026-08-29T17:04:18.063Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -25287,7 +25306,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-08-30T17:21:55.348Z",
+    "as_of": "2026-08-30T18:53:58.438Z",
     "next_estimated_window": "2026-08-31",
     "queue_runway_days": 16,
     "queue_runway_status": "healthy",
@@ -25405,7 +25424,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 74,
+    "retry_backlog_count": 75,
     "cadence_density": {
       "posts_last_7_days": 14,
       "posts_last_14_days": 20,
@@ -25465,8 +25484,8 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-08-30T17:21:55.334Z",
-    "source_event": "retry",
+    "last_export_at": "2026-08-30T18:53:58.424Z",
+    "source_event": "syndication",
     "export_duration_ms": 14,
     "schema_version": "1.0",
     "stale_after_minutes": 60
