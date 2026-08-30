@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-30T06:20:55.618Z",
+  "lastUpdated": "2026-08-30T17:18:47.383Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "i-feel-like-i-am-living-someone-elses-life",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-08-30T17:18:32.848Z"
+    },
+    {
       "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-08-29T07:44:00.851Z"
-    },
-    {
-      "slug": "why-do-i-avoid-the-thing-that-would-help-me",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-08-29T07:42:29.382Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "i-feel-like-i-am-living-someone-elses-life",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-08-30T17:18:47.383Z"
+    },
     {
       "slug": "i-am-overstimulated-and-exhausted",
       "archetype": "nervous-system-atmospheric",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "mystical",
       "family": "art",
       "timestamp": "2026-08-15T22:23:47.109Z"
-    },
-    {
-      "slug": "how-to-stop-drifting",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-08-15T13:36:16.095Z"
     }
   ]
 }
