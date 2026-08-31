@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-08-31T19:28:11.121Z",
+  "lastChecked": "2026-08-31T21:09:08.481Z",
   "status": "broken",
   "passed": 15,
   "failed": 1,
@@ -13,8 +13,8 @@
     "status": "active",
     "rate": 1,
     "time": "13:00, 16:00, and 22:00 UTC plus 01:00 UTC next-day",
-    "remaining": 29,
-    "published": 271,
+    "remaining": 28,
+    "published": 272,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -22,7 +22,7 @@
     {
       "name": "drip queue",
       "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00, 16:00, and 22:00 UTC plus 01:00 UTC next-day, remaining=29"
+      "detail": "status=active, rate=1/run, time=13:00, 16:00, and 22:00 UTC plus 01:00 UTC next-day, remaining=28"
     },
     {
       "name": "Publer accounts",
@@ -114,9 +114,9 @@
   },
   "queue_warning": {
     "level": "warning",
-    "queue_remaining": 29,
+    "queue_remaining": 28,
     "days_remaining": 7,
-    "checked_at": "2026-08-31T19:28:11.180Z",
-    "message": "Queue has 29 post(s) left (~7 days). Replenish with generate-all-drafts.js."
+    "checked_at": "2026-08-31T21:09:08.537Z",
+    "message": "Queue has 28 post(s) left (~7 days). Replenish with generate-all-drafts.js."
   }
 }
