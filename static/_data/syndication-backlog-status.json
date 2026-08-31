@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T17:42:26.210Z",
+  "generatedAt": "2026-08-31T23:00:41.375Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,32 +14,32 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 262,
-    "backlogPosts": 56,
-    "backlinkCapableMissingUnits": 65,
-    "backlinkVerificationGaps": 255,
+    "totalTrackedPosts": 263,
+    "backlogPosts": 57,
+    "backlinkCapableMissingUnits": 66,
+    "backlinkVerificationGaps": 258,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 10,
     "freshMissingBacklinkUnits": 10,
-    "completedBacklinkUnitsInWindow": 90,
-    "completedBacklinkUnitsPerDay": 6.4,
+    "completedBacklinkUnitsInWindow": 93,
+    "completedBacklinkUnitsPerDay": 6.6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 13.6,
+    "netBacklogChangePerDay": 13.4,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 56
+    "largestDelayMissingUnits": 57
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 262,
+        "eligiblePosts": 263,
         "complete": 206,
-        "missing": 56,
-        "successRate": 78.6,
+        "missing": 57,
+        "successRate": 78.3,
         "averagePerDay": 0,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,37 +48,37 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 262,
-        "complete": 259,
+        "eligiblePosts": 263,
+        "complete": 260,
         "missing": 3,
         "successRate": 98.9,
-        "averagePerDay": 2.1,
+        "averagePerDay": 2.2,
         "confirmed": 182,
-        "verificationGaps": 77,
+        "verificationGaps": 78,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 262,
-        "complete": 259,
+        "eligiblePosts": 263,
+        "complete": 260,
         "missing": 3,
         "successRate": 98.9,
-        "averagePerDay": 2.1,
+        "averagePerDay": 2.2,
         "confirmed": 182,
-        "verificationGaps": 77,
+        "verificationGaps": 78,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 192,
-        "complete": 189,
+        "eligiblePosts": 193,
+        "complete": 190,
         "missing": 3,
         "successRate": 98.4,
         "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 53,
+        "verificationGaps": 54,
         "mainBlocker": "missing local success record"
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 192,
-        "complete": 192,
+        "eligiblePosts": 193,
+        "complete": 193,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
-        "confirmed": 192,
+        "averagePerDay": 2,
+        "confirmed": 193,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,37 +112,37 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 209,
-        "complete": 201,
+        "eligiblePosts": 210,
+        "complete": 202,
         "missing": 8,
         "successRate": 96.2,
         "averagePerDay": 1.9,
         "confirmed": 142,
-        "verificationGaps": 59,
+        "verificationGaps": 60,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 209,
-        "complete": 201,
+        "eligiblePosts": 210,
+        "complete": 202,
         "missing": 8,
         "successRate": 96.2,
         "averagePerDay": 1.9,
         "confirmed": 142,
-        "verificationGaps": 59,
+        "verificationGaps": 60,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 147,
-        "complete": 134,
+        "eligiblePosts": 148,
+        "complete": 135,
         "missing": 13,
         "successRate": 91.2,
         "averagePerDay": 1.9,
         "confirmed": 30,
-        "verificationGaps": 104,
+        "verificationGaps": 105,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
@@ -160,25 +160,25 @@
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 146,
-        "complete": 146,
+        "eligiblePosts": 147,
+        "complete": 147,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.9,
         "confirmed": 72,
-        "verificationGaps": 74,
+        "verificationGaps": 75,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 144,
-        "complete": 144,
+        "eligiblePosts": 145,
+        "complete": 145,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.9,
         "confirmed": 0,
-        "verificationGaps": 144,
+        "verificationGaps": 145,
         "mainBlocker": ""
       }
     ]
@@ -190,7 +190,7 @@
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 25
+      "count": 26
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -279,10 +279,10 @@
       ]
     },
     {
-      "slug": "i-feel-like-i-am-living-someone-elses-life",
+      "slug": "my-mind-feels-noisy-all-the-time",
       "lane": "boom",
-      "title": "I Feel Like I Am Living Someone Else's Life",
-      "date": "2026-08-30",
+      "title": "My Mind Feels Noisy All the Time",
+      "date": "2026-08-31",
       "missing": [
         "blogger"
       ]
@@ -679,6 +679,15 @@
       "lane": "boom",
       "title": "Why Do I Avoid the Thing That Would Help Me",
       "date": "2026-08-29",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "i-feel-like-i-am-living-someone-elses-life",
+      "lane": "boom",
+      "title": "I Feel Like I Am Living Someone Else's Life",
+      "date": "2026-08-30",
       "missing": [
         "blogger"
       ]
