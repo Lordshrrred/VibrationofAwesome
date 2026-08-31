@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-08-30T18:55:17.453Z",
+  "lastUpdated": "2026-08-31T00:16:27.194Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "i-keep-spinning-my-wheels-in-life",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-08-31T00:16:10.309Z"
+    },
+    {
       "slug": "digital-art-prints-that-feel-like-originals",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,18 +1156,19 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-08-29T18:59:02.924Z"
-    },
-    {
-      "slug": "why-porn-and-scrolling-create-shame-loops",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-08-29T18:57:18.297Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "i-keep-spinning-my-wheels-in-life",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-08-31T00:16:27.194Z"
+    },
     {
       "slug": "i-feel-like-i-am-living-someone-elses-life",
       "archetype": "symbolic-consciousness",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "somatic",
       "family": "art",
       "timestamp": "2026-08-16T13:37:26.562Z"
-    },
-    {
-      "slug": "committing-before-you-feel-ready",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-08-15T22:23:47.109Z"
     }
   ]
 }
