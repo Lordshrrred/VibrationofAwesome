@@ -2,6 +2,21 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Publer delivery monitor (2026-09-01)
+
+- `.github/workflows/publer-delivery-monitor.yml` is the durable, cloud-hosted
+  Publer failure alert. It runs every 15 minutes even when Matt's Mac is asleep.
+- `scripts/publer-delivery-monitor.js` checks new failed posts across the shared
+  Publer workspace and explicit publishing access for EarthStarRising and
+  LumiVale TikTok. It deduplicates through a closed machine-owned GitHub issue.
+- Email uses the repository's existing `GMAIL_ADDRESS` and
+  `GMAIL_APP_PASSWORD` secrets. A run only reports success after SMTP verify and
+  Gmail explicitly accepts `earthlingoflight@gmail.com`; never replace this
+  with local macOS `mail`, which can exit zero while no mail service is running.
+- `workflow_dispatch` with `send_test_email: true` is the end-to-end test. Keep
+  workflow permissions at `contents: read` and `issues: write` so state remains
+  durable without committing generated files.
+
 ## Project Overview
 
 Vibration of Awesome (vibrationofawesome.com) is an AI-powered content creation and syndication platform. It combines a Hugo static site with Node.js automation scripts that generate blog posts via Claude API and distribute them across social media platforms.
