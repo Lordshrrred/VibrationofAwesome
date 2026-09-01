@@ -145,6 +145,20 @@ async function saveState(issue, state) {
   );
 }
 
+async function createAlertIssue(title, body) {
+  const created = await fetchJson(
+    `${githubBase}/issues`,
+    {
+      method: "POST",
+      headers: { ...githubHeaders, "Content-Type": "application/json" },
+      body: JSON.stringify({ title, body, assignees: [owner] }),
+    },
+    "GitHub Publer alert creation",
+  );
+  console.log(`Created assigned Publer alert: ${created.html_url}`);
+  return created;
+}
+
 async function sendEmail(subject, body) {
   const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
@@ -190,6 +204,17 @@ async function sendEmail(subject, body) {
   console.log(`Gmail API accepted alert ${result.id} for ${ALERT_TO}.`);
 }
 
+async function sendNotification(subject, body) {
+  await createAlertIssue(subject, body);
+  try {
+    await sendEmail(subject, body);
+  } catch (error) {
+    // GitHub issue assignment is the guaranteed durable channel. Gmail is a
+    // second channel and must never take the monitor itself dark.
+    console.warn(`Gmail secondary alert unavailable: ${error instanceof Error ? error.message : error}`);
+  }
+}
+
 function formatFailure(failure) {
   const when = new Date(failure.scheduledAt).toLocaleString("en-US", {
     timeZone: "America/Denver",
@@ -213,8 +238,8 @@ async function main() {
   );
 
   if (process.env.MONITOR_TEST === "true") {
-    await sendEmail(
-      "✅ Publer failure email monitor is live",
+    await sendNotification(
+      "✅ Publer delivery monitor is live",
       [
         "The cloud Publer monitor successfully queried Publer and Gmail accepted this test message.",
         "",
@@ -266,14 +291,14 @@ async function main() {
       ),
       ...newFailures.flatMap((failure) => [formatFailure(failure), ""]),
     ];
-    await sendEmail(
+    await sendNotification(
       `🚨 Publer: ${newFailures.length + newlyInaccessible.length} new delivery problem(s)`,
       sections.join("\n"),
     );
   }
 
   if (recovered.length) {
-    await sendEmail(
+    await sendNotification(
       `✅ Publer access recovered: ${recovered.map((account) => account.name).join(", ")}`,
       recovered.map((account) => `${account.name} now reports publishing access again.`).join("\n"),
     );
