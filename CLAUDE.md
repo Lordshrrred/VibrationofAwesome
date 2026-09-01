@@ -9,9 +9,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `scripts/publer-delivery-monitor.js` checks new failed posts across the shared
   Publer workspace and explicit publishing access for EarthStarRising and
   LumiVale TikTok. It deduplicates through a closed machine-owned GitHub issue.
-- Email uses the repository's existing `GMAIL_ADDRESS` and
-  `GMAIL_APP_PASSWORD` secrets. A run only reports success after SMTP verify and
-  Gmail explicitly accepts `earthlingoflight@gmail.com`; never replace this
+- Email uses the repository's existing Gmail OAuth client and refresh-token
+  secrets with `gmail.send` scope. A run only reports success after Gmail's API
+  returns a message id for `earthlingoflight@gmail.com`; never replace this
   with local macOS `mail`, which can exit zero while no mail service is running.
 - `workflow_dispatch` with `send_test_email: true` is the end-to-end test. Keep
   workflow permissions at `contents: read` and `issues: write` so state remains

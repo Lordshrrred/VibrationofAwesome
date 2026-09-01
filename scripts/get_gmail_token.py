@@ -1,6 +1,6 @@
 """
 get_gmail_token.py
-Obtain a Gmail OAuth 2.0 refresh token (read-only scope).
+Obtain a Gmail OAuth 2.0 refresh token (read + alert-send scopes).
 
 Usage:
     python3 scripts/get_gmail_token.py
@@ -23,7 +23,7 @@ ROOT     = Path(__file__).parent.parent
 ENV_FILE = ROOT / ".env"
 PORT     = 8765
 REDIRECT = f"http://localhost:{PORT}/callback"
-SCOPES   = "https://www.googleapis.com/auth/gmail.readonly"
+SCOPES   = "https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send"
 
 # ── Load .env ────────────────────────────────────────────────────────────────
 def load_env():

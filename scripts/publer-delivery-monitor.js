@@ -7,8 +7,6 @@
  * A run is successful only when Gmail explicitly accepts every recipient.
  */
 
-import nodemailer from "nodemailer";
-
 const PUBLER_BASE = "https://app.publer.com/api/v1";
 const STATE_TITLE = "[automation state] Publer delivery monitor";
 const ALERT_TO = process.env.ALERT_EMAIL || "earthlingoflight@gmail.com";
@@ -17,7 +15,9 @@ const required = [
   "PUBLER_API_KEY",
   "PUBLER_WORKSPACE_ID",
   "GMAIL_ADDRESS",
-  "GMAIL_APP_PASSWORD",
+  "GMAIL_CLIENT_ID",
+  "GMAIL_CLIENT_SECRET",
+  "GMAIL_REFRESH_TOKEN",
   "GITHUB_TOKEN",
   "GITHUB_REPOSITORY",
 ];
@@ -146,25 +146,48 @@ async function saveState(issue, state) {
 }
 
 async function sendEmail(subject, body) {
-  const transport = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.GMAIL_ADDRESS,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
+  const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      client_id: process.env.GMAIL_CLIENT_ID,
+      client_secret: process.env.GMAIL_CLIENT_SECRET,
+      refresh_token: process.env.GMAIL_REFRESH_TOKEN,
+      grant_type: "refresh_token",
+    }),
   });
-  await transport.verify();
-  const result = await transport.sendMail({
-    from: process.env.GMAIL_ADDRESS,
-    to: ALERT_TO,
-    subject,
-    text: body,
-  });
-  const accepted = new Set((result.accepted ?? []).map((value) => String(value).toLowerCase()));
-  if (!accepted.has(ALERT_TO.toLowerCase())) {
-    throw new Error(`Gmail did not accept ${ALERT_TO}; accepted=${JSON.stringify(result.accepted)}`);
+  const tokenBody = await tokenResponse.json();
+  if (!tokenResponse.ok || !tokenBody.access_token) {
+    throw new Error(`Gmail token refresh failed (${tokenResponse.status}): ${JSON.stringify(tokenBody)}`);
   }
-  console.log(`Gmail accepted alert ${result.messageId} for ${ALERT_TO}.`);
+  const raw = [
+    `From: ${process.env.GMAIL_ADDRESS}`,
+    `To: ${ALERT_TO}`,
+    `Subject: =?UTF-8?B?${Buffer.from(subject).toString("base64")}?=`,
+    "MIME-Version: 1.0",
+    "Content-Type: text/plain; charset=UTF-8",
+    "Content-Transfer-Encoding: base64",
+    "",
+    Buffer.from(body).toString("base64"),
+  ].join("\r\n");
+  const sendResponse = await fetch(
+    "https://gmail.googleapis.com/gmail/v1/users/me/messages/send",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${tokenBody.access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        raw: Buffer.from(raw).toString("base64url"),
+      }),
+    },
+  );
+  const result = await sendResponse.json();
+  if (!sendResponse.ok || !result.id) {
+    throw new Error(`Gmail send failed (${sendResponse.status}): ${JSON.stringify(result)}`);
+  }
+  console.log(`Gmail API accepted alert ${result.id} for ${ALERT_TO}.`);
 }
 
 function formatFailure(failure) {

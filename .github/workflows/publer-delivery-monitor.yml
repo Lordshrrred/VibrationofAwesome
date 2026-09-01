@@ -36,7 +36,9 @@ jobs:
           PUBLER_API_KEY: ${{ secrets.PUBLER_API_KEY }}
           PUBLER_WORKSPACE_ID: ${{ secrets.PUBLER_WORKSPACE_ID }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+          GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
           ALERT_EMAIL: earthlingoflight@gmail.com
           MONITOR_TEST: ${{ inputs.send_test_email == true && 'true' || 'false' }}
