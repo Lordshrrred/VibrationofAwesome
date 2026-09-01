@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-01T01:06:20.357Z",
+  "lastUpdated": "2026-09-01T06:05:11.124Z",
   "recentHooks": [
     {
       "slug": "contentment-vs-settling",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "i-keep-choosing-comfort-and-regret-it-later",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-01T06:05:11.124Z"
+    },
+    {
       "slug": "why-a-good-life-can-still-feel-empty",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,15 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-08-31T00:18:52.022Z"
-    },
-    {
-      "slug": "i-keep-spinning-my-wheels-in-life",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-08-31T00:16:10.309Z"
     }
   ],
   "recentInstagramArchetypes": [
