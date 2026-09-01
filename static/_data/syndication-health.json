@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-09-01T17:16:25.379Z",
+  "lastChecked": "2026-09-01T18:55:40.921Z",
   "status": "broken",
   "passed": 14,
   "failed": 2,
@@ -13,8 +13,8 @@
     "status": "active",
     "rate": 1,
     "time": "13:00, 16:00, and 22:00 UTC plus 01:00 UTC next-day",
-    "remaining": 27,
-    "published": 273,
+    "remaining": 26,
+    "published": 274,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -22,7 +22,7 @@
     {
       "name": "drip queue",
       "ok": false,
-      "detail": "publishing inventory low: 27 posts remain; minimum healthy runway is 28",
+      "detail": "publishing inventory low: 26 posts remain; minimum healthy runway is 28",
       "failureType": "check_failed"
     },
     {
@@ -115,9 +115,9 @@
   },
   "queue_warning": {
     "level": "warning",
-    "queue_remaining": 27,
+    "queue_remaining": 26,
     "days_remaining": 6,
-    "checked_at": "2026-09-01T17:16:25.445Z",
-    "message": "Queue has 27 post(s) left (~6 days). Replenish with generate-all-drafts.js."
+    "checked_at": "2026-09-01T18:55:40.979Z",
+    "message": "Queue has 26 post(s) left (~6 days). Replenish with generate-all-drafts.js."
   }
 }
