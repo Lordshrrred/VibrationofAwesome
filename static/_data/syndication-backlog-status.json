@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T04:59:11.877Z",
+  "generatedAt": "2026-09-02T11:40:28.927Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -16,17 +16,17 @@
   "summary": {
     "totalTrackedPosts": 266,
     "backlogPosts": 60,
-    "backlinkCapableMissingUnits": 72,
-    "backlinkVerificationGaps": 264,
+    "backlinkCapableMissingUnits": 69,
+    "backlinkVerificationGaps": 267,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 87,
-    "completedBacklinkUnitsPerDay": 6.2,
+    "freshPostsAwaitingBacklinks": 10,
+    "freshMissingBacklinkUnits": 10,
+    "completedBacklinkUnitsInWindow": 90,
+    "completedBacklinkUnitsPerDay": 6.4,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 13.8,
+    "netBacklogChangePerDay": 13.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 60
@@ -49,36 +49,36 @@
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 266,
-        "complete": 262,
-        "missing": 4,
-        "successRate": 98.5,
+        "complete": 263,
+        "missing": 3,
+        "successRate": 98.9,
         "averagePerDay": 2.1,
         "confirmed": 182,
-        "verificationGaps": 80,
+        "verificationGaps": 81,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 266,
-        "complete": 262,
-        "missing": 4,
-        "successRate": 98.5,
+        "complete": 263,
+        "missing": 3,
+        "successRate": 98.9,
         "averagePerDay": 2.1,
         "confirmed": 182,
-        "verificationGaps": 80,
+        "verificationGaps": 81,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 196,
-        "complete": 192,
-        "missing": 4,
-        "successRate": 98,
+        "complete": 193,
+        "missing": 3,
+        "successRate": 98.5,
         "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 56,
+        "verificationGaps": 57,
         "mainBlocker": "missing local success record"
       },
       {
@@ -112,73 +112,73 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 212,
-        "complete": 204,
+        "eligiblePosts": 213,
+        "complete": 205,
         "missing": 8,
         "successRate": 96.2,
         "averagePerDay": 1.9,
         "confirmed": 142,
-        "verificationGaps": 62,
+        "verificationGaps": 63,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 212,
-        "complete": 204,
+        "eligiblePosts": 213,
+        "complete": 205,
         "missing": 8,
         "successRate": 96.2,
         "averagePerDay": 1.9,
         "confirmed": 142,
-        "verificationGaps": 62,
+        "verificationGaps": 63,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 150,
-        "complete": 137,
+        "eligiblePosts": 151,
+        "complete": 138,
         "missing": 13,
-        "successRate": 91.3,
+        "successRate": 91.4,
         "averagePerDay": 1.9,
         "confirmed": 30,
-        "verificationGaps": 107,
+        "verificationGaps": 108,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 175,
-        "complete": 175,
+        "eligiblePosts": 176,
+        "complete": 176,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.9,
+        "averagePerDay": 1,
         "confirmed": 0,
-        "verificationGaps": 175,
+        "verificationGaps": 176,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 149,
-        "complete": 149,
+        "eligiblePosts": 150,
+        "complete": 150,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.9,
         "confirmed": 72,
-        "verificationGaps": 77,
+        "verificationGaps": 78,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 147,
-        "complete": 147,
+        "eligiblePosts": 148,
+        "complete": 148,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.9,
         "confirmed": 0,
-        "verificationGaps": 147,
+        "verificationGaps": 148,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 28
+      "count": 29
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
@@ -279,33 +279,21 @@
       ]
     },
     {
+      "slug": "how-to-calm-an-overstimulated-body",
+      "lane": "boom",
+      "title": "How to Calm an Overstimulated Body",
+      "date": "2026-09-01",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
       "slug": "i-keep-scrolling-at-night-even-when-i-am-tired",
       "lane": "boom",
       "title": "I Keep Scrolling At Night Even When I Am Tired",
       "date": "2026-09-01",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "i-keep-choosing-comfort-and-regret-it-later",
-      "lane": "boom",
-      "title": "I Keep Choosing Comfort and Regret It Later",
-      "date": "2026-09-01",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-calm-an-overstimulated-body",
-      "lane": "boom",
-      "title": "How to Calm an Overstimulated Body",
-      "date": "2026-09-01",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     },
     {
@@ -718,6 +706,15 @@
       "lane": "boom",
       "title": "I Keep Spinning My Wheels in Life",
       "date": "2026-08-31",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "i-keep-choosing-comfort-and-regret-it-later",
+      "lane": "boom",
+      "title": "I Keep Choosing Comfort and Regret It Later",
+      "date": "2026-09-01",
       "missing": [
         "blogger"
       ]
