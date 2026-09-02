@@ -271,32 +271,6 @@ jobs:
           steps.commit.outputs.nothing_committed != 'true'
         run: node scripts/reconcile-syndication-results.js
 
-      - name: Commit post-live syndication results
-        id: post_live_commit
-        if: |
-          steps.queue_status.outputs.status == 'active' &&
-          steps.queue_status.outputs.remaining != '0' &&
-          steps.commit.outputs.nothing_committed != 'true'
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A static/_data/ static/sitemap.xml || true
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "::warning::Post-live syndication left generated changes outside standard data paths; staging all runner changes before rebase."
-            git status --short
-            git add -A
-          fi
-          if git diff --staged --quiet; then
-            echo "nothing_committed=true" >> $GITHUB_OUTPUT
-            echo "No post-live syndication updates to commit."
-          else
-            git commit -m "Update post-live syndication results [automated]"
-            git fetch origin main
-            git merge --no-edit -X ours origin/main
-            git push
-            echo "nothing_committed=false" >> $GITHUB_OUTPUT
-          fi
-
       # ── 9. Retry any platforms that failed during this run ───────────────────
       # Runs after the first commit so the results file is available.
       # Dedup logic in syndicate.js prevents duplicate posts.
@@ -340,8 +314,10 @@ jobs:
           WORDPRESS_BLOG:              ${{ secrets.WORDPRESS_BLOG }}
         run: node scripts/retry-failed-syndication.js
 
-      # ── 10. Commit retry results ───────────────────────────────────────────────
-      - name: Commit retry results
+      # ── 10. Commit post-live and retry results once ────────────────────────────
+      # These used to be two separate pushes. One atomic state commit prevents an
+      # extra Vercel deployment attempt after every drip run.
+      - name: Commit post-live and retry results
         id: retry_commit
         if: steps.queue_status.outputs.status == 'active' && steps.queue_status.outputs.remaining != '0'
         run: |
@@ -355,9 +331,9 @@ jobs:
           fi
           if git diff --staged --quiet; then
             echo "nothing_committed=true" >> $GITHUB_OUTPUT
-            echo "No retry updates to commit."
+            echo "No post-live or retry updates to commit."
           else
-            git commit -m "Update syndication health [automated]"
+            git commit -m "Update post-live syndication state [automated]"
             git fetch origin main
             git merge --no-edit -X ours origin/main
             git push

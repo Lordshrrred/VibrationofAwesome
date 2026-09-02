@@ -58,14 +58,15 @@ async function loadPublerTruth() {
   const from = new Date(Date.now() - 7 * 86_400_000).toISOString().slice(0, 10);
   const to = new Date(Date.now() + 86_400_000).toISOString().slice(0, 10);
   const query = new URLSearchParams({ state: "failed", from, to, per_page: "100" });
-  const result = await fetchJson(
-    `${PUBLER_BASE}/posts?${query.toString()}`,
-    { headers: publerHeaders },
-    "Publer failed posts",
-  );
+  const reauthQuery = new URLSearchParams({ state: "scheduled_reauth", from, to, per_page: "100" });
+  const [result, reauthResult] = await Promise.all([
+    fetchJson(`${PUBLER_BASE}/posts?${query.toString()}`, { headers: publerHeaders }, "Publer failed posts"),
+    fetchJson(`${PUBLER_BASE}/posts?${reauthQuery.toString()}`, { headers: publerHeaders }, "Publer reauthorization posts"),
+  ]);
   const accountById = new Map(accounts.map((account) => [account.id, account]));
   return {
     accounts,
+    reauthAccountIds: [...new Set(extractPosts(reauthResult).map((post) => post.account_id).filter(Boolean))],
     failures: extractPosts(result).map((post) => ({
       id: String(post.id),
       accountId: post.account_id,
@@ -241,21 +242,22 @@ async function main() {
     await sendNotification(
       "✅ Publer delivery monitor is live",
       [
-        "The cloud Publer monitor successfully queried Publer and Gmail accepted this test message.",
+        "The cloud Publer monitor successfully queried Publer and created this assigned GitHub notification.",
         "",
         ...watched.map(
           (account) =>
             `${account.name}: ${account.permissions?.can_access === true ? "authorized" : "NOT AUTHORIZED"}`,
         ),
         "",
-        "Checks run every 15 minutes, even when the EarthStar Mac is asleep.",
+        "GitHub requests checks every 15 minutes, even when the EarthStar Mac is asleep. GitHub may delay scheduled runs.",
       ].join("\n"),
     );
   }
 
   const currentFailureIds = truth.failures.map((failure) => failure.id);
+  const reauthAccountIds = new Set(truth.reauthAccountIds);
   const currentInaccessible = watched
-    .filter((account) => account.permissions?.can_access !== true)
+    .filter((account) => account.permissions?.can_access !== true || reauthAccountIds.has(account.id))
     .map((account) => account.id);
 
   if (!prior) {
@@ -275,11 +277,14 @@ async function main() {
   const newFailures = truth.failures.filter((failure) => !seen.has(failure.id));
   const newlyInaccessible = watched.filter(
     (account) =>
-      account.permissions?.can_access !== true && !previouslyInaccessible.has(account.id),
+      (account.permissions?.can_access !== true || reauthAccountIds.has(account.id)) &&
+      !previouslyInaccessible.has(account.id),
   );
   const recovered = watched.filter(
     (account) =>
-      account.permissions?.can_access === true && previouslyInaccessible.has(account.id),
+      account.permissions?.can_access === true &&
+      !reauthAccountIds.has(account.id) &&
+      previouslyInaccessible.has(account.id),
   );
 
   if (newFailures.length || newlyInaccessible.length) {
