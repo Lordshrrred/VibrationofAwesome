@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T04:57:41.652Z",
+  "generatedAt": "2026-09-03T11:39:27.268Z",
   "keywordGeneration": {
     "currentInventory": 23,
     "publishedInventory": 277,
@@ -13,17 +13,17 @@
   "backlinks": {
     "mode": "catch-up",
     "backlogPosts": 62,
-    "backlogUnits": 74,
-    "completedPerDay": 6,
+    "backlogUnits": 71,
+    "completedPerDay": 6.2,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklinkUnitsPerDay": 14,
+    "netBacklinkUnitsPerDay": 13.8,
     "estimatedCatchUpDays": "not-catching-up",
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "verificationGaps": 270,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
+    "verificationGaps": 273,
+    "freshPostsAwaitingBacklinks": 10,
+    "freshMissingBacklinkUnits": 10,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 62,
     "platformTable": {
@@ -44,36 +44,36 @@
           "key": "wordpress_earthstar",
           "platform": "WordPress",
           "eligiblePosts": 268,
-          "complete": 264,
-          "missing": 4,
-          "successRate": 98.5,
-          "averagePerDay": 2,
+          "complete": 265,
+          "missing": 3,
+          "successRate": 98.9,
+          "averagePerDay": 2.1,
           "confirmed": 182,
-          "verificationGaps": 82,
+          "verificationGaps": 83,
           "mainBlocker": "missing local success record"
         },
         {
           "key": "tumblr_voa",
           "platform": "Tumblr",
           "eligiblePosts": 268,
-          "complete": 264,
-          "missing": 4,
-          "successRate": 98.5,
-          "averagePerDay": 2,
+          "complete": 265,
+          "missing": 3,
+          "successRate": 98.9,
+          "averagePerDay": 2.1,
           "confirmed": 182,
-          "verificationGaps": 82,
+          "verificationGaps": 83,
           "mainBlocker": "missing local success record"
         },
         {
           "key": "devto",
           "platform": "Dev.to",
           "eligiblePosts": 198,
-          "complete": 194,
-          "missing": 4,
-          "successRate": 98,
+          "complete": 195,
+          "missing": 3,
+          "successRate": 98.5,
           "averagePerDay": 1.9,
           "confirmed": 136,
-          "verificationGaps": 58,
+          "verificationGaps": 59,
           "mainBlocker": "missing local success record"
         },
         {
@@ -107,37 +107,37 @@
         {
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
-          "eligiblePosts": 214,
-          "complete": 206,
+          "eligiblePosts": 215,
+          "complete": 207,
           "missing": 8,
           "successRate": 96.3,
           "averagePerDay": 1.9,
           "confirmed": 142,
-          "verificationGaps": 64,
+          "verificationGaps": 65,
           "mainBlocker": "env vars not set"
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
-          "eligiblePosts": 214,
-          "complete": 206,
+          "eligiblePosts": 215,
+          "complete": 207,
           "missing": 8,
           "successRate": 96.3,
           "averagePerDay": 1.9,
           "confirmed": 142,
-          "verificationGaps": 64,
+          "verificationGaps": 65,
           "mainBlocker": "env vars not set"
         },
         {
           "key": "facebook_voa",
           "platform": "Facebook VOA",
-          "eligiblePosts": 152,
-          "complete": 139,
+          "eligiblePosts": 153,
+          "complete": 140,
           "missing": 13,
-          "successRate": 91.4,
+          "successRate": 91.5,
           "averagePerDay": 1.9,
           "confirmed": 30,
-          "verificationGaps": 109,
+          "verificationGaps": 110,
           "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
         },
         {
@@ -155,25 +155,25 @@
         {
           "key": "threads",
           "platform": "Threads",
-          "eligiblePosts": 151,
-          "complete": 151,
+          "eligiblePosts": 152,
+          "complete": 152,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 1.9,
           "confirmed": 72,
-          "verificationGaps": 79,
+          "verificationGaps": 80,
           "mainBlocker": ""
         },
         {
           "key": "instagram",
           "platform": "Instagram",
-          "eligiblePosts": 149,
-          "complete": 149,
+          "eligiblePosts": 150,
+          "complete": 150,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 1.9,
           "confirmed": 0,
-          "verificationGaps": 149,
+          "verificationGaps": 150,
           "mainBlocker": ""
         }
       ]
@@ -181,7 +181,7 @@
     "blockers": [
       {
         "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-        "count": 30
+        "count": 31
       },
       {
         "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
@@ -206,7 +206,7 @@
       "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
       "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
     },
-    "reason": "Backlink-capable backlog is growing by 14 platform units/day at the current rate.",
+    "reason": "Backlink-capable backlog is growing by 13.8 platform units/day at the current rate.",
     "windowDays": 14
   },
   "curatedExpansion": {
