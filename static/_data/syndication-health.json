@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-09-03T04:32:56.271Z",
+  "lastChecked": "2026-09-03T05:32:01.982Z",
   "status": "broken",
   "passed": 14,
   "failed": 2,
@@ -112,5 +112,12 @@
       "label": "Refresh dashboard health",
       "command": "npm run check:syndication -- --write"
     }
+  },
+  "queue_warning": {
+    "level": "warning",
+    "queue_remaining": 23,
+    "days_remaining": 5,
+    "checked_at": "2026-09-03T05:32:02.042Z",
+    "message": "Queue has 23 post(s) left (~5 days). Replenish with generate-all-drafts.js."
   }
 }
