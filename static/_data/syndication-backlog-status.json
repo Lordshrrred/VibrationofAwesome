@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T21:17:38.144Z",
+  "generatedAt": "2026-09-04T00:24:15.658Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 269,
-    "backlogPosts": 63,
-    "backlinkCapableMissingUnits": 72,
+    "totalTrackedPosts": 270,
+    "backlogPosts": 64,
+    "backlinkCapableMissingUnits": 76,
     "backlinkVerificationGaps": 276,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 10,
-    "freshMissingBacklinkUnits": 10,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 14,
     "completedBacklinkUnitsInWindow": 84,
     "completedBacklinkUnitsPerDay": 6,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 14,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 63
+    "largestDelayMissingUnits": 64
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 269,
+        "eligiblePosts": 270,
         "complete": 206,
-        "missing": 63,
-        "successRate": 76.6,
+        "missing": 64,
+        "successRate": 76.3,
         "averagePerDay": 0,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 269,
+        "eligiblePosts": 270,
         "complete": 266,
-        "missing": 3,
-        "successRate": 98.9,
+        "missing": 4,
+        "successRate": 98.5,
         "averagePerDay": 2,
         "confirmed": 182,
         "verificationGaps": 84,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 269,
+        "eligiblePosts": 270,
         "complete": 266,
-        "missing": 3,
-        "successRate": 98.9,
+        "missing": 4,
+        "successRate": 98.5,
         "averagePerDay": 2,
         "confirmed": 182,
         "verificationGaps": 84,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 199,
+        "eligiblePosts": 200,
         "complete": 196,
-        "missing": 3,
-        "successRate": 98.5,
+        "missing": 4,
+        "successRate": 98,
         "averagePerDay": 1.9,
         "confirmed": 136,
         "verificationGaps": 60,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 199,
-        "complete": 199,
+        "eligiblePosts": 200,
+        "complete": 200,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
-        "confirmed": 199,
+        "averagePerDay": 2.1,
+        "confirmed": 200,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -294,6 +294,18 @@
       "date": "2026-09-03",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "self-trust-exercises-that-are-not-cheesy",
+      "lane": "boom",
+      "title": "Self Trust Exercises That Are Not Cheesy",
+      "date": "2026-09-03",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
