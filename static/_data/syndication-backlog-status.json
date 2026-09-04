@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T05:06:07.885Z",
+  "generatedAt": "2026-09-04T11:40:20.144Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -16,17 +16,17 @@
   "summary": {
     "totalTrackedPosts": 270,
     "backlogPosts": 64,
-    "backlinkCapableMissingUnits": 76,
-    "backlinkVerificationGaps": 276,
+    "backlinkCapableMissingUnits": 73,
+    "backlinkVerificationGaps": 279,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 81,
-    "completedBacklinkUnitsPerDay": 5.8,
+    "freshPostsAwaitingBacklinks": 10,
+    "freshMissingBacklinkUnits": 10,
+    "completedBacklinkUnitsInWindow": 84,
+    "completedBacklinkUnitsPerDay": 6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 14.2,
+    "netBacklogChangePerDay": 14,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 64
@@ -49,36 +49,36 @@
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 270,
-        "complete": 266,
-        "missing": 4,
-        "successRate": 98.5,
-        "averagePerDay": 1.9,
+        "complete": 267,
+        "missing": 3,
+        "successRate": 98.9,
+        "averagePerDay": 2,
         "confirmed": 182,
-        "verificationGaps": 84,
+        "verificationGaps": 85,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 270,
-        "complete": 266,
-        "missing": 4,
-        "successRate": 98.5,
-        "averagePerDay": 1.9,
+        "complete": 267,
+        "missing": 3,
+        "successRate": 98.9,
+        "averagePerDay": 2,
         "confirmed": 182,
-        "verificationGaps": 84,
+        "verificationGaps": 85,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 200,
-        "complete": 196,
-        "missing": 4,
-        "successRate": 98,
+        "complete": 197,
+        "missing": 3,
+        "successRate": 98.5,
         "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 60,
+        "verificationGaps": 61,
         "mainBlocker": "missing local success record"
       },
       {
@@ -112,37 +112,37 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 216,
-        "complete": 208,
+        "eligiblePosts": 217,
+        "complete": 209,
         "missing": 8,
         "successRate": 96.3,
         "averagePerDay": 1.9,
         "confirmed": 142,
-        "verificationGaps": 66,
+        "verificationGaps": 67,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 216,
-        "complete": 208,
+        "eligiblePosts": 217,
+        "complete": 209,
         "missing": 8,
         "successRate": 96.3,
         "averagePerDay": 1.9,
         "confirmed": 142,
-        "verificationGaps": 66,
+        "verificationGaps": 67,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 154,
-        "complete": 141,
+        "eligiblePosts": 155,
+        "complete": 142,
         "missing": 13,
         "successRate": 91.6,
         "averagePerDay": 1.9,
         "confirmed": 30,
-        "verificationGaps": 111,
+        "verificationGaps": 112,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
@@ -160,25 +160,25 @@
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 153,
-        "complete": 153,
+        "eligiblePosts": 154,
+        "complete": 154,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.9,
         "confirmed": 72,
-        "verificationGaps": 81,
+        "verificationGaps": 82,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 151,
-        "complete": 151,
+        "eligiblePosts": 152,
+        "complete": 152,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.9,
         "confirmed": 0,
-        "verificationGaps": 151,
+        "verificationGaps": 152,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 32
+      "count": 33
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
@@ -279,10 +279,10 @@
       ]
     },
     {
-      "slug": "simple-purpose-exercises-that-actually-help",
+      "slug": "self-trust-exercises-that-are-not-cheesy",
       "lane": "boom",
-      "title": "Simple Purpose Exercises That Actually Help",
-      "date": "2026-09-02",
+      "title": "Self Trust Exercises That Are Not Cheesy",
+      "date": "2026-09-03",
       "missing": [
         "blogger"
       ]
@@ -294,18 +294,6 @@
       "date": "2026-09-03",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "self-trust-exercises-that-are-not-cheesy",
-      "lane": "boom",
-      "title": "Self Trust Exercises That Are Not Cheesy",
-      "date": "2026-09-03",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     },
     {
@@ -745,6 +733,15 @@
       "lane": "boom",
       "title": "I Keep Choosing Comfort and Regret It Later",
       "date": "2026-09-01",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "simple-purpose-exercises-that-actually-help",
+      "lane": "boom",
+      "title": "Simple Purpose Exercises That Actually Help",
+      "date": "2026-09-02",
       "missing": [
         "blogger"
       ]
