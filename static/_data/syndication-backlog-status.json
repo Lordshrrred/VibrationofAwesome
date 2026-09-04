@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T16:34:34.802Z",
+  "generatedAt": "2026-09-04T19:06:15.736Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,32 +14,32 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 270,
-    "backlogPosts": 64,
-    "backlinkCapableMissingUnits": 73,
-    "backlinkVerificationGaps": 279,
+    "totalTrackedPosts": 271,
+    "backlogPosts": 65,
+    "backlinkCapableMissingUnits": 74,
+    "backlinkVerificationGaps": 282,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
     "freshPostsAwaitingBacklinks": 10,
     "freshMissingBacklinkUnits": 10,
-    "completedBacklinkUnitsInWindow": 81,
-    "completedBacklinkUnitsPerDay": 5.8,
+    "completedBacklinkUnitsInWindow": 84,
+    "completedBacklinkUnitsPerDay": 6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 14.2,
+    "netBacklogChangePerDay": 14,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 64
+    "largestDelayMissingUnits": 65
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 270,
+        "eligiblePosts": 271,
         "complete": 206,
-        "missing": 64,
-        "successRate": 76.3,
+        "missing": 65,
+        "successRate": 76,
         "averagePerDay": 0,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,37 +48,37 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 270,
-        "complete": 267,
+        "eligiblePosts": 271,
+        "complete": 268,
         "missing": 3,
         "successRate": 98.9,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 182,
-        "verificationGaps": 85,
+        "verificationGaps": 86,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 270,
-        "complete": 267,
+        "eligiblePosts": 271,
+        "complete": 268,
         "missing": 3,
         "successRate": 98.9,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 182,
-        "verificationGaps": 85,
+        "verificationGaps": 86,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 200,
-        "complete": 197,
+        "eligiblePosts": 201,
+        "complete": 198,
         "missing": 3,
         "successRate": 98.5,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 136,
-        "verificationGaps": 61,
+        "verificationGaps": 62,
         "mainBlocker": "missing local success record"
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 200,
-        "complete": 200,
+        "eligiblePosts": 201,
+        "complete": 201,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
-        "confirmed": 200,
+        "averagePerDay": 2,
+        "confirmed": 201,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,73 +112,73 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 217,
-        "complete": 209,
+        "eligiblePosts": 218,
+        "complete": 210,
         "missing": 8,
         "successRate": 96.3,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 142,
-        "verificationGaps": 67,
+        "verificationGaps": 68,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 217,
-        "complete": 209,
+        "eligiblePosts": 218,
+        "complete": 210,
         "missing": 8,
         "successRate": 96.3,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 142,
-        "verificationGaps": 67,
+        "verificationGaps": 68,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 155,
-        "complete": 142,
+        "eligiblePosts": 156,
+        "complete": 143,
         "missing": 13,
-        "successRate": 91.6,
-        "averagePerDay": 1.9,
+        "successRate": 91.7,
+        "averagePerDay": 2,
         "confirmed": 30,
-        "verificationGaps": 112,
+        "verificationGaps": 113,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 176,
-        "complete": 176,
+        "eligiblePosts": 177,
+        "complete": 177,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.6,
         "confirmed": 0,
-        "verificationGaps": 176,
+        "verificationGaps": 177,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 154,
-        "complete": 154,
+        "eligiblePosts": 155,
+        "complete": 155,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 72,
-        "verificationGaps": 82,
+        "verificationGaps": 83,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 152,
-        "complete": 152,
+        "eligiblePosts": 153,
+        "complete": 153,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 0,
-        "verificationGaps": 152,
+        "verificationGaps": 153,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 33
+      "count": 34
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
@@ -288,10 +288,10 @@
       ]
     },
     {
-      "slug": "i-feel-disconnected-from-myself",
+      "slug": "porn-is-ruining-my-motivation",
       "lane": "boom",
-      "title": "I Feel Disconnected From Myself",
-      "date": "2026-09-03",
+      "title": "Porn Is Ruining My Motivation",
+      "date": "2026-09-04",
       "missing": [
         "blogger"
       ]
@@ -751,6 +751,15 @@
       "lane": "boom",
       "title": "What It Means to Outgrow an Identity",
       "date": "2026-09-02",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "i-feel-disconnected-from-myself",
+      "lane": "boom",
+      "title": "I Feel Disconnected From Myself",
+      "date": "2026-09-03",
       "missing": [
         "blogger"
       ]
