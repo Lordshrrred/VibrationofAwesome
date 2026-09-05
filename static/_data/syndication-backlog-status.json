@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T22:30:45.704Z",
+  "generatedAt": "2026-09-05T00:20:23.391Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,14 +14,14 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 271,
-    "backlogPosts": 65,
-    "backlinkCapableMissingUnits": 74,
+    "totalTrackedPosts": 272,
+    "backlogPosts": 66,
+    "backlinkCapableMissingUnits": 78,
     "backlinkVerificationGaps": 282,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 10,
-    "freshMissingBacklinkUnits": 10,
+    "freshPostsAwaitingBacklinks": 11,
+    "freshMissingBacklinkUnits": 14,
     "completedBacklinkUnitsInWindow": 84,
     "completedBacklinkUnitsPerDay": 6,
     "newPostsPerDay": 5,
@@ -29,17 +29,17 @@
     "netBacklogChangePerDay": 14,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 65
+    "largestDelayMissingUnits": 66
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 271,
+        "eligiblePosts": 272,
         "complete": 206,
-        "missing": 65,
-        "successRate": 76,
+        "missing": 66,
+        "successRate": 75.7,
         "averagePerDay": 0,
         "confirmed": 182,
         "verificationGaps": 24,
@@ -48,10 +48,10 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 271,
+        "eligiblePosts": 272,
         "complete": 268,
-        "missing": 3,
-        "successRate": 98.9,
+        "missing": 4,
+        "successRate": 98.5,
         "averagePerDay": 2,
         "confirmed": 182,
         "verificationGaps": 86,
@@ -60,10 +60,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 271,
+        "eligiblePosts": 272,
         "complete": 268,
-        "missing": 3,
-        "successRate": 98.9,
+        "missing": 4,
+        "successRate": 98.5,
         "averagePerDay": 2,
         "confirmed": 182,
         "verificationGaps": 86,
@@ -72,10 +72,10 @@
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 201,
+        "eligiblePosts": 202,
         "complete": 198,
-        "missing": 3,
-        "successRate": 98.5,
+        "missing": 4,
+        "successRate": 98,
         "averagePerDay": 2,
         "confirmed": 136,
         "verificationGaps": 62,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 201,
-        "complete": 201,
+        "eligiblePosts": 202,
+        "complete": 202,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
-        "confirmed": 201,
+        "averagePerDay": 2.1,
+        "confirmed": 202,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -294,6 +294,18 @@
       "date": "2026-09-04",
       "missing": [
         "blogger"
+      ]
+    },
+    {
+      "slug": "simple-somatic-practices-for-focus",
+      "lane": "boom",
+      "title": "Simple Somatic Practices for Focus",
+      "date": "2026-09-04",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
       ]
     },
     {
