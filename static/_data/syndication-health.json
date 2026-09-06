@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-09-05T23:36:13.866Z",
+  "lastChecked": "2026-09-06T04:38:05.090Z",
   "status": "broken",
   "passed": 14,
   "failed": 2,
@@ -13,8 +13,8 @@
     "status": "active",
     "rate": 1,
     "time": "13:00, 16:00, and 22:00 UTC plus 01:00 UTC next-day",
-    "remaining": 18,
-    "published": 282,
+    "remaining": 17,
+    "published": 283,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -22,7 +22,7 @@
     {
       "name": "drip queue",
       "ok": false,
-      "detail": "publishing inventory low: 18 posts remain; minimum healthy runway is 28",
+      "detail": "publishing inventory low: 17 posts remain; minimum healthy runway is 28",
       "failureType": "check_failed"
     },
     {
@@ -112,12 +112,5 @@
       "label": "Refresh dashboard health",
       "command": "npm run check:syndication -- --write"
     }
-  },
-  "queue_warning": {
-    "level": "warning",
-    "queue_remaining": 18,
-    "days_remaining": 4,
-    "checked_at": "2026-09-05T23:36:13.934Z",
-    "message": "Queue has 18 post(s) left (~4 days). Replenish with generate-all-drafts.js."
   }
 }
