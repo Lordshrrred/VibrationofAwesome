@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T05:01:20.643Z",
+  "generatedAt": "2026-09-06T11:17:55.184Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -16,17 +16,17 @@
   "summary": {
     "totalTrackedPosts": 274,
     "backlogPosts": 68,
-    "backlinkCapableMissingUnits": 80,
-    "backlinkVerificationGaps": 288,
+    "backlinkCapableMissingUnits": 77,
+    "backlinkVerificationGaps": 291,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 81,
-    "completedBacklinkUnitsPerDay": 5.8,
+    "freshPostsAwaitingBacklinks": 10,
+    "freshMissingBacklinkUnits": 10,
+    "completedBacklinkUnitsInWindow": 84,
+    "completedBacklinkUnitsPerDay": 6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 14.2,
+    "netBacklogChangePerDay": 14,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 68
@@ -49,36 +49,36 @@
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 274,
-        "complete": 270,
-        "missing": 4,
-        "successRate": 98.5,
-        "averagePerDay": 1.9,
+        "complete": 271,
+        "missing": 3,
+        "successRate": 98.9,
+        "averagePerDay": 2,
         "confirmed": 182,
-        "verificationGaps": 88,
+        "verificationGaps": 89,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 274,
-        "complete": 270,
-        "missing": 4,
-        "successRate": 98.5,
-        "averagePerDay": 1.9,
+        "complete": 271,
+        "missing": 3,
+        "successRate": 98.9,
+        "averagePerDay": 2,
         "confirmed": 182,
-        "verificationGaps": 88,
+        "verificationGaps": 89,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 204,
-        "complete": 200,
-        "missing": 4,
-        "successRate": 98,
-        "averagePerDay": 1.9,
+        "complete": 201,
+        "missing": 3,
+        "successRate": 98.5,
+        "averagePerDay": 2,
         "confirmed": 136,
-        "verificationGaps": 64,
+        "verificationGaps": 65,
         "mainBlocker": "missing local success record"
       },
       {
@@ -112,37 +112,37 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 220,
-        "complete": 212,
+        "eligiblePosts": 221,
+        "complete": 213,
         "missing": 8,
         "successRate": 96.4,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 142,
-        "verificationGaps": 70,
+        "verificationGaps": 71,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 220,
-        "complete": 212,
+        "eligiblePosts": 221,
+        "complete": 213,
         "missing": 8,
         "successRate": 96.4,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 142,
-        "verificationGaps": 70,
+        "verificationGaps": 71,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 158,
-        "complete": 145,
+        "eligiblePosts": 159,
+        "complete": 146,
         "missing": 13,
         "successRate": 91.8,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 30,
-        "verificationGaps": 115,
+        "verificationGaps": 116,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
@@ -160,25 +160,25 @@
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 157,
-        "complete": 157,
+        "eligiblePosts": 158,
+        "complete": 158,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 72,
-        "verificationGaps": 85,
+        "verificationGaps": 86,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 155,
-        "complete": 155,
+        "eligiblePosts": 156,
+        "complete": 156,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 0,
-        "verificationGaps": 155,
+        "verificationGaps": 156,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 36
+      "count": 37
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
@@ -279,10 +279,10 @@
       ]
     },
     {
-      "slug": "simple-somatic-practices-for-focus",
+      "slug": "passion-vs-direction",
       "lane": "boom",
-      "title": "Simple Somatic Practices for Focus",
-      "date": "2026-09-04",
+      "title": "Passion vs Direction",
+      "date": "2026-09-05",
       "missing": [
         "blogger"
       ]
@@ -294,18 +294,6 @@
       "date": "2026-09-05",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "passion-vs-direction",
-      "lane": "boom",
-      "title": "Passion vs Direction",
-      "date": "2026-09-05",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     },
     {
@@ -781,6 +769,15 @@
       "lane": "boom",
       "title": "I Feel Disconnected From Myself",
       "date": "2026-09-03",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "simple-somatic-practices-for-focus",
+      "lane": "boom",
+      "title": "Simple Somatic Practices for Focus",
+      "date": "2026-09-04",
       "missing": [
         "blogger"
       ]
