@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T05:09:12.651Z",
+  "generatedAt": "2026-09-07T12:58:36.370Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -16,17 +16,17 @@
   "summary": {
     "totalTrackedPosts": 276,
     "backlogPosts": 70,
-    "backlinkCapableMissingUnits": 82,
-    "backlinkVerificationGaps": 294,
+    "backlinkCapableMissingUnits": 79,
+    "backlinkVerificationGaps": 297,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 81,
-    "completedBacklinkUnitsPerDay": 5.8,
+    "freshPostsAwaitingBacklinks": 10,
+    "freshMissingBacklinkUnits": 10,
+    "completedBacklinkUnitsInWindow": 84,
+    "completedBacklinkUnitsPerDay": 6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 14.2,
+    "netBacklogChangePerDay": 14,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 70
@@ -49,36 +49,36 @@
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 276,
-        "complete": 272,
-        "missing": 4,
-        "successRate": 98.6,
-        "averagePerDay": 1.9,
+        "complete": 273,
+        "missing": 3,
+        "successRate": 98.9,
+        "averagePerDay": 2,
         "confirmed": 182,
-        "verificationGaps": 90,
+        "verificationGaps": 91,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 276,
-        "complete": 272,
-        "missing": 4,
-        "successRate": 98.6,
-        "averagePerDay": 1.9,
+        "complete": 273,
+        "missing": 3,
+        "successRate": 98.9,
+        "averagePerDay": 2,
         "confirmed": 182,
-        "verificationGaps": 90,
+        "verificationGaps": 91,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 206,
-        "complete": 202,
-        "missing": 4,
-        "successRate": 98.1,
-        "averagePerDay": 1.9,
+        "complete": 203,
+        "missing": 3,
+        "successRate": 98.5,
+        "averagePerDay": 2,
         "confirmed": 136,
-        "verificationGaps": 66,
+        "verificationGaps": 67,
         "mainBlocker": "missing local success record"
       },
       {
@@ -112,37 +112,37 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 222,
-        "complete": 214,
+        "eligiblePosts": 223,
+        "complete": 215,
         "missing": 8,
         "successRate": 96.4,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 142,
-        "verificationGaps": 72,
+        "verificationGaps": 73,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 222,
-        "complete": 214,
+        "eligiblePosts": 223,
+        "complete": 215,
         "missing": 8,
         "successRate": 96.4,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 142,
-        "verificationGaps": 72,
+        "verificationGaps": 73,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 160,
-        "complete": 147,
+        "eligiblePosts": 161,
+        "complete": 148,
         "missing": 13,
         "successRate": 91.9,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 30,
-        "verificationGaps": 117,
+        "verificationGaps": 118,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
@@ -160,25 +160,25 @@
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 159,
-        "complete": 159,
+        "eligiblePosts": 160,
+        "complete": 160,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 72,
-        "verificationGaps": 87,
+        "verificationGaps": 88,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 157,
-        "complete": 157,
+        "eligiblePosts": 158,
+        "complete": 158,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 0,
-        "verificationGaps": 157,
+        "verificationGaps": 158,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 38
+      "count": 39
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
@@ -279,10 +279,10 @@
       ]
     },
     {
-      "slug": "passion-vs-direction",
+      "slug": "discipline-without-hustle-culture",
       "lane": "boom",
-      "title": "Passion vs Direction",
-      "date": "2026-09-05",
+      "title": "Discipline Without Hustle Culture",
+      "date": "2026-09-06",
       "missing": [
         "blogger"
       ]
@@ -294,18 +294,6 @@
       "date": "2026-09-06",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "discipline-without-hustle-culture",
-      "lane": "boom",
-      "title": "Discipline Without Hustle Culture",
-      "date": "2026-09-06",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     },
     {
@@ -799,6 +787,15 @@
       "lane": "boom",
       "title": "Porn Is Ruining My Motivation",
       "date": "2026-09-04",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "passion-vs-direction",
+      "lane": "boom",
+      "title": "Passion vs Direction",
+      "date": "2026-09-05",
       "missing": [
         "blogger"
       ]
