@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08T05:07:10.477Z",
+  "generatedAt": "2026-09-08T11:40:49.846Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -16,17 +16,17 @@
   "summary": {
     "totalTrackedPosts": 278,
     "backlogPosts": 72,
-    "backlinkCapableMissingUnits": 84,
-    "backlinkVerificationGaps": 300,
+    "backlinkCapableMissingUnits": 81,
+    "backlinkVerificationGaps": 303,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 81,
-    "completedBacklinkUnitsPerDay": 5.8,
+    "freshPostsAwaitingBacklinks": 10,
+    "freshMissingBacklinkUnits": 10,
+    "completedBacklinkUnitsInWindow": 84,
+    "completedBacklinkUnitsPerDay": 6,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 14.2,
+    "netBacklogChangePerDay": 14,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 72
@@ -49,36 +49,36 @@
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 278,
-        "complete": 274,
-        "missing": 4,
-        "successRate": 98.6,
-        "averagePerDay": 1.9,
+        "complete": 275,
+        "missing": 3,
+        "successRate": 98.9,
+        "averagePerDay": 2,
         "confirmed": 182,
-        "verificationGaps": 92,
+        "verificationGaps": 93,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 278,
-        "complete": 274,
-        "missing": 4,
-        "successRate": 98.6,
-        "averagePerDay": 1.9,
+        "complete": 275,
+        "missing": 3,
+        "successRate": 98.9,
+        "averagePerDay": 2,
         "confirmed": 182,
-        "verificationGaps": 92,
+        "verificationGaps": 93,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 208,
-        "complete": 204,
-        "missing": 4,
-        "successRate": 98.1,
-        "averagePerDay": 1.9,
+        "complete": 205,
+        "missing": 3,
+        "successRate": 98.6,
+        "averagePerDay": 2,
         "confirmed": 136,
-        "verificationGaps": 68,
+        "verificationGaps": 69,
         "mainBlocker": "missing local success record"
       },
       {
@@ -112,73 +112,73 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 224,
-        "complete": 216,
+        "eligiblePosts": 225,
+        "complete": 217,
         "missing": 8,
         "successRate": 96.4,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 142,
-        "verificationGaps": 74,
+        "verificationGaps": 75,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 224,
-        "complete": 216,
+        "eligiblePosts": 225,
+        "complete": 217,
         "missing": 8,
         "successRate": 96.4,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 142,
-        "verificationGaps": 74,
+        "verificationGaps": 75,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 162,
-        "complete": 149,
+        "eligiblePosts": 163,
+        "complete": 150,
         "missing": 13,
         "successRate": 92,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 30,
-        "verificationGaps": 119,
+        "verificationGaps": 120,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 179,
-        "complete": 179,
+        "eligiblePosts": 180,
+        "complete": 180,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.6,
+        "averagePerDay": 0.7,
         "confirmed": 0,
-        "verificationGaps": 179,
+        "verificationGaps": 180,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 161,
-        "complete": 161,
+        "eligiblePosts": 162,
+        "complete": 162,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 72,
-        "verificationGaps": 89,
+        "verificationGaps": 90,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 159,
-        "complete": 159,
+        "eligiblePosts": 160,
+        "complete": 160,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
+        "averagePerDay": 2,
         "confirmed": 0,
-        "verificationGaps": 159,
+        "verificationGaps": 160,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 40
+      "count": 41
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
@@ -279,15 +279,6 @@
       ]
     },
     {
-      "slug": "discipline-without-hustle-culture",
-      "lane": "boom",
-      "title": "Discipline Without Hustle Culture",
-      "date": "2026-09-06",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
       "slug": "i-feel-drained-after-cheap-dopamine-habits",
       "lane": "boom",
       "title": "I Feel Drained After Cheap Dopamine Habits",
@@ -302,10 +293,7 @@
       "title": "Rest vs Avoidance When Overwhelmed",
       "date": "2026-09-08",
       "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
+        "blogger"
       ]
     },
     {
@@ -817,6 +805,15 @@
       "lane": "boom",
       "title": "How to Realign Your Life Without Blowing Everything Up",
       "date": "2026-09-05",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "discipline-without-hustle-culture",
+      "lane": "boom",
+      "title": "Discipline Without Hustle Culture",
+      "date": "2026-09-06",
       "missing": [
         "blogger"
       ]
