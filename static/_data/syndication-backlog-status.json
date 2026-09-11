@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T05:07:36.809Z",
+  "generatedAt": "2026-09-11T11:45:33.298Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -16,17 +16,17 @@
   "summary": {
     "totalTrackedPosts": 284,
     "backlogPosts": 78,
-    "backlinkCapableMissingUnits": 90,
-    "backlinkVerificationGaps": 318,
+    "backlinkCapableMissingUnits": 87,
+    "backlinkVerificationGaps": 321,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 11,
-    "freshMissingBacklinkUnits": 14,
-    "completedBacklinkUnitsInWindow": 84,
-    "completedBacklinkUnitsPerDay": 6,
+    "freshPostsAwaitingBacklinks": 10,
+    "freshMissingBacklinkUnits": 10,
+    "completedBacklinkUnitsInWindow": 87,
+    "completedBacklinkUnitsPerDay": 6.2,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 14,
+    "netBacklogChangePerDay": 13.8,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 78
@@ -49,36 +49,36 @@
         "key": "wordpress_earthstar",
         "platform": "WordPress",
         "eligiblePosts": 284,
-        "complete": 280,
-        "missing": 4,
-        "successRate": 98.6,
-        "averagePerDay": 2,
+        "complete": 281,
+        "missing": 3,
+        "successRate": 98.9,
+        "averagePerDay": 2.1,
         "confirmed": 182,
-        "verificationGaps": 98,
+        "verificationGaps": 99,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
         "eligiblePosts": 284,
-        "complete": 280,
-        "missing": 4,
-        "successRate": 98.6,
-        "averagePerDay": 2,
+        "complete": 281,
+        "missing": 3,
+        "successRate": 98.9,
+        "averagePerDay": 2.1,
         "confirmed": 182,
-        "verificationGaps": 98,
+        "verificationGaps": 99,
         "mainBlocker": "missing local success record"
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 214,
-        "complete": 210,
-        "missing": 4,
-        "successRate": 98.1,
-        "averagePerDay": 2,
+        "complete": 211,
+        "missing": 3,
+        "successRate": 98.6,
+        "averagePerDay": 2.1,
         "confirmed": 136,
-        "verificationGaps": 74,
+        "verificationGaps": 75,
         "mainBlocker": "missing local success record"
       },
       {
@@ -112,73 +112,73 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 230,
-        "complete": 222,
+        "eligiblePosts": 231,
+        "complete": 223,
         "missing": 8,
         "successRate": 96.5,
-        "averagePerDay": 2,
+        "averagePerDay": 2.1,
         "confirmed": 142,
-        "verificationGaps": 80,
+        "verificationGaps": 81,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 230,
-        "complete": 222,
+        "eligiblePosts": 231,
+        "complete": 223,
         "missing": 8,
         "successRate": 96.5,
-        "averagePerDay": 2,
+        "averagePerDay": 2.1,
         "confirmed": 142,
-        "verificationGaps": 80,
+        "verificationGaps": 81,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 168,
-        "complete": 155,
+        "eligiblePosts": 169,
+        "complete": 156,
         "missing": 13,
         "successRate": 92.3,
-        "averagePerDay": 2,
+        "averagePerDay": 2.1,
         "confirmed": 30,
-        "verificationGaps": 125,
+        "verificationGaps": 126,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 181,
-        "complete": 181,
+        "eligiblePosts": 182,
+        "complete": 182,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.6,
+        "averagePerDay": 0.7,
         "confirmed": 0,
-        "verificationGaps": 181,
+        "verificationGaps": 182,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 167,
-        "complete": 167,
+        "eligiblePosts": 168,
+        "complete": 168,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
+        "averagePerDay": 2.1,
         "confirmed": 72,
-        "verificationGaps": 95,
+        "verificationGaps": 96,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 165,
-        "complete": 165,
+        "eligiblePosts": 166,
+        "complete": 166,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
+        "averagePerDay": 2.1,
         "confirmed": 0,
-        "verificationGaps": 165,
+        "verificationGaps": 166,
         "mainBlocker": ""
       }
     ]
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 46
+      "count": 47
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
@@ -279,10 +279,10 @@
       ]
     },
     {
-      "slug": "how-to-stop-avoiding-hard-decisions",
+      "slug": "meditation-vs-grounding-for-anxiety",
       "lane": "boom",
-      "title": "How to Stop Avoiding Hard Decisions",
-      "date": "2026-09-09",
+      "title": "Meditation vs Grounding for Anxiety",
+      "date": "2026-09-10",
       "missing": [
         "blogger"
       ]
@@ -294,18 +294,6 @@
       "date": "2026-09-10",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "meditation-vs-grounding-for-anxiety",
-      "lane": "boom",
-      "title": "Meditation vs Grounding for Anxiety",
-      "date": "2026-09-10",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     },
     {
@@ -871,6 +859,15 @@
       "lane": "boom",
       "title": "Rest vs Avoidance When Overwhelmed",
       "date": "2026-09-08",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "how-to-stop-avoiding-hard-decisions",
+      "lane": "boom",
+      "title": "How to Stop Avoiding Hard Decisions",
+      "date": "2026-09-09",
       "missing": [
         "blogger"
       ]
