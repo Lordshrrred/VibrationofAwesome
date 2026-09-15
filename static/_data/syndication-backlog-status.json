@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T17:14:38.321Z",
+  "generatedAt": "2026-09-15T21:42:40.126Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -20,13 +20,13 @@
     "backlinkVerificationGaps": 339,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 9,
-    "freshMissingBacklinkUnits": 12,
-    "completedBacklinkUnitsInWindow": 78,
-    "completedBacklinkUnitsPerDay": 5.6,
+    "freshPostsAwaitingBacklinks": 8,
+    "freshMissingBacklinkUnits": 8,
+    "completedBacklinkUnitsInWindow": 75,
+    "completedBacklinkUnitsPerDay": 5.4,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 14.4,
+    "netBacklogChangePerDay": 14.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 85
@@ -52,7 +52,7 @@
         "complete": 287,
         "missing": 4,
         "successRate": 98.6,
-        "averagePerDay": 1.9,
+        "averagePerDay": 1.8,
         "confirmed": 182,
         "verificationGaps": 105,
         "mainBlocker": "missing local success record"
@@ -64,7 +64,7 @@
         "complete": 287,
         "missing": 4,
         "successRate": 98.6,
-        "averagePerDay": 1.9,
+        "averagePerDay": 1.8,
         "confirmed": 182,
         "verificationGaps": 105,
         "mainBlocker": "missing local success record"
@@ -76,7 +76,7 @@
         "complete": 217,
         "missing": 4,
         "successRate": 98.2,
-        "averagePerDay": 1.9,
+        "averagePerDay": 1.8,
         "confirmed": 136,
         "verificationGaps": 81,
         "mainBlocker": "missing local success record"
@@ -116,7 +116,7 @@
         "complete": 229,
         "missing": 8,
         "successRate": 96.6,
-        "averagePerDay": 1.9,
+        "averagePerDay": 1.8,
         "confirmed": 142,
         "verificationGaps": 87,
         "mainBlocker": "env vars not set"
@@ -128,7 +128,7 @@
         "complete": 229,
         "missing": 8,
         "successRate": 96.6,
-        "averagePerDay": 1.9,
+        "averagePerDay": 1.8,
         "confirmed": 142,
         "verificationGaps": 87,
         "mainBlocker": "env vars not set"
@@ -140,7 +140,7 @@
         "complete": 162,
         "missing": 13,
         "successRate": 92.6,
-        "averagePerDay": 1.9,
+        "averagePerDay": 1.8,
         "confirmed": 30,
         "verificationGaps": 132,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
@@ -152,7 +152,7 @@
         "complete": 184,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.7,
+        "averagePerDay": 0.6,
         "confirmed": 0,
         "verificationGaps": 184,
         "mainBlocker": ""
@@ -164,7 +164,7 @@
         "complete": 174,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
+        "averagePerDay": 1.8,
         "confirmed": 72,
         "verificationGaps": 102,
         "mainBlocker": ""
@@ -176,7 +176,7 @@
         "complete": 172,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.9,
+        "averagePerDay": 1.8,
         "confirmed": 0,
         "verificationGaps": 172,
         "mainBlocker": ""
@@ -276,18 +276,6 @@
       "date": "2026-08-12",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "contentment-vs-settling",
-      "lane": "boom",
-      "title": "Contentment vs Settling",
-      "date": "2026-09-14",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     },
     {
@@ -976,6 +964,18 @@
       "lane": "boom",
       "title": "How Approval Keeps People in the Wrong Life",
       "date": "2026-08-21",
+      "missing": [
+        "devto",
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "contentment-vs-settling",
+      "lane": "boom",
+      "title": "Contentment vs Settling",
+      "date": "2026-09-14",
       "missing": [
         "devto",
         "tumblr_voa",
