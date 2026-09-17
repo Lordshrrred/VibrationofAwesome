@@ -1,6 +1,7 @@
 name: VOA Workflow Failure Alerts
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows:
       - "Generate Boom Frequency Post"
@@ -22,7 +23,7 @@ permissions:
 
 jobs:
   email:
-    if: github.event.workflow_run.conclusion == 'failure'
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'failure'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,7 +37,7 @@ jobs:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           ALERT_EMAIL: earthlingoflight@gmail.com
-          FAILED_WORKFLOW: ${{ github.event.workflow_run.name }}
-          FAILED_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
-          FAILED_RUN_URL: ${{ github.event.workflow_run.html_url }}
+          FAILED_WORKFLOW: ${{ github.event_name == 'workflow_dispatch' && 'VOA workflow failure-alert test' || github.event.workflow_run.name }}
+          FAILED_CONCLUSION: ${{ github.event_name == 'workflow_dispatch' && 'test' || github.event.workflow_run.conclusion }}
+          FAILED_RUN_URL: ${{ github.event.workflow_run.html_url || format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}
         run: node scripts/send-workflow-failure-alert.js
