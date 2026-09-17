@@ -100,7 +100,7 @@ test('paused queues do not spend or generate',t=>{
   assert.equal(f.run().status,0); assert.equal(f.read().replenishment,undefined);
 });
 
-import { extractSearchEvidence, freshKeywordEvidence } from './lib/keyword-evidence.js';
+import { extractSearchEvidence, extractClusterEvidence, freshKeywordEvidence } from './lib/keyword-evidence.js';
 test('research requires tool results, never treating model-written URLs as verified sources',()=>{
   const evidence=extractSearchEvidence({content:[{type:'text',text:'See https://invented.example/'},{type:'server_tool_use',name:'web_search',input:{query:'creator workflow'}},{type:'web_search_tool_result',content:[{type:'web_search_result',url:'https://observed.example/',title:'Observed'},{type:'web_search_result',url:'https://observed.example/',title:'Duplicate'}]}]});
   assert.deepEqual(evidence.queries,['creator workflow']);
@@ -113,6 +113,20 @@ test('research cache rejects stale and invalid dates and keeps newest valid clus
   const batch=(age,value)=>({source:'cluster-search-evidence',date:new Date(now-age).toISOString(),research:[{cluster:'ai-creator-tools',observations:value}]});
   const rows=freshKeywordEvidence([batch(20*86400000,'old'),batch(86400000,'valid'),batch(1000,'new'),{source:'cluster-search-evidence',date:'invalid',research:[{cluster:'fake'}]}],now);
   assert.equal(rows.length,1);assert.equal(rows[0].observations,'new');
+});
+test('batched research keeps each cluster paired with its actual search results',()=>{
+  const clusters=[{key:'ai-creator-tools'},{key:'purpose-direction'}];
+  const message={content:[
+    {type:'server_tool_use',name:'web_search',input:{query:'AI creator workflow'}},
+    {type:'web_search_tool_result',content:[{type:'web_search_result',url:'https://ai.example/',title:'AI'}]},
+    {type:'server_tool_use',name:'web_search',input:{query:'how to find purpose'}},
+    {type:'web_search_tool_result',content:[{type:'web_search_result',url:'https://purpose.example/',title:'Purpose'}]},
+    {type:'text',text:'[{"cluster":"ai-creator-tools","observations":"Observed AI workflow coverage."},{"cluster":"purpose-direction","observations":"Observed purpose coverage."}]'},
+  ]};
+  const rows=extractClusterEvidence(message,clusters);
+  assert.equal(rows[0].queries[0],'AI creator workflow');
+  assert.equal(rows[0].sources[0].url,'https://ai.example/');
+  assert.equal(rows[1].sources[0].url,'https://purpose.example/');
 });
 
 import { selectBackfillBatch } from './lib/syndication-backlog.js';
