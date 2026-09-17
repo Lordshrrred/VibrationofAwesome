@@ -83,7 +83,9 @@ async function main() {
 
   const bySlug = new Map(results.map(row => [row.slug, row]));
   const today = new Date().toISOString().slice(0, 10);
-  const attemptedBloggerToday = results.filter(r => r.syndication?.blogger?.backfill_attempted_at?.startsWith(today)).length;
+  const attemptedBloggerToday = results.filter(r => r.syndication?.blogger?.backfill_attempted_at?.startsWith(today)
+    // Count successful legacy/manual catchup earlier today during rollout too.
+    || (r.syndication?.blogger?.status === "success" && r.syndication.blogger.timestamp?.startsWith(today) && String(r.date || "").slice(0, 10) < today)).length;
   let bloggerAllowance = Math.max(0, 4 - attemptedBloggerToday);
   let bloggerAvailable = true;
   if (execute && targetPlatforms.includes("blogger") && bloggerAllowance > 0) {
