@@ -16,7 +16,7 @@ Also sets GitHub secret GMAIL_REFRESH_TOKEN if gh CLI is available.
 """
 
 import os, sys, json, webbrowser, urllib.parse, urllib.request
-import http.server, threading, subprocess, re
+import http.server, threading, subprocess, re, secrets, html
 from pathlib import Path
 
 ROOT     = Path(__file__).parent.parent
@@ -50,7 +50,7 @@ def save_env_key(key, value):
 def sync_github_secret(key, value):
     try:
         result = subprocess.run(
-            ["gh", "secret", "set", key, "--body", value],
+            ["gh", "secret", "set", key], input=value,
             capture_output=True, text=True, timeout=15
         )
         if result.returncode == 0:
@@ -63,18 +63,22 @@ def sync_github_secret(key, value):
 # ── OAuth flow ────────────────────────────────────────────────────────────────
 auth_code  = None
 auth_error = None
+oauth_state = secrets.token_urlsafe(32)
 
 class CallbackHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         global auth_code, auth_error
         parsed = urllib.parse.urlparse(self.path)
         params = urllib.parse.parse_qs(parsed.query)
+        if ("code" in params or "error" in params) and not secrets.compare_digest(params.get("state", [""])[0], oauth_state):
+            self.send_error(400, "Invalid OAuth state. Restart Gmail authorization.")
+            return
         if "code" in params:
             auth_code = params["code"][0]
             body = b"<h2>Auth successful! Return to your terminal.</h2>"
         else:
             auth_error = params.get("error", ["unknown"])[0]
-            body = f"<h2>Auth error: {auth_error}</h2>".encode()
+            body = f"<h2>Auth error: {html.escape(auth_error)}</h2>".encode()
         self.send_response(200)
         self.send_header("Content-Type", "text/html")
         self.end_headers()
@@ -118,6 +122,7 @@ def main():
         "client_id":     client_id,
         "redirect_uri":  REDIRECT,
         "response_type": "code",
+        "state":         oauth_state,
         "scope":         SCOPES,
         "access_type":   "offline",
         "prompt":        "consent",
