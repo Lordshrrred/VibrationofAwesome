@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T13:47:12.278Z",
+  "generatedAt": "2026-09-17T18:32:18.380Z",
   "keywordGeneration": {
     "currentInventory": 0,
     "publishedInventory": 300,
@@ -12,32 +12,32 @@
   },
   "backlinks": {
     "mode": "catch-up",
-    "backlogPosts": 61,
-    "backlogUnits": 73,
-    "completedPerDay": 6.4,
+    "backlogPosts": 53,
+    "backlogUnits": 65,
+    "completedPerDay": 7,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklinkUnitsPerDay": 13.6,
+    "netBacklinkUnitsPerDay": 13,
     "estimatedCatchUpDays": "not-catching-up",
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 61,
-    "verificationGaps": 363,
+    "distributionIncompleteUnits": 77,
+    "verificationGaps": 371,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 61,
+    "largestDelayMissingUnits": 53,
     "platformTable": {
       "backlinkCapable": [
         {
           "key": "blogger",
           "platform": "Blogger",
           "eligiblePosts": 291,
-          "complete": 230,
-          "missing": 61,
-          "successRate": 79,
-          "averagePerDay": 1.7,
+          "complete": 238,
+          "missing": 53,
+          "successRate": 81.8,
+          "averagePerDay": 2.3,
           "confirmed": 182,
-          "verificationGaps": 48,
+          "verificationGaps": 56,
           "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
         },
         {
@@ -107,25 +107,25 @@
         {
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
-          "eligiblePosts": 244,
-          "complete": 220,
-          "missing": 24,
-          "successRate": 90.2,
+          "eligiblePosts": 247,
+          "complete": 215,
+          "missing": 32,
+          "successRate": 87,
           "averagePerDay": 1.6,
           "confirmed": 142,
-          "verificationGaps": 78,
+          "verificationGaps": 73,
           "mainBlocker": "env vars not set"
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
-          "eligiblePosts": 244,
-          "complete": 220,
-          "missing": 24,
-          "successRate": 90.2,
+          "eligiblePosts": 247,
+          "complete": 215,
+          "missing": 32,
+          "successRate": 87,
           "averagePerDay": 1.6,
           "confirmed": 142,
-          "verificationGaps": 78,
+          "verificationGaps": 73,
           "mainBlocker": "env vars not set"
         },
         {
@@ -185,11 +185,11 @@
       },
       {
         "reason": "bluesky_voa: env vars not set",
-        "count": 24
+        "count": 32
       },
       {
         "reason": "mastodon_voa: env vars not set",
-        "count": 24
+        "count": 32
       },
       {
         "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -197,7 +197,7 @@
       },
       {
         "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-        "count": 12
+        "count": 4
       }
     ],
     "definitions": {
@@ -206,7 +206,7 @@
       "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
       "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
     },
-    "reason": "Backlink-capable backlog is growing by 13.6 platform units/day at the current rate.",
+    "reason": "Backlink-capable backlog is growing by 13 platform units/day at the current rate.",
     "windowDays": 14
   },
   "curatedExpansion": {

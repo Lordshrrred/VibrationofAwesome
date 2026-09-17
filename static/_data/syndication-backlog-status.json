@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T13:47:12.224Z",
+  "generatedAt": "2026-09-17T18:32:18.344Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -15,21 +15,21 @@
   },
   "summary": {
     "totalTrackedPosts": 291,
-    "backlogPosts": 61,
-    "backlinkCapableMissingUnits": 73,
-    "backlinkVerificationGaps": 363,
+    "backlogPosts": 53,
+    "backlinkCapableMissingUnits": 65,
+    "backlinkVerificationGaps": 371,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 61,
+    "distributionIncompleteUnits": 77,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 90,
-    "completedBacklinkUnitsPerDay": 6.4,
+    "completedBacklinkUnitsInWindow": 98,
+    "completedBacklinkUnitsPerDay": 7,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 13.6,
+    "netBacklogChangePerDay": 13,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 61
+    "largestDelayMissingUnits": 53
   },
   "platformTable": {
     "backlinkCapable": [
@@ -37,12 +37,12 @@
         "key": "blogger",
         "platform": "Blogger",
         "eligiblePosts": 291,
-        "complete": 230,
-        "missing": 61,
-        "successRate": 79,
-        "averagePerDay": 1.7,
+        "complete": 238,
+        "missing": 53,
+        "successRate": 81.8,
+        "averagePerDay": 2.3,
         "confirmed": 182,
-        "verificationGaps": 48,
+        "verificationGaps": 56,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
@@ -112,25 +112,25 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 244,
-        "complete": 220,
-        "missing": 24,
-        "successRate": 90.2,
+        "eligiblePosts": 247,
+        "complete": 215,
+        "missing": 32,
+        "successRate": 87,
         "averagePerDay": 1.6,
         "confirmed": 142,
-        "verificationGaps": 78,
+        "verificationGaps": 73,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 244,
-        "complete": 220,
-        "missing": 24,
-        "successRate": 90.2,
+        "eligiblePosts": 247,
+        "complete": 215,
+        "missing": 32,
+        "successRate": 87,
         "averagePerDay": 1.6,
         "confirmed": 142,
-        "verificationGaps": 78,
+        "verificationGaps": 73,
         "mainBlocker": "env vars not set"
       },
       {
@@ -190,11 +190,11 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 24
+      "count": 32
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 24
+      "count": 32
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -202,82 +202,10 @@
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 12
+      "count": 4
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "simple-creator-automation-stack",
-      "lane": "boom",
-      "title": "Simple Creator Automation Stack",
-      "date": "2026-08-18",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "creator-burnout-from-content-production",
-      "lane": "boom",
-      "title": "Creator Burnout From Content Production",
-      "date": "2026-08-18",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "why-silence-changes-everything",
-      "lane": "boom",
-      "title": "Why Silence Changes Everything",
-      "date": "2026-08-18",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "what-self-betrayal-actually-looks-like",
-      "lane": "boom",
-      "title": "What Self Betrayal Actually Looks Like",
-      "date": "2026-08-19",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "automation-vs-batch-creation-for-artists",
-      "lane": "boom",
-      "title": "Automation vs Batch Creation for Artists",
-      "date": "2026-08-19",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "claude-vs-chatgpt-for-creator-workflows",
-      "lane": "boom",
-      "title": "Claude vs ChatGPT for Creator Workflows",
-      "date": "2026-08-19",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-overstimulation-affects-focus",
-      "lane": "boom",
-      "title": "How Overstimulation Affects Focus",
-      "date": "2026-08-20",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-build-an-ai-content-workflow",
-      "lane": "boom",
-      "title": "How to Build an AI Content Workflow",
-      "date": "2026-08-20",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "what-cheap-dopamine-does-to-motivation",
       "lane": "boom",
