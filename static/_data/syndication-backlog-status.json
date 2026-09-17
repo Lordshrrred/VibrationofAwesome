@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T18:32:18.344Z",
+  "generatedAt": "2026-09-17T21:41:26.343Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,19 +14,19 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 291,
+    "totalTrackedPosts": 292,
     "backlogPosts": 53,
-    "backlinkCapableMissingUnits": 65,
-    "backlinkVerificationGaps": 371,
+    "backlinkCapableMissingUnits": 53,
+    "backlinkVerificationGaps": 387,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 77,
-    "freshPostsAwaitingBacklinks": 0,
-    "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 98,
-    "completedBacklinkUnitsPerDay": 7,
-    "newPostsPerDay": 5,
-    "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 13,
+    "distributionIncompleteUnits": 78,
+    "freshPostsAwaitingBacklinks": 4,
+    "freshMissingBacklinkUnits": 4,
+    "completedBacklinkUnitsInWindow": 111,
+    "completedBacklinkUnitsPerDay": 7.9,
+    "newPostsPerDay": 4,
+    "newBacklinkUnitsPerDay": 16,
+    "netBacklogChangePerDay": 8.1,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 53
@@ -36,61 +36,61 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 291,
-        "complete": 238,
+        "eligiblePosts": 292,
+        "complete": 239,
         "missing": 53,
         "successRate": 81.8,
-        "averagePerDay": 2.3,
+        "averagePerDay": 2.4,
         "confirmed": 182,
-        "verificationGaps": 56,
+        "verificationGaps": 57,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 291,
-        "complete": 287,
-        "missing": 4,
-        "successRate": 98.6,
-        "averagePerDay": 1.6,
+        "eligiblePosts": 292,
+        "complete": 292,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 1.9,
         "confirmed": 182,
-        "verificationGaps": 105,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 110,
+        "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 291,
-        "complete": 287,
-        "missing": 4,
-        "successRate": 98.6,
-        "averagePerDay": 1.6,
+        "eligiblePosts": 292,
+        "complete": 292,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 1.9,
         "confirmed": 182,
-        "verificationGaps": 105,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 110,
+        "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
         "eligiblePosts": 221,
-        "complete": 217,
-        "missing": 4,
-        "successRate": 98.2,
-        "averagePerDay": 1.6,
+        "complete": 221,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 1.8,
         "confirmed": 136,
-        "verificationGaps": 81,
-        "mainBlocker": "missing local success record"
+        "verificationGaps": 85,
+        "mainBlocker": ""
       },
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 70,
-        "complete": 70,
+        "eligiblePosts": 71,
+        "complete": 71,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0,
+        "averagePerDay": 0.1,
         "confirmed": 46,
-        "verificationGaps": 24,
+        "verificationGaps": 25,
         "mainBlocker": ""
       }
     ],
@@ -112,25 +112,25 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 247,
-        "complete": 215,
-        "missing": 32,
-        "successRate": 87,
-        "averagePerDay": 1.6,
+        "eligiblePosts": 251,
+        "complete": 220,
+        "missing": 31,
+        "successRate": 87.6,
+        "averagePerDay": 1.9,
         "confirmed": 142,
-        "verificationGaps": 73,
+        "verificationGaps": 78,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 247,
-        "complete": 215,
-        "missing": 32,
-        "successRate": 87,
+        "eligiblePosts": 251,
+        "complete": 217,
+        "missing": 34,
+        "successRate": 86.5,
         "averagePerDay": 1.6,
         "confirmed": 142,
-        "verificationGaps": 73,
+        "verificationGaps": 75,
         "mainBlocker": "env vars not set"
       },
       {
@@ -140,7 +140,7 @@
         "complete": 162,
         "missing": 13,
         "successRate": 92.6,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.5,
         "confirmed": 30,
         "verificationGaps": 132,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
@@ -164,7 +164,7 @@
         "complete": 174,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.5,
         "confirmed": 72,
         "verificationGaps": 102,
         "mainBlocker": ""
@@ -176,7 +176,7 @@
         "complete": 172,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.6,
+        "averagePerDay": 1.5,
         "confirmed": 0,
         "verificationGaps": 172,
         "mainBlocker": ""
@@ -190,11 +190,11 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 32
+      "count": 31
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 32
+      "count": 31
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -203,9 +203,49 @@
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
       "count": 4
+    },
+    {
+      "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
+      "count": 3
     }
   ],
   "prioritizedBacklog": [
+    {
+      "slug": "choosing-a-path-when-nothing-feels-clear",
+      "lane": "boom",
+      "title": "Choosing a Path When Nothing Feels Clear",
+      "date": "2026-08-14",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "rebuilding-intuition",
+      "lane": "boom",
+      "title": "Rebuilding Intuition",
+      "date": "2026-08-17",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "how-approval-keeps-people-in-the-wrong-life",
+      "lane": "boom",
+      "title": "How Approval Keeps People in the Wrong Life",
+      "date": "2026-08-21",
+      "missing": [
+        "blogger"
+      ]
+    },
+    {
+      "slug": "contentment-vs-settling",
+      "lane": "boom",
+      "title": "Contentment vs Settling",
+      "date": "2026-09-14",
+      "missing": [
+        "blogger"
+      ]
+    },
     {
       "slug": "what-cheap-dopamine-does-to-motivation",
       "lane": "boom",
@@ -645,54 +685,6 @@
       "date": "2026-09-13",
       "missing": [
         "blogger"
-      ]
-    },
-    {
-      "slug": "choosing-a-path-when-nothing-feels-clear",
-      "lane": "boom",
-      "title": "Choosing a Path When Nothing Feels Clear",
-      "date": "2026-08-14",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "rebuilding-intuition",
-      "lane": "boom",
-      "title": "Rebuilding Intuition",
-      "date": "2026-08-17",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "how-approval-keeps-people-in-the-wrong-life",
-      "lane": "boom",
-      "title": "How Approval Keeps People in the Wrong Life",
-      "date": "2026-08-21",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "contentment-vs-settling",
-      "lane": "boom",
-      "title": "Contentment vs Settling",
-      "date": "2026-09-14",
-      "missing": [
-        "devto",
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
       ]
     }
   ]
