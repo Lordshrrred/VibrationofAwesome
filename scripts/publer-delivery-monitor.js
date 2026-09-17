@@ -2,7 +2,7 @@
 /**
  * Cloud Publer delivery monitor.
  *
- * Runs in GitHub Actions, checks every failed post plus TikTok authorization,
+ * Runs in GitHub Actions and checks only explicit reauthorization evidence,
  * deduplicates through a closed state issue, and sends email through Gmail SMTP.
  * A run is successful only when Gmail explicitly accepts every recipient.
  */
@@ -13,7 +13,7 @@ const HEALTH_MODE = process.argv.includes("--health");
 const PUBLER_BASE = "https://app.publer.com/api/v1";
 const STATE_TITLE = HEALTH_MODE ? "[automation state] VOA syndication health" : "[automation state] Publer delivery monitor";
 const ALERT_TO = process.env.ALERT_EMAIL || "earthlingoflight@gmail.com";
-const WATCHED_TIKTOK_NAMES = new Set(["EarthStarRising", "LumiVale"]);
+const WATCHED_ACCOUNT_NAMES = new Set(["EarthStarRising", "Lumi", "LumiVale"]);
 const required = ["GITHUB_TOKEN", "GITHUB_REPOSITORY", ...(HEALTH_MODE ? [] : ["PUBLER_API_KEY", "PUBLER_WORKSPACE_ID"])];
 
 for (const name of required) {
@@ -254,14 +254,28 @@ async function healthMain() {
 }
 
 async function sendNotification(subject, body) {
-  await createAlertIssue(subject, body);
   try {
     await sendEmail(subject, body);
   } catch (error) {
-    // GitHub issue assignment is the guaranteed durable channel. Gmail is a
-    // second channel and must never take the monitor itself dark.
-    console.warn(`Gmail secondary alert unavailable: ${error instanceof Error ? error.message : error}`);
+    await createAlertIssue(
+      "Publer reauthorization email delivery failed",
+      `${body}\n\nEmail error: ${error instanceof Error ? error.message : error}`,
+    );
+    throw error;
   }
+}
+
+function isExplicitReauthorizationError(value) {
+  const text = String(value || "").toLowerCase();
+  return [
+    /authentication failed[^.]*reauthori[sz]e/,
+    /reauthori[sz](e|ation).*(account|profile|connection)/,
+    /(account|profile|connection).*reauthori[sz](e|ation)/,
+    /re-?connect.*(account|profile|social)/,
+    /access token.*(expired|invalid|revoked)/,
+    /(expired|invalid|revoked).*access token/,
+    /invalid[_ -]?grant/,
+  ].some((pattern) => pattern.test(text));
 }
 
 function formatFailure(failure) {
@@ -283,14 +297,17 @@ async function main() {
   const truth = await loadPublerTruth();
   const { issue, state: prior } = await loadStateIssue();
   const watched = truth.accounts.filter(
-    (account) => account.provider === "tiktok" && WATCHED_TIKTOK_NAMES.has(account.name),
+    (account) => WATCHED_ACCOUNT_NAMES.has(account.name),
+  );
+  const authorizationFailures = truth.failures.filter((failure) =>
+    isExplicitReauthorizationError(failure.error),
   );
 
   if (process.env.MONITOR_TEST === "true") {
     await sendNotification(
       "✅ Publer delivery monitor is live",
       [
-        "The cloud Publer monitor successfully queried Publer and created this assigned GitHub notification.",
+        "The cloud Publer reauthorization monitor successfully queried Publer and verified Gmail delivery.",
         "",
         ...watched.map(
           (account) =>
@@ -302,13 +319,19 @@ async function main() {
     );
   }
 
-  const currentFailureIds = truth.failures.map((failure) => failure.id);
+  const currentFailureIds = authorizationFailures.map((failure) => failure.id);
   const reauthAccountIds = new Set(truth.reauthAccountIds);
   const currentInaccessible = watched
     .filter((account) => account.permissions?.can_access !== true || reauthAccountIds.has(account.id))
     .map((account) => account.id);
 
   if (!prior) {
+    if (currentInaccessible.length || currentFailureIds.length) {
+      await sendNotification(
+        "ACTION REQUIRED: Reauthorize an account in Publer",
+        "Publer already reports a reauthorization/access-token problem. Open https://app.publer.com and reconnect the affected account under Social Accounts.",
+      );
+    }
     await saveState(issue, {
       version: 1,
       initializedAt: new Date().toISOString(),
@@ -322,7 +345,7 @@ async function main() {
 
   const seen = new Set(prior.seenFailureIds ?? []);
   const previouslyInaccessible = new Set(prior.inaccessibleAccountIds ?? []);
-  const newFailures = truth.failures.filter((failure) => !seen.has(failure.id));
+  const newFailures = authorizationFailures.filter((failure) => !seen.has(failure.id));
   const newlyInaccessible = watched.filter(
     (account) =>
       (account.permissions?.can_access !== true || reauthAccountIds.has(account.id)) &&
@@ -340,12 +363,12 @@ async function main() {
       "Publer delivery needs attention.",
       "",
       ...newlyInaccessible.map(
-        (account) => `${account.name} (TikTok) no longer reports publishing access. Reauthorize it in Publer.`,
+        (account) => `${account.name} (${account.provider}) no longer reports publishing access. Reauthorize it in Publer.`,
       ),
       ...newFailures.flatMap((failure) => [formatFailure(failure), ""]),
     ];
     await sendNotification(
-      `🚨 Publer: ${newFailures.length + newlyInaccessible.length} new delivery problem(s)`,
+      `ACTION REQUIRED: Publer account reauthorization needed`,
       sections.join("\n"),
     );
   }
