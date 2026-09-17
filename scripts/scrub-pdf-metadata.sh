@@ -61,17 +61,19 @@ scrub_one() {
   log "Scrubbing: $rel"
 
   # Resolve per-file overrides from config
-  local title subject keywords
+  local author title subject keywords
+  author=$(get_metadata_field "$rel" "Author")
   title=$(get_metadata_field "$rel" "Title")
   subject=$(get_metadata_field "$rel" "Subject")
   keywords=$(get_metadata_field "$rel" "Keywords")
 
+  [[ -z "$author" ]]   && author="$SAFE_AUTHOR"
   [[ -z "$title" ]]    && title="Vibration of Awesome"
   [[ -z "$subject" ]]  && subject="Content from Vibration of Awesome"
   [[ -z "$keywords" ]] && keywords="Vibration of Awesome, EarthStar Rising"
 
   exiftool \
-    -Author="$SAFE_AUTHOR" \
+    -Author="$author" \
     -Creator="$SAFE_CREATOR" \
     -Producer="$SAFE_PRODUCER" \
     -Title="$title" \
