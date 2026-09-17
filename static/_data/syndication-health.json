@@ -1,13 +1,13 @@
 {
-  "lastChecked": "2026-09-16T16:54:55.813Z",
+  "lastChecked": "2026-09-17T04:52:02.146Z",
   "status": "broken",
-  "passed": 14,
-  "failed": 2,
+  "passed": 15,
+  "failed": 1,
   "total": 16,
   "topFix": {
-    "name": "Blogger token refresh",
-    "detail": "invalid_grant: Bad Request",
-    "repairCommand": "npm run blogger-token"
+    "name": "drip queue",
+    "detail": "publishing inventory low: 0 posts remain; minimum healthy runway is 28",
+    "repairCommand": "npm run check:syndication -- --write"
   },
   "drip": {
     "status": "active",
@@ -87,9 +87,8 @@
     },
     {
       "name": "Blogger token refresh",
-      "ok": false,
-      "detail": "invalid_grant: Bad Request",
-      "failureType": "auth_reconnect_required"
+      "ok": true,
+      "detail": "token ok"
     },
     {
       "name": "WordPress direct auth",
