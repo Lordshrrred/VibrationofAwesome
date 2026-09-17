@@ -1966,8 +1966,8 @@ function renderSyndFeed(entries, resultsData) {
   }
 
   function isArtExtra(syn) {
-    // Art-extra posts use devto2 but NOT devto/social
-    return !!syn["devto2"] && !syn["bluesky_voa"] && !syn["facebook_voa"];
+    // The second Dev.to account serves balanced backlink-only slots.
+    return !!syn["devto2"] && !syn["devto"];
   }
 
   function blStatus(syn, artExtra) {
@@ -2053,7 +2053,7 @@ function renderSyndFeed(entries, resultsData) {
       ).join("");
 
     const typeClass = artExtra ? "synd-type-art" : "synd-type-full";
-    const typeLabel = artExtra ? "Art Extra" : "Full Drip";
+    const typeLabel = artExtra ? "Backlinks Only" : "Full Drip";
 
     const eta = anyMiss ? etaDate(slug) : null;
     const statusBadge = allOk
