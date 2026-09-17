@@ -864,6 +864,13 @@
         <span id="health-chips"></span>
       </div>
 
+      <details style="margin:12px 0;color:var(--text-muted);font-size:0.85rem">
+        <summary style="cursor:pointer">Reconnect Blogger</summary>
+        <p>Copy this command and run it in Terminal from the VOA repo folder. Google will open in Safari; sign in to the VOA Blogger account. The helper saves the validated token locally and to GitHub Actions.</p>
+        <button class="dash-lock-btn" onclick="copyTokCmd('npm run blogger-token',this)">Copy Blogger reconnect command</button>
+        <code style="display:block;margin-top:8px">npm run blogger-token</code>
+      </details>
+
       <!-- ── Stats Strip ── -->
       <div class="stats-strip" id="stats-strip">
         <div class="stat-card">
@@ -1515,7 +1522,7 @@ const TOKEN_PLATFORMS = [
 const TOKEN_EXPIRED_PATTERNS = [
   /session has expired/i, /token.*expired/i, /expired.*token/i,
   /access.*token.*invalid/i, /invalid.*access.*token/i, /re-?auth/i,
-  /insufficient.*perm/i,
+  /insufficient.*perm/i, /invalid_grant/i, /token.*revoked/i,
 ];
 const DISMISS_KEY   = "voa_tok_dismiss";
 const DISMISS_TTL   = 12 * 60 * 60 * 1000; // 12 hours
@@ -1600,7 +1607,7 @@ function renderTokenStatus(results, health) {
 
   const chips = toRender.map(({ key, label, cmd }) => {
     const info = statusMap[key];
-    if (info.state === "ok") {
+    if (info.state === "ok" && !Object.entries(HEALTH_CHECK_DUPLICATES_TOKEN_KEY).some(([name, platform]) => platform === key && health?.checks?.some(c => c.name === name && !c.ok))) {
       // For Facebook, pull expiry date from health check detail
       let title = `${label}: token valid`;
       let extra = "";
@@ -1656,7 +1663,7 @@ function renderHealth(health, results) {
   const failed = checks.filter(c => {
     if (c.ok) return false;
     const dupKey = HEALTH_CHECK_DUPLICATES_TOKEN_KEY[c.name];
-    if (dupKey && tokenStatusMap[dupKey]) return false;
+    if (dupKey && tokenStatusMap[dupKey]?.state === "warn" && !isTokenDismissed(dupKey)) return false;
     return true;
   });
   if (failed.length === 0) return; // all passing (or already shown as a token chip)
@@ -1705,7 +1712,9 @@ function renderStats(entries, results, drip, backlogStatus) {
     const remaining = drip.queue?.length ?? 0;
     const published = drip.published?.length ?? 0;
     document.getElementById("stat-drip").textContent = remaining;
-    const badge = drip.status === "active"
+    const badge = remaining === 0
+      ? `<span class="stat-badge gold">Empty ~ replenishment needed</span>`
+      : drip.status === "active"
       ? `<span class="stat-badge green">Active</span>`
       : `<span class="stat-badge gold">Paused</span>`;
     document.getElementById("stat-drip-badge").innerHTML =

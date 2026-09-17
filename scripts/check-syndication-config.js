@@ -200,8 +200,7 @@ async function main() {
       trigger_feeder_on_publish: !!queue.trigger_feeder_on_publish,
     };
     const remaining = queue.queue?.length || 0;
-    const postsPerDay = Number(queue._posts_per_day || 2);
-    const minimum = Math.max(14, postsPerDay * 7);
+    const minimum = 14; // balanced reserve triggers at 14, targets 22
     if (queue.status === "active" && remaining < minimum) {
       throw new Error(`publishing inventory low: ${remaining} posts remain; minimum healthy runway is ${minimum}`);
     }

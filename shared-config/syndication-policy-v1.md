@@ -10,6 +10,10 @@ fatigue. Both engines read from this policy.
 
 ---
 
+## Current VOA slot policy (2026-09-16)
+
+This supersedes older niche-specific account/slot descriptions below. Four articles/day rotate across all 11 clusters. The 13:00/22:00 UTC slots retain normal social and backlink routing with Dev.to account 1. The 16:00/01:00 UTC slots use `backlinks-only`: Dev.to account 2, Blogger, WordPress, Tumblr; no social/Pinterest or feeder. Never send one canonical URL to both Dev.to accounts. AI and art no longer have reserved daily slots. Canonical VOA publication must be live before distribution.
+
 ## 1. Platform Ownership
 
 Platform roles are assigned to prevent both engines from competing for the same audience slot
@@ -336,3 +340,5 @@ incorporate observed performance data.
 *This policy is enforced by `scripts/lib/policy.js` in the VOA blog engine.*  
 *The EarthStar Command engine maintains a parallel version of this document.*  
 *Both documents must stay in sync when platform roles change.*
+
+Blogger catchup is capped at four extra attempts per UTC day, separate from the four new articles and their regular distribution. Twice-daily cloud health checks notify the owner by email for new Blogger authorization failures and recovery.

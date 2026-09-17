@@ -27,6 +27,8 @@ import urllib.parse
 import urllib.request
 import http.server
 import threading
+import secrets
+import html
 import subprocess
 
 # ── Load .env manually (no dotenv dependency required) ──────────────────
@@ -58,6 +60,7 @@ BLOGGER_API    = 'https://www.googleapis.com/blogger/v3'
 
 # ── Localhost callback server ─────────────────────────────────────────────
 
+_oauth_state = secrets.token_urlsafe(32)
 _captured_code  = None
 _captured_error = None
 
@@ -67,6 +70,10 @@ class _CallbackHandler(http.server.BaseHTTPRequestHandler):
         parsed = urllib.parse.urlparse(self.path)
         params = urllib.parse.parse_qs(parsed.query)
 
+        if ('code' in params or 'error' in params) and not secrets.compare_digest(params.get('state', [''])[0], _oauth_state):
+            self.send_error(400, 'Invalid OAuth state. Restart Blogger reconnect.')
+            return
+
         if 'code' in params:
             _captured_code = params['code'][0]
             body = b'<h1>Authorization successful!</h1><p>You can close this tab and return to the terminal.</p>'
@@ -74,7 +81,7 @@ class _CallbackHandler(http.server.BaseHTTPRequestHandler):
         elif 'error' in params:
             _captured_error = params.get('error', ['unknown'])[0]
             msg = (
-                f'<h1>Authorization failed: {_captured_error}</h1>'
+                f'<h1>Authorization failed: {html.escape(_captured_error)}</h1>'
                 f'<p>If this says redirect_uri_mismatch, add this exact Authorized redirect URI '
                 f'to the Google OAuth client:</p>'
                 f'<p><code>{REDIRECT_URI}</code></p>'
@@ -110,6 +117,7 @@ def _wait_for_callback():
         print(f'  lsof -nP -iTCP:{REDIRECT_PORT} -sTCP:LISTEN')
         print()
         raise
+    open_auth_url(build_auth_url())
     # Keep handling requests until we get the code (ignores favicon etc.)
     while _captured_code is None and _captured_error is None:
         server.handle_request()
@@ -119,6 +127,7 @@ def _wait_for_callback():
 
 def build_auth_url():
     params = {
+        'state':         _oauth_state,
         'client_id':     CLIENT_ID,
         'redirect_uri':  REDIRECT_URI,
         'response_type': 'code',
@@ -203,7 +212,8 @@ def sync_github_secret(refresh_token):
             return False
 
         update = subprocess.run(
-            ['gh', 'secret', 'set', 'BLOGGER_REFRESH_TOKEN', '--body', refresh_token],
+            ['gh', 'secret', 'set', 'BLOGGER_REFRESH_TOKEN'],
+            input=refresh_token,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
@@ -277,9 +287,6 @@ def main():
     print()
     print(f'Waiting for callback on http://localhost:{REDIRECT_PORT} ...')
 
-    # Try to open the browser; don't fail if it can't
-    open_auth_url(auth_url)
-
     _wait_for_callback()
 
     if _captured_error:
@@ -301,7 +308,7 @@ def main():
 
     if not refresh_token:
         print('ERROR: No refresh_token in response. Make sure prompt=consent is set.')
-        print('Response:', json.dumps(token_data, indent=2))
+        print('No credentials were saved.')
         sys.exit(1)
 
     print('Validating refresh token...')
@@ -313,14 +320,15 @@ def main():
         sys.exit(1)
 
     save_token_to_env(refresh_token)
-    sync_github_secret(refresh_token)
+    if not sync_github_secret(refresh_token):
+        print('Token saved locally, but cloud publishing is not repaired until GitHub secret sync succeeds.')
+        sys.exit(1)
 
     print()
     print('=' * 70)
     print('  SUCCESS')
     print('=' * 70)
-    print(f'  access_token  : {access_token[:40]}...')
-    print(f'  refresh_token : {refresh_token[:40]}...')
+    print('  Blogger token validated. Credentials are not printed.')
     print()
     print('BLOGGER_REFRESH_TOKEN saved to .env')
     print()

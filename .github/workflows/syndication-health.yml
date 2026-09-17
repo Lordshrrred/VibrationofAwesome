@@ -5,6 +5,12 @@ env:
 
 on:
   workflow_dispatch:
+    inputs:
+      send_test_email:
+        description: Send a verified VOA alert email test
+        required: false
+        default: false
+        type: boolean
   schedule:
     - cron: "17 */12 * * *"
 
@@ -81,52 +87,20 @@ jobs:
           set -e
           echo "status=$STATUS" >> "$GITHUB_OUTPUT"
 
-      - name: Alert on Blogger health failure
+      - name: Email new Blogger and critical inventory failures
+        id: alerts
+        continue-on-error: true
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+          GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
+          ALERT_EMAIL: earthlingoflight@gmail.com
+          MONITOR_TEST: ${{ inputs.send_test_email == true && 'true' || 'false' }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
-          BLOGGER_OK="$(node -e 'const fs=require("fs"); const h=JSON.parse(fs.readFileSync("static/_data/syndication-health.json","utf8")); const c=(h.checks||[]).find(row=>row.name==="Blogger token refresh"); process.stdout.write(c && c.ok ? "1" : "0");')"
-          if [ "$BLOGGER_OK" = "1" ]; then
-            existing="$(gh issue list --state open --search 'Blogger syndication token needs repair in:title' --json number --jq '.[0].number // empty')"
-            if [ -n "$existing" ]; then
-              gh issue close "$existing" --comment "Blogger health recovered. Latest successful check: $RUN_URL"
-            fi
-            exit 0
-          fi
-
-          DETAIL="$(node -e 'const fs=require("fs"); const h=JSON.parse(fs.readFileSync("static/_data/syndication-health.json","utf8")); const c=(h.checks||[]).find(row=>row.name==="Blogger token refresh"); process.stdout.write((c && c.detail) || "Blogger token refresh failed.");')"
-          existing="$(gh issue list --state open --search 'Blogger syndication token needs repair in:title' --json number --jq '.[0].number // empty')"
-          if [ -n "$existing" ]; then
-            gh issue comment "$existing" --body "Blogger is still failing: $DETAIL\n\nRun: $RUN_URL\n\nRepair locally with: \`npm run blogger-token\`"
-          else
-            gh issue create \
-              --title "Blogger syndication token needs repair" \
-              --body "The scheduled syndication health check detected a Blogger OAuth refresh failure.\n\nFailure: $DETAIL\n\nRun: $RUN_URL\n\nRepair locally with: \`npm run blogger-token\`. That helper opens Google consent, saves the new refresh token to \`.env\`, and updates the GitHub Actions \`BLOGGER_REFRESH_TOKEN\` secret."
-          fi
-
-      - name: Alert on low publishing inventory
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
-          QUEUE_OK="$(node -e 'const fs=require("fs"); const h=JSON.parse(fs.readFileSync("static/_data/syndication-health.json","utf8")); const c=(h.checks||[]).find(row=>row.name==="drip queue"); process.stdout.write(c && c.ok ? "1" : "0");')"
-          existing="$(gh issue list --state open --search 'Publishing queue needs new drafts in:title' --json number --jq '.[0].number // empty')"
-          if [ "$QUEUE_OK" = "1" ]; then
-            if [ -n "$existing" ]; then
-              gh issue close "$existing" --comment "Publishing inventory recovered. Latest successful check: $RUN_URL"
-            fi
-            exit 0
-          fi
-
-          DETAIL="$(node -e 'const fs=require("fs"); const h=JSON.parse(fs.readFileSync("static/_data/syndication-health.json","utf8")); const c=(h.checks||[]).find(row=>row.name==="drip queue"); process.stdout.write((c && c.detail) || "Publishing inventory is low.");')"
-          if [ -n "$existing" ]; then
-            gh issue comment "$existing" --body "Publishing inventory is still low: $DETAIL\n\nRun: $RUN_URL"
-          else
-            gh issue create \
-              --title "Publishing queue needs new drafts" \
-              --body "The scheduled health check detected low publishing inventory.\n\nStatus: $DETAIL\n\nRun: $RUN_URL\n\nGenerate and review a new draft batch before the queue reaches zero."
-          fi
+        run: node scripts/publer-delivery-monitor.js --health
 
       - name: Commit health snapshot
         run: |
@@ -144,5 +118,5 @@ jobs:
           exit 1
 
       - name: Fail if syndication is broken
-        if: steps.health.outputs.status != '0'
+        if: steps.health.outputs.status != '0' || steps.alerts.outcome == 'failure'
         run: exit 1

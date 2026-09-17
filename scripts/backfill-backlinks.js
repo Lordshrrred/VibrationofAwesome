@@ -25,6 +25,7 @@ import { pathToFileURL as __voaPathToFileURL } from "node:url";
 import {
   buildSyndicationBacklogStatus,
   missingBacklinkPlatforms,
+  selectBackfillBatch,
 } from "./lib/syndication-backlog.js";
 
 dotenv.config({ override: true });
@@ -81,10 +82,29 @@ async function main() {
   const batchSize = parseInt(argv.batch || (status.mode === "catch-up" ? CATCHUP_BATCH : MAINTENANCE_BATCH), 10);
 
   const bySlug = new Map(results.map(row => [row.slug, row]));
+  const today = new Date().toISOString().slice(0, 10);
+  const attemptedBloggerToday = results.filter(r => r.syndication?.blogger?.backfill_attempted_at?.startsWith(today)).length;
+  let bloggerAllowance = Math.max(0, 4 - attemptedBloggerToday);
+  let bloggerAvailable = true;
+  if (execute && targetPlatforms.includes("blogger") && bloggerAllowance > 0) {
+    try {
+    const response = await fetch("https://oauth2.googleapis.com/token", {
+      method: "POST", signal: AbortSignal.timeout(15000), headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ client_id: process.env.BLOGGER_CLIENT_ID || "", client_secret: process.env.BLOGGER_CLIENT_SECRET || "", refresh_token: process.env.BLOGGER_REFRESH_TOKEN || "", grant_type: "refresh_token" }),
+    });
+    const token = await response.json();
+    bloggerAvailable = response.ok && Boolean(token.access_token);
+    if (!bloggerAvailable) console.error(`[blogger] Auth preflight failed: ${token.error || response.status}. No Blogger generation/spend this run; other platforms continue.`);
+    } catch (error) { bloggerAvailable = false; console.error(`[blogger] Auth preflight unavailable: ${error.message}; other platforms continue.`); }
+  }
   const backlog = status.prioritizedBacklog
     .map(item => {
       const source = bySlug.get(item.slug) || item;
-      return { ...source, missing: filterTargetPlatforms(missingBacklinkPlatforms(source)) };
+      const missing = filterTargetPlatforms(missingBacklinkPlatforms(source)).filter(key => {
+        if (key !== "blogger") return true;
+        return bloggerAvailable && bloggerAllowance > 0 && !source.syndication?.blogger?.backfill_attempted_at?.startsWith(today);
+      });
+      return { ...source, missing };
     })
     .filter(row => row.missing.length > 0);
 
@@ -98,8 +118,8 @@ async function main() {
   console.log(`Net/day: ${status.summary.netBacklogChangePerDay} | ETA: ${status.summary.estimatedCatchUpDays ?? "not catching up"}\n`);
 
   if (backlog.length === 0) {
-    console.log("✅ All posts fully syndicated. Nothing to do.");
-    process.exit(0);
+    console.log("No eligible backlog work within today's platform budgets.");
+    process.exit(bloggerAvailable ? 0 : 1);
   }
 
   // Print full backlog
@@ -107,7 +127,8 @@ async function main() {
     console.log(`  ${(r.date||"?").slice(0,10)}  ${r.slug.slice(0,60).padEnd(60)}  needs: ${r.missing.join(", ")}`);
   }
 
-  const batch = backlog.slice(0, batchSize);
+  const batch = selectBackfillBatch(backlog, batchSize, bloggerAllowance);
+  console.log(`[blogger] At most four extra catch-up attempts/day; already attempted today: ${attemptedBloggerToday}. New-post syndication is separate.`);
   console.log(`\nThis run will process: ${batch.length} of ${backlog.length} posts`);
 
   if (!execute) {
@@ -117,7 +138,7 @@ async function main() {
   }
 
   let succeeded = 0;
-  let failed    = 0;
+  let failed    = bloggerAvailable ? 0 : 1;
 
   for (let i = 0; i < batch.length; i++) {
     const r = batch[i];
@@ -127,6 +148,15 @@ async function main() {
     console.log(`  Captions: ${cachedCaptions ? "reusing cached log captions (no caption Claude call)" : "no cache found; syndicate.js will generate captions"}`);
 
     try {
+      if (r.missing.includes("blogger")) {
+        // Persist before external side effects; saveResults preserves platform metadata.
+        const current = loadResults();
+        const saved = current.find(row => row.slug === r.slug);
+        if (!saved) throw new Error("Missing tracked result; refusing uncheckpointed Blogger backfill");
+        saved.syndication ||= {};
+        saved.syndication.blogger = { ...saved.syndication.blogger, backfill_attempted_at: new Date().toISOString() };
+        fs.writeFileSync(RESULTS_FILE, JSON.stringify(current, null, 2));
+      }
       const entry = await syndicatePost(r.lane || "boom", r.slug, {
         platforms: r.missing,
         force,

@@ -35,7 +35,7 @@ export const PLATFORM_LABELS = {
 };
 
 const DEFAULT_WINDOW_DAYS = 14;
-const DEFAULT_POSTS_PER_DAY = 5;
+const DEFAULT_POSTS_PER_DAY = 4;
 
 export function readJson(file, fallback) {
   try {
@@ -52,7 +52,8 @@ function envNumber(key, fallback) {
 
 export function isArtOrCampaign(row) {
   const syn = row.syndication || {};
-  return Boolean(syn.devto2 || row.niche === "art-buyer-intent" || row.syndication_profile === "campaign-seo");
+  if (syn.devto && !syn.devto2) return false;
+  return Boolean(syn.devto2 || row.niche === "art-buyer-intent" || ["campaign-seo", "backlinks-only", "art-devto2-only"].includes(row.syndication_profile));
 }
 
 export function expectedBacklinkPlatforms(row) {
@@ -289,4 +290,17 @@ export function buildSyndicationBacklogStatus(results, opts = {}) {
         missing,
       })),
   };
+}
+
+export function selectBackfillBatch(backlog, batchSize, bloggerAllowance) {
+  if (!Number.isSafeInteger(batchSize) || batchSize < 1) throw new Error("Backfill batch must be a positive integer");
+  const batch = [];
+  for (const row of backlog) {
+    if (batch.length >= batchSize) break;
+    const missing = row.missing.filter(key => key !== "blogger" || bloggerAllowance > 0);
+    if (!missing.length) continue;
+    if (missing.includes("blogger")) bloggerAllowance--;
+    batch.push({ ...row, missing });
+  }
+  return batch;
 }

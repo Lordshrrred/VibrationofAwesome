@@ -33,12 +33,7 @@ function keywordGenerationStatus() {
   const queue = readJson(DRIP_QUEUE, { queue: [], published: [], status: "missing" });
   const pending = Array.isArray(queue.queue) ? queue.queue.length : 0;
   const published = Array.isArray(queue.published) ? queue.published.length : 0;
-  const campaignCount = queue.queue.filter(item => item.niche === "ai-advantage-campaign").length;
-  const practicalAiCount = queue.queue.filter(item => item.niche === "ai-creator-tools").length;
-  const artCount = queue.queue.filter(item => item.niche === "art-buyer-intent").length;
-  // Two evergreen slots always run. Practical AI and current AI Advantage
-  // share one slot; art owns the fourth slot when inventory is available.
-  const scheduledCadence = 2 + (campaignCount + practicalAiCount > 0 ? 1 : 0) + (artCount > 0 ? 1 : 0);
+  const scheduledCadence = 4; // all slots serve all clusters
   const cadence = envNumber("SEO_PUBLISHING_POSTS_PER_DAY", scheduledCadence);
   const pauseDays = envNumber("KEYWORD_RUNWAY_PAUSE_DAYS", 60);
   const resumeDays = envNumber("KEYWORD_RUNWAY_RESUME_DAYS", 21);

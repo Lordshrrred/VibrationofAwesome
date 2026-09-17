@@ -119,8 +119,8 @@ async function triggerFeeder(item) {
 function syndicate(item) {
   const args = ["scripts/syndicate.js", "--lane", "boom", "--slug", item.slug];
   if (item.keyword) args.push("--keyword", item.keyword);
-  if (item.syndication_profile === "art-devto2-only") {
-    // Art posts: full backlink tier (no social, no feeder) — devto2 + Blogger + WP + Tumblr
+  if (["art-devto2-only", "backlinks-only"].includes(item.syndication_profile)) {
+    // Backlink-only slots: full backlink tier (no social, no feeder) — devto2 + Blogger + WP + Tumblr
     args.push("--platforms", "devto2,blogger,wordpress_earthstar,tumblr_voa");
   } else if (item.syndication_profile === "campaign-seo") {
     // SEO-only post: full backlink tier — devto2 + Blogger + WP + Tumblr + Pinterest

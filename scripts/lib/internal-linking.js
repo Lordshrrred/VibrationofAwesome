@@ -391,3 +391,42 @@ export function countContextualInternalLinks(html) {
     .filter(match => /^\/(?:blog|ai-engine|art-store|field-guide|earthstar)\//.test(match[1]) || /^https:\/\/vibrationofawesome\.com\/(?:blog|ai-engine|art-store|field-guide|earthstar)\//.test(match[1]))
     .length;
 }
+
+/** Oldest-served cluster first; reserve planning also fills the thinnest queue.
+ * Pure, deterministic, and shared by replenishment and actual publishing.
+ * Explicit cluster tags win over niche inference (several clusters share niches).
+ */
+export function selectBalancedClusterRows(candidates, published, limit, clusterData, queued = null) {
+  const keys = clusterData.clusters.map(c => c.key);
+  const keyFor = row => clusterData.byKey[row.cluster] ? row.cluster : inferCluster(row, clusterData);
+  const last = Object.fromEntries(keys.map(k => [k, 0]));
+  const total = Object.fromEntries(keys.map(k => [k, 0]));
+  const reserve = Object.fromEntries(keys.map(k => [k, 0]));
+  for (const row of published) {
+    const key = keyFor(row);
+    if (!(key in last)) continue;
+    total[key]++;
+    last[key] = Math.max(last[key], Date.parse(row.date || row.published_at || '') || 0);
+  }
+  let clock = Math.max(0, ...Object.values(last)) + 1;
+  for (const row of queued || []) {
+    const key = keyFor(row);
+    if (!(key in last)) continue;
+    reserve[key]++;
+    last[key] = clock++;
+  }
+  const remaining = [...candidates];
+  const selected = [];
+  while (remaining.length && selected.length < limit) {
+    const available = keys.filter(k => remaining.some(row => keyFor(row) === k));
+    available.sort((a, b) => (queued !== null ? reserve[a] - reserve[b] : 0) || last[a] - last[b] || total[a] - total[b] || keys.indexOf(a) - keys.indexOf(b));
+    const key = available[0];
+    if (!key) break;
+    const index = remaining.findIndex(row => keyFor(row) === key);
+    selected.push(remaining.splice(index, 1)[0]);
+    last[key] = clock++;
+    total[key]++;
+    reserve[key]++;
+  }
+  return selected;
+}

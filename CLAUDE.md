@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+Read `AGENTS.md` and the local-only `BMO_CONTEXT.md` first for canonical VOA project identity, voice, collaboration preferences, and context precedence. This file describes technical operations; those operations support VOA's philosophy and body of work rather than define its public identity. Keep the BMO context excluded from Git and deployment uploads.
+
 ## Publer delivery monitor (2026-09-01)
 
 - `.github/workflows/publer-delivery-monitor.yml` is the durable, cloud-hosted
@@ -74,17 +76,13 @@ Each post is generated as standalone HTML and indexed in `static/_data/[lane]-po
 ### Drip Queue
 Pre-generated Boom posts live in `static/blog/boom/drafts/`. `drip-publish.js` moves selected drafts → posts, updates `boom-posts.json`, regenerates the sitemap, writes `drip-last-published.json`, and lets `post-live-syndicate.js` syndicate only after the canonical VOA URL is live.
 
-Current schedule in `.github/workflows/drip-posts.yml` (sustainable mix, active 2026-08-05 ~ replaced the 5-slot "Phase Three" schedule):
-- `9:00 AM ET` (`0 13 * * *`) ~ normal Boom post, full social + full backlinks
-- `12:00 PM ET` (`0 16 * * *`) ~ practical AI **or** current AI Advantage, SEO backlinks only (no social)
-- `6:00 PM ET` (`0 22 * * *`) ~ normal Boom post, full social + full backlinks
-- `9:00 PM ET` (`0 1 * * *`) ~ art-buyer post, full backlinks only (devto2 + Blogger + WP + Tumblr), no social, no feeder
-
-Social accounts get exactly **2 posts/day** (9am and 6pm slots only). Total cadence is **4 posts/day**, down from 5: the old dual noon + 3pm AI Advantage slots collapsed into a single noon slot that draws from `--niches ai-creator-tools,ai-advantage-campaign` (comma-separated multi-niche selection, supported by `drip-publish.js`'s `--niches` flag). This deliberately caps campaign/AI-tools volume, which is the structural driver of the cluster imbalance noted below. Art buyer publishes 1/day backlinks-only.
-
-**Cluster distribution is genuinely lopsided and is the thing to protect here.** As of 2026-08-05: 164 of 205 published Boom posts (80%) sit in `ai-creator-tools`; `dopamine-attention` has 1. Labeling is *not* the problem ~ `backfill-cluster-metadata.js` already reduced unclustered posts from 80 to 1. The fix is inventory in the thin clusters, which is why the noon slot is capped at one shared AI slot and the replenishment round-robin (below) allocates only ~1 in 4 reserve posts to `ai-creator-tools`. Do not restore a second daily AI slot without a matching plan for the thin clusters.
-
-Art-extra queue items use `syndication_profile: "art-devto2-only"`, `syndicate_on_publish: true`, and `trigger_feeder_on_publish: false`. Despite the profile name, the `art-devto2-only` profile now routes to the full backlink tier (devto2 + blogger + wordpress_earthstar + tumblr_voa) ~ social and feeder remain suppressed.
+Current schedule in `.github/workflows/drip-posts.yml` (balanced cluster rotation, 2026-09-16):
+- Four posts/day at 13:00, 16:00, 22:00, and 01:00 UTC. All slots draw from all 11 canonical clusters.
+- The least-recently-published eligible cluster wins. Ties favor thinner historical clusters. Explicit cluster metadata takes precedence over niche inference; multiple clusters share a niche.
+- 13:00 and 22:00 UTC retain normal social + backlinks + feeder eligibility (Dev.to account 1).
+- 16:00 and 01:00 UTC use `backlinks-only`: Dev.to account 2 + Blogger + WordPress + Tumblr, no social/Pinterest or feeder. The canonical URL goes to only one Dev.to account.
+- The previous daily AI-only and art-only reservations are retired. Matt approved four/day balanced rotation, not eleven/day. With healthy inventory each cluster receives a post about every 2.75 days.
+- Publishing still verifies the canonical VOA URL is live before external distribution. Historical campaign/art profiles remain readable for old inventory.
 
 ### Hugo Site
 Hugo watches `content/posts/*.md` and renders with `layouts/` templates. The `hugo.toml` has `unsafe = true` for goldmark to allow raw HTML in markdown. Deployed via Vercel (auto-deploys on push to main via GitHub webhook).
@@ -170,15 +168,25 @@ Required environment variables: `GA_CREDENTIALS_JSON` or `GOOGLE_SERVICE_ACCOUNT
 
 Run manually: `npm run seo:intelligence` (or `node scripts/seo_intelligence.js --days 28 --refresh` to force fresh API pulls). Normal uncached run uses two Search Console requests and three GA4 Data API requests; cached runs reuse `.cache/seo-intelligence/`.
 
-Manual competitive/model research is separate and explicitly cost-gated: `npm run seo:research -- --query "example query" --confirm-cost` or the existing lower-level `npm run research` path. Do not schedule it or use it as routine rank tracking.
+Manual competitive/model research is separate and explicitly cost-gated: `npm run seo:research -- --query "example query" --confirm-cost` or the existing lower-level `npm run research` path. Do not schedule that manual competitive path or use it as routine rank tracking. The separate bounded weekly cluster-evidence workflow is explicitly authorized for automatic replenishment.
 
 ### Publishing queue reserve (`scripts/replenish-drip-queue.js`)
 
-The queue now has a deterministic depletion fallback. `.github/workflows/queue-replenishment.yml` checks daily before the first publish slot. When inventory reaches **28 posts or fewer**, it batch-generates from unused keyword-research phrases already approved in `scripts/content-niches.js`, replenishing toward **56 posts (maximum 28 Opus calls in one cached batch)**. These thresholds doubled on 2026-08-05 (were 14/28/14) ~ **this doubles the worst-case spend of a single replenishment run**, so treat a triggered run as a real cost event, not routine housekeeping. It never invents a niche and deliberately excludes `ai-advantage-campaign`, because product/campaign topics can become stale and require fresh editorial/search validation. Art-buyer reserve posts automatically retain the art-only syndication profile.
+The daily workflow checks before publishing. At **14 drafts or fewer**, it replenishes toward **22**, with **at most eight article-generation attempts per UTC day**, checkpointed before each attempt. Partial batches are allowed. A paused queue incurs no automatic spending. Two generation failures stop the batch; successful drafts and budget checkpoints are committed even when a later step fails.
 
-`buildCandidates()` no longer round-robins evenly across every niche. It now mirrors the live 4-slot mix: **2 core evergreen : 1 `ai-creator-tools` : 1 `art-buyer-intent`** per cycle. This is deliberate cluster-balance policy ~ an even round-robin over 8 niches would keep feeding the already-saturated `ai-creator-tools` cluster at the same rate as the starved ones. A `--niche <slug>` flag forces single-niche generation (throws on an unknown slug) for targeted top-ups of a thin cluster.
+Planning and publishing share `selectBalancedClusterRows()` in `scripts/lib/internal-linking.js`. Planning fills the thinnest queued cluster first, then uses oldest-served order. Generation passes `--cluster` explicitly so shared niches do not collapse into the AI cluster.
 
-The workflow opens `Publishing queue auto-replenishment failed` if credentials, generation, or approved reserve inventory fail, and closes the issue after recovery. `npm run queue:replenish` previews the next action without API calls; add `-- --execute` only when generation is intended. `seo-strategy-status.js` calculates runway from the effective queue mix: two always-on general slots, plus one shared AI slot (counted when either `ai-creator-tools` or `ai-advantage-campaign` inventory exists) and one art slot when art inventory exists. Do not treat the four cron entries as four posts/day when their dedicated niches are empty.
+Candidates come from `static/_data/topic-queue.json` and unused niche research. If a cluster has fewer than two unused candidates, one Haiku 4.5 call proposes up to six evergreen ideas per thin cluster. This planning request has zero SDK retries, a 10,000 output-token ceiling, and a persisted 24-hour cooldown even on failure. Accepted ideas are saved in the existing topic queue and deduplicated against published titles, queued drafts, draft filenames, and other candidates. These are model-proposed topic hypotheses, **not verified search demand or low-competition research**. Weekly cluster research uses at most 11 web-search calls (one per canonical cluster), with Haiku, zero retries and a persisted seven-day cooldown. Actual returned source URLs and observed queries are saved in the topic queue, reused for up to 14 days, and supplied to topic planning alongside fresh Search Console observations. These samples inform intent and gaps, not measured volume or difficulty. No per-article search or routine paid rank tracking. Failed research preserves prior cache and signals workflow failure. Time-sensitive AI Advantage campaign research remains manual. Main articles retain Opus 4.8 and the existing quality/image pipeline.
+
+`npm run queue:replenish` is a no-spend preview; `-- --execute` generates. `--no-topics` disables both search research and topic planning; `--research-only --execute` refreshes weekly evidence without writing articles; `--niche` narrows candidates. `--force` bypasses the inventory/pause gate but not the recorded daily article budget or topic cooldown. `--max`/`QUEUE_REPLENISH_MAX` explicitly sets that daily article-attempt ceiling (default eight). Existing SDK retries for the article writer remain bounded separately.
+
+The workflow persists partial successes, then opens a failure issue when appropriate. Tests: `node --test scripts/test-balanced-replenishment.js`. Dashboard shows an empty queue as empty, not merely active.
+
+### Blogger reconnect visibility
+
+The dashboard always exposes a **Reconnect Blogger** disclosure with a copyable `npm run blogger-token` command. It must be run from the local VOA repo; the public static dashboard cannot execute local shell commands. `invalid_grant` and revoked-token errors are recognized, and health-check failures are only deduplicated when a visible token warning exists. A dismissed token chip cannot hide the underlying failed health check.
+
+The helper opens Safari after binding the localhost callback, verifies OAuth state, validates the token, saves `.env`, and updates the GitHub Actions secret. It never prints tokens. A failed GitHub secret sync is a failed repair, even if local saving succeeded.
 
 ### SEO Intelligence dashboard panel (`static/dashboard/index.html`)
 
@@ -627,3 +635,11 @@ When the shared calendar is built, it will be the single source of truth for all
 ```
 
 Do NOT implement the calendar system until explicitly instructed. Only reference this schema when planning.
+
+### Publishing health alerts and Blogger catchup
+
+Syndication Health runs twice daily in GitHub Actions. It emails new Blogger refresh failures, active inventory below eight drafts, and recovery; unchanged healthy/failing states stay quiet. Existing Gmail SMTP app-password credentials are preferred so alerting does not share Google's OAuth Testing expiry; Gmail API is fallback. A send is accepted only after SMTP recipient acceptance or a Gmail message ID. Failed email creates an assigned repair issue, persists pending delivery, retries after 24 hours, and fails the workflow. `workflow_dispatch` supports `send_test_email=true`. The closed state issue deduplicates alerts; it contains no tokens.
+
+The OAuth app must be **In production** to avoid Testing's seven-day refresh-token expiry. Reconnect after changing status. Production tokens can still be revoked; monitoring remains necessary. The local helper syncs the verified new token to GitHub Actions.
+
+Backlink backfill reserves at most **four Blogger catchup attempts per UTC day**, additional to normal new-post syndication. Attempts are checkpointed in each result's `backfill_attempted_at` before posting and preserved by syndication merges. Failed auth is checked once before generating companions; other platforms can still proceed. This workflow shares publishing concurrency to prevent overlapping state updates. Retries cannot repeatedly spend the same daily Blogger allowance. Companion drafts retain the existing cache.

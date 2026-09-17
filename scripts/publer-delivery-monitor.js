@@ -7,20 +7,14 @@
  * A run is successful only when Gmail explicitly accepts every recipient.
  */
 
+import fs from "node:fs";
+import nodemailer from "nodemailer";
+const HEALTH_MODE = process.argv.includes("--health");
 const PUBLER_BASE = "https://app.publer.com/api/v1";
-const STATE_TITLE = "[automation state] Publer delivery monitor";
+const STATE_TITLE = HEALTH_MODE ? "[automation state] VOA syndication health" : "[automation state] Publer delivery monitor";
 const ALERT_TO = process.env.ALERT_EMAIL || "earthlingoflight@gmail.com";
 const WATCHED_TIKTOK_NAMES = new Set(["EarthStarRising", "LumiVale"]);
-const required = [
-  "PUBLER_API_KEY",
-  "PUBLER_WORKSPACE_ID",
-  "GMAIL_ADDRESS",
-  "GMAIL_CLIENT_ID",
-  "GMAIL_CLIENT_SECRET",
-  "GMAIL_REFRESH_TOKEN",
-  "GITHUB_TOKEN",
-  "GITHUB_REPOSITORY",
-];
+const required = ["GITHUB_TOKEN", "GITHUB_REPOSITORY", ...(HEALTH_MODE ? [] : ["PUBLER_API_KEY", "PUBLER_WORKSPACE_ID"])];
 
 for (const name of required) {
   if (!process.env[name]) throw new Error(`Missing required environment variable: ${name}`);
@@ -160,7 +154,7 @@ async function createAlertIssue(title, body) {
   return created;
 }
 
-async function sendEmail(subject, body) {
+async function sendGmailApi(subject, body) {
   const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -203,6 +197,60 @@ async function sendEmail(subject, body) {
     throw new Error(`Gmail send failed (${sendResponse.status}): ${JSON.stringify(result)}`);
   }
   console.log(`Gmail API accepted alert ${result.id} for ${ALERT_TO}.`);
+}
+
+async function sendEmail(subject, body) {
+  // Prefer the existing app-password transport, independent of OAuth test-token expiry.
+  if (process.env.GMAIL_ADDRESS && process.env.GMAIL_APP_PASSWORD) {
+    try {
+      const transport = nodemailer.createTransport({ host: "smtp.gmail.com", port: 465, secure: true,
+        auth: { user: process.env.GMAIL_ADDRESS, pass: process.env.GMAIL_APP_PASSWORD },
+        connectionTimeout: 15000, socketTimeout: 20000 });
+      const result = await transport.sendMail({ from: process.env.GMAIL_ADDRESS, to: ALERT_TO, subject, text: body });
+      if (!result.accepted?.some(address => String(address).toLowerCase() === ALERT_TO.toLowerCase())) throw new Error("SMTP did not accept alert recipient");
+      console.log(`Gmail SMTP accepted alert ${result.messageId} for ${ALERT_TO}.`);
+      return;
+    } catch (err) { console.warn(`SMTP alert failed: ${err.message}; trying Gmail API.`); }
+  }
+  if (!process.env.GMAIL_ADDRESS || !process.env.GMAIL_REFRESH_TOKEN) throw new Error("Gmail alert credentials missing");
+  await sendGmailApi(subject, body);
+}
+
+async function healthMain() {
+  const health = JSON.parse(fs.readFileSync("static/_data/syndication-health.json", "utf8"));
+  if (!Number.isFinite(Date.parse(health.lastChecked)) || Math.abs(Date.now() - Date.parse(health.lastChecked)) > 3600_000) throw new Error("Health snapshot is stale; refusing to report recovery");
+  const checks = health.checks || [];
+  const blogger = checks.find(c => c.name === "Blogger token refresh");
+  const problems = [];
+  if (!blogger?.ok) problems.push({ key: "blogger", detail: blogger?.detail || "Blogger check unavailable", action: "Run npm run blogger-token from the VOA repo and finish Google consent. Check OAuth publishing status: Testing tokens expire after seven days." });
+  if (health.drip?.status === "active" && health.drip.remaining < 8) problems.push({key:"queue",detail:`Only ${health.drip.remaining} drafts remain (under two days).`,action:"Inspect Publishing Queue Replenishment in GitHub Actions. Successful drafts are preserved; fix the reported provider, topic, or budget blocker."});
+  const signature = problems.map(p=>p.key).sort().join(",") || "healthy";
+  const {issue, state: prior} = await loadStateIssue();
+  const test = process.env.MONITOR_TEST === "true";
+  const changed = prior?.signature !== signature;
+  const retryEmail = prior?.emailPending && Date.now() - Date.parse(prior.lastEmailAttempt || 0) >= 24 * 3600_000;
+  const needsNotice = test || (changed && (problems.length || (prior && prior.signature !== "healthy"))) || retryEmail;
+  const next = { ...prior, signature, checkedAt: health.lastChecked };
+  if (needsNotice) {
+    const subject = test ? "VOA alert email test" : problems.length ? `VOA needs attention: ${problems.map(p=>p.key === "blogger" ? "Blogger reconnect" : "article reserve").join(" + ")}` : "VOA publishing health recovered";
+    const body = [test ? "This verifies the email channel for Blogger failures and critically low article inventory." : subject,
+      ...problems.map(p=>`${p.detail}\n${p.action}`),
+      `Blogger: ${blogger?.ok ? "connected" : "needs attention"}. Drafts: ${health.drip?.remaining ?? "unknown"}.`,
+      "Checks run twice daily in GitHub Actions, even when your Mac is asleep. Alerts are sent for new failures and recovery, not every unchanged run.",
+      process.env.RUN_URL || `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/workflows/syndication-health.yml`,
+    ].join("\n\n");
+    if (changed && problems.length) await createAlertIssue(subject, body);
+    next.lastEmailAttempt = new Date().toISOString();
+    try { await sendEmail(subject, body); next.emailPending = false; next.lastEmailAccepted = new Date().toISOString(); }
+    catch (error) {
+      next.emailPending = true;
+      if (!prior?.emailPending) await createAlertIssue("VOA email alerts need repair", `Email delivery failed: ${error.message}\nBlogger and queue checks still run. Repair Gmail credentials in Actions; this failure is not a successful email delivery.`);
+      await saveState(issue, next);
+      throw error;
+    }
+  }
+  await saveState(issue, next);
+  console.log(`VOA health monitor: ${signature}; ${needsNotice ? "notification accepted" : "unchanged, quiet"}.`);
 }
 
 async function sendNotification(subject, body) {
@@ -321,7 +369,7 @@ async function main() {
   );
 }
 
-main().catch((error) => {
+(HEALTH_MODE ? healthMain() : main()).catch((error) => {
   console.error(error instanceof Error ? error.stack : error);
   process.exit(1);
 });

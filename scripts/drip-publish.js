@@ -33,6 +33,7 @@ import {
   ensureDeterministicInternalLinks,
   inferCluster,
   loadTopicClusters,
+  selectBalancedClusterRows,
 } from "./lib/internal-linking.js";
 import { refreshOrchestration } from "./lib/refresh-orchestration.js";
 import { updateSitemap } from "./update-sitemap.js";
@@ -65,7 +66,7 @@ const LOCK_FILE   = path.join(ROOT, "static", "_data", "drip-publish.lock");
 const HEALTH_FILE = path.join(ROOT, "static", "_data", "syndication-health.json");
 const LAST_PUBLISHED_FILE = path.join(ROOT, "static", "_data", "drip-last-published.json");
 const LOCK_TTL_MS = 10 * 60 * 1000; // 10 minutes
-const QUEUE_WARN_THRESHOLD = 30;     // warn when fewer than this many drafts remain
+const QUEUE_WARN_THRESHOLD = 14;     // warn when fewer than this many drafts remain
 
 // marked.parse() correctly HTML-escapes the rendered <p> text (so &, <, >, ",
 // ' are valid entities in that HTML) ~ but this function's job is to produce
@@ -123,7 +124,7 @@ async function main() {
 
   // ── Startup visibility log ───────────────────────────────────────────────
   const queueRemaining = queue.queue.length;
-  const dripsPerDay = 4; // two evergreen, one practical AI, and one art slot
+  const dripsPerDay = 4; // every slot rotates across all canonical clusters
   const daysRemaining = Math.floor(queueRemaining / dripsPerDay);
 
   console.log("\n╔═ [drip] Drip Publish ~ Phase One ══════════════════");
@@ -139,7 +140,7 @@ async function main() {
   if (queueRemaining < QUEUE_WARN_THRESHOLD) {
     console.warn(`\n⚠  [queue] WARNING: Only ${queueRemaining} draft(s) remain in the drip queue.`);
     console.warn(`   At ~${dripsPerDay} posts/day that is roughly ${daysRemaining} day(s) of runway.`);
-    console.warn(`   Run: node scripts/generate-all-drafts.js to replenish the queue.\n`);
+    console.warn(`   Run: npm run queue:replenish -- --execute to replenish the queue.\n`);
 
     // Write depletion warning into health file so dashboard/monitoring can surface it
     try {
@@ -152,7 +153,7 @@ async function main() {
         queue_remaining: queueRemaining,
         days_remaining:  daysRemaining,
         checked_at:   new Date().toISOString(),
-        message:      `Queue has ${queueRemaining} post(s) left (~${daysRemaining} days). Replenish with generate-all-drafts.js.`,
+        message:      `Queue has ${queueRemaining} post(s) left (~${daysRemaining} days). Replenish with npm run queue:replenish -- --execute.`,
       };
       fs.writeFileSync(HEALTH_FILE, JSON.stringify(health, null, 2), "utf8");
     } catch (_) { /* health file write is best-effort */ }
@@ -183,7 +184,8 @@ async function main() {
       .slice(0, limit);
   } else {
     const rate = queue.drip_rate || 2;
-    toPublish = queue.queue.slice(0, rate);
+    const published = JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
+    toPublish = selectBalancedClusterRows(queue.queue, published, Number(argv.limit || rate), loadTopicClusters());
   }
 
   if (toPublish.length === 0) {

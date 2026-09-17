@@ -42,9 +42,9 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-          QUEUE_REPLENISH_THRESHOLD: 28
-          QUEUE_REPLENISH_TARGET: 56
-          QUEUE_REPLENISH_MAX: 28
+          QUEUE_REPLENISH_THRESHOLD: 14
+          QUEUE_REPLENISH_TARGET: 22
+          QUEUE_REPLENISH_MAX: 8
         run: |
           set +e
           node scripts/replenish-drip-queue.js --execute 2>&1 | tee replenish.log
@@ -53,16 +53,17 @@ jobs:
           echo "exit_code=$STATUS" >> "$GITHUB_OUTPUT"
 
       - name: Commit replenished inventory
-        if: steps.replenish.outputs.exit_code == '0'
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add static/blog/boom/drafts/ static/images/nasa-cache/ static/_data/drip-queue.json static/_data/generation-memory.json static/_data/image-registry.json || true
+          git add static/blog/boom/drafts/ static/images/nasa-cache/ static/_data/drip-queue.json static/_data/topic-queue.json static/_data/generation-memory.json static/_data/image-registry.json || true
           git diff --staged --quiet || git commit -m "Replenish publishing queue [automated]"
           for attempt in 1 2 3; do
-            git push && break
+            git push && exit 0
             git pull --rebase --autostash origin main
           done
+          exit 1
 
       - name: Close resolved queue failure alert
         if: steps.replenish.outputs.exit_code == '0'
@@ -73,13 +74,13 @@ jobs:
             | xargs -r -n1 gh issue close --comment "Automatic queue replenishment is healthy again."
 
       - name: Alert when automatic replenishment fails
-        if: steps.replenish.outputs.exit_code != '0'
+        if: always() && (steps.replenish.outputs.exit_code != '0' || failure())
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           if ! gh issue list --state open --search '"Publishing queue auto-replenishment failed" in:title' --json title --jq '.[].title' | grep -Fxq 'Publishing queue auto-replenishment failed'; then
             gh issue create \
               --title 'Publishing queue auto-replenishment failed' \
-              --body "The approved evergreen reserve could not replenish the publishing queue. Review the failed workflow run, API credentials, and remaining keyword inventory before the queue reaches zero."
+              --body "The balanced evergreen reserve could not complete replenishment. Successful drafts and topic-budget checkpoints are preserved. Review the workflow for provider errors, daily limits, or clusters lacking validated topics."
           fi
           exit 1

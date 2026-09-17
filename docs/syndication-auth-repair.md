@@ -1,3 +1,17 @@
+## Current Blogger operating procedure
+
+Keep Google Auth Platform → Audience set to **In production**. External OAuth apps in Testing issue refresh tokens that expire after seven days for scopes such as Blogger. After switching, run `npm run blogger-token` once and complete consent. The helper validates blog access, saves locally and syncs the Actions secret. Production removes the testing timeout, not all possible revocation causes.
+
+Syndication Health checks twice daily in GitHub Actions and emails new Blogger failures, critically low inventory (under eight drafts), and recovery. SMTP app-password delivery is preferred, Gmail OAuth is fallback; delivery failure becomes an assigned GitHub issue plus a failed workflow. Use its `send_test_email` dispatch input to verify the channel. Older readiness counts below are historical, not current status.
+
+Reference: https://developers.google.com/identity/protocols/oauth2#expiration
+
+# Current reconnect entry point (2026-09-16)
+
+The dashboard always includes **Reconnect Blogger**, which copies `npm run blogger-token`. Run it locally from the VOA repository; a static website cannot launch a shell command. Complete Google's consent in Safari. The helper validates the token and saves it locally and in GitHub Actions. Tokens are never displayed. Missing cloud-secret sync is reported as a failure.
+
+Dashboard errors containing `invalid_grant` now show the reconnect warning. Health failures remain visible even when a token chip is dismissed. Treat readiness counts below as historical; check fresh health output before reporting current status.
+
 # Syndication Auth Repair
 
 Current readiness is 12/14. The working paths are Feeder, Bluesky VOA, Mastodon VOA, Pinterest VOA, Threads VOA, Instagram VOA, Dev.to, Tumblr VOA, and WordPress EarthStar. The remaining blockers are Facebook VOA direct posting and Blogger.

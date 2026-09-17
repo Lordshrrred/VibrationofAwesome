@@ -25,6 +25,8 @@ Roots in the Earth, Crown in the Stars. The Future is Ours.
 
 ### Agent Memory Rule
 
+Start with `AGENTS.md` and the local-only `BMO_CONTEXT.md` for VOA identity, philosophy, voice, privacy boundaries, and collaboration preferences. `AGENTS.md` defines context precedence and connects this project context to the technical memory below.
+
 Any AI agent working in this repo must read the repo memory docs before making non-trivial changes: `CLAUDE.md`, this `README.md`, `content-strategy/niche-map.md`, `static/_data/topic-clusters.json`, and the relevant files in `shared-config/`.
 
 If a change affects publishing, syndication, SEO, topic clusters, internal linking, visuals, content strategy, or automation behavior, update the relevant markdown/data memory files in the same pass. Building without updating repo memory is considered incomplete work.
@@ -115,14 +117,20 @@ The master human-readable map is `content-strategy/niche-map.md`.
 
 ### Boom Drip Rate
 
-The current drip system has four scheduled slots in `.github/workflows/drip-posts.yml`:
+The drip system publishes four articles/day, rotating across all 11 topical-authority clusters before repeating when inventory is available. No niche owns a daily slot.
 
-- `9:00 AM ET` - normal Boom post with existing syndication stack
-- `12:00 PM ET` - art-buyer extra post, VOA + Dev.to account 2 only
-- `6:00 PM ET` - normal Boom post with existing syndication stack
-- `9:00 PM ET` - art-buyer extra post, VOA + Dev.to account 2 only
+- `13:00` and `22:00 UTC`: normal social + backlinks.
+- `16:00` and `01:00 UTC`: backlinks only (Dev.to account 2, Blogger, WordPress, Tumblr); no social or feeder.
 
-The normal slots use `drip_rate` from `static/_data/drip-queue.json` and currently publish 1 post/run. The art-extra slots call `drip-publish.js --niche art-buyer-intent --limit 1 --syndication-profile art-devto2-only`, so they do not increase Pinterest, Instagram, Threads, Facebook, Tumblr, Blogger, WordPress, or Feeder volume.
+Daily replenishment triggers at 14 drafts, targets 22, and caps generation at eight article attempts/day. It reuses saved topics first, then makes at most one bounded Haiku topic-planning request per 24 hours for depleted clusters. Weekly bounded web searches sample all 11 clusters; planning uses the observed sources plus fresh Search Console queries. Proposed keywords remain hypotheses, not measured search-volume or difficulty claims. Short reserves no longer block partial batches. Main articles keep the existing Opus writer.
+
+```bash
+npm run queue:replenish                # no-spend preview
+npm run queue:replenish -- --execute   # bounded refill
+npm run blogger-token                 # reconnect locally and sync GitHub secret
+```
+
+The dashboard's **Reconnect Blogger** control copies the command; run it from this repo to open Google consent in Safari. Keep the Google OAuth app in Production to avoid Testing's seven-day expiry. Twice-daily cloud health checks email new Blogger failures, critically low inventory, and recovery. Blogger catchup is capped at four extra attempts per UTC day beyond new-post syndication.
 
 Draft generation rotates through all configured niches from `scripts/content-niches.js`:
 
