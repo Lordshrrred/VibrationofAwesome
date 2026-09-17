@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T21:38:43.460Z",
+  "generatedAt": "2026-09-17T00:51:21.512Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -15,21 +15,21 @@
   },
   "summary": {
     "totalTrackedPosts": 291,
-    "backlogPosts": 85,
-    "backlinkCapableMissingUnits": 97,
-    "backlinkVerificationGaps": 339,
+    "backlogPosts": 77,
+    "backlinkCapableMissingUnits": 89,
+    "backlinkVerificationGaps": 347,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 8,
-    "freshMissingBacklinkUnits": 8,
-    "completedBacklinkUnitsInWindow": 69,
-    "completedBacklinkUnitsPerDay": 4.9,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
+    "completedBacklinkUnitsInWindow": 77,
+    "completedBacklinkUnitsPerDay": 5.5,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 15.1,
+    "netBacklogChangePerDay": 14.5,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 85
+    "largestDelayMissingUnits": 77
   },
   "platformTable": {
     "backlinkCapable": [
@@ -37,12 +37,12 @@
         "key": "blogger",
         "platform": "Blogger",
         "eligiblePosts": 291,
-        "complete": 206,
-        "missing": 85,
-        "successRate": 70.8,
-        "averagePerDay": 0,
+        "complete": 214,
+        "missing": 77,
+        "successRate": 73.5,
+        "averagePerDay": 0.6,
         "confirmed": 182,
-        "verificationGaps": 24,
+        "verificationGaps": 32,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 53
+      "count": 45
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
@@ -206,78 +206,6 @@
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "reducing-inputs-to-restore-focus",
-      "lane": "boom",
-      "title": "Reducing Inputs to Restore Focus",
-      "date": "2026-08-10",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "why-a-good-life-can-still-feel-empty",
-      "lane": "boom",
-      "title": "Why a Good Life Can Still Feel Empty",
-      "date": "2026-08-11",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
-      "lane": "boom",
-      "title": "AI Advantage AI Mastermind in Person Experience Who It Is for",
-      "date": "2026-08-11",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "signs-your-life-is-misaligned",
-      "lane": "boom",
-      "title": "Signs Your Life Is Misaligned",
-      "date": "2026-08-11",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "digital-art-prints-that-feel-like-originals",
-      "lane": "boom",
-      "title": "Digital Art Prints That Feel Like Originals",
-      "date": "2026-08-11",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "outgrowing-old-identities",
-      "lane": "boom",
-      "title": "Outgrowing Old Identities",
-      "date": "2026-08-12",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-cancel-ai-advantage-current-refund-and-subscription-terms",
-      "lane": "boom",
-      "title": "How to Cancel AI Advantage Current Refund and Subscription Terms",
-      "date": "2026-08-12",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-tell-when-something-is-not-for-you-anymore",
-      "lane": "boom",
-      "title": "How to Tell When Something Is Not for You Anymore",
-      "date": "2026-08-12",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "art-buying-guide-for-non-collectors",
       "lane": "boom",
