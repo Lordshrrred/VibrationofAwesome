@@ -1,0 +1,42 @@
+name: VOA Workflow Failure Alerts
+
+on:
+  workflow_run:
+    workflows:
+      - "Generate Boom Frequency Post"
+      - "Backlink Backfill"
+      - "Publishing Queue Replenishment"
+      - "Weekly SEO Intelligence Check"
+      - "Experience Syndication"
+      - "Syndication Catch-up ~ Missed Posts"
+      - "VOA Feeder Callback"
+      - "Build check (Hugo)"
+      - "Production Impact Validation"
+      - "PDF Privacy Check"
+      - "Gmail Subscriber Replies"
+      - "VOA Watchdog & Self-Healer"
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  email:
+    if: github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install mail dependency
+        run: npm ci --omit=dev
+
+      - name: Email earthlingoflight@gmail.com
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          ALERT_EMAIL: earthlingoflight@gmail.com
+          FAILED_WORKFLOW: ${{ github.event.workflow_run.name }}
+          FAILED_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          FAILED_RUN_URL: ${{ github.event.workflow_run.html_url }}
+        run: node scripts/send-workflow-failure-alert.js
