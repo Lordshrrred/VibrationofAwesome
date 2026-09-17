@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T08:00:13.571Z",
+  "generatedAt": "2026-09-17T13:47:12.224Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -15,21 +15,21 @@
   },
   "summary": {
     "totalTrackedPosts": 291,
-    "backlogPosts": 69,
-    "backlinkCapableMissingUnits": 81,
-    "backlinkVerificationGaps": 355,
+    "backlogPosts": 61,
+    "backlinkCapableMissingUnits": 73,
+    "backlinkVerificationGaps": 363,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 45,
+    "distributionIncompleteUnits": 61,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 82,
-    "completedBacklinkUnitsPerDay": 5.9,
+    "completedBacklinkUnitsInWindow": 90,
+    "completedBacklinkUnitsPerDay": 6.4,
     "newPostsPerDay": 5,
     "newBacklinkUnitsPerDay": 20,
-    "netBacklogChangePerDay": 14.1,
+    "netBacklogChangePerDay": 13.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 69
+    "largestDelayMissingUnits": 61
   },
   "platformTable": {
     "backlinkCapable": [
@@ -37,12 +37,12 @@
         "key": "blogger",
         "platform": "Blogger",
         "eligiblePosts": 291,
-        "complete": 222,
-        "missing": 69,
-        "successRate": 76.3,
-        "averagePerDay": 1.1,
+        "complete": 230,
+        "missing": 61,
+        "successRate": 79,
+        "averagePerDay": 1.7,
         "confirmed": 182,
-        "verificationGaps": 40,
+        "verificationGaps": 48,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
@@ -112,25 +112,25 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 241,
-        "complete": 225,
-        "missing": 16,
-        "successRate": 93.4,
+        "eligiblePosts": 244,
+        "complete": 220,
+        "missing": 24,
+        "successRate": 90.2,
         "averagePerDay": 1.6,
         "confirmed": 142,
-        "verificationGaps": 83,
+        "verificationGaps": 78,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 241,
-        "complete": 225,
-        "missing": 16,
-        "successRate": 93.4,
+        "eligiblePosts": 244,
+        "complete": 220,
+        "missing": 24,
+        "successRate": 90.2,
         "averagePerDay": 1.6,
         "confirmed": 142,
-        "verificationGaps": 83,
+        "verificationGaps": 78,
         "mainBlocker": "env vars not set"
       },
       {
@@ -189,95 +189,23 @@
       "count": 45
     },
     {
-      "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 20
-    },
-    {
       "reason": "bluesky_voa: env vars not set",
-      "count": 16
+      "count": 24
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 16
+      "count": 24
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
+    },
+    {
+      "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
+      "count": 12
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "committing-before-you-feel-ready",
-      "lane": "boom",
-      "title": "Committing Before You Feel Ready",
-      "date": "2026-08-15",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "too-many-ai-tools-and-no-clear-workflow",
-      "lane": "boom",
-      "title": "Too Many AI Tools and No Clear Workflow",
-      "date": "2026-08-15",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-stop-drifting",
-      "lane": "boom",
-      "title": "How to Stop Drifting",
-      "date": "2026-08-15",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "reducing-noise-and-overstimulation",
-      "lane": "boom",
-      "title": "Reducing Noise and Overstimulation",
-      "date": "2026-08-16",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "ai-content-feels-generic-for-creators",
-      "lane": "boom",
-      "title": "AI Content Feels Generic for Creators",
-      "date": "2026-08-16",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-hear-yourself-again",
-      "lane": "boom",
-      "title": "How to Hear Yourself Again",
-      "date": "2026-08-16",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "journaling-for-clarity",
-      "lane": "boom",
-      "title": "Journaling for Clarity",
-      "date": "2026-08-17",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "why-ai-music-tools-make-everything-sound-the-same",
-      "lane": "boom",
-      "title": "Why AI Music Tools Make Everything Sound the Same",
-      "date": "2026-08-17",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "simple-creator-automation-stack",
       "lane": "boom",
