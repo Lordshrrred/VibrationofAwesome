@@ -1,13 +1,12 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-19T05:35:28.356Z",
+  "generated_at": "2026-09-19T16:20:47.975Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 20,
+      "draft_count": 19,
       "draft_slugs": [
-        "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do",
         "comfort-zone-vs-self-betrayal",
         "committing-to-a-path-before-you-know-where-it-leads",
         "dopamine-detox-vs-digital-minimalism",
@@ -28,7 +27,7 @@
         "when-being-productive-is-actually-running-from-something",
         "your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference"
       ],
-      "runway_days": 10,
+      "runway_days": 9,
       "runway_status": "warning",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do",
+        "title": "Building a Morning That Emerges From Who You Are, Not What You Should Do",
+        "lane": "boom",
+        "date": "2026-09-19T16:20:47.958Z",
+        "url": "/blog/boom/posts/building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do",
+        "tags": [
+          "direction-purpose-drift"
+        ],
+        "cluster": "spiritual-productivity",
+        "content_type": null
+      },
       {
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice",
         "title": "The Repetitive Tasks Worth Automating (And the Ones That Cost You Your Voice)",
@@ -265,18 +276,6 @@
         ],
         "cluster": "spiritual-productivity",
         "content_type": null
-      },
-      {
-        "slug": "misalignment-vs-depression",
-        "title": "Misalignment vs Depression",
-        "lane": "boom",
-        "date": "2026-09-08T17:11:57.936Z",
-        "url": "/blog/boom/posts/misalignment-vs-depression",
-        "tags": [
-          "misalignment-wrong-life"
-        ],
-        "cluster": "authentic-self-expression",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -413,9 +412,9 @@
     ],
     "next_estimated_window": "2026-09-20",
     "published_counts": {
-      "boom": 316,
+      "boom": 317,
       "matt": 18,
-      "total": 334
+      "total": 335
     }
   },
   "syndication": {
@@ -27287,6 +27286,7 @@
       }
     },
     "post_to_cluster": {
+      "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do": "spiritual-productivity",
       "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice": "ai-creator-tools",
       "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space": "art-buying-online",
       "building-an-editorial-system-that-feels-like-you-not-a-task-manager": "creator-automation",
@@ -27615,7 +27615,7 @@
       "dopamine-attention": 15,
       "authentic-self-expression": 33,
       "creator-automation": 4,
-      "spiritual-productivity": 16,
+      "spiritual-productivity": 17,
       "purpose-direction": 8,
       "building-life-that-fits": 6,
       "emotional-regulation": 5,
@@ -29084,9 +29084,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-19T05:35:28.356Z",
+    "as_of": "2026-09-19T16:20:47.975Z",
     "next_estimated_window": "2026-09-20",
-    "queue_runway_days": 10,
+    "queue_runway_days": 9,
     "queue_runway_status": "warning",
     "occupied_dates": [
       "2026-09-19",
@@ -29228,6 +29228,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do",
+        "lane": "boom",
+        "date": "2026-09-19T16:20:47.958Z"
+      },
+      {
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice",
         "lane": "boom",
         "date": "2026-09-19T05:32:21.056Z"
@@ -29271,18 +29276,13 @@
         "slug": "burnout-vs-nervous-system-dysregulation",
         "lane": "boom",
         "date": "2026-09-13T23:55:11.493Z"
-      },
-      {
-        "slug": "focus-reset-for-overstimulated-people",
-        "lane": "boom",
-        "date": "2026-09-13T16:55:36.031Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-19T05:35:28.339Z",
-    "source_event": "retry",
-    "export_duration_ms": 16,
+    "last_export_at": "2026-09-19T16:20:47.963Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 12,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
