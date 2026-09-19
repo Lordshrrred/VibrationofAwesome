@@ -1,79 +1,79 @@
 {
-  "generatedAt": "2026-09-18T21:10:33.326Z",
+  "generatedAt": "2026-09-19T00:33:32.863Z",
   "keywordGeneration": {
-    "currentInventory": 19,
-    "publishedInventory": 305,
-    "estimatedDaysRemaining": 4.8,
+    "currentInventory": 18,
+    "publishedInventory": 306,
+    "estimatedDaysRemaining": 4.5,
     "publishingCadencePerDay": 4,
     "pauseThresholdDays": 60,
     "resumeThresholdDays": 21,
     "status": "running",
-    "reason": "4.8 publishing days of queue inventory remain. Curated expansion should continue."
+    "reason": "4.5 publishing days of queue inventory remain. Curated expansion should continue."
   },
   "backlinks": {
     "mode": "catch-up",
-    "backlogPosts": 51,
-    "backlogUnits": 51,
-    "completedPerDay": 8.8,
+    "backlogPosts": 48,
+    "backlogUnits": 48,
+    "completedPerDay": 9.3,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklinkUnitsPerDay": 7.2,
+    "netBacklinkUnitsPerDay": 6.7,
     "estimatedCatchUpDays": "not-catching-up",
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 65,
-    "verificationGaps": 405,
-    "freshPostsAwaitingBacklinks": 2,
-    "freshMissingBacklinkUnits": 2,
+    "distributionIncompleteUnits": 69,
+    "verificationGaps": 412,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 51,
+    "largestDelayMissingUnits": 48,
     "platformTable": {
       "backlinkCapable": [
         {
           "key": "blogger",
           "platform": "Blogger",
-          "eligiblePosts": 296,
-          "complete": 245,
-          "missing": 51,
-          "successRate": 82.8,
-          "averagePerDay": 2.8,
+          "eligiblePosts": 297,
+          "complete": 249,
+          "missing": 48,
+          "successRate": 83.8,
+          "averagePerDay": 3.1,
           "confirmed": 182,
-          "verificationGaps": 63,
+          "verificationGaps": 67,
           "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
         },
         {
           "key": "wordpress_earthstar",
           "platform": "WordPress",
-          "eligiblePosts": 296,
-          "complete": 296,
+          "eligiblePosts": 297,
+          "complete": 297,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 2,
+          "averagePerDay": 2.1,
           "confirmed": 182,
-          "verificationGaps": 114,
+          "verificationGaps": 115,
           "mainBlocker": ""
         },
         {
           "key": "tumblr_voa",
           "platform": "Tumblr",
-          "eligiblePosts": 296,
-          "complete": 296,
+          "eligiblePosts": 297,
+          "complete": 297,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 2,
+          "averagePerDay": 2.1,
           "confirmed": 182,
-          "verificationGaps": 114,
+          "verificationGaps": 115,
           "mainBlocker": ""
         },
         {
           "key": "devto",
           "platform": "Dev.to",
-          "eligiblePosts": 223,
-          "complete": 223,
+          "eligiblePosts": 224,
+          "complete": 224,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 1.8,
+          "averagePerDay": 1.9,
           "confirmed": 136,
-          "verificationGaps": 87,
+          "verificationGaps": 88,
           "mainBlocker": ""
         },
         {
@@ -93,12 +93,12 @@
         {
           "key": "feeder",
           "platform": "VOA Feeder",
-          "eligiblePosts": 223,
-          "complete": 223,
+          "eligiblePosts": 224,
+          "complete": 224,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 1.6,
-          "confirmed": 223,
+          "confirmed": 224,
           "verificationGaps": 0,
           "mainBlocker": ""
         }
@@ -107,22 +107,22 @@
         {
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
-          "eligiblePosts": 253,
-          "complete": 229,
-          "missing": 24,
-          "successRate": 90.5,
-          "averagePerDay": 2.4,
+          "eligiblePosts": 254,
+          "complete": 227,
+          "missing": 27,
+          "successRate": 89.4,
+          "averagePerDay": 2.3,
           "confirmed": 142,
-          "verificationGaps": 87,
+          "verificationGaps": 85,
           "mainBlocker": "env vars not set"
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
-          "eligiblePosts": 253,
+          "eligiblePosts": 254,
           "complete": 225,
-          "missing": 28,
-          "successRate": 88.9,
+          "missing": 29,
+          "successRate": 88.6,
           "averagePerDay": 2.1,
           "confirmed": 142,
           "verificationGaps": 83,
@@ -185,11 +185,11 @@
       },
       {
         "reason": "bluesky_voa: env vars not set",
-        "count": 24
+        "count": 27
       },
       {
         "reason": "mastodon_voa: env vars not set",
-        "count": 24
+        "count": 27
       },
       {
         "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -197,11 +197,11 @@
       },
       {
         "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-        "count": 4
+        "count": 3
       },
       {
         "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-        "count": 3
+        "count": 1
       },
       {
         "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -214,7 +214,7 @@
       "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
       "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
     },
-    "reason": "Backlink-capable backlog is growing by 7.2 platform units/day at the current rate.",
+    "reason": "Backlink-capable backlog is growing by 6.7 platform units/day at the current rate.",
     "windowDays": 14
   },
   "curatedExpansion": {

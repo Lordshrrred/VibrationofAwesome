@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T21:10:33.274Z",
+  "generatedAt": "2026-09-19T00:33:32.804Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,71 +14,71 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 296,
-    "backlogPosts": 51,
-    "backlinkCapableMissingUnits": 51,
-    "backlinkVerificationGaps": 405,
+    "totalTrackedPosts": 297,
+    "backlogPosts": 48,
+    "backlinkCapableMissingUnits": 48,
+    "backlinkVerificationGaps": 412,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 65,
-    "freshPostsAwaitingBacklinks": 2,
-    "freshMissingBacklinkUnits": 2,
-    "completedBacklinkUnitsInWindow": 123,
-    "completedBacklinkUnitsPerDay": 8.8,
+    "distributionIncompleteUnits": 69,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
+    "completedBacklinkUnitsInWindow": 130,
+    "completedBacklinkUnitsPerDay": 9.3,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": 7.2,
+    "netBacklogChangePerDay": 6.7,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 51
+    "largestDelayMissingUnits": 48
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 296,
-        "complete": 245,
-        "missing": 51,
-        "successRate": 82.8,
-        "averagePerDay": 2.8,
+        "eligiblePosts": 297,
+        "complete": 249,
+        "missing": 48,
+        "successRate": 83.8,
+        "averagePerDay": 3.1,
         "confirmed": 182,
-        "verificationGaps": 63,
+        "verificationGaps": 67,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 296,
-        "complete": 296,
+        "eligiblePosts": 297,
+        "complete": 297,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
+        "averagePerDay": 2.1,
         "confirmed": 182,
-        "verificationGaps": 114,
+        "verificationGaps": 115,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 296,
-        "complete": 296,
+        "eligiblePosts": 297,
+        "complete": 297,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2,
+        "averagePerDay": 2.1,
         "confirmed": 182,
-        "verificationGaps": 114,
+        "verificationGaps": 115,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 223,
-        "complete": 223,
+        "eligiblePosts": 224,
+        "complete": 224,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 87,
+        "verificationGaps": 88,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 223,
-        "complete": 223,
+        "eligiblePosts": 224,
+        "complete": 224,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 223,
+        "confirmed": 224,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,22 +112,22 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 253,
-        "complete": 229,
-        "missing": 24,
-        "successRate": 90.5,
-        "averagePerDay": 2.4,
+        "eligiblePosts": 254,
+        "complete": 227,
+        "missing": 27,
+        "successRate": 89.4,
+        "averagePerDay": 2.3,
         "confirmed": 142,
-        "verificationGaps": 87,
+        "verificationGaps": 85,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 253,
+        "eligiblePosts": 254,
         "complete": 225,
-        "missing": 28,
-        "successRate": 88.9,
+        "missing": 29,
+        "successRate": 88.6,
         "averagePerDay": 2.1,
         "confirmed": 142,
         "verificationGaps": 83,
@@ -190,11 +190,11 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 24
+      "count": 27
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 24
+      "count": 27
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -202,11 +202,11 @@
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 4
+      "count": 3
     },
     {
       "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-      "count": 3
+      "count": 1
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -214,33 +214,6 @@
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
-      "lane": "boom",
-      "title": "Seeing the Gap: How to Notice When Your Life Doesn't Fit Anymore",
-      "date": "2026-09-17",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "what-it-means-to-be-human-when-ai-is-getting-smarter",
-      "lane": "boom",
-      "title": "What It Means to Be Human When AI Is Getting Smarter",
-      "date": "2026-09-18",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "what-cheap-dopamine-does-to-motivation",
-      "lane": "boom",
-      "title": "What Cheap Dopamine Does to Motivation",
-      "date": "2026-08-20",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "why-direction-matters-more-than-motivation",
       "lane": "boom",
