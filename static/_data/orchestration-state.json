@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-19T18:18:26.818Z",
+  "generated_at": "2026-09-19T23:56:41.265Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 18,
+      "draft_count": 17,
       "draft_slugs": [
         "comfort-zone-vs-self-betrayal",
         "committing-to-a-path-before-you-know-where-it-leads",
@@ -16,7 +16,6 @@
         "inner-signal-vs-outside-advice",
         "porn-addiction-vs-avoidance-pattern",
         "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
-        "silence-vs-isolation",
         "structuring-your-life-around-energy-not-just-money",
         "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art",
         "the-decision-framework-when-to-automate-and-when-to-stay-hands-on",
@@ -26,7 +25,7 @@
         "when-being-productive-is-actually-running-from-something",
         "your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference"
       ],
-      "runway_days": 9,
+      "runway_days": 8,
       "runway_status": "warning",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "silence-vs-isolation",
+        "title": "Silence vs Isolation",
+        "lane": "boom",
+        "date": "2026-09-19T23:56:41.244Z",
+        "url": "/blog/boom/posts/silence-vs-isolation",
+        "tags": [
+          "disconnection-inner-noise"
+        ],
+        "cluster": "nervous-system-creativity",
+        "content_type": null
+      },
       {
         "slug": "dopamine-detox-vs-digital-minimalism",
         "title": "Dopamine Detox vs Digital Minimalism",
@@ -263,18 +274,6 @@
         ],
         "cluster": "authentic-self-expression",
         "content_type": null
-      },
-      {
-        "slug": "how-to-reduce-mental-noise",
-        "title": "How to Reduce Mental Noise",
-        "lane": "boom",
-        "date": "2026-09-09T17:06:03.893Z",
-        "url": "/blog/boom/posts/how-to-reduce-mental-noise",
-        "tags": [
-          "disconnection-inner-noise"
-        ],
-        "cluster": "nervous-system-creativity",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -411,9 +410,9 @@
     ],
     "next_estimated_window": "2026-09-20",
     "published_counts": {
-      "boom": 318,
+      "boom": 319,
       "matt": 18,
-      "total": 336
+      "total": 337
     }
   },
   "syndication": {
@@ -27391,6 +27390,7 @@
       }
     },
     "post_to_cluster": {
+      "silence-vs-isolation": "nervous-system-creativity",
       "dopamine-detox-vs-digital-minimalism": "dopamine-attention",
       "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do": "spiritual-productivity",
       "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice": "ai-creator-tools",
@@ -27717,7 +27717,7 @@
     },
     "saturation": {
       "ai-creator-tools": 182,
-      "nervous-system-creativity": 32,
+      "nervous-system-creativity": 33,
       "dopamine-attention": 16,
       "authentic-self-expression": 33,
       "creator-automation": 4,
@@ -29190,9 +29190,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-19T18:18:26.818Z",
+    "as_of": "2026-09-19T23:56:41.265Z",
     "next_estimated_window": "2026-09-20",
-    "queue_runway_days": 9,
+    "queue_runway_days": 8,
     "queue_runway_status": "warning",
     "occupied_dates": [
       "2026-09-19",
@@ -29334,6 +29334,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "silence-vs-isolation",
+        "lane": "boom",
+        "date": "2026-09-19T23:56:41.244Z"
+      },
+      {
         "slug": "dopamine-detox-vs-digital-minimalism",
         "lane": "boom",
         "date": "2026-09-19T18:15:24.662Z"
@@ -29377,18 +29382,13 @@
         "slug": "waiting-for-clarity-is-the-choice-to-keep-drifting",
         "lane": "boom",
         "date": "2026-09-17T19:20:58.575Z"
-      },
-      {
-        "slug": "contentment-vs-settling",
-        "lane": "boom",
-        "date": "2026-09-14T18:30:16.749Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-19T18:18:26.803Z",
-    "source_event": "retry",
-    "export_duration_ms": 15,
+    "last_export_at": "2026-09-19T23:56:41.251Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 14,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
