@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-20T14:26:08.417Z",
+  "lastUpdated": "2026-09-20T16:47:30.497Z",
   "recentHooks": [
     {
       "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-stop-drifting",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-09-20T16:47:30.497Z"
+    },
+    {
+      "slug": "how-to-hear-yourself-again",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-09-20T16:47:13.223Z"
+    },
+    {
+      "slug": "how-to-automate-creator-tasks-without-sounding-fake",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-09-20T16:47:01.958Z"
+    },
+    {
+      "slug": "why-direction-matters-more-than-motivation",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-09-20T16:46:50.065Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-20T16:46:34.285Z"
+    },
+    {
+      "slug": "committing-to-a-path-before-you-know-where-it-leads",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-20T16:45:06.331Z"
+    },
+    {
       "slug": "how-to-automate-creator-tasks-without-sounding-fake",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1102,60 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-09-19T16:21:46.074Z"
-    },
-    {
-      "slug": "claude-vs-chatgpt-for-creator-workflows",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-09-19T05:35:27.981Z"
-    },
-    {
-      "slug": "what-cheap-dopamine-does-to-motivation",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-09-19T05:35:17.850Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-09-19T05:35:00.285Z"
-    },
-    {
-      "slug": "what-it-means-to-be-human-when-ai-is-getting-smarter",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-09-19T05:34:44.032Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-19T05:34:27.929Z"
-    },
-    {
-      "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-09-19T05:33:23.964Z"
     }
   ],
   "recentInstagramArchetypes": [
