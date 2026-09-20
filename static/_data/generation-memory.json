@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-19T18:18:26.340Z",
+  "lastUpdated": "2026-09-20T00:00:35.330Z",
   "recentHooks": [
     {
       "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
@@ -889,6 +889,60 @@
   "recentThreadsFormats": [
     {
       "slug": "how-to-stop-drifting",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-09-20T00:00:35.330Z"
+    },
+    {
+      "slug": "too-many-ai-tools-and-no-clear-workflow",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-20T00:00:05.141Z"
+    },
+    {
+      "slug": "committing-before-you-feel-ready",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-19T23:59:53.771Z"
+    },
+    {
+      "slug": "how-to-hear-yourself-again",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-09-19T23:59:40.319Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-09-19T23:59:24.681Z"
+    },
+    {
+      "slug": "silence-vs-isolation",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-09-19T23:57:32.567Z"
+    },
+    {
+      "slug": "how-to-stop-drifting",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
       "density": "dense",
@@ -1102,60 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-09-18T23:56:44.479Z"
-    },
-    {
-      "slug": "why-ai-music-tools-make-everything-sound-the-same",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-09-18T18:44:30.055Z"
-    },
-    {
-      "slug": "journaling-for-clarity",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-09-18T18:44:15.795Z"
-    },
-    {
-      "slug": "claude-vs-chatgpt-for-creator-workflows",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-09-18T18:43:57.507Z"
-    },
-    {
-      "slug": "how-overstimulation-affects-focus",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-18T18:43:43.041Z"
-    },
-    {
-      "slug": "what-it-means-to-be-human-when-ai-is-getting-smarter",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-09-18T18:43:24.033Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-09-18T18:42:21.995Z"
     }
   ],
   "recentInstagramArchetypes": [
