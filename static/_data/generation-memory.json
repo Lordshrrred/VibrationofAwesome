@@ -4,8 +4,64 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-20T05:52:35.558Z",
+  "lastUpdated": "2026-09-20T14:26:08.417Z",
   "recentHooks": [
+    {
+      "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "hook": "You sat down to create. You had twenty minutes, a clear window, maybe even a decent idea rattling around that morning. Then you opened your laptop and nothing came. Not a wall, not a blank page you co",
+      "timestamp": "2026-09-20T14:26:08.417Z"
+    },
+    {
+      "slug": "discipline-vs-dopamine-management",
+      "niche": "dopamine-addiction-numbing",
+      "cluster": "dopamine-attention",
+      "hook": "You white-knuckle your way through the morning, feel like a monk by noon, and by 11pm you are three hours deep into a feed you do not even remember opening. Sound familiar?",
+      "timestamp": "2026-09-20T14:25:14.874Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "hook": "The cold plunge guy on your feed wakes at 4:45. Meditates for an hour. Journals three pages. Drinks something green and grim. And you tried it, didn't you. For maybe nine days. Then one Tuesday you hi",
+      "timestamp": "2026-09-20T14:24:17.161Z"
+    },
+    {
+      "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "There is a specific kind of tired that comes from work nobody sees. You finished the song days ago. Now you are exporting stems, renaming files, filling in metadata fields, resizing cover art for six ",
+      "timestamp": "2026-09-20T14:23:18.714Z"
+    },
+    {
+      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-2",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "hook": "Take everything off one wall in your home. Just for a second. Notice how the room goes flat, like a voice that stopped mid-sentence.",
+      "timestamp": "2026-09-20T14:22:05.882Z"
+    },
+    {
+      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
+      "niche": "ai-creator-tools",
+      "cluster": "creator-automation",
+      "hook": "Ask yourself something honest. When was the last time you opened your content calendar and felt anything other than dread?",
+      "timestamp": "2026-09-20T14:21:06.217Z"
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "hook": "A monk in a monastery in the year 1200 could look at a printing press three centuries early and feel the same thing you feel watching a model write a chord progression: not the machine itself, but the",
+      "timestamp": "2026-09-20T14:19:49.276Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-2",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "emotional-regulation",
+      "hook": "A man swallows his anger in a meeting, drives home fine, eats dinner, watches a show, and then at 11pm finds himself gripping the steering wheel in a dark garage he does not remember pulling into, jaw",
+      "timestamp": "2026-09-20T14:18:42.453Z"
+    },
     {
       "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
       "niche": "misalignment-wrong-life",
@@ -159,65 +215,65 @@
       "cluster": "emotional-regulation",
       "hook": "You look calm. You handled the meeting, you answered the text, you did not cry in the parking lot. And by 9pm your jaw is tight, your chest feels like a fist, and you cannot sit still long enough to e",
       "timestamp": "2026-09-16T23:38:41.419Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
-      "niche": "misalignment-wrong-life",
-      "cluster": "building-life-that-fits",
-      "hook": "You are standing in your own kitchen, coffee in hand, and everything is fine. The bills are paid. The people who love you are still around. Nothing is on fire. And yet there is this low hum underneath",
-      "timestamp": "2026-09-16T23:37:32.728Z"
-    },
-    {
-      "slug": "waiting-for-clarity-is-the-choice-to-keep-drifting",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "hook": "Let's be honest about what \"I'm waiting until I'm sure\" actually means. It means another six months of half-open projects, saved articles you'll never finish, and that low hum of dread when someone as",
-      "timestamp": "2026-09-16T23:36:21.472Z"
-    },
-    {
-      "slug": "contentment-vs-settling",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "hook": "Contentment hums. Settling buzzes.",
-      "timestamp": "2026-08-19T11:18:38.253Z"
-    },
-    {
-      "slug": "burnout-vs-nervous-system-dysregulation",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "hook": "What if the thing you have been calling burnout for the last two years is not actually burnout?",
-      "timestamp": "2026-08-19T11:17:31.402Z"
-    },
-    {
-      "slug": "focus-reset-for-overstimulated-people",
-      "niche": "dopamine-addiction-numbing",
-      "cluster": "dopamine-attention",
-      "hook": "Twelve tabs open. Two of them you forgot you opened. A podcast playing that you stopped hearing four minutes ago. Your phone buzzing in your pocket while you reach for it anyway, and underneath all of",
-      "timestamp": "2026-08-19T11:16:36.350Z"
-    },
-    {
-      "slug": "self-discipline-vs-self-punishment",
-      "niche": "self-betrayal-avoidance",
-      "cluster": "authentic-self-expression",
-      "hook": "Picture two people who both wake up at 5am to train.",
-      "timestamp": "2026-08-19T11:15:42.939Z"
-    },
-    {
-      "slug": "quiet-practices-for-self-trust",
-      "niche": "disconnection-inner-noise",
-      "cluster": "nervous-system-creativity",
-      "hook": "Ask yourself something and notice what happens next. Not a big question. Something small, like what you actually want for dinner, or whether you want to go to that thing on Saturday.",
-      "timestamp": "2026-08-19T11:14:37.535Z"
-    },
-    {
-      "slug": "how-to-create-a-30-day-direction-reset",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "hook": "It's a Tuesday afternoon and you just closed the fourth tab about \"finding your calling\" without reading it. You already know what it says. Journal your values. Sit with the discomfort. Trust the proc",
-      "timestamp": "2026-08-19T11:13:48.777Z"
     }
   ],
   "recentTitles": [
+    {
+      "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "title": "The Overstimulation Trap: Why Busy Input Makes Your Output Disappear",
+      "timestamp": "2026-09-20T14:26:08.417Z"
+    },
+    {
+      "slug": "discipline-vs-dopamine-management",
+      "niche": "dopamine-addiction-numbing",
+      "cluster": "dopamine-attention",
+      "title": "Discipline vs Dopamine Management",
+      "timestamp": "2026-09-20T14:25:14.874Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "title": "Building a Morning That Emerges From Who You Are, Not What You Should Do",
+      "timestamp": "2026-09-20T14:24:17.161Z"
+    },
+    {
+      "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "The Repetitive Tasks Worth Automating (And the Ones That Cost You Your Voice)",
+      "timestamp": "2026-09-20T14:23:18.714Z"
+    },
+    {
+      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-2",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "title": "How One Piece of Art Can Actually Change the Feel of Your Entire Space",
+      "timestamp": "2026-09-20T14:22:05.882Z"
+    },
+    {
+      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
+      "niche": "ai-creator-tools",
+      "cluster": "creator-automation",
+      "title": "Building an Editorial System That Feels Like You, Not a Task Manager",
+      "timestamp": "2026-09-20T14:21:06.217Z"
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "title": "Machine Intelligence and the Question of Soul: What Changes for Us",
+      "timestamp": "2026-09-20T14:19:49.276Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-2",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "emotional-regulation",
+      "title": "The Difference Between Processing Emotion and Just Pushing It Down",
+      "timestamp": "2026-09-20T14:18:42.453Z"
+    },
     {
       "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
       "niche": "misalignment-wrong-life",
@@ -371,66 +427,50 @@
       "cluster": "emotional-regulation",
       "title": "The Difference Between Processing Emotion and Just Pushing It Down",
       "timestamp": "2026-09-16T23:38:41.419Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
-      "niche": "misalignment-wrong-life",
-      "cluster": "building-life-that-fits",
-      "title": "Seeing the Gap: How to Notice When Your Life Doesn't Fit Anymore",
-      "timestamp": "2026-09-16T23:37:32.728Z"
-    },
-    {
-      "slug": "waiting-for-clarity-is-the-choice-to-keep-drifting",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "title": "Waiting for Clarity Is the Choice to Keep Drifting",
-      "timestamp": "2026-09-16T23:36:21.472Z"
-    },
-    {
-      "slug": "contentment-vs-settling",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "title": "Contentment vs Settling",
-      "timestamp": "2026-08-19T11:18:38.253Z"
-    },
-    {
-      "slug": "burnout-vs-nervous-system-dysregulation",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "title": "Burnout vs Nervous System Dysregulation",
-      "timestamp": "2026-08-19T11:17:31.402Z"
-    },
-    {
-      "slug": "focus-reset-for-overstimulated-people",
-      "niche": "dopamine-addiction-numbing",
-      "cluster": "dopamine-attention",
-      "title": "Focus Reset for Overstimulated People",
-      "timestamp": "2026-08-19T11:16:36.350Z"
-    },
-    {
-      "slug": "self-discipline-vs-self-punishment",
-      "niche": "self-betrayal-avoidance",
-      "cluster": "authentic-self-expression",
-      "title": "Self Discipline vs Self Punishment",
-      "timestamp": "2026-08-19T11:15:42.939Z"
-    },
-    {
-      "slug": "quiet-practices-for-self-trust",
-      "niche": "disconnection-inner-noise",
-      "cluster": "nervous-system-creativity",
-      "title": "Quiet Practices for Self Trust",
-      "timestamp": "2026-08-19T11:14:37.535Z"
-    },
-    {
-      "slug": "how-to-create-a-30-day-direction-reset",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "title": "How to Create a 30 Day Direction Reset",
-      "timestamp": "2026-08-19T11:13:48.777Z"
     }
   ],
   "recentNarrativeStructures": [
     {
+      "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-09-20T14:26:08.417Z"
+    },
+    {
+      "slug": "discipline-vs-dopamine-management",
+      "structure": "moderate sections (3-5 H2s)",
+      "timestamp": "2026-09-20T14:25:14.874Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-09-20T14:24:17.161Z"
+    },
+    {
+      "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-09-20T14:23:18.714Z"
+    },
+    {
+      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-2",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-09-20T14:22:05.882Z"
+    },
+    {
+      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-09-20T14:21:06.217Z"
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-09-20T14:19:49.276Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-2",
+      "structure": "moderate sections (3-5 H2s)",
+      "timestamp": "2026-09-20T14:18:42.453Z"
+    },
+    {
       "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
       "structure": "bullet-list driven with multiple sections",
       "timestamp": "2026-09-18T14:42:42.557Z"
@@ -539,50 +579,50 @@
       "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down",
       "structure": "heavily-sectioned (6+ H2s)",
       "timestamp": "2026-09-16T23:38:41.419Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
-      "structure": "moderate sections (3-5 H2s)",
-      "timestamp": "2026-09-16T23:37:32.728Z"
-    },
-    {
-      "slug": "waiting-for-clarity-is-the-choice-to-keep-drifting",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-09-16T23:36:21.472Z"
-    },
-    {
-      "slug": "contentment-vs-settling",
-      "structure": "moderate sections (3-5 H2s)",
-      "timestamp": "2026-08-19T11:18:38.253Z"
-    },
-    {
-      "slug": "burnout-vs-nervous-system-dysregulation",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-08-19T11:17:31.402Z"
-    },
-    {
-      "slug": "focus-reset-for-overstimulated-people",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-08-19T11:16:36.350Z"
-    },
-    {
-      "slug": "self-discipline-vs-self-punishment",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-08-19T11:15:42.939Z"
-    },
-    {
-      "slug": "quiet-practices-for-self-trust",
-      "structure": "moderate sections (3-5 H2s)",
-      "timestamp": "2026-08-19T11:14:37.535Z"
-    },
-    {
-      "slug": "how-to-create-a-30-day-direction-reset",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-08-19T11:13:48.777Z"
     }
   ],
   "recentEmotionalArcs": [
     {
+      "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-09-20T14:26:08.417Z"
+    },
+    {
+      "slug": "discipline-vs-dopamine-management",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-09-20T14:25:14.874Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-09-20T14:24:17.161Z"
+    },
+    {
+      "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-09-20T14:23:18.714Z"
+    },
+    {
+      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-2",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-09-20T14:22:05.882Z"
+    },
+    {
+      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-09-20T14:21:06.217Z"
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-09-20T14:19:49.276Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-2",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-09-20T14:18:42.453Z"
+    },
+    {
       "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
       "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-09-18T14:42:42.557Z"
@@ -691,49 +731,49 @@
       "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down",
       "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-09-16T23:38:41.419Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-09-16T23:37:32.728Z"
-    },
-    {
-      "slug": "waiting-for-clarity-is-the-choice-to-keep-drifting",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-09-16T23:36:21.472Z"
-    },
-    {
-      "slug": "contentment-vs-settling",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-08-19T11:18:38.253Z"
-    },
-    {
-      "slug": "burnout-vs-nervous-system-dysregulation",
-      "arc": "pain-open → reframe → action close",
-      "timestamp": "2026-08-19T11:17:31.402Z"
-    },
-    {
-      "slug": "focus-reset-for-overstimulated-people",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-08-19T11:16:36.350Z"
-    },
-    {
-      "slug": "self-discipline-vs-self-punishment",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-08-19T11:15:42.939Z"
-    },
-    {
-      "slug": "quiet-practices-for-self-trust",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-08-19T11:14:37.535Z"
-    },
-    {
-      "slug": "how-to-create-a-30-day-direction-reset",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-08-19T11:13:48.777Z"
     }
   ],
   "recentOpeningStyles": [
+    {
+      "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
+      "style": "statement opening",
+      "timestamp": "2026-09-20T14:26:08.417Z"
+    },
+    {
+      "slug": "discipline-vs-dopamine-management",
+      "style": "question opening",
+      "timestamp": "2026-09-20T14:25:14.874Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+      "style": "statement opening",
+      "timestamp": "2026-09-20T14:24:17.161Z"
+    },
+    {
+      "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2",
+      "style": "social proof / counter-claim opening",
+      "timestamp": "2026-09-20T14:23:18.714Z"
+    },
+    {
+      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-2",
+      "style": "statement opening",
+      "timestamp": "2026-09-20T14:22:05.882Z"
+    },
+    {
+      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
+      "style": "question opening",
+      "timestamp": "2026-09-20T14:21:06.217Z"
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
+      "style": "statement opening",
+      "timestamp": "2026-09-20T14:19:49.276Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-2",
+      "style": "statement opening",
+      "timestamp": "2026-09-20T14:18:42.453Z"
+    },
     {
       "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
       "style": "question opening",
@@ -843,46 +883,6 @@
       "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down",
       "style": "statement opening",
       "timestamp": "2026-09-16T23:38:41.419Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
-      "style": "statement opening",
-      "timestamp": "2026-09-16T23:37:32.728Z"
-    },
-    {
-      "slug": "waiting-for-clarity-is-the-choice-to-keep-drifting",
-      "style": "statement opening",
-      "timestamp": "2026-09-16T23:36:21.472Z"
-    },
-    {
-      "slug": "contentment-vs-settling",
-      "style": "statement opening",
-      "timestamp": "2026-08-19T11:18:38.253Z"
-    },
-    {
-      "slug": "burnout-vs-nervous-system-dysregulation",
-      "style": "question opening",
-      "timestamp": "2026-08-19T11:17:31.402Z"
-    },
-    {
-      "slug": "focus-reset-for-overstimulated-people",
-      "style": "statement opening",
-      "timestamp": "2026-08-19T11:16:36.350Z"
-    },
-    {
-      "slug": "self-discipline-vs-self-punishment",
-      "style": "statement opening",
-      "timestamp": "2026-08-19T11:15:42.939Z"
-    },
-    {
-      "slug": "quiet-practices-for-self-trust",
-      "style": "statement opening",
-      "timestamp": "2026-08-19T11:14:37.535Z"
-    },
-    {
-      "slug": "how-to-create-a-30-day-direction-reset",
-      "style": "statement opening",
-      "timestamp": "2026-08-19T11:13:48.777Z"
     }
   ],
   "recentCTAPatterns": [],
