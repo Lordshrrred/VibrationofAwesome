@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-20T18:23:57.345Z",
+  "generated_at": "2026-09-20T23:54:43.896Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 22,
+      "draft_count": 21,
       "draft_slugs": [
         "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
@@ -22,7 +22,6 @@
         "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art",
         "the-decision-framework-when-to-automate-and-when-to-stay-hands-on",
         "the-difference-between-processing-emotion-and-just-pushing-it-down-2",
-        "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices",
         "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
         "the-real-cost-of-ignoring-ai-as-an-independent-creator",
         "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2",
@@ -30,7 +29,7 @@
         "when-being-productive-is-actually-running-from-something",
         "your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference"
       ],
-      "runway_days": 11,
+      "runway_days": 10,
       "runway_status": "warning",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -40,6 +39,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices",
+        "title": "The Hidden Cost of Unregulated Emotions: How They Hijack Your Choices",
+        "lane": "boom",
+        "date": "2026-09-20T23:54:43.873Z",
+        "url": "/blog/boom/posts/the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "emotional-regulation",
+        "content_type": null
+      },
       {
         "slug": "structuring-your-life-around-energy-not-just-money",
         "title": "Structuring Your Life Around Energy, Not Just Money",
@@ -267,18 +278,6 @@
         ],
         "cluster": "spiritual-productivity",
         "content_type": null
-      },
-      {
-        "slug": "intuition-vs-fear-in-life-decisions",
-        "title": "Intuition vs Fear in Life Decisions",
-        "lane": "boom",
-        "date": "2026-09-11T16:58:53.404Z",
-        "url": "/blog/boom/posts/intuition-vs-fear-in-life-decisions",
-        "tags": [
-          "misalignment-wrong-life"
-        ],
-        "cluster": "authentic-self-expression",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -416,9 +415,9 @@
     ],
     "next_estimated_window": "2026-09-21",
     "published_counts": {
-      "boom": 322,
+      "boom": 323,
       "matt": 18,
-      "total": 340
+      "total": 341
     }
   },
   "syndication": {
@@ -27643,6 +27642,7 @@
       }
     },
     "post_to_cluster": {
+      "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices": "emotional-regulation",
       "structuring-your-life-around-energy-not-just-money": "building-life-that-fits",
       "committing-to-a-path-before-you-know-where-it-leads": "purpose-direction",
       "comfort-zone-vs-self-betrayal": "authentic-self-expression",
@@ -27980,7 +27980,7 @@
       "spiritual-productivity": 17,
       "purpose-direction": 9,
       "building-life-that-fits": 7,
-      "emotional-regulation": 5,
+      "emotional-regulation": 6,
       "art-buying-online": 15,
       "consciousness-technology": 5
     },
@@ -29446,9 +29446,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-20T18:23:57.345Z",
+    "as_of": "2026-09-20T23:54:43.896Z",
     "next_estimated_window": "2026-09-21",
-    "queue_runway_days": 11,
+    "queue_runway_days": 10,
     "queue_runway_status": "warning",
     "occupied_dates": [
       "2026-09-20",
@@ -29585,11 +29585,16 @@
     ],
     "retry_backlog_count": 92,
     "cadence_density": {
-      "posts_last_7_days": 15,
+      "posts_last_7_days": 16,
       "posts_last_14_days": 20,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices",
+        "lane": "boom",
+        "date": "2026-09-20T23:54:43.873Z"
+      },
       {
         "slug": "structuring-your-life-around-energy-not-just-money",
         "lane": "boom",
@@ -29634,18 +29639,13 @@
         "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager",
         "lane": "boom",
         "date": "2026-09-18T18:41:16.397Z"
-      },
-      {
-        "slug": "what-it-means-to-be-human-when-ai-is-getting-smarter",
-        "lane": "boom",
-        "date": "2026-09-18T17:00:34.298Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-20T18:23:57.329Z",
-    "source_event": "retry",
-    "export_duration_ms": 16,
+    "last_export_at": "2026-09-20T23:54:43.881Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 15,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
