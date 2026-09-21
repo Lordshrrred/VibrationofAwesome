@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-21T06:01:44.508Z",
+  "generated_at": "2026-09-21T18:35:45.953Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 20,
+      "draft_count": 19,
       "draft_slugs": [
         "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
@@ -20,7 +20,6 @@
         "porn-addiction-vs-avoidance-pattern",
         "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
         "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art",
-        "the-decision-framework-when-to-automate-and-when-to-stay-hands-on",
         "the-difference-between-processing-emotion-and-just-pushing-it-down-2",
         "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
         "the-real-cost-of-ignoring-ai-as-an-independent-creator",
@@ -28,7 +27,7 @@
         "when-being-productive-is-actually-running-from-something",
         "your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference"
       ],
-      "runway_days": 10,
+      "runway_days": 9,
       "runway_status": "warning",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on",
+        "title": "The Decision Framework: When to Automate and When to Stay Hands-On",
+        "lane": "boom",
+        "date": "2026-09-21T18:35:45.929Z",
+        "url": "/blog/boom/posts/the-decision-framework-when-to-automate-and-when-to-stay-hands-on",
+        "tags": [
+          "ai-creator-tools"
+        ],
+        "cluster": "creator-automation",
+        "content_type": null
+      },
       {
         "slug": "what-our-technology-reveals-about-our-consciousness",
         "title": "What Our Technology Reveals About Our Consciousness",
@@ -265,18 +276,6 @@
         ],
         "cluster": "authentic-self-expression",
         "content_type": null
-      },
-      {
-        "slug": "quiet-practices-for-self-trust",
-        "title": "Quiet Practices for Self Trust",
-        "lane": "boom",
-        "date": "2026-09-12T16:08:39.824Z",
-        "url": "/blog/boom/posts/quiet-practices-for-self-trust",
-        "tags": [
-          "disconnection-inner-noise"
-        ],
-        "cluster": "nervous-system-creativity",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -415,9 +414,9 @@
     ],
     "next_estimated_window": "2026-09-22",
     "published_counts": {
-      "boom": 324,
+      "boom": 325,
       "matt": 18,
-      "total": 342
+      "total": 343
     }
   },
   "syndication": {
@@ -27777,6 +27776,7 @@
       }
     },
     "post_to_cluster": {
+      "the-decision-framework-when-to-automate-and-when-to-stay-hands-on": "creator-automation",
       "what-our-technology-reveals-about-our-consciousness": "consciousness-technology",
       "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices": "emotional-regulation",
       "structuring-your-life-around-energy-not-just-money": "building-life-that-fits",
@@ -28112,7 +28112,7 @@
       "nervous-system-creativity": 33,
       "dopamine-attention": 16,
       "authentic-self-expression": 34,
-      "creator-automation": 4,
+      "creator-automation": 5,
       "spiritual-productivity": 17,
       "purpose-direction": 9,
       "building-life-that-fits": 7,
@@ -29582,9 +29582,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-21T06:01:44.508Z",
+    "as_of": "2026-09-21T18:35:45.953Z",
     "next_estimated_window": "2026-09-22",
-    "queue_runway_days": 10,
+    "queue_runway_days": 9,
     "queue_runway_status": "warning",
     "occupied_dates": [
       "2026-09-21",
@@ -29728,6 +29728,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on",
+        "lane": "boom",
+        "date": "2026-09-21T18:35:45.929Z"
+      },
+      {
         "slug": "what-our-technology-reveals-about-our-consciousness",
         "lane": "boom",
         "date": "2026-09-21T05:58:24.046Z"
@@ -29771,18 +29776,13 @@
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice",
         "lane": "boom",
         "date": "2026-09-19T05:32:21.056Z"
-      },
-      {
-        "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space",
-        "lane": "boom",
-        "date": "2026-09-18T23:55:46.214Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-21T06:01:44.492Z",
-    "source_event": "retry",
-    "export_duration_ms": 16,
+    "last_export_at": "2026-09-21T18:35:45.936Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 17,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
