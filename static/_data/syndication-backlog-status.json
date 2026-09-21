@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T22:39:30.462Z",
+  "generatedAt": "2026-09-21T05:22:38.885Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,71 +14,71 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 304,
-    "backlogPosts": 45,
-    "backlinkCapableMissingUnits": 45,
-    "backlinkVerificationGaps": 443,
+    "totalTrackedPosts": 305,
+    "backlogPosts": 42,
+    "backlinkCapableMissingUnits": 42,
+    "backlinkVerificationGaps": 450,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 47,
+    "distributionIncompleteUnits": 51,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 149,
-    "completedBacklinkUnitsPerDay": 10.6,
+    "completedBacklinkUnitsInWindow": 156,
+    "completedBacklinkUnitsPerDay": 11.1,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": 5.4,
+    "netBacklogChangePerDay": 4.9,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 45
+    "largestDelayMissingUnits": 42
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 304,
-        "complete": 259,
-        "missing": 45,
-        "successRate": 85.2,
-        "averagePerDay": 3.8,
+        "eligiblePosts": 305,
+        "complete": 263,
+        "missing": 42,
+        "successRate": 86.2,
+        "averagePerDay": 4.1,
         "confirmed": 182,
-        "verificationGaps": 77,
+        "verificationGaps": 81,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 304,
-        "complete": 304,
+        "eligiblePosts": 305,
+        "complete": 305,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.3,
+        "averagePerDay": 2.4,
         "confirmed": 182,
-        "verificationGaps": 122,
+        "verificationGaps": 123,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 304,
-        "complete": 304,
+        "eligiblePosts": 305,
+        "complete": 305,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.3,
+        "averagePerDay": 2.4,
         "confirmed": 182,
-        "verificationGaps": 122,
+        "verificationGaps": 123,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 227,
-        "complete": 227,
+        "eligiblePosts": 228,
+        "complete": 228,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 91,
+        "verificationGaps": 92,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 227,
-        "complete": 227,
+        "eligiblePosts": 228,
+        "complete": 228,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 227,
+        "confirmed": 228,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,25 +112,25 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 258,
-        "complete": 243,
-        "missing": 15,
-        "successRate": 94.2,
-        "averagePerDay": 3.3,
+        "eligiblePosts": 259,
+        "complete": 242,
+        "missing": 17,
+        "successRate": 93.4,
+        "averagePerDay": 3.4,
         "confirmed": 142,
-        "verificationGaps": 101,
+        "verificationGaps": 100,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 258,
-        "complete": 239,
-        "missing": 19,
-        "successRate": 92.6,
-        "averagePerDay": 3,
+        "eligiblePosts": 259,
+        "complete": 238,
+        "missing": 21,
+        "successRate": 91.9,
+        "averagePerDay": 3.1,
         "confirmed": 142,
-        "verificationGaps": 97,
+        "verificationGaps": 96,
         "mainBlocker": "env vars not set"
       },
       {
@@ -186,15 +186,15 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 44
+      "count": 42
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 15
+      "count": 17
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 15
+      "count": 17
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -205,42 +205,11 @@
       "count": 3
     },
     {
-      "reason": "blogger: Blogger token refresh failed (invalid_grant): Token has been expired or revoked.",
-      "count": 1
-    },
-    {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
       "count": 1
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "how-too-many-inputs-disconnect-you-from-yourself",
-      "lane": "boom",
-      "title": "How Too Many Inputs Disconnect You From Yourself",
-      "date": "2026-08-22",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "i-feel-anxious-scattered-and-overwhelmed",
-      "lane": "boom",
-      "title": "I Feel Anxious Scattered and Overwhelmed",
-      "date": "2026-08-23",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "why-late-night-scrolling-feels-impossible-to-stop",
-      "lane": "boom",
-      "title": "Why Late Night Scrolling Feels Impossible to Stop",
-      "date": "2026-08-23",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "why-people-drift-without-a-clear-path",
       "lane": "boom",
