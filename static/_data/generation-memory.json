@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-22T17:39:31.925Z",
+  "lastUpdated": "2026-09-22T19:22:20.174Z",
   "recentHooks": [
     {
       "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-2",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-tell-when-something-is-not-for-you-anymore",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-09-22T19:22:20.174Z"
+    },
+    {
+      "slug": "etsy-vs-art-galleries-vs-artist-websites",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-22T19:22:08.696Z"
+    },
+    {
+      "slug": "how-ai-fits-into-a-creator-workflow",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-09-22T19:21:49.858Z"
+    },
+    {
+      "slug": "i-feel-anxious-scattered-and-overwhelmed",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-09-22T19:21:30.466Z"
+    },
+    {
+      "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-09-22T19:21:19.418Z"
+    },
+    {
+      "slug": "inner-signal-vs-outside-advice",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-22T19:20:16.764Z"
+    },
+    {
       "slug": "how-ai-fits-into-a-creator-workflow",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1102,60 +1156,6 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-09-21T20:11:38.923Z"
-    },
-    {
-      "slug": "how-to-choose-art-that-resonates-with-your-space",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-09-21T18:39:36.316Z"
-    },
-    {
-      "slug": "choosing-a-path-when-nothing-feels-clear",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-09-21T18:39:23.556Z"
-    },
-    {
-      "slug": "how-to-automate-creator-tasks-without-sounding-fake",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-21T18:39:12.422Z"
-    },
-    {
-      "slug": "i-feel-anxious-scattered-and-overwhelmed",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-09-21T18:38:54.674Z"
-    },
-    {
-      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-09-21T18:38:23.215Z"
-    },
-    {
-      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-09-21T18:36:43.976Z"
     }
   ],
   "recentInstagramArchetypes": [
