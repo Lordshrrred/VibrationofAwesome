@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-22T00:42:10.626Z",
+  "lastUpdated": "2026-09-22T05:58:08.382Z",
   "recentHooks": [
     {
       "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "i-feel-anxious-scattered-and-overwhelmed",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-09-22T05:58:08.382Z"
+    },
+    {
+      "slug": "my-life-looks-good-but-feels-wrong",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-09-22T05:57:46.299Z"
+    },
+    {
+      "slug": "why-people-drift-without-a-clear-path",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-09-22T05:57:36.757Z"
+    },
+    {
+      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-22T05:57:13.638Z"
+    },
+    {
+      "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-09-22T05:56:58.286Z"
+    },
+    {
+      "slug": "when-being-productive-is-actually-running-from-something",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-09-22T05:55:51.364Z"
+    },
+    {
       "slug": "how-to-cancel-ai-advantage-current-refund-and-subscription-terms",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1102,60 +1156,6 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-09-21T05:59:24.361Z"
-    },
-    {
-      "slug": "how-to-choose-art-that-resonates-with-your-space",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-09-20T23:58:59.291Z"
-    },
-    {
-      "slug": "choosing-a-path-when-nothing-feels-clear",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-09-20T23:58:40.008Z"
-    },
-    {
-      "slug": "how-to-stop-drifting",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-09-20T23:58:26.338Z"
-    },
-    {
-      "slug": "how-to-automate-creator-tasks-without-sounding-fake",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-20T23:58:10.966Z"
-    },
-    {
-      "slug": "why-direction-matters-more-than-motivation",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-09-20T23:57:50.512Z"
-    },
-    {
-      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-09-20T23:55:56.225Z"
     }
   ],
   "recentInstagramArchetypes": [
