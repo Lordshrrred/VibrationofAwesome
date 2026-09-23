@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-09-16T14:03:08.002Z",
+  "generatedAt": "2026-09-23T14:05:17.649Z",
   "period": {
     "current": {
-      "startDate": "2026-08-17",
-      "endDate": "2026-09-13"
+      "startDate": "2026-08-24",
+      "endDate": "2026-09-20"
     },
     "previous": {
-      "startDate": "2026-07-20",
-      "endDate": "2026-08-16"
+      "startDate": "2026-07-27",
+      "endDate": "2026-08-23"
     }
   },
   "status": {
     "gsc": {
       "ok": true,
-      "message": "3 current query-page rows"
+      "message": "4 current query-page rows"
     },
     "ga": {
       "ok": true,
-      "message": "5 current organic landing-page rows"
+      "message": "4 current organic landing-page rows"
     }
   },
   "apiRequests": {
@@ -28,16 +28,16 @@
   "summary": {
     "searchConsole": {
       "clicks": 0,
-      "impressions": 5,
+      "impressions": 6,
       "ctr": 0,
-      "averagePosition": 77.2,
+      "averagePosition": 79.66666666666667,
       "rowCount": 3
     },
     "ga4": {
-      "organicSessions": 3,
-      "activeUsers": 3,
-      "engagedSessions": 2,
-      "engagementRate": 0.6666666666666666,
+      "organicSessions": 4,
+      "activeUsers": 4,
+      "engagedSessions": 3,
+      "engagementRate": 0.75,
       "rowCount": 1
     }
   },
@@ -62,9 +62,40 @@
       "impressions": 1,
       "ctr": 0,
       "position": 67
+    },
+    {
+      "query": "mastermind v2",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 92
     }
   ],
   "topLandingPages": [
+    {
+      "title": "Mastermind.com vs AI Advantage: Are Tony and Dean Selling the Same Promise Twice",
+      "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 79.5,
+      "topQueries": [
+        {
+          "query": "dean mastermind",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 67
+        },
+        {
+          "query": "mastermind v2",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 92
+        }
+      ]
+    },
     {
       "title": "/earthstar/",
       "path": "/earthstar/",
@@ -98,23 +129,6 @@
           "position": 92
         }
       ]
-    },
-    {
-      "title": "Mastermind.com vs AI Advantage: Are Tony and Dean Selling the Same Promise Twice",
-      "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 67,
-      "topQueries": [
-        {
-          "query": "dean mastermind",
-          "clicks": 0,
-          "impressions": 1,
-          "ctr": 0,
-          "position": 67
-        }
-      ]
     }
   ],
   "ctrOpportunities": [],
@@ -122,12 +136,12 @@
     {
       "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
       "title": "How To Copy Ai Responses Without Losing Formatting",
-      "sessions": 3,
-      "activeUsers": 3,
-      "engagedSessions": 2,
-      "engagementRate": 0.6666666666666666,
-      "avgEngagementTime": 350.7889843333333,
-      "views": 3,
+      "sessions": 4,
+      "activeUsers": 4,
+      "engagedSessions": 3,
+      "engagementRate": 0.75,
+      "avgEngagementTime": 358.574285,
+      "views": 4,
       "action": "Strengthen internal linking toward this page and expand the surrounding topic cluster."
     }
   ],
@@ -137,7 +151,7 @@
       "type": "engagement_winner",
       "label": "How To Copy Ai Responses Without Losing Formatting",
       "page": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
-      "metric": "3 organic sessions"
+      "metric": "4 organic sessions"
     }
   ],
   "counts": {
