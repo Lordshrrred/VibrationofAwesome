@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-23T05:38:42.364Z",
+  "lastUpdated": "2026-09-23T17:57:47.609Z",
   "recentHooks": [
     {
       "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-2",
@@ -888,6 +888,60 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "reducing-inputs-to-restore-focus",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-09-23T17:57:47.609Z"
+    },
+    {
+      "slug": "digital-art-prints-that-feel-like-originals",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-23T17:57:22.608Z"
+    },
+    {
+      "slug": "signs-your-life-is-misaligned",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-23T17:57:08.744Z"
+    },
+    {
+      "slug": "how-to-choose-discomfort-on-purpose",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-09-23T17:56:56.393Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-09-23T17:55:58.552Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-09-23T17:51:23.952Z"
+    },
+    {
       "slug": "art-buying-guide-for-non-collectors",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1102,60 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-09-22T17:36:44.955Z"
-    },
-    {
-      "slug": "i-feel-anxious-scattered-and-overwhelmed",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-09-22T05:58:08.382Z"
-    },
-    {
-      "slug": "my-life-looks-good-but-feels-wrong",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-09-22T05:57:46.299Z"
-    },
-    {
-      "slug": "why-people-drift-without-a-clear-path",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-09-22T05:57:36.757Z"
-    },
-    {
-      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-09-22T05:57:13.638Z"
-    },
-    {
-      "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-22T05:56:58.286Z"
-    },
-    {
-      "slug": "when-being-productive-is-actually-running-from-something",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-09-22T05:55:51.364Z"
     }
   ],
   "recentInstagramArchetypes": [
