@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-22T19:22:20.765Z",
+  "generated_at": "2026-09-23T00:05:08.802Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 22,
+      "draft_count": 21,
       "draft_slugs": [
         "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
@@ -13,7 +13,6 @@
         "discipline-vs-dopamine-management",
         "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-2",
         "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
-        "how-to-choose-discomfort-on-purpose",
         "how-to-keep-small-promises-to-yourself",
         "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
         "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -30,7 +29,7 @@
         "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things",
         "your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference"
       ],
-      "runway_days": 11,
+      "runway_days": 10,
       "runway_status": "warning",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -40,6 +39,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "how-to-choose-discomfort-on-purpose",
+        "title": "How to Choose Discomfort on Purpose",
+        "lane": "boom",
+        "date": "2026-09-23T00:05:08.790Z",
+        "url": "/blog/boom/posts/how-to-choose-discomfort-on-purpose",
+        "tags": [
+          "self-betrayal-avoidance"
+        ],
+        "cluster": "authentic-self-expression",
+        "content_type": null
+      },
       {
         "slug": "inner-signal-vs-outside-advice",
         "title": "Inner Signal vs Outside Advice",
@@ -267,21 +278,10 @@
         ],
         "cluster": "emotional-regulation",
         "content_type": null
-      },
-      {
-        "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
-        "title": "Seeing the Gap: How to Notice When Your Life Doesn't Fit Anymore",
-        "lane": "boom",
-        "date": "2026-09-17T23:56:49.894Z",
-        "url": "/blog/boom/posts/seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore",
-        "tags": [
-          "misalignment-wrong-life"
-        ],
-        "cluster": "building-life-that-fits",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-09-23",
       "2026-09-22",
       "2026-09-21",
       "2026-09-20",
@@ -416,11 +416,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-09-23",
+    "next_estimated_window": "2026-09-24",
     "published_counts": {
-      "boom": 330,
+      "boom": 331,
       "matt": 18,
-      "total": 348
+      "total": 349
     }
   },
   "syndication": {
@@ -28180,6 +28180,7 @@
       }
     },
     "post_to_cluster": {
+      "how-to-choose-discomfort-on-purpose": "authentic-self-expression",
       "inner-signal-vs-outside-advice": "nervous-system-creativity",
       "porn-addiction-vs-avoidance-pattern": "dopamine-attention",
       "when-being-productive-is-actually-running-from-something": "spiritual-productivity",
@@ -28520,7 +28521,7 @@
       "ai-creator-tools": 183,
       "nervous-system-creativity": 34,
       "dopamine-attention": 17,
-      "authentic-self-expression": 34,
+      "authentic-self-expression": 35,
       "creator-automation": 5,
       "spiritual-productivity": 18,
       "purpose-direction": 9,
@@ -29991,11 +29992,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-22T19:22:20.765Z",
-    "next_estimated_window": "2026-09-23",
-    "queue_runway_days": 11,
+    "as_of": "2026-09-23T00:05:08.802Z",
+    "next_estimated_window": "2026-09-24",
+    "queue_runway_days": 10,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-09-23",
       "2026-09-22",
       "2026-09-21",
       "2026-09-20",
@@ -30138,6 +30140,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "how-to-choose-discomfort-on-purpose",
+        "lane": "boom",
+        "date": "2026-09-23T00:05:08.790Z"
+      },
+      {
         "slug": "inner-signal-vs-outside-advice",
         "lane": "boom",
         "date": "2026-09-22T19:18:59.534Z"
@@ -30181,18 +30188,13 @@
         "slug": "structuring-your-life-around-energy-not-just-money",
         "lane": "boom",
         "date": "2026-09-20T18:20:35.779Z"
-      },
-      {
-        "slug": "committing-to-a-path-before-you-know-where-it-leads",
-        "lane": "boom",
-        "date": "2026-09-20T16:44:09.506Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-22T19:22:20.747Z",
-    "source_event": "retry",
-    "export_duration_ms": 17,
+    "last_export_at": "2026-09-23T00:05:08.794Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 8,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
