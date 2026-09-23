@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T21:37:03.362Z",
+  "generatedAt": "2026-09-23T00:53:54.733Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,71 +14,71 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 312,
-    "backlogPosts": 40,
-    "backlinkCapableMissingUnits": 40,
-    "backlinkVerificationGaps": 480,
+    "totalTrackedPosts": 313,
+    "backlogPosts": 37,
+    "backlinkCapableMissingUnits": 37,
+    "backlinkVerificationGaps": 487,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 31,
+    "distributionIncompleteUnits": 32,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 174,
-    "completedBacklinkUnitsPerDay": 12.4,
+    "completedBacklinkUnitsInWindow": 181,
+    "completedBacklinkUnitsPerDay": 12.9,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": 3.6,
+    "netBacklogChangePerDay": 3.1,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 40
+    "largestDelayMissingUnits": 37
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 312,
-        "complete": 272,
-        "missing": 40,
-        "successRate": 87.2,
-        "averagePerDay": 4.7,
+        "eligiblePosts": 313,
+        "complete": 276,
+        "missing": 37,
+        "successRate": 88.2,
+        "averagePerDay": 5,
         "confirmed": 182,
-        "verificationGaps": 90,
+        "verificationGaps": 94,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 312,
-        "complete": 312,
+        "eligiblePosts": 313,
+        "complete": 313,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2.6,
         "confirmed": 182,
-        "verificationGaps": 130,
+        "verificationGaps": 131,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 312,
-        "complete": 312,
+        "eligiblePosts": 313,
+        "complete": 313,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2.6,
         "confirmed": 182,
-        "verificationGaps": 130,
+        "verificationGaps": 131,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 231,
-        "complete": 231,
+        "eligiblePosts": 232,
+        "complete": 232,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 95,
+        "verificationGaps": 96,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 231,
-        "complete": 231,
+        "eligiblePosts": 232,
+        "complete": 232,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 231,
+        "confirmed": 232,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,11 +112,11 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 262,
+        "eligiblePosts": 263,
         "complete": 256,
-        "missing": 6,
-        "successRate": 97.7,
-        "averagePerDay": 4.3,
+        "missing": 7,
+        "successRate": 97.3,
+        "averagePerDay": 4.5,
         "confirmed": 142,
         "verificationGaps": 114,
         "mainBlocker": "env vars not set"
@@ -124,13 +124,13 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 262,
-        "complete": 250,
+        "eligiblePosts": 263,
+        "complete": 251,
         "missing": 12,
         "successRate": 95.4,
-        "averagePerDay": 3.9,
+        "averagePerDay": 4.1,
         "confirmed": 142,
-        "verificationGaps": 108,
+        "verificationGaps": 109,
         "mainBlocker": "env vars not set"
       },
       {
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 40
+      "count": 37
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -194,11 +194,11 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 6
+      "count": 7
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 6
+      "count": 7
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -206,37 +206,10 @@
     },
     {
       "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-      "count": 2
+      "count": 1
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "why-do-i-keep-breaking-promises-to-myself",
-      "lane": "boom",
-      "title": "Why Do I Keep Breaking Promises to Myself",
-      "date": "2026-08-25",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "what-inner-noise-feels-like",
-      "lane": "boom",
-      "title": "What Inner Noise Feels Like",
-      "date": "2026-08-25",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-numbing-habits-drain-energy",
-      "lane": "boom",
-      "title": "How Numbing Habits Drain Energy",
-      "date": "2026-08-26",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "why-do-i-feel-empty-even-though-life-is-fine",
       "lane": "boom",
