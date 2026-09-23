@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-23T05:38:42.737Z",
+  "generated_at": "2026-09-23T17:50:02.797Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 20,
+      "draft_count": 19,
       "draft_slugs": [
         "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
@@ -17,7 +17,6 @@
         "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
         "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
         "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
-        "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
         "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-2",
         "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-2",
         "the-difference-between-processing-emotion-and-just-pushing-it-down-2",
@@ -28,7 +27,7 @@
         "what-our-technology-reveals-about-our-consciousness-2",
         "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things"
       ],
-      "runway_days": 10,
+      "runway_days": 9,
       "runway_status": "warning",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
+        "title": "Seeing the Gap: How to Notice When Your Life Doesn't Fit Anymore",
+        "lane": "boom",
+        "date": "2026-09-23T17:50:02.775Z",
+        "url": "/blog/boom/posts/seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
+        "tags": [
+          "misalignment-wrong-life"
+        ],
+        "cluster": "building-life-that-fits",
+        "content_type": null
+      },
       {
         "slug": "your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference",
         "title": "Your Calling vs. Your Comfortable Fantasy: How to Tell the Difference",
@@ -265,18 +276,6 @@
         ],
         "cluster": "creator-automation",
         "content_type": null
-      },
-      {
-        "slug": "what-it-means-to-be-human-when-ai-is-getting-smarter",
-        "title": "What It Means to Be Human When AI Is Getting Smarter",
-        "lane": "boom",
-        "date": "2026-09-18T17:00:34.298Z",
-        "url": "/blog/boom/posts/what-it-means-to-be-human-when-ai-is-getting-smarter",
-        "tags": [
-          "ai-creator-tools"
-        ],
-        "cluster": "consciousness-technology",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -417,9 +416,9 @@
     ],
     "next_estimated_window": "2026-09-24",
     "published_counts": {
-      "boom": 332,
+      "boom": 333,
       "matt": 18,
-      "total": 350
+      "total": 351
     }
   },
   "syndication": {
@@ -28275,6 +28274,7 @@
       }
     },
     "post_to_cluster": {
+      "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2": "building-life-that-fits",
       "your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference": "purpose-direction",
       "how-to-choose-discomfort-on-purpose": "authentic-self-expression",
       "inner-signal-vs-outside-advice": "nervous-system-creativity",
@@ -28621,7 +28621,7 @@
       "creator-automation": 5,
       "spiritual-productivity": 18,
       "purpose-direction": 10,
-      "building-life-that-fits": 7,
+      "building-life-that-fits": 8,
       "emotional-regulation": 6,
       "art-buying-online": 16,
       "consciousness-technology": 6
@@ -30088,9 +30088,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-23T05:38:42.737Z",
+    "as_of": "2026-09-23T17:50:02.797Z",
     "next_estimated_window": "2026-09-24",
-    "queue_runway_days": 10,
+    "queue_runway_days": 9,
     "queue_runway_status": "warning",
     "occupied_dates": [
       "2026-09-23",
@@ -30236,6 +30236,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
+        "lane": "boom",
+        "date": "2026-09-23T17:50:02.775Z"
+      },
+      {
         "slug": "your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference",
         "lane": "boom",
         "date": "2026-09-23T05:35:20.644Z"
@@ -30279,18 +30284,13 @@
         "slug": "what-our-technology-reveals-about-our-consciousness",
         "lane": "boom",
         "date": "2026-09-21T05:58:24.046Z"
-      },
-      {
-        "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices",
-        "lane": "boom",
-        "date": "2026-09-20T23:54:43.873Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-23T05:38:42.719Z",
-    "source_event": "retry",
-    "export_duration_ms": 18,
+    "last_export_at": "2026-09-23T17:50:02.781Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 16,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
