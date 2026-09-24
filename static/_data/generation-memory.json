@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-24T00:19:38.832Z",
+  "lastUpdated": "2026-09-24T05:57:24.112Z",
   "recentHooks": [
     {
       "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-2",
@@ -888,6 +888,51 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "i-cannot-think-clearly-when-overwhelmed",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-09-24T05:57:24.112Z"
+    },
+    {
+      "slug": "why-do-i-feel-empty-even-though-life-is-fine",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-24T05:57:12.494Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-09-24T05:56:58.211Z"
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-09-24T05:56:40.400Z"
+    },
+    {
+      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-24T05:55:43.344Z"
+    },
+    {
       "slug": "reducing-inputs-to-restore-focus",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1111,51 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-09-22T19:22:08.696Z"
-    },
-    {
-      "slug": "how-ai-fits-into-a-creator-workflow",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-22T19:21:49.858Z"
-    },
-    {
-      "slug": "i-feel-anxious-scattered-and-overwhelmed",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-09-22T19:21:30.466Z"
-    },
-    {
-      "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-09-22T19:21:19.418Z"
-    },
-    {
-      "slug": "inner-signal-vs-outside-advice",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-09-22T19:20:16.764Z"
-    },
-    {
-      "slug": "how-ai-fits-into-a-creator-workflow",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-09-22T17:39:31.925Z"
     }
   ],
   "recentInstagramArchetypes": [
