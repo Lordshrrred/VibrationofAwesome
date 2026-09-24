@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-23T19:21:46.788Z",
+  "lastUpdated": "2026-09-24T00:19:38.832Z",
   "recentHooks": [
     {
       "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-2",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "reducing-inputs-to-restore-focus",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-09-24T00:19:38.832Z"
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-09-24T00:17:45.498Z"
+    },
+    {
+      "slug": "reducing-inputs-to-restore-focus",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
       "density": "light-medium",
@@ -1138,24 +1156,6 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-09-22T17:39:31.925Z"
-    },
-    {
-      "slug": "i-feel-anxious-scattered-and-overwhelmed",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-09-22T17:39:22.908Z"
-    },
-    {
-      "slug": "my-life-looks-good-but-feels-wrong",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-22T17:39:05.914Z"
     }
   ],
   "recentInstagramArchetypes": [
