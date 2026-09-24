@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-23T21:43:22.078Z",
+  "generatedAt": "2026-09-24T00:50:10.343Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,71 +14,71 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 316,
-    "backlogPosts": 38,
-    "backlinkCapableMissingUnits": 38,
-    "backlinkVerificationGaps": 498,
+    "totalTrackedPosts": 317,
+    "backlogPosts": 35,
+    "backlinkCapableMissingUnits": 35,
+    "backlinkVerificationGaps": 505,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 18,
-    "freshPostsAwaitingBacklinks": 1,
-    "freshMissingBacklinkUnits": 1,
-    "completedBacklinkUnitsInWindow": 186,
-    "completedBacklinkUnitsPerDay": 13.3,
+    "distributionIncompleteUnits": 25,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
+    "completedBacklinkUnitsInWindow": 193,
+    "completedBacklinkUnitsPerDay": 13.8,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": 2.7,
+    "netBacklogChangePerDay": 2.2,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 38
+    "largestDelayMissingUnits": 35
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 316,
-        "complete": 278,
-        "missing": 38,
-        "successRate": 88,
-        "averagePerDay": 5.1,
+        "eligiblePosts": 317,
+        "complete": 282,
+        "missing": 35,
+        "successRate": 89,
+        "averagePerDay": 5.4,
         "confirmed": 182,
-        "verificationGaps": 96,
+        "verificationGaps": 100,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 316,
-        "complete": 316,
+        "eligiblePosts": 317,
+        "complete": 317,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.7,
+        "averagePerDay": 2.8,
         "confirmed": 182,
-        "verificationGaps": 134,
+        "verificationGaps": 135,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 316,
-        "complete": 316,
+        "eligiblePosts": 317,
+        "complete": 317,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 2.7,
+        "averagePerDay": 2.8,
         "confirmed": 182,
-        "verificationGaps": 134,
+        "verificationGaps": 135,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 233,
-        "complete": 233,
+        "eligiblePosts": 234,
+        "complete": 234,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 97,
+        "verificationGaps": 98,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 233,
-        "complete": 233,
+        "eligiblePosts": 234,
+        "complete": 234,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 233,
+        "confirmed": 234,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,26 +112,26 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 264,
-        "complete": 264,
-        "missing": 0,
-        "successRate": 100,
+        "eligiblePosts": 265,
+        "complete": 261,
+        "missing": 4,
+        "successRate": 98.5,
         "averagePerDay": 4.9,
         "confirmed": 142,
-        "verificationGaps": 122,
-        "mainBlocker": ""
+        "verificationGaps": 119,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 264,
-        "complete": 259,
-        "missing": 5,
-        "successRate": 98.1,
+        "eligiblePosts": 265,
+        "complete": 257,
+        "missing": 8,
+        "successRate": 97,
         "averagePerDay": 4.6,
         "confirmed": 142,
-        "verificationGaps": 117,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "verificationGaps": 115,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -186,49 +186,26 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 37
+      "count": 35
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
     },
     {
-      "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
+      "reason": "bluesky_voa: env vars not set",
       "count": 4
     },
     {
-      "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-      "count": 1
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
+    },
+    {
+      "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
+      "count": 4
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
-      "lane": "boom",
-      "title": "Seeing the Gap: How to Notice When Your Life Doesn't Fit Anymore",
-      "date": "2026-09-23",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "why-do-i-feel-empty-even-though-life-is-fine",
-      "lane": "boom",
-      "title": "Why Do I Feel Empty Even Though Life Is Fine",
-      "date": "2026-08-27",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "i-cannot-think-clearly-when-overwhelmed",
-      "lane": "boom",
-      "title": "I Cannot Think Clearly When Overwhelmed",
-      "date": "2026-08-27",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "i-cannot-hear-my-intuition-anymore",
       "lane": "boom",
