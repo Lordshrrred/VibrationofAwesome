@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-24T17:52:29.721Z",
+  "lastUpdated": "2026-09-24T19:35:29.216Z",
   "recentHooks": [
     {
       "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-09-24T19:35:29.216Z"
+    },
+    {
+      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-2",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-09-24T19:35:06.787Z"
+    },
+    {
+      "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-24T19:34:07.918Z"
+    },
+    {
       "slug": "why-do-i-feel-empty-even-though-life-is-fine",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1129,33 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-09-23T00:08:58.848Z"
-    },
-    {
-      "slug": "art-buying-guide-for-non-collectors",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-09-23T00:08:45.618Z"
-    },
-    {
-      "slug": "etsy-vs-art-galleries-vs-artist-websites",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-09-23T00:08:29.034Z"
-    },
-    {
-      "slug": "how-ai-fits-into-a-creator-workflow",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-09-23T00:08:15.708Z"
     }
   ],
   "recentInstagramArchetypes": [
