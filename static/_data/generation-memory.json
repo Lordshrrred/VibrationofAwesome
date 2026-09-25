@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-25T17:55:58.869Z",
+  "lastUpdated": "2026-09-25T19:40:19.811Z",
   "recentHooks": [
     {
       "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
@@ -889,6 +889,33 @@
   "recentThreadsFormats": [
     {
       "slug": "i-cannot-hear-my-intuition-anymore",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-25T19:40:19.811Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-25T19:40:03.482Z"
+    },
+    {
+      "slug": "how-to-keep-small-promises-to-yourself",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-09-25T19:38:58.380Z"
+    },
+    {
+      "slug": "i-cannot-hear-my-intuition-anymore",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
@@ -1129,33 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-09-23T17:57:22.608Z"
-    },
-    {
-      "slug": "signs-your-life-is-misaligned",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-09-23T17:57:08.744Z"
-    },
-    {
-      "slug": "how-to-choose-discomfort-on-purpose",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-09-23T17:56:56.393Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-23T17:55:58.552Z"
     }
   ],
   "recentInstagramArchetypes": [
