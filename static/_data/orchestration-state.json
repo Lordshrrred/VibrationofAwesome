@@ -1,14 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-24T19:35:29.914Z",
+  "generated_at": "2026-09-25T00:19:17.995Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 22,
+      "draft_count": 21,
       "draft_slugs": [
         "approval-vs-authenticity",
-        "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
         "committing-to-a-path-before-you-know-where-it-leads-2",
         "discipline-vs-dopamine-management",
         "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
@@ -30,7 +29,7 @@
         "when-being-productive-is-actually-running-from-something-2",
         "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things"
       ],
-      "runway_days": 11,
+      "runway_days": 10,
       "runway_status": "warning",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -40,6 +39,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+        "title": "Building a Morning That Emerges From Who You Are, Not What You Should Do",
+        "lane": "boom",
+        "date": "2026-09-25T00:19:17.790Z",
+        "url": "/blog/boom/posts/building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+        "tags": [
+          "direction-purpose-drift"
+        ],
+        "cluster": "spiritual-productivity",
+        "content_type": null
+      },
       {
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2",
         "title": "The Repetitive Tasks Worth Automating (And the Ones That Cost You Your Voice)",
@@ -267,21 +278,10 @@
         ],
         "cluster": "authentic-self-expression",
         "content_type": null
-      },
-      {
-        "slug": "silence-vs-isolation",
-        "title": "Silence vs Isolation",
-        "lane": "boom",
-        "date": "2026-09-19T23:56:41.244Z",
-        "url": "/blog/boom/posts/silence-vs-isolation",
-        "tags": [
-          "disconnection-inner-noise"
-        ],
-        "cluster": "nervous-system-creativity",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-09-25",
       "2026-09-24",
       "2026-09-23",
       "2026-09-22",
@@ -418,11 +418,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-09-25",
+    "next_estimated_window": "2026-09-26",
     "published_counts": {
-      "boom": 338,
+      "boom": 339,
       "matt": 18,
-      "total": 356
+      "total": 357
     }
   },
   "syndication": {
@@ -28713,6 +28713,7 @@
       }
     },
     "post_to_cluster": {
+      "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2": "spiritual-productivity",
       "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2": "ai-creator-tools",
       "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-2": "art-buying-online",
       "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2": "creator-automation",
@@ -29063,7 +29064,7 @@
       "dopamine-attention": 17,
       "authentic-self-expression": 35,
       "creator-automation": 6,
-      "spiritual-productivity": 18,
+      "spiritual-productivity": 19,
       "purpose-direction": 10,
       "building-life-that-fits": 8,
       "emotional-regulation": 7,
@@ -30532,11 +30533,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-24T19:35:29.914Z",
-    "next_estimated_window": "2026-09-25",
-    "queue_runway_days": 11,
+    "as_of": "2026-09-25T00:19:17.995Z",
+    "next_estimated_window": "2026-09-26",
+    "queue_runway_days": 10,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-09-25",
       "2026-09-24",
       "2026-09-23",
       "2026-09-22",
@@ -30681,6 +30683,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+        "lane": "boom",
+        "date": "2026-09-25T00:19:17.790Z"
+      },
+      {
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2",
         "lane": "boom",
         "date": "2026-09-24T19:32:47.773Z"
@@ -30724,17 +30731,12 @@
         "slug": "inner-signal-vs-outside-advice",
         "lane": "boom",
         "date": "2026-09-22T19:18:59.534Z"
-      },
-      {
-        "slug": "porn-addiction-vs-avoidance-pattern",
-        "lane": "boom",
-        "date": "2026-09-22T17:35:45.835Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-24T19:35:29.902Z",
-    "source_event": "retry",
+    "last_export_at": "2026-09-25T00:19:17.983Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 12,
     "schema_version": "1.0",
     "stale_after_minutes": 60
