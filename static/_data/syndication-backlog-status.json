@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T23:22:32.899Z",
+  "generatedAt": "2026-09-25T05:17:52.169Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,71 +14,71 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 320,
-    "backlogPosts": 36,
-    "backlinkCapableMissingUnits": 36,
-    "backlinkVerificationGaps": 516,
+    "totalTrackedPosts": 321,
+    "backlogPosts": 33,
+    "backlinkCapableMissingUnits": 33,
+    "backlinkVerificationGaps": 523,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 17,
-    "freshPostsAwaitingBacklinks": 1,
-    "freshMissingBacklinkUnits": 1,
-    "completedBacklinkUnitsInWindow": 198,
-    "completedBacklinkUnitsPerDay": 14.1,
+    "distributionIncompleteUnits": 25,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
+    "completedBacklinkUnitsInWindow": 205,
+    "completedBacklinkUnitsPerDay": 14.6,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": 1.9,
+    "netBacklogChangePerDay": 1.4,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 36
+    "largestDelayMissingUnits": 33
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 320,
-        "complete": 284,
-        "missing": 36,
-        "successRate": 88.8,
-        "averagePerDay": 5.6,
+        "eligiblePosts": 321,
+        "complete": 288,
+        "missing": 33,
+        "successRate": 89.7,
+        "averagePerDay": 5.9,
         "confirmed": 182,
-        "verificationGaps": 102,
+        "verificationGaps": 106,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 320,
-        "complete": 320,
+        "eligiblePosts": 321,
+        "complete": 321,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2.9,
         "confirmed": 182,
-        "verificationGaps": 138,
+        "verificationGaps": 139,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 320,
-        "complete": 320,
+        "eligiblePosts": 321,
+        "complete": 321,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 2.9,
         "confirmed": 182,
-        "verificationGaps": 138,
+        "verificationGaps": 139,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 235,
-        "complete": 235,
+        "eligiblePosts": 236,
+        "complete": 236,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 99,
+        "verificationGaps": 100,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 235,
-        "complete": 235,
+        "eligiblePosts": 236,
+        "complete": 236,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 235,
+        "confirmed": 236,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,26 +112,26 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 266,
-        "complete": 266,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 5.1,
+        "eligiblePosts": 267,
+        "complete": 263,
+        "missing": 4,
+        "successRate": 98.5,
+        "averagePerDay": 5,
         "confirmed": 142,
-        "verificationGaps": 124,
-        "mainBlocker": ""
+        "verificationGaps": 121,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 266,
-        "complete": 262,
-        "missing": 4,
-        "successRate": 98.5,
-        "averagePerDay": 4.8,
+        "eligiblePosts": 267,
+        "complete": 259,
+        "missing": 8,
+        "successRate": 97,
+        "averagePerDay": 4.7,
         "confirmed": 142,
-        "verificationGaps": 120,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "verificationGaps": 117,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -186,11 +186,19 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 35
+      "count": 33
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
+    },
+    {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 4
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -198,33 +206,6 @@
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-2",
-      "lane": "boom",
-      "title": "How One Piece of Art Can Actually Change the Feel of Your Entire Space",
-      "date": "2026-09-24",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "i-cannot-hear-my-intuition-anymore",
-      "lane": "boom",
-      "title": "I Cannot Hear My Intuition Anymore",
-      "date": "2026-08-28",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-commitment-creates-clarity",
-      "lane": "boom",
-      "title": "How Commitment Creates Clarity",
-      "date": "2026-08-28",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "i-am-overstimulated-and-exhausted",
       "lane": "boom",
