@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-25T05:58:58.213Z",
+  "lastUpdated": "2026-09-25T17:55:58.869Z",
   "recentHooks": [
     {
       "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "i-cannot-hear-my-intuition-anymore",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-09-25T17:55:58.869Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-09-25T17:55:35.572Z"
+    },
+    {
+      "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-09-25T17:53:33.614Z"
+    },
+    {
       "slug": "how-commitment-creates-clarity",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1129,33 +1156,6 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-09-23T17:55:58.552Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-09-23T17:51:23.952Z"
-    },
-    {
-      "slug": "art-buying-guide-for-non-collectors",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-09-23T05:38:42.364Z"
-    },
-    {
-      "slug": "what-inner-noise-feels-like",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-09-23T05:38:30.419Z"
     }
   ],
   "recentInstagramArchetypes": [
