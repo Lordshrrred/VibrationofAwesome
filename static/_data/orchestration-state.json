@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-25T05:58:58.896Z",
+  "generated_at": "2026-09-25T17:52:36.630Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 20,
+      "draft_count": 19,
       "draft_slugs": [
         "approval-vs-authenticity",
         "committing-to-a-path-before-you-know-where-it-leads-2",
@@ -22,13 +22,12 @@
         "the-difference-between-processing-emotion-and-just-pushing-it-down-3",
         "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric",
         "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-2",
-        "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
         "the-real-cost-of-ignoring-ai-as-an-independent-creator-2",
         "what-our-technology-reveals-about-our-consciousness-2",
         "when-being-productive-is-actually-running-from-something-2",
         "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things"
       ],
-      "runway_days": 10,
+      "runway_days": 9,
       "runway_status": "warning",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
+        "title": "The Overstimulation Trap: Why Busy Input Makes Your Output Disappear",
+        "lane": "boom",
+        "date": "2026-09-25T17:52:36.606Z",
+        "url": "/blog/boom/posts/the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "nervous-system-creativity",
+        "content_type": null
+      },
       {
         "slug": "discipline-vs-dopamine-management",
         "title": "Discipline vs Dopamine Management",
@@ -265,18 +276,6 @@
         ],
         "cluster": "building-life-that-fits",
         "content_type": null
-      },
-      {
-        "slug": "committing-to-a-path-before-you-know-where-it-leads",
-        "title": "Committing to a Path Before You Know Where It Leads",
-        "lane": "boom",
-        "date": "2026-09-20T16:44:09.506Z",
-        "url": "/blog/boom/posts/committing-to-a-path-before-you-know-where-it-leads",
-        "tags": [
-          "direction-purpose-drift"
-        ],
-        "cluster": "purpose-direction",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -419,9 +418,9 @@
     ],
     "next_estimated_window": "2026-09-26",
     "published_counts": {
-      "boom": 340,
+      "boom": 341,
       "matt": 18,
-      "total": 358
+      "total": 359
     }
   },
   "syndication": {
@@ -28858,6 +28857,7 @@
       }
     },
     "post_to_cluster": {
+      "the-overstimulation-trap-why-busy-input-makes-your-output-disappear": "nervous-system-creativity",
       "discipline-vs-dopamine-management": "dopamine-attention",
       "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2": "spiritual-productivity",
       "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-2": "ai-creator-tools",
@@ -29206,7 +29206,7 @@
     },
     "saturation": {
       "ai-creator-tools": 184,
-      "nervous-system-creativity": 34,
+      "nervous-system-creativity": 35,
       "dopamine-attention": 18,
       "authentic-self-expression": 35,
       "creator-automation": 6,
@@ -30679,9 +30679,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-25T05:58:58.896Z",
+    "as_of": "2026-09-25T17:52:36.630Z",
     "next_estimated_window": "2026-09-26",
-    "queue_runway_days": 10,
+    "queue_runway_days": 9,
     "queue_runway_status": "warning",
     "occupied_dates": [
       "2026-09-25",
@@ -30829,6 +30829,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
+        "lane": "boom",
+        "date": "2026-09-25T17:52:36.606Z"
+      },
+      {
         "slug": "discipline-vs-dopamine-management",
         "lane": "boom",
         "date": "2026-09-25T05:56:05.858Z"
@@ -30872,17 +30877,12 @@
         "slug": "your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference",
         "lane": "boom",
         "date": "2026-09-23T05:35:20.644Z"
-      },
-      {
-        "slug": "how-to-choose-discomfort-on-purpose",
-        "lane": "boom",
-        "date": "2026-09-23T00:05:08.790Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-25T05:58:58.879Z",
-    "source_event": "retry",
+    "last_export_at": "2026-09-25T17:52:36.613Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 17,
     "schema_version": "1.0",
     "stale_after_minutes": 60
