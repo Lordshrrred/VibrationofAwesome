@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-25T00:20:40.689Z",
+  "lastUpdated": "2026-09-25T05:58:58.213Z",
   "recentHooks": [
     {
       "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
@@ -888,6 +888,51 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-commitment-creates-clarity",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-09-25T05:58:58.213Z"
+    },
+    {
+      "slug": "i-cannot-hear-my-intuition-anymore",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-09-25T05:58:43.051Z"
+    },
+    {
+      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-2",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-25T05:58:19.796Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-25T05:58:09.746Z"
+    },
+    {
+      "slug": "discipline-vs-dopamine-management",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-09-25T05:57:03.083Z"
+    },
+    {
       "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-2",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1111,51 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-09-23T05:38:30.419Z"
-    },
-    {
-      "slug": "why-do-i-keep-breaking-promises-to-myself",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-09-23T05:38:19.739Z"
-    },
-    {
-      "slug": "how-numbing-habits-drain-energy",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-09-23T05:38:09.483Z"
-    },
-    {
-      "slug": "how-to-choose-discomfort-on-purpose",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-09-23T05:37:51.260Z"
-    },
-    {
-      "slug": "your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-09-23T05:36:41.234Z"
-    },
-    {
-      "slug": "ai-advantage-ai-mastermind-in-person-experience-who-it-is-for",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-23T00:09:17.491Z"
     }
   ],
   "recentInstagramArchetypes": [
