@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-26T14:44:56.929Z",
+  "lastUpdated": "2026-09-26T17:02:31.290Z",
   "recentHooks": [
     {
       "slug": "committing-to-a-path-before-you-know-where-it-leads-3",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-2",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-09-26T17:02:31.290Z"
+    },
+    {
       "slug": "why-do-i-avoid-the-thing-that-would-help-me",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,15 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-09-24T05:55:43.344Z"
-    },
-    {
-      "slug": "reducing-inputs-to-restore-focus",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-09-24T00:19:38.832Z"
     }
   ],
   "recentInstagramArchetypes": [
