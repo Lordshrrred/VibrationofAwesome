@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T21:46:52.353Z",
+  "generatedAt": "2026-09-26T00:50:07.198Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,71 +14,71 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 324,
-    "backlogPosts": 33,
-    "backlinkCapableMissingUnits": 33,
-    "backlinkVerificationGaps": 535,
+    "totalTrackedPosts": 325,
+    "backlogPosts": 30,
+    "backlinkCapableMissingUnits": 30,
+    "backlinkVerificationGaps": 542,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 17,
+    "distributionIncompleteUnits": 25,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 211,
-    "completedBacklinkUnitsPerDay": 15.1,
+    "completedBacklinkUnitsInWindow": 218,
+    "completedBacklinkUnitsPerDay": 15.6,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": 0.9,
+    "netBacklogChangePerDay": 0.4,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 33
+    "largestDelayMissingUnits": 30
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 324,
-        "complete": 291,
-        "missing": 33,
-        "successRate": 89.8,
-        "averagePerDay": 6.1,
+        "eligiblePosts": 325,
+        "complete": 295,
+        "missing": 30,
+        "successRate": 90.8,
+        "averagePerDay": 6.4,
         "confirmed": 182,
-        "verificationGaps": 109,
+        "verificationGaps": 113,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 324,
-        "complete": 324,
+        "eligiblePosts": 325,
+        "complete": 325,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3,
+        "averagePerDay": 3.1,
         "confirmed": 182,
-        "verificationGaps": 142,
+        "verificationGaps": 143,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 324,
-        "complete": 324,
+        "eligiblePosts": 325,
+        "complete": 325,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3,
+        "averagePerDay": 3.1,
         "confirmed": 182,
-        "verificationGaps": 142,
+        "verificationGaps": 143,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 237,
-        "complete": 237,
+        "eligiblePosts": 238,
+        "complete": 238,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 101,
+        "verificationGaps": 102,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 237,
-        "complete": 237,
+        "eligiblePosts": 238,
+        "complete": 238,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 237,
+        "confirmed": 238,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,26 +112,26 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 268,
-        "complete": 268,
-        "missing": 0,
-        "successRate": 100,
+        "eligiblePosts": 269,
+        "complete": 265,
+        "missing": 4,
+        "successRate": 98.5,
         "averagePerDay": 5.2,
         "confirmed": 142,
-        "verificationGaps": 126,
-        "mainBlocker": ""
+        "verificationGaps": 123,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 268,
-        "complete": 264,
-        "missing": 4,
-        "successRate": 98.5,
+        "eligiblePosts": 269,
+        "complete": 261,
+        "missing": 8,
+        "successRate": 97,
         "averagePerDay": 4.9,
         "confirmed": 142,
-        "verificationGaps": 122,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "verificationGaps": 119,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -186,11 +186,19 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 33
+      "count": 30
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
+    },
+    {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 4
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -198,33 +206,6 @@
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "i-am-overstimulated-and-exhausted",
-      "lane": "boom",
-      "title": "I Am Overstimulated and Exhausted",
-      "date": "2026-08-29",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "why-porn-and-scrolling-create-shame-loops",
-      "lane": "boom",
-      "title": "Why Porn and Scrolling Create Shame Loops",
-      "date": "2026-08-29",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "why-do-i-avoid-the-thing-that-would-help-me",
-      "lane": "boom",
-      "title": "Why Do I Avoid the Thing That Would Help Me",
-      "date": "2026-08-29",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "i-feel-like-i-am-living-someone-elses-life",
       "lane": "boom",
