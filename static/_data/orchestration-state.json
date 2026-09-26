@@ -1,14 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-25T19:40:20.503Z",
+  "generated_at": "2026-09-26T00:24:23.519Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 18,
+      "draft_count": 17,
       "draft_slugs": [
         "approval-vs-authenticity",
-        "committing-to-a-path-before-you-know-where-it-leads-2",
         "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
         "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
         "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
@@ -26,7 +25,7 @@
         "when-being-productive-is-actually-running-from-something-2",
         "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things"
       ],
-      "runway_days": 9,
+      "runway_days": 8,
       "runway_status": "warning",
       "warning_threshold": 30,
       "cadence_posts_per_day": 2,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "committing-to-a-path-before-you-know-where-it-leads-2",
+        "title": "Committing to a Path Before You Know Where It Leads",
+        "lane": "boom",
+        "date": "2026-09-26T00:24:23.497Z",
+        "url": "/blog/boom/posts/committing-to-a-path-before-you-know-where-it-leads-2",
+        "tags": [
+          "direction-purpose-drift"
+        ],
+        "cluster": "purpose-direction",
+        "content_type": null
+      },
       {
         "slug": "how-to-keep-small-promises-to-yourself",
         "title": "How to Keep Small Promises to Yourself",
@@ -263,21 +274,10 @@
         ],
         "cluster": "consciousness-technology",
         "content_type": null
-      },
-      {
-        "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices",
-        "title": "The Hidden Cost of Unregulated Emotions: How They Hijack Your Choices",
-        "lane": "boom",
-        "date": "2026-09-20T23:54:43.873Z",
-        "url": "/blog/boom/posts/the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices",
-        "tags": [
-          "nervous-system-dysregulation"
-        ],
-        "cluster": "emotional-regulation",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-09-26",
       "2026-09-25",
       "2026-09-24",
       "2026-09-23",
@@ -415,11 +415,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-09-26",
+    "next_estimated_window": "2026-09-27",
     "published_counts": {
-      "boom": 342,
+      "boom": 343,
       "matt": 18,
-      "total": 360
+      "total": 361
     }
   },
   "syndication": {
@@ -29006,6 +29006,7 @@
       }
     },
     "post_to_cluster": {
+      "committing-to-a-path-before-you-know-where-it-leads-2": "purpose-direction",
       "how-to-keep-small-promises-to-yourself": "authentic-self-expression",
       "the-overstimulation-trap-why-busy-input-makes-your-output-disappear": "nervous-system-creativity",
       "discipline-vs-dopamine-management": "dopamine-attention",
@@ -29361,7 +29362,7 @@
       "authentic-self-expression": 36,
       "creator-automation": 6,
       "spiritual-productivity": 19,
-      "purpose-direction": 10,
+      "purpose-direction": 11,
       "building-life-that-fits": 8,
       "emotional-regulation": 7,
       "art-buying-online": 17,
@@ -30829,11 +30830,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-25T19:40:20.503Z",
-    "next_estimated_window": "2026-09-26",
-    "queue_runway_days": 9,
+    "as_of": "2026-09-26T00:24:23.519Z",
+    "next_estimated_window": "2026-09-27",
+    "queue_runway_days": 8,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-09-26",
       "2026-09-25",
       "2026-09-24",
       "2026-09-23",
@@ -30979,6 +30981,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "committing-to-a-path-before-you-know-where-it-leads-2",
+        "lane": "boom",
+        "date": "2026-09-26T00:24:23.497Z"
+      },
+      {
         "slug": "how-to-keep-small-promises-to-yourself",
         "lane": "boom",
         "date": "2026-09-25T19:37:19.496Z"
@@ -31022,17 +31029,12 @@
         "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-2",
         "lane": "boom",
         "date": "2026-09-23T19:19:34.459Z"
-      },
-      {
-        "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
-        "lane": "boom",
-        "date": "2026-09-23T17:50:02.775Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-25T19:40:20.488Z",
-    "source_event": "retry",
+    "last_export_at": "2026-09-26T00:24:23.504Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 15,
     "schema_version": "1.0",
     "stale_after_minutes": 60
