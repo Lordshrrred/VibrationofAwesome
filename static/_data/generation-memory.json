@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-26T17:02:31.290Z",
+  "lastUpdated": "2026-09-26T18:47:53.587Z",
   "recentHooks": [
     {
       "slug": "committing-to-a-path-before-you-know-where-it-leads-3",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-2",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-26T18:47:53.587Z"
+    },
+    {
+      "slug": "what-our-technology-reveals-about-our-consciousness-2",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-26T18:46:49.687Z"
+    },
+    {
+      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-2",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
       "density": "medium-dense",
@@ -1138,24 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-09-24T05:56:58.211Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-09-24T05:56:40.400Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-2",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-09-24T05:55:43.344Z"
     }
   ],
   "recentInstagramArchetypes": [
