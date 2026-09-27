@@ -2326,6 +2326,9 @@ function renderDeploymentHealth(health) {
   const generated = health.generatedAt
     ? new Date(health.generatedAt).toLocaleString("en-US", { month:"short", day:"numeric", hour:"numeric", minute:"2-digit" })
     : "~";
+  // Refreshed every 12h by syndication-health.yml; older than 2 days means that job stopped.
+  const checkAgeMs = health.generatedAt ? Date.now() - new Date(health.generatedAt).getTime() : Infinity;
+  const checkStale = !(checkAgeMs < 2 * 86400000);
 
   card.innerHTML = `
     <div class="site-card-title">Deployment Health</div>
@@ -2347,8 +2350,12 @@ function renderDeploymentHealth(health) {
     </div>
     <div class="site-stat-row">
       <span class="site-stat-label">Checked</span>
-      <span class="site-stat-value" style="font-size:0.78rem">${generated}</span>
-    </div>`;
+      <span class="site-stat-value" style="font-size:0.78rem">${generated}${checkStale ? ` <span class="stat-badge gold">Old check</span>` : ""}</span>
+    </div>
+    ${main.freshness ? `<div class="site-stat-row">
+      <span class="site-stat-label">Why</span>
+      <span class="site-stat-value" style="font-size:0.72rem;color:var(--text-muted)">${esc(String(main.freshness).slice(0, 120))}</span>
+    </div>` : ""}`;
 }
 
 // ── SEO Intelligence ─────────────────────────────────────────────────────────
@@ -2758,13 +2765,20 @@ function getOrInitReview(reviewMap, recId, rec) {
 
 // ── Fetch + render ────────────────────────────────────────────────────────────
 async function loadEscRecommendations() {
+  // Load both copies and use the newest. The committed local file is only a
+  // fallback; ESC publishes fresh exports to the feeder, so reading local
+  // first (and stopping there) used to pin the panel to an expired export.
   let data = null, source = null, anyNetworkError = false;
-  for (const [url, label] of [[ESC_LOCAL_URL, "local"], [ESC_REMOTE_URL, "feeder"]]) {
+  const loaded = await Promise.all([[ESC_LOCAL_URL, "local"], [ESC_REMOTE_URL, "feeder"]].map(async ([url, label]) => {
     try {
-      const r = await fetch(url);
-      if (r.ok) { data = await r.json(); source = label; break; }
+      const r = await fetch(url, { cache: "no-store" });
+      if (r.ok) return { data: await r.json(), label };
     } catch (_) { anyNetworkError = true; }
-  }
+    return null;
+  }));
+  const stamp = d => { const t = new Date(d?.generatedAt || 0).getTime(); return isNaN(t) ? 0 : t; };
+  const best = loaded.filter(Boolean).sort((a, b) => stamp(b.data) - stamp(a.data))[0];
+  if (best) { data = best.data; source = best.label; }
   renderEscPanel(data, source, anyNetworkError);
 }
 

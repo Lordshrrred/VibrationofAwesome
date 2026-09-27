@@ -1,5 +1,16 @@
 {
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 45,
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && node scripts/orient.js 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
@@ -7,7 +18,7 @@
           {
             "type": "command",
             "statusMessage": "Checking staged PDFs for privacy...",
-            "command": "cmd=$(jq -r '.tool_input.command'); if echo \"$cmd\" | grep -qE '^git commit'; then REPO=/Users/matt/Repos/VibrationofAwesome; pdfs=$(git -C \"$REPO\" diff --cached --name-only 2>/dev/null | grep -i '\\.pdf$' || true); if [ -n \"$pdfs\" ]; then full_paths=$(echo \"$pdfs\" | while IFS= read -r f; do echo \"$REPO/$f\"; done); bash \"$REPO/scripts/scrub-pdf-metadata.sh\" $full_paths && echo \"$pdfs\" | while IFS= read -r f; do git -C \"$REPO\" add \"$f\" 2>/dev/null; done; fi; fi"
+            "command": "cmd=$(jq -r '.tool_input.command'); if echo \"$cmd\" | grep -qE '^git commit'; then REPO=\"${CLAUDE_PROJECT_DIR:-/Users/matt/Repos/VibrationofAwesome}\"; pdfs=$(git -C \"$REPO\" diff --cached --name-only 2>/dev/null | grep -i '\\.pdf$' || true); if [ -n \"$pdfs\" ]; then full_paths=$(echo \"$pdfs\" | while IFS= read -r f; do echo \"$REPO/$f\"; done); bash \"$REPO/scripts/scrub-pdf-metadata.sh\" $full_paths && echo \"$pdfs\" | while IFS= read -r f; do git -C \"$REPO\" add \"$f\" 2>/dev/null; done; fi; fi"
           }
         ]
       }

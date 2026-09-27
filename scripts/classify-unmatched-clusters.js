@@ -6,7 +6,7 @@
  * heuristic (scripts/lib/internal-linking.js) couldn't place ~ titles too generic
  * for regex matching (e.g. "Why You Feel Stuck in Life"). Single batched Haiku
  * call, ~cents total. This is a lighter classification task, not full generation,
- * so it stays on Haiku per this repo's model-tier policy (see CLAUDE.md).
+ * so it stays on Haiku per this repo's model-tier policy (see docs/modules/models-and-cost.md).
  *
  * Usage:
  *   node scripts/classify-unmatched-clusters.js              # dry run, prints proposed assignments
@@ -126,7 +126,7 @@ async function main() {
 
 // CLI-only guard: without this, merely `import`-ing this module (from a test,
 // another script, or a syntax/load check) executes a real run with real side
-// effects. See CLAUDE.md ~ every script with a top-level main() needs this.
+// effects. See AGENTS.md (CLI guard) ~ every script with a top-level main() needs this.
 const __voaIsCli = process.argv[1] && import.meta.url === __voaPathToFileURL(process.argv[1]).href;
 if (__voaIsCli) {
   main().catch((err) => {

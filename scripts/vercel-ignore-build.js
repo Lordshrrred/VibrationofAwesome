@@ -165,6 +165,7 @@ const OPS_ONLY = [
   ".github/",
   ".claude/",
   ".cache/",
+  "AGENTS.md",
   "CLAUDE.md",
   "README.md",
   "HANDOFF.md",

@@ -1,6 +1,6 @@
 {
   "framework": "hugo",
-  "buildCommand": "hugo --minify",
+  "buildCommand": "node scripts/write-build-info.js && hugo --minify",
   "outputDirectory": "public",
   "ignoreCommand": "node scripts/vercel-ignore-build.js",
   "cleanUrls": true,
