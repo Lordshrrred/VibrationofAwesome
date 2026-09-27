@@ -11,6 +11,10 @@ const ROOT = path.resolve(__dirname, "..");
 const TARGETS = [
   "README.md",
   "CLAUDE.md",
+  "AGENTS.md",
+  "docs/modules",
+  "docs/handoff.md",
+  "docs/decisions.md",
   ".github",
   "layouts",
   "netlify",

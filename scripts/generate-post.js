@@ -935,7 +935,7 @@ async function main() {
   try {
     const message = await client.messages.create({
       // Opus 4.8. Do NOT move this to Opus 5 without re-reading the note in
-      // CLAUDE.md ~ Opus 5 costs the same per token but thinks by default, and
+      // docs/modules/models-and-cost.md ~ Opus 5 costs the same per token but thinks by default, and
       // those thinking tokens bill as output, which measured at roughly double
       // the cost per post. Staying here is a deliberate cost decision.
       model: "claude-opus-4-8",
@@ -1234,7 +1234,7 @@ async function main() {
 
 // CLI-only guard: without this, merely `import`-ing this module (from a test,
 // another script, or a syntax/load check) executes a real run with real side
-// effects. See CLAUDE.md ~ every script with a top-level main() needs this.
+// effects. See AGENTS.md (CLI guard) ~ every script with a top-level main() needs this.
 const __voaIsCli = process.argv[1] && import.meta.url === __voaPathToFileURL(process.argv[1]).href;
 if (__voaIsCli) {
   main();
