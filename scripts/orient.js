@@ -73,11 +73,16 @@ function main() {
     if (health.drip) say(`Queue: ${health.drip.status}, ${health.drip.remaining} drafts remaining, ${health.drip.published} published`);
   }
 
-  let draftFiles = 0;
+  let draftSlugs = [];
   try {
-    draftFiles = fs.readdirSync(path.join(ROOT, "static/blog/boom/drafts")).filter((f) => f.endsWith(".html")).length;
+    draftSlugs = fs.readdirSync(path.join(ROOT, "static/blog/boom/drafts")).filter((f) => f.endsWith(".html")).map((f) => f.slice(0, -5));
   } catch {}
-  say(`Draft files on disk: ${draftFiles} (replenish triggers at <=14, targets 22)`);
+  const queued = new Set((readJson("static/_data/drip-queue.json")?.queue || []).map((i) => i.slug));
+  say(`Drafts: ${queued.size} queued, ${draftSlugs.length} files on disk (replenish triggers at <=14, targets 22)`);
+  const orphans = draftSlugs.filter((s) => !queued.has(s));
+  const missing = [...queued].filter((s) => !draftSlugs.includes(s));
+  if (orphans.length) say(`  ORPHAN draft files (not in drip-queue.json, will never publish): ${orphans.slice(0, 5).join(", ")}`);
+  if (missing.length) say(`  QUEUED without a draft file (will fail to publish): ${missing.slice(0, 5).join(", ")}`);
 
   const last = readJson("static/_data/drip-last-published.json");
   const lastItem = last?.items?.[last.items.length - 1];

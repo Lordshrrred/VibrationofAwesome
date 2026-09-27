@@ -18,6 +18,8 @@ Schedule (`.github/workflows/drip-posts.yml`, balanced cluster rotation, approve
 
 **Drafts are deleted on publish.** Both the normal path and the collision-guard path (file already in `posts/`) delete the source draft. `static/blog/boom/drafts/` is also blocked in `robots.txt`. Do not reintroduce a copy-without-delete (see `docs/decisions.md`, 2026-07-19).
 
+Only slugs in `drip-queue.json` ever publish. A draft HTML file without a queue entry is an orphan and will sit forever; `npm run orient` flags orphans and queue entries missing their file. When generating drafts outside `queue:replenish` (tests, experiments), either add a queue entry with `niche`/`cluster`/`pillar`/`keyword` or delete the file.
+
 `drip-publish.js` warns when fewer than 14 drafts remain (`QUEUE_WARN_THRESHOLD`). An empty queue stops publishing; the dashboard shows it as empty, not "active".
 
 Manual triggers (from a machine with `gh`): `gh workflow run drip-posts.yml --ref main` for a drip test run, `gh workflow run hugo.yml --ref main` to force a deploy. Other maintenance: `npm run sitemap`, `npm run pinterest-token`.

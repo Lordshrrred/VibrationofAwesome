@@ -4,6 +4,12 @@ Layer 4 memory: why things are the way they are. Read on demand when a rule in `
 
 For anything not here, Matt's own commit messages are the detailed record: `git log --invert-grep --grep='\[automated\]'` (cloud clones are shallow; `npm run orient` deepens them).
 
+## 2026-09-27 ~ Loose ends from the memory audit fixed
+- Three finished drafts from the Aug/Sep Opus cost tests sat in `drafts/` with no queue entry. They passed a quality check (FAQ schema, related links, whisper widget, hero images, no fabricated first-person claims), so they were queued (flag `recovered_orphan: true`) into thin clusters rather than deleted. Orient now flags orphans.
+- The ESC orchestration export claimed 2 posts/day and warned at 30 drafts; corrected to 4/day and 14.
+- The dashboards read the committed local ESC recommendations file first and stopped, so a fresher feeder export was never shown. They now load both and use the newest.
+- `deployment-health.json` was only ever committed from a local run (CI uploaded it as an artifact, and had no Vercel CLI). Replaced with a deploy-time commit stamp plus a 12-hourly committed refresh.
+
 ## 2026-09-27 ~ Agent memory restructured into layers
 `CLAUDE.md` had grown to ~68KB (~17k tokens loaded every session), mixing rules, dated incident write-ups, and stale operational numbers. Split into: `AGENTS.md` (shared core for Claude and Codex, imported by `CLAUDE.md`), `docs/modules/*` (read by topic), this log, generated live state (`npm run orient`, run automatically by a Claude SessionStart hook), and a small overwrite-in-place `docs/handoff.md`. Stale facts corrected in the move: queue warn threshold (14, not 30), posting rate (4/day), captions model (Haiku, not Sonnet), Dev.to 2 routing (backlinks-only slots), Facebook via Publer (page-token expiry no longer blocks VOA posts). Removed leftover Opus 5 experiment files `.sysprompt.mjs` / `.eff-tmp.mjs`.
 

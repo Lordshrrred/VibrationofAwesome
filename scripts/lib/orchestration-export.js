@@ -31,8 +31,8 @@ const REPO_ROOT = join(__dirname, "..", "..");
 const DATA_DIR  = join(REPO_ROOT, "static", "_data");
 
 const SCHEMA_VERSION  = "1.0";
-const CADENCE_PER_DAY = 2;   // drip runs: 9am + 6pm ET
-const QUEUE_WARN_AT   = 30;  // CLAUDE.md threshold
+const CADENCE_PER_DAY = 4;   // drip-posts.yml: 13:00, 16:00, 22:00, 01:00 UTC (docs/modules/publishing-queue.md)
+const QUEUE_WARN_AT   = 14;  // matches QUEUE_WARN_THRESHOLD in drip-publish.js and the replenish trigger
 
 // ── Safe JSON reader ──────────────────────────────────────────────────────────
 
@@ -85,7 +85,7 @@ function compilePublishing() {
       runway_status:       runwayStatus,
       warning_threshold:   QUEUE_WARN_AT,
       cadence_posts_per_day: CADENCE_PER_DAY,
-      schedule_windows:    ["09:00 ET", "18:00 ET"],
+      schedule_windows:    ["13:00 UTC", "16:00 UTC", "22:00 UTC", "01:00 UTC"],
     },
     recent_publishes:      allPublished.slice(0, 20).map(p => ({
       slug:   p.slug,

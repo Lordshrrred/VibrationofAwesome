@@ -3,17 +3,19 @@
 Overwrite this file at the end of each session; don't append history (that goes in `docs/decisions.md` or commit messages). Keep it under ~60 lines. Last updated: 2026-09-27.
 
 ## In progress
-- Nothing mid-flight. Publishing runs automatically (4/day, balanced clusters); health was 16/16 at last check.
+- Branch `claude/nifty-gates-1phvkp` holds the agent-memory restructure plus the loose-end fixes below. It must be merged to `main` before new sessions (and the SessionStart hook) see any of it.
 
-## Open problems / loose ends (found in the 2026-09-27 memory audit, not yet acted on)
-- `static/_data/deployment-health.json` was last generated 2026-07-11. Either whatever wrote it stopped running or it's retired. Find the writer and decide.
-- `static/_data/latest-voa-recommendations.json` (the ESC → VOA recommendation bridge) expired 2026-06-03 and hasn't been refreshed. Check whether ESC still exports to VOA.
-- Queue count mismatch: `syndication-health.json` said 19 drafts remaining while `static/blog/boom/drafts/` held 21 HTML files. Possibly orphan draft files not in `drip-queue.json`; worth a quick reconciliation.
-- `scripts/lib/orchestration-export.js` (feeds EarthStar Command) still hardcodes `CADENCE_PER_DAY = 2` and `QUEUE_WARN_AT = 30`; reality is 4/day and 14. Fixing it changes what ESC sees, so confirm with Matt first.
-- `README.md` still documents the 8-niche system alongside the 11 clusters; the relationship is now explained in `docs/modules/content-generation.md`.
+## Verify after the merge deploys
+- `https://vibrationofawesome.com/build-info.json` should exist and show the deployed commit. If it's missing, check that Vercel's "Automatically expose System Environment Variables" is on and the build log shows `build-info: <sha>`.
+- The next `syndication-health.yml` run (every 12h) should commit a fresh `static/_data/deployment-health.json`; the dashboard's Deployment Health card should read Current with a "Why" line.
+- ESC recommendations panel: the dashboard now shows whichever export is newest (local vs `lordshrrred.github.io/VOA_Feeder`). If it still shows "Expired Jun 3", EarthStar Command itself has stopped exporting to VOA_Feeder, and the fix belongs in the ESC repo.
+- Three recovered drafts (`recovered_orphan: true` in `drip-queue.json`) will publish through normal rotation.
+
+## Open problems
+- None known in this repo.
 
 ## Next actions
-- None assigned. Ask Matt what to work on, or pick up a loose end above.
+- None assigned. Ask Matt what to work on.
 
 ## Decided in chat, not yet in code
 - (none)
