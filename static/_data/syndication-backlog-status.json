@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T21:26:15.412Z",
+  "generatedAt": "2026-09-27T00:50:13.288Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,71 +14,71 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 328,
-    "backlogPosts": 31,
-    "backlinkCapableMissingUnits": 31,
-    "backlinkVerificationGaps": 553,
+    "totalTrackedPosts": 329,
+    "backlogPosts": 28,
+    "backlinkCapableMissingUnits": 28,
+    "backlinkVerificationGaps": 560,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 17,
-    "freshPostsAwaitingBacklinks": 1,
-    "freshMissingBacklinkUnits": 1,
-    "completedBacklinkUnitsInWindow": 223,
-    "completedBacklinkUnitsPerDay": 15.9,
+    "distributionIncompleteUnits": 25,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
+    "completedBacklinkUnitsInWindow": 230,
+    "completedBacklinkUnitsPerDay": 16.4,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": 0.1,
-    "estimatedCatchUpDays": null,
+    "netBacklogChangePerDay": -0.4,
+    "estimatedCatchUpDays": 70,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 31
+    "largestDelayMissingUnits": 28
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 328,
-        "complete": 297,
-        "missing": 31,
-        "successRate": 90.5,
-        "averagePerDay": 6.5,
+        "eligiblePosts": 329,
+        "complete": 301,
+        "missing": 28,
+        "successRate": 91.5,
+        "averagePerDay": 6.8,
         "confirmed": 182,
-        "verificationGaps": 115,
+        "verificationGaps": 119,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 328,
-        "complete": 328,
+        "eligiblePosts": 329,
+        "complete": 329,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.1,
+        "averagePerDay": 3.2,
         "confirmed": 182,
-        "verificationGaps": 146,
+        "verificationGaps": 147,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 328,
-        "complete": 328,
+        "eligiblePosts": 329,
+        "complete": 329,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.1,
+        "averagePerDay": 3.2,
         "confirmed": 182,
-        "verificationGaps": 146,
+        "verificationGaps": 147,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 239,
-        "complete": 239,
+        "eligiblePosts": 240,
+        "complete": 240,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 103,
+        "verificationGaps": 104,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 239,
-        "complete": 239,
+        "eligiblePosts": 240,
+        "complete": 240,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 239,
+        "confirmed": 240,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,26 +112,26 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 270,
-        "complete": 270,
-        "missing": 0,
-        "successRate": 100,
+        "eligiblePosts": 271,
+        "complete": 267,
+        "missing": 4,
+        "successRate": 98.5,
         "averagePerDay": 5.4,
         "confirmed": 142,
-        "verificationGaps": 128,
-        "mainBlocker": ""
+        "verificationGaps": 125,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 270,
-        "complete": 266,
-        "missing": 4,
-        "successRate": 98.5,
+        "eligiblePosts": 271,
+        "complete": 263,
+        "missing": 8,
+        "successRate": 97,
         "averagePerDay": 5.1,
         "confirmed": 142,
-        "verificationGaps": 124,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "verificationGaps": 121,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -186,11 +186,19 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 30
+      "count": 28
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
+    },
+    {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 4
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -198,33 +206,6 @@
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-2",
-      "lane": "boom",
-      "title": "The Hidden Cost of Unregulated Emotions: How They Hijack Your Choices",
-      "date": "2026-09-26",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "i-feel-like-i-am-living-someone-elses-life",
-      "lane": "boom",
-      "title": "I Feel Like I Am Living Someone Else's Life",
-      "date": "2026-08-30",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "my-mind-feels-noisy-all-the-time",
-      "lane": "boom",
-      "title": "My Mind Feels Noisy All the Time",
-      "date": "2026-08-31",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "i-keep-spinning-my-wheels-in-life",
       "lane": "boom",
