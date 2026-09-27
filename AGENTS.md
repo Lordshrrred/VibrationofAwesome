@@ -6,6 +6,8 @@ This repository is the canonical code/content repository for VibrationOfAwesome.
 
 ## Start of every session (fresh sessions are normal, not a loss)
 
+**First, get the latest code.** Matt works on this repo from more than one machine, so every session starts with `git pull --ff-only`. Claude Code does this automatically (SessionStart hook → `.claude/hooks/git-sync.sh`; look for its `git sync:` line). Every other agent runs it by hand before reading or editing anything. If the pull is refused because of uncommitted changes, local commits, or a diverged branch, stop and tell Matt. Never stash, reset, or discard work to make a pull succeed. Before ending, commit and push finished work so the next machine picks it up.
+
 1. Run `npm run orient` (Claude runs it automatically on start). It prints live queue/health state, the current `docs/handoff.md`, and recent human decisions from git. About one screen of text.
 2. If `BMO_CONTEXT.md` exists (Matt's Mac only; it is private and never committed), read it for voice, brand, and collaboration context. If it is missing (cloud, Codex elsewhere), continue with this file and say so when brand/voice judgment matters. Never invent its contents.
 3. Read only the module doc(s) for the task (index below). Don't read all of them.

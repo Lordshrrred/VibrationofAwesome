@@ -5,8 +5,8 @@
         "hooks": [
           {
             "type": "command",
-            "timeout": 45,
-            "command": "cd \"$CLAUDE_PROJECT_DIR\" && node scripts/orient.js 2>/dev/null || true"
+            "timeout": 75,
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/git-sync.sh\"; cd \"$CLAUDE_PROJECT_DIR\" && node scripts/orient.js 2>/dev/null || true"
           }
         ]
       }
