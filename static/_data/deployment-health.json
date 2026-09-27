@@ -1,36 +1,42 @@
 {
-  "generatedAt": "2026-07-11T19:29:12.313Z",
+  "generatedAt": "2026-09-27T05:17:58.694Z",
   "repo": {
     "branch": "main",
-    "head": "8b698545a5193faab30af517bc70cf0caeda70c2",
-    "headShort": "8b69854",
-    "originMain": "8b698545a5193faab30af517bc70cf0caeda70c2",
-    "originMainShort": "8b69854"
+    "head": "60fe6bce75046631c3fb54a643e79b2b0622f78c",
+    "headShort": "60fe6bc",
+    "originMain": "60fe6bce75046631c3fb54a643e79b2b0622f78c",
+    "originMainShort": "60fe6bc"
   },
   "deployments": {
     "main": {
       "target": "vibrationofawesome.com",
       "status": "ready",
-      "commit": "8b69854",
+      "commit": "a1c53b1f2a7a57c8e1afa85fbf1aa998c000abf3",
+      "builtAt": "2026-09-27T04:35:49.361Z",
       "url": "https://vibrationofawesome.com",
-      "checkedAt": "2026-07-11T19:29:10.917Z",
-      "commitShort": "8b69854",
-      "currentWithOrigin": true
+      "checkedAt": "2026-09-27T05:17:58.490Z",
+      "source": "build-info",
+      "commitShort": "a1c53b1",
+      "currentWithOrigin": true,
+      "freshness": "Only non-deploying changes since this deploy."
     },
     "mailer": {
       "target": "vibrationofawesome-mailer.vercel.app",
-      "status": "ready",
-      "commit": "8b69854",
+      "status": "unknown",
+      "commit": null,
       "url": "https://vibrationofawesome-mailer.vercel.app",
-      "checkedAt": "2026-07-11T19:29:12.313Z",
-      "commitShort": "8b69854",
-      "currentWithOrigin": true
+      "checkedAt": "2026-09-27T05:17:58.690Z",
+      "note": "Vercel inspect unavailable in this environment.",
+      "commitShort": null,
+      "currentWithOrigin": false,
+      "freshness": "Deployed commit unknown."
     }
   },
   "policy": {
     "ignoredBuilds": true,
-    "mainDeploysOn": "public site, content, Hugo/layout, API, package, and Vercel config changes",
+    "mainDeploysOn": "public site, content indexes, Hugo/layout, API, package, and Vercel config changes",
     "mailerDeploysOn": "API, package, and Vercel config changes",
-    "operationsSkipped": "reports, workflow-only updates, data/ops, docs, and syndication_log.txt"
+    "operationsSkipped": "reports, workflow-only updates, data/ops, docs, syndication_log.txt, empty merge commits, and volatile dashboard/status JSON",
+    "dashboardFreshData": "operator dashboards fetch latest volatile JSON from origin/main raw GitHub with deployed JSON fallback"
   }
 }
