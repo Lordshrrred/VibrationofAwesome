@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T23:20:56.967Z",
+  "generatedAt": "2026-09-28T05:47:05.953Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,71 +14,71 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 332,
-    "backlogPosts": 29,
-    "backlinkCapableMissingUnits": 29,
-    "backlinkVerificationGaps": 571,
+    "totalTrackedPosts": 333,
+    "backlogPosts": 26,
+    "backlinkCapableMissingUnits": 26,
+    "backlinkVerificationGaps": 578,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 18,
-    "freshPostsAwaitingBacklinks": 1,
-    "freshMissingBacklinkUnits": 1,
-    "completedBacklinkUnitsInWindow": 235,
-    "completedBacklinkUnitsPerDay": 16.8,
+    "distributionIncompleteUnits": 25,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
+    "completedBacklinkUnitsInWindow": 242,
+    "completedBacklinkUnitsPerDay": 17.3,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": -0.8,
-    "estimatedCatchUpDays": 36.3,
+    "netBacklogChangePerDay": -1.3,
+    "estimatedCatchUpDays": 20,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 29
+    "largestDelayMissingUnits": 26
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 332,
-        "complete": 303,
-        "missing": 29,
-        "successRate": 91.3,
-        "averagePerDay": 6.9,
+        "eligiblePosts": 333,
+        "complete": 307,
+        "missing": 26,
+        "successRate": 92.2,
+        "averagePerDay": 7.2,
         "confirmed": 182,
-        "verificationGaps": 121,
+        "verificationGaps": 125,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 332,
-        "complete": 332,
+        "eligiblePosts": 333,
+        "complete": 333,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.3,
+        "averagePerDay": 3.4,
         "confirmed": 182,
-        "verificationGaps": 150,
+        "verificationGaps": 151,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 332,
-        "complete": 332,
+        "eligiblePosts": 333,
+        "complete": 333,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.3,
+        "averagePerDay": 3.4,
         "confirmed": 182,
-        "verificationGaps": 150,
+        "verificationGaps": 151,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 241,
-        "complete": 241,
+        "eligiblePosts": 242,
+        "complete": 242,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.9,
         "confirmed": 136,
-        "verificationGaps": 105,
+        "verificationGaps": 106,
         "mainBlocker": ""
       },
       {
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 241,
-        "complete": 241,
+        "eligiblePosts": 242,
+        "complete": 242,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 241,
+        "confirmed": 242,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,26 +112,26 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 272,
-        "complete": 272,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 5.6,
+        "eligiblePosts": 273,
+        "complete": 269,
+        "missing": 4,
+        "successRate": 98.5,
+        "averagePerDay": 5.5,
         "confirmed": 142,
-        "verificationGaps": 130,
-        "mainBlocker": ""
+        "verificationGaps": 127,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 272,
-        "complete": 267,
-        "missing": 5,
-        "successRate": 98.2,
+        "eligiblePosts": 273,
+        "complete": 265,
+        "missing": 8,
+        "successRate": 97.1,
         "averagePerDay": 5.2,
         "confirmed": 142,
-        "verificationGaps": 125,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "verificationGaps": 123,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -186,49 +186,26 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 28
+      "count": 26
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
     },
     {
-      "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
+      "reason": "bluesky_voa: env vars not set",
       "count": 4
     },
     {
-      "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-      "count": 1
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
+    },
+    {
+      "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
+      "count": 4
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-2",
-      "lane": "boom",
-      "title": "The Real Cost of Ignoring AI as an Independent Creator",
-      "date": "2026-09-27",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "i-keep-spinning-my-wheels-in-life",
-      "lane": "boom",
-      "title": "I Keep Spinning My Wheels in Life",
-      "date": "2026-08-31",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-calm-an-overstimulated-body",
-      "lane": "boom",
-      "title": "How to Calm an Overstimulated Body",
-      "date": "2026-09-01",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "i-keep-scrolling-at-night-even-when-i-am-tired",
       "lane": "boom",
