@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-28T06:27:08.096Z",
+  "lastUpdated": "2026-09-28T20:07:57.029Z",
   "recentHooks": [
     {
       "slug": "committing-to-a-path-before-you-know-where-it-leads-3",
@@ -889,6 +889,42 @@
   "recentThreadsFormats": [
     {
       "slug": "i-keep-spinning-my-wheels-in-life",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-28T20:07:57.029Z"
+    },
+    {
+      "slug": "how-to-calm-an-overstimulated-body",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-09-28T20:07:45.767Z"
+    },
+    {
+      "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-2",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-28T20:07:34.247Z"
+    },
+    {
+      "slug": "approval-vs-authenticity",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-09-28T20:05:56.559Z"
+    },
+    {
+      "slug": "i-keep-spinning-my-wheels-in-life",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
@@ -1120,42 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-09-26T05:58:45.450Z"
-    },
-    {
-      "slug": "committing-to-a-path-before-you-know-where-it-leads-2",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-09-26T05:58:32.508Z"
-    },
-    {
-      "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-09-26T05:57:32.179Z"
-    },
-    {
-      "slug": "committing-to-a-path-before-you-know-where-it-leads-2",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-26T00:25:25.772Z"
-    },
-    {
-      "slug": "i-cannot-hear-my-intuition-anymore",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-09-25T19:40:19.811Z"
     }
   ],
   "recentInstagramArchetypes": [
