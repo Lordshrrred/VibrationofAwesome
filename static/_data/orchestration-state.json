@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-27T19:23:54.756Z",
+  "generated_at": "2026-09-28T00:20:55.940Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 18,
+      "draft_count": 17,
       "draft_slugs": [
         "approval-vs-authenticity",
         "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-3",
@@ -20,7 +20,6 @@
         "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have",
         "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-3",
         "the-difference-between-processing-emotion-and-just-pushing-it-down-3",
-        "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric",
         "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight",
         "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-2",
         "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-3",
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric",
+        "title": "The Focus Rebuild: Recovering Attention Capacity Without the Detox Rhetoric",
+        "lane": "boom",
+        "date": "2026-09-28T00:20:55.924Z",
+        "url": "/blog/boom/posts/the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric",
+        "tags": [
+          "dopamine-addiction-numbing"
+        ],
+        "cluster": "dopamine-attention",
+        "content_type": null
+      },
       {
         "slug": "when-being-productive-is-actually-running-from-something-2",
         "title": "When Being Productive Is Actually Running From Something",
@@ -265,21 +276,10 @@
         ],
         "cluster": "purpose-direction",
         "content_type": null
-      },
-      {
-        "slug": "how-to-choose-discomfort-on-purpose",
-        "title": "How to Choose Discomfort on Purpose",
-        "lane": "boom",
-        "date": "2026-09-23T00:05:08.790Z",
-        "url": "/blog/boom/posts/how-to-choose-discomfort-on-purpose",
-        "tags": [
-          "self-betrayal-avoidance"
-        ],
-        "cluster": "authentic-self-expression",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-09-28",
       "2026-09-27",
       "2026-09-26",
       "2026-09-25",
@@ -419,11 +419,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-09-28",
+    "next_estimated_window": "2026-09-29",
     "published_counts": {
-      "boom": 350,
+      "boom": 351,
       "matt": 18,
-      "total": 368
+      "total": 369
     }
   },
   "syndication": {
@@ -29616,6 +29616,7 @@
       }
     },
     "post_to_cluster": {
+      "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric": "dopamine-attention",
       "when-being-productive-is-actually-running-from-something-2": "spiritual-productivity",
       "the-real-cost-of-ignoring-ai-as-an-independent-creator-2": "ai-creator-tools",
       "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-2": "art-buying-online",
@@ -29975,7 +29976,7 @@
     "saturation": {
       "ai-creator-tools": 185,
       "nervous-system-creativity": 35,
-      "dopamine-attention": 18,
+      "dopamine-attention": 19,
       "authentic-self-expression": 36,
       "creator-automation": 7,
       "spiritual-productivity": 20,
@@ -31447,11 +31448,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-27T19:23:54.756Z",
-    "next_estimated_window": "2026-09-28",
+    "as_of": "2026-09-28T00:20:55.940Z",
+    "next_estimated_window": "2026-09-29",
     "queue_runway_days": 4,
     "queue_runway_status": "healthy",
     "occupied_dates": [
+      "2026-09-28",
       "2026-09-27",
       "2026-09-26",
       "2026-09-25",
@@ -31599,6 +31601,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric",
+        "lane": "boom",
+        "date": "2026-09-28T00:20:55.924Z"
+      },
+      {
         "slug": "when-being-productive-is-actually-running-from-something-2",
         "lane": "boom",
         "date": "2026-09-27T19:21:32.537Z"
@@ -31642,17 +31649,12 @@
         "slug": "how-to-keep-small-promises-to-yourself",
         "lane": "boom",
         "date": "2026-09-25T19:37:19.496Z"
-      },
-      {
-        "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
-        "lane": "boom",
-        "date": "2026-09-25T17:52:36.606Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-27T19:23:54.745Z",
-    "source_event": "retry",
+    "last_export_at": "2026-09-28T00:20:55.929Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
