@@ -1,13 +1,12 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-28T06:27:09.011Z",
+  "generated_at": "2026-09-28T20:04:37.378Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
-        "approval-vs-authenticity",
         "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-3",
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-3",
         "committing-to-a-path-before-you-know-where-it-leads-3",
@@ -24,7 +23,7 @@
         "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-3",
         "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "approval-vs-authenticity",
+        "title": "Approval vs Authenticity",
+        "lane": "boom",
+        "date": "2026-09-28T20:04:37.355Z",
+        "url": "/blog/boom/posts/approval-vs-authenticity",
+        "tags": [
+          "misalignment-wrong-life"
+        ],
+        "cluster": "authentic-self-expression",
+        "content_type": null
+      },
       {
         "slug": "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have",
         "title": "Rest as Active Creative Work: The Counterintuitive Edge Regulated People Have",
@@ -263,18 +274,6 @@
         ],
         "cluster": "emotional-regulation",
         "content_type": null
-      },
-      {
-        "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
-        "title": "Seeing the Gap: How to Notice When Your Life Doesn't Fit Anymore",
-        "lane": "boom",
-        "date": "2026-09-23T17:50:02.775Z",
-        "url": "/blog/boom/posts/seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-2",
-        "tags": [
-          "misalignment-wrong-life"
-        ],
-        "cluster": "building-life-that-fits",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -420,9 +419,9 @@
     ],
     "next_estimated_window": "2026-09-29",
     "published_counts": {
-      "boom": 352,
+      "boom": 353,
       "matt": 18,
-      "total": 370
+      "total": 371
     }
   },
   "syndication": {
@@ -29775,6 +29774,7 @@
       }
     },
     "post_to_cluster": {
+      "approval-vs-authenticity": "authentic-self-expression",
       "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have": "nervous-system-creativity",
       "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric": "dopamine-attention",
       "when-being-productive-is-actually-running-from-something-2": "spiritual-productivity",
@@ -30137,7 +30137,7 @@
       "ai-creator-tools": 185,
       "nervous-system-creativity": 36,
       "dopamine-attention": 19,
-      "authentic-self-expression": 36,
+      "authentic-self-expression": 37,
       "creator-automation": 7,
       "spiritual-productivity": 20,
       "purpose-direction": 11,
@@ -31608,9 +31608,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-28T06:27:09.011Z",
+    "as_of": "2026-09-28T20:04:37.378Z",
     "next_estimated_window": "2026-09-29",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-09-28",
@@ -31761,6 +31761,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "approval-vs-authenticity",
+        "lane": "boom",
+        "date": "2026-09-28T20:04:37.355Z"
+      },
+      {
         "slug": "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have",
         "lane": "boom",
         "date": "2026-09-28T06:23:50.184Z"
@@ -31804,18 +31809,13 @@
         "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things",
         "lane": "boom",
         "date": "2026-09-26T05:56:18.985Z"
-      },
-      {
-        "slug": "committing-to-a-path-before-you-know-where-it-leads-2",
-        "lane": "boom",
-        "date": "2026-09-26T00:24:23.497Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-28T06:27:08.999Z",
-    "source_event": "retry",
-    "export_duration_ms": 12,
+    "last_export_at": "2026-09-28T20:04:37.362Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 16,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
