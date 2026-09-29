@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-29T16:43:45.192Z",
+  "lastUpdated": "2026-09-29T18:38:05.186Z",
   "recentHooks": [
     {
       "slug": "purpose-isnt-found-its-built-through-small-commitments-2",
@@ -889,6 +889,51 @@
   "recentThreadsFormats": [
     {
       "slug": "i-keep-choosing-comfort-and-regret-it-later",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-09-29T18:38:05.186Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-3",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-09-29T18:37:47.612Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-3",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-09-29T18:37:35.534Z"
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-09-29T18:36:11.195Z"
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-09-29T18:33:26.355Z"
+    },
+    {
+      "slug": "i-keep-choosing-comfort-and-regret-it-later",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
@@ -1111,51 +1156,6 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-09-27T17:41:13.381Z"
-    },
-    {
-      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-2",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-09-27T17:41:02.789Z"
-    },
-    {
-      "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-2",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-27T17:39:23.615Z"
-    },
-    {
-      "slug": "i-feel-like-i-am-living-someone-elses-life",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-09-27T06:25:00.432Z"
-    },
-    {
-      "slug": "my-mind-feels-noisy-all-the-time",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-09-27T06:24:45.774Z"
-    },
-    {
-      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-2",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-09-27T06:24:32.595Z"
     }
   ],
   "recentInstagramArchetypes": [
