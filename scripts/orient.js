@@ -99,6 +99,22 @@ function main() {
     say("(missing ~ create it at the end of your session)");
   }
 
+  const lastHandoff = git(["log", "-1", "--format=%H", "--", "docs/handoff.md"]);
+  if (lastHandoff) {
+    const since = git(["log", `${lastHandoff}..HEAD`, "--invert-grep", "--grep=\\[automated\\]", "--no-merges", "--format=  %h %ad %s", "--date=short"]);
+    if (since) {
+      say();
+      say("--- Human commits since docs/handoff.md was last updated (not reflected there yet) ---");
+      say(since);
+    }
+  }
+
+  say();
+  say("--- Machine readiness ---");
+  const envOk = fs.existsSync(path.join(ROOT, ".env"));
+  say(`.env: ${envOk ? "present" : "MISSING (see docs/new-machine.md; cloud sessions have none, that is normal)"}`);
+  say(`node_modules: ${fs.existsSync(path.join(ROOT, "node_modules")) ? "present" : "MISSING (run npm ci)"}`);
+
   say();
   say("--- Recent human decisions (non-[automated] commits) ---");
   say(recentHumanCommits(12, allowFetch));

@@ -1,24 +1,29 @@
-# Handoff (current work state)
+# Handoff (current state)
 
-Overwrite this file at the end of each session; don't append history (that goes in `docs/decisions.md` or commit messages). Keep it under ~60 lines. Last updated: 2026-09-29.
+Status board, not a log. Overwrite blocks in place and delete what's resolved; git and `docs/decisions.md` keep the past. Keep it under ~60 lines. Rules live in `AGENTS.md` and `docs/modules/`. New machine? `docs/new-machine.md`.
 
-## In progress
-- Nothing mid-flight. 2026-09-29 local session verified the live state below; no code changed.
+Last updated: 2026-09-29 (Dev.to accounts found dead; agent handoff hardened).
 
-## Verified 2026-09-29 (from Matt's Mac)
-- `https://vibrationofawesome.com/build-info.json` is live and tracks the latest deployed commit.
-- `static/_data/deployment-health.json` is being written by the health run and reads current with origin.
-- Drip publish, Feeder callback, and Publer Delivery Monitor runs are succeeding; queue active, 20 drafts left.
-- Three recovered orphan drafts (`recovered_orphan: true` in `drip-queue.json`) are still queued and will publish through normal rotation.
+## At a glance
+- **Most recent work:** local verification session. Site, deploys, drip queue, Feeder callback and Publer monitor all healthy. Health is 14/16; the only failures are the two Dev.to checks. Handoff/orient/new-machine setup was upgraded (orient now shows human commits since this file was updated and machine readiness).
+- **Waiting on Matt (decision):** go-ahead to remove Dev.to (`devto`, `devto2`) from syndication. Evidence: `dev.to/awesomesaucyvibe`, `dev.to/earthstarrising` and all their article pages return 404 publicly while the API still lists 93 and 245 articles; both API keys return 401. Looks like suspension/shadow-ban. Canonical points to VOA, so link value was small.
+- **Waiting on Matt (manual):** copy `BMO_CONTEXT.md` by hand to any new machine (it is local-only). `.env` comes from iCloud Dev Secrets.
+- **If nothing is assigned:** ask Matt which item to take.
 
-## Open problems
-- **Dev.to auth is broken (health 14/16).** Both `DEVTO_API_KEY` and `DEVTO2_API_KEY` in `.env` return 401 from `https://dev.to/api/users/me`, so the keys were revoked or expired (both passed ~2026-09-27). Needs Matt to generate new keys in each Dev.to account (Settings > Extensions). Then wire them: update `.env`, `npm run push:vercel-env`, `gh secret set DEVTO_API_KEY` and `gh secret set DEVTO2_API_KEY`, then `npm run check:syndication -- --write`.
-- **ESC recommendations panel is stale.** `static/_data/latest-voa-recommendations.json` expired 2026-06-03, and `lordshrrred.github.io/VOA_Feeder/latest-voa-recommendations.json` returns 404 (the file is not in the VOA_Feeder repo at all). EarthStar Command is not exporting to VOA_Feeder; the fix belongs in the ESC repo.
-- GitHub issue 26 is an informational notice only.
+## Modules
 
-## Next actions
-- Matt: create the two Dev.to keys (or tell me to drive it in Chrome with approval), then wire them per above.
-- Matt: decide whether to fix the ESC export in the ESC repo.
+### Syndication: `docs/modules/syndication.md`
+- **Status:** working paths are Feeder, Bluesky, Mastodon, Pinterest, Threads, Instagram, Tumblr, WordPress. Dev.to is dead (above).
+- **Next (once Matt approves):** remove `devto`/`devto2` from the syndication config, `scripts/check-syndication-config.js`, the `backlinks-only` / `art-devto2-only` profiles and `docs/modules/publishing-queue.md`; update `shared-config/syndication-policy-v1.md`; reassign the freed backlink slots (Blogger, WordPress, Tumblr; Matt picks); rerun `npm run check:syndication -- --write`. Then sweep failed GitHub Actions runs from the last 7 days.
+
+### Site and dashboard: `docs/modules/site-and-hosting.md`
+- **Open:** the dashboard ESC recommendations panel is stale. `static/_data/latest-voa-recommendations.json` expired 2026-06-03 and `lordshrrred.github.io/VOA_Feeder/latest-voa-recommendations.json` is 404 (EarthStar Command isn't exporting it; fix belongs in the ESC repo). It is cosmetic. Suggested: hide the panel until ESC exports again.
+
+### Publishing queue: `docs/modules/publishing-queue.md`
+- **Status:** active, ~20 drafts. Three recovered orphan drafts (`recovered_orphan: true`) are still queued and publish through normal rotation.
+
+## Verified 2026-09-29
+`build-info.json` live and current; `deployment-health.json` written and current with origin; GitHub issue 26 is informational only.
 
 ## Decided in chat, not yet in code
-- (none)
+- (none; Dev.to removal is recommended, not yet approved)

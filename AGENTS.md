@@ -20,6 +20,8 @@ This repository is the canonical code/content repository for VibrationOfAwesome.
 - Add a dated entry to `docs/decisions.md` only for a real decision or incident whose *why* would otherwise be lost.
 - Durable brand/collaboration decisions go in `BMO_CONTEXT.md` (local only). Temporary run status never goes into any doc.
 
+"Get up to speed and continue" means: run step 1, read the module doc for the active handoff item, name the active item and its next step, then continue. New machine? See `docs/new-machine.md`.
+
 ## Module index (read on demand)
 
 | Working on | Read |
