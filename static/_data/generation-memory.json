@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-28T21:28:13.816Z",
+  "lastUpdated": "2026-09-29T01:35:10.120Z",
   "recentHooks": [
     {
       "slug": "committing-to-a-path-before-you-know-where-it-leads-3",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "approval-vs-authenticity",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-09-29T01:35:10.120Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-3",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-09-29T01:33:23.287Z"
+    },
+    {
+      "slug": "approval-vs-authenticity",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
       "density": "dense",
@@ -1138,24 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-09-26T18:46:49.687Z"
-    },
-    {
-      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-2",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-09-26T17:02:31.290Z"
-    },
-    {
-      "slug": "why-do-i-avoid-the-thing-that-would-help-me",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-09-26T05:59:12.994Z"
     }
   ],
   "recentInstagramArchetypes": [
