@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T20:43:19.726Z",
+  "generatedAt": "2026-09-29T02:15:31.131Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,83 +14,83 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 335,
-    "backlogPosts": 27,
-    "backlinkCapableMissingUnits": 27,
-    "backlinkVerificationGaps": 585,
+    "totalTrackedPosts": 337,
+    "backlogPosts": 25,
+    "backlinkCapableMissingUnits": 25,
+    "backlinkVerificationGaps": 595,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 19,
+    "distributionIncompleteUnits": 25,
     "freshPostsAwaitingBacklinks": 1,
     "freshMissingBacklinkUnits": 1,
-    "completedBacklinkUnitsInWindow": 246,
-    "completedBacklinkUnitsPerDay": 17.6,
+    "completedBacklinkUnitsInWindow": 256,
+    "completedBacklinkUnitsPerDay": 18.3,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": -1.6,
-    "estimatedCatchUpDays": 16.9,
+    "netBacklogChangePerDay": -2.3,
+    "estimatedCatchUpDays": 10.9,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 27
+    "largestDelayMissingUnits": 24
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 335,
-        "complete": 308,
-        "missing": 27,
-        "successRate": 91.9,
-        "averagePerDay": 7.3,
+        "eligiblePosts": 337,
+        "complete": 313,
+        "missing": 24,
+        "successRate": 92.9,
+        "averagePerDay": 7.6,
         "confirmed": 182,
-        "verificationGaps": 126,
+        "verificationGaps": 131,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 335,
-        "complete": 335,
+        "eligiblePosts": 337,
+        "complete": 337,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.4,
+        "averagePerDay": 3.6,
         "confirmed": 182,
-        "verificationGaps": 153,
+        "verificationGaps": 155,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 335,
-        "complete": 335,
+        "eligiblePosts": 337,
+        "complete": 337,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.4,
+        "averagePerDay": 3.6,
         "confirmed": 182,
-        "verificationGaps": 153,
+        "verificationGaps": 155,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 243,
+        "eligiblePosts": 244,
         "complete": 243,
-        "missing": 0,
-        "successRate": 100,
+        "missing": 1,
+        "successRate": 99.6,
         "averagePerDay": 1.9,
         "confirmed": 136,
         "verificationGaps": 107,
-        "mainBlocker": ""
+        "mainBlocker": "Dev.to: unauthorized"
       },
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 92,
-        "complete": 92,
+        "eligiblePosts": 93,
+        "complete": 93,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
         "confirmed": 46,
-        "verificationGaps": 46,
+        "verificationGaps": 47,
         "mainBlocker": ""
       }
     ],
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 243,
-        "complete": 243,
+        "eligiblePosts": 244,
+        "complete": 244,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 243,
+        "confirmed": 244,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,26 +112,26 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 274,
-        "complete": 273,
-        "missing": 1,
-        "successRate": 99.6,
+        "eligiblePosts": 275,
+        "complete": 271,
+        "missing": 4,
+        "successRate": 98.5,
         "averagePerDay": 5.7,
         "confirmed": 142,
-        "verificationGaps": 131,
+        "verificationGaps": 129,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 274,
-        "complete": 269,
-        "missing": 5,
-        "successRate": 98.2,
+        "eligiblePosts": 275,
+        "complete": 267,
+        "missing": 8,
+        "successRate": 97.1,
         "averagePerDay": 5.4,
         "confirmed": 142,
-        "verificationGaps": 127,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "verificationGaps": 125,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -186,51 +186,37 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 26
+      "count": 24
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
     },
     {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 4
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
+    },
+    {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
       "count": 4
     },
     {
-      "reason": "bluesky_voa: env vars not set",
-      "count": 1
-    },
-    {
-      "reason": "mastodon_voa: env vars not set",
+      "reason": "devto: Dev.to: unauthorized",
       "count": 1
     }
   ],
   "prioritizedBacklog": [
     {
-      "slug": "approval-vs-authenticity",
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-3",
       "lane": "boom",
-      "title": "Approval vs Authenticity",
-      "date": "2026-09-28",
+      "title": "Seeing the Gap: How to Notice When Your Life Doesn't Fit Anymore",
+      "date": "2026-09-29",
       "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "i-keep-scrolling-at-night-even-when-i-am-tired",
-      "lane": "boom",
-      "title": "I Keep Scrolling At Night Even When I Am Tired",
-      "date": "2026-09-01",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "i-keep-choosing-comfort-and-regret-it-later",
-      "lane": "boom",
-      "title": "I Keep Choosing Comfort and Regret It Later",
-      "date": "2026-09-01",
-      "missing": [
-        "blogger"
+        "devto"
       ]
     },
     {
