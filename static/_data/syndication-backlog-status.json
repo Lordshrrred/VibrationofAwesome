@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T16:44:21.422Z",
+  "generatedAt": "2026-09-29T21:00:58.697Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,68 +14,68 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 338,
-    "backlogPosts": 26,
-    "backlinkCapableMissingUnits": 26,
-    "backlinkVerificationGaps": 598,
+    "totalTrackedPosts": 340,
+    "backlogPosts": 28,
+    "backlinkCapableMissingUnits": 29,
+    "backlinkVerificationGaps": 603,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 22,
-    "freshPostsAwaitingBacklinks": 2,
-    "freshMissingBacklinkUnits": 2,
-    "completedBacklinkUnitsInWindow": 259,
-    "completedBacklinkUnitsPerDay": 18.5,
+    "distributionIncompleteUnits": 25,
+    "freshPostsAwaitingBacklinks": 4,
+    "freshMissingBacklinkUnits": 5,
+    "completedBacklinkUnitsInWindow": 264,
+    "completedBacklinkUnitsPerDay": 18.9,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": -2.5,
-    "estimatedCatchUpDays": 10.4,
+    "netBacklogChangePerDay": -2.9,
+    "estimatedCatchUpDays": 10,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 24
+    "largestDelayMissingUnits": 25
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 338,
-        "complete": 314,
-        "missing": 24,
-        "successRate": 92.9,
-        "averagePerDay": 7.7,
+        "eligiblePosts": 340,
+        "complete": 315,
+        "missing": 25,
+        "successRate": 92.6,
+        "averagePerDay": 7.8,
         "confirmed": 182,
-        "verificationGaps": 132,
+        "verificationGaps": 133,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 338,
-        "complete": 338,
+        "eligiblePosts": 340,
+        "complete": 340,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.6,
+        "averagePerDay": 3.8,
         "confirmed": 182,
-        "verificationGaps": 156,
+        "verificationGaps": 158,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 338,
-        "complete": 338,
+        "eligiblePosts": 340,
+        "complete": 340,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.6,
+        "averagePerDay": 3.8,
         "confirmed": 182,
-        "verificationGaps": 156,
+        "verificationGaps": 158,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 244,
+        "eligiblePosts": 245,
         "complete": 243,
-        "missing": 1,
-        "successRate": 99.6,
+        "missing": 2,
+        "successRate": 99.2,
         "averagePerDay": 1.9,
         "confirmed": 136,
         "verificationGaps": 107,
@@ -84,10 +84,10 @@
       {
         "key": "devto2",
         "platform": "Dev.to 2",
-        "eligiblePosts": 94,
+        "eligiblePosts": 95,
         "complete": 93,
-        "missing": 1,
-        "successRate": 98.9,
+        "missing": 2,
+        "successRate": 97.9,
         "averagePerDay": 1.6,
         "confirmed": 46,
         "verificationGaps": 47,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 244,
-        "complete": 244,
+        "eligiblePosts": 245,
+        "complete": 245,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.6,
-        "confirmed": 244,
+        "averagePerDay": 1.7,
+        "confirmed": 245,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,10 +112,10 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 276,
+        "eligiblePosts": 278,
         "complete": 274,
-        "missing": 2,
-        "successRate": 99.3,
+        "missing": 4,
+        "successRate": 98.6,
         "averagePerDay": 5.9,
         "confirmed": 142,
         "verificationGaps": 132,
@@ -124,14 +124,14 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 276,
-        "complete": 269,
-        "missing": 7,
-        "successRate": 97.5,
+        "eligiblePosts": 278,
+        "complete": 270,
+        "missing": 8,
+        "successRate": 97.1,
         "averagePerDay": 5.6,
         "confirmed": 142,
-        "verificationGaps": 127,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "verificationGaps": 128,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -193,31 +193,46 @@
       "count": 13
     },
     {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 4
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
+    },
+    {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
       "count": 4
     },
     {
-      "reason": "bluesky_voa: env vars not set",
-      "count": 2
-    },
-    {
-      "reason": "mastodon_voa: env vars not set",
-      "count": 2
-    },
-    {
       "reason": "devto2: Dev.to: unauthorized",
-      "count": 1
+      "count": 2
     },
     {
       "reason": "devto: Dev.to: unauthorized",
-      "count": 1
-    },
-    {
-      "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-      "count": 1
+      "count": 2
     }
   ],
   "prioritizedBacklog": [
+    {
+      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-3",
+      "lane": "boom",
+      "title": "Building an Editorial System That Feels Like You, Not a Task Manager",
+      "date": "2026-09-29",
+      "missing": [
+        "devto2"
+      ]
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
+      "lane": "boom",
+      "title": "Machine Intelligence and the Question of Soul: What Changes for Us",
+      "date": "2026-09-29",
+      "missing": [
+        "devto",
+        "blogger"
+      ]
+    },
     {
       "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-3",
       "lane": "boom",
