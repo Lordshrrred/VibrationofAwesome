@@ -30,7 +30,7 @@ static/_data/blog-inspiration/
 # Generated at deploy time by scripts/write-build-info.js
 static/build-info.json
 
-# Secrets: .env files are symlinks to iCloud Dev Secrets and must never be committed
+# Secrets: .env files are private symlinks and must never be committed
 .env*
 !.env.example
 !.env*.example

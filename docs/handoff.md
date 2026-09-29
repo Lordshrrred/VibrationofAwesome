@@ -7,7 +7,7 @@ Last updated: 2026-09-29 (Dev.to accounts found dead; agent handoff hardened).
 ## At a glance
 - **Most recent work:** local verification session. Site, deploys, drip queue, Feeder callback and Publer monitor all healthy. Health is 14/16; the only failures are the two Dev.to checks. Handoff/orient/new-machine setup was upgraded (orient now shows human commits since this file was updated and machine readiness).
 - **Waiting on Matt (decision):** go-ahead to remove Dev.to (`devto`, `devto2`) from syndication. Evidence: `dev.to/awesomesaucyvibe`, `dev.to/earthstarrising` and all their article pages return 404 publicly while the API still lists 93 and 245 articles; both API keys return 401. Looks like suspension/shadow-ban. Canonical points to VOA, so link value was small.
-- **Waiting on Matt (manual):** copy `BMO_CONTEXT.md` by hand to any new machine (it is local-only). `.env` comes from iCloud Dev Secrets.
+- **Waiting on Matt (manual):** on a new machine, sign in to iCloud and recreate the `.env` and `BMO_CONTEXT.md` symlinks (both now live in the private iCloud folder; see `docs/new-machine.md`).
 - **If nothing is assigned:** ask Matt which item to take.
 
 ## Modules
