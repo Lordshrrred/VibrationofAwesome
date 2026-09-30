@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T21:00:58.697Z",
+  "generatedAt": "2026-09-30T01:29:40.821Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
@@ -14,68 +14,68 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 340,
-    "backlogPosts": 28,
-    "backlinkCapableMissingUnits": 29,
-    "backlinkVerificationGaps": 603,
+    "totalTrackedPosts": 341,
+    "backlogPosts": 27,
+    "backlinkCapableMissingUnits": 27,
+    "backlinkVerificationGaps": 609,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 25,
-    "freshPostsAwaitingBacklinks": 4,
+    "distributionIncompleteUnits": 31,
+    "freshPostsAwaitingBacklinks": 5,
     "freshMissingBacklinkUnits": 5,
-    "completedBacklinkUnitsInWindow": 264,
-    "completedBacklinkUnitsPerDay": 18.9,
+    "completedBacklinkUnitsInWindow": 270,
+    "completedBacklinkUnitsPerDay": 19.3,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 16,
-    "netBacklogChangePerDay": -2.9,
-    "estimatedCatchUpDays": 10,
+    "netBacklogChangePerDay": -3.3,
+    "estimatedCatchUpDays": 8.2,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 25
+    "largestDelayMissingUnits": 22
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 340,
-        "complete": 315,
-        "missing": 25,
-        "successRate": 92.6,
-        "averagePerDay": 7.8,
+        "eligiblePosts": 341,
+        "complete": 319,
+        "missing": 22,
+        "successRate": 93.5,
+        "averagePerDay": 8.1,
         "confirmed": 182,
-        "verificationGaps": 133,
+        "verificationGaps": 137,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 340,
-        "complete": 340,
+        "eligiblePosts": 341,
+        "complete": 341,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.8,
+        "averagePerDay": 3.9,
         "confirmed": 182,
-        "verificationGaps": 158,
+        "verificationGaps": 159,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 340,
-        "complete": 340,
+        "eligiblePosts": 341,
+        "complete": 341,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.8,
+        "averagePerDay": 3.9,
         "confirmed": 182,
-        "verificationGaps": 158,
+        "verificationGaps": 159,
         "mainBlocker": ""
       },
       {
         "key": "devto",
         "platform": "Dev.to",
-        "eligiblePosts": 245,
+        "eligiblePosts": 246,
         "complete": 243,
-        "missing": 2,
-        "successRate": 99.2,
+        "missing": 3,
+        "successRate": 98.8,
         "averagePerDay": 1.9,
         "confirmed": 136,
         "verificationGaps": 107,
@@ -98,12 +98,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 245,
-        "complete": 245,
+        "eligiblePosts": 246,
+        "complete": 246,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.7,
-        "confirmed": 245,
+        "averagePerDay": 1.8,
+        "confirmed": 246,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -112,25 +112,25 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 278,
-        "complete": 274,
-        "missing": 4,
-        "successRate": 98.6,
+        "eligiblePosts": 279,
+        "complete": 272,
+        "missing": 7,
+        "successRate": 97.5,
         "averagePerDay": 5.9,
         "confirmed": 142,
-        "verificationGaps": 132,
+        "verificationGaps": 130,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 278,
-        "complete": 270,
-        "missing": 8,
-        "successRate": 97.1,
+        "eligiblePosts": 279,
+        "complete": 268,
+        "missing": 11,
+        "successRate": 96.1,
         "averagePerDay": 5.6,
         "confirmed": 142,
-        "verificationGaps": 128,
+        "verificationGaps": 126,
         "mainBlocker": "env vars not set"
       },
       {
@@ -186,7 +186,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 24
+      "count": 22
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -194,22 +194,22 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 4
+      "count": 7
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 4
+      "count": 7
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
       "count": 4
     },
     {
-      "reason": "devto2: Dev.to: unauthorized",
-      "count": 2
+      "reason": "devto: Dev.to: unauthorized",
+      "count": 3
     },
     {
-      "reason": "devto: Dev.to: unauthorized",
+      "reason": "devto2: Dev.to: unauthorized",
       "count": 2
     }
   ],
@@ -229,8 +229,7 @@
       "title": "Machine Intelligence and the Question of Soul: What Changes for Us",
       "date": "2026-09-29",
       "missing": [
-        "devto",
-        "blogger"
+        "devto"
       ]
     },
     {
@@ -252,21 +251,12 @@
       ]
     },
     {
-      "slug": "simple-purpose-exercises-that-actually-help",
+      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-3",
       "lane": "boom",
-      "title": "Simple Purpose Exercises That Actually Help",
-      "date": "2026-09-02",
+      "title": "How One Piece of Art Can Actually Change the Feel of Your Entire Space",
+      "date": "2026-09-30",
       "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "what-it-means-to-outgrow-an-identity",
-      "lane": "boom",
-      "title": "What It Means to Outgrow an Identity",
-      "date": "2026-09-02",
-      "missing": [
-        "blogger"
+        "devto"
       ]
     },
     {
