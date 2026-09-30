@@ -1,13 +1,12 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-30T06:24:13.336Z",
+  "generated_at": "2026-09-30T18:20:35.565Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
-        "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-3",
         "committing-to-a-path-before-you-know-where-it-leads-3",
         "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
         "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
@@ -24,7 +23,7 @@
         "when-being-productive-is-actually-running-from-something-3",
         "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-3",
+        "title": "Building a Morning That Emerges From Who You Are, Not What You Should Do",
+        "lane": "boom",
+        "date": "2026-09-30T18:20:35.548Z",
+        "url": "/blog/boom/posts/building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-3",
+        "tags": [
+          "direction-purpose-drift"
+        ],
+        "cluster": "spiritual-productivity",
+        "content_type": null
+      },
       {
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-3",
         "title": "The Repetitive Tasks Worth Automating (And the Ones That Cost You Your Voice)",
@@ -263,18 +274,6 @@
         ],
         "cluster": "authentic-self-expression",
         "content_type": null
-      },
-      {
-        "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
-        "title": "The Overstimulation Trap: Why Busy Input Makes Your Output Disappear",
-        "lane": "boom",
-        "date": "2026-09-25T17:52:36.606Z",
-        "url": "/blog/boom/posts/the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
-        "tags": [
-          "nervous-system-dysregulation"
-        ],
-        "cluster": "nervous-system-creativity",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -422,9 +421,9 @@
     ],
     "next_estimated_window": "2026-10-01",
     "published_counts": {
-      "boom": 360,
+      "boom": 361,
       "matt": 18,
-      "total": 378
+      "total": 379
     }
   },
   "syndication": {
@@ -28677,6 +28676,7 @@
       }
     },
     "post_to_cluster": {
+      "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-3": "spiritual-productivity",
       "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-3": "ai-creator-tools",
       "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-3": "art-buying-online",
       "building-an-editorial-system-that-feels-like-you-not-a-task-manager-3": "creator-automation",
@@ -29049,7 +29049,7 @@
       "dopamine-attention": 19,
       "authentic-self-expression": 37,
       "creator-automation": 8,
-      "spiritual-productivity": 20,
+      "spiritual-productivity": 21,
       "purpose-direction": 12,
       "building-life-that-fits": 10,
       "emotional-regulation": 9,
@@ -30518,9 +30518,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-30T06:24:13.336Z",
+    "as_of": "2026-09-30T18:20:35.565Z",
     "next_estimated_window": "2026-10-01",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-09-30",
@@ -30673,6 +30673,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-3",
+        "lane": "boom",
+        "date": "2026-09-30T18:20:35.548Z"
+      },
+      {
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-3",
         "lane": "boom",
         "date": "2026-09-30T06:21:02.362Z"
@@ -30716,18 +30721,13 @@
         "slug": "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have",
         "lane": "boom",
         "date": "2026-09-28T06:23:50.184Z"
-      },
-      {
-        "slug": "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric",
-        "lane": "boom",
-        "date": "2026-09-28T00:20:55.924Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-30T06:24:13.321Z",
-    "source_event": "retry",
-    "export_duration_ms": 15,
+    "last_export_at": "2026-09-30T18:20:35.553Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 12,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
