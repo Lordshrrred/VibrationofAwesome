@@ -11,8 +11,8 @@ The repo is the memory. A new chat needs only the repo plus the three local-only
 ## Local-only things (never in git)
 | Thing | Where it lives | On a new machine |
 |---|---|---|
-| `.env` | symlink into Matt's private iCloud folder (real location is not written in this public repo) | Sign in to the same iCloud, then recreate the symlink at the repo root; Matt knows the folder, or run `ls -la .env` on his Mac. |
-| `BMO_CONTEXT.md` | symlink into the same private iCloud folder | Same as `.env`: recreate the symlink. If absent, agents continue from `AGENTS.md` and say so; they never invent its contents. |
+| `.env` | symlink into Matt's private synced folder (real location is not written in this public repo) | Restore the same private synced folder, then recreate the symlink at the repo root; Matt knows the folder, or run `ls -la .env` on his Mac. |
+| `BMO_CONTEXT.md` | symlink into the same private synced folder | Same as `.env`: recreate the symlink. If absent, agents continue from `AGENTS.md` and say so; they never invent its contents. |
 | CLI logins | `gh` and `vercel` keychains | `gh auth login`, `vercel login`. Needed for `gh secret set` and `npm run push:vercel-env`. |
 
 ## Check it worked
