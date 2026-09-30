@@ -63,7 +63,6 @@ export function publerAccountOwnership(platform) {
  * domain authority. Do NOT apply social filtering to these platforms.
  */
 export const BACKLINK_TIER = [
-  "devto",
   "tumblr_voa",
   "blogger",
   "wordpress_earthstar",
@@ -523,7 +522,6 @@ const DAILY_QUOTAS = {
   bluesky_voa:         5,
   pinterest:          10,
   tumblr_voa:         10,
-  devto:               1,
   blogger:             1,
   wordpress_earthstar: 1,
 };

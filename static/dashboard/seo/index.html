@@ -1247,7 +1247,6 @@ const PLATFORMS = [
   { key: "pinterest",          label: "Pins",   name: "Pinterest",                 group: "reach"  },
   { key: "instagram",          label: "Insta",  name: "Instagram (VOA)",           group: "reach"  },
   // ── Backlink Tier (always fires) ──────────────────────────────────────────
-  { key: "devto",              label: "Dev",    name: "Dev.to",                    group: "backlink" },
   { key: "tumblr_voa",         label: "Tum-V",  name: "Tumblr (VOA)",              group: "backlink" },
   { key: "blogger",            label: "Blog",   name: "Blogger",                   group: "backlink" },
   { key: "wordpress_earthstar",label: "WP",     name: "WordPress (EarthStarRising)",group:"backlink" },
@@ -1885,9 +1884,9 @@ function renderSyndFeed(entries, resultsData) {
     if (!logBySlug[e.postSlug]) logBySlug[e.postSlug] = e;
   }
 
-  const BACKLINK_KEYS = ["devto", "devto2", "tumblr_voa", "blogger", "wordpress_earthstar"];
+  const BACKLINK_KEYS = ["tumblr_voa", "blogger", "wordpress_earthstar"];
   const SOCIAL_KEYS   = ["bluesky_voa", "mastodon_voa", "facebook_voa", "threads", "instagram"];
-  const BL_LABELS     = { devto:"Dev.to", devto2:"Dev.to", tumblr_voa:"Tumblr", blogger:"Blogger", wordpress_earthstar:"WordPress" };
+  const BL_LABELS     = { tumblr_voa:"Tumblr", blogger:"Blogger", wordpress_earthstar:"WordPress" };
   const SOC_LABELS    = { bluesky_voa:"Bluesky", mastodon_voa:"Mastodon", facebook_voa:"Facebook", threads:"Threads", instagram:"Instagram" };
 
   // Merge: results is authoritative, fill gaps from log platforms
@@ -1913,16 +1912,14 @@ function renderSyndFeed(entries, resultsData) {
   }
 
   function isArtExtra(syn) {
-    // Art-extra posts use devto2 but NOT devto/social
+    // Historical marker: older art-extra posts were recorded under the retired devto2 key
     return !!syn["devto2"] && !syn["bluesky_voa"] && !syn["facebook_voa"];
   }
 
   function blStatus(syn, artExtra) {
-    // For devto: count devto OR devto2 as success
-    const devtoOk = syn["devto"]?.status === "success" || syn["devto2"]?.status === "success";
     const others  = ["tumblr_voa","blogger","wordpress_earthstar"].map(k => syn[k]?.status);
-    const allOk   = devtoOk && others.every(s => s === "success");
-    const anyMiss = !devtoOk || others.some(s => s !== "success" && s !== "skipped");
+    const allOk   = others.every(s => s === "success");
+    const anyMiss = others.some(s => s !== "success" && s !== "skipped");
     return { allOk, anyMiss };
   }
 
@@ -1980,13 +1977,7 @@ function renderSyndFeed(entries, resultsData) {
     const dateRaw = logEntry?.timestamp || resEntry?.date || "";
     const date    = dateRaw ? new Date(dateRaw).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}) : "?";
 
-    // Backlink pills ~ devto OR devto2 counts as one DEV pill
-    const devStatus  = syn["devto"]?.status === "success" ? "success"
-                     : syn["devto2"]?.status === "success" ? "success"
-                     : (syn["devto"] || syn["devto2"])?.status || (artExtra ? "skipped" : "missing");
-    const devUrl     = syn["devto"]?.url || syn["devto2"]?.url;
     const blPillsHtml = [
-      pill("Dev.to",    devStatus,                                                        devUrl,                          "Dev.to"),
       pill("Tumblr",    syn["tumblr_voa"]?.status || "missing",                           syn["tumblr_voa"]?.url,          "Tumblr"),
       pill("Blogger",   syn["blogger"]?.status || "missing",                              syn["blogger"]?.url,             "Blogger"),
       pill("WordPress", syn["wordpress_earthstar"]?.status || "missing",                  syn["wordpress_earthstar"]?.url, "WordPress EarthStar"),
@@ -3407,7 +3398,7 @@ async function renderTrigger(allPosts) {
 }
 
 // ── Caption Modal ─────────────────────────────────────────────────────────────
-const CAPTION_ORDER = ["facebook","bluesky","mastodon","pinterest","devto","tumblr","instagram","threads"];
+const CAPTION_ORDER = ["facebook","bluesky","mastodon","pinterest","tumblr","instagram","threads"];
 function showCaptions(captionsJson) {
   const captions = JSON.parse(captionsJson);
   document.getElementById("caption-body").innerHTML = CAPTION_ORDER.map(key => {

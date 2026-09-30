@@ -4,7 +4,7 @@
  *
  * Platforms: Bluesky · Mastodon · Facebook (VOA + EarthStar)
  *            Pinterest · Instagram · Threads (via Publer)
- *            Dev.to · Tumblr
+ *            Tumblr
  *            Blogger · WordPress (EarthStarRising direct API)
  *
  * CLI:  node scripts/syndicate.js --lane [matt|boom] --slug <post-slug> [--keyword "search term"] [--blogger-only]
@@ -15,7 +15,7 @@
   SYNDICATION CONTENT RULE
 
   When syndicating to ANY platform ~ Blogger,
-  Bluesky, Mastodon, Pinterest, Dev.to,
+  Bluesky, Mastodon, Pinterest,
   Tumblr or any future platform ~ we NEVER copy
   and paste the original article.
 
@@ -456,7 +456,7 @@ function truncatePreservingUrl(text, maxLength = 500) {
 }
 
 function ensureSourceLinks(captions, postUrl) {
-  const linkedPlatforms = ["facebook", "bluesky", "mastodon", "pinterest", "devto", "tumblr"];
+  const linkedPlatforms = ["facebook", "bluesky", "mastodon", "pinterest", "tumblr"];
   const next = { ...captions };
   for (const platform of linkedPlatforms) {
     const caption = next[platform] || "";
@@ -815,62 +815,6 @@ async function postToFacebookPage(pageId, pageToken, caption, postUrl) {
   const data = await resp.json();
   if (!resp.ok || data.error) throw new Error(data.error?.message || `Facebook HTTP ${resp.status}`);
   return { postId: data.id, postUrl: `https://www.facebook.com/${data.id}` };
-}
-
-/** Publish a teaser article on Dev.to */
-export async function postToDevTo(postTitle, caption, postUrl, tags, account = "primary") {
-  const accountKey = account === "secondary" ? "DEVTO2_API_KEY" : "DEVTO_API_KEY";
-  const key = process.env[accountKey];
-  if (!key) throw new Error(`${accountKey} not set`);
-
-  const safeTags = (tags || [])
-    .map(t => t.replace(/[^a-z0-9]/gi, "").toLowerCase().slice(0, 30))
-    .filter(Boolean)
-    .slice(0, 4);
-  if (safeTags.length === 0) safeTags.push("ai", "creators");
-
-  const cleanCaption = removeRawUrlText(caption, postUrl);
-  const bodyMarkdown = [
-    cleanCaption,
-    "",
-    `---`,
-    `*Originally published at [vibrationofawesome.com](${postUrl})*`,
-  ].join("\n");
-
-  const resp = await fetch("https://dev.to/api/articles", {
-    method:  "POST",
-    headers: { "Content-Type": "application/json", "api-key": key },
-    body:    JSON.stringify({
-      article: {
-        title:         postTitle,
-        body_markdown: bodyMarkdown,
-        published:     true,
-        canonical_url: postUrl,
-        tags:          safeTags,
-      },
-    }),
-  });
-  const data = await resp.json();
-  if (!resp.ok) {
-    const errMsg = data.error || JSON.stringify(data.errors) || String(resp.status);
-    // "Canonical url has already been taken" means the post is already live on dev.to
-    // from a previous run whose commit was lost. Treat as success so it never retries.
-    if (/canonical url has already been taken/i.test(errMsg)) {
-      console.log(`  [devto] Post already exists on dev.to (canonical URL taken) ~ marking as success`);
-      // Try to find the existing article URL by searching dev.to
-      const searchResp = await fetch("https://dev.to/api/articles/me/published?per_page=100", {
-        headers: { "api-key": key },
-      }).catch(() => null);
-      if (searchResp?.ok) {
-        const articles = await searchResp.json().catch(() => []);
-        const match = articles.find(a => a.canonical_url === postUrl || a.url?.includes(postUrl));
-        if (match) return { postId: String(match.id), postUrl: match.url };
-      }
-      return { postId: "already-exists", postUrl: null };
-    }
-    throw new Error(`Dev.to: ${errMsg}`);
-  }
-  return { postId: String(data.id), postUrl: data.url };
 }
 
 /** Post to Tumblr using OAuth 1.0a (legacy /post endpoint with form body) */
@@ -1370,7 +1314,7 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   // ── 1b. Load existing syndication results for per-platform deduplication ──
   // attempt() uses this to skip platforms that already succeeded for this slug.
-  // Prevents Dev.to canonical URL duplicates, Tumblr reposts, etc.
+  // Prevents Tumblr reposts, etc.
   // Override with options.force = true to re-run all platforms regardless.
   let existingEntryForSlug = null;
   let existingSyndicationForSlug = {};
@@ -1434,7 +1378,7 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   // ── 5. Apply syndication policy (moved before image generation) ────────────
   //
-  // Backlink tier (devto, tumblr, blogger, wordpress) always runs ~ no filtering.
+  // Backlink tier (tumblr, blogger, wordpress) always runs ~ no filtering.
   // Social platforms are routed by content type unless the caller explicitly
   // sets options.platforms (user choice wins) or options.allSocial (full blast).
   //
@@ -1575,7 +1519,7 @@ export async function syndicatePost(lane, slug, options = {}) {
     if (options.platforms && !options.platforms.includes(platform)) return;
 
     // Deduplication: skip if this platform already has a success for this slug.
-    // Prevents Dev.to canonical-URL errors, Tumblr reposts, double FB posts, etc.
+    // Prevents Tumblr reposts, double FB posts, etc.
     // Pass options.force = true (or --force CLI flag) to bypass.
     if (!options.force) {
       const prev = existingSyndicationForSlug[platform];
@@ -1648,7 +1592,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   }
   console.log("║");
   console.log("║  Backlink tier (always active, not policy-filtered):");
-  console.log("║    devto · tumblr_voa · blogger · wordpress_earthstar");
+  console.log("║    tumblr_voa · blogger · wordpress_earthstar");
   if (suppressedForLog.length) {
     console.log("║");
     console.log("║  Suppressed this run:");
@@ -1814,19 +1758,6 @@ export async function syndicatePost(lane, slug, options = {}) {
 
   // ── Backlink tier (always on, policy does not suppress these) ─────────────
 
-  // Dev.to ~ canonical URL + DoFollow, high-DA tech platform
-  await attempt("devto", () =>
-    postToDevTo(post.title, captions.devto, postUrl, post.tags, "primary"),
-    "primary");
-
-  // Dev.to account 2 ~ only fires when caller explicitly requests it via options.platforms.
-  // Normal drip posts use account 1 only; campaign/art-extra slots pass --platforms devto2.
-  if (options.platforms && options.platforms.includes("devto2")) {
-    await attempt("devto2", () =>
-      postToDevTo(post.title, captions.devto, postUrl, post.tags, "secondary"),
-      "secondary");
-  }
-
   // VOA Tumblr ~ primary Tumblr backlink destination
   if (hasTumblrConfig("VOA")) {
     await attempt("tumblr_voa", () =>
@@ -1927,9 +1858,6 @@ if (isCli) {
     const PLATFORM_ALIASES = {
       fbv:  "facebook_voa",
       fb:   "facebook_voa",
-      dev:  "devto",
-      dev2: "devto2",
-      devto2: "devto2",
       wp:   "wordpress_earthstar",
       wordpress: "wordpress_earthstar",
       bluesky: "bluesky_voa",

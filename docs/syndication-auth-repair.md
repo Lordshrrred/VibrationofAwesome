@@ -14,7 +14,7 @@ Dashboard errors containing `invalid_grant` now show the reconnect warning. Heal
 
 # Syndication Auth Repair
 
-Current readiness is 12/14. The working paths are Feeder, Bluesky VOA, Mastodon VOA, Pinterest VOA, Threads VOA, Instagram VOA, Dev.to, Tumblr VOA, and WordPress EarthStar. The remaining blockers are Facebook VOA direct posting and Blogger.
+Current readiness is 12/14. The working paths are Feeder, Bluesky VOA, Mastodon VOA, Pinterest VOA, Threads VOA, Instagram VOA, Tumblr VOA, and WordPress EarthStar. The remaining blockers are Facebook VOA direct posting and Blogger.
 
 ## Self-Healing Scope
 

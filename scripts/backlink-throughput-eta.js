@@ -98,7 +98,7 @@ function buildPayload(now = new Date()) {
     platformTable: status.platformTable,
     definitions: {
       scheduledRunProxy: "Backlink backfill runs every two hours, so 24h/12 is used for average scheduled-run estimates.",
-      meaningfulBacklinkDebt: "Only Dev.to/Dev.to2, Tumblr, Blogger, and WordPress missing success records count as SEO backlink debt.",
+      meaningfulBacklinkDebt: "Only Tumblr, Blogger, and WordPress missing success records count as SEO backlink debt.",
       excluded: "Pinterest, Instagram, social-only distribution, feeder canonical pages, and verification-only gaps are excluded from meaningful backlink debt.",
     },
   };

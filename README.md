@@ -197,8 +197,6 @@ node scripts/seo-research.js --all-niches
 ANTHROPIC_API_KEY      → Claude API for post generation and captions
 VOA_FEEDER_TRIGGER_TOKEN → GitHub PAT to fire VOA_Feeder workflow
 PUBLER_API_KEY         → Publer for Instagram / Threads / Pinterest
-DEVTO_API_KEY          → Dev.to backlink posting
-DEVTO2_API_KEY         → second Dev.to account for art-buyer extra slots only
 TUMBLR_*               → Tumblr OAuth 1.0a credentials
 BLOGGER_REFRESH_TOKEN  → Blogger OAuth2 refresh token
 WORDPRESS_OAUTH2_TOKEN → WordPress.com direct API token

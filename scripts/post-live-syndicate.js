@@ -120,11 +120,11 @@ function syndicate(item) {
   const args = ["scripts/syndicate.js", "--lane", "boom", "--slug", item.slug];
   if (item.keyword) args.push("--keyword", item.keyword);
   if (["art-devto2-only", "backlinks-only"].includes(item.syndication_profile)) {
-    // Backlink-only slots: full backlink tier (no social, no feeder) — devto2 + Blogger + WP + Tumblr
-    args.push("--platforms", "devto2,blogger,wordpress_earthstar,tumblr_voa");
+    // Backlink-only slots: full backlink tier (no social, no feeder) — Blogger + WP + Tumblr
+    args.push("--platforms", "blogger,wordpress_earthstar,tumblr_voa");
   } else if (item.syndication_profile === "campaign-seo") {
-    // SEO-only post: full backlink tier — devto2 + Blogger + WP + Tumblr + Pinterest
-    args.push("--platforms", "devto2,blogger,wordpress_earthstar,tumblr_voa,pinterest");
+    // SEO-only post: full backlink tier — Blogger + WP + Tumblr + Pinterest
+    args.push("--platforms", "blogger,wordpress_earthstar,tumblr_voa,pinterest");
   }
   const result = spawnSync("node", args, { stdio: "inherit", cwd: ROOT });
   if (result.error) throw result.error;

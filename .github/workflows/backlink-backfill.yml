@@ -57,8 +57,6 @@ jobs:
           BLOGGER_CLIENT_SECRET:       ${{ secrets.BLOGGER_CLIENT_SECRET }}
           BLOGGER_REFRESH_TOKEN:       ${{ secrets.BLOGGER_REFRESH_TOKEN }}
           BLOGGER_BLOG_ID:             ${{ secrets.BLOGGER_BLOG_ID }}
-          DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
-          DEVTO2_API_KEY:              ${{ secrets.DEVTO2_API_KEY }}
           VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
           VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
           VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}

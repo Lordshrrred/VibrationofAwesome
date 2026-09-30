@@ -32,7 +32,7 @@ Every Vercel build runs `scripts/write-build-info.js` first (`vercel.json` `buil
 
 ## Environment variables
 
-Copy `.env.example` to `.env` (full list there). Main keys: `ANTHROPIC_API_KEY`, `PEXELS_API_KEY`, `IDEOGRAM_API_KEY`, `VERCEL_TOKEN`, platform OAuth credentials, `DASHBOARD_PASSWORD`, `DEVTO_API_KEY`, `DEVTO2_API_KEY`.
+Copy `.env.example` to `.env` (full list there). Main keys: `ANTHROPIC_API_KEY`, `PEXELS_API_KEY`, `IDEOGRAM_API_KEY`, `VERCEL_TOKEN`, platform OAuth credentials, `DASHBOARD_PASSWORD`.
 
 - Vercel env: `npm run push:vercel-env` (pushes all `.env` vars), or `POST https://api.vercel.com/v10/projects/prj_guDrrflKSY3FwVbmFMNyQRZyTwI9/env` with `Bearer $VERCEL_TOKEN` (PATCH `/env/{id}` on 409).
 - GitHub Actions secrets: `gh secret set KEY --body "value"` from Matt's Mac. (Cloud sessions have no `gh` and no `.env`; say what needs setting instead of guessing.)

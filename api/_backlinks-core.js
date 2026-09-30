@@ -5,9 +5,7 @@ const FEEDER_SUFFIXES = ["-signal", "-shift", "-insight", "-guide"];
 const BLOGGER_BASE = process.env.BLOGGER_BASE_URL || "https://vibrationofawesomeearthstar.blogspot.com";
 const WORDPRESS_BASE = process.env.WORDPRESS_PUBLIC_BASE || "https://earthstarrisingsun.wordpress.com";
 const TUMBLR_BLOG = process.env.VOA_TUMBLR_BLOG_NAME || "vibrationofawesome";
-const DEVTO_USERNAME = process.env.DEVTO_USERNAME || "earthstarrising";
 const ALLOWED_PLATFORMS = new Set([
-  "devto",
   "tumblr_voa",
   "blogger",
   "wordpress_earthstar",
@@ -119,30 +117,6 @@ async function verifyHtml(slug, url) {
   }
 }
 
-async function verifyDevto(slug, url) {
-  if (!url) return { verified: null, reason: "no_url", url: "" };
-  try {
-    const parts = new URL(url).pathname.split("/").filter(Boolean);
-    if (parts.length < 2) return { verified: null, reason: "bad_url", url };
-    const res = await fetchJson(`https://dev.to/api/articles/${parts[0]}/${parts[1]}`, 20000);
-    if (!res.ok) return { verified: false, reason: `http_${res.status}`, url };
-    const canonical = String(res.data?.canonical_url || "").trim().toLowerCase().replace(/\/$/, "");
-    const body = String(res.data?.body_html || "");
-    const exact = hrefLinks(body).find(link => matchesSlug(link, slug));
-    const canonicalOk = expectedUrls(slug).some(expected => canonical === expected.replace(/\/$/, ""));
-    return {
-      verified: canonicalOk || Boolean(exact),
-      reason: canonicalOk || exact ? "ok" : "slug_mismatch",
-      canonical: canonicalOk,
-      anchor: firstVoaAnchor(body),
-      matched: exact || (canonicalOk ? canonical : ""),
-      url,
-    };
-  } catch (error) {
-    return { verified: null, reason: `error:${error.name || "FetchError"}`, url };
-  }
-}
-
 async function feederPosts() {
   const res = await fetchJson(FEEDER_POSTS_URL, 20000);
   return Array.isArray(res.data) ? res.data : [];
@@ -176,20 +150,6 @@ async function verifyFeeder(slug, url) {
   }
 
   return { verified: false, reason: "slug_mismatch", url: url || "" };
-}
-
-async function recoverDevto(slug) {
-  try {
-    const res = await fetchJson(`https://dev.to/api/articles?username=${DEVTO_USERNAME}&per_page=100`, 20000);
-    if (!res.ok || !Array.isArray(res.data)) return null;
-    for (const article of res.data) {
-      const canonical = String(article?.canonical_url || "").trim().toLowerCase().replace(/\/$/, "");
-      if (!expectedUrls(slug).some(expected => canonical === expected.replace(/\/$/, ""))) continue;
-      const verified = await verifyDevto(slug, article.url);
-      if (verified.verified) return { ...verified, recovered_live: true };
-    }
-  } catch {}
-  return null;
 }
 
 async function recoverTumblr(slug) {
@@ -257,7 +217,6 @@ async function checkOne(input) {
   if (!ALLOWED_PLATFORMS.has(platform)) return { verified: null, reason: "bad_platform", url };
 
   let result;
-  if (platform === "devto") result = await verifyDevto(slug, url);
   if (platform === "tumblr_voa") result = await verifyHtml(slug, url);
   if (platform === "blogger") result = await verifyHtml(slug, url);
   if (platform === "wordpress_earthstar") result = await verifyHtml(slug, url);
@@ -266,7 +225,6 @@ async function checkOne(input) {
   if (result?.verified === true) return result;
 
   let recovered = null;
-  if (platform === "devto") recovered = await recoverDevto(slug);
   if (platform === "tumblr_voa") recovered = await recoverTumblr(slug);
   if (platform === "blogger") recovered = await recoverBlogger(slug);
   if (platform === "wordpress_earthstar") recovered = await recoverWordPress(slug);

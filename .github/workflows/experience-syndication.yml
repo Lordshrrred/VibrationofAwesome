@@ -61,7 +61,6 @@ jobs:
           VOA_TUMBLR_TOKEN: ${{ secrets.VOA_TUMBLR_TOKEN }}
           VOA_TUMBLR_TOKEN_SECRET: ${{ secrets.VOA_TUMBLR_TOKEN_SECRET }}
           VOA_TUMBLR_BLOG_NAME: ${{ secrets.VOA_TUMBLR_BLOG_NAME }}
-          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
         run: |
           EXP="${{ github.event.inputs.experience }}"
           PLATFORMS="${{ github.event.inputs.platforms }}"

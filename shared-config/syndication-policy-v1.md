@@ -12,7 +12,7 @@ fatigue. Both engines read from this policy.
 
 ## Current VOA slot policy (2026-09-16)
 
-This supersedes older niche-specific account/slot descriptions below. Four articles/day rotate across all 11 clusters. The 13:00/22:00 UTC slots retain normal social and backlink routing with Dev.to account 1. The 16:00/01:00 UTC slots use `backlinks-only`: Dev.to account 2, Blogger, WordPress, Tumblr; no social/Pinterest or feeder. Never send one canonical URL to both Dev.to accounts. AI and art no longer have reserved daily slots. Canonical VOA publication must be live before distribution.
+This supersedes older niche-specific account/slot descriptions below. Four articles/day rotate across all 11 clusters. The 13:00/22:00 UTC slots retain normal social and backlink routing. The 16:00/01:00 UTC slots use `backlinks-only`: Blogger, WordPress, Tumblr; no social/Pinterest or feeder. AI and art no longer have reserved daily slots. Canonical VOA publication must be live before distribution.
 
 ## 1. Platform Ownership
 
@@ -22,7 +22,6 @@ on the same day. These are defaults, not hard locks.
 | Platform | Primary Owner | Secondary | Blog posts? | Video posts? |
 |---|---|---|---|---|
 | YouTube | EarthStar Command | ~ | No | Yes |
-| Dev.to | VOA Blog | Dev.to account 2 for art-buyer extras only | Yes (primary always; account 2 selective) | No |
 | Blogger | VOA Blog | ~ | Yes (always) | No |
 | WordPress (EarthStarRising) | VOA Blog | ~ | Yes (always) | No |
 | Tumblr VOA | VOA Blog | ~ | Yes (always ~ backlink tier) | No |
@@ -55,13 +54,10 @@ They exist to:
 **These always receive every blog post. No throttling. No filtering. No cooldowns.**
 
 ```
-devto              ~ canonical tag, DoFollow, high-DA tech platform (VOA canonical URL set)
 tumblr_voa         ~ indexed, DoFollow, VOA brand continuity
 blogger            ~ Google-owned, fast indexing, DoFollow
 wordpress_earthstar ~ WordPress.com indexed, DoFollow, EarthStarRising brand
 ```
-
-**Dev.to account 2:** `DEVTO2_API_KEY` exists for the second Dev.to account. It is **not** part of the default backlink tier. It is used only for art-buyer extra posts via platform key `devto2` / syndication profile `art-devto2-only`. Do not send normal posts to both Dev.to accounts; the same canonical URL should not be duplicated across accounts.
 
 **Note on Tumblr ESR:** `tumblr_esr` appears in the quota tables for planning purposes but is **NOT wired into live syndication** in `syndicate.js`. Only `tumblr_voa` is actively posted to. If you add Tumblr ESR to the live pipeline, update this document and the backlink tier list in `scripts/lib/policy.js`.
 
@@ -70,7 +66,7 @@ The content sent to these platforms is always **original AI-generated companion 
 1. Have a **unique title** (not identical to the VOA source post)
 2. Have a **unique body** (AI-generated from the source, not excerpted from it)
 3. Include **one natural backlink** to the original VOA post
-4. Set a **canonical URL** pointing to VOA where the platform supports it (Dev.to does; Blogger and WordPress do not)
+4. Set a **canonical URL** pointing to VOA where the platform supports it (Blogger and WordPress do not)
 
 The VOA canonical post is always the primary source. All companion and backlink content is derivative by design but must be substantially different to avoid duplicate content penalties.
 
@@ -277,7 +273,6 @@ These are safe limits before platform suppression risk increases.
 | bluesky_voa | 5 | Growing, tolerant |
 | pinterest | 10 | Highest tolerance |
 | tumblr | 10 | Reblog culture |
-| devto | 1 per post | Once per blog article |
 | blogger | 1 per post | Once per blog article |
 | wordpress_earthstar | 1 per post | Once per blog article |
 

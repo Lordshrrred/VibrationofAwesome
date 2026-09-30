@@ -57,7 +57,7 @@ Vibration of Awesome helps people cultivate a more alive, creative, connected, p
 
 ## Invariants (do not break)
 
-- **Anti-duplication:** every backlink/companion article gets a unique title and body and one link back to VOA; social captions are unique per platform; before any Publer create, `findExistingPublerPost()` checks Publer's live posts. Dev.to "canonical url has already been taken" = success. Details: `docs/modules/syndication.md`.
+- **Anti-duplication:** every backlink/companion article gets a unique title and body and one link back to VOA; social captions are unique per platform; before any Publer create, `findExistingPublerPost()` checks Publer's live posts. Details: `docs/modules/syndication.md`.
 - **Canonical first:** external distribution happens only after the VOA URL is verified live.
 - **Spend caps:** replenishment ≤ 8 article attempts/UTC day; topic planning and weekly research have persisted cooldowns; auto-heal ≥ 1h apart and ≤ 3/day; routine SEO intelligence makes zero paid model/search calls. Ask Matt before large manual Opus batches.
 - **Models:** `generate-post.js` stays on Opus 4.8. Don't swap it (including to Opus 5) without reading `docs/modules/models-and-cost.md`.

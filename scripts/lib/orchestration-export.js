@@ -109,7 +109,7 @@ function compileSyndication() {
 
   const PLATFORMS = [
     "feeder", "bluesky_voa", "mastodon_voa", "facebook_voa",
-    "pinterest", "threads", "instagram", "devto",
+    "pinterest", "threads", "instagram",
     "tumblr_voa", "blogger", "wordpress_earthstar",
   ];
 

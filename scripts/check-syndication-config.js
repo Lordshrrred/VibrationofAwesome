@@ -274,26 +274,6 @@ async function main() {
     requireConfiguredVoaPublerAccount(publerAccounts, "facebook", "Vibration of Awesome", { field: "name" })
   );
 
-  await check("Dev.to auth", async () => {
-    hasEnv("DEVTO_API_KEY");
-    const resp = await fetch("https://dev.to/api/users/me", {
-      headers: { "api-key": process.env.DEVTO_API_KEY },
-    });
-    const data = await resp.json().catch(() => ({}));
-    if (!resp.ok) throw new Error(data.error || `HTTP ${resp.status}`);
-    return data.username || "user ok";
-  });
-
-  await check("Dev.to account 2 auth", async () => {
-    hasEnv("DEVTO2_API_KEY");
-    const resp = await fetch("https://dev.to/api/users/me", {
-      headers: { "api-key": process.env.DEVTO2_API_KEY },
-    });
-    const data = await resp.json().catch(() => ({}));
-    if (!resp.ok) throw new Error(data.error || `HTTP ${resp.status}`);
-    return data.username || "user ok";
-  });
-
   for (const prefix of ["VOA"]) {
     await check(`Tumblr ${prefix} auth`, async () => {
       const cfg = requireTumblrConfig(prefix);

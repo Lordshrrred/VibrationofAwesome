@@ -5,8 +5,8 @@ env:
 
 # ── PUBLISH RATE CONFIG ────────────────────────────────────────────────────────
 # Four articles/day, oldest-served cluster first across all 11 clusters.
-# 13:00/22:00 UTC: full social + backlinks (Dev.to 1).
-# 16:00/01:00 UTC: backlinks only (Dev.to 2), no social or feeder.
+# 13:00/22:00 UTC: full social + backlinks.
+# 16:00/01:00 UTC: backlinks only, no social or feeder.
 # No niche owns a slot; all clusters get a turn when eligible drafts exist.
 
 on:
@@ -121,8 +121,6 @@ jobs:
           META_PAGE_TOKEN_EARTHSTAR:   ${{ secrets.META_PAGE_TOKEN_EARTHSTAR }}
           META_PAGE_ID_RUZINDLA:       ${{ secrets.META_PAGE_ID_RUZINDLA }}
           META_PAGE_TOKEN_RUZINDLA:    ${{ secrets.META_PAGE_TOKEN_RUZINDLA }}
-          DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
-          DEVTO2_API_KEY:              ${{ secrets.DEVTO2_API_KEY }}
           VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
           VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
           VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}
@@ -223,8 +221,6 @@ jobs:
           META_PAGE_TOKEN_EARTHSTAR:   ${{ secrets.META_PAGE_TOKEN_EARTHSTAR }}
           META_PAGE_ID_RUZINDLA:       ${{ secrets.META_PAGE_ID_RUZINDLA }}
           META_PAGE_TOKEN_RUZINDLA:    ${{ secrets.META_PAGE_TOKEN_RUZINDLA }}
-          DEVTO_API_KEY:               ${{ secrets.DEVTO_API_KEY }}
-          DEVTO2_API_KEY:              ${{ secrets.DEVTO2_API_KEY }}
           VOA_TUMBLR_CONSUMER_KEY:     ${{ secrets.VOA_TUMBLR_CONSUMER_KEY }}
           VOA_TUMBLR_CONSUMER_SECRET:  ${{ secrets.VOA_TUMBLR_CONSUMER_SECRET }}
           VOA_TUMBLR_TOKEN:            ${{ secrets.VOA_TUMBLR_TOKEN }}
@@ -259,7 +255,6 @@ jobs:
       # ── 9. Retry any platforms that failed during this run ───────────────────
       # Runs after the first commit so the results file is available.
       # Dedup logic in syndicate.js prevents duplicate posts.
-      # Dev.to is excluded from retries (canonical URL already taken = success).
       - name: Retry failed platform syndications
         id: retry
         if: steps.queue_status.outputs.status == 'active' && steps.queue_status.outputs.remaining != '0'

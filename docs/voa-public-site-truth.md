@@ -52,7 +52,6 @@ Additional legacy redirect/article routes exist for older posts such as `/vibrat
 | Mastodon | `https://mastodon.social/@Vibrationofawesome/...` in syndication data. ESR legacy data uses `@unlimitedpotential`. | VOA plus ESR legacy. | Dashboard/data/internal docs. | No public follow link found; internal data implies active VOA publishing. |
 | Publer | `https://publer.com/EarthStar` on `/ai-engine/`; internal API usage in scripts. | EarthStar/VOA tooling. | AI Engine public page and internal scripts. | Public page explicitly names Publer as distribution tooling. |
 | Tumblr | `https://vibrationofawesome.tumblr.com/...` in syndication data; `earthstarrising.tumblr.com` in legacy data. | VOA plus ESR legacy. | Dashboard/data/internal docs. | No public follow link found; internal data implies active VOA posting. |
-| Dev.to | `https://dev.to/earthstarrising/...` in syndication data. | EarthStar Rising. | Dashboard/data/internal docs. | SEO/backlink destination, not a public VOA social link. |
 | Blogger | `https://vibrationofawesomeearthstar.blogspot.com/...` in data/API defaults. | VOA/EarthStar backlink site. | Dashboard/data/API defaults. | SEO/backlink destination, not public follow link. |
 | WordPress | `https://earthstarrisingsun.wordpress.com/...` in docs/data/dashboard. | EarthStar Rising. | Dashboard/data/internal docs. | Separate EarthStar Rising content destination. |
 | Spring/CreatorSpring | `https://earthstar.creator-spring.com` and product listing URLs. | EarthStar Art Store. | Art Store/EarthStar pages. | Active public shop destination. |
@@ -109,9 +108,9 @@ Unrelated to social orchestration:
 ## 7. Gaps Between Public VOA Site And EarthStar Command Assumptions
 
 - Public site does not clearly expose social follow links for VOA Instagram, Threads, Facebook, YouTube, Pinterest, TikTok, Bluesky, Mastodon, or Tumblr.
-- Internal assumptions treat VOA Instagram, Threads, Pinterest, Facebook, Bluesky, Mastodon, Tumblr, Dev.to, Blogger, WordPress, and Feeder as routing/syndication destinations.
+- Internal assumptions treat VOA Instagram, Threads, Pinterest, Facebook, Bluesky, Mastodon, Tumblr, Blogger, WordPress, and Feeder as routing/syndication destinations.
 - Public legal pages describe EarthStar Command as read-only Meta analytics, while internal VOA tooling is a publishing/syndication engine for owned content. The distinction is valid but should stay explicit.
-- EarthStar Rising appears as a separate WordPress/Dev.to/legacy social/content destination. It should be treated separately from VOA, especially when routing content, reporting metrics, or explaining Meta review scope.
+- EarthStar Rising appears as a separate WordPress/legacy social/content destination. It should be treated separately from VOA, especially when routing content, reporting metrics, or explaining Meta review scope.
 - The public site does not currently prove that VOA Instagram/Threads/Pinterest are active destinations to ordinary visitors. That proof exists in internal docs/data and operational dashboard state, not in nav/footer/body social follow blocks.
 - `/dashboard/` and `/admin/` are public routes in the static tree. If they are meant to be private/operational, consider access strategy later.
 

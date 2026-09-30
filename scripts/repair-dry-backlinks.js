@@ -90,52 +90,6 @@ function replaceDryHtml(html, sourceUrl) {
   return next;
 }
 
-function devtoApiPath(publicUrl) {
-  const url = new URL(publicUrl);
-  const parts = url.pathname.replace(/^\/+/, "").split("/");
-  if (url.hostname !== "dev.to" || parts.length < 2) return null;
-  return `https://dev.to/api/articles/${parts[0]}/${parts.slice(1).join("/")}`;
-}
-
-async function repairDevTo(entry, platform) {
-  if (!process.env.DEVTO_API_KEY || !platform.url || platform.url === "https://dev.to") return "skip";
-  const apiUrl = devtoApiPath(platform.url);
-  if (!apiUrl) return "skip";
-
-  const getResp = await fetchWithRetry(apiUrl, {
-    headers: { "api-key": process.env.DEVTO_API_KEY },
-  });
-  const article = await getResp.json().catch(() => ({}));
-  if (!getResp.ok || !article.id) throw new Error(`Dev.to fetch failed for ${entry.slug}: ${article.error || getResp.status}`);
-
-  const current = article.body_markdown || "";
-  const next = replaceDryMarkdown(current, entry.voa_url);
-  if (next === current) return "clean";
-  if (!execute) return "would-fix";
-
-  const putResp = await fetchWithRetry(`https://dev.to/api/articles/${article.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      "api-key": process.env.DEVTO_API_KEY,
-    },
-    body: JSON.stringify({
-      article: {
-        body_markdown: next,
-        canonical_url: entry.voa_url,
-      },
-    }),
-  });
-  const data = await putResp.json().catch(() => ({}));
-  if (!putResp.ok) throw new Error(`Dev.to update failed for ${entry.slug}: ${data.error || JSON.stringify(data.errors) || putResp.status}`);
-  return "fixed";
-}
-
-function wordpressSlug(publicUrl) {
-  const url = new URL(publicUrl);
-  return url.pathname.split("/").filter(Boolean).pop();
-}
-
 async function repairWordPress(entry, platform) {
   if (!process.env.WORDPRESS_OAUTH2_TOKEN || !process.env.WORDPRESS_BLOG || !platform.url) return "skip";
   const slug = wordpressSlug(platform.url);
@@ -175,10 +129,6 @@ async function main() {
 
   for (const entry of results) {
     if (argv.slug && entry.slug !== argv.slug) continue;
-    const devto = entry.syndication?.devto;
-    if (devto?.status === "success" && devto.url) {
-      targets.push({ entry, key: "devto", platform: devto, repair: repairDevTo });
-    }
     const wordpress = entry.syndication?.wordpress_earthstar;
     if (wordpress?.status === "success" && wordpress.url) {
       targets.push({ entry, key: "wordpress_earthstar", platform: wordpress, repair: repairWordPress });

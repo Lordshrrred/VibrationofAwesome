@@ -12,9 +12,9 @@ Schedule (`.github/workflows/drip-posts.yml`, balanced cluster rotation, approve
 
 - Four posts/day at 13:00, 16:00, 22:00, and 01:00 UTC. Every slot draws from all 11 canonical clusters. With healthy inventory each cluster gets a post about every 2.75 days. Matt approved four/day, not eleven/day.
 - The least-recently-published eligible cluster wins. Ties favor thinner historical clusters. Explicit `cluster` metadata beats niche inference; several clusters share one niche.
-- 13:00 and 22:00 UTC: normal social + backlinks + feeder (Dev.to account 1).
-- 16:00 and 01:00 UTC: `--syndication-profile backlinks-only` → Dev.to account 2 + Blogger + WordPress + Tumblr. No social, no Pinterest, no feeder. The canonical URL goes to only one Dev.to account.
-- The old daily AI-only and art-only reserved slots are retired. Historical campaign/art profiles (`art-devto2-only`) remain readable for old inventory and route like `backlinks-only`.
+- 13:00 and 22:00 UTC: normal social + backlinks + feeder.
+- 16:00 and 01:00 UTC: `--syndication-profile backlinks-only` → Blogger + WordPress + Tumblr. No social, no Pinterest, no feeder.
+- The old daily AI-only and art-only reserved slots are retired. Historical campaign/art profiles (`art-devto2-only`, a legacy name from the retired Dev.to account 2) remain readable for old inventory and route like `backlinks-only`.
 
 **Drafts are deleted on publish.** Both the normal path and the collision-guard path (file already in `posts/`) delete the source draft. `static/blog/boom/drafts/` is also blocked in `robots.txt`. Do not reintroduce a copy-without-delete (see `docs/decisions.md`, 2026-07-19).
 

@@ -35,7 +35,7 @@ const ROOT         = path.resolve(__dirname, "..");
 const RESULTS_FILE = path.join(ROOT, "static/_data/syndication-results.json");
 const LOG_FILE     = path.join(ROOT, "static/_data/syndication-log.json");
 
-const BACKLINK_PLATFORMS = ["devto", "devto2", "tumblr_voa", "blogger", "wordpress_earthstar"];
+const BACKLINK_PLATFORMS = ["tumblr_voa", "blogger", "wordpress_earthstar"];
 const MAINTENANCE_BATCH  = Number(process.env.BACKLINK_MAINTENANCE_BATCH || 3);
 const CATCHUP_BATCH      = Number(process.env.BACKLINK_CATCHUP_BATCH || 8);
 const INTER_POST_DELAY   = Number(process.env.BACKLINK_INTER_POST_DELAY_SECONDS || 10);

@@ -76,3 +76,6 @@ March 2026 Blogger OAuth and Publer 404 entries in `syndication-log.json` were v
 ```
 
 **Platform-native transformations** instead of suppression (see `docs/modules/syndication.md`).
+
+## 2026-09-29 Dev.to removed from syndication
+Both Dev.to accounts were dead: profile and every article page (back to the first post, 2026-03-13 and 2026-06-17) returned 404 while the API still listed 93 and 245 articles, both API keys returned 401, and the API showed 0 views/reactions/comments ever. It had also happened before. Removed posting, health checks, verification, dashboard columns, workflow secrets and docs. Blogger, WordPress and Tumblr carry the backlink tier. Historical `devto`/`devto2` keys stay in data files, and `art-devto2-only` remains a readable legacy profile name.

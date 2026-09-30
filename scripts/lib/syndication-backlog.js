@@ -1,8 +1,6 @@
 import fs from "fs";
 
 export const BACKLINK_CAPABLE_PLATFORMS = [
-  "devto",
-  "devto2",
   "tumblr_voa",
   "blogger",
   "wordpress_earthstar",
@@ -23,8 +21,6 @@ export const PLATFORM_LABELS = {
   blogger: "Blogger",
   wordpress_earthstar: "WordPress",
   tumblr_voa: "Tumblr",
-  devto: "Dev.to",
-  devto2: "Dev.to 2",
   pinterest: "Pinterest",
   feeder: "VOA Feeder",
   bluesky_voa: "Bluesky VOA",
@@ -58,7 +54,6 @@ export function isArtOrCampaign(row) {
 
 export function expectedBacklinkPlatforms(row) {
   return [
-    isArtOrCampaign(row) ? "devto2" : "devto",
     "tumblr_voa",
     "blogger",
     "wordpress_earthstar",
@@ -221,7 +216,7 @@ export function buildSyndicationBacklogStatus(results, opts = {}) {
       ? "catch-up"
       : "maintenance";
 
-  const platformBacklinks = ["blogger", "wordpress_earthstar", "tumblr_voa", "devto", "devto2"]
+  const platformBacklinks = ["blogger", "wordpress_earthstar", "tumblr_voa"]
     .map(key => platformTable(safeResults, key, (row, platform) => expectedBacklinkPlatforms(row).includes(platform), windowCutoff, windowDays));
   const platformFeeder = platformTable(safeResults, "feeder", (row, platform) => expectedFeederPlatforms(row).includes(platform), windowCutoff, windowDays);
   const platformDistribution = DISTRIBUTION_PLATFORMS
@@ -235,7 +230,7 @@ export function buildSyndicationBacklogStatus(results, opts = {}) {
     generatedAt: now.toISOString(),
     definitions: {
       backlogPosts: "Published VOA posts missing at least one expected backlink-capable platform success.",
-      platformLinkUnits: "One expected backlink-capable platform task for one post: Dev.to/Dev.to2, Tumblr, Blogger, or WordPress.",
+      platformLinkUnits: "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
       completedPerDay: `Successful backlink-capable platform tasks completed in the last ${windowDays} days divided by ${windowDays}.`,
       excludedFromBacklinkBacklog: "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps.",
     },

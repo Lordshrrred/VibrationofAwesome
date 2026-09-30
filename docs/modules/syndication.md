@@ -4,7 +4,7 @@ Read this before touching `syndicate.js`, `generate-captions.js`, `post-live-syn
 
 ## Engine
 
-`syndicate.js` reads recent posts, calls `generate-captions.js` (Haiku 4.5, one call, a separate section per platform) and `select-image.js` (Pexels/local) plus Ideogram for images, then posts to Bluesky VOA, Mastodon VOA, Facebook VOA, Instagram VOA, Threads VOA, Pinterest VOA, Dev.to, Tumblr VOA, Blogger, and WordPress EarthStar. Facebook, Instagram, Threads, and Pinterest go through Publer; the others use direct APIs. Results: `static/_data/syndication-log.json` and `syndication-results.json` (both large; query them, never read them whole).
+`syndicate.js` reads recent posts, calls `generate-captions.js` (Haiku 4.5, one call, a separate section per platform) and `select-image.js` (Pexels/local) plus Ideogram for images, then posts to Bluesky VOA, Mastodon VOA, Facebook VOA, Instagram VOA, Threads VOA, Pinterest VOA, Tumblr VOA, Blogger, and WordPress EarthStar. Facebook, Instagram, Threads, and Pinterest go through Publer; the others use direct APIs. Results: `static/_data/syndication-log.json` and `syndication-results.json` (both large; query them, never read them whole).
 
 Retry anything that failed recently with `node scripts/retry-failed-syndication.js`. Do not ask Matt to re-run platforms by hand.
 
@@ -17,17 +17,15 @@ Duplication is a spam, compliance, and brand-trust risk across 15+ platforms.
 | Main VOA post | Canonical source. Unique slug, title, body. |
 | Blogger companion | Fresh AI article, **unique title**, different angle, links back to VOA. |
 | WordPress companion | Fresh AI article, **unique title**, distinct from VOA and Blogger, links back. |
-| Dev.to | Same title as VOA is fine (canonical URL set to VOA). Body is a generated teaser, not the article. |
 | Tumblr | Generated caption text only, links back. |
 | VOA Feeder companion | Fresh article, slug suffix `-signal` / `-shift` / `-insight` / `-guide`, unique title. |
 | Social captions | Unique platform-native copy per platform. Never collapse into one shared caption. |
 
 Slugs: WordPress appends `-earthstar`; Blogger derives from its unique title; never reuse the exact VOA slug on a platform that does not set a canonical URL.
 
-Every backlink article: unique title, unique body, one natural backlink to the VOA post, canonical URL to VOA where supported (Dev.to yes; Blogger/WordPress no).
+Every backlink article: unique title, unique body, one natural backlink to the VOA post, canonical URL to VOA where supported (Blogger/WordPress do not support it).
 
 If a duplicate is detected:
-- Dev.to "canonical url has already been taken" → **success**, do not retry (the post is already live from a run whose commit was lost).
 - Blogger/WordPress duplicate-title error → retry with a modified title prompt.
 - Existing `status: "success"` in `syndication-results.json` → skip unless `--force`.
 
@@ -42,7 +40,6 @@ Each platform gets a **transformation**, not a copy.
 | Feeder | Companion article | Matt EarthStar | Yes |
 | Blogger | Companion article | Matt EarthStar | Yes |
 | WordPress | Companion article | EarthStarRising | Yes |
-| Dev.to | Teaser, same title + canonical | Technical/creator | Canonical |
 | Tumblr | Text post | Matt/BoomBot mix | Yes |
 | Bluesky | One thought, ≤300 chars, no hashtags | Direct | Yes |
 | Mastodon | 2-3 sentences + 2-3 hashtags | Thoughtful | Yes |
@@ -60,7 +57,7 @@ Future direction (do not build yet): transform weak-fit content into platform-na
 - VOA Instagram and Threads are early-growth accounts: **all content types route to both**. Revisit content-type filtering only once there is real engagement data (>5k followers or 3+ months of history).
 - Pinterest is suppressed only for the `philosophy` content type.
 - ESR accounts are not used by the VOA blog engine.
-- Dev.to account 2 (`DEVTO2_API_KEY`, platform key `devto2`) is not in the default backlink tier. It runs for the `backlinks-only` / `art-devto2-only` profiles (see `docs/modules/publishing-queue.md`) or with explicit `--platforms devto2`.
+- Dev.to (both accounts) was removed 2026-09-29: profiles and articles returned 404 publicly (suspended/hidden), API keys returned 401, and the accounts never earned a view. See `docs/decisions.md`. Old `devto`/`devto2` keys remain only in historical data files.
 - Tumblr: both `syndicate.js` and `check-syndication-config.js` fall back to the generic `TUMBLR_*` env vars, so Actions needs only `TUMBLR_CONSUMER_KEY`, `TUMBLR_CONSUMER_SECRET`, `TUMBLR_TOKEN`, `TUMBLR_TOKEN_SECRET`, `TUMBLR_BLOG_NAME`.
 
 ## Key account IDs (VOA; do not confuse with ESR)

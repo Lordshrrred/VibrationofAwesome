@@ -43,8 +43,6 @@ const MAX_RETRIES_PER_RUN = 5; // cap so a bad day doesn't spam APIs
 const isDryRun = process.argv.includes("--dry-run");
 
 // Platforms that can safely be retried without creating duplicates.
-// Dev.to is excluded because it rejects posts with duplicate canonical URLs
-// even when the first post actually succeeded ~ we handle that case separately.
 const RETRYABLE_PLATFORMS = new Set([
   "pinterest",
   "tumblr_voa",

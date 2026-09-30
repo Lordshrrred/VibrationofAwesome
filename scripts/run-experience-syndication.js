@@ -7,7 +7,7 @@ import minimist from "minimist";
 import dotenv from "dotenv";
 import { createAnthropicClient } from "./lib/anthropic-client.js";
 import { buildExperienceSyndicationSet } from "./lib/experience-syndication.js";
-import { postToBlogger, postToDevTo, postToTumblr, postToWordPressDirect } from "./syndicate.js";
+import { postToBlogger, postToTumblr, postToWordPressDirect } from "./syndicate.js";
 
 import { pathToFileURL as __voaPathToFileURL } from "node:url";
 dotenv.config({ override: true });
@@ -191,10 +191,6 @@ async function postPlatform(asset, platform, companion, execute) {
   }
   if (platform === "tumblr_voa") {
     const r = await postToTumblr(companion.html, ["VibrationOfAwesome", "InteractiveTools"], "VOA", canonical, asset.title);
-    return { status: "success", url: r.postUrl, postId: r.postId, error: null };
-  }
-  if (platform === "devto") {
-    const r = await postToDevTo(companion.title, companion.html, canonical, ["tools", "productivity", "wellbeing"], "primary");
     return { status: "success", url: r.postUrl, postId: r.postId, error: null };
   }
   return { status: "prepared", url: null, postId: null, error: "preparation-only platform" };

@@ -25,7 +25,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const PDF_FOLDER   = path.resolve(process.env.HOME, 'Library/Mobile Documents/com~apple~CloudDocs/Documents/EarthStarVOA/AI-Advantage-Resources 4 Blog Engine');
+const PDF_FOLDER   = process.env.INSPIRATION_PDF_DIR ? path.resolve(process.env.INSPIRATION_PDF_DIR) : '';  // set in .env (private, never committed)
 const DRAFTS_DIR   = path.resolve(ROOT, 'static/blog/boom/drafts');
 const QUEUE_FILE   = path.resolve(ROOT, 'static/_data/drip-queue.json');
 const BATCH_SIZE   = 5;
@@ -385,8 +385,8 @@ function buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg }) {
 
 async function main() {
   // Verify PDF folder exists
-  if (!fs.existsSync(PDF_FOLDER)) {
-    console.error('\n❌  PDF folder not found at:');
+  if (!PDF_FOLDER || !fs.existsSync(PDF_FOLDER)) {
+    console.error('\n❌  PDF folder not found. Set INSPIRATION_PDF_DIR in .env. Looked at:');
     console.error(`    ${PDF_FOLDER}\n`);
     console.error('Please place the 69 PDF files at that path and run this script again.');
     console.error('The script reads filenames only ~ no PDF content is ever parsed or sent to the API.\n');
