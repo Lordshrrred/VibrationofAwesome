@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-09-30T18:23:27.661Z",
+  "lastUpdated": "2026-09-30T20:27:57.960Z",
   "recentHooks": [
     {
       "slug": "purpose-isnt-found-its-built-through-small-commitments-2",
@@ -889,6 +889,33 @@
   "recentThreadsFormats": [
     {
       "slug": "what-it-means-to-outgrow-an-identity",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-09-30T20:27:57.960Z"
+    },
+    {
+      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-3",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-09-30T20:27:49.100Z"
+    },
+    {
+      "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-09-30T20:26:36.036Z"
+    },
+    {
+      "slug": "what-it-means-to-outgrow-an-identity",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
       "density": "medium-dense",
@@ -1129,33 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-09-29T06:39:45.255Z"
-    },
-    {
-      "slug": "approval-vs-authenticity",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-09-29T01:35:10.120Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-3",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-09-29T01:33:23.287Z"
-    },
-    {
-      "slug": "approval-vs-authenticity",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-09-28T21:28:13.816Z"
     }
   ],
   "recentInstagramArchetypes": [
