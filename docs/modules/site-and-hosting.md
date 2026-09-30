@@ -24,6 +24,7 @@ Every Vercel build runs `scripts/write-build-info.js` first (`vercel.json` `buil
 
 - **Nav order (all pages):** Field Guide ✦ · Art Store · AURA ✦ · EarthStar ✦ · Blog. Portfolio appears only on the art store nav.
 - **`/art-store/` is live** (`static/art-store/index.html`, a static directory page, so it is not in `content/`). Don't flag it as a 404 or remove its CTA from `policy.js`.
+- **Art Store replacement is parallel-only.** Keep `/art-store/` unchanged until `/art-store-v2/` is complete and approved. `npm run art-store:audit` extracts the current hard-coded catalog into `data/art-store/catalog-inventory.json` and writes `reports/art-store-inventory.md`; it does not edit the live page. Storefront mockup JPGs are not print masters.
 - **Social preview default:** `layouts/_default/baseof.html` and ~30 static pages use `static/images/eartstarart.jpg` for `og:image`/`twitter:image`. `field-guide`, `field-guide/thank-you`, `user-manual`, and `ai-engine` use their Matt EarthStar ebook covers. `StarLogo.png` stays as the schema.org Organization `logo` only.
 - **Ebook covers:** `static/images/field-guide-cover.png` and `static/downloads/cover.png` (Matt EarthStar artwork). PDFs: `static/downloads/voa-field-guide.pdf`, `static/downloads/voa-ai.pdf`. Any committed PDF is scrubbed for metadata (`docs/pdf-privacy-workflow.md`, `pdf-privacy-check.yml`).
 - **Favicon set** is complete (`static/favicon.ico`, sized PNGs, `apple-touch-icon.png`, `site.webmanifest`, wired in `baseof.html`).
