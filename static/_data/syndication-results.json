@@ -4090,14 +4090,16 @@
     "voa_url": "https://vibrationofawesome.com/blog/boom/posts/simple-somatic-practices-for-focus",
     "syndication": {
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3muqq7upwai22",
-        "timestamp": "2026-09-05T05:21:56.281Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-10-01T09:21:17.767Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/117216748575102003",
-        "timestamp": "2026-09-05T05:21:56.281Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-10-01T09:21:17.767Z",
+        "error": "env vars not set"
       },
       "facebook_voa": {
         "status": "success",
@@ -4120,18 +4122,16 @@
         "timestamp": "2026-09-05T05:21:56.281Z"
       },
       "bluesky_esr": {
-        "status": "skipped",
+        "status": "failed",
         "url": null,
-        "timestamp": "2026-09-05T05:21:56.281Z",
-        "error": "skipped by social policy",
-        "skipped": true
+        "timestamp": "2026-10-01T09:21:17.767Z",
+        "error": "env vars not set"
       },
       "mastodon_esr": {
-        "status": "skipped",
+        "status": "failed",
         "url": null,
-        "timestamp": "2026-09-05T05:21:56.281Z",
-        "error": "skipped by social policy",
-        "skipped": true
+        "timestamp": "2026-10-01T09:21:17.767Z",
+        "error": "env vars not set"
       },
       "devto": {
         "status": "success",
@@ -4144,10 +4144,10 @@
         "timestamp": "2026-09-05T05:21:56.281Z"
       },
       "blogger": {
-        "status": "failed",
-        "url": null,
-        "timestamp": "2026-09-05T05:21:56.281Z",
-        "error": "Blogger token refresh failed (invalid_grant): Bad Request"
+        "status": "success",
+        "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/10/reflections-on-simple-somatic-practices.html",
+        "timestamp": "2026-10-01T09:21:17.767Z",
+        "backfill_attempted_at": "2026-10-01T09:20:59.096Z"
       },
       "wordpress_earthstar": {
         "status": "success",

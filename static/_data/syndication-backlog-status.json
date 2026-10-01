@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T01:29:02.467Z",
+  "generatedAt": "2026-10-01T09:21:17.814Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,59 +14,59 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 345,
-    "backlogPosts": 20,
-    "backlinkCapableMissingUnits": 20,
-    "backlinkVerificationGaps": 469,
-    "feederMissingUnits": 2,
-    "distributionIncompleteUnits": 25,
+    "totalTrackedPosts": 346,
+    "backlogPosts": 19,
+    "backlinkCapableMissingUnits": 19,
+    "backlinkVerificationGaps": 473,
+    "feederMissingUnits": 3,
+    "distributionIncompleteUnits": 23,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 227,
-    "completedBacklinkUnitsPerDay": 16.2,
+    "completedBacklinkUnitsInWindow": 223,
+    "completedBacklinkUnitsPerDay": 15.9,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": -4.2,
-    "estimatedCatchUpDays": 4.8,
+    "netBacklogChangePerDay": -3.9,
+    "estimatedCatchUpDays": 4.9,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 20
+    "largestDelayMissingUnits": 19
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 345,
-        "complete": 325,
-        "missing": 20,
-        "successRate": 94.2,
-        "averagePerDay": 7.9,
+        "eligiblePosts": 346,
+        "complete": 327,
+        "missing": 19,
+        "successRate": 94.5,
+        "averagePerDay": 7.5,
         "confirmed": 182,
-        "verificationGaps": 143,
+        "verificationGaps": 145,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 345,
-        "complete": 345,
+        "eligiblePosts": 346,
+        "complete": 346,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 4.1,
+        "averagePerDay": 4.2,
         "confirmed": 182,
-        "verificationGaps": 163,
+        "verificationGaps": 164,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 345,
-        "complete": 345,
+        "eligiblePosts": 346,
+        "complete": 346,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 4.1,
+        "averagePerDay": 4.2,
         "confirmed": 182,
-        "verificationGaps": 163,
+        "verificationGaps": 164,
         "mainBlocker": ""
       }
     ],
@@ -74,10 +74,10 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 250,
+        "eligiblePosts": 251,
         "complete": 248,
-        "missing": 2,
-        "successRate": 99.2,
+        "missing": 3,
+        "successRate": 98.8,
         "averagePerDay": 1.9,
         "confirmed": 248,
         "verificationGaps": 0,
@@ -89,12 +89,12 @@
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
         "eligiblePosts": 281,
-        "complete": 278,
-        "missing": 3,
-        "successRate": 98.9,
-        "averagePerDay": 6.5,
+        "complete": 280,
+        "missing": 1,
+        "successRate": 99.6,
+        "averagePerDay": 6.7,
         "confirmed": 142,
-        "verificationGaps": 136,
+        "verificationGaps": 138,
         "mainBlocker": "env vars not set"
       },
       {
@@ -107,7 +107,7 @@
         "averagePerDay": 6.1,
         "confirmed": 142,
         "verificationGaps": 130,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "mainBlocker": "Mastodon: Validation failed: Text can't be blank"
       },
       {
         "key": "facebook_voa",
@@ -162,11 +162,15 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 20
+      "count": 19
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
+    },
+    {
+      "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
+      "count": 4
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -174,27 +178,14 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 3
+      "count": 1
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 3
-    },
-    {
-      "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-      "count": 2
+      "count": 1
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "simple-somatic-practices-for-focus",
-      "lane": "boom",
-      "title": "Simple Somatic Practices for Focus",
-      "date": "2026-09-04",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "porn-is-ruining-my-motivation",
       "lane": "boom",
