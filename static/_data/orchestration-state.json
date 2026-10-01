@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-30T20:27:58.228Z",
+  "generated_at": "2026-10-01T01:07:22.444Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 14,
+      "draft_count": 13,
       "draft_slugs": [
         "committing-to-a-path-before-you-know-where-it-leads-3",
         "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
@@ -16,7 +16,6 @@
         "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-4",
         "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-3",
         "the-difference-between-processing-emotion-and-just-pushing-it-down-4",
-        "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-2",
         "the-real-cost-of-ignoring-ai-as-an-independent-creator-3",
         "what-our-technology-reveals-about-our-consciousness-3",
         "when-being-productive-is-actually-running-from-something-3",
@@ -34,6 +33,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-2",
+        "title": "The Overstimulation Trap: Why Busy Input Makes Your Output Disappear",
+        "lane": "boom",
+        "date": "2026-10-01T01:07:22.424Z",
+        "url": "/blog/boom/posts/the-overstimulation-trap-why-busy-input-makes-your-output-disappear-2",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "nervous-system-creativity",
+        "content_type": null
+      },
       {
         "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight",
         "title": "The Fragmentation Tax: How Split Attention Destroys Deep Creative Insight",
@@ -261,21 +272,10 @@
         ],
         "cluster": "building-life-that-fits",
         "content_type": null
-      },
-      {
-        "slug": "committing-to-a-path-before-you-know-where-it-leads-2",
-        "title": "Committing to a Path Before You Know Where It Leads",
-        "lane": "boom",
-        "date": "2026-09-26T00:24:23.497Z",
-        "url": "/blog/boom/posts/committing-to-a-path-before-you-know-where-it-leads-2",
-        "tags": [
-          "direction-purpose-drift"
-        ],
-        "cluster": "purpose-direction",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-01",
       "2026-09-30",
       "2026-09-29",
       "2026-09-28",
@@ -418,11 +418,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-01",
+    "next_estimated_window": "2026-10-02",
     "published_counts": {
-      "boom": 362,
+      "boom": 363,
       "matt": 18,
-      "total": 380
+      "total": 381
     }
   },
   "syndication": {
@@ -28796,6 +28796,7 @@
       }
     },
     "post_to_cluster": {
+      "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-2": "nervous-system-creativity",
       "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight": "dopamine-attention",
       "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-3": "spiritual-productivity",
       "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-3": "ai-creator-tools",
@@ -29166,7 +29167,7 @@
     },
     "saturation": {
       "ai-creator-tools": 186,
-      "nervous-system-creativity": 36,
+      "nervous-system-creativity": 37,
       "dopamine-attention": 20,
       "authentic-self-expression": 37,
       "creator-automation": 8,
@@ -30639,11 +30640,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-09-30T20:27:58.228Z",
-    "next_estimated_window": "2026-10-01",
+    "as_of": "2026-10-01T01:07:22.444Z",
+    "next_estimated_window": "2026-10-02",
     "queue_runway_days": 3,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-10-01",
       "2026-09-30",
       "2026-09-29",
       "2026-09-28",
@@ -30794,6 +30796,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-2",
+        "lane": "boom",
+        "date": "2026-10-01T01:07:22.424Z"
+      },
+      {
         "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight",
         "lane": "boom",
         "date": "2026-09-30T20:21:55.506Z"
@@ -30837,17 +30844,12 @@
         "slug": "purpose-isnt-found-its-built-through-small-commitments",
         "lane": "boom",
         "date": "2026-09-28T21:26:18.206Z"
-      },
-      {
-        "slug": "approval-vs-authenticity",
-        "lane": "boom",
-        "date": "2026-09-28T20:04:37.355Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-09-30T20:27:58.214Z",
-    "source_event": "retry",
+    "last_export_at": "2026-10-01T01:07:22.430Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 14,
     "schema_version": "1.0",
     "stale_after_minutes": 60
