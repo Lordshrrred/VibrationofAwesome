@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T20:57:33.751Z",
+  "generatedAt": "2026-10-01T01:29:02.467Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,59 +14,59 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 344,
-    "backlogPosts": 22,
-    "backlinkCapableMissingUnits": 22,
-    "backlinkVerificationGaps": 464,
+    "totalTrackedPosts": 345,
+    "backlogPosts": 20,
+    "backlinkCapableMissingUnits": 20,
+    "backlinkVerificationGaps": 469,
     "feederMissingUnits": 2,
-    "distributionIncompleteUnits": 19,
+    "distributionIncompleteUnits": 25,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 230,
-    "completedBacklinkUnitsPerDay": 16.4,
+    "completedBacklinkUnitsInWindow": 227,
+    "completedBacklinkUnitsPerDay": 16.2,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": -4.4,
-    "estimatedCatchUpDays": 5,
+    "netBacklogChangePerDay": -4.2,
+    "estimatedCatchUpDays": 4.8,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 22
+    "largestDelayMissingUnits": 20
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 344,
-        "complete": 322,
-        "missing": 22,
-        "successRate": 93.6,
-        "averagePerDay": 8.3,
+        "eligiblePosts": 345,
+        "complete": 325,
+        "missing": 20,
+        "successRate": 94.2,
+        "averagePerDay": 7.9,
         "confirmed": 182,
-        "verificationGaps": 140,
+        "verificationGaps": 143,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 344,
-        "complete": 344,
+        "eligiblePosts": 345,
+        "complete": 345,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 4.1,
         "confirmed": 182,
-        "verificationGaps": 162,
+        "verificationGaps": 163,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 344,
-        "complete": 344,
+        "eligiblePosts": 345,
+        "complete": 345,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 4.1,
         "confirmed": 182,
-        "verificationGaps": 162,
+        "verificationGaps": 163,
         "mainBlocker": ""
       }
     ],
@@ -74,12 +74,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 249,
-        "complete": 247,
+        "eligiblePosts": 250,
+        "complete": 248,
         "missing": 2,
         "successRate": 99.2,
         "averagePerDay": 1.9,
-        "confirmed": 247,
+        "confirmed": 248,
         "verificationGaps": 0,
         "mainBlocker": "missing local success record"
       }
@@ -88,25 +88,25 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 280,
-        "complete": 280,
-        "missing": 0,
-        "successRate": 100,
+        "eligiblePosts": 281,
+        "complete": 278,
+        "missing": 3,
+        "successRate": 98.9,
         "averagePerDay": 6.5,
         "confirmed": 142,
-        "verificationGaps": 138,
-        "mainBlocker": ""
+        "verificationGaps": 136,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 280,
-        "complete": 274,
-        "missing": 6,
-        "successRate": 97.9,
+        "eligiblePosts": 281,
+        "complete": 272,
+        "missing": 9,
+        "successRate": 96.8,
         "averagePerDay": 6.1,
         "confirmed": 142,
-        "verificationGaps": 132,
+        "verificationGaps": 130,
         "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
       },
       {
@@ -162,7 +162,7 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 22
+      "count": 20
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
@@ -173,29 +173,19 @@
       "count": 4
     },
     {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 3
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 3
+    },
+    {
       "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
       "count": 2
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "self-trust-exercises-that-are-not-cheesy",
-      "lane": "boom",
-      "title": "Self Trust Exercises That Are Not Cheesy",
-      "date": "2026-09-03",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "i-feel-disconnected-from-myself",
-      "lane": "boom",
-      "title": "I Feel Disconnected From Myself",
-      "date": "2026-09-03",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "simple-somatic-practices-for-focus",
       "lane": "boom",
