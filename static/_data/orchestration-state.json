@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-01T20:40:27.534Z",
+  "generated_at": "2026-10-02T01:20:50.735Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 18,
+      "draft_count": 17,
       "draft_slugs": [
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-4",
         "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-4",
@@ -16,7 +16,6 @@
         "purpose-isnt-found-its-built-through-small-commitments-2",
         "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation",
         "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-3",
-        "the-difference-between-processing-emotion-and-just-pushing-it-down-4",
         "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric-2",
         "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-3",
         "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-3",
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-4",
+        "title": "The Difference Between Processing Emotion and Just Pushing It Down",
+        "lane": "boom",
+        "date": "2026-10-02T01:20:50.713Z",
+        "url": "/blog/boom/posts/the-difference-between-processing-emotion-and-just-pushing-it-down-4",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "emotional-regulation",
+        "content_type": null
+      },
       {
         "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-4",
         "title": "Seeing the Gap: How to Notice When Your Life Doesn't Fit Anymore",
@@ -265,21 +276,10 @@
         ],
         "cluster": "art-buying-online",
         "content_type": null
-      },
-      {
-        "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-2",
-        "title": "The Decision Framework: When to Automate and When to Stay Hands-On",
-        "lane": "boom",
-        "date": "2026-09-27T00:19:28.225Z",
-        "url": "/blog/boom/posts/the-decision-framework-when-to-automate-and-when-to-stay-hands-on-2",
-        "tags": [
-          "ai-creator-tools"
-        ],
-        "cluster": "creator-automation",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-02",
       "2026-10-01",
       "2026-09-30",
       "2026-09-29",
@@ -423,11 +423,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-02",
+    "next_estimated_window": "2026-10-03",
     "published_counts": {
-      "boom": 366,
+      "boom": 367,
       "matt": 18,
-      "total": 384
+      "total": 385
     }
   },
   "syndication": {
@@ -29072,6 +29072,7 @@
       }
     },
     "post_to_cluster": {
+      "the-difference-between-processing-emotion-and-just-pushing-it-down-4": "emotional-regulation",
       "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-4": "building-life-that-fits",
       "committing-to-a-path-before-you-know-where-it-leads-3": "purpose-direction",
       "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste": "authentic-self-expression",
@@ -29453,7 +29454,7 @@
       "spiritual-productivity": 21,
       "purpose-direction": 13,
       "building-life-that-fits": 11,
-      "emotional-regulation": 9,
+      "emotional-regulation": 10,
       "art-buying-online": 19,
       "consciousness-technology": 9
     },
@@ -30919,11 +30920,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-01T20:40:27.534Z",
-    "next_estimated_window": "2026-10-02",
+    "as_of": "2026-10-02T01:20:50.735Z",
+    "next_estimated_window": "2026-10-03",
     "queue_runway_days": 4,
     "queue_runway_status": "healthy",
     "occupied_dates": [
+      "2026-10-02",
       "2026-10-01",
       "2026-09-30",
       "2026-09-29",
@@ -31075,6 +31077,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-4",
+        "lane": "boom",
+        "date": "2026-10-02T01:20:50.713Z"
+      },
+      {
         "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-4",
         "lane": "boom",
         "date": "2026-10-01T20:37:34.531Z"
@@ -31118,18 +31125,13 @@
         "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-3",
         "lane": "boom",
         "date": "2026-09-29T20:17:31.612Z"
-      },
-      {
-        "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
-        "lane": "boom",
-        "date": "2026-09-29T18:32:11.040Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-01T20:40:27.518Z",
-    "source_event": "retry",
-    "export_duration_ms": 16,
+    "last_export_at": "2026-10-02T01:20:50.721Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 14,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
