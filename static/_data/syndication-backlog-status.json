@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-02T13:04:44.503Z",
+  "generatedAt": "2026-10-02T19:29:37.053Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
     "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
     "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
   },
-  "mode": "maintenance",
+  "mode": "catch-up",
   "thresholds": {
     "catchupUnitThreshold": 25,
     "catchupDaysThreshold": 7,
@@ -14,32 +14,32 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 350,
-    "backlogPosts": 16,
-    "backlinkCapableMissingUnits": 16,
-    "backlinkVerificationGaps": 488,
+    "totalTrackedPosts": 351,
+    "backlogPosts": 17,
+    "backlinkCapableMissingUnits": 18,
+    "backlinkVerificationGaps": 489,
     "feederMissingUnits": 5,
     "distributionIncompleteUnits": 20,
-    "freshPostsAwaitingBacklinks": 0,
-    "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 202,
-    "completedBacklinkUnitsPerDay": 14.4,
+    "freshPostsAwaitingBacklinks": 1,
+    "freshMissingBacklinkUnits": 2,
+    "completedBacklinkUnitsInWindow": 198,
+    "completedBacklinkUnitsPerDay": 14.1,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": -2.4,
-    "estimatedCatchUpDays": 6.7,
+    "netBacklogChangePerDay": -2.1,
+    "estimatedCatchUpDays": 8.6,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 16
+    "largestDelayMissingUnits": 17
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 350,
+        "eligiblePosts": 351,
         "complete": 334,
-        "missing": 16,
-        "successRate": 95.4,
+        "missing": 17,
+        "successRate": 95.2,
         "averagePerDay": 6.4,
         "confirmed": 182,
         "verificationGaps": 152,
@@ -48,38 +48,38 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 350,
-        "complete": 350,
+        "eligiblePosts": 351,
+        "complete": 351,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 4,
+        "averagePerDay": 3.9,
         "confirmed": 182,
-        "verificationGaps": 168,
+        "verificationGaps": 169,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 350,
+        "eligiblePosts": 351,
         "complete": 350,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 4,
+        "missing": 1,
+        "successRate": 99.7,
+        "averagePerDay": 3.9,
         "confirmed": 182,
         "verificationGaps": 168,
-        "mainBlocker": ""
+        "mainBlocker": "The operation was aborted due to timeout"
       }
     ],
     "feeder": [
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 255,
-        "complete": 250,
+        "eligiblePosts": 256,
+        "complete": 251,
         "missing": 5,
         "successRate": 98,
         "averagePerDay": 2,
-        "confirmed": 250,
+        "confirmed": 251,
         "verificationGaps": 0,
         "mainBlocker": "missing local success record"
       }
@@ -88,25 +88,25 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 283,
+        "eligiblePosts": 284,
         "complete": 283,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 6.6,
+        "missing": 1,
+        "successRate": 99.6,
+        "averagePerDay": 6.3,
         "confirmed": 142,
         "verificationGaps": 141,
-        "mainBlocker": ""
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 283,
-        "complete": 276,
-        "missing": 7,
-        "successRate": 97.5,
-        "averagePerDay": 6.3,
+        "eligiblePosts": 284,
+        "complete": 278,
+        "missing": 6,
+        "successRate": 97.9,
+        "averagePerDay": 6.2,
         "confirmed": 142,
-        "verificationGaps": 134,
+        "verificationGaps": 136,
         "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
       },
       {
@@ -173,11 +173,33 @@
       "count": 4
     },
     {
+      "reason": "tumblr_voa: The operation was aborted due to timeout",
+      "count": 1
+    },
+    {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 1
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 1
+    },
+    {
       "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-      "count": 3
+      "count": 1
     }
   ],
   "prioritizedBacklog": [
+    {
+      "slug": "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
+      "lane": "boom",
+      "title": "How to Batch Schedule Social Posts as a Solo Musician Without Feeling Like a Marketing Machine",
+      "date": "2026-10-02",
+      "missing": [
+        "tumblr_voa",
+        "blogger"
+      ]
+    },
     {
       "slug": "discipline-without-hustle-culture",
       "lane": "boom",
