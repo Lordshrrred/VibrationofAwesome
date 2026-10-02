@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T22:51:55.348Z",
+  "generatedAt": "2026-10-02T06:06:17.876Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,59 +14,59 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 348,
-    "backlogPosts": 19,
-    "backlinkCapableMissingUnits": 19,
-    "backlinkVerificationGaps": 479,
+    "totalTrackedPosts": 349,
+    "backlogPosts": 16,
+    "backlinkCapableMissingUnits": 16,
+    "backlinkVerificationGaps": 485,
     "feederMissingUnits": 4,
-    "distributionIncompleteUnits": 19,
+    "distributionIncompleteUnits": 25,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 202,
-    "completedBacklinkUnitsPerDay": 14.4,
+    "completedBacklinkUnitsInWindow": 199,
+    "completedBacklinkUnitsPerDay": 14.2,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": -2.4,
-    "estimatedCatchUpDays": 7.9,
+    "netBacklogChangePerDay": -2.2,
+    "estimatedCatchUpDays": 7.3,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 19
+    "largestDelayMissingUnits": 16
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 348,
-        "complete": 329,
-        "missing": 19,
-        "successRate": 94.5,
+        "eligiblePosts": 349,
+        "complete": 333,
+        "missing": 16,
+        "successRate": 95.4,
         "averagePerDay": 6.4,
         "confirmed": 182,
-        "verificationGaps": 147,
+        "verificationGaps": 151,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 348,
-        "complete": 348,
+        "eligiblePosts": 349,
+        "complete": 349,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 4,
+        "averagePerDay": 3.9,
         "confirmed": 182,
-        "verificationGaps": 166,
+        "verificationGaps": 167,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 348,
-        "complete": 348,
+        "eligiblePosts": 349,
+        "complete": 349,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 4,
+        "averagePerDay": 3.9,
         "confirmed": 182,
-        "verificationGaps": 166,
+        "verificationGaps": 167,
         "mainBlocker": ""
       }
     ],
@@ -74,12 +74,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 253,
-        "complete": 249,
+        "eligiblePosts": 254,
+        "complete": 250,
         "missing": 4,
         "successRate": 98.4,
         "averagePerDay": 2,
-        "confirmed": 249,
+        "confirmed": 250,
         "verificationGaps": 0,
         "mainBlocker": "missing local success record"
       }
@@ -88,26 +88,26 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 282,
-        "complete": 282,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 6.5,
+        "eligiblePosts": 283,
+        "complete": 279,
+        "missing": 4,
+        "successRate": 98.6,
+        "averagePerDay": 6.4,
         "confirmed": 142,
-        "verificationGaps": 140,
-        "mainBlocker": ""
+        "verificationGaps": 137,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 282,
-        "complete": 276,
-        "missing": 6,
-        "successRate": 97.9,
-        "averagePerDay": 6.3,
+        "eligiblePosts": 283,
+        "complete": 275,
+        "missing": 8,
+        "successRate": 97.2,
+        "averagePerDay": 6.2,
         "confirmed": 142,
-        "verificationGaps": 134,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "verificationGaps": 133,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -162,49 +162,26 @@
   "blockers": [
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 19
+      "count": 16
     },
     {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
     },
     {
-      "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
+      "reason": "bluesky_voa: env vars not set",
       "count": 4
     },
     {
-      "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
-      "count": 2
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
+    },
+    {
+      "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
+      "count": 4
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "porn-is-ruining-my-motivation",
-      "lane": "boom",
-      "title": "Porn Is Ruining My Motivation",
-      "date": "2026-09-04",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "passion-vs-direction",
-      "lane": "boom",
-      "title": "Passion vs Direction",
-      "date": "2026-09-05",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-realign-your-life-without-blowing-everything-up",
-      "lane": "boom",
-      "title": "How to Realign Your Life Without Blowing Everything Up",
-      "date": "2026-09-05",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "discipline-without-hustle-culture",
       "lane": "boom",
