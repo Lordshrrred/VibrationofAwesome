@@ -1,15 +1,14 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-02T06:51:08.595Z",
+  "generated_at": "2026-10-02T18:23:14.272Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-4",
         "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-4",
-        "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
         "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
         "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
         "machine-intelligence-and-the-question-of-soul-what-changes-for-us-3",
@@ -24,7 +23,7 @@
         "when-being-productive-is-actually-running-from-something-3",
         "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-2"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
+        "title": "How to Batch Schedule Social Posts as a Solo Musician Without Feeling Like a Marketing Machine",
+        "lane": "boom",
+        "date": "2026-10-02T18:23:14.257Z",
+        "url": "/blog/boom/posts/how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
+        "tags": [
+          "ai-creator-tools"
+        ],
+        "cluster": "creator-automation",
+        "content_type": null
+      },
       {
         "slug": "what-our-technology-reveals-about-our-consciousness-3",
         "title": "What Our Technology Reveals About Our Consciousness",
@@ -263,18 +274,6 @@
         ],
         "cluster": "spiritual-productivity",
         "content_type": null
-      },
-      {
-        "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-2",
-        "title": "The Real Cost of Ignoring AI as an Independent Creator",
-        "lane": "boom",
-        "date": "2026-09-27T17:38:03.000Z",
-        "url": "/blog/boom/posts/the-real-cost-of-ignoring-ai-as-an-independent-creator-2",
-        "tags": [
-          "ai-creator-tools"
-        ],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -424,9 +423,9 @@
     ],
     "next_estimated_window": "2026-10-03",
     "published_counts": {
-      "boom": 368,
+      "boom": 369,
       "matt": 18,
-      "total": 386
+      "total": 387
     }
   },
   "syndication": {
@@ -29211,6 +29210,7 @@
       }
     },
     "post_to_cluster": {
+      "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine": "creator-automation",
       "what-our-technology-reveals-about-our-consciousness-3": "consciousness-technology",
       "the-difference-between-processing-emotion-and-just-pushing-it-down-4": "emotional-regulation",
       "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-4": "building-life-that-fits",
@@ -29590,7 +29590,7 @@
       "nervous-system-creativity": 37,
       "dopamine-attention": 20,
       "authentic-self-expression": 38,
-      "creator-automation": 8,
+      "creator-automation": 9,
       "spiritual-productivity": 21,
       "purpose-direction": 13,
       "building-life-that-fits": 11,
@@ -31060,9 +31060,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-02T06:51:08.595Z",
+    "as_of": "2026-10-02T18:23:14.272Z",
     "next_estimated_window": "2026-10-03",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-10-02",
@@ -31217,6 +31217,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
+        "lane": "boom",
+        "date": "2026-10-02T18:23:14.257Z"
+      },
+      {
         "slug": "what-our-technology-reveals-about-our-consciousness-3",
         "lane": "boom",
         "date": "2026-10-02T06:48:00.994Z"
@@ -31260,18 +31265,13 @@
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-3",
         "lane": "boom",
         "date": "2026-09-30T06:21:02.362Z"
-      },
-      {
-        "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-3",
-        "lane": "boom",
-        "date": "2026-09-30T01:07:41.203Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-02T06:51:08.583Z",
-    "source_event": "retry",
-    "export_duration_ms": 12,
+    "last_export_at": "2026-10-02T18:23:14.262Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 10,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
