@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-02T20:16:31.745Z",
+  "generated_at": "2026-10-03T00:58:36.193Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 14,
+      "draft_count": 13,
       "draft_slugs": [
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-4",
         "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-4",
@@ -17,7 +17,6 @@
         "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric-2",
         "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-3",
         "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-3",
-        "the-real-cost-of-ignoring-ai-as-an-independent-creator-3",
         "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-4",
         "when-being-productive-is-actually-running-from-something-3",
         "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-2"
@@ -34,6 +33,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-3",
+        "title": "The Real Cost of Ignoring AI as an Independent Creator",
+        "lane": "boom",
+        "date": "2026-10-03T00:58:36.171Z",
+        "url": "/blog/boom/posts/the-real-cost-of-ignoring-ai-as-an-independent-creator-3",
+        "tags": [
+          "ai-creator-tools"
+        ],
+        "cluster": "ai-creator-tools",
+        "content_type": null
+      },
       {
         "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-3",
         "title": "Testing Resonance Before You Buy: The Waiting Period, the Screenshot Method, and Trusting Your Gut on Art",
@@ -261,21 +272,10 @@
         ],
         "cluster": "nervous-system-creativity",
         "content_type": null
-      },
-      {
-        "slug": "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric",
-        "title": "The Focus Rebuild: Recovering Attention Capacity Without the Detox Rhetoric",
-        "lane": "boom",
-        "date": "2026-09-28T00:20:55.924Z",
-        "url": "/blog/boom/posts/the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric",
-        "tags": [
-          "dopamine-addiction-numbing"
-        ],
-        "cluster": "dopamine-attention",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-03",
       "2026-10-02",
       "2026-10-01",
       "2026-09-30",
@@ -420,11 +420,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-03",
+    "next_estimated_window": "2026-10-04",
     "published_counts": {
-      "boom": 370,
+      "boom": 371,
       "matt": 18,
-      "total": 388
+      "total": 389
     }
   },
   "syndication": {
@@ -29354,6 +29354,7 @@
       }
     },
     "post_to_cluster": {
+      "the-real-cost-of-ignoring-ai-as-an-independent-creator-3": "ai-creator-tools",
       "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-3": "art-buying-online",
       "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine": "creator-automation",
       "what-our-technology-reveals-about-our-consciousness-3": "consciousness-technology",
@@ -29731,7 +29732,7 @@
       "indigo-children-abilities": "purpose-direction"
     },
     "saturation": {
-      "ai-creator-tools": 186,
+      "ai-creator-tools": 187,
       "nervous-system-creativity": 37,
       "dopamine-attention": 20,
       "authentic-self-expression": 38,
@@ -31205,11 +31206,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-02T20:16:31.745Z",
-    "next_estimated_window": "2026-10-03",
+    "as_of": "2026-10-03T00:58:36.193Z",
+    "next_estimated_window": "2026-10-04",
     "queue_runway_days": 3,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-10-03",
       "2026-10-02",
       "2026-10-01",
       "2026-09-30",
@@ -31362,6 +31364,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-3",
+        "lane": "boom",
+        "date": "2026-10-03T00:58:36.171Z"
+      },
+      {
         "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-3",
         "lane": "boom",
         "date": "2026-10-02T20:12:06.927Z"
@@ -31405,18 +31412,13 @@
         "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight",
         "lane": "boom",
         "date": "2026-09-30T20:21:55.506Z"
-      },
-      {
-        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-3",
-        "lane": "boom",
-        "date": "2026-09-30T18:20:35.548Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-02T20:16:31.733Z",
-    "source_event": "retry",
-    "export_duration_ms": 12,
+    "last_export_at": "2026-10-03T00:58:36.178Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 15,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
