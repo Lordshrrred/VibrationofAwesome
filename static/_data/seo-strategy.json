@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-10-03T11:57:17.569Z",
+  "generatedAt": "2026-10-03T16:37:49.593Z",
   "keywordGeneration": {
-    "currentInventory": 12,
+    "currentInventory": 20,
     "publishedInventory": 363,
-    "estimatedDaysRemaining": 3,
+    "estimatedDaysRemaining": 5,
     "publishingCadencePerDay": 4,
     "pauseThresholdDays": 60,
     "resumeThresholdDays": 21,
     "status": "running",
-    "reason": "3 publishing days of queue inventory remain. Curated expansion should continue."
+    "reason": "5 publishing days of queue inventory remain. Curated expansion should continue."
   },
   "backlinks": {
     "mode": "maintenance",
     "backlogPosts": 14,
     "backlogUnits": 14,
-    "completedPerDay": 14.4,
+    "completedPerDay": 14.2,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklinkUnitsPerDay": -2.4,
-    "estimatedCatchUpDays": 5.8,
+    "netBacklinkUnitsPerDay": -2.2,
+    "estimatedCatchUpDays": 6.4,
     "feederMissingUnits": 7,
     "distributionIncompleteUnits": 19,
     "verificationGaps": 502,
@@ -47,7 +47,7 @@
           "complete": 354,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 4,
+          "averagePerDay": 3.9,
           "confirmed": 182,
           "verificationGaps": 172,
           "mainBlocker": ""
@@ -59,7 +59,7 @@
           "complete": 354,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 4,
+          "averagePerDay": 3.9,
           "confirmed": 182,
           "verificationGaps": 172,
           "mainBlocker": ""
@@ -73,7 +73,7 @@
           "complete": 252,
           "missing": 7,
           "successRate": 97.3,
-          "averagePerDay": 2,
+          "averagePerDay": 1.9,
           "confirmed": 252,
           "verificationGaps": 0,
           "mainBlocker": "missing local success record"
@@ -87,7 +87,7 @@
           "complete": 285,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 6.2,
+          "averagePerDay": 5.9,
           "confirmed": 142,
           "verificationGaps": 143,
           "mainBlocker": ""
@@ -99,7 +99,7 @@
           "complete": 279,
           "missing": 6,
           "successRate": 97.9,
-          "averagePerDay": 5.9,
+          "averagePerDay": 5.7,
           "confirmed": 142,
           "verificationGaps": 137,
           "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
@@ -178,7 +178,7 @@
       "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
       "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
     },
-    "reason": "Backlinks are catching up by 2.4 backlink-capable platform units/day.",
+    "reason": "Backlinks are catching up by 2.2 backlink-capable platform units/day.",
     "windowDays": 14
   },
   "curatedExpansion": {
