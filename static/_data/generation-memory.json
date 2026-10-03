@@ -4,8 +4,64 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-03T06:11:06.311Z",
+  "lastUpdated": "2026-10-03T14:56:10.084Z",
   "recentHooks": [
+    {
+      "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-4",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "hook": "Why does the painting that lit you up on a Tuesday feel like dead weight on your wall by the following month?",
+      "timestamp": "2026-10-03T14:56:10.084Z"
+    },
+    {
+      "slug": "what-our-technology-reveals-about-our-consciousness-4",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "hook": "Hand someone your phone and let them scroll through your most-used apps, your open tabs, the AI prompts sitting in your history. In twenty minutes they would know more about how your mind actually wor",
+      "timestamp": "2026-10-03T14:55:03.449Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-5",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "emotional-regulation",
+      "hook": "Most people who look the most composed are the ones holding the most down.",
+      "timestamp": "2026-10-03T14:53:56.868Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-5",
+      "niche": "misalignment-wrong-life",
+      "cluster": "building-life-that-fits",
+      "hook": "What would you have to admit is true if you stopped pretending it was fine?",
+      "timestamp": "2026-10-03T14:52:42.296Z"
+    },
+    {
+      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-3",
+      "niche": "ai-creator-tools",
+      "cluster": "creator-automation",
+      "hook": "You automated your Instagram captions last month, and now your own posts sound like a stranger wearing your face. Something is off. The engagement dipped, but worse than that, you don't recognize the ",
+      "timestamp": "2026-10-03T14:50:48.936Z"
+    },
+    {
+      "slug": "committing-to-a-path-before-you-know-where-it-leads-4",
+      "niche": "direction-purpose-drift",
+      "cluster": "purpose-direction",
+      "hook": "A ship captain crossing the Atlantic in 1850 could not see the far shore for most of the trip. Not day one. Not day twenty. Just water, sky, and a compass heading he chose before he knew if the crossi",
+      "timestamp": "2026-10-03T14:49:39.878Z"
+    },
+    {
+      "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-2",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "hook": "You hit publish and felt nothing. Not relief, not that warm ache of having said something true. Just a small flat click, like closing a browser tab.",
+      "timestamp": "2026-10-03T14:48:30.181Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "hook": "6:04am. The alarm goes off for the third time. You said you would get up at 5. You said the same thing yesterday. Now you are lying there doing the math on how much of your \"perfect morning\" you can s",
+      "timestamp": "2026-10-03T14:47:16.497Z"
+    },
     {
       "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-4",
       "niche": "ai-creator-tools",
@@ -159,65 +215,65 @@
       "cluster": "ai-creator-tools",
       "hook": "Somewhere around 11pm, you are renaming audio files for the fourth time. \"final_mix_v3_REAL_final.wav\" is now \"final_mix_v3_REAL_final_MASTERED.wav\" and you have not written a single note of music in ",
       "timestamp": "2026-09-26T14:39:12.923Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-3",
-      "niche": "art-buyer-intent",
-      "cluster": "art-buying-online",
-      "hook": "Walk into a room with one striking piece on the wall, then walk into the same room after someone takes it down. The second version feels like a sentence with the punctuation removed. Technically fine.",
-      "timestamp": "2026-09-26T14:38:05.963Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-3",
-      "niche": "ai-creator-tools",
-      "cluster": "creator-automation",
-      "hook": "Here's a question worth sitting with: why does your content calendar feel like a second job you never applied for?",
-      "timestamp": "2026-09-26T14:37:00.397Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
-      "niche": "ai-creator-tools",
-      "cluster": "consciousness-technology",
-      "hook": "A machine wrote a symphony last week that made someone cry, and that person did not know a machine wrote it until later.",
-      "timestamp": "2026-09-24T15:28:04.730Z"
-    },
-    {
-      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-3",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "hook": "Here's a question worth sitting with: when you \"handle\" your emotions, are you actually moving them through you, or are you just getting really good at not showing them?",
-      "timestamp": "2026-09-24T15:26:08.648Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-3",
-      "niche": "misalignment-wrong-life",
-      "cluster": "building-life-that-fits",
-      "hook": "Ever driven home from a normal day, nothing wrong, no fight, no bad news, and felt a heaviness settle in your chest as you turned onto your street? Not sadness exactly. More like a low hum of \"this is",
-      "timestamp": "2026-09-24T15:25:02.859Z"
-    },
-    {
-      "slug": "purpose-isnt-found-its-built-through-small-commitments",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "hook": "Ask ten people what their purpose is and watch what happens. Most go quiet. A few say something vague about \"helping people.\" And almost everyone gets this small, apologetic look, like they missed a m",
-      "timestamp": "2026-09-24T15:23:51.317Z"
-    },
-    {
-      "slug": "approval-vs-authenticity",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "hook": "Picture the moment right before you post something you made. Your thumb hovers. You reread the caption. You cut the weird line, the one that actually felt true, because you already know how three spec",
-      "timestamp": "2026-09-24T15:22:55.160Z"
-    },
-    {
-      "slug": "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "hook": "Picture two writers with the same deadline, the same skill, the same idea.",
-      "timestamp": "2026-09-24T15:21:50.295Z"
     }
   ],
   "recentTitles": [
+    {
+      "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-4",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "title": "Testing Resonance Before You Buy: The Waiting Period, the Screenshot Method, and Trusting Your Gut on Art",
+      "timestamp": "2026-10-03T14:56:10.084Z"
+    },
+    {
+      "slug": "what-our-technology-reveals-about-our-consciousness-4",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "title": "What Our Technology Reveals About Our Consciousness",
+      "timestamp": "2026-10-03T14:55:03.449Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-5",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "emotional-regulation",
+      "title": "The Difference Between Processing Emotion and Just Pushing It Down",
+      "timestamp": "2026-10-03T14:53:56.868Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-5",
+      "niche": "misalignment-wrong-life",
+      "cluster": "building-life-that-fits",
+      "title": "Seeing the Gap: How to Notice When Your Life Doesn't Fit Anymore",
+      "timestamp": "2026-10-03T14:52:42.296Z"
+    },
+    {
+      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-3",
+      "niche": "ai-creator-tools",
+      "cluster": "creator-automation",
+      "title": "The Decision Framework: When to Automate and When to Stay Hands-On",
+      "timestamp": "2026-10-03T14:50:48.936Z"
+    },
+    {
+      "slug": "committing-to-a-path-before-you-know-where-it-leads-4",
+      "niche": "direction-purpose-drift",
+      "cluster": "purpose-direction",
+      "title": "Committing to a Path Before You Know Where It Leads",
+      "timestamp": "2026-10-03T14:49:39.878Z"
+    },
+    {
+      "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-2",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "title": "When Your Creative Output Becomes Someone Else's: Recognizing the Moment You Stopped Trusting Your Own Taste",
+      "timestamp": "2026-10-03T14:48:30.181Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "title": "Building a Morning That Emerges From Who You Are, Not What You Should Do",
+      "timestamp": "2026-10-03T14:47:16.497Z"
+    },
     {
       "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-4",
       "niche": "ai-creator-tools",
@@ -371,65 +427,49 @@
       "cluster": "ai-creator-tools",
       "title": "The Repetitive Tasks Worth Automating (And the Ones That Cost You Your Voice)",
       "timestamp": "2026-09-26T14:39:12.923Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-3",
-      "niche": "art-buyer-intent",
-      "cluster": "art-buying-online",
-      "title": "How One Piece of Art Can Actually Change the Feel of Your Entire Space",
-      "timestamp": "2026-09-26T14:38:05.963Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-3",
-      "niche": "ai-creator-tools",
-      "cluster": "creator-automation",
-      "title": "Building an Editorial System That Feels Like You, Not a Task Manager",
-      "timestamp": "2026-09-26T14:37:00.397Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
-      "niche": "ai-creator-tools",
-      "cluster": "consciousness-technology",
-      "title": "Machine Intelligence and the Question of Soul: What Changes for Us",
-      "timestamp": "2026-09-24T15:28:04.730Z"
-    },
-    {
-      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-3",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "title": "The Difference Between Processing Emotion and Just Pushing It Down",
-      "timestamp": "2026-09-24T15:26:08.648Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-3",
-      "niche": "misalignment-wrong-life",
-      "cluster": "building-life-that-fits",
-      "title": "Seeing the Gap: How to Notice When Your Life Doesn't Fit Anymore",
-      "timestamp": "2026-09-24T15:25:02.859Z"
-    },
-    {
-      "slug": "purpose-isnt-found-its-built-through-small-commitments",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "title": "Purpose Isn't Found, It's Built Through Small Commitments",
-      "timestamp": "2026-09-24T15:23:51.317Z"
-    },
-    {
-      "slug": "approval-vs-authenticity",
-      "niche": "misalignment-wrong-life",
-      "cluster": "authentic-self-expression",
-      "title": "Approval vs Authenticity",
-      "timestamp": "2026-09-24T15:22:55.160Z"
-    },
-    {
-      "slug": "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "title": "Rest as Active Creative Work: The Counterintuitive Edge Regulated People Have",
-      "timestamp": "2026-09-24T15:21:50.295Z"
     }
   ],
   "recentNarrativeStructures": [
+    {
+      "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-4",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-03T14:56:10.084Z"
+    },
+    {
+      "slug": "what-our-technology-reveals-about-our-consciousness-4",
+      "structure": "moderate sections (3-5 H2s)",
+      "timestamp": "2026-10-03T14:55:03.449Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-5",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-10-03T14:53:56.868Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-5",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-10-03T14:52:42.296Z"
+    },
+    {
+      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-3",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-10-03T14:50:48.936Z"
+    },
+    {
+      "slug": "committing-to-a-path-before-you-know-where-it-leads-4",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-10-03T14:49:39.878Z"
+    },
+    {
+      "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-2",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-10-03T14:48:30.181Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-03T14:47:16.497Z"
+    },
     {
       "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-4",
       "structure": "bullet-list driven with multiple sections",
@@ -539,50 +579,50 @@
       "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-3",
       "structure": "bullet-list driven with multiple sections",
       "timestamp": "2026-09-26T14:39:12.923Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-3",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-09-26T14:38:05.963Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-3",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-09-26T14:37:00.397Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
-      "structure": "moderate sections (3-5 H2s)",
-      "timestamp": "2026-09-24T15:28:04.730Z"
-    },
-    {
-      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-3",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-09-24T15:26:08.648Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-3",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-09-24T15:25:02.859Z"
-    },
-    {
-      "slug": "purpose-isnt-found-its-built-through-small-commitments",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-09-24T15:23:51.317Z"
-    },
-    {
-      "slug": "approval-vs-authenticity",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-09-24T15:22:55.160Z"
-    },
-    {
-      "slug": "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have",
-      "structure": "moderate sections (3-5 H2s)",
-      "timestamp": "2026-09-24T15:21:50.295Z"
     }
   ],
   "recentEmotionalArcs": [
     {
+      "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-4",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-03T14:56:10.084Z"
+    },
+    {
+      "slug": "what-our-technology-reveals-about-our-consciousness-4",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-03T14:55:03.449Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-5",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-03T14:53:56.868Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-5",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-03T14:52:42.296Z"
+    },
+    {
+      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-3",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-03T14:50:48.936Z"
+    },
+    {
+      "slug": "committing-to-a-path-before-you-know-where-it-leads-4",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-03T14:49:39.878Z"
+    },
+    {
+      "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-2",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-03T14:48:30.181Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
+      "arc": "pain-open → reframe → action close",
+      "timestamp": "2026-10-03T14:47:16.497Z"
+    },
+    {
       "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-4",
       "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-10-01T17:16:04.744Z"
@@ -691,50 +731,50 @@
       "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-3",
       "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-09-26T14:39:12.923Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-3",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-09-26T14:38:05.963Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-3",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-09-26T14:37:00.397Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-09-24T15:28:04.730Z"
-    },
-    {
-      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-3",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-09-24T15:26:08.648Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-3",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-09-24T15:25:02.859Z"
-    },
-    {
-      "slug": "purpose-isnt-found-its-built-through-small-commitments",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-09-24T15:23:51.317Z"
-    },
-    {
-      "slug": "approval-vs-authenticity",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-09-24T15:22:55.160Z"
-    },
-    {
-      "slug": "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-09-24T15:21:50.295Z"
     }
   ],
   "recentOpeningStyles": [
     {
+      "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-4",
+      "style": "question opening",
+      "timestamp": "2026-10-03T14:56:10.084Z"
+    },
+    {
+      "slug": "what-our-technology-reveals-about-our-consciousness-4",
+      "style": "statement opening",
+      "timestamp": "2026-10-03T14:55:03.449Z"
+    },
+    {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-5",
+      "style": "social proof / counter-claim opening",
+      "timestamp": "2026-10-03T14:53:56.868Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-5",
+      "style": "question opening",
+      "timestamp": "2026-10-03T14:52:42.296Z"
+    },
+    {
+      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-3",
+      "style": "statement opening",
+      "timestamp": "2026-10-03T14:50:48.936Z"
+    },
+    {
+      "slug": "committing-to-a-path-before-you-know-where-it-leads-4",
+      "style": "statement opening",
+      "timestamp": "2026-10-03T14:49:39.878Z"
+    },
+    {
+      "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-2",
+      "style": "statement opening",
+      "timestamp": "2026-10-03T14:48:30.181Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
+      "style": "statement opening",
+      "timestamp": "2026-10-03T14:47:16.497Z"
+    },
+    {
       "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-4",
       "style": "statement opening",
       "timestamp": "2026-10-01T17:16:04.744Z"
@@ -843,46 +883,6 @@
       "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-3",
       "style": "statement opening",
       "timestamp": "2026-09-26T14:39:12.923Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-3",
-      "style": "statement opening",
-      "timestamp": "2026-09-26T14:38:05.963Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-3",
-      "style": "question opening",
-      "timestamp": "2026-09-26T14:37:00.397Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
-      "style": "statement opening",
-      "timestamp": "2026-09-24T15:28:04.730Z"
-    },
-    {
-      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-3",
-      "style": "question opening",
-      "timestamp": "2026-09-24T15:26:08.648Z"
-    },
-    {
-      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-3",
-      "style": "statement opening",
-      "timestamp": "2026-09-24T15:25:02.859Z"
-    },
-    {
-      "slug": "purpose-isnt-found-its-built-through-small-commitments",
-      "style": "social proof / counter-claim opening",
-      "timestamp": "2026-09-24T15:23:51.317Z"
-    },
-    {
-      "slug": "approval-vs-authenticity",
-      "style": "statement opening",
-      "timestamp": "2026-09-24T15:22:55.160Z"
-    },
-    {
-      "slug": "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have",
-      "style": "statement opening",
-      "timestamp": "2026-09-24T15:21:50.295Z"
     }
   ],
   "recentCTAPatterns": [],
