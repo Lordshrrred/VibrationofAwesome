@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-03T18:52:48.745Z",
+  "lastUpdated": "2026-10-04T00:24:16.191Z",
   "recentHooks": [
     {
       "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-4",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-04T00:24:16.191Z"
+    },
+    {
       "slug": "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,15 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-10-01T20:40:27.193Z"
-    },
-    {
-      "slug": "i-feel-disconnected-from-myself",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-01T20:40:13.465Z"
     }
   ],
   "recentInstagramArchetypes": [
