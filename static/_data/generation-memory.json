@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-04T06:42:36.918Z",
+  "lastUpdated": "2026-10-04T17:27:30.021Z",
   "recentHooks": [
     {
       "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-4",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-choose-your-next-direction",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-10-04T17:27:30.021Z"
+    },
+    {
+      "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-10-04T17:27:15.315Z"
+    },
+    {
+      "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-2",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-04T17:25:46.760Z"
+    },
+    {
       "slug": "i-feel-drained-after-cheap-dopamine-habits",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1129,33 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-10-02T06:51:07.884Z"
-    },
-    {
-      "slug": "how-to-realign-your-life-without-blowing-everything-up",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-02T06:50:53.831Z"
-    },
-    {
-      "slug": "passion-vs-direction",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-02T06:50:34.962Z"
-    },
-    {
-      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-4",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-02T06:50:17.150Z"
     }
   ],
   "recentInstagramArchetypes": [
