@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T21:41:55.999Z",
+  "generatedAt": "2026-10-04T01:58:14.364Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,12 +14,12 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 356,
-    "backlogPosts": 14,
-    "backlinkCapableMissingUnits": 14,
-    "backlinkVerificationGaps": 508,
+    "totalTrackedPosts": 357,
+    "backlogPosts": 11,
+    "backlinkCapableMissingUnits": 11,
+    "backlinkVerificationGaps": 514,
     "feederMissingUnits": 8,
-    "distributionIncompleteUnits": 17,
+    "distributionIncompleteUnits": 25,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
     "completedBacklinkUnitsInWindow": 202,
@@ -27,46 +27,46 @@
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
     "netBacklogChangePerDay": -2.4,
-    "estimatedCatchUpDays": 5.8,
-    "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 14
+    "estimatedCatchUpDays": 4.6,
+    "largestDelayPlatform": "Facebook VOA",
+    "largestDelayMissingUnits": 13
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 356,
-        "complete": 342,
-        "missing": 14,
-        "successRate": 96.1,
+        "eligiblePosts": 357,
+        "complete": 346,
+        "missing": 11,
+        "successRate": 96.9,
         "averagePerDay": 6.4,
         "confirmed": 182,
-        "verificationGaps": 160,
+        "verificationGaps": 164,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 356,
-        "complete": 356,
+        "eligiblePosts": 357,
+        "complete": 357,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 4,
         "confirmed": 182,
-        "verificationGaps": 174,
+        "verificationGaps": 175,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 356,
-        "complete": 356,
+        "eligiblePosts": 357,
+        "complete": 357,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 4,
         "confirmed": 182,
-        "verificationGaps": 174,
+        "verificationGaps": 175,
         "mainBlocker": ""
       }
     ],
@@ -74,12 +74,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 261,
-        "complete": 253,
+        "eligiblePosts": 262,
+        "complete": 254,
         "missing": 8,
         "successRate": 96.9,
         "averagePerDay": 2,
-        "confirmed": 253,
+        "confirmed": 254,
         "verificationGaps": 0,
         "mainBlocker": "missing local success record"
       }
@@ -88,26 +88,26 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 286,
-        "complete": 286,
-        "missing": 0,
-        "successRate": 100,
+        "eligiblePosts": 287,
+        "complete": 283,
+        "missing": 4,
+        "successRate": 98.6,
         "averagePerDay": 5.8,
         "confirmed": 142,
-        "verificationGaps": 144,
-        "mainBlocker": ""
+        "verificationGaps": 141,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 286,
-        "complete": 282,
-        "missing": 4,
-        "successRate": 98.6,
-        "averagePerDay": 5.9,
+        "eligiblePosts": 287,
+        "complete": 279,
+        "missing": 8,
+        "successRate": 97.2,
+        "averagePerDay": 5.8,
         "confirmed": 142,
-        "verificationGaps": 140,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "verificationGaps": 137,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -161,12 +161,20 @@
   },
   "blockers": [
     {
-      "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 14
-    },
-    {
       "reason": "facebook_voa: (#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission",
       "count": 13
+    },
+    {
+      "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
+      "count": 11
+    },
+    {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 4
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -174,33 +182,6 @@
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "i-feel-drained-after-cheap-dopamine-habits",
-      "lane": "boom",
-      "title": "I Feel Drained After Cheap Dopamine Habits",
-      "date": "2026-09-07",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-choose-your-next-direction",
-      "lane": "boom",
-      "title": "How to Choose Your Next Direction",
-      "date": "2026-09-08",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "misalignment-vs-depression",
-      "lane": "boom",
-      "title": "Misalignment vs Depression",
-      "date": "2026-09-08",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "rest-vs-avoidance-when-overwhelmed",
       "lane": "boom",
