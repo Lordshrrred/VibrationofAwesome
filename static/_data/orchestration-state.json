@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-04T06:42:37.894Z",
+  "generated_at": "2026-10-04T17:24:29.752Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
         "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-4",
@@ -21,10 +21,9 @@
         "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-3",
         "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-4",
         "what-our-technology-reveals-about-our-consciousness-4",
-        "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-2",
         "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-2"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-2",
+        "title": "When You Wake Up and Realize You've Optimized for the Wrong Things",
+        "lane": "boom",
+        "date": "2026-10-04T17:24:29.731Z",
+        "url": "/blog/boom/posts/when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-2",
+        "tags": [
+          "misalignment-wrong-life"
+        ],
+        "cluster": "building-life-that-fits",
+        "content_type": null
+      },
       {
         "slug": "purpose-isnt-found-its-built-through-small-commitments-2",
         "title": "Purpose Isn't Found, It's Built Through Small Commitments",
@@ -263,18 +274,6 @@
         ],
         "cluster": "creator-automation",
         "content_type": null
-      },
-      {
-        "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
-        "title": "Machine Intelligence and the Question of Soul: What Changes for Us",
-        "lane": "boom",
-        "date": "2026-09-29T18:32:11.040Z",
-        "url": "/blog/boom/posts/machine-intelligence-and-the-question-of-soul-what-changes-for-us-2",
-        "tags": [
-          "ai-creator-tools"
-        ],
-        "cluster": "consciousness-technology",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -426,9 +425,9 @@
     ],
     "next_estimated_window": "2026-10-05",
     "published_counts": {
-      "boom": 376,
+      "boom": 377,
       "matt": 18,
-      "total": 394
+      "total": 395
     }
   },
   "syndication": {
@@ -29769,6 +29768,7 @@
       }
     },
     "post_to_cluster": {
+      "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-2": "building-life-that-fits",
       "purpose-isnt-found-its-built-through-small-commitments-2": "purpose-direction",
       "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation": "authentic-self-expression",
       "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm": "nervous-system-creativity",
@@ -30159,7 +30159,7 @@
       "creator-automation": 9,
       "spiritual-productivity": 22,
       "purpose-direction": 14,
-      "building-life-that-fits": 11,
+      "building-life-that-fits": 12,
       "emotional-regulation": 10,
       "art-buying-online": 20,
       "consciousness-technology": 10
@@ -31626,9 +31626,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-04T06:42:37.894Z",
+    "as_of": "2026-10-04T17:24:29.752Z",
     "next_estimated_window": "2026-10-05",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-10-04",
@@ -31785,6 +31785,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-2",
+        "lane": "boom",
+        "date": "2026-10-04T17:24:29.731Z"
+      },
+      {
         "slug": "purpose-isnt-found-its-built-through-small-commitments-2",
         "lane": "boom",
         "date": "2026-10-04T06:39:28.361Z"
@@ -31828,18 +31833,13 @@
         "slug": "what-our-technology-reveals-about-our-consciousness-3",
         "lane": "boom",
         "date": "2026-10-02T06:48:00.994Z"
-      },
-      {
-        "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-4",
-        "lane": "boom",
-        "date": "2026-10-02T01:20:50.713Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-04T06:42:37.881Z",
-    "source_event": "retry",
-    "export_duration_ms": 13,
+    "last_export_at": "2026-10-04T17:24:29.738Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 14,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
