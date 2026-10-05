@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T23:31:35.177Z",
+  "generatedAt": "2026-10-05T06:08:09.934Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,20 +14,20 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 360,
-    "backlogPosts": 11,
-    "backlinkCapableMissingUnits": 11,
-    "backlinkVerificationGaps": 523,
+    "totalTrackedPosts": 361,
+    "backlogPosts": 8,
+    "backlinkCapableMissingUnits": 8,
+    "backlinkVerificationGaps": 529,
     "feederMissingUnits": 10,
-    "distributionIncompleteUnits": 17,
+    "distributionIncompleteUnits": 25,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 202,
-    "completedBacklinkUnitsPerDay": 14.4,
+    "completedBacklinkUnitsInWindow": 199,
+    "completedBacklinkUnitsPerDay": 14.2,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": -2.4,
-    "estimatedCatchUpDays": 4.6,
+    "netBacklogChangePerDay": -2.2,
+    "estimatedCatchUpDays": 3.6,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
   },
@@ -36,37 +36,37 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 360,
-        "complete": 349,
-        "missing": 11,
-        "successRate": 96.9,
+        "eligiblePosts": 361,
+        "complete": 353,
+        "missing": 8,
+        "successRate": 97.8,
         "averagePerDay": 6.4,
         "confirmed": 182,
-        "verificationGaps": 167,
+        "verificationGaps": 171,
         "mainBlocker": "Blogger token refresh failed (invalid_grant): Bad Request"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 360,
-        "complete": 360,
+        "eligiblePosts": 361,
+        "complete": 361,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 4,
+        "averagePerDay": 3.9,
         "confirmed": 182,
-        "verificationGaps": 178,
+        "verificationGaps": 179,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 360,
-        "complete": 360,
+        "eligiblePosts": 361,
+        "complete": 361,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 4,
+        "averagePerDay": 3.9,
         "confirmed": 182,
-        "verificationGaps": 178,
+        "verificationGaps": 179,
         "mainBlocker": ""
       }
     ],
@@ -74,12 +74,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 265,
-        "complete": 255,
+        "eligiblePosts": 266,
+        "complete": 256,
         "missing": 10,
         "successRate": 96.2,
         "averagePerDay": 2,
-        "confirmed": 255,
+        "confirmed": 256,
         "verificationGaps": 0,
         "mainBlocker": "missing local success record"
       }
@@ -88,26 +88,26 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 288,
-        "complete": 288,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 5.6,
+        "eligiblePosts": 289,
+        "complete": 285,
+        "missing": 4,
+        "successRate": 98.6,
+        "averagePerDay": 5.2,
         "confirmed": 142,
-        "verificationGaps": 146,
-        "mainBlocker": ""
+        "verificationGaps": 143,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 288,
-        "complete": 284,
-        "missing": 4,
-        "successRate": 98.6,
-        "averagePerDay": 5.6,
+        "eligiblePosts": 289,
+        "complete": 281,
+        "missing": 8,
+        "successRate": 97.2,
+        "averagePerDay": 5.4,
         "confirmed": 142,
-        "verificationGaps": 142,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "verificationGaps": 139,
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -166,7 +166,15 @@
     },
     {
       "reason": "blogger: Blogger token refresh failed (invalid_grant): Bad Request",
-      "count": 11
+      "count": 8
+    },
+    {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 4
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -174,33 +182,6 @@
     }
   ],
   "prioritizedBacklog": [
-    {
-      "slug": "rest-vs-avoidance-when-overwhelmed",
-      "lane": "boom",
-      "title": "Rest vs Avoidance When Overwhelmed",
-      "date": "2026-09-08",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-stop-avoiding-hard-decisions",
-      "lane": "boom",
-      "title": "How to Stop Avoiding Hard Decisions",
-      "date": "2026-09-09",
-      "missing": [
-        "blogger"
-      ]
-    },
-    {
-      "slug": "how-to-reduce-mental-noise",
-      "lane": "boom",
-      "title": "How to Reduce Mental Noise",
-      "date": "2026-09-09",
-      "missing": [
-        "blogger"
-      ]
-    },
     {
       "slug": "meditation-vs-grounding-for-anxiety",
       "lane": "boom",
