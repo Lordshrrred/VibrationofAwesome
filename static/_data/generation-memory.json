@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-06T02:08:19.824Z",
+  "lastUpdated": "2026-10-06T07:19:27.969Z",
   "recentHooks": [
     {
       "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-3",
@@ -888,6 +888,42 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-break-cheap-dopamine-habits",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-06T07:19:27.969Z"
+    },
+    {
+      "slug": "meditation-vs-grounding-for-anxiety",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-10-06T07:19:09.544Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-10-06T07:18:48.853Z"
+    },
+    {
+      "slug": "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric-2",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-10-06T07:17:49.928Z"
+    },
+    {
       "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-3",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1120,42 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-10-03T17:11:28.875Z"
-    },
-    {
-      "slug": "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-03T17:11:15.192Z"
-    },
-    {
-      "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-03T17:09:39.761Z"
-    },
-    {
-      "slug": "porn-is-ruining-my-motivation",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-03T06:11:06.311Z"
-    },
-    {
-      "slug": "too-much-information-is-making-me-confused",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-03T06:10:52.934Z"
     }
   ],
   "recentInstagramArchetypes": [
