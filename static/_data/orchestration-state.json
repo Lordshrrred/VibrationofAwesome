@@ -1,13 +1,12 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-05T22:16:33.545Z",
+  "generated_at": "2026-10-06T02:05:39.252Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 18,
+      "draft_count": 17,
       "draft_slugs": [
-        "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-5",
         "committing-to-a-path-before-you-know-where-it-leads-4",
         "purpose-isnt-found-its-built-through-small-commitments-3",
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
+        "title": "Building a Morning That Emerges From Who You Are, Not What You Should Do",
+        "lane": "boom",
+        "date": "2026-10-06T02:05:39.224Z",
+        "url": "/blog/boom/posts/building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
+        "tags": [
+          "direction-purpose-drift"
+        ],
+        "cluster": "spiritual-productivity",
+        "content_type": null
+      },
       {
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-4",
         "title": "The Repetitive Tasks Worth Automating (And the Ones That Cost You Your Voice)",
@@ -265,21 +276,10 @@
         ],
         "cluster": "authentic-self-expression",
         "content_type": null
-      },
-      {
-        "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-2",
-        "title": "The Overstimulation Trap: Why Busy Input Makes Your Output Disappear",
-        "lane": "boom",
-        "date": "2026-10-01T01:07:22.424Z",
-        "url": "/blog/boom/posts/the-overstimulation-trap-why-busy-input-makes-your-output-disappear-2",
-        "tags": [
-          "nervous-system-dysregulation"
-        ],
-        "cluster": "nervous-system-creativity",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-06",
       "2026-10-05",
       "2026-10-04",
       "2026-10-03",
@@ -427,11 +427,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-06",
+    "next_estimated_window": "2026-10-07",
     "published_counts": {
-      "boom": 382,
+      "boom": 383,
       "matt": 18,
-      "total": 400
+      "total": 401
     }
   },
   "syndication": {
@@ -30188,6 +30188,7 @@
       }
     },
     "post_to_cluster": {
+      "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4": "spiritual-productivity",
       "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-4": "ai-creator-tools",
       "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-4": "art-buying-online",
       "building-an-editorial-system-that-feels-like-you-not-a-task-manager-4": "creator-automation",
@@ -30582,7 +30583,7 @@
       "dopamine-attention": 21,
       "authentic-self-expression": 39,
       "creator-automation": 10,
-      "spiritual-productivity": 22,
+      "spiritual-productivity": 23,
       "purpose-direction": 14,
       "building-life-that-fits": 12,
       "emotional-regulation": 11,
@@ -32051,11 +32052,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-05T22:16:33.545Z",
-    "next_estimated_window": "2026-10-06",
+    "as_of": "2026-10-06T02:05:39.252Z",
+    "next_estimated_window": "2026-10-07",
     "queue_runway_days": 4,
     "queue_runway_status": "healthy",
     "occupied_dates": [
+      "2026-10-06",
       "2026-10-05",
       "2026-10-04",
       "2026-10-03",
@@ -32211,6 +32213,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
+        "lane": "boom",
+        "date": "2026-10-06T02:05:39.224Z"
+      },
+      {
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-4",
         "lane": "boom",
         "date": "2026-10-05T22:14:14.148Z"
@@ -32254,18 +32261,13 @@
         "slug": "how-to-reset-focus-after-a-distracted-week-when-your-body-is-still-running-on-alarm",
         "lane": "boom",
         "date": "2026-10-03T18:51:34.603Z"
-      },
-      {
-        "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
-        "lane": "boom",
-        "date": "2026-10-03T17:08:37.795Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-05T22:16:33.533Z",
-    "source_event": "retry",
-    "export_duration_ms": 12,
+    "last_export_at": "2026-10-06T02:05:39.232Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 20,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
