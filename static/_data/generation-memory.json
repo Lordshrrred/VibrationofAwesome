@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-06T20:41:58.868Z",
+  "lastUpdated": "2026-10-07T01:17:55.080Z",
   "recentHooks": [
     {
       "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-3",
@@ -888,6 +888,33 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "how-to-create-a-30-day-direction-reset",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-10-07T01:17:55.080Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-07T01:17:46.444Z"
+    },
+    {
+      "slug": "committing-to-a-path-before-you-know-where-it-leads-4",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-07T01:16:08.138Z"
+    },
+    {
       "slug": "how-to-break-cheap-dopamine-habits",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1129,33 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-10-04T18:52:46.249Z"
-    },
-    {
-      "slug": "how-to-choose-your-next-direction",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-04T17:27:30.021Z"
-    },
-    {
-      "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-10-04T17:27:15.315Z"
-    },
-    {
-      "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-2",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-04T17:25:46.760Z"
     }
   ],
   "recentInstagramArchetypes": [
