@@ -1,24 +1,29 @@
 {
-  "lastChecked": "2026-10-07T01:14:44.539Z",
-  "status": "ok",
-  "passed": 14,
-  "failed": 0,
+  "lastChecked": "2026-10-07T05:58:31.328Z",
+  "status": "broken",
+  "passed": 13,
+  "failed": 1,
   "total": 14,
-  "topFix": null,
+  "topFix": {
+    "name": "drip queue",
+    "detail": "publishing inventory low: 13 posts remain; minimum healthy runway is 14",
+    "repairCommand": "npm run check:syndication -- --write"
+  },
   "drip": {
     "status": "active",
     "rate": 1,
     "time": "13:00, 16:00, and 22:00 UTC plus 01:00 UTC next-day",
-    "remaining": 14,
-    "published": 377,
+    "remaining": 13,
+    "published": 378,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
   "checks": [
     {
       "name": "drip queue",
-      "ok": true,
-      "detail": "status=active, rate=1/run, time=13:00, 16:00, and 22:00 UTC plus 01:00 UTC next-day, remaining=14"
+      "ok": false,
+      "detail": "publishing inventory low: 13 posts remain; minimum healthy runway is 14",
+      "failureType": "check_failed"
     },
     {
       "name": "Publer accounts",
