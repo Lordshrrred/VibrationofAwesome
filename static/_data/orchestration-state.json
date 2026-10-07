@@ -1,14 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-06T20:41:59.386Z",
+  "generated_at": "2026-10-07T01:14:44.617Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 14,
+      "draft_count": 13,
       "draft_slugs": [
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-5",
-        "committing-to-a-path-before-you-know-where-it-leads-4",
         "purpose-isnt-found-its-built-through-small-commitments-3",
         "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation-2",
         "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have-2",
@@ -34,6 +33,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "committing-to-a-path-before-you-know-where-it-leads-4",
+        "title": "Committing to a Path Before You Know Where It Leads",
+        "lane": "boom",
+        "date": "2026-10-07T01:14:44.598Z",
+        "url": "/blog/boom/posts/committing-to-a-path-before-you-know-where-it-leads-4",
+        "tags": [
+          "direction-purpose-drift"
+        ],
+        "cluster": "purpose-direction",
+        "content_type": null
+      },
       {
         "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-2",
         "title": "When Your Creative Output Becomes Someone Else's: Recognizing the Moment You Stopped Trusting Your Own Taste",
@@ -261,21 +272,10 @@
         ],
         "cluster": "consciousness-technology",
         "content_type": null
-      },
-      {
-        "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-4",
-        "title": "The Difference Between Processing Emotion and Just Pushing It Down",
-        "lane": "boom",
-        "date": "2026-10-02T01:20:50.713Z",
-        "url": "/blog/boom/posts/the-difference-between-processing-emotion-and-just-pushing-it-down-4",
-        "tags": [
-          "nervous-system-dysregulation"
-        ],
-        "cluster": "emotional-regulation",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-07",
       "2026-10-06",
       "2026-10-05",
       "2026-10-04",
@@ -424,11 +424,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-07",
+    "next_estimated_window": "2026-10-08",
     "published_counts": {
-      "boom": 386,
+      "boom": 387,
       "matt": 18,
-      "total": 404
+      "total": 405
     }
   },
   "syndication": {
@@ -30446,6 +30446,7 @@
       }
     },
     "post_to_cluster": {
+      "committing-to-a-path-before-you-know-where-it-leads-4": "purpose-direction",
       "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-2": "authentic-self-expression",
       "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-3": "nervous-system-creativity",
       "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric-2": "dopamine-attention",
@@ -30845,7 +30846,7 @@
       "authentic-self-expression": 40,
       "creator-automation": 10,
       "spiritual-productivity": 23,
-      "purpose-direction": 14,
+      "purpose-direction": 15,
       "building-life-that-fits": 12,
       "emotional-regulation": 11,
       "art-buying-online": 21,
@@ -32313,11 +32314,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-06T20:41:59.386Z",
-    "next_estimated_window": "2026-10-07",
+    "as_of": "2026-10-07T01:14:44.617Z",
+    "next_estimated_window": "2026-10-08",
     "queue_runway_days": 3,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-10-07",
       "2026-10-06",
       "2026-10-05",
       "2026-10-04",
@@ -32474,6 +32476,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "committing-to-a-path-before-you-know-where-it-leads-4",
+        "lane": "boom",
+        "date": "2026-10-07T01:14:44.598Z"
+      },
+      {
         "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-2",
         "lane": "boom",
         "date": "2026-10-06T20:36:56.822Z"
@@ -32517,18 +32524,13 @@
         "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-3",
         "lane": "boom",
         "date": "2026-10-04T18:51:22.156Z"
-      },
-      {
-        "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-2",
-        "lane": "boom",
-        "date": "2026-10-04T17:24:29.731Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-06T20:41:59.376Z",
-    "source_event": "retry",
-    "export_duration_ms": 10,
+    "last_export_at": "2026-10-07T01:14:44.604Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 13,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
