@@ -3890,14 +3890,16 @@
     "voa_url": "https://vibrationofawesome.com/blog/boom/posts/quiet-practices-for-self-trust",
     "syndication": {
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mvdnoslrm72m",
-        "timestamp": "2026-09-12T17:56:21.899Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-10-07T09:10:53.935Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/117259354475529961",
-        "timestamp": "2026-09-12T17:56:21.899Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-10-07T09:10:53.935Z",
+        "error": "env vars not set"
       },
       "facebook_voa": {
         "status": "success",
@@ -3922,18 +3924,16 @@
         "timestamp": "2026-09-12T17:56:21.899Z"
       },
       "bluesky_esr": {
-        "status": "skipped",
+        "status": "failed",
         "url": null,
-        "timestamp": "2026-09-12T17:56:21.899Z",
-        "error": "skipped by social policy",
-        "skipped": true
+        "timestamp": "2026-10-07T09:10:53.935Z",
+        "error": "env vars not set"
       },
       "mastodon_esr": {
-        "status": "skipped",
+        "status": "failed",
         "url": null,
-        "timestamp": "2026-09-12T17:56:21.899Z",
-        "error": "skipped by social policy",
-        "skipped": true
+        "timestamp": "2026-10-07T09:10:53.935Z",
+        "error": "env vars not set"
       },
       "devto": {
         "status": "success",
@@ -3946,10 +3946,10 @@
         "timestamp": "2026-09-12T17:56:21.899Z"
       },
       "blogger": {
-        "status": "failed",
-        "url": null,
-        "timestamp": "2026-09-12T17:56:21.899Z",
-        "error": "Blogger token refresh failed (invalid_grant): Bad Request"
+        "status": "success",
+        "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/10/reflections-on-quiet-practices-for-self.html",
+        "timestamp": "2026-10-07T09:10:53.935Z",
+        "backfill_attempted_at": "2026-10-07T09:10:39.436Z"
       },
       "wordpress_earthstar": {
         "status": "success",
