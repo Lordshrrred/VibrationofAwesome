@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-08T01:37:09.763Z",
+  "lastUpdated": "2026-10-08T07:05:47.886Z",
   "recentHooks": [
     {
       "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-5",
@@ -888,6 +888,42 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "focus-reset-for-overstimulated-people",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-08T07:05:47.886Z"
+    },
+    {
+      "slug": "burnout-vs-nervous-system-dysregulation",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-08T07:05:37.375Z"
+    },
+    {
+      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-3",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-08T07:05:25.299Z"
+    },
+    {
+      "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-4",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-10-08T07:04:22.808Z"
+    },
+    {
       "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-3",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1120,42 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-10-06T07:17:49.928Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-3",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-06T02:08:19.824Z"
-    },
-    {
-      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-4",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-06T02:06:36.770Z"
-    },
-    {
-      "slug": "how-to-stop-avoiding-hard-decisions",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-05T22:16:33.120Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-3",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-05T22:16:20.160Z"
     }
   ],
   "recentInstagramArchetypes": [
