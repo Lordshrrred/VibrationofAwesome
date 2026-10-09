@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T06:38:18.322Z",
+  "generatedAt": "2026-10-09T15:31:36.116Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,59 +14,59 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 377,
+    "totalTrackedPosts": 378,
     "backlogPosts": 0,
     "backlinkCapableMissingUnits": 0,
-    "backlinkVerificationGaps": 585,
-    "feederMissingUnits": 19,
-    "distributionIncompleteUnits": 20,
+    "backlinkVerificationGaps": 588,
+    "feederMissingUnits": 20,
+    "distributionIncompleteUnits": 18,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 198,
-    "completedBacklinkUnitsPerDay": 14.1,
+    "completedBacklinkUnitsInWindow": 201,
+    "completedBacklinkUnitsPerDay": 14.4,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": -2.1,
+    "netBacklogChangePerDay": -2.4,
     "estimatedCatchUpDays": 0,
     "largestDelayPlatform": "VOA Feeder",
-    "largestDelayMissingUnits": 19
+    "largestDelayMissingUnits": 20
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 377,
-        "complete": 377,
+        "eligiblePosts": 378,
+        "complete": 378,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 6.3,
+        "averagePerDay": 6.4,
         "confirmed": 182,
-        "verificationGaps": 195,
+        "verificationGaps": 196,
         "mainBlocker": ""
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 377,
-        "complete": 377,
+        "eligiblePosts": 378,
+        "complete": 378,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.9,
+        "averagePerDay": 4,
         "confirmed": 182,
-        "verificationGaps": 195,
+        "verificationGaps": 196,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 377,
-        "complete": 377,
+        "eligiblePosts": 378,
+        "complete": 378,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.9,
+        "averagePerDay": 4,
         "confirmed": 182,
-        "verificationGaps": 195,
+        "verificationGaps": 196,
         "mainBlocker": ""
       }
     ],
@@ -74,10 +74,10 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 282,
+        "eligiblePosts": 283,
         "complete": 263,
-        "missing": 19,
-        "successRate": 93.3,
+        "missing": 20,
+        "successRate": 92.9,
         "averagePerDay": 1.9,
         "confirmed": 263,
         "verificationGaps": 0,
@@ -89,24 +89,24 @@
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
         "eligiblePosts": 297,
-        "complete": 296,
-        "missing": 1,
-        "successRate": 99.7,
-        "averagePerDay": 4.4,
+        "complete": 297,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 4.5,
         "confirmed": 142,
-        "verificationGaps": 154,
-        "mainBlocker": "env vars not set"
+        "verificationGaps": 155,
+        "mainBlocker": ""
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
         "eligiblePosts": 297,
-        "complete": 291,
-        "missing": 6,
-        "successRate": 98,
-        "averagePerDay": 4.5,
+        "complete": 292,
+        "missing": 5,
+        "successRate": 98.3,
+        "averagePerDay": 4.6,
         "confirmed": 142,
-        "verificationGaps": 149,
+        "verificationGaps": 150,
         "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
       },
       {
@@ -167,14 +167,6 @@
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
       "count": 4
-    },
-    {
-      "reason": "bluesky_voa: env vars not set",
-      "count": 1
-    },
-    {
-      "reason": "mastodon_voa: env vars not set",
-      "count": 1
     },
     {
       "reason": "mastodon_voa: Mastodon: Validation failed: Text can't be blank",
