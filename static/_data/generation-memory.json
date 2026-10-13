@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-12T22:39:40.358Z",
+  "lastUpdated": "2026-10-13T02:53:19.844Z",
   "recentHooks": [
     {
       "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-4",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-6",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-13T02:53:19.844Z"
+    },
+    {
       "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-6",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,15 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-10-08T20:55:55.553Z"
-    },
-    {
-      "slug": "when-being-productive-is-actually-running-from-something-4",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-08T20:54:52.507Z"
     }
   ],
   "recentInstagramArchetypes": [
