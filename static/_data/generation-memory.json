@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-13T19:51:57.886Z",
+  "lastUpdated": "2026-10-13T20:52:36.023Z",
   "recentHooks": [
     {
       "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-4",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "testing-resonance-before-you-buy-the-waiting-period-the-screenshot-method-and-trusting-your-gut-on-art-5",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-10-13T20:52:36.023Z"
+    },
+    {
       "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-6",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,15 +1156,6 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-10-09T07:13:26.566Z"
-    },
-    {
-      "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight-2",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-09T07:13:17.228Z"
     }
   ],
   "recentInstagramArchetypes": [
