@@ -1,11 +1,11 @@
-# SEO Intelligence Report ~ 2026-10-07
+# SEO Intelligence Report ~ 2026-10-14
 
 Default source: Google Search Console + GA4. No Anthropic, OpenAI, paid web-search, or rank-check API calls are made by this report.
 
 ## Data Freshness and Connections
 
-- Period: 2026-09-07 to 2026-10-04
-- Comparison: 2026-08-10 to 2026-09-06
+- Period: 2026-09-14 to 2026-10-11
+- Comparison: 2026-08-17 to 2026-09-13
 - Search Console: connected
 - GA4: connected
 - API requests attempted this run: 5
@@ -15,18 +15,15 @@ Default source: Google Search Console + GA4. No Anthropic, OpenAI, paid web-sear
 
 | Page | Clicks | Impressions | CTR | Avg Pos |
 | --- | --- | --- | --- | --- |
-| /earthstar/ | 0 | 3 | 0.0% | 70.7 |
 | /blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice | 0 | 2 | 0.0% | 94.5 |
-| /blog/boom/posts/how-to-create-a-custom-gpt-for-your-business | 0 | 1 | 0.0% | 94.0 |
+| /earthstar/ | 0 | 1 | 0.0% | 77.0 |
 
 ## Top Real Search Queries
 
 | Query | Clicks | Impressions | CTR | Avg Pos |
 | --- | --- | --- | --- | --- |
-| earth star academy | 0 | 2 | 0.0% | 67.5 |
 | mastermind v2 | 0 | 2 | 0.0% | 94.5 |
 | earthstar academy | 0 | 1 | 0.0% | 77.0 |
-| how to build a brand gpt | 0 | 1 | 0.0% | 94.0 |
 
 ## Near-Page-One Opportunities
 
@@ -42,7 +39,9 @@ _None found in this run._
 
 ## Traffic but Weak Engagement
 
-_None found in this run._
+| Page | Sessions | Engagement | Suggested action |
+| --- | --- | --- | --- |
+| /blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting | 5 | 20.0% | Check intent mismatch, improve the opening answer, and reduce filler before the useful answer. |
 
 ## Hidden-Query Discoveries
 
@@ -58,13 +57,13 @@ _None found in this run._
 
 ## Top Five Prioritized Actions
 
-1. Search Console and GA4 are connected, but no rows yet cross the opportunity thresholds ~ traffic is still very early-stage. Rerun after more data accumulates.
+1. Review /blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting; organic sessions exist but engagement is weak.
 
 ## Existing Operational Context
 
-- Published posts indexed locally: 406
+- Published posts indexed locally: 434
 - Authority assets indexed locally: 16
-- Syndication result records available: 370
+- Syndication result records available: 398
 
 ## Data Limitations
 

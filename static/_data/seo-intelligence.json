@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-10-07T16:06:32.460Z",
+  "generatedAt": "2026-10-14T14:20:46.566Z",
   "period": {
     "current": {
-      "startDate": "2026-09-07",
-      "endDate": "2026-10-04"
+      "startDate": "2026-09-14",
+      "endDate": "2026-10-11"
     },
     "previous": {
-      "startDate": "2026-08-10",
-      "endDate": "2026-09-06"
+      "startDate": "2026-08-17",
+      "endDate": "2026-09-13"
     }
   },
   "status": {
     "gsc": {
       "ok": true,
-      "message": "4 current query-page rows"
+      "message": "2 current query-page rows"
     },
     "ga": {
       "ok": true,
-      "message": "5 current organic landing-page rows"
+      "message": "6 current organic landing-page rows"
     }
   },
   "apiRequests": {
@@ -28,27 +28,20 @@
   "summary": {
     "searchConsole": {
       "clicks": 0,
-      "impressions": 6,
+      "impressions": 3,
       "ctr": 0,
-      "averagePosition": 82.5,
-      "rowCount": 3
+      "averagePosition": 88.66666666666667,
+      "rowCount": 2
     },
     "ga4": {
-      "organicSessions": 0,
-      "activeUsers": 0,
-      "engagedSessions": 0,
-      "engagementRate": null,
-      "rowCount": 0
+      "organicSessions": 5,
+      "activeUsers": 5,
+      "engagedSessions": 1,
+      "engagementRate": 0.2,
+      "rowCount": 1
     }
   },
   "topQueries": [
-    {
-      "query": "earth star academy",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 67.5
-    },
     {
       "query": "mastermind v2",
       "clicks": 0,
@@ -62,40 +55,9 @@
       "impressions": 1,
       "ctr": 0,
       "position": 77
-    },
-    {
-      "query": "how to build a brand gpt",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 94
     }
   ],
   "topLandingPages": [
-    {
-      "title": "/earthstar/",
-      "path": "/earthstar/",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 70.66666666666667,
-      "topQueries": [
-        {
-          "query": "earth star academy",
-          "clicks": 0,
-          "impressions": 2,
-          "ctr": 0,
-          "position": 67.5
-        },
-        {
-          "query": "earthstar academy",
-          "clicks": 0,
-          "impressions": 1,
-          "ctr": 0,
-          "position": 77
-        }
-      ]
-    },
     {
       "title": "Mastermind.com vs AI Advantage: Are Tony and Dean Selling the Same Promise Twice",
       "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
@@ -114,32 +76,44 @@
       ]
     },
     {
-      "title": "How To Create A Custom Gpt For Your Business",
-      "path": "/blog/boom/posts/how-to-create-a-custom-gpt-for-your-business",
+      "title": "/earthstar/",
+      "path": "/earthstar/",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 94,
+      "position": 77,
       "topQueries": [
         {
-          "query": "how to build a brand gpt",
+          "query": "earthstar academy",
           "clicks": 0,
           "impressions": 1,
           "ctr": 0,
-          "position": 94
+          "position": 77
         }
       ]
     }
   ],
   "ctrOpportunities": [],
   "engagementWinners": [],
-  "weakEngagement": [],
+  "weakEngagement": [
+    {
+      "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
+      "title": "How To Copy Ai Responses Without Losing Formatting",
+      "sessions": 5,
+      "activeUsers": 5,
+      "engagedSessions": 1,
+      "engagementRate": 0.2,
+      "avgEngagementTime": 78.2309434,
+      "views": 5,
+      "action": "Check intent mismatch, improve the opening answer, and reduce filler before the useful answer."
+    }
+  ],
   "topOpportunities": [],
   "counts": {
     "nearPageOne": 0,
     "ctr": 0,
     "engagementWinners": 0,
-    "weakEngagement": 0,
+    "weakEngagement": 1,
     "hiddenQueries": 0,
     "cannibalization": 0
   }
