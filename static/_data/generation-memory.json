@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-14T00:56:40.361Z",
+  "lastUpdated": "2026-10-14T05:56:05.950Z",
   "recentHooks": [
     {
       "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-4",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-5",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-14T05:56:05.950Z"
+    },
+    {
+      "slug": "when-being-productive-is-actually-running-from-something-5",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-14T05:55:04.949Z"
+    },
+    {
+      "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-5",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1138,24 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-10-09T20:24:11.513Z"
-    },
-    {
-      "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight-2",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-09T18:46:42.207Z"
-    },
-    {
-      "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation-2",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-09T18:45:07.525Z"
     }
   ],
   "recentInstagramArchetypes": [
