@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-15T17:42:54.685Z",
+  "lastUpdated": "2026-10-15T19:31:51.669Z",
   "recentHooks": [
     {
       "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-6",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-5",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-15T19:31:51.669Z"
+    },
+    {
       "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-4",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,15 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-10-11T00:44:09.983Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-5",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-10T19:36:55.569Z"
     }
   ],
   "recentInstagramArchetypes": [
