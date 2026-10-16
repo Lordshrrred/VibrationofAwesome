@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-16T00:08:20.417Z",
+  "lastUpdated": "2026-10-16T05:35:41.581Z",
   "recentHooks": [
     {
       "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-6",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-5",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-16T05:35:41.581Z"
+    },
+    {
+      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-6",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-10-16T05:34:33.793Z"
+    },
+    {
+      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-5",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
       "density": "light",
@@ -1138,24 +1156,6 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-10-11T17:59:13.023Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-5",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-11T06:56:04.447Z"
-    },
-    {
-      "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-5",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-11T06:55:04.759Z"
     }
   ],
   "recentInstagramArchetypes": [
