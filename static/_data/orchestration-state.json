@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-17T05:24:28.161Z",
+  "generated_at": "2026-10-17T16:16:27.728Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 18,
+      "draft_count": 17,
       "draft_slugs": [
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-7",
         "committing-to-a-path-before-you-know-where-it-leads-6",
@@ -19,7 +19,6 @@
         "the-difference-between-processing-emotion-and-just-pushing-it-down-7",
         "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight-4",
         "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-6",
-        "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-5",
         "the-real-cost-of-ignoring-ai-as-an-independent-creator-6",
         "what-our-technology-reveals-about-our-consciousness-6",
         "when-being-productive-is-actually-running-from-something-6",
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-5",
+        "title": "The Overstimulation Trap: Why Busy Input Makes Your Output Disappear",
+        "lane": "boom",
+        "date": "2026-10-17T16:16:27.705Z",
+        "url": "/blog/boom/posts/the-overstimulation-trap-why-busy-input-makes-your-output-disappear-5",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "nervous-system-creativity",
+        "content_type": null
+      },
       {
         "slug": "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric-4",
         "title": "The Focus Rebuild: Recovering Attention Capacity Without the Detox Rhetoric",
@@ -265,18 +276,6 @@
         ],
         "cluster": "building-life-that-fits",
         "content_type": null
-      },
-      {
-        "slug": "committing-to-a-path-before-you-know-where-it-leads-5",
-        "title": "Committing to a Path Before You Know Where It Leads",
-        "lane": "boom",
-        "date": "2026-10-12T21:40:21.740Z",
-        "url": "/blog/boom/posts/committing-to-a-path-before-you-know-where-it-leads-5",
-        "tags": [
-          "direction-purpose-drift"
-        ],
-        "cluster": "purpose-direction",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -441,9 +440,9 @@
     ],
     "next_estimated_window": "2026-10-18",
     "published_counts": {
-      "boom": 428,
+      "boom": 429,
       "matt": 18,
-      "total": 446
+      "total": 447
     }
   },
   "syndication": {
@@ -33025,6 +33024,7 @@
       }
     },
     "post_to_cluster": {
+      "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-5": "nervous-system-creativity",
       "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric-4": "dopamine-attention",
       "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-6": "spiritual-productivity",
       "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-6": "ai-creator-tools",
@@ -33461,7 +33461,7 @@
     },
     "saturation": {
       "ai-creator-tools": 192,
-      "nervous-system-creativity": 42,
+      "nervous-system-creativity": 43,
       "dopamine-attention": 26,
       "authentic-self-expression": 43,
       "creator-automation": 14,
@@ -34934,7 +34934,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-17T05:24:28.161Z",
+    "as_of": "2026-10-17T16:16:27.728Z",
     "next_estimated_window": "2026-10-18",
     "queue_runway_days": 4,
     "queue_runway_status": "healthy",
@@ -35106,6 +35106,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-5",
+        "lane": "boom",
+        "date": "2026-10-17T16:16:27.705Z"
+      },
+      {
         "slug": "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric-4",
         "lane": "boom",
         "date": "2026-10-17T05:22:21.717Z"
@@ -35149,17 +35154,12 @@
         "slug": "purpose-isnt-found-its-built-through-small-commitments-4",
         "lane": "boom",
         "date": "2026-10-15T05:38:11.080Z"
-      },
-      {
-        "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation-3",
-        "lane": "boom",
-        "date": "2026-10-15T00:19:09.535Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-17T05:24:28.145Z",
-    "source_event": "retry",
+    "last_export_at": "2026-10-17T16:16:27.712Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 16,
     "schema_version": "1.0",
     "stale_after_minutes": 60
