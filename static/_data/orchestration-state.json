@@ -1,13 +1,12 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-16T19:07:20.226Z",
+  "generated_at": "2026-10-17T00:11:00.632Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 20,
+      "draft_count": 19,
       "draft_slugs": [
-        "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-6",
         "building-an-editorial-system-that-feels-like-you-not-a-task-manager-7",
         "committing-to-a-path-before-you-know-where-it-leads-6",
         "machine-intelligence-and-the-question-of-soul-what-changes-for-us-6",
@@ -28,7 +27,7 @@
         "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-5",
         "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-4"
       ],
-      "runway_days": 5,
+      "runway_days": 4,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -40,6 +39,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-6",
+        "title": "Building a Morning That Emerges From Who You Are, Not What You Should Do",
+        "lane": "boom",
+        "date": "2026-10-17T00:11:00.609Z",
+        "url": "/blog/boom/posts/building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-6",
+        "tags": [
+          "direction-purpose-drift"
+        ],
+        "cluster": "spiritual-productivity",
+        "content_type": null
+      },
       {
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-6",
         "title": "The Repetitive Tasks Worth Automating (And the Ones That Cost You Your Voice)",
@@ -267,21 +278,10 @@
         ],
         "cluster": "authentic-self-expression",
         "content_type": null
-      },
-      {
-        "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-4",
-        "title": "The Overstimulation Trap: Why Busy Input Makes Your Output Disappear",
-        "lane": "boom",
-        "date": "2026-10-12T01:03:45.579Z",
-        "url": "/blog/boom/posts/the-overstimulation-trap-why-busy-input-makes-your-output-disappear-4",
-        "tags": [
-          "nervous-system-dysregulation"
-        ],
-        "cluster": "nervous-system-creativity",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-17",
       "2026-10-16",
       "2026-10-15",
       "2026-10-14",
@@ -440,11 +440,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-17",
+    "next_estimated_window": "2026-10-18",
     "published_counts": {
-      "boom": 426,
+      "boom": 427,
       "matt": 18,
-      "total": 444
+      "total": 445
     }
   },
   "syndication": {
@@ -32902,6 +32902,7 @@
       }
     },
     "post_to_cluster": {
+      "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-6": "spiritual-productivity",
       "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-6": "ai-creator-tools",
       "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-6": "art-buying-online",
       "building-an-editorial-system-that-feels-like-you-not-a-task-manager-6": "creator-automation",
@@ -33340,7 +33341,7 @@
       "dopamine-attention": 25,
       "authentic-self-expression": 43,
       "creator-automation": 14,
-      "spiritual-productivity": 26,
+      "spiritual-productivity": 27,
       "purpose-direction": 18,
       "building-life-that-fits": 16,
       "emotional-regulation": 15,
@@ -34809,11 +34810,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-16T19:07:20.226Z",
-    "next_estimated_window": "2026-10-17",
-    "queue_runway_days": 5,
+    "as_of": "2026-10-17T00:11:00.632Z",
+    "next_estimated_window": "2026-10-18",
+    "queue_runway_days": 4,
     "queue_runway_status": "healthy",
     "occupied_dates": [
+      "2026-10-17",
       "2026-10-16",
       "2026-10-15",
       "2026-10-14",
@@ -34980,6 +34982,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-6",
+        "lane": "boom",
+        "date": "2026-10-17T00:11:00.609Z"
+      },
+      {
         "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-6",
         "lane": "boom",
         "date": "2026-10-16T19:05:21.218Z"
@@ -35023,18 +35030,13 @@
         "slug": "rest-as-active-creative-work-the-counterintuitive-edge-regulated-people-have-3",
         "lane": "boom",
         "date": "2026-10-14T19:47:11.619Z"
-      },
-      {
-        "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight-3",
-        "lane": "boom",
-        "date": "2026-10-14T17:54:18.488Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-16T19:07:20.206Z",
-    "source_event": "retry",
-    "export_duration_ms": 20,
+    "last_export_at": "2026-10-17T00:11:00.616Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 16,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
