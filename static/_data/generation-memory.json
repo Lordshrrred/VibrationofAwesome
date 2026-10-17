@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-17T00:12:02.132Z",
+  "lastUpdated": "2026-10-17T05:24:27.159Z",
   "recentHooks": [
     {
       "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-6",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-6",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-10-17T05:24:27.159Z"
+    },
+    {
+      "slug": "the-focus-rebuild-recovering-attention-capacity-without-the-detox-rhetoric-4",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-10-17T05:23:21.166Z"
+    },
+    {
+      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-6",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
@@ -1138,24 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-10-12T21:41:22.652Z"
-    },
-    {
-      "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-4",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-12T07:04:26.193Z"
-    },
-    {
-      "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-3",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-12T07:03:12.818Z"
     }
   ],
   "recentInstagramArchetypes": [
