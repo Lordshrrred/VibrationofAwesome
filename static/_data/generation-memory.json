@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-18T16:26:51.911Z",
+  "lastUpdated": "2026-10-18T18:20:15.460Z",
   "recentHooks": [
     {
       "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-8",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "build-a-focus-card-with-a-finish-line-you-can-recognize",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-18T18:20:15.460Z"
+    },
+    {
       "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-7",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,15 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-10-13T19:51:57.886Z"
-    },
-    {
-      "slug": "the-decision-framework-when-to-automate-and-when-to-stay-hands-on-4",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-13T19:50:10.164Z"
     }
   ],
   "recentInstagramArchetypes": [
