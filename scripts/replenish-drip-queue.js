@@ -20,7 +20,7 @@ import { createAnthropicClient } from "./lib/anthropic-client.js";
 import minimist from "minimist";
 import { refreshKeywordEvidence, freshKeywordEvidence } from "./lib/keyword-evidence.js";
 import { EARTHSTAR_NICHES } from "./content-niches.js";
-import { inferCluster, loadTopicClusters, selectBalancedClusterRows } from "./lib/internal-linking.js";
+import { contentIdentity, partitionDuplicateDrafts, inferCluster, loadTopicClusters, selectBalancedClusterRows } from "./lib/internal-linking.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 dotenv.config({ quiet: true });
@@ -43,7 +43,7 @@ function readJson(file, fallback) {
 }
 
 function normalize(value) {
-  return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  return contentIdentity(value);
 }
 
 function semanticTokens(value) {
@@ -89,8 +89,11 @@ export function buildCandidates(existingRows, onlyNiche = "", topicBatches = [],
     if (!niche || niche.slug === "ai-advantage-campaign" || (onlyNiche && niche.slug !== onlyNiche)) return;
     const cluster = row.cluster || inferCluster(row, clusterData);
     if (!clusterData.byKey[cluster]?.relatedNiches.includes(niche.slug)) return;
-    if (!row.keyword || used.has(normalize(row.keyword)) || isNearDuplicate(row.keyword, [...existingRows, ...candidates])) return;
+    if (!row.keyword || used.has(normalize(row.keyword)) || (row.title && used.has(normalize(row.title)))
+      || isNearDuplicate(row.keyword, [...existingRows, ...candidates])
+      || (row.title && isNearDuplicate(row.title, [...existingRows, ...candidates]))) return;
     used.add(normalize(row.keyword));
+    if (row.title) used.add(normalize(row.title));
     candidates.push({ ...row, cluster, niche: niche.slug });
   }
   if (onlyNiche && !EARTHSTAR_NICHES.some(n => n.slug === onlyNiche)) throw new Error(`Unknown niche: ${onlyNiche}`);
@@ -161,6 +164,14 @@ async function main() {
   const queue = readJson(QUEUE_FILE, null);
   if (!queue || !Array.isArray(queue.queue)) throw new Error("drip-queue.json is missing or invalid");
   const published = readJson(POSTS_FILE, []);
+  const history = [...published, ...(queue.published || [])];
+  const { eligible, held } = partitionDuplicateDrafts(queue.queue, history);
+  if (held.length) {
+    console.warn(`[replenish] Holding ${held.length} repeated drafts; files are preserved for editorial review.`);
+    queue.queue = eligible;
+    queue.duplicate_holds = [...(queue.duplicate_holds || []), ...held.map(row => ({ ...row, held_at: new Date().toISOString() }))];
+    if (argv.execute) fs.writeFileSync(QUEUE_FILE, JSON.stringify(queue, null, 2));
+  }
   if (queue.status !== "active" && !argv.force) {
     console.log("[replenish] Queue is paused; no automatic spending.");
     return;
@@ -183,7 +194,7 @@ async function main() {
   // Published drafts also remain on disk. Unqueued files are duplicate evidence,
   // never permission to silently regenerate a suffixed copy.
   const diskRows = fs.existsSync(DRAFTS_DIR) ? fs.readdirSync(DRAFTS_DIR).filter(n => n.endsWith(".html")).map(n => ({ title: n.replace(/\.html$/, "").replace(/-/g, " ") })) : [];
-  const existingRows = [...published, ...queue.queue, ...diskRows];
+  const existingRows = [...history, ...queue.queue, ...(queue.duplicate_holds || []), ...diskRows];
   const batches = readJson(TOPICS_FILE, []);
   let researchError = null;
   if (argv.execute && argv.topics) {

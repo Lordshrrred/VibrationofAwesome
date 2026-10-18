@@ -9,6 +9,13 @@
 (function () {
   'use strict';
 
+  function track(data) {
+    var event = data.event;
+    var params = Object.assign({}, data);
+    delete params.event;
+    if (typeof window.gtag === 'function') window.gtag('event', event, params);
+  }
+
   const API_CAPTURE_URL = window.VOA_CAPTURE_EMAIL_URL || 'https://vibrationofawesome-mailer.vercel.app/api/capture-email';
 
   const STYLES = `
@@ -579,7 +586,7 @@
     const input = shell.querySelector('#voa-modal-email');
     setTimeout(function () { if (input) input.focus(); }, 120);
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'ebook_cover_click', placement: placement || 'cover-click', blog_slug: slug || '' });
+    track({ event: 'ebook_cover_click', placement: placement || 'cover-click', blog_slug: slug || '' });
   }
 
   function closeModal() {
@@ -610,7 +617,7 @@
     btn.disabled = true;
     btn.textContent = 'Opening...';
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'ebook_optin_submit', placement, blog_slug: slug });
+    track({ event: 'ebook_optin_submit', placement, blog_slug: slug });
 
     try {
       const resp = await fetch(API_CAPTURE_URL, {
@@ -633,7 +640,7 @@
     shell.querySelector('.voa-cta-form').style.display = 'none';
     shell.querySelector('.voa-modal-note').style.display = 'none';
     success.style.display = 'block';
-    window.dataLayer.push({ event: 'ebook_optin_success', placement, blog_slug: slug });
+    track({ event: 'ebook_optin_success', placement, blog_slug: slug });
   }
 
   function getPageSlug(el) {
@@ -748,7 +755,7 @@
 </div>`;
     // top-banner links directly to landing page, no inline form
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'ebook_cta_view', placement: 'top-banner', blog_slug: slug });
+    track({ event: 'ebook_cta_view', placement: 'top-banner', blog_slug: slug });
   }
 
   function attachFormHandler(el, slug, placement) {
@@ -759,7 +766,7 @@
     const dlLink = el.querySelector('.voa-dl-link');
 
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'ebook_cta_view', placement, blog_slug: slug });
+    track({ event: 'ebook_cta_view', placement, blog_slug: slug });
 
     const coverTrigger = el.querySelector('.voa-cover-trigger');
     if (coverTrigger) {
@@ -777,7 +784,7 @@
       }
       btn.disabled = true;
       btn.textContent = 'Opening…';
-      window.dataLayer.push({ event: 'ebook_optin_submit', placement, blog_slug: slug });
+      track({ event: 'ebook_optin_submit', placement, blog_slug: slug });
 
       try {
         const resp = await fetch(API_CAPTURE_URL, {
@@ -803,7 +810,7 @@
 
       form.style.display = 'none';
       successEl.style.display = 'block';
-      window.dataLayer.push({ event: 'ebook_optin_success', placement, blog_slug: slug });
+      track({ event: 'ebook_optin_success', placement, blog_slug: slug });
     }
 
     btn.addEventListener('click', submit);

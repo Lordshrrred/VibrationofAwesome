@@ -11,6 +11,11 @@ Posts are standalone HTML, indexed in `static/_data/[lane]-posts.json` (`title, 
 
 Pipeline: `generate-post.js` → Claude with a lane-specific system prompt → markdown → `marked` → `static/blog/[lane]/posts/[slug].html` (or `drafts/`) → lane JSON index.
 
+Boom generation fails before spending on a repeated requested title/keyword,
+and rejects repeated returned H1s before saving. A response reaching its
+output-token limit fails the quality gate instead of publishing a truncated
+article. Existing published duplicates are retained for editorial consolidation.
+
 ```bash
 node scripts/generate-post.js --lane matt --title "Post Title Here"
 node scripts/generate-post.js --lane boom --keyword "target keyword" --topic "content angle"

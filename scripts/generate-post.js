@@ -23,6 +23,7 @@ import {
   backlinkOlderPosts,
   inferCluster,
   loadTopicClusters,
+  contentIdentity,
 } from "./lib/internal-linking.js";
 import { getNextCTA, detectContentType } from "./lib/policy.js";
 import { getDifferentiationContext, getClusterContext, recordGeneration } from "./lib/generation-memory.js";
@@ -196,7 +197,7 @@ function extractText(message) {
     );
   }
   if (message.stop_reason === "max_tokens") {
-    console.warn("[warn] Response hit max_tokens ~ the post is probably truncated. Raise max_tokens.");
+    throw new Error("Generation reached the output limit; truncated articles cannot enter the publishing queue.");
   }
   return text;
 }
@@ -803,6 +804,17 @@ async function main() {
     return;
   }
 
+  let duplicateHistory = [];
+  if (lane === "boom") {
+    const published = JSON.parse(fs.readFileSync(path.join(ROOT, "static/_data/boom-posts.json"), "utf8"));
+    const queue = JSON.parse(fs.readFileSync(path.join(ROOT, "static/_data/drip-queue.json"), "utf8"));
+    const history = [...published, ...(queue.published || []), ...(queue.queue || []), ...(queue.duplicate_holds || [])];
+    duplicateHistory = history;
+    const duplicate = history.find(row =>
+      (argv.title && contentIdentity(row.title) === contentIdentity(argv.title)) ||
+      (argv.keyword && row.keyword && contentIdentity(row.keyword) === contentIdentity(argv.keyword)));
+    if (duplicate) throw new Error(`Duplicate article blocked before API spend: ${duplicate.slug}`);
+  }
   const client = createAnthropicClient({ label: "generate-post" });
   let postTitle, userMessage, systemPrompt;
   const requestedNiche = lane === "boom" && argv.niche ? findNiche(argv.niche) : null;
@@ -982,6 +994,9 @@ async function main() {
   const h1HtmlMatch = !h1MarkdownMatch ? cleanMarkdown.match(/^\s*<h1>([^<]+)<\/h1>\s*$/m) : null;
   if (h1MarkdownMatch) postTitle = h1MarkdownMatch[1].trim();
   else if (h1HtmlMatch) postTitle = h1HtmlMatch[1].trim();
+  if (lane === "boom" && duplicateHistory.some(row => contentIdentity(row.title) === contentIdentity(postTitle))) {
+    throw new Error("Generated title repeats an existing article; rejected before saving or syndication.");
+  }
   const bodyMarkdown = cleanMarkdown
     .replace(/^#\s+.+$/m, "")
     .replace(/^\s*<h1>([^<]+)<\/h1>\s*$/m, "")

@@ -13,7 +13,12 @@ npm run seo:intelligence
 node scripts/seo_intelligence.js --days 28 --refresh   # force fresh pulls
 ```
 
-An uncached run makes two Search Console + three GA4 requests.
+An uncached run makes three Search Console + five GA4 requests. Property
+aggregates populate totals; shortlisted query/page opportunities never stand
+in for all traffic. The Resources/tool reach section uses all channels and
+states its recording limits. The dashboard reads these same cached results.
+Widget conversions use `gtag('event', ...)`; plain data-layer event objects
+alone are insufficient on pages without a GTM container.
 
 ## Manual competitive research (cost-gated)
 

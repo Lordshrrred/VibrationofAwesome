@@ -12,6 +12,13 @@
 (function () {
   'use strict';
 
+  function track(data) {
+    var event = data.event;
+    var params = Object.assign({}, data);
+    delete params.event;
+    if (typeof window.gtag === 'function') window.gtag('event', event, params);
+  }
+
   var LINK = '/ai-engine/';
 
   // 8 variants ~ tonal range from practical to philosophical.
@@ -97,7 +104,7 @@
     ].join('');
 
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'ai_engine_nudge_view', blog_slug: slug });
+    track({ event: 'ai_engine_nudge_view', blog_slug: slug });
   }
 
   function init() {

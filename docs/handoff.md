@@ -2,11 +2,11 @@
 
 Status board, not a log. Overwrite blocks in place and delete what's resolved; git and `docs/decisions.md` keep the past. Keep it under ~60 lines. Rules live in `AGENTS.md` and `docs/modules/`. New machine? `docs/new-machine.md`.
 
-Last updated: 2026-09-29 (Spring print sources recovered for all current Art Store designs).
+Last updated: 2026-10-18 (blog/cost audit and duplicate safeguards).
 
 ## At a glance
-- **Most recent work:** the live Art Store was extracted into a generated inventory without changing `/art-store/`. Full-resolution Spring uploads for all eight current design worlds were recovered to `/Users/matt/Documents/EarthStar Art Store Masters/recovered-from-spring/`; see `reports/art-store-source-recovery.md`. Some are reusable standalone art, while ADHD Higher Dimension and Uncontrollably Awesome are currently recovered as product-specific mug wraps.
-- **Dev.to: DONE 2026-09-29.** Removed from code, health checks, dashboards, docs, workflows; GitHub secrets and Vercel env deleted (see `docs/decisions.md`). Health is 14/14.
+- **Most recent work:** blog/cost audit stopped repeated topic generation, repaired research parsing, truthful analytics totals and CTA event delivery. Eight tools are live; organic discovery remains small.
+- **Dev.to: DONE 2026-09-29.** Removed from code, health checks, dashboards, docs, workflows; GitHub secrets and Vercel env deleted (see `docs/decisions.md`). Current readiness separately flags inventory and research gaps.
 - **Waiting on Matt (approval to run):** rewrite public git history to remove old references to a private synced folder path (present in 4 commits: 13711827, 738fe46e, 5ce8f1db, faf5585a, plus messages). The sandbox blocked the force-push rewrite, so it has not been run. Plan: fresh mirror clone, `git filter-repo --replace-text/--replace-message`, verify zero matches, force-push `refs/heads/*`, reset local clones, then ask GitHub Support to purge cached views and `refs/pull/*` (PR 32/33 refs may still hold old text). Not yet checked: whether sibling repos (VOA_Feeder etc.) are private or contain the same strings.
 - **Waiting on Matt (manual):** on a new machine, restore the private synced folder and recreate the `.env` and `BMO_CONTEXT.md` symlinks (both now live in the private synced folder; see `docs/new-machine.md`).
 - **If nothing is assigned:** ask Matt which item to take.
@@ -22,7 +22,9 @@ Last updated: 2026-09-29 (Spring print sources recovered for all current Art Sto
 - **Open:** the dashboard ESC recommendations panel is stale. `static/_data/latest-voa-recommendations.json` expired 2026-06-03 and `lordshrrred.github.io/VOA_Feeder/latest-voa-recommendations.json` is 404 (EarthStar Command isn't exporting it; fix belongs in the ESC repo). It is cosmetic. Suggested: hide the panel until ESC exports again.
 
 ### Publishing queue: `docs/modules/publishing-queue.md`
-- **Status:** active, ~20 drafts. Three recovered orphan drafts (`recovered_orphan: true`) are still queued and publish through normal rotation.
+- **Status:** active but zero eligible drafts after 22 repeated-title drafts moved to `duplicate_holds`; HTML preserved. Today's eight generation attempts were already consumed. Next normal daily refill must provide fresh articles within the existing cap; no manual paid run was made. Thirty eligible saved topics remain across all 11 clusters.
+- **Open:** four weekly research attempts failed after September 17. Terminal JSON parsing and stale-evidence health now have regression coverage; await the next scheduled paid research attempt to verify live recovery. Readiness intentionally shows inventory/research gaps.
+- **Next:** verify the next bounded refill; review 22 duplicate groups in the published archive before any URL consolidation. Matt has not approved a provider/model swap, higher daily rate, or changes to author portraits.
 
 ## Verified 2026-09-29
 `build-info.json` live and current; `deployment-health.json` written and current with origin; GitHub issue 26 is informational only.

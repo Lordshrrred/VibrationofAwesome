@@ -7,6 +7,13 @@
 (function () {
   'use strict';
 
+  function track(data) {
+    var event = data.event;
+    var params = Object.assign({}, data);
+    delete params.event;
+    if (typeof window.gtag === 'function') window.gtag('event', event, params);
+  }
+
   // Collection pool ~ one image per collection, short evocative line
   var COLLECTIONS = [
     {
@@ -182,12 +189,12 @@
       '</div>';
 
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'art_store_whisper_view', collection: col.name, blog_slug: slug });
+    track({ event: 'art_store_whisper_view', collection: col.name, blog_slug: slug });
 
     var card = el.querySelector('.voa-store-whisper-card');
     if (card) {
       card.addEventListener('click', function () {
-        window.dataLayer.push({ event: 'art_store_whisper_click', collection: col.name, blog_slug: slug });
+        track({ event: 'art_store_whisper_click', collection: col.name, blog_slug: slug });
       });
     }
   }

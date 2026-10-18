@@ -6,6 +6,13 @@ Read this before changing any `model:` value, `max_tokens`, retry settings, or p
 
 Every Claude call site builds its client with `createAnthropicClient({ label })` from `scripts/lib/anthropic-client.js` (not `new Anthropic()`). It pins `maxRetries: 3` and logs every retried 429/5xx so runaway retries show up in logs. `api/chat.js` (AURA, raw `fetch`) has its own `callAnthropicWithRetry()` with the same cap.
 
+The factory emits `CLAUDE_USAGE` lines with task label, actual response model,
+stop reason and token/cache usage. Prompts, output content and credentials are
+excluded. These are forward usage records, not invoice totals. Billing
+reconciliation requires authenticated console/Admin access. The same local
+application key is used by sibling systems, so a shared bill is not solely the
+VOA writer's cost.
+
 ## Models by task (verified against code 2026-09-27)
 
 | Task | File | Model |
@@ -27,6 +34,13 @@ Do not downgrade `generate-post.js` without asking Matt.
 About ten other call sites still read `content[0].text` (`generate-captions.js`, `generate-pinterest-image.js`, `generate-from-inspiration.js`, `seo-research.js`, `auto-heal.js`, `lib/visual-intelligence.js`, `generate-instagram-visual.js`). They are safe **only** because their models run with thinking off. Moving any of them to a thinking-on model requires a text-block filter in the same commit.
 
 `seo-research.js` was put on Sonnet 5 because of introductory pricing ($2/$10) that ended 2026-08-31. Re-check current pricing before assuming it is still the cheaper choice; it is manual/opt-in only.
+
+On October 18, the vendor lists Sonnet 5 at $2/$10 as its standard rate.
+Opus 4.8 and Haiku 4.5 remain active. Haiku 5.5, Sonnet 5.5 and Opus 5.5 are
+available to the current key; availability alone does not approve a production
+switch. Measure tokenizer, reasoning, completeness and useful-output cost on
+the same briefs before migrating. No model/provider switch or paid comparison
+was performed by the October audit.
 
 ## Prompt caching
 

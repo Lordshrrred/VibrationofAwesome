@@ -32,6 +32,14 @@ Planning and publishing share `selectBalancedClusterRows()` in `scripts/lib/inte
 
 Candidates come from `static/_data/topic-queue.json` and unused niche research. If a cluster has fewer than two unused candidates, one Haiku 4.5 call proposes up to six evergreen ideas per thin cluster (zero SDK retries, 10,000 output-token ceiling, persisted 24-hour cooldown even on failure). Accepted ideas are saved in the topic queue and deduplicated against published titles, queued drafts, draft filenames, and other candidates. These are model-proposed **hypotheses, not verified search demand**.
 
+Deduplication also includes `drip-queue.json`'s persisted `published` keyword
+history. Both the proposed title and keyword are checked before spending.
+`partitionDuplicateDrafts()` is shared with the publishing gate: repeats move
+to `duplicate_holds`, preserving their HTML for review and excluding them from
+usable inventory. Generation rejects repeated titles both before the API call
+and after receiving the H1. Never use numbered slugs to republish the same
+article intent. Health counts eligible inventory, not raw queue length.
+
 Weekly cluster research: one bounded Haiku request, at most 11 web-search calls (one per cluster), zero retries, persisted seven-day cooldown. Returned source URLs and observed queries are saved in the topic queue, reused up to 14 days, and fed to planning with fresh Search Console observations. They inform intent/gaps, not measured volume or difficulty. No per-article search, no routine paid rank tracking. Failed research preserves the prior cache and fails the workflow. Time-sensitive AI Advantage campaign research stays manual. Main articles keep Opus 4.8.
 
 ```bash

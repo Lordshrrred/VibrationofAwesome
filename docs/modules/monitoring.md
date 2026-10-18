@@ -15,6 +15,10 @@ Read this before touching `syndication-health.yml`, `publer-delivery-monitor.yml
 
 `workflow-failure-alerts.yml` ("VOA Workflow Failure Alerts") separately emails that address when a scheduled publishing, replenishment, SEO, backlink, build, deployment, feeder, subscriber-reply, or watchdog workflow fails.
 
+Readiness also checks duplicate-free inventory and fresh observed search
+evidence for every canonical cluster. A research failure remains visible during
+the paid-call cooldown; a skipped attempt does not make stale evidence healthy.
+
 ## Blogger
 
 - The Google OAuth app must be **In production** (Testing expires refresh tokens after 7 days). Reconnect after changing status. Production tokens can still be revoked, so monitoring stays necessary.

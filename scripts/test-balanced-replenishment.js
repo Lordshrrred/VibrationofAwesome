@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import { loadTopicClusters, selectBalancedClusterRows } from './lib/internal-linking.js';
+import { loadTopicClusters, selectBalancedClusterRows, partitionDuplicateDrafts } from './lib/internal-linking.js';
 import { buildCandidates, validateTopicIdeas } from './replenish-drip-queue.js';
 const data = loadTopicClusters();
 const candidates = data.clusters.flatMap(c => Array.from({length: 3}, (_, n) => ({cluster: c.key, title: `${c.key} ${n}`, slug: `${c.key}-${n}`})));
@@ -38,6 +38,18 @@ test('explicit cluster is preserved where several clusters share one niche',()=>
   const rows=buildCandidates([], '', batches, data);
   assert.equal(rows.find(r=>r.keyword==='how to archive finished creative projects').cluster,'creator-automation');
   assert.ok(rows.every(r=>r.niche!=='ai-advantage-campaign'));
+});
+test('saved keywords cannot regenerate an already published title under a new keyword',()=>{
+  const title='Committing to a Path Before You Know Where It Leads';
+  const batches=[{niche:'direction-purpose-drift',keywords:{informational:[{keyword:'an entirely different query string',suggested_title:title,cluster:'purpose-direction'}]}}];
+  assert.ok(!buildCandidates([{title,slug:'first-post'}],'',batches,data).some(r=>r.title===title));
+});
+test('publishing holds repeated titles and keywords while preserving distinct drafts',()=>{
+  const history=[{title:'Trust Your Own Taste',keyword:'recover creative voice',slug:'original'}];
+  const rows=[{title:'Trust Your Own Taste!',slug:'original-2'},{title:'A different title',keyword:'recover creative voice',slug:'keyword-copy'},{title:'An original experiment',slug:'new'}];
+  const result=partitionDuplicateDrafts(rows,history);
+  assert.deepEqual(result.eligible.map(r=>r.slug),['new']);
+  assert.equal(result.held.length,2);
 });
 test('topic gate rejects duplicates, invented clusters, news, and thin briefs',()=>{
   const base={cluster:'creator-automation',keyword:'how to archive finished creative projects',title:'An archive you can actually find again',brief:'A practical naming and retrieval workflow for completed creative work.'};
@@ -101,6 +113,28 @@ test('paused queues do not spend or generate',t=>{
 });
 
 import { extractSearchEvidence, extractClusterEvidence, freshKeywordEvidence } from './lib/keyword-evidence.js';
+import { analyticsSummary } from './seo_intelligence.js';
+test('SEO totals include low-volume landing pages and anonymized search queries',()=>{
+  const data={gsc:{current:{totals:{clicks:3,impressions:120,ctr:0.025,position:12},queryPage:[{}]}},ga:{current:{totals:{sessions:12,activeUsers:9,engagedSessions:4,engagementRate:1/3},landingPages:[{},{}]}}};
+  const result=analyticsSummary(data);
+  assert.equal(result.ga4.organicSessions,12);
+  assert.equal(result.ga4.activeUsers,9);
+  assert.equal(result.searchConsole.impressions,120);
+  assert.equal(result.searchConsole.observedQueryPageRows,1);
+  delete data.ga.current.totals;assert.equal(analyticsSummary(data).ga4.organicSessions,null);
+});
+test('CTA events are delivered to GA4 without sending subscriber email',()=>{
+  for(const file of ['ebook-cta.js','ai-engine-cta.js','ai-engine-nudge.js','art-store-whisper.js']){
+    const source=fs.readFileSync(`static/js/${file}`,'utf8');
+    const fn=source.match(/function track\(data\) \{[\s\S]*?\n  \}/)?.[0];
+    assert.ok(fn,file);
+    const calls=[];const context=vm.createContext({window:{gtag:(...args)=>calls.push(args)},Object});
+    vm.runInContext(`${fn}; track({event:'ebook_optin_success',blog_slug:'example'});`,context);
+    assert.equal(calls[0][0],'event');assert.equal(calls[0][1],'ebook_optin_success');
+    assert.equal(calls[0][2].blog_slug,'example');assert.equal(calls[0][2].email,undefined);
+    assert.ok(!source.includes('dataLayer.push({ event:'));
+  }
+});
 test('research requires tool results, never treating model-written URLs as verified sources',()=>{
   const evidence=extractSearchEvidence({content:[{type:'text',text:'See https://invented.example/'},{type:'server_tool_use',name:'web_search',input:{query:'creator workflow'}},{type:'web_search_tool_result',content:[{type:'web_search_result',url:'https://observed.example/',title:'Observed'},{type:'web_search_result',url:'https://observed.example/',title:'Duplicate'}]}]});
   assert.deepEqual(evidence.queries,['creator workflow']);
@@ -117,6 +151,7 @@ test('research cache rejects stale and invalid dates and keeps newest valid clus
 test('batched research keeps each cluster paired with its actual search results',()=>{
   const clusters=[{key:'ai-creator-tools'},{key:'purpose-direction'}];
   const message={content:[
+    {type:'text',text:"I'll search for each cluster now."},
     {type:'server_tool_use',name:'web_search',input:{query:'AI creator workflow'}},
     {type:'web_search_tool_result',content:[{type:'web_search_result',url:'https://ai.example/',title:'AI'}]},
     {type:'server_tool_use',name:'web_search',input:{query:'how to find purpose'}},

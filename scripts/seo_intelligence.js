@@ -527,22 +527,32 @@ function emptyData() {
   };
 }
 
-function writeOutputs(report, opportunities, status, apiRequests) {
+export function analyticsSummary(data) {
+  const gsc = data.gsc.current.totals;
+  const ga = data.ga.current.totals;
+  return {
+    searchConsole: {
+      clicks: gsc ? fmt(gsc.clicks) : null,
+      impressions: gsc ? fmt(gsc.impressions) : null,
+      ctr: gsc ? fmt(gsc.ctr) : null,
+      averagePosition: gsc ? fmt(gsc.position) : null,
+      observedQueryPageRows: data.gsc.current.queryPage.length,
+      source: "property aggregate (includes anonymized queries)",
+    },
+    ga4: {
+      organicSessions: ga ? fmt(ga.sessions) : null,
+      activeUsers: ga ? fmt(ga.activeUsers) : null,
+      engagedSessions: ga ? fmt(ga.engagedSessions) : null,
+      engagementRate: ga ? fmt(ga.engagementRate) : null,
+      rowCount: data.ga.current.landingPages.length,
+      source: "Organic Search property aggregate; not a sum of shortlisted pages",
+    },
+  };
+}
+
+function writeOutputs(report, opportunities, status, apiRequests, data) {
   fs.writeFileSync(LATEST_REPORT, report, "utf8");
   fs.writeFileSync(path.join(REPORTS_DIR, `seo-intelligence-${RUN_DATE}.md`), report, "utf8");
-
-  const gscTotals = opportunities.topLandingPages.reduce((sum, row) => ({
-    clicks: sum.clicks + fmt(row.clicks),
-    impressions: sum.impressions + fmt(row.impressions),
-    weightedPos: sum.weightedPos + (fmt(row.position) * Math.max(1, fmt(row.impressions))),
-  }), { clicks: 0, impressions: 0, weightedPos: 0 });
-  const gaTotals = opportunities.engagementWinners
-    .concat(opportunities.weakEngagement)
-    .reduce((sum, row) => ({
-      sessions: sum.sessions + fmt(row.sessions),
-      activeUsers: sum.activeUsers + fmt(row.activeUsers),
-      engagedSessions: sum.engagedSessions + fmt(row.engagedSessions),
-    }), { sessions: 0, activeUsers: 0, engagedSessions: 0 });
 
   const summary = {
     generatedAt: new Date().toISOString(),
@@ -550,22 +560,13 @@ function writeOutputs(report, opportunities, status, apiRequests) {
     status,
     apiRequests,
     report: "/reports/seo-intelligence-latest.md",
-    summary: {
-      searchConsole: {
-        clicks: gscTotals.clicks,
-        impressions: gscTotals.impressions,
-        ctr: gscTotals.impressions ? gscTotals.clicks / gscTotals.impressions : null,
-        averagePosition: gscTotals.impressions ? gscTotals.weightedPos / gscTotals.impressions : null,
-        rowCount: opportunities.topLandingPages.length,
-      },
-      ga4: {
-        organicSessions: gaTotals.sessions,
-        activeUsers: gaTotals.activeUsers,
-        engagedSessions: gaTotals.engagedSessions,
-        engagementRate: gaTotals.sessions ? gaTotals.engagedSessions / gaTotals.sessions : null,
-        rowCount: opportunities.engagementWinners.length + opportunities.weakEngagement.length,
-      },
-    },
+    summary: analyticsSummary(data),
+    resourcePerformance: data.ga.current.resourcePages || [],
+    organicLandingPages: data.ga.current.landingPages.map(row => ({
+      path: toPath(row.landingPagePlusQueryString), sessions: fmt(row.sessions),
+      engagedSessions: fmt(row.engagedSessions), engagementRate: fmt(row.engagementRate),
+    })),
+    conversionEvents: data.ga.current.events || [],
     topQueries: opportunities.topRealQueries.slice(0, 8).map((row) => ({
       query: row.query,
       clicks: row.clicks,
@@ -640,6 +641,10 @@ async function main() {
         if (idx === 0) data.gsc.current.queryPage = rows;
         else data.gsc.previous.queryPage = rows;
       }
+      apiRequests.attempted++;
+      const aggregate = await gscSearchAnalytics(gscToken, { ...baseBody, ...PERIOD.current, dimensions: [] });
+      if (aggregate.cached) apiRequests.cached++;
+      data.gsc.current.totals = aggregate.rows[0] || { clicks: 0, impressions: 0, ctr: 0, position: 0 };
       status.gsc = { ok: true, message: `${data.gsc.current.queryPage.length} current query-page rows` };
     } catch (err) {
       status.gsc = { ok: false, message: err.message };
@@ -683,10 +688,22 @@ async function main() {
             dimensionFilter: {
               filter: {
                 fieldName: "eventName",
-                inListFilter: { values: ["digital_attention_audit_start", "digital_attention_audit_complete", "authority_resource_click", "related_article_click"] },
+                inListFilter: { values: ["digital_attention_audit_start", "digital_attention_audit_complete", "experience_start", "experience_complete", "authority_resource_click", "related_article_click", "ebook_cta_view", "ebook_cover_click", "ebook_optin_submit", "ebook_optin_success", "ai_engine_cta_success", "art_store_whisper_click"] },
               },
             },
             limit: 250,
+          },
+          {
+            dateRanges: [PERIOD.current],
+            metrics: metricNames.map(name => ({ name })),
+            dimensionFilter: organicFilter,
+          },
+          {
+            dateRanges: [PERIOD.current],
+            dimensions: [{ name: "pagePath" }],
+            metrics: [{ name: "screenPageViews" }, { name: "totalUsers" }],
+            dimensionFilter: { filter: { fieldName: "pagePath", stringFilter: { matchType: "FULL_REGEXP", value: "^/(tools|resources|hubs|field-guide|ai-engine|art-store)(/.*)?$" } } },
+            limit: 1000,
           },
         ];
         for (const [idx, body] of bodies.entries()) {
@@ -695,7 +712,9 @@ async function main() {
           if (res.cached) apiRequests.cached++;
           if (idx === 0) data.ga.current.landingPages = res.rows;
           else if (idx === 1) data.ga.previous.landingPages = res.rows;
-          else data.ga.current.events = res.rows;
+          else if (idx === 2) data.ga.current.events = res.rows;
+          else if (idx === 3) data.ga.current.totals = res.rows[0] || {};
+          else data.ga.current.resourcePages = res.rows;
         }
         status.ga = { ok: true, message: `${data.ga.current.landingPages.length} current organic landing-page rows` };
       } catch (err) {
@@ -707,7 +726,13 @@ async function main() {
 
   const opportunities = classify(data, context);
   const report = buildReport({ status, data, context, opportunities, apiRequests, limitations });
-  writeOutputs(report, opportunities, status, apiRequests);
+  const resources = data.ga.current.resourcePages || [];
+  const resourceReport = "\n## Resource and Tool Reach (all channels)\n\n" + mdTable(resources, [
+    { label: "Page", value: r => r.pagePath },
+    { label: "Views", value: r => r.screenPageViews },
+    { label: "Users", value: r => r.totalUsers },
+  ]) + "\n\nPages absent from GA4 have no recorded views in this period; blockers, consent and tagging limit coverage. Conversion events are observed only after correct event delivery.\n";
+  writeOutputs(report + resourceReport, opportunities, status, apiRequests, data);
 
   console.log(`[seo-intelligence] Report written to ${path.relative(ROOT, LATEST_REPORT)}`);
   console.log(`[seo-intelligence] Public summary written to ${path.relative(ROOT, PUBLIC_SUMMARY)}`);

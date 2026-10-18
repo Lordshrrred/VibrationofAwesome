@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-14T14:20:46.566Z",
+  "generatedAt": "2026-10-18T16:28:11.665Z",
   "period": {
     "current": {
-      "startDate": "2026-09-14",
-      "endDate": "2026-10-11"
+      "startDate": "2026-09-18",
+      "endDate": "2026-10-15"
     },
     "previous": {
-      "startDate": "2026-08-17",
-      "endDate": "2026-09-13"
+      "startDate": "2026-08-21",
+      "endDate": "2026-09-17"
     }
   },
   "status": {
@@ -21,26 +21,84 @@
     }
   },
   "apiRequests": {
-    "attempted": 5,
-    "cached": 0
+    "attempted": 8,
+    "cached": 8
   },
   "report": "/reports/seo-intelligence-latest.md",
   "summary": {
     "searchConsole": {
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 17,
       "ctr": 0,
-      "averagePosition": 88.66666666666667,
-      "rowCount": 2
+      "averagePosition": 21.764705882352942,
+      "observedQueryPageRows": 2,
+      "source": "property aggregate (includes anonymized queries)"
     },
     "ga4": {
-      "organicSessions": 5,
-      "activeUsers": 5,
-      "engagedSessions": 1,
-      "engagementRate": 0.2,
-      "rowCount": 1
+      "organicSessions": 12,
+      "activeUsers": 12,
+      "engagedSessions": 4,
+      "engagementRate": 0.3333333333333333,
+      "rowCount": 6,
+      "source": "Organic Search property aggregate; not a sum of shortlisted pages"
     }
   },
+  "resourcePerformance": [
+    {
+      "pagePath": "/ai-engine/",
+      "screenPageViews": "7",
+      "totalUsers": "8"
+    },
+    {
+      "pagePath": "/field-guide/",
+      "screenPageViews": "7",
+      "totalUsers": "7"
+    },
+    {
+      "pagePath": "/hubs/",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    }
+  ],
+  "organicLandingPages": [
+    {
+      "path": "/",
+      "sessions": 3,
+      "engagedSessions": 0,
+      "engagementRate": 0
+    },
+    {
+      "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
+      "sessions": 3,
+      "engagedSessions": 0,
+      "engagementRate": 0
+    },
+    {
+      "path": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
+      "sessions": 3,
+      "engagedSessions": 3,
+      "engagementRate": 1
+    },
+    {
+      "path": "/blog/boom/posts/how-to-cancel-ai-advantage-current-refund-and-subscription-terms",
+      "sessions": 1,
+      "engagedSessions": 1,
+      "engagementRate": 1
+    },
+    {
+      "path": "/blog/boom/posts/how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
+      "sessions": 1,
+      "engagedSessions": 0,
+      "engagementRate": 0
+    },
+    {
+      "path": "/blog/boom/posts/tony-robbins-scam-accusations-in-2026-whats-actually-being-said",
+      "sessions": 1,
+      "engagedSessions": 0,
+      "engagementRate": 0
+    }
+  ],
+  "conversionEvents": [],
   "topQueries": [
     {
       "query": "mastermind v2",
@@ -94,26 +152,33 @@
     }
   ],
   "ctrOpportunities": [],
-  "engagementWinners": [],
-  "weakEngagement": [
+  "engagementWinners": [
     {
-      "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
-      "title": "How To Copy Ai Responses Without Losing Formatting",
-      "sessions": 5,
-      "activeUsers": 5,
-      "engagedSessions": 1,
-      "engagementRate": 0.2,
-      "avgEngagementTime": 78.2309434,
-      "views": 5,
-      "action": "Check intent mismatch, improve the opening answer, and reduce filler before the useful answer."
+      "path": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
+      "title": "Tony Robbins AI Training 2026: Is This One Actually Worth It",
+      "sessions": 3,
+      "activeUsers": 3,
+      "engagedSessions": 3,
+      "engagementRate": 1,
+      "avgEngagementTime": 1264.5567536666667,
+      "views": 7,
+      "action": "Strengthen internal linking toward this page and expand the surrounding topic cluster."
     }
   ],
-  "topOpportunities": [],
+  "weakEngagement": [],
+  "topOpportunities": [
+    {
+      "type": "engagement_winner",
+      "label": "Tony Robbins AI Training 2026: Is This One Actually Worth It",
+      "page": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
+      "metric": "3 organic sessions"
+    }
+  ],
   "counts": {
     "nearPageOne": 0,
     "ctr": 0,
-    "engagementWinners": 0,
-    "weakEngagement": 1,
+    "engagementWinners": 1,
+    "weakEngagement": 0,
     "hiddenQueries": 0,
     "cannibalization": 0
   }

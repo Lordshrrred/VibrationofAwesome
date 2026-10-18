@@ -77,9 +77,12 @@ function main() {
   try {
     draftSlugs = fs.readdirSync(path.join(ROOT, "static/blog/boom/drafts")).filter((f) => f.endsWith(".html")).map((f) => f.slice(0, -5));
   } catch {}
-  const queued = new Set((readJson("static/_data/drip-queue.json")?.queue || []).map((i) => i.slug));
+  const queueState = readJson("static/_data/drip-queue.json") || {};
+  const queued = new Set((queueState.queue || []).map((i) => i.slug));
+  const held = new Set((queueState.duplicate_holds || []).map(i => i.slug));
   say(`Drafts: ${queued.size} queued, ${draftSlugs.length} files on disk (replenish triggers at <=14, targets 22)`);
-  const orphans = draftSlugs.filter((s) => !queued.has(s));
+  if (held.size) say(`  Held duplicate drafts: ${held.size} (preserved, excluded from publishing)`);
+  const orphans = draftSlugs.filter((s) => !queued.has(s) && !held.has(s));
   const missing = [...queued].filter((s) => !draftSlugs.includes(s));
   if (orphans.length) say(`  ORPHAN draft files (not in drip-queue.json, will never publish): ${orphans.slice(0, 5).join(", ")}`);
   if (missing.length) say(`  QUEUED without a draft file (will fail to publish): ${missing.slice(0, 5).join(", ")}`);

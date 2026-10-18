@@ -16,7 +16,10 @@ export function extractSearchEvidence(message) {
 export function extractClusterEvidence(message, clusters) {
   const searches = message.content.filter(block => block.type === "server_tool_use" && block.name === "web_search");
   const resultBlocks = message.content.filter(block => block.type === "web_search_tool_result");
-  const text = message.content.filter(block => block.type === "text").map(block => block.text).join("\n").trim()
+  if (["pause_turn", "max_tokens"].includes(message.stop_reason)) throw new Error(`Research response incomplete (${message.stop_reason}); no evidence accepted`);
+  // Server search includes prose before tools run. Only the terminal text
+  // block is the requested JSON; joining the preamble makes valid JSON fail.
+  const text = message.content.filter(block => block.type === "text").at(-1)?.text?.trim()
     .replace(/^```json\s*/i, "").replace(/\s*```$/, "");
   const summaries = JSON.parse(text);
   if (!Array.isArray(summaries)) throw new Error("Batch keyword research did not return an array");
@@ -24,7 +27,7 @@ export function extractClusterEvidence(message, clusters) {
   return clusters.map((cluster, index) => {
     const summary = byCluster.get(cluster.key);
     const search = searches[index];
-    const result = resultBlocks[index];
+    const result = resultBlocks.find(block => block.tool_use_id && block.tool_use_id === search?.id) || resultBlocks[index];
     const sources = (result?.content || [])
       .filter(row => row.type === "web_search_result" && /^https?:\/\//.test(row.url))
       .map(row => ({ url: row.url, title: row.title }))
@@ -39,7 +42,10 @@ export function extractClusterEvidence(message, clusters) {
 
 export async function refreshKeywordEvidence({ queue, batches, clusters, saveQueue, saveTopics }) {
   const last = Date.parse(queue.replenishment?.lastResearchAttempt || "");
-  if (Number.isFinite(last) && Date.now() - last < 7 * 86400_000) return;
+  if (Number.isFinite(last) && Date.now() - last < 7 * 86400_000) {
+    if (!freshKeywordEvidence(batches).length) throw new Error("Weekly research is cooling down after failure; no fresh evidence available");
+    return;
+  }
   queue.replenishment = { ...queue.replenishment, lastResearchAttempt: new Date().toISOString() };
   saveQueue(); // Count failures too: automated retries must not multiply paid calls.
   const client = createAnthropicClient({ label: "keyword-evidence", maxRetries: 0, timeout: 120_000 });

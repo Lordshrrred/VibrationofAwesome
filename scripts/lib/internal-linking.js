@@ -12,6 +12,28 @@ const ASSETS_FILE = path.join(ROOT, "static", "_data", "authority-assets.json");
 
 const RELATED_MARKER = "data-internal-related";
 
+export function contentIdentity(value) {
+  return String(value || "").replace(/&#39;|&#x27;|&apos;/gi, "'")
+    .replace(/&amp;/gi, "&").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+export function partitionDuplicateDrafts(rows, published) {
+  const titles = new Map(published.filter(r => r.title).map(r => [contentIdentity(r.title), r.slug]));
+  const keywords = new Map(published.filter(r => r.keyword).map(r => [contentIdentity(r.keyword), r.slug]));
+  const eligible = [], held = [];
+  for (const row of rows) {
+    const title = contentIdentity(row.title), keyword = contentIdentity(row.keyword);
+    const duplicateOf = (title && titles.get(title)) || (keyword && keywords.get(keyword));
+    if (duplicateOf) held.push({ ...row, duplicate_of: duplicateOf, hold_reason: "Repeated published or queued title/keyword" });
+    else {
+      eligible.push(row);
+      if (title) titles.set(title, row.slug);
+      if (keyword) keywords.set(keyword, row.slug);
+    }
+  }
+  return { eligible, held };
+}
+
 const MONEY_TARGETS = {
   "ai-creator-tools": { url: "/ai-engine/", label: "AI Engine guide" },
   "creator-automation": { url: "/ai-engine/", label: "AI Engine guide" },

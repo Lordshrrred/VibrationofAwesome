@@ -12,12 +12,19 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const MAX_RETRIES = 3;
 
-function loggingFetch(label) {
+function loggingFetch(label, retries) {
   return async (url, init) => {
     const res = await fetch(url, init);
+    if (res.ok && res.headers.get("content-type")?.includes("application/json") && String(url).includes("/messages")) {
+      // Usage only: never log prompts, generated text, keys, or account IDs.
+      try {
+        const data = await res.clone().json();
+        if (data.usage) console.log(`CLAUDE_USAGE ${JSON.stringify({ label: label || "unlabelled", model: data.model, stop_reason: data.stop_reason, usage: data.usage })}`);
+      } catch { /* Diagnostics must not fail a successful generation. */ }
+    }
     if (!res.ok && (res.status === 429 || res.status >= 500)) {
       console.warn(
-        `[anthropic${label ? `:${label}` : ""}] HTTP ${res.status} from ${url} ~ SDK will retry (max ${MAX_RETRIES} attempts, exponential backoff).`,
+        `[anthropic${label ? `:${label}` : ""}] HTTP ${res.status} ~ configured retry limit ${retries}.`,
       );
     }
     return res;
@@ -35,7 +42,7 @@ export function createAnthropicClient(opts = {}) {
   return new Anthropic({
     apiKey: apiKey || process.env.ANTHROPIC_API_KEY,
     maxRetries: typeof maxRetries === "number" ? maxRetries : MAX_RETRIES,
-    fetch: loggingFetch(label),
+    fetch: loggingFetch(label, typeof maxRetries === "number" ? maxRetries : MAX_RETRIES),
     ...rest,
   });
 }

@@ -13,6 +13,8 @@ import minimist from "minimist";
 import path from "path";
 import { fileURLToPath } from "url";
 import { PUBLER_VOA_ACCOUNT_IDS } from "./lib/policy.js";
+import { partitionDuplicateDrafts, loadTopicClusters } from "./lib/internal-linking.js";
+import { freshKeywordEvidence } from "./lib/keyword-evidence.js";
 
 import { pathToFileURL as __voaPathToFileURL } from "node:url";
 dotenv.config({ override: true });
@@ -190,21 +192,33 @@ async function main() {
   await check("drip queue", () => {
     const file = path.join(ROOT, "static", "_data", "drip-queue.json");
     const queue = JSON.parse(fs.readFileSync(file, "utf8"));
+    const published = JSON.parse(fs.readFileSync(path.join(ROOT, "static/_data/boom-posts.json"), "utf8"));
+    const { eligible, held } = partitionDuplicateDrafts(queue.queue || [], [...published, ...(queue.published || [])]);
     dripSnapshot = {
       status: queue.status || "unknown",
       rate: queue.drip_rate || 2,
       time: queue.drip_time || "10:00 UTC",
-      remaining: queue.queue?.length || 0,
+      remaining: eligible.length,
+      duplicateHolds: held.length + (queue.duplicate_holds || []).length,
       published: queue.published?.length || 0,
       syndicate_on_publish: !!queue.syndicate_on_publish,
       trigger_feeder_on_publish: !!queue.trigger_feeder_on_publish,
     };
-    const remaining = queue.queue?.length || 0;
+    const remaining = eligible.length;
+    if (held.length) throw new Error(`${held.length} queued drafts repeat published titles/keywords; only ${remaining} drafts are eligible`);
     const minimum = 14; // balanced reserve triggers at 14, targets 22
     if (queue.status === "active" && remaining < minimum) {
       throw new Error(`publishing inventory low: ${remaining} posts remain; minimum healthy runway is ${minimum}`);
     }
     return `status=${queue.status}, rate=${queue.drip_rate || 2}/run, time=${queue.drip_time || "10:00 UTC"}, remaining=${remaining}`;
+  });
+
+  await check("keyword research freshness", () => {
+    const batches = JSON.parse(fs.readFileSync(path.join(ROOT, "static/_data/topic-queue.json"), "utf8"));
+    const evidence = freshKeywordEvidence(batches);
+    const missing = loadTopicClusters().clusters.filter(c => !evidence.some(row => row.cluster === c.key));
+    if (missing.length) throw new Error(`${missing.length} clusters lack usable search evidence in the last 14 days; automatic ideas are unverified hypotheses`);
+    return `${evidence.length} clusters have recent observed search evidence`;
   });
 
   let publerAccounts = [];

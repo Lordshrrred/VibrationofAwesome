@@ -34,6 +34,7 @@ import {
   inferCluster,
   loadTopicClusters,
   selectBalancedClusterRows,
+  partitionDuplicateDrafts,
 } from "./lib/internal-linking.js";
 import { refreshOrchestration } from "./lib/refresh-orchestration.js";
 import { updateSitemap } from "./update-sitemap.js";
@@ -167,6 +168,19 @@ async function main() {
   }
 
   // ── Determine which posts to publish ────────────────────────────────────
+  const history = JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
+  const { eligible, held } = partitionDuplicateDrafts(queue.queue, [...history, ...(queue.published || [])]);
+  if (held.length) {
+    console.warn(`[drip] Holding ${held.length} duplicate drafts; no repeated title/keyword will publish.`);
+    queue.queue = eligible;
+    queue.duplicate_holds = [...(queue.duplicate_holds || []), ...held.map(row => ({ ...row, held_at: new Date().toISOString() }))];
+    if (!argv["dry-run"]) {
+      fs.writeFileSync(QUEUE_FILE, JSON.stringify(queue, null, 2));
+      // A queue-only commit must never cause the workflow to reuse an old
+      // publication manifest and distribute yesterday's post again.
+      fs.writeFileSync(LAST_PUBLISHED_FILE, JSON.stringify({ generated_at: new Date().toISOString(), items: [], reason: "Duplicate drafts held" }, null, 2));
+    }
+  }
   let toPublish = [];
   if (argv.slug) {
     const item = queue.queue.find(q => q.slug === argv.slug);
@@ -192,7 +206,7 @@ async function main() {
     if (argv.niche || argv.niches) {
       console.log(`No queued posts found for niche selection "${argv.niches || argv.niche}" ~ nothing to publish.`);
     } else {
-      console.log("Queue is empty ~ all posts have been published!");
+      console.log("No eligible drafts remain; bounded replenishment must supply fresh inventory.");
     }
     process.exit(0);
   }

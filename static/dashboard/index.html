@@ -2408,6 +2408,8 @@ function renderSeoEvidence(seoData) {
   const ga4 = seoData.summary?.ga4 || {};
   const topQueries = Array.isArray(seoData.topQueries) ? seoData.topQueries : [];
   const topPages = Array.isArray(seoData.topLandingPages) ? seoData.topLandingPages : [];
+  const organicPages = Array.isArray(seoData.organicLandingPages) ? seoData.organicLandingPages : [];
+  const resources = Array.isArray(seoData.resourcePerformance) ? seoData.resourcePerformance : [];
 
   sc.innerHTML = `
     <div class="seo-kw-item">
@@ -2435,13 +2437,16 @@ function renderSeoEvidence(seoData) {
         ${gaOk ? "" : `<div class="seo-kw-gap">Why unavailable: ${esc(seoData.status?.ga?.message || "No GA4 rows in public summary.")}</div>`}
       </div>
     </div>
-    ${topPages.length ? topPages.map(row => `
+    ${organicPages.length ? organicPages.map(row => `
       <div class="seo-kw-item">
         <div>
-          <div class="seo-kw-title">${esc(row.title || row.path)}</div>
-          <div class="seo-kw-gap">${esc(row.path)} · ${metricNumber(row.clicks)} clicks · ${metricNumber(row.impressions)} impressions · CTR ${metricPct(row.ctr)} · avg position ${row.position == null ? "?" : Number(row.position).toFixed(1)}</div>
+          <div class="seo-kw-title">${esc(row.path)}</div>
+          <div class="seo-kw-gap">${metricNumber(row.sessions)} organic sessions · ${metricNumber(row.engagedSessions)} engaged sessions</div>
         </div>
       </div>`).join("") : `<div class="empty-state">GA4 is connected, but organic landing-page volume is still too low for ranked rows.</div>`}`;
+  ga.innerHTML += `<div class="seo-kw-item"><div><div class="seo-kw-title">Resources and tools · all channels</div>
+    <div class="seo-kw-gap">${resources.length ? resources.map(row => `${esc(row.pagePath)}: ${metricNumber(row.screenPageViews)} recorded views`).join("<br>") : "No recorded resource/tool views in this report."}</div>
+    <div class="seo-kw-gap">Pages absent from this list have no recorded views in the period; consent and blockers limit coverage.</div></div></div>`;
 }
 
 function renderSeoStrategy(strategy) {

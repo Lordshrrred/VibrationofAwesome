@@ -10,6 +10,13 @@
 (function () {
   'use strict';
 
+  function track(data) {
+    var event = data.event;
+    var params = Object.assign({}, data);
+    delete params.event;
+    if (typeof window.gtag === 'function') window.gtag('event', event, params);
+  }
+
   var API_URL  = window.VOA_CAPTURE_EMAIL_URL || 'https://vibrationofawesome-mailer.vercel.app/api/capture-email';
   var PDF_URL  = '/downloads/VOA_AI_Creative_Exoskeleton.pdf';
   var PAGE_URL = '/ai-engine/';
@@ -175,7 +182,7 @@
     var coverEl   = el.querySelector('#' + uid + '-cover');
 
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'ai_engine_cta_view', blog_slug: slug });
+    track({ event: 'ai_engine_cta_view', blog_slug: slug });
 
     coverEl && coverEl.addEventListener('click', function () {
       emailEl && emailEl.focus();
@@ -188,7 +195,7 @@
         return;
       }
       if (btnEl) { btnEl.disabled = true; btnEl.textContent = 'One moment...'; }
-      window.dataLayer.push({ event: 'ai_engine_cta_submit', blog_slug: slug });
+      track({ event: 'ai_engine_cta_submit', blog_slug: slug });
 
       fetch(API_URL, {
         method: 'POST',
@@ -207,14 +214,14 @@
         if (dlEl) dlEl.href = dlUrl;
         if (formEl)    formEl.style.display    = 'none';
         if (successEl) successEl.style.display = 'block';
-        window.dataLayer.push({ event: 'ai_engine_cta_success', blog_slug: slug });
+        track({ event: 'ai_engine_cta_success', blog_slug: slug });
       })
       .catch(function () {
         // Acquisition > perfection: show success with direct PDF link
         if (dlEl) dlEl.href = PDF_URL;
         if (formEl)    formEl.style.display    = 'none';
         if (successEl) successEl.style.display = 'block';
-        window.dataLayer.push({ event: 'ai_engine_cta_fallback', blog_slug: slug });
+        track({ event: 'ai_engine_cta_fallback', blog_slug: slug });
       });
     }
 
