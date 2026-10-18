@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-18T16:32:23.401Z",
+  "generatedAt": "2026-10-18T16:43:40.758Z",
   "keywordGeneration": {
     "currentInventory": 0,
-    "publishedInventory": 423,
+    "publishedInventory": 424,
     "estimatedDaysRemaining": 0,
     "publishingCadencePerDay": 4,
     "pauseThresholdDays": 60,
@@ -12,18 +12,18 @@
   },
   "backlinks": {
     "mode": "maintenance",
-    "backlogPosts": 0,
-    "backlogUnits": 0,
+    "backlogPosts": 1,
+    "backlogUnits": 3,
     "completedPerDay": 12.8,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
     "netBacklinkUnitsPerDay": -0.8,
-    "estimatedCatchUpDays": 0,
+    "estimatedCatchUpDays": 3.8,
     "feederMissingUnits": 38,
     "distributionIncompleteUnits": 18,
     "verificationGaps": 696,
-    "freshPostsAwaitingBacklinks": 0,
-    "freshMissingBacklinkUnits": 0,
+    "freshPostsAwaitingBacklinks": 1,
+    "freshMissingBacklinkUnits": 3,
     "largestDelayPlatform": "VOA Feeder",
     "largestDelayMissingUnits": 38,
     "platformTable": {
@@ -31,50 +31,50 @@
         {
           "key": "blogger",
           "platform": "Blogger",
-          "eligiblePosts": 414,
+          "eligiblePosts": 415,
           "complete": 414,
-          "missing": 0,
-          "successRate": 100,
+          "missing": 1,
+          "successRate": 99.8,
           "averagePerDay": 4.8,
           "confirmed": 182,
           "verificationGaps": 232,
-          "mainBlocker": ""
+          "mainBlocker": "missing local success record"
         },
         {
           "key": "wordpress_earthstar",
           "platform": "WordPress",
-          "eligiblePosts": 414,
+          "eligiblePosts": 415,
           "complete": 414,
-          "missing": 0,
-          "successRate": 100,
+          "missing": 1,
+          "successRate": 99.8,
           "averagePerDay": 4,
           "confirmed": 182,
           "verificationGaps": 232,
-          "mainBlocker": ""
+          "mainBlocker": "missing local success record"
         },
         {
           "key": "tumblr_voa",
           "platform": "Tumblr",
-          "eligiblePosts": 414,
+          "eligiblePosts": 415,
           "complete": 414,
-          "missing": 0,
-          "successRate": 100,
+          "missing": 1,
+          "successRate": 99.8,
           "averagePerDay": 4,
           "confirmed": 182,
           "verificationGaps": 232,
-          "mainBlocker": ""
+          "mainBlocker": "missing local success record"
         }
       ],
       "feeder": [
         {
           "key": "feeder",
           "platform": "VOA Feeder",
-          "eligiblePosts": 319,
-          "complete": 281,
+          "eligiblePosts": 320,
+          "complete": 282,
           "missing": 38,
           "successRate": 88.1,
-          "averagePerDay": 1.9,
-          "confirmed": 281,
+          "averagePerDay": 2,
+          "confirmed": 282,
           "verificationGaps": 0,
           "mainBlocker": "missing local success record"
         }
@@ -170,7 +170,7 @@
       "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
       "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
     },
-    "reason": "Backlink-capable backlog is clear; new posts can move through publish, syndicate, verify, complete.",
+    "reason": "Backlinks are catching up by 0.8 backlink-capable platform units/day.",
     "windowDays": 14
   },
   "curatedExpansion": {

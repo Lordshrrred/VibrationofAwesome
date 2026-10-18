@@ -69,7 +69,9 @@ function backlinkThroughput() {
   const net = s.netBacklogChangePerDay;
   let reason = `Backlink-capable backlog is growing by ${Math.abs(net)} platform units/day at the current rate.`;
   if (s.backlinkCapableMissingUnits === 0) {
-    reason = "Backlink-capable backlog is clear; new posts can move through publish, syndicate, verify, complete.";
+    reason = s.backlinkVerificationGaps > 0
+      ? "Every tracked backlink destination has a success record, but verification gaps remain; this is not proof that every link is live."
+      : "No missing backlink destinations or verification gaps are recorded for tracked posts.";
   } else if (net < 0) {
     reason = `Backlinks are catching up by ${Math.abs(net)} backlink-capable platform units/day.`;
   } else if (net === 0) {

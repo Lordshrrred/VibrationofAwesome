@@ -1,5 +1,8 @@
 # Module: SEO intelligence and dashboard
 
+Backlink strategy distinguishes successful distribution records from live-link
+verification. Zero missing recorded destinations never clears verification gaps.
+
 Read this before touching `scripts/seo_intelligence.js`, `weekly-seo-intelligence.yml`, `seo-research.js`, or the dashboard's SEO panel. Latest findings: `reports/seo-intelligence-latest.md` (dated copies alongside).
 
 ## Weekly intelligence (`scripts/seo_intelligence.js`)
