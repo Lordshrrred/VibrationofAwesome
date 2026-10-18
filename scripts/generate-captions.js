@@ -70,40 +70,37 @@ const THREADS_ANTI_PATTERNS = [
 
 /**
  * Parse Claude's labeled-section response into a plain object keyed by lowercase platform name.
- * Handles Claude's tendency to wrap labels in markdown bold (**LABEL:**) and
- * separate sections with --- horizontal rules.
+ *
+ * Order-independent: each section ends at the next label of ANY platform, so a
+ * reordered response can't swallow a neighbour (an INSTAGRAM section ending in
+ * "THREADS: ..." went live this way). Tolerates markdown label styles
+ * ("**FACEBOOK:**", "**FACEBOOK**:", "## FACEBOOK"); an unrecognised style used
+ * to blank every caption, and blank captions were then posted.
  */
-function parseCaptions(text) {
-  const result = {};
+const LABEL_LINE_RE = new RegExp(
+  `^[ \\t]*(?:#{1,6}[ \\t]*)?\\*{0,2}[ \\t]*(${LABELS.join("|")})[ \\t]*\\*{0,2}[ \\t]*(?::|$)[ \\t]*\\*{0,2}[ \\t]*`,
+  "gmi",
+);
 
-  // Label pattern: optional leading **, optional trailing **, colon, optional trailing whitespace/newlines
-  // e.g. matches: "FACEBOOK:", "**FACEBOOK:**", "**FACEBOOK:** "
-  function labelRe(label) {
-    return new RegExp(`^\\*{0,2}\\s*${label}:\\s*\\*{0,2}\\s*`, "mi");
-  }
+export function parseCaptions(text) {
+  const result = Object.fromEntries(LABELS.map(label => [label.toLowerCase(), ""]));
+  const marks = [...String(text || "").matchAll(LABEL_LINE_RE)];
 
-  for (let i = 0; i < LABELS.length; i++) {
-    const label = LABELS[i];
-    const next  = LABELS[i + 1];
-
-    // Use exec() so we get startM.index ~ reliable even if the string appears elsewhere
-    const startM = labelRe(label).exec(text);
-    if (!startM) { result[label.toLowerCase()] = ""; continue; }
-
-    const start = startM.index + startM[0].length;
-    let end = text.length;
-
-    if (next) {
-      const endM = labelRe(next).exec(text.slice(start));
-      if (endM) end = start + endM.index;
-    }
-
-    result[label.toLowerCase()] = text
+  for (let i = 0; i < marks.length; i++) {
+    const key = marks[i][1].toLowerCase();
+    if (result[key]) continue; // first occurrence wins
+    const start = marks[i].index + marks[i][0].length;
+    const end = i + 1 < marks.length ? marks[i + 1].index : text.length;
+    result[key] = text
       .slice(start, end)
       .replace(/\s*\n?---+\n?\s*$/m, "")  // strip trailing --- separator
       .trim();
   }
   return result;
+}
+
+export function missingCaptionPlatforms(captions) {
+  return LABELS.map(label => label.toLowerCase()).filter(key => !String(captions?.[key] || "").trim());
 }
 
 function splitThreadParts(text) {
@@ -335,6 +332,21 @@ export async function generateCaptions(post, client, options = {}) {
   });
 
   let captions = parseCaptions(msg.content[0].text);
+
+  // One regeneration when the response came back without some platforms;
+  // anything still blank is refused at post time rather than posted empty.
+  const missing = missingCaptionPlatforms(captions);
+  if (missing.length) {
+    console.warn(`[captions] Missing sections (${missing.join(", ")}) ~ regenerating once`);
+    const retry = await anthropic.messages.create({
+      model:      "claude-haiku-5-5",
+      max_tokens: 2048,
+      system:     SYSTEM_PROMPT,
+      messages:   [{ role: "user", content: userContent }],
+    });
+    const retried = parseCaptions(retry.content[0].text);
+    for (const key of missing) if (retried[key]) captions[key] = retried[key];
+  }
 
   // Quality revision loop (skip for single-post mode ~ different analysis rules)
   if (selectedFormat.mode !== "single") {

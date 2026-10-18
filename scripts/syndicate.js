@@ -929,6 +929,9 @@ async function findExistingPublerPost(accountId, platform, caption, headers, bas
 
 /** Post Pinterest, Instagram, or Threads via Publer API v1 */
 async function postViaPubler(platform, caption, imageUrl, details = {}) {
+  // A blank caption also defeats findExistingPublerPost (it can't match ""),
+  // so it posted captionless and re-posted on every retry.
+  if (!String(caption || "").trim()) throw new Error(`Publer (${platform}): caption is empty ~ refusing to post`);
   const { BASE, headers } = getPublerConfig();
   const accountId = await getPublerAccountId(platform, headers, BASE);
 
@@ -1363,7 +1366,10 @@ export async function syndicatePost(lane, slug, options = {}) {
   if (options.captions) {
     console.log("Using pre-supplied captions (API bypass)...");
     captions = ensureSourceLinks(options.captions, postUrl);
-  } else if (options.platforms && existingEntryForSlug?.captions) {
+  } else if (
+    options.platforms && existingEntryForSlug?.captions &&
+    options.platforms.every(p => !(p in existingEntryForSlug.captions) || String(existingEntryForSlug.captions[p] || "").trim())
+  ) {
     console.log("Reusing cached captions from prior syndication log (no caption Claude call)...");
     captions = ensureSourceLinks(existingEntryForSlug.captions, postUrl);
   } else {
@@ -1724,10 +1730,15 @@ export async function syndicatePost(lane, slug, options = {}) {
   // Requires PUBLER_INSTAGRAM_ACCOUNT_ID pointing to VOA Instagram account.
   {
     const instaOwnership = publerAccountOwnership("instagram");
-    const archetypeLabel = instagramVisual?.archetypeLabel || "pexels-fallback";
-    await attempt("instagram", () =>
-      postViaPubler("instagram", captions.instagram, instagramImageUrl),
-      `[${instaOwnership}] visual:${archetypeLabel}`);
+    const archetypeLabel = instagramVisual?.archetypeLabel || (reusedInstagram ? "cached" : "generic-fallback");
+    // The generic fallback is selectImage()'s pick ~ a random NASA APOD photo
+    // unrelated to the post. On Instagram that reads as spam, so fail and let
+    // the retry pass try for a real visual instead.
+    const hasPostVisual = Boolean(instagramVisual?.url || reusedInstagram);
+    await attempt("instagram", () => {
+      if (!hasPostVisual) throw new Error("Publer (instagram): no post-specific visual ~ refusing generic fallback image");
+      return postViaPubler("instagram", captions.instagram, instagramImageUrl);
+    }, `[${instaOwnership}] visual:${archetypeLabel}`);
   }
 
   // ── ESR crossover platforms (suppressed by default via policy routing) ─────
