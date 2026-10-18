@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-17T23:49:42.968Z",
+  "lastUpdated": "2026-10-18T05:32:12.372Z",
   "recentHooks": [
     {
       "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-6",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "committing-to-a-path-before-you-know-where-it-leads-6",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-10-18T05:32:12.372Z"
+    },
+    {
+      "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-7",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-10-18T05:31:20.388Z"
+    },
+    {
+      "slug": "committing-to-a-path-before-you-know-where-it-leads-6",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
       "density": "medium",
@@ -1138,24 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-10-13T07:28:41.830Z"
-    },
-    {
-      "slug": "what-our-technology-reveals-about-our-consciousness-5",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-13T07:27:39.202Z"
-    },
-    {
-      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-6",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-13T02:53:19.844Z"
     }
   ],
   "recentInstagramArchetypes": [
