@@ -688,6 +688,7 @@ async function fetchRemoteImage(imageUrl) {
 
 /** Post to Bluesky using AT Protocol */
 async function postToBluesky(caption, postUrl, postTitle, postExcerpt, prefix = "ESR", imageUrl = null) {
+  if (!String(caption || "").trim()) throw new Error("Bluesky: caption is empty ~ refusing to post");
   const { handle, password, label } = getBlueskyConfig(prefix);
   if (!handle || !password) throw new Error(`${label}_BLUESKY_HANDLE or ${label}_BLUESKY_APP_PASSWORD not set`);
 
@@ -758,6 +759,7 @@ async function postToBluesky(caption, postUrl, postTitle, postExcerpt, prefix = 
 
 /** Post to Mastodon */
 async function postToMastodon(caption, prefix = "ESR", imageUrl = null, imageAlt = "") {
+  if (!String(caption || "").trim()) throw new Error("Mastodon: caption is empty ~ refusing to post");
   const cfg = getMastodonConfig(prefix);
   let instance = (cfg.instance || "").replace(/\/+$/, "");
   const token  = cfg.token;
