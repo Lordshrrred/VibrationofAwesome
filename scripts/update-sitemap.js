@@ -100,7 +100,7 @@ export function updateSitemap() {
 
   const staticBlocks = [...byLoc.values()].map(urlBlock);
   const postBlocks   = [...mattPosts, ...boomPosts].map((p) =>
-    urlBlock({ loc: cleanPublicPath(p.url), lastmod: p.date, changefreq: "monthly", priority: "0.7" })
+    urlBlock({ loc: cleanPublicPath(p.url), lastmod: p.dateModified || p.date, changefreq: "monthly", priority: "0.7" })
   );
 
   const xml = [

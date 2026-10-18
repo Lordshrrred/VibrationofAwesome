@@ -43,6 +43,13 @@ article attempts per UTC day and four daily publish slots remain unchanged.
 
 ## Recovery and verification
 
+Live editorial review also found unsupported biological mechanisms and fixed
+emotion-release timing claims in the retained processing-emotion article. It
+was rewritten around cautious, sourced educational guidance at the same URL;
+the writing prompts now forbid invented health mechanisms, diagnoses and
+guaranteed outcomes. This targeted correction is not a complete clinical fact
+check of every historical article.
+
 Four original local tool guides restore useful publishing inventory without
 article-generation or image spend. Fresh October 18 editorial web evidence
 covers all 11 clusters; it does not claim keyword volume or proven demand.

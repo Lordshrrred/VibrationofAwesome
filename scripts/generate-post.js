@@ -127,6 +127,7 @@ const BOOMBOT_SYSTEM = [
   "- Exception: it is fine to reference real, verifiable things this site actually offers (e.g. 'the free AI Engine guide', 'the Creative Exoskeleton framework') since those are real, sourced facts, not fabricated personal history.",
   "- When uncertain whether a claim is fabricated, rewrite it as general guidance, not personal testimony.",
   "- Editorial opinion and voice are fine. Fake personal authority, testing history, or lived experience is not.",
+  "- Health and psychology content is educational: do not diagnose the reader, invent biological mechanisms (stored emotions, dopamine depletion, fixed emotional-release timers), or promise healing or productivity outcomes. Use relevant authoritative sources supplied in the research for substantive health claims; otherwise omit or clearly qualify them. Never invent citations.",
 ].join("\n");
 
 // ── TOPIC PILLARS & KEYWORD POOL ──────────────────────────────────────────────
