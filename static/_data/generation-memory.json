@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-18T14:14:12.824Z",
+  "lastUpdated": "2026-10-18T16:26:51.911Z",
   "recentHooks": [
     {
       "slug": "seeing-the-gap-how-to-notice-when-your-life-doesnt-fit-anymore-8",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-7",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-18T16:26:51.911Z"
+    },
+    {
       "slug": "committing-to-a-path-before-you-know-where-it-leads-6",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,15 +1156,6 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-10-13T19:50:10.164Z"
-    },
-    {
-      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-6",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-13T07:28:41.830Z"
     }
   ],
   "recentInstagramArchetypes": [
