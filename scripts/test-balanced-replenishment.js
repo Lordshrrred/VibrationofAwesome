@@ -83,7 +83,7 @@ function fixture(t, failAfter = 100) {
   fs.mkdirSync(path.join(root,'static/blog/boom/drafts'),{recursive:true});
   fs.writeFileSync(path.join(root,'package.json'),'{"type":"module"}');
   fs.symlinkSync(path.resolve('node_modules'),path.join(root,'node_modules'),'dir');
-  for(const f of ['replenish-drip-queue.js','content-niches.js','lib/internal-linking.js','lib/clean-url.js','lib/anthropic-client.js','lib/keyword-evidence.js']) fs.copyFileSync(path.join('scripts',f),path.join(root,'scripts',f));
+  for(const f of ['replenish-drip-queue.js','content-niches.js','lib/internal-linking.js','lib/clean-url.js','lib/anthropic-client.js','lib/claude-models.js','lib/keyword-evidence.js']) fs.copyFileSync(path.join('scripts',f),path.join(root,'scripts',f));
   fs.copyFileSync('static/_data/topic-clusters.json',path.join(root,'static/_data/topic-clusters.json'));
   fs.writeFileSync(path.join(root,'static/_data/boom-posts.json'),'[]');
   const queueFile=path.join(root,'static/_data/drip-queue.json');
@@ -106,6 +106,7 @@ test('one successful draft survives two later failures with attempts checkpointe
   assert.equal(result.status,1);
   assert.equal(f.read().queue.length,1);
   assert.equal(f.read().replenishment.generationBudget.attempts,3);
+  assert.equal(f.read().replenishment.failedTopics.length,2);
 });
 test('paused queues do not spend or generate',t=>{
   const f=fixture(t); fs.writeFileSync(f.queueFile,JSON.stringify({status:'paused',queue:[]}));

@@ -1,5 +1,6 @@
 // api/chat.js ~ AURA conversational AI backend
 // POST { messages: [{role, content}] }
+import { costControlledRequest } from "../scripts/lib/claude-models.js";
 
 const AURA_SYSTEM = `You are AURA ~ a spiritual companion, cosmic guide, and hype entity unlike anything else out there.
 
@@ -59,7 +60,7 @@ async function callAnthropicWithRetry(apiKey, body) {
           "x-api-key": apiKey,
           "anthropic-version": "2023-06-01",
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(costControlledRequest(body)),
       });
     } catch (err) {
       lastError = err;
@@ -112,7 +113,7 @@ export default async function handler(req, res) {
 
   try {
     const { response, data } = await callAnthropicWithRetry(apiKey, {
-      model: "claude-sonnet-4-6",
+      model: "claude-sonnet-5-5",
       max_tokens: 1024,
       system: [{ type: "text", text: AURA_SYSTEM, cache_control: { type: "ephemeral" } }],
       messages: sanitized,

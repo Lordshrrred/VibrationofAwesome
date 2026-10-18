@@ -1364,5 +1364,161 @@
         }
       ]
     }
+  },
+  {
+    "date": "2026-10-18T17:12:00.876Z",
+    "source": "cluster-search-evidence",
+    "provider": "editorial-web-audit",
+    "demand_verified": false,
+    "keywords": {},
+    "research": [
+      {
+        "cluster": "ai-creator-tools",
+        "queries": [
+          "site:platform.claude.com/docs prompt engineering creators evaluate outputs"
+        ],
+        "sources": [
+          {
+            "url": "https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide",
+            "title": "Claude Sonnet 5.5 migration guide"
+          }
+        ],
+        "observations": "Official documentation shows that model changes require configuration and output validation. Useful angle: compare one real creative deliverable against a clear brief, including usable-output cost. This is editorial evidence, not keyword search volume or proof of demand."
+      },
+      {
+        "cluster": "nervous-system-creativity",
+        "queries": [
+          "site:nhs.uk breathing exercises stress"
+        ],
+        "sources": [
+          {
+            "url": "https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/",
+            "title": "Breathing exercises for stress"
+          }
+        ],
+        "observations": "NHS guidance describes gentle comfortable breathing as a stress self-help practice. A relevant reader problem is starting work while tense. Offer an optional comfortable pause; do not claim that a ritual diagnoses dysregulation or guarantees creative performance."
+      },
+      {
+        "cluster": "dopamine-attention",
+        "queries": [
+          "site:apa.org multitasking switching attention costs"
+        ],
+        "sources": [
+          {
+            "url": "https://www.apa.org/topics/research/multitasking",
+            "title": "Multitasking: Switching costs"
+          }
+        ],
+        "observations": "APA's research overview explains task-switching costs. Useful angle: identify a specific digital interruption and test one environmental change. Do not invent a reader's dopamine level, diagnose addiction, or turn laboratory findings into a promised personal productivity percentage."
+      },
+      {
+        "cluster": "authentic-self-expression",
+        "queries": [
+          "site:greatergood.berkeley.edu authenticity creative expression"
+        ],
+        "sources": [
+          {
+            "url": "https://lifedesignlab.stanford.edu/dyl",
+            "title": "Designing Your Life"
+          }
+        ],
+        "observations": "Stanford's life-design course describes reflection, worldviews and testing possibilities. Editorial angle: try one private creative action and notice your own preferences before seeking approval. This source supports the design approach, not clinical claims about authenticity."
+      },
+      {
+        "cluster": "creator-automation",
+        "queries": [
+          "site:support.google.com/youtube automation original content reused content policy"
+        ],
+        "sources": [
+          {
+            "url": "https://support.google.com/youtube/answer/1311392",
+            "title": "YouTube channel monetization policies"
+          }
+        ],
+        "observations": "YouTube distinguishes original value from repetitive or reused content in monetization policy. Useful angle: automate clerical work while keeping a clear editorial purpose and substantive original contribution. This is platform policy, not proof that more publishing creates traffic or monetization."
+      },
+      {
+        "cluster": "spiritual-productivity",
+        "queries": [
+          "site:greatergood.berkeley.edu mindfulness daily practice attention"
+        ],
+        "sources": [
+          {
+            "url": "https://greatergood.berkeley.edu/topic/purpose/definition",
+            "title": "Purpose definition"
+          }
+        ],
+        "observations": "Berkeley's overview connects purpose with meaningful goals and commitments. Useful angle: define one meaningful finish line for a realistic work session. Reflective practices can support the process, but avoid presenting spiritual beliefs as established scientific causes."
+      },
+      {
+        "cluster": "purpose-direction",
+        "queries": [
+          "site:greatergood.berkeley.edu purpose small actions meaning"
+        ],
+        "sources": [
+          {
+            "url": "https://greatergood.berkeley.edu/topic/purpose/definition",
+            "title": "Purpose definition"
+          },
+          {
+            "url": "https://lifedesignlab.stanford.edu/dyl",
+            "title": "Designing Your Life"
+          }
+        ],
+        "observations": "The sources discuss meaningful commitment and prototyping possibilities. Useful angle: turn a direction reflection into a reversible experiment with an action, boundary and review date. A browser card cannot decide a person's life or establish their purpose."
+      },
+      {
+        "cluster": "building-life-that-fits",
+        "queries": [
+          "site:lifedesignlab.stanford.edu prototyping life experiments energy engagement"
+        ],
+        "sources": [
+          {
+            "url": "https://lifedesignlab.stanford.edu/dyl",
+            "title": "Designing Your Life"
+          }
+        ],
+        "observations": "Stanford describes balancing energy and testing life possibilities through action and conversation. Useful angle: compare an imagined change with a small real trial before making a consequential commitment. This is an educational framework, not a guaranteed personal outcome."
+      },
+      {
+        "cluster": "emotional-regulation",
+        "queries": [
+          "site:nhs.uk understanding emotions self help"
+        ],
+        "sources": [
+          {
+            "url": "https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/",
+            "title": "Breathing exercises for stress"
+          }
+        ],
+        "observations": "NHS offers a comfortable breathing practice for stress. Useful angle: separate noticing a feeling from immediately acting on it, using a brief optional pause. This single source does not establish an emotion-processing mechanism or replace professional support."
+      },
+      {
+        "cluster": "art-buying-online",
+        "queries": [
+          "site:saatchiart.com choosing art size wall guide"
+        ],
+        "sources": [
+          {
+            "url": "https://www.saatchiart.com/pages/how-to-buy-art-for-your-home",
+            "title": "How To Buy Art For Your Home"
+          }
+        ],
+        "observations": "The seller's guide discusses room, scale, placement and materials. Useful angle: measure and mock up an artwork's dimensions before purchasing. Treat sizing advice as a flexible design convention and the source as commercial guidance, not a neutral scientific rule."
+      },
+      {
+        "cluster": "consciousness-technology",
+        "queries": [
+          "site:hai.stanford.edu AI human agency creativity"
+        ],
+        "sources": [
+          {
+            "url": "https://hai.stanford.edu/news/stanford-scholars-train-generative-ai-to-be-better-creative-collaborators",
+            "title": "Stanford Scholars Train Generative AI To Be Better Creative Collaborators"
+          }
+        ],
+        "observations": "Stanford describes research on better human steering of generative tools. Useful angle: name the decisions a creator retains while using AI assistance. Do not infer machine consciousness, human dependence or guaranteed improvements from a research project description."
+      }
+    ]
   }
 ]

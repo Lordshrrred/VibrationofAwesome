@@ -901,7 +901,7 @@
       startBtn.addEventListener('click', function () {
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'experience_start', { tool_id: 'digital-attention-audit' });
-          window.gtag('event', 'digital_attention_audit_start', { tool_slug: 'digital-attention-audit' });
+          window.gtag('event', 'digital_attention_audit_start', { tool_id: 'digital-attention-audit' });
         }
         welcome.hidden = true;
         form.hidden = false;
@@ -966,16 +966,8 @@
         }
 
         if (typeof window.gtag === 'function') {
-          window.gtag('event', 'experience_complete', {
-            tool_id: 'digital-attention-audit',
-            result_profile: profile.name,
-            score_band: total <= 5 ? 'low' : total <= 12 ? 'medium' : 'high'
-          });
-          window.gtag('event', 'digital_attention_audit_complete', {
-            tool_slug: 'digital-attention-audit',
-            result_profile: profile.name,
-            score_band: total <= 5 ? 'low' : total <= 12 ? 'medium' : 'high'
-          });
+          window.gtag('event', 'experience_complete', { tool_id: 'digital-attention-audit' });
+          window.gtag('event', 'digital_attention_audit_complete', { tool_id: 'digital-attention-audit' });
         }
 
         resultBox.innerHTML =
@@ -1004,7 +996,7 @@
             if (navigator.clipboard) {
               navigator.clipboard.writeText(text).then(function () {
                 if (typeof window.gtag === 'function') {
-                  window.gtag('event', 'artifact_copy', { tool_id: 'digital-attention-audit', result_profile: profile.name });
+                  window.gtag('event', 'artifact_copy', { tool_id: 'digital-attention-audit' });
                 }
                 copyBtn.textContent = 'Copied';
                 setTimeout(function () { copyBtn.textContent = 'Copy My Result'; }, 1800);

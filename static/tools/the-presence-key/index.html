@@ -701,7 +701,7 @@
           <div>
             <div class="voa-featured-label accent-violet">Before You Begin</div>
             <h3>Five small decisions, then a way to arrive</h3>
-            <p>Answer with what's actually available right now, not the ideal conditions. At the end you'll get a short sequence and a set of Presence Rings built from your own answers ~ yours to keep, copy, or print. Nothing is saved, tracked, or sent anywhere.</p>
+            <p>Answer with what's actually available right now, not the ideal conditions. At the end you'll get a short sequence and a set of Presence Rings built from your own answers ~ yours to keep, copy, or print. Your answers stay in this page. Basic usage events help us improve the tools; answer choices and result profiles are not sent with those events.</p>
             <button class="voa-btn voa-btn-primary" id="pky-start" type="button">Begin</button>
           </div>
         </div>
@@ -947,7 +947,7 @@
 
       function trackEvent(name, params) {
         var payload = Object.assign({ tool_id: 'the-presence-key' }, params || {});
-        if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+        if (typeof window.gtag === 'function') window.gtag('event', name, { tool_id: 'the-presence-key' });
       }
 
       function selectedIndexes() {

@@ -697,7 +697,7 @@
           <div>
             <div class="voa-featured-label accent-amber">Before You Begin</div>
             <h3>Five honest questions, then one real step</h3>
-            <p>Answer with what's actually true, not the version you'd say out loud to someone else. At the end you'll get a reflection and a Growth Waypoint built from your own answers ~ yours to keep, copy, or print. Nothing is saved, tracked, or sent anywhere.</p>
+            <p>Answer with what's actually true, not the version you'd say out loud to someone else. At the end you'll get a reflection and a Growth Waypoint built from your own answers ~ yours to keep, copy, or print. Your answers stay in this page. Basic usage events help us improve the tools; answer choices and result profiles are not sent with those events.</p>
             <button class="voa-btn voa-btn-primary" id="hnm-start" type="button">Begin</button>
           </div>
         </div>
@@ -942,7 +942,7 @@
 
       function trackEvent(name, params) {
         var payload = Object.assign({ tool_id: 'the-honest-mirror' }, params || {});
-        if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+        if (typeof window.gtag === 'function') window.gtag('event', name, { tool_id: 'the-honest-mirror' });
       }
 
       function selectedIndexes() {

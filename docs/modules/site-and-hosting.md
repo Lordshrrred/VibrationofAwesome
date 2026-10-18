@@ -7,7 +7,7 @@ Read this before touching `layouts/`, `vercel.json`, `api/`, static pages, nav, 
 - **Hugo** renders `content/posts/*.md` with `layouts/` (`hugo.toml` sets goldmark `unsafe = true`). Most blog content is standalone HTML under `static/`, not Hugo content. Dev: `hugo server -D` (http://localhost:1313).
 - **Vercel** serves the static site and serverless functions (`/api/*`: AURA chat, Stripe checkout/verification, backlink verification, editor login/save). Auto-deploys on push to `main`. Project `prj_guDrrflKSY3FwVbmFMNyQRZyTwI9`, org `team_YNP01D3hmpGWSbkZOSV8l0O0`. `cleanUrls: true`.
 - **Cloudflare**: DNS/SSL; apex and `www` route to Vercel. **GitHub** is source control only; GitHub Pages is retired.
-- **AURA** (`api/chat.js`, ESM, Sonnet 4.6 via `callAnthropicWithRetry()`): UI at `/aura/`. Stripe: `api/create-checkout.js`, `api/verify-subscription.js`; setup via `node scripts/setup-stripe.js`.
+- **AURA** (`api/chat.js`, ESM, Sonnet 5.5 via `callAnthropicWithRetry()`): UI at `/aura/`. Shared request controls bound effort/thinking. Stripe: `api/create-checkout.js`, `api/verify-subscription.js`; setup via `node scripts/setup-stripe.js`.
 - **Post editor**: VOA Post Studio (`api/editor-login.js` + `api/editor-save.js`). `static/admin/` (Decap/Netlify CMS) is legacy: don't delete it, don't prioritize it; if you touch it, fix `site_domain` in `static/admin/config.yml` to the Vercel URL.
 
 ## Deployment health

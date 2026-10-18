@@ -1,53 +1,49 @@
-# Module: Claude API models, cost, and caching
+# Module: Claude models, cost, and caching
 
-Read this before changing any `model:` value, `max_tokens`, retry settings, or prompt structure. The code is the source of truth: `grep -rn "model:" scripts api` before trusting the table below.
+Read before changing models, output limits, retries or prompts. Matt approved this cost routing on October 18, 2026.
 
-## Client
+## Current routing
 
-Every Claude call site builds its client with `createAnthropicClient({ label })` from `scripts/lib/anthropic-client.js` (not `new Anthropic()`). It pins `maxRetries: 3` and logs every retried 429/5xx so runaway retries show up in logs. `api/chat.js` (AURA, raw `fetch`) has its own `callAnthropicWithRetry()` with the same cap.
+| Task | Model |
+|---|---|
+| Boom and Matt writing; inspiration writer | Sonnet 5.5 |
+| AURA conversation; manual detailed research | Sonnet 5.5 |
+| Captions, companions, visual briefs, utility cards, topic planning, repair suggestions and cluster search samples | Haiku 5.5 |
 
-The factory emits `CLAUDE_USAGE` lines with task label, actual response model,
-stop reason and token/cache usage. Prompts, output content and credentials are
-excluded. These are forward usage records, not invoice totals. Billing
-reconciliation requires authenticated console/Admin access. The same local
-application key is used by sibling systems, so a shared bill is not solely the
-VOA writer's cost.
+The shared factory (`scripts/lib/anthropic-client.js`) applies request settings
+through `scripts/lib/claude-models.js`. AURA's raw HTTP path uses the same policy.
+Sonnet uses `thinking: between_tools`, medium effort, without up-front thinking;
+Haiku routine calls use disabled thinking, medium effort. Tool-enabled research
+uses adaptive thinking at low effort so it can actually search. Unsupported
+sampling controls are removed. Output limits remain bounded; incomplete writer
+responses cannot publish. Filter content by block type rather than assuming
+block zero is text when adding consumers.
 
-## Models by task (verified against code 2026-09-27)
+## Cost and observability
 
-| Task | File | Model |
-|---|---|---|
-| Flagship Boom/Matt posts | `generate-post.js` | **Opus 4.8**, `max_tokens: 4096` |
-| Inspiration posts (manual) | `generate-from-inspiration.js` | Sonnet 4.6 writer, Haiku keyword step |
-| Syndication companions | `syndicate.js` `COMPANION_MODEL` | Haiku 4.5 (override: `SYNDICATION_COMPANION_MODEL`) |
-| Captions, visual prompts, utility cards, auto-heal, topic planning, keyword evidence, cluster classification | various | Haiku 4.5 |
-| AURA chatbot | `api/chat.js` | Sonnet 4.6 |
-| Manual search research (`npm run seo:research`) | `seo-research.js` | Sonnet 5 |
+Official standard rates per million input/output tokens: Sonnet 5.5 $2/$10;
+Haiku 5.5 $0.10/$0.50 for prompts up to 100k tokens, $0.50/$2.50 above that.
+Compared with the former Opus 4.8 writer, Sonnet's input/output token rates are
+60% lower. Haiku's short-prompt rates are 90% below Haiku 4.5. These are rate
+comparisons, not a promise of identical token usage or article quality.
 
-Do not downgrade `generate-post.js` without asking Matt.
+`CLAUDE_USAGE` records task label, actual model, stop reason and token/cache
+usage. Never log prompts, article bodies, subscriber information or credentials.
+Organization invoices span sibling systems sharing the application key; logs
+support future task attribution, not reconstruction of past costs.
 
-**Do not "upgrade" `generate-post.js` to Opus 5.** Tried and reverted 2026-08-06. Same $5/$25 per MTok, but it thinks by default and thinking bills as output. Measured on this prompt (cache-read steady state): Opus 4.8 $0.058/post vs Opus 5 low $0.071, medium $0.089, high (default) $0.127. If ever revisited, all three must change together:
-1. `max_tokens` well above 4096 (it caps thinking + text together; 4096 truncates posts).
-2. Never read `message.content[0].text` (with thinking on, block 0 is `thinking` → silently empty post). Use `extractText()`, already in the file and kept on 4.8.
-3. Set `output_config.effort` explicitly (default is `high`).
+## Caching and spend
 
-About ten other call sites still read `content[0].text` (`generate-captions.js`, `generate-pinterest-image.js`, `generate-from-inspiration.js`, `seo-research.js`, `auto-heal.js`, `lib/visual-intelligence.js`, `generate-instagram-visual.js`). They are safe **only** because their models run with thinking off. Moving any of them to a thinking-on model requires a text-block filter in the same commit.
+Preserve prompt cache breakpoints, including the writer's stable context prefix.
+Check actual cache-read usage instead of assuming caching engaged. Models have
+different minimum cacheable lengths and tokenizers. Existing cached companions
+must be reused when retrying distribution; no new generation for bookkeeping.
 
-`seo-research.js` was put on Sonnet 5 because of introductory pricing ($2/$10) that ended 2026-08-31. Re-check current pricing before assuming it is still the cheaper choice; it is manual/opt-in only.
+Routine SEO reporting makes zero paid model/search calls. Replenishment remains
+at most eight article attempts per UTC day; research and topic planning retain
+persisted cooldowns. Ask before large manual batches. Do not reset caps to hide
+failures. Two tiny model smoke checks passed with zero thinking tokens during
+migration; the next normal refill validates complete articles on Sonnet.
 
-On October 18, the vendor lists Sonnet 5 at $2/$10 as its standard rate.
-Opus 4.8 and Haiku 4.5 remain active. Haiku 5.5, Sonnet 5.5 and Opus 5.5 are
-available to the current key; availability alone does not approve a production
-switch. Measure tokenizer, reasoning, completeness and useful-output cost on
-the same briefs before migrating. No model/provider switch or paid comparison
-was performed by the October audit.
-
-## Prompt caching
-
-`cache_control: {type: "ephemeral"}` only engages above a model-dependent minimum prefix (~4096 tokens for Opus-tier, ~2048 for Sonnet-tier). `generate-post.js` is the one site where it matters: the existing-posts list from `buildExistingPostsList()` goes first in the user message behind a cache breakpoint (`buildCachedUserContent()`), combined with the system prompt, clearing the Opus minimum. Verified live 2026-07-07 (`cache_creation_input_tokens: 13294` then `cache_read_input_tokens: 13294`). Check `usage.cache_read_input_tokens` on batch runs. AURA's and `seo-research.js`'s prompts are marked but under the floor (harmless no-ops). `syndicate.js` Blogger/WordPress prompts are deliberately uncached (one call per run).
-
-## Spending rules
-
-- Routine SEO intelligence makes zero Claude/web-search calls.
-- Replenishment and research have hard daily/weekly caps (`docs/modules/publishing-queue.md`).
-- Get Matt's confirmation before large manual Opus batches.
+References: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide
+and https://platform.claude.com/docs/en/models/haiku-5-5/overview

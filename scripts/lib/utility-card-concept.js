@@ -71,7 +71,7 @@ export async function buildUtilityCardConcept(post, anthropic, formatHint) {
 
   try {
     const msg = await anthropic.messages.create({
-      model:      "claude-haiku-4-5-20251001",
+      model:      "claude-haiku-5-5",
       max_tokens: 700,
       messages: [{
         role: "user",

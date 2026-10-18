@@ -14,6 +14,7 @@
  */
 
 import { createAnthropicClient } from './lib/anthropic-client.js';
+import { applyEditorial } from './lib/editorial.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -30,8 +31,8 @@ const DRAFTS_DIR   = path.resolve(ROOT, 'static/blog/boom/drafts');
 const QUEUE_FILE   = path.resolve(ROOT, 'static/_data/drip-queue.json');
 const BATCH_SIZE   = 5;
 const BATCH_DELAY  = 3000;
-const MODEL_FAST   = 'claude-haiku-4-5-20251001';   // keyword step ~ cheap + fast
-const MODEL_WRITER = 'claude-sonnet-4-6';            // post generation ~ full quality
+const MODEL_FAST   = 'claude-haiku-5-5';   // keyword step ~ cheap + fast
+const MODEL_WRITER = 'claude-sonnet-5-5';            // post generation ~ full quality
 
 // NASA APOD images rotated across posts so OG images aren't all identical
 const NASA_IMAGES = [
@@ -186,7 +187,7 @@ HARD RULES:
 
 function buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg }) {
   const url = `https://vibrationofawesome.com/blog/boom/posts/${slug}`;
-  return `<!DOCTYPE html>
+  return applyEditorial(`<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -378,7 +379,7 @@ function buildHTML({ title, slug, keyword, meta, body, dateISO, nasaImg }) {
 })();
 <\/script>
 </body>
-</html>`;
+</html>`);
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────

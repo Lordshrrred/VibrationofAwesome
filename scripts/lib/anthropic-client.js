@@ -9,11 +9,15 @@
  */
 
 import Anthropic from "@anthropic-ai/sdk";
+import { costControlledRequest } from "./claude-models.js";
 
 const MAX_RETRIES = 3;
 
 function loggingFetch(label, retries) {
   return async (url, init) => {
+    if (typeof init?.body === "string" && String(url).includes("/messages")) {
+      init = { ...init, body: JSON.stringify(costControlledRequest(JSON.parse(init.body))) };
+    }
     const res = await fetch(url, init);
     if (res.ok && res.headers.get("content-type")?.includes("application/json") && String(url).includes("/messages")) {
       // Usage only: never log prompts, generated text, keys, or account IDs.

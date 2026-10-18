@@ -701,7 +701,7 @@
           <div>
             <div class="voa-featured-label accent-cyan">Before You Begin</div>
             <h3>Five small decisions, then a reset built for you</h3>
-            <p>Answer honestly, based on how you feel right this minute. At the end you'll get a short sequence to actually do, plus a Reset Mandala built from your own answers ~ yours to keep, copy, or print. Nothing is saved, tracked, or sent anywhere.</p>
+            <p>Answer honestly, based on how you feel right this minute. At the end you'll get a short sequence to actually do, plus a Reset Mandala built from your own answers ~ yours to keep, copy, or print. Your answers stay in this page. Basic usage events help us improve the tools; answer choices and result profiles are not sent with those events.</p>
             <button class="voa-btn voa-btn-primary" id="nsr-start" type="button">Begin the Reset</button>
           </div>
         </div>
@@ -975,7 +975,7 @@
 
       function trackEvent(name, params) {
         var payload = Object.assign({ tool_id: 'nervous-system-reset' }, params || {});
-        if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+        if (typeof window.gtag === 'function') window.gtag('event', name, { tool_id: 'nervous-system-reset' });
       }
 
       function selectedIndexes() {

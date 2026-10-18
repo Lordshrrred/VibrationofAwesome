@@ -697,7 +697,7 @@
           <div>
             <div class="voa-featured-label accent-violet">Before You Begin</div>
             <h3>Five questions, then a clean boundary</h3>
-            <p>Answer based on what is true before you explain it away. At the end you will get a Boundary Card and a Signal Mark built from your answers. Nothing is saved, tracked, or sent anywhere.</p>
+            <p>Answer based on what is true before you explain it away. At the end you will get a Boundary Card and a Signal Mark built from your answers. Your answers stay in this page. Basic usage events help us improve the tools; answer choices and result profiles are not sent with those events.</p>
             <button class="voa-btn voa-btn-primary" id="iny-start" type="button">Hear the Inner Yes</button>
           </div>
         </div>
@@ -942,7 +942,7 @@
 
       function trackEvent(name, params) {
         var payload = Object.assign({ tool_id: 'the-inner-yes' }, params || {});
-        if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+        if (typeof window.gtag === 'function') window.gtag('event', name, { tool_id: 'the-inner-yes' });
       }
 
       function selectedIndexes() {

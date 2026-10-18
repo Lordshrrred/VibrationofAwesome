@@ -211,7 +211,7 @@ Available structure types with meanings:
 ${diagramTypes}`;
 
   const msg = await anthropic.messages.create({
-    model:      "claude-haiku-4-5-20251001",
+    model:      "claude-haiku-5-5",
     max_tokens: 900,
     system:     systemPrompt,
     messages:   [{ role: "user", content: userPrompt }],

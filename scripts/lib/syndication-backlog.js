@@ -144,7 +144,8 @@ function platformTable(results, key, expectedPredicate, windowCutoff, windowDays
 }
 
 export function buildSyndicationBacklogStatus(results, opts = {}) {
-  const safeResults = Array.isArray(results) ? results : [];
+  const redirects = opts.redirects ?? readJson(new URL("../../static/_data/article-redirects.json", import.meta.url), {});
+  const safeResults = (Array.isArray(results) ? results : []).filter(row => !redirects[row.slug]);
   const now = opts.now ? new Date(opts.now) : new Date();
   const windowDays = Number(opts.windowDays || envNumber("BACKLINK_THROUGHPUT_WINDOW_DAYS", DEFAULT_WINDOW_DAYS));
   const postsPerDay = Number(opts.postsPerDay || envNumber("SEO_PUBLISHING_POSTS_PER_DAY", DEFAULT_POSTS_PER_DAY));

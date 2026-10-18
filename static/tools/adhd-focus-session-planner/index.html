@@ -713,7 +713,7 @@
           <div>
             <div class="voa-featured-label accent-violet">Before You Begin</div>
             <h3>Five small decisions, one breath, then you begin</h3>
-            <p>Each choice you make quietly becomes part of a small constellation ~ your own Focus Star, built from nothing but your own answers. At the end you'll get a Focus Card to keep, copy, or print. Nothing is saved, tracked, or sent anywhere.</p>
+            <p>Each choice you make quietly becomes part of a small constellation ~ your own Focus Star, built from nothing but your own answers. At the end you'll get a Focus Card to keep, copy, or print. Your answers stay in this page. Basic usage events help us improve the tools; answer choices and result profiles are not sent with those events.</p>
             <button class="voa-btn voa-btn-primary" id="fsp-start" type="button">Begin the Ritual</button>
           </div>
         </div>
@@ -940,7 +940,7 @@
       var canvas = document.getElementById('fsp-constellation');
 
       function trackEvent(name, params) {
-        if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+        if (typeof window.gtag === 'function') window.gtag('event', name, { tool_id: 'adhd-focus-session-planner' });
       }
 
       // ── Constellation (deterministic points from stage+choice index, not random) ──

@@ -247,7 +247,7 @@ function buildUserContent(post, postUrl, laneLabel, threadsInstruction = VOA_THR
 
 async function reviseThreadsCaption(post, currentThread, analysis, anthropic, postUrl, laneLabel, threadsInstruction = VOA_THREADS_INSTRUCTION) {
   const msg = await anthropic.messages.create({
-    model:      "claude-haiku-4-5-20251001",
+    model:      "claude-haiku-5-5",
     max_tokens: 1200,
     system:     SYSTEM_PROMPT,
     messages:   [{
@@ -325,7 +325,7 @@ export async function generateCaptions(post, client, options = {}) {
   const userContent = buildUserContent(post, postUrl, laneLabel, threadsInstruction);
 
   const msg = await anthropic.messages.create({
-    model:      "claude-haiku-4-5-20251001",
+    model:      "claude-haiku-5-5",
     max_tokens: 2048,
     system:     SYSTEM_PROMPT,
     messages:   [{ role: "user", content: userContent }],
@@ -442,7 +442,7 @@ if (isCli) {
       ? "From the Forest Temple (raw personal blog by Matt EarthStar)"
       : "Boom Frequency (AI/creator-tools blog by Matty BoomBoom)";
     const legacyMsg = await anthropic.messages.create({
-      model:      "claude-haiku-4-5-20251001",
+      model:      "claude-haiku-5-5",
       max_tokens: 2048,
       system:     SYSTEM_PROMPT,
       messages:   [{ role: "user", content: buildUserContent(previewPost, postUrl, laneLabel, LEGACY_THREADS_INSTRUCTION) }],

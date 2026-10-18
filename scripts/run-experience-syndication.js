@@ -18,7 +18,7 @@ const BASE = "https://vibrationofawesome.com";
 const ASSETS_FILE = path.join(ROOT, "static/_data/authority-assets.json");
 const STATUS_FILE = path.join(ROOT, "static/_data/experience-syndication.json");
 const CACHE_FILE = path.join(ROOT, "data/ops/experience-companion-cache.json");
-const MODEL = process.env.EXPERIENCE_COMPANION_MODEL || process.env.SYNDICATION_COMPANION_MODEL || "claude-haiku-4-5-20251001";
+const MODEL = process.env.EXPERIENCE_COMPANION_MODEL || process.env.SYNDICATION_COMPANION_MODEL || "claude-haiku-5-5";
 
 const argv = minimist(process.argv.slice(2), {
   boolean: ["execute", "force", "json", "simulate-retry"],

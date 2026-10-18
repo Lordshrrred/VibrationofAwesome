@@ -60,7 +60,7 @@ Vibration of Awesome helps people cultivate a more alive, creative, connected, p
 - **Anti-duplication:** every backlink/companion article gets a unique title and body and one link back to VOA; social captions are unique per platform; before any Publer create, `findExistingPublerPost()` checks Publer's live posts. Details: `docs/modules/syndication.md`.
 - **Canonical first:** external distribution happens only after the VOA URL is verified live.
 - **Spend caps:** replenishment ≤ 8 article attempts/UTC day; topic planning and weekly research have persisted cooldowns; auto-heal ≥ 1h apart and ≤ 3/day; routine SEO intelligence makes zero paid model/search calls. Ask Matt before large manual Opus batches.
-- **Models:** `generate-post.js` stays on Opus 4.8. Don't swap it (including to Opus 5) without reading `docs/modules/models-and-cost.md`.
+- **Models:** Matt approved Sonnet 5.5 for writing and Haiku 5.5 for routine tasks on 2026-10-18. Keep explicit thinking/effort controls; read `docs/modules/models-and-cost.md` before changing them.
 - **Truthfulness in generated posts:** no fabricated first-person lived experience. The rules block is shared by `generate-post.js` and `generate-from-inspiration.js`; keep both in sync.
 - **CLI guard:** any script with a top-level `main()` must not run on import. Use:
   ```js

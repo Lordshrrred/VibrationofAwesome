@@ -70,7 +70,7 @@ const LOCK_DIR     = path.join(CACHE_DIR, "syndication.lock");
 const LOCK_STALE_MS      = Number(process.env.SYNDICATION_LOCK_STALE_MS || 45 * 60 * 1000);
 const LOCK_WAIT_MS       = Number(process.env.SYNDICATION_LOCK_WAIT_MS  || 60 * 60 * 1000);
 const PLATFORM_TIMEOUT_MS = Number(process.env.PLATFORM_TIMEOUT_MS     || 90_000); // 90 s per platform
-const COMPANION_MODEL = process.env.SYNDICATION_COMPANION_MODEL || "claude-haiku-4-5-20251001";
+const COMPANION_MODEL = process.env.SYNDICATION_COMPANION_MODEL || "claude-haiku-5-5";
 
 const IMAGE_REGISTRY_FILE = path.join(ROOT, "static", "_data", "image-registry.json");
 

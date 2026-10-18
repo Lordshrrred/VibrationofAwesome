@@ -7,6 +7,7 @@
  *   node scripts/generate-post.js --lane boom --keyword "ai tools for musicians" --topic "AI music creation"
  */
 import { createAnthropicClient } from "./lib/anthropic-client.js";
+import { applyEditorial, findRepeatedContent } from "./lib/editorial.js";
 import { marked } from "marked";
 import minimist from "minimist";
 import dotenv from "dotenv";
@@ -43,23 +44,7 @@ const argv = minimist(process.argv.slice(2), {
   boolean: ["skip-syndicate", "test-feeder-only", "draft"],
   alias:   { l: "lane", t: "title", k: "keyword", p: "topic", r: "rant", n: "niche", c: "cluster" },
 });
-if (argv.faq && !["on", "off"].includes(argv.faq)) {
-  console.error('Error: --faq must be "on" or "off" (omit to auto-detect eligibility)'); process.exit(1);
-}
 const lane = argv.lane;
-if (!lane || !["matt", "boom"].includes(lane)) {
-  console.error('Error: --lane must be "matt" or "boom"'); process.exit(1);
-}
-if (lane === "matt" && !argv.title) {
-  console.error('Error: Matt lane requires --title "Post Title"'); process.exit(1);
-}
-if (lane === "boom" && !argv.keyword) {
-  console.error('Error: BoomBot lane requires --keyword "..."'); process.exit(1);
-}
-if (!process.env.ANTHROPIC_API_KEY) {
-  console.error("Error: ANTHROPIC_API_KEY not set. Copy .env.example to .env and add your key.");
-  process.exit(1);
-}
 
 /*
   DRIP SCHEDULE ~ one post at a time, not bulk
@@ -344,7 +329,7 @@ function buildHowToSchema(steps, title) {
 }
 
 /** Build complete post HTML. Uses string array join to avoid template-literal/quoting issues. */
-function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, cta, extraSchemas = []) {
+export function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroImageUrl, cta, extraSchemas = []) {
   const isMatt      = lane === "matt";
   const accent      = isMatt ? "#ffb300" : "#00e5ff";
   const accentLight = isMatt ? "#ffe082" : "#b2f5ff";
@@ -690,7 +675,7 @@ function buildHtml(lane, title, dateStr, bodyHtml, slug, metaDescription, heroIm
   }
   H.push('<script src="/js/voa-nav.js" defer></script>');H.push("</body>");
   H.push("</html>");
-  return H.join("\n");
+  return applyEditorial(H.join("\n"), lane);
 }
 
 // ── INLINE IMAGE INJECTION ────────────────────────────────────────────────────
@@ -786,6 +771,23 @@ async function triggerFeeder(postUrl, postTitle, keyword, sourceMeta = {}) {
 
 // ── MAIN ──
 async function main() {
+  if (argv.faq && !["on", "off"].includes(argv.faq)) {
+    console.error('Error: --faq must be "on" or "off" (omit to auto-detect eligibility)'); process.exit(1);
+  }
+  if (!lane || !["matt", "boom"].includes(lane)) {
+    console.error('Error: --lane must be "matt" or "boom"'); process.exit(1);
+  }
+  if (lane === "matt" && !argv.title) {
+    console.error('Error: Matt lane requires --title "Post Title"'); process.exit(1);
+  }
+  if (lane === "boom" && !argv.keyword) {
+    console.error('Error: BoomBot lane requires --keyword "..."'); process.exit(1);
+  }
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error("Error: ANTHROPIC_API_KEY not set. Copy .env.example to .env and add your key.");
+    process.exit(1);
+  }
+
   // ── TEST FEEDER ONLY ──────────────────────────────────────────────────────
   // When --test-feeder-only is set: skip ALL content generation, file writes,
   // JSON index updates, and syndication. Only fire the feeder trigger with a
@@ -946,11 +948,8 @@ async function main() {
   let markdown;
   try {
     const message = await client.messages.create({
-      // Opus 4.8. Do NOT move this to Opus 5 without re-reading the note in
-      // docs/modules/models-and-cost.md ~ Opus 5 costs the same per token but thinks by default, and
-      // those thinking tokens bill as output, which measured at roughly double
-      // the cost per post. Staying here is a deliberate cost decision.
-      model: "claude-opus-4-8",
+      // Writing uses Sonnet; the shared client bounds thinking and effort.
+      model: "claude-sonnet-5-5",
       max_tokens: 4096,
       system: [{ type: "text", text: systemPrompt, cache_control: { type: "ephemeral" } }],
       messages: [{ role: "user", content: userMessage }],
@@ -1055,6 +1054,14 @@ async function main() {
   // Matt keeps inline forest photos. Boom uses one NASA/space hero plus the
   // floating EarthStar vector body system, so no inline body images are added.
   let bodyHtml = marked.parse(bodyMarkdown);
+  if (lane === "boom") {
+    const articles = duplicateHistory.filter(row => row.slug).flatMap(row => {
+      const file = ["posts", "drafts"].map(folder => path.join(ROOT, "static/blog/boom", folder, row.slug + ".html")).find(file => fs.existsSync(file));
+      return file ? [{ slug: row.slug, html: fs.readFileSync(file, "utf8") }] : [];
+    });
+    const repeated = findRepeatedContent(bodyHtml, articles);
+    if (repeated) throw new Error(`Repeated article body blocked before saving: ${repeated.slug}`);
+  }
   let inlineImages = [];
   if (lane === "matt") {
     console.log("Selecting 3 forest images for inline art...");

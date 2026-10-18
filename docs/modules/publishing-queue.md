@@ -6,6 +6,14 @@ Live numbers (queue size, last publish): run `npm run orient` or read `static/_d
 
 ## Drip queue
 
+Four original October recovery guides were imported from reviewed local markdown
+without paid generation or image calls. Retired duplicate draft metadata is kept
+in `retired_duplicates`; archived HTML is private. This does not reset or bypass
+the persisted eight-attempt generation allowance.
+
+Failed generation topics are checkpointed and excluded for seven days. A bad
+candidate cannot consume the first paid attempts on every daily rerun.
+
 Pre-generated Boom posts live in `static/blog/boom/drafts/`, listed in `static/_data/drip-queue.json`. `drip-publish.js` moves selected drafts → `static/blog/boom/posts/`, runs the deterministic internal linker, updates `boom-posts.json`, regenerates the sitemap, writes `drip-last-published.json`, and lets `post-live-syndicate.js` syndicate only after the canonical VOA URL is verified live.
 
 Schedule (`.github/workflows/drip-posts.yml`, balanced cluster rotation, approved by Matt 2026-09-16):

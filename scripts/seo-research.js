@@ -172,7 +172,7 @@ async function researchWithClaude(client, topicName, niche) {
     : "";
 
   const message = await client.messages.create({
-    model: "claude-sonnet-5",
+    model: "claude-sonnet-5-5",
     max_tokens: 4096,
     system: [{
       type: "text",

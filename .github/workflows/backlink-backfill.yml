@@ -48,7 +48,7 @@ jobs:
         id: backfill
         env:
           ANTHROPIC_API_KEY:           ${{ secrets.ANTHROPIC_API_KEY }}
-          SYNDICATION_COMPANION_MODEL:  ${{ vars.SYNDICATION_COMPANION_MODEL || 'claude-haiku-4-5-20251001' }}
+          SYNDICATION_COMPANION_MODEL:  ${{ vars.SYNDICATION_COMPANION_MODEL || 'claude-haiku-5-5' }}
           BACKLINK_CATCHUP_BATCH:       8
           BACKLINK_MAINTENANCE_BATCH:   3
           BACKLINK_INTER_POST_DELAY_SECONDS: 8

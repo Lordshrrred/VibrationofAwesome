@@ -5,16 +5,22 @@ Read this before touching `generate-post.js`, `generate-from-inspiration.js`, ge
 ## Two lanes
 
 - **Matt lane** (`static/blog/matt/`): personal, raw, reflective writing by Matt EarthStar. Excluded from the SEO-structure rules below. After changing `static/_data/matt-posts.json`, run `npm run build:matt-index`.
-- **Boom lane** (`static/blog/boom/`): SEO content by the AI persona "Matty BoomBoom" (blog name "Boom Frequency").
+- **Boom lane** (`static/blog/boom/`): AI-assisted writing published by Vibration of Awesome (blog name "Boom Frequency"). The byline is "Vibration of Awesome · AI-assisted"; no personal portrait or invented human reviewer. Article schema uses the organization identity.
 
 Posts are standalone HTML, indexed in `static/_data/[lane]-posts.json` (`title, slug, date, excerpt, url, tags, niche, cluster`).
 
 Pipeline: `generate-post.js` → Claude with a lane-specific system prompt → markdown → `marked` → `static/blog/[lane]/posts/[slug].html` (or `drafts/`) → lane JSON index.
 
 Boom generation fails before spending on a repeated requested title/keyword,
-and rejects repeated returned H1s before saving. A response reaching its
+and rejects repeated returned H1s and substantially overlapping bodies before saving. A response reaching its
 output-token limit fails the quality gate instead of publishing a truncated
-article. Existing published duplicates are retained for editorial consolidation.
+article. Repeated published titles are consolidated via `scripts/consolidate-articles.js`: preserve the established complete original, archive later versions privately, add permanent redirects, and rewrite internal links. `static/_data/article-redirects.json` prevents retired sources re-entering backlink catch-up. History remains intact.
+
+`scripts/lib/editorial.js` owns bylines and author schema. Forest Temple keeps
+Matt's name with one consistent portrait; Boom has a quiet disclosure, no rotator.
+Both generators apply it, so imports and future posts retain the same presentation.
+
+Reviewed local markdown can enter the reserve through `scripts/import-editorial-reserve.js` (preview, then `--execute`); this makes no generation or image calls. The October recovery guides live in `content-strategy/editorial-reserve/`.
 
 ```bash
 node scripts/generate-post.js --lane matt --title "Post Title Here"
