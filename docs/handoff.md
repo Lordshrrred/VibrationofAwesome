@@ -22,7 +22,7 @@ Last updated: 2026-10-18 (blog/cost audit and duplicate safeguards).
 - **Open:** the dashboard ESC recommendations panel is stale. `static/_data/latest-voa-recommendations.json` expired 2026-06-03 and `lordshrrred.github.io/VOA_Feeder/latest-voa-recommendations.json` is 404 (EarthStar Command isn't exporting it; fix belongs in the ESC repo). It is cosmetic. Suggested: hide the panel until ESC exports again.
 
 ### Publishing queue: `docs/modules/publishing-queue.md`
-- **Status:** active but zero eligible drafts after 22 repeated-title drafts moved to `duplicate_holds`; HTML preserved. Today's eight generation attempts were already consumed. Next normal daily refill must provide fresh articles within the existing cap; no manual paid run was made. Thirty eligible saved topics remain across all 11 clusters.
+- **Status:** active but zero eligible drafts; 21 repeated-title drafts in `duplicate_holds`, HTML preserved. One additional repeat published during the audit before the safeguards deployed; its live record is preserved. Today's eight generation attempts were already consumed. Next normal refill must provide fresh articles within the existing cap; no manual paid run. Thirty eligible saved topics remain across all 11 clusters.
 - **Open:** four weekly research attempts failed after September 17. Terminal JSON parsing and stale-evidence health now have regression coverage; await the next scheduled paid research attempt to verify live recovery. Readiness intentionally shows inventory/research gaps.
 - **Next:** verify the next bounded refill; review 22 duplicate groups in the published archive before any URL consolidation. Matt has not approved a provider/model swap, higher daily rate, or changes to author portraits.
 
