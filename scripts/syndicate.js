@@ -43,6 +43,8 @@ import { generateCaptions }       from "./generate-captions.js";
 import { selectImage }             from "./select-image.js";
 import { generatePinterestImage }  from "./generate-pinterest-image.js";
 import { generateInstagramVisual }  from "./generate-instagram-visual.js";
+import { renderPin, pinHeadline }    from "./lib/pin-renderer.js";
+import { uploadPublerMediaBuffer }  from "./lib/publer-media-upload.js";
 import {
   BACKLINK_TIER,
   detectContentType,
@@ -944,7 +946,8 @@ async function postViaPubler(platform, caption, imageUrl, details = {}) {
   }
 
   let mediaId = null;
-  if (imageUrl) mediaId = await uploadPublerMediaFromUrl(imageUrl, headers, BASE);
+  if (details.mediaBuffer) mediaId = (await uploadPublerMediaBuffer(details.mediaBuffer, details.mediaFilename || "pin.png")).id;
+  else if (imageUrl) mediaId = await uploadPublerMediaFromUrl(imageUrl, headers, BASE);
   if (platform === "pinterest" && !mediaId) throw new Error("Publer (pinterest): image is required");
 
   const accountTarget = { id: accountId };
@@ -1711,14 +1714,27 @@ export async function syndicatePost(lane, slug, options = {}) {
   }
 
   // Pinterest via Publer ~ AI-generated image (Ideogram) when available, else Pexels
-  await attempt("pinterest", () =>
-    postViaPubler("pinterest", captions.pinterest, pinterestImageUrl, {
+  // Without an Ideogram design the background is the blog hero (often a NASA
+  // photo) that says nothing about the post, so typeset the headline and the
+  // domain onto it: a pin has to show what the click gets you.
+  await attempt("pinterest", async () => {
+    const isDesigned = Boolean(instagramVisual?.url || pinterestVisual?.url || reusedPinterest || reusedInstagram);
+    let mediaBuffer = null;
+    if (!isDesigned) {
+      const { headline, kicker } = pinHeadline(post.title);
+      const background = pinterestImageUrl === imageUrl && image?.localPath && fs.existsSync(image.localPath)
+        ? image.localPath
+        : pinterestImageUrl;
+      mediaBuffer = await renderPin({ headline, kicker, background });
+    }
+    return postViaPubler("pinterest", captions.pinterest, pinterestImageUrl, {
       title:               post.title,
       url:                 postUrl,
       pinterestBoardKey:   pinterestBoardKey,
       pinterestBoardName:  pinterestBoardName,
-    }),
-    `board:"${pinterestBoardName}"`);
+      ...(mediaBuffer ? { mediaBuffer, mediaFilename: `${slug}-pin.png` } : {}),
+    });
+  }, `board:"${pinterestBoardName}"`);
 
   // VOA Threads via Publer ~ native 3-part mini-thread format, text only
   {
