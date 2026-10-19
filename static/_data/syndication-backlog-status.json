@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T01:12:57.400Z",
+  "generatedAt": "2026-10-19T05:11:20.339Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -15,10 +15,12 @@
   },
   "summary": {
     "totalTrackedPosts": 331,
+    "totalLivePosts": 367,
+    "untrackedLivePosts": 36,
     "backlogPosts": 0,
     "backlinkCapableMissingUnits": 0,
-    "backlinkVerificationGaps": 417,
-    "feederMissingUnits": 4,
+    "backlinkVerificationGaps": 394,
+    "feederMissingUnits": 0,
     "distributionIncompleteUnits": 19,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
@@ -41,8 +43,8 @@
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.9,
-        "confirmed": 192,
-        "verificationGaps": 139,
+        "confirmed": 195,
+        "verificationGaps": 136,
         "mainBlocker": ""
       },
       {
@@ -53,8 +55,8 @@
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.1,
-        "confirmed": 192,
-        "verificationGaps": 139,
+        "confirmed": 202,
+        "verificationGaps": 129,
         "mainBlocker": ""
       },
       {
@@ -65,8 +67,8 @@
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.1,
-        "confirmed": 192,
-        "verificationGaps": 139,
+        "confirmed": 202,
+        "verificationGaps": 129,
         "mainBlocker": ""
       }
     ],
@@ -74,14 +76,14 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 244,
+        "eligiblePosts": 240,
         "complete": 240,
-        "missing": 4,
-        "successRate": 98.4,
+        "missing": 0,
+        "successRate": 100,
         "averagePerDay": 0.1,
         "confirmed": 240,
         "verificationGaps": 0,
-        "mainBlocker": "missing local success record"
+        "mainBlocker": ""
       }
     ],
     "distribution": [
@@ -175,6 +177,260 @@
     {
       "reason": "mastodon_voa: env vars not set",
       "count": 1
+    }
+  ],
+  "untrackedPosts": [
+    {
+      "slug": "ai-advantage-bootcamp-scam-reddit-what-the-no-filter-crowd-actually-thinks",
+      "title": "AI Advantage Bootcamp Scam Reddit: What the No-Filter Crowd Actually Thinks",
+      "lane": "boom",
+      "date": "2026-07-20T20:15:49.926Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "how-to-organize-music-ideas-in-chat-conversations",
+      "title": "How To Organize Music Ideas In Chat Conversations",
+      "lane": "boom",
+      "date": "2026-07-19T14:25:35.054Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "ai-advantage-login-and-members-area-what-youre-getting-access-to",
+      "title": "AI Advantage Login and Members Area: What You're Getting Access To",
+      "lane": "boom",
+      "date": "2026-07-13T20:06:50.771Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "tony-robbins-scam-accusations-in-2026-whats-actually-being-said",
+      "title": "Tony Robbins Scam Accusations in 2026: What's Actually Being Said",
+      "lane": "boom",
+      "date": "2026-07-11T19:57:55.048Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "using-ai-without-losing-what-makes-you-human-a-creators-field-manual",
+      "title": "Using AI Without Losing What Makes You Human: A Creator's Field Manual",
+      "lane": "boom",
+      "date": "2026-07-09T16:03:09.509Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "build-a-15-hour-per-week-ai-time-savings-system-without-buying-a-course",
+      "title": "Build a 15-Hour-Per-Week AI Time Savings System Without Buying a Course",
+      "lane": "boom",
+      "date": "2026-07-01T17:44:58.577Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "how-dean-graziosi-uses-ai-in-his-own-business-and-what-that-tells-you",
+      "title": "How Dean Graziosi Uses AI in His Own Business and What That Tells You",
+      "lane": "boom",
+      "date": "2026-06-30T17:45:11.585Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "what-ai-advantage-does-not-teach-you-the-honest-gaps-in-the-curriculum",
+      "title": "What AI Advantage Does Not Teach You: The Honest Gaps in the Curriculum",
+      "lane": "boom",
+      "date": "2026-06-29T20:46:13.111Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "the-ai-advantage-webinar-formula-how-they-move-you-from-free-summit-to-995-page",
+      "title": "The AI Advantage Webinar Formula: How They Move You From Free Summit to $995 Page",
+      "lane": "boom",
+      "date": "2026-06-29T18:01:50.098Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "every-dean-graziosi-program-ranked-which-ones-are-actually-worth-the-money",
+      "title": "Every Dean Graziosi Program Ranked: Which Ones Are Actually Worth the Money",
+      "lane": "boom",
+      "date": "2026-06-28T20:05:16.842Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "tony-robbins-and-dean-graziosi-a-history-of-expensive-courses-together",
+      "title": "Tony Robbins and Dean Graziosi: A History of Expensive Courses Together",
+      "lane": "boom",
+      "date": "2026-06-28T16:54:30.117Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "who-is-dean-graziosi-the-man-behind-the-ai-advantage-sales-pitch",
+      "title": "Who Is Dean Graziosi: The Man Behind the AI Advantage Sales Pitch",
+      "lane": "boom",
+      "date": "2026-06-27T20:02:43.990Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "ai-advantage-bootcamp-vs-chatgpt-do-you-need-a-course-to-learn-what-gpt-can-teach-you",
+      "title": "AI Advantage Bootcamp vs ChatGPT: Do You Need a Course to Learn What GPT Can Teach You",
+      "lane": "boom",
+      "date": "2026-06-27T16:53:08.779Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "dean-graziosi-and-tony-robbins-joint-programs-a-track-record-review",
+      "title": "Dean Graziosi and Tony Robbins Joint Programs: A Track Record Review",
+      "lane": "boom",
+      "date": "2026-06-26T20:26:14.117Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "tony-robbins-ai-program-2026-what-changed-from-last-year",
+      "title": "Tony Robbins AI Program 2026: What Changed From Last Year",
+      "lane": "boom",
+      "date": "2026-06-26T17:27:14.004Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "what-happens-after-the-ai-advantage-webinar-the-full-funnel-explained",
+      "title": "What Happens After the AI Advantage Webinar: The Full Funnel Explained",
+      "lane": "boom",
+      "date": "2026-06-25T20:51:40.288Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "ai-advantage-bootcamp-for-small-business-owners-the-honest-take",
+      "title": "AI Advantage Bootcamp for Small Business Owners: The Honest Take",
+      "lane": "boom",
+      "date": "2026-06-25T18:00:30.007Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "best-ai-courses-2026-how-ai-advantage-stacks-up-against-the-competition",
+      "title": "Best AI Courses 2026: How AI Advantage Stacks Up Against the Competition",
+      "lane": "boom",
+      "date": "2026-06-24T20:27:01.288Z",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "ai-tools-for-independent-artists",
+      "title": "AI Tools for Independent Artists: The Stack That Changes Everything",
+      "lane": "boom",
+      "date": "2026-02-15",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "twenty-years-internet-marketing",
+      "title": "Why I Spent 20 Years Doing Internet Marketing Wrong",
+      "lane": "matt",
+      "date": "2026-03-01",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "why-i-built-forest-temple",
+      "title": "Why I Built the Forest Temple",
+      "lane": "matt",
+      "date": "2026-01-28",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "best-hair-stylist-in-st-pete",
+      "title": "Best Hair Stylist in St Pete",
+      "lane": "matt",
+      "date": "2016-06-21",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "how-to-find-happiness-without-a-partner",
+      "title": "How to Find Happiness in Yourself Without A partner",
+      "lane": "matt",
+      "date": "2016-06-19",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "light-workers-communication-impacting-the-masses",
+      "title": "(Light Workers) A Lesson in Communication for Impacting The Masses",
+      "lane": "matt",
+      "date": "2016-06-17",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "self-love-acceptance",
+      "title": "The Intention To Find Balance and Self Love",
+      "lane": "matt",
+      "date": "2016-06-15",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "qi-gong-understanding-chi-energy",
+      "title": "Qi Gong - Understanding Chi Energy Within Your Body",
+      "lane": "matt",
+      "date": "2016-06-12",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "vibration-of-awesome",
+      "title": "The Vibration of Awesome",
+      "lane": "matt",
+      "date": "2016-05-20",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "empower-your-life",
+      "title": "Empower Your Life!",
+      "lane": "matt",
+      "date": "2016-05-16",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "synonyms-for-awesome",
+      "title": "Synonyms For Awesome - Other Words For Awesome",
+      "lane": "matt",
+      "date": "2016-01-16",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "law-of-attraction-manifesting-abundance",
+      "title": "Is the law of Attraction Real? 3 Key Elements To Manifesting Abundance",
+      "lane": "matt",
+      "date": "2015-12-07",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "ayahuasca-experience",
+      "title": "The Near Death of My Ego - A Truly Personal Ayahuasca Experience",
+      "lane": "matt",
+      "date": "2015-08-20",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "the-most-awesome-thing-ever",
+      "title": "The Most Awesome Thing Ever Is Deep and Changing The World",
+      "lane": "matt",
+      "date": "2015-07-18",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "indigo-children-characteristics",
+      "title": "Indigo Children Characteristics - What is an Indigo Child?",
+      "lane": "matt",
+      "date": "2015-06-14",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "indigo-children-test",
+      "title": "Indigo Children Test - What Makes You an Indigo Adult / Indigo Child?",
+      "lane": "matt",
+      "date": "2015-05-22",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "indigo-children-abilities",
+      "title": "Indigo Children Abilities",
+      "lane": "matt",
+      "date": "2015-04-08",
+      "reason": "no_distribution_record"
+    },
+    {
+      "slug": "the-ayahuasca-experience-is-it-your-time",
+      "title": "Ready to take a sip of the Ayahuasca brew?",
+      "lane": "matt",
+      "date": "2015-03-27",
+      "reason": "no_distribution_record"
     }
   ],
   "prioritizedBacklog": []
