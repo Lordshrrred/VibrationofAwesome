@@ -43,21 +43,22 @@ on the same day. These are defaults, not hard locks.
 
 ## 2. Backlink Tier Philosophy
 
-The following platforms are **SEO infrastructure, not audience channels**.
+Blogger, WordPress and Tumblr are owned distribution channels. A companion
+must help a reader on that platform and offer a useful reason to visit VOA.
+Keep the existing routing and bounded catch-up limits; do not manufacture
+extra posts merely to raise a backlink count.
 
-They exist to:
-- Create indexed backlinks to VOA posts
-- Build domain authority for vibrationofawesome.com
-- Distribute canonical signals across the web
-- Generate organic discovery from high-DA platforms
+A public link does not prove indexing, ranking credit, authority or referral
+traffic. Automated link creation primarily to manipulate rankings conflicts
+with Google's spam policies. Original wording and a slower cadence alone do
+not establish useful editorial value or guarantee SEO safety.
 
-**These always receive every blog post. No throttling. No filtering. No cooldowns.**
+Verify existing articles before considering replacements. A blocked request,
+missing local record or unverified link is not permission to repost. Prefer
+repairing an established companion over creating another version. No external
+outreach, link purchasing or posting-rate increase is authorized by this policy.
 
-```
-tumblr_voa         ~ indexed, DoFollow, VOA brand continuity
-blogger            ~ Google-owned, fast indexing, DoFollow
-wordpress_earthstar ~ WordPress.com indexed, DoFollow, EarthStarRising brand
-```
+Reference: https://developers.google.com/search/docs/essentials/spam-policies#link-spam
 
 **Note on Tumblr ESR:** `tumblr_esr` appears in the quota tables for planning purposes but is **NOT wired into live syndication** in `syndicate.js`. Only `tumblr_voa` is actively posted to. If you add Tumblr ESR to the live pipeline, update this document and the backlink tier list in `scripts/lib/policy.js`.
 
@@ -259,7 +260,7 @@ Rotation state is tracked per lane in `static/_data/cta-rotation-state.json`.
 
 ## 10. Daily Platform Quotas (Both Engines Combined)
 
-These are safe limits before platform suppression risk increases.
+These are operational ceilings, not guarantees against suppression or spam classification.
 
 | Platform | Safe Max/Day | Notes |
 |---|---|---|

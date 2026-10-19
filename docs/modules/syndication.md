@@ -4,7 +4,7 @@ Read this before touching `syndicate.js`, `generate-captions.js`, `post-live-syn
 
 ## Engine
 
-`syndicate.js` reads recent posts, calls `generate-captions.js` (Haiku 4.5, one call, a separate section per platform) and `select-image.js` (Pexels/local) plus Ideogram for images, then posts to Bluesky VOA, Mastodon VOA, Facebook VOA, Instagram VOA, Threads VOA, Pinterest VOA, Tumblr VOA, Blogger, and WordPress EarthStar. Facebook, Instagram, Threads, and Pinterest go through Publer; the others use direct APIs. Results: `static/_data/syndication-log.json` and `syndication-results.json` (both large; query them, never read them whole).
+`syndicate.js` reads recent posts, calls `generate-captions.js` (Haiku 5.5, one call, a separate section per platform) and `select-image.js` (Pexels/local) plus Ideogram for images, then posts to Bluesky VOA, Mastodon VOA, Facebook VOA, Instagram VOA, Threads VOA, Pinterest VOA, Tumblr VOA, Blogger, and WordPress EarthStar. Facebook, Instagram, Threads, and Pinterest go through Publer; the others use direct APIs. Results: `static/_data/syndication-log.json` and `syndication-results.json` (both large; query them, never read them whole).
 
 Retry anything that failed recently with `node scripts/retry-failed-syndication.js`. Do not ask Matt to re-run platforms by hand.
 
@@ -48,7 +48,24 @@ Each platform gets a **transformation**, not a copy.
 | Instagram | Visual hook + emotional context + hashtags | Raw/cosmic | No |
 | Pinterest | Ideogram image + keyword description + board | Evergreen | Yes |
 
-Companion model: `COMPANION_MODEL` in `syndicate.js` defaults to Haiku 4.5; override with `SYNDICATION_COMPANION_MODEL` rather than editing the constant.
+Companion model: `COMPANION_MODEL` in `syndicate.js` defaults to Haiku 5.5; override with `SYNDICATION_COMPANION_MODEL` rather than editing the constant.
+
+## Verification
+
+The existing two-hour backfill workflow checks up to 30 recorded companion
+articles before considering missing distribution work. No model, generation or
+publishing call is made by verification. It excludes retired source slugs,
+rechecks uncertain results after one day and confirmed results after seven,
+uses at most three concurrent requests, and bounds each request to 12 seconds.
+WordPress/Tumblr use published article bodies from their APIs where available;
+HTML checks require a link in recognizable article content. Navigation, tag
+archives, plain-text mentions and prefix-only slug matches are insufficient.
+403, 429, server errors and unavailable evidence are unknown, not missing.
+Verification never changes distribution success into a repost task. A body
+link confirmation says nothing about indexing, ranking credit or referral traffic.
+
+`node scripts/verify-backlinks.js` previews the batch. Add `--execute` to read
+remote articles and persist evidence. `--batch` is capped at 100 platform checks.
 
 Future direction (do not build yet): transform weak-fit content into platform-native variants (quote cards, text transformations, board rerouting) instead of suppressing it. Don't hardcode assumptions that prevent this.
 

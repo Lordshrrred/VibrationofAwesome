@@ -1,225 +1,107 @@
 #!/usr/bin/env node
-/**
- * verify-backlinks.js ~ Confirm syndicated VOA backlinks without serverless calls.
- */
-
-import crypto from "crypto";
+// Read existing companion articles. Never generate, publish or retry a post.
 import dotenv from "dotenv";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import fs from "node:fs";
+import { pathToFileURL } from "node:url";
 import minimist from "minimist";
+import { inspectBacklink } from "../api/_backlink-verification.js";
 
-import { pathToFileURL as __voaPathToFileURL } from "node:url";
-dotenv.config({ override: true });
+dotenv.config({ quiet: true });
+const RESULTS = new URL("../static/_data/syndication-results.json", import.meta.url);
+const REDIRECTS = new URL("../static/_data/article-redirects.json", import.meta.url);
+const PLATFORMS = ["blogger", "wordpress_earthstar", "tumblr_voa"];
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const ROOT = path.resolve(__dirname, "..");
-const RESULTS_FILE = path.join(ROOT, "static", "_data", "syndication-results.json");
-const LOG_FILE = path.join(ROOT, "static", "_data", "syndication-log.json");
-const PUBLER_BASE = "https://app.publer.com/api/v1";
-const PUBLER_NETWORKS = new Set(["pinterest", "instagram", "threads"]);
-const NON_CLICKABLE_BACKLINKS = new Set(["instagram"]);
-
-function sourceNeedles(sourceUrl) {
-  const url = new URL(sourceUrl);
-  return [...new Set([
-    sourceUrl,
-    sourceUrl.replace(/^https?:\/\//, ""),
-    url.pathname.replace(/\/$/, ""),
-  ].filter(Boolean))];
+export function selectChecks(results, { redirects = {}, batch = 30, now = Date.now(), slugs = null, platforms = PLATFORMS } = {}) {
+  return results.filter(row => !redirects[row.slug] && (!slugs || slugs.has(row.slug)))
+    .flatMap(row => platforms.map(key => ({ row, key, platform: row.syndication?.[key] })))
+    .filter(({ platform }) => {
+      if (platform?.status !== "success") return false;
+      const age = now - Date.parse(platform.backlink_checked_at || "");
+      return !Number.isFinite(age) || age >= (platform.backlink_confirmed === true ? 7 : 1) * 86400_000;
+    })
+    .sort((a, b) => Number(a.platform.backlink_confirmed === true) - Number(b.platform.backlink_confirmed === true)
+      || (Date.parse(a.platform.backlink_checked_at) || 0) - (Date.parse(b.platform.backlink_checked_at) || 0))
+    .slice(0, batch);
 }
 
-function containsSource(text, sourceUrl) {
-  const haystack = String(text || "").toLowerCase();
-  return sourceNeedles(sourceUrl).some(needle => haystack.includes(needle.toLowerCase()));
+async function fetchPublic(url, json = false) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(12000), redirect: "follow",
+    headers: { "User-Agent": "VOA-Backlink-Checker/1.0 (+https://vibrationofawesome.com)" } });
+  return { status: response.status, data: json ? await response.json().catch(() => null) : await response.text() };
 }
 
-function mark(platform, status, details = {}) {
-  const next = {
-    ...platform,
-    backlink_checked_at: new Date().toISOString(),
-    backlink_confirmed: status === "confirmed",
-    backlink_status: status,
-    ...details,
-  };
-  if (status === "confirmed") delete next.backlink_error;
+export async function verifyExisting({ row, key, platform }) {
+  if (!platform.url || !row.voa_url) return { verified: null, reason: "no_public_url" };
+  try {
+    const url = new URL(platform.url);
+    if (key === "wordpress_earthstar" && url.hostname.endsWith(".wordpress.com")) {
+      const slug = url.pathname.split("/").filter(Boolean).at(-1);
+      if (!/^\/\d{4}\/\d{2}\/\d{2}\//.test(url.pathname)) return { verified: null, reason: "not_an_article_url" };
+      const response = await fetchPublic(`https://public-api.wordpress.com/rest/v1.1/sites/${url.hostname}/posts/slug:${encodeURIComponent(slug)}?fields=content,URL,status`, true);
+      // Only the published article's content counts; menus and sidebar links do not.
+      if (response.status === 200 && response.data?.status === "publish" && typeof response.data.content === "string") {
+        return { ...inspectBacklink(`<article>${response.data.content}</article>`, row.voa_url), method: "published_article_api" };
+      }
+      return { verified: null, reason: `wordpress_api_${response.status}` };
+    }
+    if (key === "tumblr_voa") {
+      const id = url.pathname.match(/\/post\/(\d+)/)?.[1];
+      const apiKey = process.env.VOA_TUMBLR_CONSUMER_KEY || process.env.TUMBLR_CONSUMER_KEY;
+      if (id && apiKey && url.hostname.endsWith(".tumblr.com")) {
+        const response = await fetchPublic(`https://api.tumblr.com/v2/blog/${url.hostname}/posts?id=${id}&api_key=${encodeURIComponent(apiKey)}`, true);
+        const post = response.data?.response?.posts?.find(item => String(item.id_string || item.id) === id);
+        if (post && typeof (post.body || post.caption) === "string") {
+          return { ...inspectBacklink(`<article>${post.body || post.caption}</article>`, row.voa_url), method: "published_article_api" };
+        }
+        return { verified: null, reason: `tumblr_api_${response.data?.meta?.status || response.status}` };
+      }
+    }
+    const response = await fetchPublic(url.href);
+    return { ...inspectBacklink(response.data, row.voa_url, response.status), method: "article_body" };
+  } catch (error) {
+    // Fetch errors may contain credential-bearing API URLs. Store the type only.
+    return { verified: null, reason: `request_${error.name || "failed"}` };
+  }
+}
+
+export function recordCheck(platform, result, now = new Date().toISOString()) {
+  const next = { ...platform, backlink_checked_at: now, backlink_confirmed: result.verified === true,
+    backlink_status: result.verified === true ? "confirmed" : result.verified === false ? "missing" : "unknown",
+    backlink_method: result.method || "article_body" };
+  if (result.verified === true) {
+    next.backlink_last_confirmed_at = now;
+    delete next.backlink_error;
+  } else next.backlink_error = result.reason;
   return next;
 }
 
-function firstNonEmpty(...values) {
-  return values.find(v => typeof v === "string" && v.trim()) || null;
-}
-
-function getTumblrConfig(prefix = "ESR") {
-  const p = `${prefix}_`;
-  return {
-    consumerKey: firstNonEmpty(process.env[`${p}TUMBLR_CONSUMER_KEY`], prefix === "ESR" ? process.env.TUMBLR_CONSUMER_KEY : null),
-    blogName:    firstNonEmpty(process.env[`${p}TUMBLR_BLOG_NAME`], prefix === "ESR" ? process.env.TUMBLR_BLOG_NAME : null),
-  };
-}
-
-async function fetchText(url) {
-  const resp = await fetch(url, {
-    headers: { "User-Agent": "VOA backlink verifier (+https://vibrationofawesome.com)" },
-    redirect: "follow",
-  });
-  return { ok: resp.ok, status: resp.status, text: await resp.text() };
-}
-
-function publerHeaders() {
-  if (!process.env.PUBLER_API_KEY || !process.env.PUBLER_WORKSPACE_ID) return null;
-  return {
-    Authorization: `Bearer-API ${process.env.PUBLER_API_KEY}`,
-    "Publer-Workspace-Id": process.env.PUBLER_WORKSPACE_ID,
-    Accept: "application/json",
-  };
-}
-
-async function getPublerAccounts() {
-  const headers = publerHeaders();
-  if (!headers) return {};
-  const resp = await fetch(`${PUBLER_BASE}/accounts`, { headers });
-  const data = await resp.json().catch(() => ({}));
-  const accounts = Array.isArray(data) ? data : Array.isArray(data.data) ? data.data : [];
-  return Object.fromEntries(accounts.map(account => [account.provider, account.id]).filter(([, id]) => id));
-}
-
-async function findPublerPost(entry, key, accountId, caption = "") {
-  const headers = publerHeaders();
-  if (!headers || !accountId) return null;
-  const from = new Date(Date.parse(entry.date || new Date()) - 24 * 60 * 60 * 1000).toISOString();
-  const to = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
-  const url = new URL(`${PUBLER_BASE}/posts`);
-  url.searchParams.set("from", from);
-  url.searchParams.set("to", to);
-  const resp = await fetch(url, { headers });
-  const data = await resp.json().catch(() => ({}));
-  const posts = data.posts || data.data || [];
-  const snippets = [
-    caption.split(/\s+/).slice(0, 8).join(" "),
-    caption.split(/\s+/).slice(0, 5).join(" "),
-    entry.title.split(/\s+/).slice(0, 4).join(" "),
-    new URL(entry.voa_url).pathname,
-  ].filter(s => s && s.length > 12).map(s => s.toLowerCase());
-
-  return posts.find(post => {
-    if (String(post.account_id) !== String(accountId)) return false;
-    const blob = `${post.text || ""} ${post.url || ""} ${post.post_link || ""}`;
-    if (containsSource(blob, entry.voa_url)) return true;
-    const text = String(post.text || "").toLowerCase();
-    return snippets.some(snippet => text.includes(snippet));
-  }) || null;
-}
-
-async function verifyFacebook(key, platform, sourceUrl) {
-  const token = key === "facebook_voa" ? process.env.META_PAGE_TOKEN_VOA : process.env.META_PAGE_TOKEN_EARTHSTAR;
-  const postId = platform.url?.match(/facebook\.com\/([^/?#]+)$/)?.[1] || "";
-  if (!token || !postId) return null;
-  const qs = new URLSearchParams({ fields: "message,attachments{url,unshimmed_url,title}", access_token: token });
-  const resp = await fetch(`https://graph.facebook.com/v19.0/${postId}?${qs}`);
-  const data = await resp.json().catch(() => ({}));
-  return containsSource(JSON.stringify(data), sourceUrl);
-}
-
-async function verifyMastodon(platform, sourceUrl) {
-  const statusId = platform.url?.split("/").pop();
-  if (!platform.url || !statusId) return null;
-  const origin = new URL(platform.url).origin;
-  const resp = await fetch(`${origin}/api/v1/statuses/${statusId}`);
-  const data = await resp.json().catch(() => ({}));
-  return containsSource(JSON.stringify(data), sourceUrl);
-}
-
-async function verifyTumblr(platform, sourceUrl, prefix = "ESR") {
-  const postId = platform.url?.match(/\/post\/(\d+)/)?.[1];
-  const cfg = getTumblrConfig(prefix);
-  const blogName = platform.url
-    ? new URL(platform.url).hostname.replace(/\.tumblr\.com$/i, "")
-    : cfg.blogName;
-  if (!postId || !cfg.consumerKey || !blogName) return null;
-  const apiUrl = `https://api.tumblr.com/v2/blog/${blogName}/posts?id=${postId}&api_key=${cfg.consumerKey}`;
-  const resp = await fetch(apiUrl);
-  const data = await resp.json().catch(() => ({}));
-  return containsSource(JSON.stringify(data), sourceUrl);
-}
-
-async function verifyPlatform(entry, key, platform, logEntry, publerAccounts) {
-  if (platform.status !== "success") return platform;
-  const sourceUrl = entry.voa_url;
-
-  if (NON_CLICKABLE_BACKLINKS.has(key)) {
-    return mark(platform, "not_applicable", { backlink_error: "Instagram captions are not clickable backlinks." });
-  }
-
-  if (PUBLER_NETWORKS.has(key)) {
-    const publerPost = await findPublerPost(entry, key, publerAccounts[key], logEntry?.captions?.[key] || "");
-    if (publerPost) {
-      platform = {
-        ...platform,
-        url: publerPost.post_link || platform.url || null,
-        publer_post_id: String(publerPost.id),
-        publer_state: publerPost.state || null,
-      };
-      if (containsSource(`${publerPost.text || ""} ${publerPost.url || ""} ${publerPost.post_link || ""}`, sourceUrl)) {
-        return mark(platform, "confirmed", { backlink_method: "publer_posts_api" });
-      }
-    } else {
-      platform = { ...platform, url: null };
-    }
-  }
-
-  let confirmed = null;
-  if (key === "facebook_voa" || key === "facebook_earthstar") confirmed = await verifyFacebook(key, platform, sourceUrl);
-  if (key === "mastodon" || key === "mastodon_esr" || key === "mastodon_voa") confirmed = await verifyMastodon(platform, sourceUrl);
-  if (key === "tumblr" || key === "tumblr_esr") confirmed = await verifyTumblr(platform, sourceUrl, "ESR");
-  if (key === "tumblr_voa") confirmed = await verifyTumblr(platform, sourceUrl, "VOA");
-  if (confirmed === true) return mark(platform, "confirmed", { backlink_method: `${key}_api` });
-
-  if (platform.url) {
-    try {
-      const { ok, status, text } = await fetchText(platform.url);
-      if (ok && containsSource(text, sourceUrl)) return mark(platform, "confirmed", { backlink_method: "page_fetch" });
-      return mark(platform, "missing", { backlink_error: `Fetched ${status}, source link not found.` });
-    } catch (err) {
-      return mark(platform, "unknown", { backlink_error: err.message });
-    }
-  }
-
-  return mark(platform, "unknown", { backlink_error: "No public URL available for backlink verification." });
-}
-
 async function main() {
-  const argv = minimist(process.argv.slice(2), { string: ["slug"] });
-  const slugs = argv.slug ? new Set(argv.slug.split(",").map(s => s.trim()).filter(Boolean)) : null;
-  const results = JSON.parse(fs.readFileSync(RESULTS_FILE, "utf8"));
-  const log = JSON.parse(fs.readFileSync(LOG_FILE, "utf8"));
-  const publerAccounts = await getPublerAccounts();
-  let touched = 0;
-
-  for (const entry of results) {
-    if (slugs && !slugs.has(entry.slug)) continue;
-    const logEntry = log.entries.find(item => item.postSlug === entry.slug);
-    for (const [key, platform] of Object.entries(entry.syndication || {})) {
-      const next = await verifyPlatform(entry, key, platform, logEntry, publerAccounts);
-      entry.syndication[key] = next;
-      touched++;
-      console.log(`${entry.slug} ${key}: ${next.backlink_status || "skipped"}${next.url ? ` ${next.url}` : ""}`);
-    }
+  const args = minimist(process.argv.slice(2), { boolean: ["execute"], string: ["slug", "batch", "platforms"] });
+  const batch = Number(args.batch || 30);
+  if (!Number.isSafeInteger(batch) || batch < 1 || batch > 100) throw new Error("Batch must be 1-100 platform checks");
+  const platforms = args.platforms ? args.platforms.split(",") : PLATFORMS;
+  if (platforms.some(key => !PLATFORMS.includes(key))) throw new Error("Only Blogger, WordPress and Tumblr companion verification is supported");
+  const results = JSON.parse(fs.readFileSync(RESULTS, "utf8"));
+  const checks = selectChecks(results, { batch, platforms, redirects: JSON.parse(fs.readFileSync(REDIRECTS, "utf8")),
+    slugs: args.slug ? new Set(args.slug.split(",")) : null });
+  console.log(`[verify] ${checks.length} existing platform articles; ${args.execute ? "read-only remote verification" : "preview only; add --execute"}. No generation or publishing.`);
+  const totals = { confirmed: 0, missing: 0, unknown: 0 };
+  for (let start = 0; start < checks.length; start += 3) {
+    await Promise.all(checks.slice(start, start + 3).map(async check => {
+      if (!args.execute) { console.log(`${check.row.slug} ${check.key}`); return; }
+      const result = await verifyExisting(check);
+      const next = recordCheck(check.platform, result);
+      check.row.syndication[check.key] = next;
+      totals[next.backlink_status]++;
+      console.log(`${check.row.slug} ${check.key}: ${next.backlink_status} (${result.reason})`);
+    }));
   }
-
-  fs.writeFileSync(RESULTS_FILE, JSON.stringify(results, null, 2), "utf8");
-  console.log(`\nVerified ${touched} platform entries.`);
+  if (args.execute) {
+    fs.writeFileSync(RESULTS, JSON.stringify(results, null, 2));
+    console.log(`[verify] ${JSON.stringify(totals)}; blocked or missing evidence never triggers a repost.`);
+  }
 }
 
-// CLI-only guard: without this, merely `import`-ing this module (from a test,
-// another script, or a syntax/load check) executes a real run with real side
-// effects. See AGENTS.md (CLI guard) ~ every script with a top-level main() needs this.
-const __voaIsCli = process.argv[1] && import.meta.url === __voaPathToFileURL(process.argv[1]).href;
-if (__voaIsCli) {
-  main().catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch(error => { console.error(error.message); process.exitCode = 1; });
 }

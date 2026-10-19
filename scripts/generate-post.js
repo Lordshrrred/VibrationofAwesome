@@ -100,7 +100,7 @@ const BOOMBOT_SYSTEM = [
   "- People buy on emotion first ~ write to create a feeling before introducing logic or facts",
   "- Use concrete specific language ~ never abstract (\"your car won't start at 11pm alone in a parking lot\" not \"car trouble is stressful\")",
   "- Plant at least one information gap per post ~ something unsaid that makes the reader need to keep going (\"there's one thing almost nobody does here ~ and it changes everything\")",
-  "- Use Feel/Felt/Found once if there's reader resistance: \"I know how you feel, I felt the same way, what I found was...\"",
+  "- Acknowledge reader resistance without claiming personal feelings, lived experience or testing: describe the reader's situation, then offer an optional practical experiment.",
   "- End with a benefit-forward CTA ~ specific action tied to a specific outcome ~ no author bio, no \"thanks for reading\"",
   "- Write at 8th grade reading level, short paragraphs, one idea each",
   "- Never open with \"In today's world\" or \"In this article we will\"",
@@ -128,6 +128,7 @@ const BOOMBOT_SYSTEM = [
   "- When uncertain whether a claim is fabricated, rewrite it as general guidance, not personal testimony.",
   "- Editorial opinion and voice are fine. Fake personal authority, testing history, or lived experience is not.",
   "- Health and psychology content is educational: do not diagnose the reader, invent biological mechanisms (stored emotions, dopamine depletion, fixed emotional-release timers), or promise healing or productivity outcomes. Use relevant authoritative sources supplied in the research for substantive health claims; otherwise omit or clearly qualify them. Never invent citations.",
+  "- Do not claim an exercise brings the thinking brain back online, proves the body feels safe, or saves a specific amount of time. Do not prescribe one technique for an emotional state. Describe optional experiments and variation in individual responses without invented mechanisms or timelines.",
 ].join("\n");
 
 // ── TOPIC PILLARS & KEYWORD POOL ──────────────────────────────────────────────
@@ -931,6 +932,7 @@ async function main() {
       : "Make the H1 title compelling and include the keyword naturally.";
     userMessage  = buildCachedUserContent(internalLinkingInstruction, [
       "Write a long-form SEO blog post targeting the long-tail keyword: \"" + argv.keyword + "\"",
+      "Length budget: 900-1100 words total, including any FAQ and closing CTA. Answer one clear reader problem in 4-6 main sections. Keep examples and FAQ answers concise so the complete article fits the 4096-token output limit. Finish the CTA; do not append an outline or commentary.",
       "Broader topic context: \"" + topicContext + "\"",
       nicheContext,
       titleLine,

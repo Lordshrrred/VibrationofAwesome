@@ -43,7 +43,10 @@ Routine SEO reporting makes zero paid model/search calls. Replenishment remains
 at most eight article attempts per UTC day; research and topic planning retain
 persisted cooldowns. Ask before large manual batches. Do not reset caps to hide
 failures. Two tiny model smoke checks passed with zero thinking tokens during
-migration; the next normal refill validates complete articles on Sonnet.
+migration. A full bounded refill produced seven complete Sonnet articles with
+zero thinking tokens and seven cache reads after the first cache creation.
+One output-limit rejection led to an explicit word budget, not a higher token
+ceiling or an extra paid retry.
 
 References: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide
 and https://platform.claude.com/docs/en/models/haiku-5-5/overview

@@ -148,7 +148,8 @@ TRUTHFULNESS RULES (non-negotiable):
 - Instead use: "worth testing", "a practical starting point", "these tools can help when used intentionally", "for creators who want...", "the case for this tool is...", "here's a method for...".
 - When uncertain whether a claim is fabricated, rewrite it as general guidance, not personal testimony.
 - Editorial opinion and voice are fine. Fake personal authority over specific tools is not.
-- Health and psychology content is educational: do not diagnose the reader, invent biological mechanisms (stored emotions, dopamine depletion, fixed emotional-release timers), or promise healing or productivity outcomes. Use relevant authoritative sources supplied in the research for substantive health claims; otherwise omit or clearly qualify them. Never invent citations.`,
+- Health and psychology content is educational: do not diagnose the reader, invent biological mechanisms (stored emotions, dopamine depletion, fixed emotional-release timers), or promise healing or productivity outcomes. Use relevant authoritative sources supplied in the research for substantive health claims; otherwise omit or clearly qualify them. Never invent citations.
+- Do not claim an exercise brings the thinking brain back online, proves the body feels safe, or saves a specific amount of time. Do not prescribe one technique for an emotional state. Describe optional experiments and variation in individual responses without invented mechanisms or timelines.`,
     messages: [{
       role: 'user',
       content:

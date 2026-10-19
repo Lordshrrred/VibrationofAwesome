@@ -1,3 +1,5 @@
+import { inspectBacklink } from "./_backlink-verification.js";
+
 const VOA_BASE = "https://vibrationofawesome.com";
 const FEEDER_BASE = "https://lordshrrred.github.io/VOA_Feeder";
 const FEEDER_POSTS_URL = `${FEEDER_BASE}/blog/posts.json`;
@@ -103,13 +105,11 @@ async function verifyHtml(slug, url) {
   if (!url) return { verified: null, reason: "no_url", url: "" };
   try {
     const res = await fetchText(url, 25000);
-    if (!res.ok) return { verified: false, reason: `http_${res.status}`, url };
-    const exact = hrefLinks(res.text).find(link => matchesSlug(link, slug));
+    const checks = ["boom", "matt"].map(lane => inspectBacklink(res.text, `${VOA_BASE}/blog/${lane}/posts/${slug}`, res.status));
+    const checked = checks.find(check => check.verified === true) || checks[0];
     return {
-      verified: Boolean(exact),
-      reason: exact ? "ok" : "slug_mismatch",
-      anchor: firstVoaAnchor(res.text),
-      matched: exact || "",
+      ...checked,
+      anchor: checked.verified ? firstVoaAnchor(res.text) : "",
       url: res.url || url,
     };
   } catch (error) {
@@ -124,6 +124,7 @@ async function feederPosts() {
 
 async function verifyFeeder(slug, url) {
   const candidates = [];
+  let uncertain = null;
   const pathSlug = lastPathSegment(url);
   if (pathSlug) candidates.push(pathSlug);
   candidates.push(slug, ...FEEDER_SUFFIXES.map(suffix => `${slug}${suffix}`));
@@ -147,9 +148,10 @@ async function verifyFeeder(slug, url) {
     const checkUrl = `${FEEDER_BASE}/blog/${candidate}.html`;
     const checked = await verifyHtml(slug, checkUrl);
     if (checked.verified) return checked;
+    if (checked.verified === null) uncertain ||= checked;
   }
 
-  return { verified: false, reason: "slug_mismatch", url: url || "" };
+  return uncertain || { verified: false, reason: "slug_mismatch", url: url || "" };
 }
 
 async function recoverTumblr(slug) {
@@ -203,8 +205,6 @@ async function recoverBlogger(slug) {
 }
 
 async function recoverWordPress(slug) {
-  const tag = await verifyHtml(slug, `${WORDPRESS_BASE.replace(/\/+$/, "")}/tag/${slug}/`);
-  if (tag.verified) return { ...tag, recovered_live: true };
   return recoverFromSitemap(slug, `${WORDPRESS_BASE.replace(/\/+$/, "")}/sitemap.xml`, new URL(WORDPRESS_BASE).hostname);
 }
 
