@@ -1714,18 +1714,15 @@ export async function syndicatePost(lane, slug, options = {}) {
   }
 
   // Pinterest via Publer ~ AI-generated image (Ideogram) when available, else Pexels
-  // Without an Ideogram design the background is the blog hero (often a NASA
-  // photo) that says nothing about the post, so typeset the headline and the
-  // domain onto it: a pin has to show what the click gets you.
+  // Without an Ideogram design, render a branded headline pin instead of the
+  // blog hero (often a NASA photo that says nothing about the post): a pin has
+  // to show what the click gets you.
   await attempt("pinterest", async () => {
     const isDesigned = Boolean(instagramVisual?.url || pinterestVisual?.url || reusedPinterest || reusedInstagram);
     let mediaBuffer = null;
     if (!isDesigned) {
       const { headline, kicker } = pinHeadline(post.title);
-      const background = pinterestImageUrl === imageUrl && image?.localPath && fs.existsSync(image.localPath)
-        ? image.localPath
-        : pinterestImageUrl;
-      mediaBuffer = await renderPin({ headline, kicker, background });
+      mediaBuffer = await renderPin({ headline, kicker });
     }
     return postViaPubler("pinterest", captions.pinterest, pinterestImageUrl, {
       title:               post.title,
@@ -1760,9 +1757,8 @@ export async function syndicatePost(lane, slug, options = {}) {
       if (hasPostVisual) return postViaPubler("instagram", captions.instagram, instagramImageUrl);
       // No design: a typeset 4:5 card of the post's own headline, never a bare hero photo.
       const { headline, kicker } = pinHeadline(post.title);
-      const background = image?.localPath && fs.existsSync(image.localPath) ? image.localPath : imageUrl;
       const igKicker = kicker === "Read the full post" ? "Full post: link in bio" : kicker;
-      const mediaBuffer = await renderPin({ headline, kicker: igKicker, background, width: 1080, height: 1350 });
+      const mediaBuffer = await renderPin({ headline, kicker: igKicker, width: 1080, height: 1350 });
       return postViaPubler("instagram", captions.instagram, null, { mediaBuffer, mediaFilename: `${slug}-ig.png` });
     }, `[${instaOwnership}] visual:${hasPostVisual ? archetypeLabel : "typeset-card"}`);
   }

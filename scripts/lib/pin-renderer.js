@@ -33,7 +33,7 @@ export function pinHeadline(title) {
   const clip = (s, n) => (s.length > n ? s.slice(0, n).replace(/\s+\S*$/, "") + "…" : s);
   if (m && m[1].split(" ").length >= 2) return { headline: clip(m[1], 70), kicker: clip(m[2], 70) };
   // A plain title still needs a click cue.
-  return { headline: clip(t, 80), kicker: "Read the full post" };
+  return { headline: clip(t, 100), kicker: "Read the full post" };
 }
 
 async function textLayer(text, { size, color, width, align = "centre" }) {
@@ -59,10 +59,34 @@ async function loadBackground(source) {
       if (!r.ok) return null;
       return Buffer.from(await r.arrayBuffer());
     }
-    return fs.existsSync(source) ? fs.readFileSync(source) : null;
+    if (fs.existsSync(source)) return fs.readFileSync(source);
+    // Site-relative paths (og:image, hero fields) live under static/ or on the live site.
+    if (source.startsWith("/")) {
+      const local = path.join(__dirname, "..", "..", "static", source);
+      if (fs.existsSync(local)) return fs.readFileSync(local);
+      const r = await fetch(`https://vibrationofawesome.com${source}`);
+      if (r.ok) return Buffer.from(await r.arrayBuffer());
+    }
+    return null;
   } catch {
     return null;
   }
+}
+
+// Teal glow on near-black: on-brand, carries no third-party marks (the blog's
+// NASA-cache heroes include observatory copyrights and camera timestamps).
+function brandBackground(width, height) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="38%" r="75%">
+      <stop offset="0" stop-color="#0f3b3a"/><stop offset="0.55" stop-color="#0a1c20"/><stop offset="1" stop-color="#05090b"/>
+    </radialGradient>
+    <radialGradient id="h" cx="80%" cy="92%" r="45%">
+      <stop offset="0" stop-color="#00e5cc" stop-opacity="0.18"/><stop offset="1" stop-color="#00e5cc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g)"/><rect width="100%" height="100%" fill="url(#h)"/>
+</svg>`;
 }
 
 /**
@@ -74,7 +98,7 @@ export async function renderPin({ headline, background = null, kicker = "", foot
   const bgBuf = await loadBackground(background);
   const base = bgBuf
     ? sharp(bgBuf).resize(width, height, { fit: "cover", position: "attention" }).modulate({ brightness: 0.55, saturation: 0.85 })
-    : sharp({ create: { width, height, channels: 3, background: "#0b1416" } });
+    : sharp(Buffer.from(brandBackground(width, height)));
 
   // Fit the headline: largest size whose block stays within ~45% of the height.
   let head;
@@ -89,7 +113,7 @@ export async function renderPin({ headline, background = null, kicker = "", foot
     { input: head.data, top: headTop, left: Math.round((width - head.info.width) / 2) },
   ];
   if (kicker) {
-    const k = await textLayer(kicker.toUpperCase(), { size: 44, color: TEAL, width: width - 200 });
+    const k = await textLayer(kicker.toUpperCase(), { size: 52, color: TEAL, width: width - 200 });
     layers.push({ input: k.data, top: headTop + head.info.height + 56, left: Math.round((width - k.info.width) / 2) });
   }
   const foot = await textLayer(footer, { size: 38, color: TEAL, width: width - 100 });
