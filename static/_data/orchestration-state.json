@@ -1,14 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-19T05:51:33.119Z",
+  "generated_at": "2026-10-19T19:11:17.060Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 8,
+      "draft_count": 7,
       "draft_slugs": [
         "batch-scheduling-without-sounding-like-you-disappeared",
-        "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you",
         "cutting-through-the-noise-which-ai-tools-actually-change-your-day",
         "how-to-turn-a-digital-attention-audit-into-one-useful-change",
         "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
@@ -16,7 +15,7 @@
         "use-the-creative-signal-finder-to-choose-your-next-move",
         "where-your-creative-energy-actually-goes-when-anxiety-is-running-the-show"
       ],
-      "runway_days": 2,
+      "runway_days": 1,
       "runway_status": "warning",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -28,6 +27,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you",
+        "title": "Choosing Art by Resonance, Not Trend: Building Walls That Actually Reflect You",
+        "lane": "boom",
+        "date": "2026-10-19T19:11:17.036Z",
+        "url": "/blog/boom/posts/choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you",
+        "tags": [
+          "art-buyer-intent"
+        ],
+        "cluster": "art-buying-online",
+        "content_type": null
+      },
       {
         "slug": "emotional-regulation-without-the-generic-app-techniques-that-actually-move-emotion",
         "title": "Emotional Regulation Without the Generic App: Techniques That Actually Move Emotion",
@@ -255,18 +266,6 @@
         ],
         "cluster": "purpose-direction",
         "content_type": null
-      },
-      {
-        "slug": "how-to-choose-discomfort-on-purpose",
-        "title": "How to Choose Discomfort on Purpose",
-        "lane": "boom",
-        "date": "2026-09-23T00:05:08.790Z",
-        "url": "/blog/boom/posts/how-to-choose-discomfort-on-purpose",
-        "tags": [
-          "self-betrayal-avoidance"
-        ],
-        "cluster": "authentic-self-expression",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -418,9 +417,9 @@
     ],
     "next_estimated_window": "2026-10-20",
     "published_counts": {
-      "boom": 350,
+      "boom": 351,
       "matt": 18,
-      "total": 368
+      "total": 369
     }
   },
   "syndication": {
@@ -33483,6 +33482,7 @@
       }
     },
     "post_to_cluster": {
+      "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you": "art-buying-online",
       "emotional-regulation-without-the-generic-app-techniques-that-actually-move-emotion": "emotional-regulation",
       "turn-your-compass-point-result-into-a-small-life-experiment": "purpose-direction",
       "build-a-focus-card-with-a-finish-line-you-can-recognize": "spiritual-productivity",
@@ -33850,7 +33850,7 @@
       "purpose-direction": 12,
       "building-life-that-fits": 8,
       "emotional-regulation": 7,
-      "art-buying-online": 16,
+      "art-buying-online": 17,
       "consciousness-technology": 7
     },
     "unassigned_post_count": 12
@@ -35315,9 +35315,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-19T05:51:33.119Z",
+    "as_of": "2026-10-19T19:11:17.060Z",
     "next_estimated_window": "2026-10-20",
-    "queue_runway_days": 2,
+    "queue_runway_days": 1,
     "queue_runway_status": "warning",
     "occupied_dates": [
       "2026-10-19",
@@ -35468,11 +35468,16 @@
     ],
     "retry_backlog_count": 18,
     "cadence_density": {
-      "posts_last_7_days": 3,
-      "posts_last_14_days": 3,
+      "posts_last_7_days": 4,
+      "posts_last_14_days": 4,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you",
+        "lane": "boom",
+        "date": "2026-10-19T19:11:17.036Z"
+      },
       {
         "slug": "emotional-regulation-without-the-generic-app-techniques-that-actually-move-emotion",
         "lane": "boom",
@@ -35517,18 +35522,13 @@
         "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight",
         "lane": "boom",
         "date": "2026-09-30T20:21:55.506Z"
-      },
-      {
-        "slug": "purpose-isnt-found-its-built-through-small-commitments",
-        "lane": "boom",
-        "date": "2026-09-28T21:26:18.206Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-19T05:51:33.100Z",
-    "source_event": "retry",
-    "export_duration_ms": 19,
+    "last_export_at": "2026-10-19T19:11:17.044Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 16,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
