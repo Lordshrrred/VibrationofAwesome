@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-10-19T13:51:03.265Z",
+  "generatedAt": "2026-10-19T20:07:39.455Z",
   "keywordGeneration": {
-    "currentInventory": 8,
-    "publishedInventory": 427,
-    "estimatedDaysRemaining": 2,
+    "currentInventory": 7,
+    "publishedInventory": 428,
+    "estimatedDaysRemaining": 1.8,
     "publishingCadencePerDay": 4,
     "pauseThresholdDays": 60,
     "resumeThresholdDays": 21,
     "status": "running",
-    "reason": "2 publishing days of queue inventory remain. Curated expansion should continue."
+    "reason": "1.8 publishing days of queue inventory remain. Curated expansion should continue."
   },
   "backlinks": {
     "mode": "maintenance",
     "backlogPosts": 0,
     "backlogUnits": 0,
-    "completedPerDay": 1.2,
+    "completedPerDay": 1.4,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklinkUnitsPerDay": 10.8,
+    "netBacklinkUnitsPerDay": 10.6,
     "estimatedCatchUpDays": 0,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 17,
-    "verificationGaps": 370,
+    "distributionIncompleteUnits": 19,
+    "verificationGaps": 343,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
     "largestDelayPlatform": "Facebook VOA",
@@ -31,37 +31,37 @@
         {
           "key": "blogger",
           "platform": "Blogger",
-          "eligiblePosts": 332,
-          "complete": 332,
+          "eligiblePosts": 333,
+          "complete": 333,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 0.8,
-          "confirmed": 202,
-          "verificationGaps": 130,
+          "averagePerDay": 0.9,
+          "confirmed": 212,
+          "verificationGaps": 121,
           "mainBlocker": ""
         },
         {
           "key": "wordpress_earthstar",
           "platform": "WordPress",
-          "eligiblePosts": 332,
-          "complete": 332,
+          "eligiblePosts": 333,
+          "complete": 333,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 0.2,
-          "confirmed": 212,
-          "verificationGaps": 120,
+          "averagePerDay": 0.3,
+          "confirmed": 222,
+          "verificationGaps": 111,
           "mainBlocker": ""
         },
         {
           "key": "tumblr_voa",
           "platform": "Tumblr",
-          "eligiblePosts": 332,
-          "complete": 332,
+          "eligiblePosts": 333,
+          "complete": 333,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 0.2,
-          "confirmed": 212,
-          "verificationGaps": 120,
+          "averagePerDay": 0.3,
+          "confirmed": 222,
+          "verificationGaps": 111,
           "mainBlocker": ""
         }
       ],
@@ -83,22 +83,22 @@
         {
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
-          "eligiblePosts": 271,
+          "eligiblePosts": 272,
           "complete": 271,
-          "missing": 0,
-          "successRate": 100,
+          "missing": 1,
+          "successRate": 99.6,
           "averagePerDay": 0.6,
           "confirmed": 142,
           "verificationGaps": 129,
-          "mainBlocker": ""
+          "mainBlocker": "env vars not set"
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
-          "eligiblePosts": 271,
+          "eligiblePosts": 272,
           "complete": 267,
-          "missing": 4,
-          "successRate": 98.5,
+          "missing": 5,
+          "successRate": 98.2,
           "averagePerDay": 0.7,
           "confirmed": 142,
           "verificationGaps": 125,
@@ -162,6 +162,14 @@
       {
         "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
         "count": 4
+      },
+      {
+        "reason": "bluesky_voa: env vars not set",
+        "count": 1
+      },
+      {
+        "reason": "mastodon_voa: env vars not set",
+        "count": 1
       }
     ],
     "definitions": {
