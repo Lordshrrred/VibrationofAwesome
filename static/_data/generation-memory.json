@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-19T05:51:32.489Z",
+  "lastUpdated": "2026-10-19T19:13:31.922Z",
   "recentHooks": [
     {
       "slug": "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
@@ -888,6 +888,24 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-19T19:13:31.922Z"
+    },
+    {
+      "slug": "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-19T19:12:28.348Z"
+    },
+    {
       "slug": "turn-your-compass-point-result-into-a-small-life-experiment",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1138,24 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-10-14T19:48:08.839Z"
-    },
-    {
-      "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight-3",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-14T17:55:39.347Z"
-    },
-    {
-      "slug": "the-real-cost-of-ignoring-ai-as-an-independent-creator-5",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-14T05:56:05.950Z"
     }
   ],
   "recentInstagramArchetypes": [
