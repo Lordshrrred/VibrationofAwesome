@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T22:33:01.537Z",
+  "generatedAt": "2026-10-19T00:25:38.819Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,19 +14,19 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 330,
+    "totalTrackedPosts": 331,
     "backlogPosts": 0,
     "backlinkCapableMissingUnits": 0,
-    "backlinkVerificationGaps": 444,
+    "backlinkVerificationGaps": 447,
     "feederMissingUnits": 4,
-    "distributionIncompleteUnits": 17,
+    "distributionIncompleteUnits": 19,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 14,
-    "completedBacklinkUnitsPerDay": 1,
+    "completedBacklinkUnitsInWindow": 17,
+    "completedBacklinkUnitsPerDay": 1.2,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 11,
+    "netBacklogChangePerDay": 10.8,
     "estimatedCatchUpDays": 0,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -36,37 +36,37 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 330,
-        "complete": 330,
+        "eligiblePosts": 331,
+        "complete": 331,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.9,
         "confirmed": 182,
-        "verificationGaps": 148,
+        "verificationGaps": 149,
         "mainBlocker": ""
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 330,
-        "complete": 330,
+        "eligiblePosts": 331,
+        "complete": 331,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.1,
         "confirmed": 182,
-        "verificationGaps": 148,
+        "verificationGaps": 149,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 330,
-        "complete": 330,
+        "eligiblePosts": 331,
+        "complete": 331,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.1,
         "confirmed": 182,
-        "verificationGaps": 148,
+        "verificationGaps": 149,
         "mainBlocker": ""
       }
     ],
@@ -74,12 +74,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 243,
-        "complete": 239,
+        "eligiblePosts": 244,
+        "complete": 240,
         "missing": 4,
         "successRate": 98.4,
-        "averagePerDay": 0,
-        "confirmed": 239,
+        "averagePerDay": 0.1,
+        "confirmed": 240,
         "verificationGaps": 0,
         "mainBlocker": "missing local success record"
       }
@@ -88,22 +88,22 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 270,
+        "eligiblePosts": 271,
         "complete": 270,
-        "missing": 0,
-        "successRate": 100,
+        "missing": 1,
+        "successRate": 99.6,
         "averagePerDay": 0.8,
         "confirmed": 142,
         "verificationGaps": 128,
-        "mainBlocker": ""
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 270,
+        "eligiblePosts": 271,
         "complete": 266,
-        "missing": 4,
-        "successRate": 98.5,
+        "missing": 5,
+        "successRate": 98.2,
         "averagePerDay": 0.8,
         "confirmed": 142,
         "verificationGaps": 124,
@@ -167,6 +167,14 @@
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
       "count": 4
+    },
+    {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 1
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 1
     }
   ],
   "prioritizedBacklog": []
