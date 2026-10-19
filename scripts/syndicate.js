@@ -1756,10 +1756,15 @@ export async function syndicatePost(lane, slug, options = {}) {
     // unrelated to the post. On Instagram that reads as spam, so fail and let
     // the retry pass try for a real visual instead.
     const hasPostVisual = Boolean(instagramVisual?.url || reusedInstagram);
-    await attempt("instagram", () => {
-      if (!hasPostVisual) throw new Error("Publer (instagram): no post-specific visual ~ refusing generic fallback image");
-      return postViaPubler("instagram", captions.instagram, instagramImageUrl);
-    }, `[${instaOwnership}] visual:${archetypeLabel}`);
+    await attempt("instagram", async () => {
+      if (hasPostVisual) return postViaPubler("instagram", captions.instagram, instagramImageUrl);
+      // No design: a typeset 4:5 card of the post's own headline, never a bare hero photo.
+      const { headline, kicker } = pinHeadline(post.title);
+      const background = image?.localPath && fs.existsSync(image.localPath) ? image.localPath : imageUrl;
+      const igKicker = kicker === "Read the full post" ? "Full post: link in bio" : kicker;
+      const mediaBuffer = await renderPin({ headline, kicker: igKicker, background, width: 1080, height: 1350 });
+      return postViaPubler("instagram", captions.instagram, null, { mediaBuffer, mediaFilename: `${slug}-ig.png` });
+    }, `[${instaOwnership}] visual:${hasPostVisual ? archetypeLabel : "typeset-card"}`);
   }
 
   // ── ESR crossover platforms (suppressed by default via policy routing) ─────
