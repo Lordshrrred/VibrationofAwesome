@@ -1714,22 +1714,21 @@ export async function syndicatePost(lane, slug, options = {}) {
   }
 
   // Pinterest via Publer ~ AI-generated image (Ideogram) when available, else Pexels
-  // Without an Ideogram design, render a branded headline pin instead of the
-  // blog hero (often a NASA photo that says nothing about the post): a pin has
-  // to show what the click gets you.
+  // Every pin carries the post's headline and payoff set in Anton: a pin has to
+  // show what the click gets you. Ideogram art (asked for text-free) is the
+  // background when it exists; otherwise the branded gradient, never the blog
+  // hero (NASA photos with third-party marks that say nothing about the post).
   await attempt("pinterest", async () => {
-    const isDesigned = Boolean(instagramVisual?.url || pinterestVisual?.url || reusedPinterest || reusedInstagram);
-    let mediaBuffer = null;
-    if (!isDesigned) {
-      const { headline, kicker } = pinHeadline(post.title);
-      mediaBuffer = await renderPin({ headline, kicker });
-    }
+    const designedBg = pinterestVisual?.url || instagramVisual?.url || ((reusedPinterest || reusedInstagram) ? pinterestImageUrl : null);
+    const { headline, kicker } = pinHeadline(post.title);
+    const mediaBuffer = await renderPin({ headline, kicker, background: designedBg });
     return postViaPubler("pinterest", captions.pinterest, pinterestImageUrl, {
       title:               post.title,
       url:                 postUrl,
       pinterestBoardKey:   pinterestBoardKey,
       pinterestBoardName:  pinterestBoardName,
-      ...(mediaBuffer ? { mediaBuffer, mediaFilename: `${slug}-pin.png` } : {}),
+      mediaBuffer,
+      mediaFilename: `${slug}-pin.png`,
     });
   }, `board:"${pinterestBoardName}"`);
 

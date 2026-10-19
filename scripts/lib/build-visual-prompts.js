@@ -83,7 +83,7 @@ export const VISUAL_TYPES = {
     model:       "V_2",           // V_2 over TURBO: significantly better text rendering
     style:       "DESIGN",
     magic:       "OFF",           // OFF: magic prompt rewrites our overlay text and causes garbling
-    description: "10:16 portrait, bold graphic, text overlay, board-aware search optimization",
+    description: "10:16 portrait, bold graphic, text-free (headline typeset later), board-aware",
   },
   instagram: {
     label:       "Instagram",
@@ -166,7 +166,6 @@ function sanitizeOverlay(text) {
 function buildPinterestPrompt(intelligence, contentType, boardKey) {
   const boardDir  = BOARD_VISUAL_DIRECTION[boardKey] || BOARD_VISUAL_DIRECTION["vibration-of-awesome"];
   const sceneDir  = CONTENT_TYPE_SCENE[contentType] || CONTENT_TYPE_SCENE.general;
-  const overlay   = sanitizeOverlay(intelligence.platformTextOverlays?.pinterest || "");
   const metaphor  = intelligence.visualMetaphor || "";
   const tension   = intelligence.emotionalTension || "";
 
@@ -184,8 +183,9 @@ function buildPinterestPrompt(intelligence, contentType, boardKey) {
     `Light source is ${contentType === "earthstar" ? "prismatic and refractive, multi-directional" : "interior ~ soft teal bioluminescence from within a single element"}.`,
     // Explicit palette (policy §3 rule 5)
     `Color palette: ${colorNote}. Primary accent ${VOA_PALETTE.accent}, background ${VOA_PALETTE.deep}.`,
-    // Text overlay (always present for Pinterest) ~ uppercase for clean Ideogram rendering
-    overlay ? `Bold uppercase text overlay reads: "${overlay.toUpperCase()}". Render text with clean crisp edges, no distortion, no garbling.` : "",
+    // The headline is typeset afterwards by scripts/lib/pin-renderer.js from a real
+    // font; model-drawn lettering came out garbled ("START STROGERS, FINCT").
+    `Absolutely no text, letters, numbers, logos or signage anywhere in the image. Keep the central band calm and uncluttered for a headline placed later.`,
     // Style direction
     `Painterly cinematic render, DESIGN style. No human faces. No identifiable people. No warm golden-hour tones.`,
     // Avoid directive
