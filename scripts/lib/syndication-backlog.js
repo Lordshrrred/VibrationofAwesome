@@ -145,7 +145,19 @@ function platformTable(results, key, expectedPredicate, windowCutoff, windowDays
 
 export function buildSyndicationBacklogStatus(results, opts = {}) {
   const redirects = opts.redirects ?? readJson(new URL("../../static/_data/article-redirects.json", import.meta.url), {});
-  const safeResults = (Array.isArray(results) ? results : []).filter(row => !redirects[row.slug]);
+  const livePosts = opts.livePosts ?? ["boom", "matt"].flatMap(lane =>
+    readJson(new URL(`../../static/_data/${lane}-posts.json`, import.meta.url), []).map(row => ({ ...row, lane })));
+  const publishedHistory = opts.publishedHistory ?? readJson(new URL("../../static/_data/drip-queue.json", import.meta.url), {}).published ?? [];
+  const identity = row => `${row.lane || "boom"}/${row.slug}`;
+  const metadata = new Map([...livePosts, ...publishedHistory].map(row => [identity(row), row]));
+  const safeResults = (Array.isArray(results) ? results : []).filter(row => !redirects[row.slug]).map(row => ({
+    ...row,
+    niche: row.niche ?? metadata.get(identity(row))?.niche,
+    syndication_profile: row.syndication_profile ?? metadata.get(identity(row))?.syndication_profile,
+  }));
+  const tracked = new Set(safeResults.map(identity));
+  const untrackedPosts = livePosts.filter(row => !redirects[row.slug] && !tracked.has(identity(row)))
+    .map(({ slug, title, lane, date }) => ({ slug, title, lane, date, reason: "no_distribution_record" }));
   const now = opts.now ? new Date(opts.now) : new Date();
   const windowDays = Number(opts.windowDays || envNumber("BACKLINK_THROUGHPUT_WINDOW_DAYS", DEFAULT_WINDOW_DAYS));
   const postsPerDay = Number(opts.postsPerDay || envNumber("SEO_PUBLISHING_POSTS_PER_DAY", DEFAULT_POSTS_PER_DAY));
@@ -244,6 +256,8 @@ export function buildSyndicationBacklogStatus(results, opts = {}) {
     },
     summary: {
       totalTrackedPosts: safeResults.length,
+      totalLivePosts: livePosts.filter(row => !redirects[row.slug]).length,
+      untrackedLivePosts: untrackedPosts.length,
       backlogPosts,
       backlinkCapableMissingUnits: backlogUnits,
       backlinkVerificationGaps: verificationGaps,
@@ -266,6 +280,8 @@ export function buildSyndicationBacklogStatus(results, opts = {}) {
       distribution: platformDistribution,
     },
     blockers: topBlockers(safeResults, [...BACKLINK_CAPABLE_PLATFORMS, ...DISTRIBUTION_PLATFORMS]),
+    // These need reconciliation, never blind generation or an automatic repost.
+    untrackedPosts,
     prioritizedBacklog: backlogRows
       .sort((a, b) => {
         const aLatest = latestPlatformTimestamp(a.row) || 0;

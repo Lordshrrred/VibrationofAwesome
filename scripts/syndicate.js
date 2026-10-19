@@ -1218,7 +1218,7 @@ function saveLog(log, entry) {
  * Upsert structured per-platform results to syndication-results.json.
  * One entry per slug (most recent run) in the format the dashboard matrix reads.
  */
-function saveResults(slug, title, lane, voaUrl, platforms) {
+function saveResults(slug, title, lane, voaUrl, platforms, metadata = {}) {
   let results = [];
   try {
     if (fs.existsSync(RESULTS_FILE)) {
@@ -1249,11 +1249,14 @@ function saveResults(slug, title, lane, voaUrl, platforms) {
   }
 
   const newEntry = {
+    ...existingEntry,
     slug,
     title,
     lane,
     date:  existingEntry?.date || timestamp.slice(0, 10),
     voa_url: voaUrl,
+    niche: metadata.niche ?? existingEntry?.niche,
+    syndication_profile: metadata.syndication_profile ?? existingEntry?.syndication_profile,
     syndication,
   };
 
@@ -1830,7 +1833,7 @@ export async function syndicatePost(lane, slug, options = {}) {
   const log = loadLog();
   saveLog(log, entry);
   writeDashboardConfig();
-  saveResults(slug, post.title, lane, postUrl, results);
+  saveResults(slug, post.title, lane, postUrl, results, post);
 
   // ── 10. Summary ──
   const succeeded = Object.values(results).filter(r => r.success).length;

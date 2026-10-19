@@ -78,6 +78,8 @@ function buildPayload(now = new Date()) {
     baselineCommit: BASELINE_COMMIT,
     backlog: {
       eligiblePosts: s.totalTrackedPosts,
+      totalLivePosts: s.totalLivePosts,
+      untrackedLivePosts: s.untrackedLivePosts,
       postsWithMeaningfulBacklinkDebt: s.backlogPosts,
       backlinkCapableMissingUnits: s.backlinkCapableMissingUnits,
       distributionOnlyGaps: s.distributionIncompleteUnits,
@@ -98,7 +100,8 @@ function buildPayload(now = new Date()) {
     platformTable: status.platformTable,
     definitions: {
       scheduledRunProxy: "Backlink backfill runs every two hours, so 24h/12 is used for average scheduled-run estimates.",
-      meaningfulBacklinkDebt: "Only Tumblr, Blogger, and WordPress missing success records count as SEO backlink debt.",
+      meaningfulBacklinkDebt: "Only tracked Tumblr, Blogger and WordPress distribution gaps count in the catch-up estimate. This is not an SEO ranking estimate.",
+      untrackedLivePosts: "Live articles absent from distribution records require reconciliation before any repost; they are not assumed covered or included in the tracked-only ETA.",
       excluded: "Pinterest, Instagram, social-only distribution, feeder canonical pages, and verification-only gaps are excluded from meaningful backlink debt.",
     },
   };

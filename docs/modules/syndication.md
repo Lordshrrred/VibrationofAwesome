@@ -63,6 +63,10 @@ archives, plain-text mentions and prefix-only slug matches are insufficient.
 403, 429, server errors and unavailable evidence are unknown, not missing.
 Verification never changes distribution success into a repost task. A body
 link confirmation says nothing about indexing, ranking credit or referral traffic.
+Coverage also lists live Boom and Matt articles absent from the result file,
+separately from known distribution gaps. They need historical reconciliation,
+not automatic companion generation. Persisted publish-slot metadata prevents
+intentional backlinks-only slots being counted as missing Feeder work.
 
 `node scripts/verify-backlinks.js` previews the batch. Add `--execute` to read
 remote articles and persist evidence. `--batch` is capped at 100 platform checks.

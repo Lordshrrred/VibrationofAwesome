@@ -15,7 +15,7 @@ Last updated: 2026-10-19 (bounded refill verified; article-body backlink checks 
 
 ### Syndication: `docs/modules/syndication.md`
 - **Status:** working paths are Feeder, Bluesky, Mastodon, Pinterest, Threads, Instagram, Tumblr, WordPress, Blogger. Dev.to is removed.
-- **Next:** inspect ongoing article-body verification results; blocked checks stay unknown and never trigger reposting. Existing distribution cadence is unchanged. Owned links are not proof of indexing, ranking credit or earned referrals.
+- **Next:** inspect ongoing article-body verification and reconcile historical live posts absent from distribution records, separately from tracked-only catch-up. Blocked checks never trigger reposting. Persisted slot profiles exclude intentional Feeder skips; cadence is unchanged. Owned links do not prove indexing or ranking credit.
 
 ### Site and dashboard: `docs/modules/site-and-hosting.md`
 - **Art Store:** `npm run art-store:audit` writes the canonical current inventory and human report. `/art-store/` stays production; the future `/art-store-v2/` remains separate until complete. All eight current design sources are locally recovered. Next: use Vibration of Awesome Spiral as the end-to-end pilot for print QA, a private Spring listing, and an isolated v2 catalog entry.

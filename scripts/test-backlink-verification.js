@@ -2,9 +2,19 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { inspectBacklink } from "../api/_backlink-verification.js";
 import { selectChecks, recordCheck, verifyExisting } from "./verify-backlinks.js";
+import { buildSyndicationBacklogStatus } from "./lib/syndication-backlog.js";
 
 const source = "https://vibrationofawesome.com/blog/boom/posts/a-useful-guide";
 const link = `<a href="${source}.html?utm_source=test#read">read the guide</a>`;
+
+test("untracked live posts remain visible without creating blind repost tasks; saved slot profiles are honored", () => {
+  const results = [{ slug: "tracked", lane: "boom", syndication: { blogger: { status: "success" }, wordpress_earthstar: { status: "success" }, tumblr_voa: { status: "success" } } }];
+  const status = buildSyndicationBacklogStatus(results, { redirects: {}, livePosts: [{ slug: "tracked", lane: "boom" }, { slug: "untracked", lane: "boom" }], publishedHistory: [{ slug: "tracked", syndication_profile: "backlinks-only" }] });
+  assert.equal(status.summary.untrackedLivePosts, 1);
+  assert.equal(status.untrackedPosts[0].slug, "untracked");
+  assert.equal(status.summary.feederMissingUnits, 0);
+  assert.equal(status.prioritizedBacklog.length, 0);
+});
 
 test("article links count; navigation, metadata, plain text and sibling paths do not", () => {
   assert.equal(inspectBacklink(`<nav>${link}</nav><article><p>Useful text</p></article>`, source).verified, false);

@@ -297,6 +297,7 @@ async function main() {
       tags:    item.niche ? [item.niche] : [],
       niche:   item.niche || undefined,
       cluster: itemCluster,
+      syndication_profile: item.syndication_profile || undefined,
     });
 
     publishedSlugs.push(item.slug);
