@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-19T20:47:50.589Z",
+  "lastUpdated": "2026-10-20T00:56:53.954Z",
   "recentHooks": [
     {
       "slug": "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-10-20T00:56:42.746Z"
+    },
+    {
       "slug": "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,19 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-10-15T05:39:07.772Z"
-    },
-    {
-      "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation-3",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-15T00:20:15.590Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-10-20T00:56:53.954Z"
+    },
     {
       "slug": "how-to-realign-your-life-without-blowing-everything-up",
       "archetype": "symbolic-consciousness",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "mystical",
       "family": "art",
       "timestamp": "2026-08-22T13:37:47.142Z"
-    },
-    {
-      "slug": "why-direction-matters-more-than-motivation",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-08-21T22:26:51.523Z"
     }
   ]
 }
