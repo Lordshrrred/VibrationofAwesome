@@ -1,21 +1,21 @@
 {
-  "lastChecked": "2026-10-20T00:55:47.691Z",
+  "lastChecked": "2026-10-20T04:49:59.874Z",
   "status": "broken",
   "passed": 14,
   "failed": 1,
   "total": 15,
   "topFix": {
     "name": "drip queue",
-    "detail": "publishing inventory low: 6 posts remain; minimum healthy runway is 14",
+    "detail": "publishing inventory low: 5 posts remain; minimum healthy runway is 14",
     "repairCommand": "npm run check:syndication -- --write"
   },
   "drip": {
     "status": "active",
     "rate": 1,
     "time": "13:00, 16:00, and 22:00 UTC plus 01:00 UTC next-day",
-    "remaining": 6,
+    "remaining": 5,
     "duplicateHolds": 0,
-    "published": 429,
+    "published": 430,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
@@ -23,7 +23,7 @@
     {
       "name": "drip queue",
       "ok": false,
-      "detail": "publishing inventory low: 6 posts remain; minimum healthy runway is 14",
+      "detail": "publishing inventory low: 5 posts remain; minimum healthy runway is 14",
       "failureType": "check_failed"
     },
     {
@@ -107,12 +107,5 @@
       "label": "Refresh dashboard health",
       "command": "npm run check:syndication -- --write"
     }
-  },
-  "queue_warning": {
-    "level": "warning",
-    "queue_remaining": 6,
-    "days_remaining": 1,
-    "checked_at": "2026-10-20T00:55:47.765Z",
-    "message": "Queue has 6 post(s) left (~1 days). Replenish with npm run queue:replenish -- --execute."
   }
 }
