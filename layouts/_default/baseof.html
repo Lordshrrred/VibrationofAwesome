@@ -64,6 +64,7 @@
 {{ end }}
 <!-- Open Graph -->
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+{{ with site.Params.pinterestDomainVerify }}<meta name="p:domain_verify" content="{{ . }}">{{ end }}
 <meta property="og:site_name" content="Vibration of Awesome">
 <meta property="og:title" content="{{ if .IsHome }}Vibration of Awesome{{ else }}{{ .Title }} | Vibration of Awesome{{ end }}">
 <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
