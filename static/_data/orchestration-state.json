@@ -1,16 +1,15 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-19T20:47:51.334Z",
+  "generated_at": "2026-10-20T00:55:47.808Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 6,
+      "draft_count": 5,
       "draft_slugs": [
         "batch-scheduling-without-sounding-like-you-disappeared",
         "how-to-turn-a-digital-attention-audit-into-one-useful-change",
         "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
-        "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
         "use-the-creative-signal-finder-to-choose-your-next-move",
         "where-your-creative-energy-actually-goes-when-anxiety-is-running-the-show"
       ],
@@ -26,6 +25,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
+        "title": "The Quiet Realignment: Making Small Moves Toward a Life That Fits",
+        "lane": "boom",
+        "date": "2026-10-20T00:55:47.777Z",
+        "url": "/blog/boom/posts/the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
+        "tags": [
+          "misalignment-wrong-life"
+        ],
+        "cluster": "building-life-that-fits",
+        "content_type": null
+      },
       {
         "slug": "cutting-through-the-noise-which-ai-tools-actually-change-your-day",
         "title": "Cutting Through the Noise: Which AI Tools Actually Change Your Day",
@@ -253,21 +264,10 @@
         ],
         "cluster": "dopamine-attention",
         "content_type": null
-      },
-      {
-        "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us",
-        "title": "Machine Intelligence and the Question of Soul: What Changes for Us",
-        "lane": "boom",
-        "date": "2026-09-24T00:16:43.813Z",
-        "url": "/blog/boom/posts/machine-intelligence-and-the-question-of-soul-what-changes-for-us",
-        "tags": [
-          "ai-creator-tools"
-        ],
-        "cluster": "consciousness-technology",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-20",
       "2026-10-19",
       "2026-10-18",
       "2026-10-04",
@@ -414,11 +414,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-20",
+    "next_estimated_window": "2026-10-21",
     "published_counts": {
-      "boom": 352,
+      "boom": 353,
       "matt": 18,
-      "total": 370
+      "total": 371
     }
   },
   "syndication": {
@@ -33600,6 +33600,7 @@
       }
     },
     "post_to_cluster": {
+      "the-quiet-realignment-making-small-moves-toward-a-life-that-fits": "building-life-that-fits",
       "cutting-through-the-noise-which-ai-tools-actually-change-your-day": "ai-creator-tools",
       "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you": "art-buying-online",
       "emotional-regulation-without-the-generic-app-techniques-that-actually-move-emotion": "emotional-regulation",
@@ -33967,7 +33968,7 @@
       "creator-automation": 7,
       "spiritual-productivity": 19,
       "purpose-direction": 12,
-      "building-life-that-fits": 8,
+      "building-life-that-fits": 9,
       "emotional-regulation": 7,
       "art-buying-online": 17,
       "consciousness-technology": 7
@@ -35434,11 +35435,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-19T20:47:51.334Z",
-    "next_estimated_window": "2026-10-20",
+    "as_of": "2026-10-20T00:55:47.808Z",
+    "next_estimated_window": "2026-10-21",
     "queue_runway_days": 1,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-10-20",
       "2026-10-19",
       "2026-10-18",
       "2026-10-04",
@@ -35587,11 +35589,16 @@
     ],
     "retry_backlog_count": 18,
     "cadence_density": {
-      "posts_last_7_days": 5,
-      "posts_last_14_days": 5,
+      "posts_last_7_days": 6,
+      "posts_last_14_days": 6,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
+        "lane": "boom",
+        "date": "2026-10-20T00:55:47.777Z"
+      },
       {
         "slug": "cutting-through-the-noise-which-ai-tools-actually-change-your-day",
         "lane": "boom",
@@ -35636,18 +35643,13 @@
         "slug": "how-to-batch-schedule-social-posts-as-a-solo-musician-without-feeling-like-a-marketing-machine",
         "lane": "boom",
         "date": "2026-10-02T18:23:14.257Z"
-      },
-      {
-        "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste",
-        "lane": "boom",
-        "date": "2026-10-01T06:56:55.853Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-19T20:47:51.318Z",
-    "source_event": "retry",
-    "export_duration_ms": 16,
+    "last_export_at": "2026-10-20T00:55:47.788Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 20,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
