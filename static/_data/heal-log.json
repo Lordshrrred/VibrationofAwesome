@@ -1,27 +1,5 @@
 [
   {
-    "healedAt": "2026-06-04T10:46:46.348Z",
-    "trigger": "scheduled",
-    "failedRunUrl": null,
-    "tier1": {
-      "healed": false,
-      "detail": "No em dashes found."
-    },
-    "tier2": [
-      {
-        "checkName": "Blogger token refresh",
-        "diagnosis": "Google OAuth token has expired or been revoked and must be re-authenticated to restore Blogger syndication capability.",
-        "fix_type": "token_expired",
-        "confidence": "high",
-        "action": {
-          "token_name": "BLOGGER_REFRESH_TOKEN",
-          "renewal_command": "npm run blogger-token"
-        }
-      }
-    ],
-    "retriggered": false
-  },
-  {
     "healedAt": "2026-06-05T10:57:48.025Z",
     "trigger": "scheduled",
     "failedRunUrl": null,
@@ -1288,5 +1266,29 @@
       }
     ],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-10-20T17:52:46.956Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/39469741087",
+    "tier1": {
+      "healed": true,
+      "detail": "Replaced em dashes with ~ in 1 file(s): static/blog/boom/drafts/alignment-isnt-peaceits-the-specific-feeling-of-your-life-matching-your-values.html",
+      "files": [
+        "static/blog/boom/drafts/alignment-isnt-peaceits-the-specific-feeling-of-your-life-matching-your-values.html"
+      ]
+    },
+    "tier2": [
+      {
+        "checkName": "drip queue",
+        "diagnosis": "The drip queue has 12 publishable posts remaining, below the minimum healthy runway of 14, because the drip rate of 1 post per run across 4 daily runs consumes inventory faster than it is replenished; this is an inventory/content-supply shortfall, not a code defect.",
+        "fix_type": "human_required",
+        "confidence": "high",
+        "action": {
+          "instructions": "1. Generate or approve at least 2 additional Boom Frequency drafts (minimum 2 to restore a runway of 14) and place them in static/blog/boom/drafts/ with matching entries in static/_data/drip-queue.json.\n2. Confirm each new draft passes the existing drip-publish.js validation (frontmatter, internal links, duplicate check).\n3. Re-run the health check with: npm run check:syndication -- --write\n4. Verify that the 'drip queue' check reports remaining >= 14.\n5. If you intend to keep the current cadence long term, schedule a recurring content-generation task so inventory does not fall below 14 again."
+        }
+      }
+    ],
+    "retriggered": true
   }
 ]
