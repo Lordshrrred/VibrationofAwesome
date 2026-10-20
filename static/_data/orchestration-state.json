@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-20T05:43:41.901Z",
+  "generated_at": "2026-10-20T05:45:15.543Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
@@ -435,11 +435,72 @@
     ],
     "per_post": [
       {
+        "slug": "batch-scheduling-without-sounding-like-you-disappeared",
+        "title": "Batch Scheduling Without Sounding Like You Disappeared",
+        "lane": "boom",
+        "date": "2026-10-20",
+        "publish_status": "complete",
+        "platform_statuses": {
+          "feeder": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "bluesky_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "facebook_voa": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "pinterest": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "threads": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "instagram": {
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
+          },
+          "tumblr_voa": {
+            "status": "success",
+            "timestamp": "2026-10-20T05:45:07.657Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/830970344636612608"
+          },
+          "blogger": {
+            "status": "success",
+            "timestamp": "2026-10-20T05:45:07.657Z",
+            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/10/the-ghost-tour-what-my-calendar-taught.html"
+          },
+          "wordpress_earthstar": {
+            "status": "success",
+            "timestamp": "2026-10-20T05:45:07.657Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/10/19/batch-scheduling-without-sounding-like-you-disappeared-earthstar/"
+          }
+        },
+        "success_count": 3,
+        "failed_count": 0
+      },
+      {
         "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
         "title": "The Quiet Realignment: Making Small Moves Toward a Life That Fits",
         "lane": "boom",
         "date": "2026-10-20",
-        "publish_status": "partial",
+        "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -447,14 +508,14 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/the-quiet-realignment-making-small-moves-toward-a-life-that-fits-shift.html"
           },
           "bluesky_voa": {
-            "status": "failed",
-            "timestamp": "2026-10-20T05:10:31.008Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-10-20T05:45:15.496Z",
+            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mybwlc2xo725"
           },
           "mastodon_voa": {
-            "status": "failed",
-            "timestamp": "2026-10-20T05:10:31.008Z",
-            "url": null
+            "status": "success",
+            "timestamp": "2026-10-20T05:45:15.496Z",
+            "url": "https://mastodon.social/@Vibrationofawesome/117471649158410088"
           },
           "facebook_voa": {
             "status": "not_attempted",
@@ -492,8 +553,8 @@
             "url": "https://earthstarrisingsun.wordpress.com/2026/10/19/the-quiet-realignment-making-small-moves-toward-a-life-that-fits-earthstar-2/"
           }
         },
-        "success_count": 4,
-        "failed_count": 2
+        "success_count": 6,
+        "failed_count": 0
       },
       {
         "slug": "cutting-through-the-noise-which-ai-tools-actually-change-your-day",
@@ -26118,16 +26179,6 @@
     ],
     "retry_backlog": [
       {
-        "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
-        "platform": "bluesky_voa",
-        "timestamp": "2026-10-20T05:10:31.008Z"
-      },
-      {
-        "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
-        "platform": "mastodon_voa",
-        "timestamp": "2026-10-20T05:10:31.008Z"
-      },
-      {
         "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-5",
         "platform": "mastodon_voa",
         "timestamp": "2026-10-16T17:20:29.180Z"
@@ -26222,60 +26273,60 @@
       "feeder": {
         "successes": 285,
         "failures": 0,
-        "total": 421
+        "total": 422
       },
       "bluesky_voa": {
-        "successes": 318,
-        "failures": 1,
-        "total": 421
+        "successes": 319,
+        "failures": 0,
+        "total": 422
       },
       "mastodon_voa": {
-        "successes": 313,
-        "failures": 6,
-        "total": 421
+        "successes": 314,
+        "failures": 5,
+        "total": 422
       },
       "facebook_voa": {
         "successes": 180,
         "failures": 13,
-        "total": 421
+        "total": 422
       },
       "pinterest": {
         "successes": 194,
         "failures": 0,
-        "total": 421
+        "total": 422
       },
       "threads": {
         "successes": 192,
         "failures": 0,
-        "total": 421
+        "total": 422
       },
       "instagram": {
         "successes": 190,
         "failures": 0,
-        "total": 421
+        "total": 422
       },
       "tumblr_voa": {
-        "successes": 421,
+        "successes": 422,
         "failures": 0,
-        "total": 421
+        "total": 422
       },
       "blogger": {
-        "successes": 421,
+        "successes": 422,
         "failures": 0,
-        "total": 421
+        "total": 422
       },
       "wordpress_earthstar": {
-        "successes": 421,
+        "successes": 422,
         "failures": 0,
-        "total": 421
+        "total": 422
       }
     },
     "summary": {
-      "total_posts": 421,
-      "fully_syndicated": 402,
-      "partial": 19,
+      "total_posts": 422,
+      "fully_syndicated": 404,
+      "partial": 18,
       "pending": 0,
-      "retry_backlog_count": 20
+      "retry_backlog_count": 18
     }
   },
   "visuals": {
@@ -34046,7 +34097,7 @@
     "unassigned_post_count": 12
   },
   "generation": {
-    "last_updated": "2026-10-20T00:56:53.954Z",
+    "last_updated": "2026-10-20T05:45:14.923Z",
     "recent_hooks": [
       {
         "slug": "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
@@ -34931,6 +34982,24 @@
     "recent_threads_formats": [
       {
         "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
+        "format": "creative-identity-reflection",
+        "cadenceProfile": "lyrical",
+        "density": "medium",
+        "openerStyle": "identity-confession",
+        "closerStyle": "invitation",
+        "timestamp": "2026-10-20T05:45:14.923Z"
+      },
+      {
+        "slug": "batch-scheduling-without-sounding-like-you-disappeared",
+        "format": "reflective-essay",
+        "cadenceProfile": "slow-layered",
+        "density": "dense",
+        "openerStyle": "grounded-observation",
+        "closerStyle": "quiet-wisdom",
+        "timestamp": "2026-10-20T05:44:35.328Z"
+      },
+      {
+        "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
         "format": "manifesto-conviction",
         "cadenceProfile": "charged-decisive",
         "density": "medium-dense",
@@ -35180,24 +35249,6 @@
         "openerStyle": "any",
         "closerStyle": "complete",
         "timestamp": "2026-10-15T17:42:54.685Z"
-      },
-      {
-        "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation-3",
-        "format": "tension-revelation",
-        "cadenceProfile": "tension-then-release",
-        "density": "medium-dense",
-        "openerStyle": "contradiction",
-        "closerStyle": "earned-realization",
-        "timestamp": "2026-10-15T05:40:13.126Z"
-      },
-      {
-        "slug": "purpose-isnt-found-its-built-through-small-commitments-4",
-        "format": "conversational-reflection",
-        "cadenceProfile": "casual-spoken",
-        "density": "light-medium",
-        "openerStyle": "mid-conversation",
-        "closerStyle": "natural-landing",
-        "timestamp": "2026-10-15T05:39:07.772Z"
       }
     ],
     "recent_instagram_archetypes": [
@@ -35505,7 +35556,7 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-20T05:43:41.901Z",
+    "as_of": "2026-10-20T05:45:15.543Z",
     "next_estimated_window": "2026-10-21",
     "queue_runway_days": 1,
     "queue_runway_status": "warning",
@@ -35657,7 +35708,7 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 20,
+    "retry_backlog_count": 18,
     "cadence_density": {
       "posts_last_7_days": 7,
       "posts_last_14_days": 7,
@@ -35717,9 +35768,9 @@
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-20T05:43:41.889Z",
-    "source_event": "drip_publish",
-    "export_duration_ms": 12,
+    "last_export_at": "2026-10-20T05:45:15.529Z",
+    "source_event": "retry",
+    "export_duration_ms": 13,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
