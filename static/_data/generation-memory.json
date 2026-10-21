@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-21T17:59:10.191Z",
+  "lastUpdated": "2026-10-21T19:44:45.423Z",
   "recentHooks": [
     {
       "slug": "keeping-your-sound-when-software-starts-making-suggestions",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-10-21T19:44:45.423Z"
+    },
+    {
+      "slug": "the-moment-drift-begins-and-how-to-interrupt-it-before-its-too-late",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-10-21T19:43:58.205Z"
+    },
+    {
+      "slug": "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1138,24 +1156,6 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-10-16T19:07:19.439Z"
-    },
-    {
-      "slug": "the-repetitive-tasks-worth-automating-and-the-ones-that-cost-you-your-voice-6",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-10-16T19:06:15.521Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-5",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-16T17:20:13.792Z"
     }
   ],
   "recentInstagramArchetypes": [
