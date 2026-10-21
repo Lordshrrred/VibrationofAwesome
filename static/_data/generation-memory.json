@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-20T19:41:43.014Z",
+  "lastUpdated": "2026-10-21T00:25:23.028Z",
   "recentHooks": [
     {
       "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "where-your-creative-energy-actually-goes-when-anxiety-is-running-the-show",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-21T00:25:10.775Z"
+    },
+    {
       "slug": "how-to-turn-a-digital-attention-audit-into-one-useful-change",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,18 +1156,19 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-10-16T05:34:33.793Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-5",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-16T00:08:20.417Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "where-your-creative-energy-actually-goes-when-anxiety-is-running-the-show",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "family": "art",
+      "timestamp": "2026-10-21T00:25:23.028Z"
+    },
     {
       "slug": "presence-in-an-always-on-world-what-it-actually-takes",
       "archetype": "sacred-tech",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "grounded",
       "family": "art",
       "timestamp": "2026-08-23T13:38:24.961Z"
-    },
-    {
-      "slug": "how-avoidance-damages-self-trust",
-      "archetype": "cinematic-ideogram",
-      "archetypeLabel": "Cinematic Artwork",
-      "palette": "painterly-dark",
-      "emotionalTone": "liminal",
-      "emotionalCluster": "atmospheric",
-      "family": "art",
-      "timestamp": "2026-08-22T22:24:03.939Z"
     }
   ]
 }
