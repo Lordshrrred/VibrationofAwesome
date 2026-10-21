@@ -4,8 +4,64 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-21T05:48:24.425Z",
+  "lastUpdated": "2026-10-21T15:31:30.524Z",
   "recentHooks": [
+    {
+      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "Open a session, accept the first chord the plugin suggests, and the track sounds fine. Weeks later, three of your songs share the same drum feel, and you can't remember choosing it.",
+      "timestamp": "2026-10-21T15:31:30.524Z"
+    },
+    {
+      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "hook": "Blunt truth first: a listing can use the words \"original,\" \"hand-painted,\" and \"one of a kind\" and still be a printed reproduction with a little gloss brushed on top.",
+      "timestamp": "2026-10-21T15:30:59.287Z"
+    },
+    {
+      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "emotional-regulation",
+      "hook": "Quick test: think of the last time someone gave you feedback on something you made. Not the words they used. The first three seconds in your body.",
+      "timestamp": "2026-10-21T15:29:15.410Z"
+    },
+    {
+      "slug": "why-finding-your-purpose-keeps-you-stuck",
+      "niche": "direction-purpose-drift",
+      "cluster": "purpose-direction",
+      "hook": "Quick question: what exactly are you waiting for?",
+      "timestamp": "2026-10-21T15:28:44.411Z"
+    },
+    {
+      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "hook": "Your calendar is perfect, color-coded, and blocked out to the quarter hour. And somehow you still wake up Wednesday with no idea why you are doing any of it.",
+      "timestamp": "2026-10-21T15:27:26.349Z"
+    },
+    {
+      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "hook": "You've got a draft sitting in a folder somewhere, and you know exactly which version is the real one. It's the weird one. The one with your actual opinion in it, your actual taste, the strange detail ",
+      "timestamp": "2026-10-21T15:26:44.745Z"
+    },
+    {
+      "slug": "building-sensory-environments-that-let-your-best-work-emerge",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "hook": "Picture a Tuesday afternoon. Your desk is clear. Your phone is in another room. The house is quiet, and you still cannot think. Your shoulders are up near your ears, the light feels harsh, and the sil",
+      "timestamp": "2026-10-21T15:25:51.396Z"
+    },
+    {
+      "slug": "the-grounded-cosmic-view-navigating-technology-with-your-feet-on-earth",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "hook": "Two voices argue in your head every time you open an AI tool. One says this changes everything and you will be left behind. The other says this is the end of anything real. Neither one asks what you a",
+      "timestamp": "2026-10-21T15:25:20.635Z"
+    },
     {
       "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
       "niche": "dopamine-addiction-numbing",
@@ -159,65 +215,65 @@
       "cluster": "spiritual-productivity",
       "hook": "Three weeks. That is usually how long the 5am cold plunge journaling meditation routine survives before it quietly dies in a drawer next to the bullet journal and the gratitude app you muted.",
       "timestamp": "2026-10-18T14:06:18.010Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-7",
-      "niche": "art-buyer-intent",
-      "cluster": "art-buying-online",
-      "hook": "You walk into your living room at the end of a long day and something about it leaves you flat. Not messy. Not ugly. Just blank, like a hotel lobby nobody chose on purpose.",
-      "timestamp": "2026-10-18T14:05:14.424Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-6",
-      "niche": "ai-creator-tools",
-      "cluster": "consciousness-technology",
-      "hook": "A machine wrote a poem last night that made someone cry, and that someone did not know a machine wrote it until afterward. Sit with that for a second before you reach for a reaction.",
-      "timestamp": "2026-10-16T15:09:27.963Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-7",
-      "niche": "ai-creator-tools",
-      "cluster": "creator-automation",
-      "hook": "Your content calendar is a graveyard right now. You know the one. Color-coded for the first two weeks of January, then rows of empty cells trailing off into March like a trail of someone who gave up a",
-      "timestamp": "2026-10-16T15:08:19.830Z"
-    },
-    {
-      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-6",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "hook": "Think back to the last decision you regret. Not the small stuff ~ the real one. The job you left too fast, the message you fired off at midnight, the money you spent, the thing you said yes to while a",
-      "timestamp": "2026-10-16T15:07:02.332Z"
-    },
-    {
-      "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-5",
-      "niche": "misalignment-wrong-life",
-      "cluster": "building-life-that-fits",
-      "hook": "You hit the number you spent five years chasing, and the feeling lasted about forty minutes. Then you were already scanning for the next one. That flat, hollow pause after a win you were supposed to b",
-      "timestamp": "2026-10-16T15:05:46.651Z"
-    },
-    {
-      "slug": "purpose-isnt-found-its-built-through-small-commitments-5",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "hook": "You have taken the quiz. Maybe twice. You have read the book about ikigai, saved three podcast episodes about finding your calling, and screenshotted a quote about how \"your purpose is already inside ",
-      "timestamp": "2026-10-16T15:04:07.619Z"
-    },
-    {
-      "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation-4",
-      "niche": "self-betrayal-avoidance",
-      "cluster": "authentic-self-expression",
-      "hook": "Picture the moment you sit down to make something with nobody watching. No brief, no trend, no reference account open in another tab. And nothing comes. Not a block exactly, more like a hum of static ",
-      "timestamp": "2026-10-16T15:01:22.880Z"
-    },
-    {
-      "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight-4",
-      "niche": "dopamine-addiction-numbing",
-      "cluster": "dopamine-attention",
-      "hook": "It's 2:47pm. You have a lyric half-written, a Figma file open, a text from your bandmate, Slack glowing orange, two YouTube tabs for \"research,\" and that one app you can't remember opening. You've bee",
-      "timestamp": "2026-10-16T14:59:19.441Z"
     }
   ],
   "recentTitles": [
+    {
+      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "Keeping Your Sound When Software Starts Making Suggestions",
+      "timestamp": "2026-10-21T15:31:30.524Z"
+    },
+    {
+      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "title": "Checking an Original Art Listing Before You Pay: Signs of Authenticity and Red Flags",
+      "timestamp": "2026-10-21T15:30:59.287Z"
+    },
+    {
+      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "emotional-regulation",
+      "title": "How Regulating Your Emotions Actually Improves Your Work and Your Relationships",
+      "timestamp": "2026-10-21T15:29:15.410Z"
+    },
+    {
+      "slug": "why-finding-your-purpose-keeps-you-stuck",
+      "niche": "direction-purpose-drift",
+      "cluster": "purpose-direction",
+      "title": "Why 'Finding Your Purpose' Keeps You Stuck",
+      "timestamp": "2026-10-21T15:28:44.411Z"
+    },
+    {
+      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "title": "The Rhythms That Sustain You: Beyond the Optimized Schedule",
+      "timestamp": "2026-10-21T15:27:26.349Z"
+    },
+    {
+      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "title": "The Specificity Paradox: Why Your Most Honest Work Feels More Exposed Than Your Generic Stuff",
+      "timestamp": "2026-10-21T15:26:44.745Z"
+    },
+    {
+      "slug": "building-sensory-environments-that-let-your-best-work-emerge",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "title": "Building Sensory Environments That Let Your Best Work Emerge",
+      "timestamp": "2026-10-21T15:25:51.396Z"
+    },
+    {
+      "slug": "the-grounded-cosmic-view-navigating-technology-with-your-feet-on-earth",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "title": "The Grounded Cosmic View: Navigating Technology With Your Feet on Earth",
+      "timestamp": "2026-10-21T15:25:20.635Z"
+    },
     {
       "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
       "niche": "dopamine-addiction-numbing",
@@ -371,65 +427,49 @@
       "cluster": "spiritual-productivity",
       "title": "Building a Morning That Emerges From Who You Are, Not What You Should Do",
       "timestamp": "2026-10-18T14:06:18.010Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-7",
-      "niche": "art-buyer-intent",
-      "cluster": "art-buying-online",
-      "title": "How One Piece of Art Can Actually Change the Feel of Your Entire Space",
-      "timestamp": "2026-10-18T14:05:14.424Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-6",
-      "niche": "ai-creator-tools",
-      "cluster": "consciousness-technology",
-      "title": "Machine Intelligence and the Question of Soul: What Changes for Us",
-      "timestamp": "2026-10-16T15:09:27.963Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-7",
-      "niche": "ai-creator-tools",
-      "cluster": "creator-automation",
-      "title": "Building an Editorial System That Feels Like You, Not a Task Manager",
-      "timestamp": "2026-10-16T15:08:19.830Z"
-    },
-    {
-      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-6",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "title": "The Hidden Cost of Unregulated Emotions: How They Hijack Your Choices",
-      "timestamp": "2026-10-16T15:07:02.332Z"
-    },
-    {
-      "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-5",
-      "niche": "misalignment-wrong-life",
-      "cluster": "building-life-that-fits",
-      "title": "When You Wake Up and Realize You've Optimized for the Wrong Things",
-      "timestamp": "2026-10-16T15:05:46.651Z"
-    },
-    {
-      "slug": "purpose-isnt-found-its-built-through-small-commitments-5",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "title": "Purpose Isn't Found, It's Built Through Small Commitments",
-      "timestamp": "2026-10-16T15:04:07.619Z"
-    },
-    {
-      "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation-4",
-      "niche": "self-betrayal-avoidance",
-      "cluster": "authentic-self-expression",
-      "title": "Recovering Your Actual Creative Signal: The Work of Reconnecting After Extended Imitation",
-      "timestamp": "2026-10-16T15:01:22.880Z"
-    },
-    {
-      "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight-4",
-      "niche": "dopamine-addiction-numbing",
-      "cluster": "dopamine-attention",
-      "title": "The Fragmentation Tax: How Split Attention Destroys Deep Creative Insight",
-      "timestamp": "2026-10-16T14:59:19.441Z"
     }
   ],
   "recentNarrativeStructures": [
+    {
+      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
+      "structure": "numbered-list with subheadings",
+      "timestamp": "2026-10-21T15:31:30.524Z"
+    },
+    {
+      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
+      "structure": "numbered-list with subheadings",
+      "timestamp": "2026-10-21T15:30:59.287Z"
+    },
+    {
+      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-10-21T15:29:15.410Z"
+    },
+    {
+      "slug": "why-finding-your-purpose-keeps-you-stuck",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-10-21T15:28:44.411Z"
+    },
+    {
+      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-21T15:27:26.349Z"
+    },
+    {
+      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-21T15:26:44.745Z"
+    },
+    {
+      "slug": "building-sensory-environments-that-let-your-best-work-emerge",
+      "structure": "numbered-list with subheadings",
+      "timestamp": "2026-10-21T15:25:51.396Z"
+    },
+    {
+      "slug": "the-grounded-cosmic-view-navigating-technology-with-your-feet-on-earth",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-21T15:25:20.635Z"
+    },
     {
       "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
       "structure": "bullet-list driven with multiple sections",
@@ -539,49 +579,49 @@
       "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-7",
       "structure": "heavily-sectioned (6+ H2s)",
       "timestamp": "2026-10-18T14:06:18.010Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-7",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-10-18T14:05:14.424Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-6",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-16T15:09:27.963Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-7",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-10-16T15:08:19.830Z"
-    },
-    {
-      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-6",
-      "structure": "moderate sections (3-5 H2s)",
-      "timestamp": "2026-10-16T15:07:02.332Z"
-    },
-    {
-      "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-5",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-16T15:05:46.651Z"
-    },
-    {
-      "slug": "purpose-isnt-found-its-built-through-small-commitments-5",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-10-16T15:04:07.619Z"
-    },
-    {
-      "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation-4",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-10-16T15:01:22.880Z"
-    },
-    {
-      "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight-4",
-      "structure": "moderate sections (3-5 H2s)",
-      "timestamp": "2026-10-16T14:59:19.441Z"
     }
   ],
   "recentEmotionalArcs": [
+    {
+      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-21T15:31:30.524Z"
+    },
+    {
+      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-21T15:30:59.287Z"
+    },
+    {
+      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-21T15:29:15.410Z"
+    },
+    {
+      "slug": "why-finding-your-purpose-keeps-you-stuck",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-21T15:28:44.411Z"
+    },
+    {
+      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-21T15:27:26.349Z"
+    },
+    {
+      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-21T15:26:44.745Z"
+    },
+    {
+      "slug": "building-sensory-environments-that-let-your-best-work-emerge",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-21T15:25:51.396Z"
+    },
+    {
+      "slug": "the-grounded-cosmic-view-navigating-technology-with-your-feet-on-earth",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-21T15:25:20.635Z"
+    },
     {
       "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
       "arc": "pain-open → insight → hope + action close",
@@ -691,49 +731,49 @@
       "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-7",
       "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-10-18T14:06:18.010Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-7",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-18T14:05:14.424Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-6",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-16T15:09:27.963Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-7",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-16T15:08:19.830Z"
-    },
-    {
-      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-6",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-16T15:07:02.332Z"
-    },
-    {
-      "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-5",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-16T15:05:46.651Z"
-    },
-    {
-      "slug": "purpose-isnt-found-its-built-through-small-commitments-5",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-16T15:04:07.619Z"
-    },
-    {
-      "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation-4",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-16T15:01:22.880Z"
-    },
-    {
-      "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight-4",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-16T14:59:19.441Z"
     }
   ],
   "recentOpeningStyles": [
+    {
+      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
+      "style": "statement opening",
+      "timestamp": "2026-10-21T15:31:30.524Z"
+    },
+    {
+      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
+      "style": "statement opening",
+      "timestamp": "2026-10-21T15:30:59.287Z"
+    },
+    {
+      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
+      "style": "statement opening",
+      "timestamp": "2026-10-21T15:29:15.410Z"
+    },
+    {
+      "slug": "why-finding-your-purpose-keeps-you-stuck",
+      "style": "question opening",
+      "timestamp": "2026-10-21T15:28:44.411Z"
+    },
+    {
+      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
+      "style": "statement opening",
+      "timestamp": "2026-10-21T15:27:26.349Z"
+    },
+    {
+      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
+      "style": "statement opening",
+      "timestamp": "2026-10-21T15:26:44.745Z"
+    },
+    {
+      "slug": "building-sensory-environments-that-let-your-best-work-emerge",
+      "style": "statement opening",
+      "timestamp": "2026-10-21T15:25:51.396Z"
+    },
+    {
+      "slug": "the-grounded-cosmic-view-navigating-technology-with-your-feet-on-earth",
+      "style": "statement opening",
+      "timestamp": "2026-10-21T15:25:20.635Z"
+    },
     {
       "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
       "style": "statement opening",
@@ -843,46 +883,6 @@
       "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-7",
       "style": "statement opening",
       "timestamp": "2026-10-18T14:06:18.010Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-7",
-      "style": "social proof / counter-claim opening",
-      "timestamp": "2026-10-18T14:05:14.424Z"
-    },
-    {
-      "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-6",
-      "style": "statement opening",
-      "timestamp": "2026-10-16T15:09:27.963Z"
-    },
-    {
-      "slug": "building-an-editorial-system-that-feels-like-you-not-a-task-manager-7",
-      "style": "statement opening",
-      "timestamp": "2026-10-16T15:08:19.830Z"
-    },
-    {
-      "slug": "the-hidden-cost-of-unregulated-emotions-how-they-hijack-your-choices-6",
-      "style": "statement opening",
-      "timestamp": "2026-10-16T15:07:02.332Z"
-    },
-    {
-      "slug": "when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things-5",
-      "style": "statement opening",
-      "timestamp": "2026-10-16T15:05:46.651Z"
-    },
-    {
-      "slug": "purpose-isnt-found-its-built-through-small-commitments-5",
-      "style": "statement opening",
-      "timestamp": "2026-10-16T15:04:07.619Z"
-    },
-    {
-      "slug": "recovering-your-actual-creative-signal-the-work-of-reconnecting-after-extended-imitation-4",
-      "style": "social proof / counter-claim opening",
-      "timestamp": "2026-10-16T15:01:22.880Z"
-    },
-    {
-      "slug": "the-fragmentation-tax-how-split-attention-destroys-deep-creative-insight-4",
-      "style": "statement opening",
-      "timestamp": "2026-10-16T14:59:19.441Z"
     }
   ],
   "recentCTAPatterns": [],
