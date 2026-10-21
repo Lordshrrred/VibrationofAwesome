@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-10-21T18:50:46.934Z",
+  "generatedAt": "2026-10-21T23:33:57.625Z",
   "keywordGeneration": {
-    "currentInventory": 15,
-    "publishedInventory": 436,
-    "estimatedDaysRemaining": 3.8,
+    "currentInventory": 14,
+    "publishedInventory": 437,
+    "estimatedDaysRemaining": 3.5,
     "publishingCadencePerDay": 4,
     "pauseThresholdDays": 60,
     "resumeThresholdDays": 21,
     "status": "running",
-    "reason": "3.8 publishing days of queue inventory remain. Curated expansion should continue."
+    "reason": "3.5 publishing days of queue inventory remain. Curated expansion should continue."
   },
   "backlinks": {
     "mode": "maintenance",
     "backlogPosts": 0,
     "backlogUnits": 0,
-    "completedPerDay": 2.7,
+    "completedPerDay": 2.9,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklinkUnitsPerDay": 9.3,
+    "netBacklinkUnitsPerDay": 9.1,
     "estimatedCatchUpDays": 0,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 19,
-    "verificationGaps": 119,
+    "distributionIncompleteUnits": 17,
+    "verificationGaps": 93,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
     "largestDelayPlatform": "Facebook VOA",
@@ -31,37 +31,37 @@
         {
           "key": "blogger",
           "platform": "Blogger",
-          "eligiblePosts": 341,
-          "complete": 341,
+          "eligiblePosts": 342,
+          "complete": 342,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 1,
-          "confirmed": 280,
-          "verificationGaps": 61,
+          "averagePerDay": 1.1,
+          "confirmed": 289,
+          "verificationGaps": 53,
           "mainBlocker": ""
         },
         {
           "key": "wordpress_earthstar",
           "platform": "WordPress",
-          "eligiblePosts": 341,
-          "complete": 341,
+          "eligiblePosts": 342,
+          "complete": 342,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 0.9,
-          "confirmed": 312,
-          "verificationGaps": 29,
+          "confirmed": 322,
+          "verificationGaps": 20,
           "mainBlocker": ""
         },
         {
           "key": "tumblr_voa",
           "platform": "Tumblr",
-          "eligiblePosts": 341,
-          "complete": 341,
+          "eligiblePosts": 342,
+          "complete": 342,
           "missing": 0,
           "successRate": 100,
           "averagePerDay": 0.9,
-          "confirmed": 312,
-          "verificationGaps": 29,
+          "confirmed": 322,
+          "verificationGaps": 20,
           "mainBlocker": ""
         }
       ],
@@ -84,24 +84,24 @@
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
           "eligiblePosts": 276,
-          "complete": 275,
-          "missing": 1,
-          "successRate": 99.6,
+          "complete": 276,
+          "missing": 0,
+          "successRate": 100,
           "averagePerDay": 0.6,
           "confirmed": 142,
-          "verificationGaps": 133,
-          "mainBlocker": "env vars not set"
+          "verificationGaps": 134,
+          "mainBlocker": ""
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
           "eligiblePosts": 276,
-          "complete": 271,
-          "missing": 5,
-          "successRate": 98.2,
-          "averagePerDay": 0.7,
+          "complete": 272,
+          "missing": 4,
+          "successRate": 98.6,
+          "averagePerDay": 0.6,
           "confirmed": 142,
-          "verificationGaps": 129,
+          "verificationGaps": 130,
           "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
         },
         {
@@ -162,14 +162,6 @@
       {
         "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
         "count": 4
-      },
-      {
-        "reason": "bluesky_voa: env vars not set",
-        "count": 1
-      },
-      {
-        "reason": "mastodon_voa: env vars not set",
-        "count": 1
       }
     ],
     "definitions": {
