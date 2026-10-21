@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-21T15:31:30.524Z",
+  "lastUpdated": "2026-10-21T17:59:10.191Z",
   "recentHooks": [
     {
       "slug": "keeping-your-sound-when-software-starts-making-suggestions",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-21T17:58:58.352Z"
+    },
+    {
       "slug": "where-your-creative-energy-actually-goes-when-anxiety-is-running-the-show",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,19 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-10-16T17:20:13.792Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-6",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-16T17:18:23.931Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-10-21T17:59:10.191Z"
+    },
     {
       "slug": "where-your-creative-energy-actually-goes-when-anxiety-is-running-the-show",
       "archetype": "nervous-system-atmospheric",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "somatic",
       "family": "art",
       "timestamp": "2026-08-23T22:23:32.457Z"
-    },
-    {
-      "slug": "why-late-night-scrolling-feels-impossible-to-stop",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-08-23T13:38:24.961Z"
     }
   ]
 }
