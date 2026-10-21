@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-18T16:28:11.665Z",
+  "generatedAt": "2026-10-21T14:21:04.620Z",
   "period": {
     "current": {
-      "startDate": "2026-09-18",
-      "endDate": "2026-10-15"
+      "startDate": "2026-09-21",
+      "endDate": "2026-10-18"
     },
     "previous": {
-      "startDate": "2026-08-21",
-      "endDate": "2026-09-17"
+      "startDate": "2026-08-24",
+      "endDate": "2026-09-20"
     }
   },
   "status": {
@@ -17,29 +17,29 @@
     },
     "ga": {
       "ok": true,
-      "message": "6 current organic landing-page rows"
+      "message": "8 current organic landing-page rows"
     }
   },
   "apiRequests": {
     "attempted": 8,
-    "cached": 8
+    "cached": 0
   },
   "report": "/reports/seo-intelligence-latest.md",
   "summary": {
     "searchConsole": {
       "clicks": 0,
-      "impressions": 17,
+      "impressions": 16,
       "ctr": 0,
-      "averagePosition": 21.764705882352942,
+      "averagePosition": 17.375,
       "observedQueryPageRows": 2,
       "source": "property aggregate (includes anonymized queries)"
     },
     "ga4": {
-      "organicSessions": 12,
-      "activeUsers": 12,
-      "engagedSessions": 4,
-      "engagementRate": 0.3333333333333333,
-      "rowCount": 6,
+      "organicSessions": 16,
+      "activeUsers": 16,
+      "engagedSessions": 8,
+      "engagementRate": 0.5,
+      "rowCount": 8,
       "source": "Organic Search property aggregate; not a sum of shortlisted pages"
     }
   },
@@ -62,21 +62,27 @@
   ],
   "organicLandingPages": [
     {
+      "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
+      "sessions": 4,
+      "engagedSessions": 1,
+      "engagementRate": 0.25
+    },
+    {
+      "path": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
+      "sessions": 4,
+      "engagedSessions": 4,
+      "engagementRate": 1
+    },
+    {
       "path": "/",
       "sessions": 3,
       "engagedSessions": 0,
       "engagementRate": 0
     },
     {
-      "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
-      "sessions": 3,
-      "engagedSessions": 0,
-      "engagementRate": 0
-    },
-    {
-      "path": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
-      "sessions": 3,
-      "engagedSessions": 3,
+      "path": "/blog/boom/posts/dean-graziosi-review-is-his-ai-course-better-than-his-other-programs",
+      "sessions": 1,
+      "engagedSessions": 1,
       "engagementRate": 1
     },
     {
@@ -92,47 +98,57 @@
       "engagementRate": 0
     },
     {
+      "path": "/blog/boom/posts/tony-robbins-and-dean-graziosi-a-history-of-expensive-courses-together",
+      "sessions": 1,
+      "engagedSessions": 1,
+      "engagementRate": 1
+    },
+    {
       "path": "/blog/boom/posts/tony-robbins-scam-accusations-in-2026-whats-actually-being-said",
       "sessions": 1,
       "engagedSessions": 0,
       "engagementRate": 0
     }
   ],
-  "conversionEvents": [],
-  "topQueries": [
+  "conversionEvents": [
     {
-      "query": "mastermind v2",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 94.5
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
+      "eventCount": "2"
     },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/the-difference-between-processing-emotion-and-just-pushing-it-down",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/tony-robbins-ai-program-2026-what-changed-from-last-year",
+      "eventCount": "1"
+    }
+  ],
+  "topQueries": [
     {
       "query": "earthstar academy",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 77
+    },
+    {
+      "query": "mastermind v2",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 97
     }
   ],
   "topLandingPages": [
-    {
-      "title": "Mastermind.com vs AI Advantage: Are Tony and Dean Selling the Same Promise Twice",
-      "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 94.5,
-      "topQueries": [
-        {
-          "query": "mastermind v2",
-          "clicks": 0,
-          "impressions": 2,
-          "ctr": 0,
-          "position": 94.5
-        }
-      ]
-    },
     {
       "title": "/earthstar/",
       "path": "/earthstar/",
@@ -149,6 +165,23 @@
           "position": 77
         }
       ]
+    },
+    {
+      "title": "Mastermind.com vs AI Advantage: Are Tony and Dean Selling the Same Promise Twice",
+      "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 97,
+      "topQueries": [
+        {
+          "query": "mastermind v2",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 97
+        }
+      ]
     }
   ],
   "ctrOpportunities": [],
@@ -156,29 +189,41 @@
     {
       "path": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
       "title": "Tony Robbins AI Training 2026: Is This One Actually Worth It",
-      "sessions": 3,
-      "activeUsers": 3,
-      "engagedSessions": 3,
+      "sessions": 4,
+      "activeUsers": 4,
+      "engagedSessions": 4,
       "engagementRate": 1,
-      "avgEngagementTime": 1264.5567536666667,
-      "views": 7,
+      "avgEngagementTime": 971.42720625,
+      "views": 10,
       "action": "Strengthen internal linking toward this page and expand the surrounding topic cluster."
     }
   ],
-  "weakEngagement": [],
+  "weakEngagement": [
+    {
+      "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
+      "title": "How To Copy Ai Responses Without Losing Formatting",
+      "sessions": 4,
+      "activeUsers": 4,
+      "engagedSessions": 1,
+      "engagementRate": 0.25,
+      "avgEngagementTime": 81.90062350000001,
+      "views": 5,
+      "action": "Check intent mismatch, improve the opening answer, and reduce filler before the useful answer."
+    }
+  ],
   "topOpportunities": [
     {
       "type": "engagement_winner",
       "label": "Tony Robbins AI Training 2026: Is This One Actually Worth It",
       "page": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
-      "metric": "3 organic sessions"
+      "metric": "4 organic sessions"
     }
   ],
   "counts": {
     "nearPageOne": 0,
     "ctr": 0,
     "engagementWinners": 1,
-    "weakEngagement": 0,
+    "weakEngagement": 1,
     "hiddenQueries": 0,
     "cannibalization": 0
   }
