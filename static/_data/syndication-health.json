@@ -1,30 +1,25 @@
 {
-  "lastChecked": "2026-10-22T05:49:21.382Z",
-  "status": "broken",
-  "passed": 14,
-  "failed": 1,
+  "lastChecked": "2026-10-22T17:09:43.014Z",
+  "status": "ok",
+  "passed": 15,
+  "failed": 0,
   "total": 15,
-  "topFix": {
-    "name": "drip queue",
-    "detail": "publishing inventory low: 13 posts remain; minimum healthy runway is 14",
-    "repairCommand": "npm run check:syndication -- --write"
-  },
+  "topFix": null,
   "drip": {
     "status": "active",
     "rate": 1,
     "time": "13:00, 16:00, and 22:00 UTC plus 01:00 UTC next-day",
-    "remaining": 13,
+    "remaining": 20,
     "duplicateHolds": 0,
-    "published": 438,
+    "published": 439,
     "syndicate_on_publish": true,
     "trigger_feeder_on_publish": true
   },
   "checks": [
     {
       "name": "drip queue",
-      "ok": false,
-      "detail": "publishing inventory low: 13 posts remain; minimum healthy runway is 14",
-      "failureType": "check_failed"
+      "ok": true,
+      "detail": "status=active, rate=1/run, time=13:00, 16:00, and 22:00 UTC plus 01:00 UTC next-day, remaining=20"
     },
     {
       "name": "keyword research freshness",
@@ -107,12 +102,5 @@
       "label": "Refresh dashboard health",
       "command": "npm run check:syndication -- --write"
     }
-  },
-  "queue_warning": {
-    "level": "warning",
-    "queue_remaining": 13,
-    "days_remaining": 3,
-    "checked_at": "2026-10-22T05:49:21.438Z",
-    "message": "Queue has 13 post(s) left (~3 days). Replenish with npm run queue:replenish -- --execute."
   }
 }
