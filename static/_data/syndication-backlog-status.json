@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T17:32:34.419Z",
+  "generatedAt": "2026-10-22T21:52:55.429Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,21 +14,21 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 344,
-    "totalLivePosts": 380,
-    "untrackedLivePosts": 36,
+    "totalTrackedPosts": 345,
+    "totalLivePosts": 382,
+    "untrackedLivePosts": 37,
     "backlogPosts": 0,
     "backlinkCapableMissingUnits": 0,
-    "backlinkVerificationGaps": 19,
+    "backlinkVerificationGaps": 14,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 17,
+    "distributionIncompleteUnits": 19,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 45,
-    "completedBacklinkUnitsPerDay": 3.2,
+    "completedBacklinkUnitsInWindow": 48,
+    "completedBacklinkUnitsPerDay": 3.4,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 8.8,
+    "netBacklogChangePerDay": 8.6,
     "estimatedCatchUpDays": 0,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -38,37 +38,37 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 344,
-        "complete": 344,
+        "eligiblePosts": 345,
+        "complete": 345,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.1,
-        "confirmed": 327,
-        "verificationGaps": 17,
+        "confirmed": 335,
+        "verificationGaps": 10,
         "mainBlocker": ""
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 344,
-        "complete": 344,
+        "eligiblePosts": 345,
+        "complete": 345,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.1,
         "confirmed": 343,
-        "verificationGaps": 1,
+        "verificationGaps": 2,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 344,
-        "complete": 344,
+        "eligiblePosts": 345,
+        "complete": 345,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.1,
         "confirmed": 343,
-        "verificationGaps": 1,
+        "verificationGaps": 2,
         "mainBlocker": ""
       }
     ],
@@ -76,12 +76,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 245,
-        "complete": 245,
+        "eligiblePosts": 246,
+        "complete": 246,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.4,
-        "confirmed": 245,
+        "averagePerDay": 0.5,
+        "confirmed": 246,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -90,22 +90,22 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 277,
+        "eligiblePosts": 278,
         "complete": 277,
-        "missing": 0,
-        "successRate": 100,
+        "missing": 1,
+        "successRate": 99.6,
         "averagePerDay": 0.5,
         "confirmed": 142,
         "verificationGaps": 135,
-        "mainBlocker": ""
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 277,
+        "eligiblePosts": 278,
         "complete": 273,
-        "missing": 4,
-        "successRate": 98.6,
+        "missing": 5,
+        "successRate": 98.2,
         "averagePerDay": 0.5,
         "confirmed": 142,
         "verificationGaps": 131,
@@ -169,9 +169,24 @@
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
       "count": 4
+    },
+    {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 1
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 1
     }
   ],
   "untrackedPosts": [
+    {
+      "slug": "alignment-isnt-peaceits-the-specific-feeling-of-your-life-matching-your-values",
+      "title": "Alignment Isn't Peace—It's the Specific Feeling of Your Life Matching Your Values",
+      "lane": "boom",
+      "date": "2026-10-22T19:35:14.065Z",
+      "reason": "no_distribution_record"
+    },
     {
       "slug": "ai-advantage-bootcamp-scam-reddit-what-the-no-filter-crowd-actually-thinks",
       "title": "AI Advantage Bootcamp Scam Reddit: What the No-Filter Crowd Actually Thinks",
