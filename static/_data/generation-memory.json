@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-22T15:29:56.773Z",
+  "lastUpdated": "2026-10-22T17:56:03.438Z",
   "recentHooks": [
     {
       "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-22T17:55:44.993Z"
+    },
+    {
       "slug": "anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,19 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-10-17T16:17:28.373Z"
-    },
-    {
-      "slug": "building-a-morning-that-emerges-from-who-you-are-not-what-you-should-do-6",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-17T05:24:27.159Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-10-22T17:56:03.438Z"
+    },
     {
       "slug": "anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
       "archetype": "cinematic-ideogram",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "grounded",
       "family": "art",
       "timestamp": "2026-08-24T22:29:14.290Z"
-    },
-    {
-      "slug": "my-life-looks-good-but-feels-wrong",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-08-24T13:57:19.974Z"
     }
   ]
 }
