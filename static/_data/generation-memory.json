@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-21T19:44:45.423Z",
+  "lastUpdated": "2026-10-22T00:29:30.681Z",
   "recentHooks": [
     {
       "slug": "keeping-your-sound-when-software-starts-making-suggestions",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-10-22T00:29:07.239Z"
+    },
+    {
       "slug": "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,19 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-10-17T00:12:02.132Z"
-    },
-    {
-      "slug": "how-one-piece-of-art-can-actually-change-the-feel-of-your-entire-space-6",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-16T19:07:19.439Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "family": "art",
+      "timestamp": "2026-10-22T00:29:30.681Z"
+    },
     {
       "slug": "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
       "archetype": "premium-quote-card",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-08-24T13:57:19.974Z"
-    },
-    {
-      "slug": "i-feel-anxious-scattered-and-overwhelmed",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "family": "art",
-      "timestamp": "2026-08-23T22:23:32.457Z"
     }
   ]
 }
