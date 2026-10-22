@@ -1,14 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-21T19:44:45.940Z",
+  "generated_at": "2026-10-22T00:28:14.575Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 14,
+      "draft_count": 13,
       "draft_slugs": [
         "alignment-isnt-peaceits-the-specific-feeling-of-your-life-matching-your-values",
-        "anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
         "building-sensory-environments-that-let-your-best-work-emerge",
         "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
         "energy-architecture-building-systems-that-protect-creative-reserves",
@@ -34,6 +33,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
+        "title": "Anger, Grief, and Shame as Material: Using Hard Emotions in Your Work",
+        "lane": "boom",
+        "date": "2026-10-22T00:28:14.551Z",
+        "url": "/blog/boom/posts/anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "emotional-regulation",
+        "content_type": null
+      },
       {
         "slug": "the-moment-drift-begins-and-how-to-interrupt-it-before-its-too-late",
         "title": "The Moment Drift Begins (And How to Interrupt It Before It's Too Late)",
@@ -261,21 +272,10 @@
         ],
         "cluster": "dopamine-attention",
         "content_type": null
-      },
-      {
-        "slug": "purpose-isnt-found-its-built-through-small-commitments",
-        "title": "Purpose Isn't Found, It's Built Through Small Commitments",
-        "lane": "boom",
-        "date": "2026-09-28T21:26:18.206Z",
-        "url": "/blog/boom/posts/purpose-isnt-found-its-built-through-small-commitments",
-        "tags": [
-          "direction-purpose-drift"
-        ],
-        "cluster": "purpose-direction",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-22",
       "2026-10-21",
       "2026-10-20",
       "2026-10-19",
@@ -424,11 +424,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-22",
+    "next_estimated_window": "2026-10-23",
     "published_counts": {
-      "boom": 360,
+      "boom": 361,
       "matt": 18,
-      "total": 378
+      "total": 379
     }
   },
   "syndication": {
@@ -34099,6 +34099,7 @@
       }
     },
     "post_to_cluster": {
+      "anger-grief-and-shame-as-material-using-hard-emotions-in-your-work": "emotional-regulation",
       "the-moment-drift-begins-and-how-to-interrupt-it-before-its-too-late": "purpose-direction",
       "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make": "spiritual-productivity",
       "use-the-creative-signal-finder-to-choose-your-next-move": "authentic-self-expression",
@@ -34475,7 +34476,7 @@
       "spiritual-productivity": 20,
       "purpose-direction": 13,
       "building-life-that-fits": 9,
-      "emotional-regulation": 7,
+      "emotional-regulation": 8,
       "art-buying-online": 17,
       "consciousness-technology": 8
     },
@@ -35941,11 +35942,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-21T19:44:45.940Z",
-    "next_estimated_window": "2026-10-22",
+    "as_of": "2026-10-22T00:28:14.575Z",
+    "next_estimated_window": "2026-10-23",
     "queue_runway_days": 3,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-10-22",
       "2026-10-21",
       "2026-10-20",
       "2026-10-19",
@@ -36096,11 +36098,16 @@
     ],
     "retry_backlog_count": 18,
     "cadence_density": {
-      "posts_last_7_days": 13,
-      "posts_last_14_days": 13,
+      "posts_last_7_days": 14,
+      "posts_last_14_days": 14,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
+        "lane": "boom",
+        "date": "2026-10-22T00:28:14.551Z"
+      },
       {
         "slug": "the-moment-drift-begins-and-how-to-interrupt-it-before-its-too-late",
         "lane": "boom",
@@ -36145,18 +36152,13 @@
         "slug": "cutting-through-the-noise-which-ai-tools-actually-change-your-day",
         "lane": "boom",
         "date": "2026-10-19T20:46:13.577Z"
-      },
-      {
-        "slug": "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you",
-        "lane": "boom",
-        "date": "2026-10-19T19:11:17.036Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-21T19:44:45.920Z",
-    "source_event": "retry",
-    "export_duration_ms": 20,
+    "last_export_at": "2026-10-22T00:28:14.559Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 16,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
