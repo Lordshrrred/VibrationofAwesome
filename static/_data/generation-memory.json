@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-22T17:56:03.438Z",
+  "lastUpdated": "2026-10-23T00:28:58.885Z",
   "recentHooks": [
     {
       "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-23T00:28:58.885Z"
+    },
+    {
+      "slug": "energy-architecture-building-systems-that-protect-creative-reserves",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-23T00:27:02.184Z"
+    },
+    {
+      "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1138,27 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-10-17T23:49:42.968Z"
-    },
-    {
-      "slug": "when-your-creative-output-becomes-someone-elses-recognizing-the-moment-you-stopped-trusting-your-own-taste-4",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-17T18:01:01.250Z"
-    },
-    {
-      "slug": "the-overstimulation-trap-why-busy-input-makes-your-output-disappear-5",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-17T16:17:28.373Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "energy-architecture-building-systems-that-protect-creative-reserves",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-10-23T00:27:13.170Z"
+    },
     {
       "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
       "archetype": "field-guide-aesthetic",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-08-25T13:56:10.121Z"
-    },
-    {
-      "slug": "why-people-drift-without-a-clear-path",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-08-24T22:29:14.290Z"
     }
   ]
 }
