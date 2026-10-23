@@ -1,16 +1,15 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-22T19:35:14.090Z",
+  "generated_at": "2026-10-23T00:26:02.921Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 18,
+      "draft_count": 17,
       "draft_slugs": [
         "building-sensory-environments-that-let-your-best-work-emerge",
         "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
         "doubt-after-the-commitment-staying-put-or-quitting-well",
-        "energy-architecture-building-systems-that-protect-creative-reserves",
         "flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
         "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
         "keeping-your-sound-when-software-starts-making-suggestions",
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "energy-architecture-building-systems-that-protect-creative-reserves",
+        "title": "Energy Architecture: Building Systems That Protect Creative Reserves",
+        "lane": "boom",
+        "date": "2026-10-23T00:26:02.895Z",
+        "url": "/blog/boom/posts/energy-architecture-building-systems-that-protect-creative-reserves",
+        "tags": [
+          "ai-creator-tools"
+        ],
+        "cluster": "creator-automation",
+        "content_type": null
+      },
       {
         "slug": "alignment-isnt-peaceits-the-specific-feeling-of-your-life-matching-your-values",
         "title": "Alignment Isn't Peace—It's the Specific Feeling of Your Life Matching Your Values",
@@ -265,21 +276,10 @@
         ],
         "cluster": "nervous-system-creativity",
         "content_type": null
-      },
-      {
-        "slug": "how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
-        "title": "How to Stop Checking Your Phone First Thing in the Morning (Before It Runs Your Whole Day)",
-        "lane": "boom",
-        "date": "2026-10-03T17:08:37.795Z",
-        "url": "/blog/boom/posts/how-to-stop-checking-your-phone-first-thing-in-the-morning-before-it-runs-your-whole-day",
-        "tags": [
-          "dopamine-addiction-numbing"
-        ],
-        "cluster": "dopamine-attention",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-23",
       "2026-10-22",
       "2026-10-21",
       "2026-10-20",
@@ -429,11 +429,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-23",
+    "next_estimated_window": "2026-10-24",
     "published_counts": {
-      "boom": 364,
+      "boom": 365,
       "matt": 18,
-      "total": 382
+      "total": 383
     }
   },
   "syndication": {
@@ -455,7 +455,7 @@
         "title": "The Competitive Disadvantage: What You're Actually Losing by Not Using AI as a Creator",
         "lane": "boom",
         "date": "2026-10-22",
-        "publish_status": "complete",
+        "publish_status": "partial",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -463,13 +463,13 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator-shift.html"
           },
           "bluesky_voa": {
-            "status": "not_attempted",
-            "timestamp": null,
+            "status": "failed",
+            "timestamp": "2026-10-22T21:52:55.373Z",
             "url": null
           },
           "mastodon_voa": {
-            "status": "not_attempted",
-            "timestamp": null,
+            "status": "failed",
+            "timestamp": "2026-10-22T21:52:55.373Z",
             "url": null
           },
           "facebook_voa": {
@@ -493,23 +493,23 @@
             "url": null
           },
           "tumblr_voa": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-10-22T21:52:55.373Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/831212454875987968"
           },
           "blogger": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-10-22T21:52:55.373Z",
+            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/10/the-hours-you-dont-get-back-late-night_01565956784.html"
           },
           "wordpress_earthstar": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-10-22T21:52:55.373Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/10/22/the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator-earthstar-2/"
           }
         },
-        "success_count": 1,
-        "failed_count": 0
+        "success_count": 4,
+        "failed_count": 2
       },
       {
         "slug": "original-art-on-a-real-budget-where-emerging-artists-price-honestly-and-sell-without-gatekeepers",
@@ -26744,6 +26744,16 @@
     ],
     "retry_backlog": [
       {
+        "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-10-22T21:52:55.373Z"
+      },
+      {
+        "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
+        "platform": "mastodon_voa",
+        "timestamp": "2026-10-22T21:52:55.373Z"
+      },
+      {
         "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-5",
         "platform": "mastodon_voa",
         "timestamp": "2026-10-16T17:20:29.180Z"
@@ -26842,12 +26852,12 @@
       },
       "bluesky_voa": {
         "successes": 323,
-        "failures": 0,
+        "failures": 1,
         "total": 431
       },
       "mastodon_voa": {
         "successes": 318,
-        "failures": 5,
+        "failures": 6,
         "total": 431
       },
       "facebook_voa": {
@@ -26871,27 +26881,27 @@
         "total": 431
       },
       "tumblr_voa": {
-        "successes": 430,
+        "successes": 431,
         "failures": 0,
         "total": 431
       },
       "blogger": {
-        "successes": 430,
+        "successes": 431,
         "failures": 0,
         "total": 431
       },
       "wordpress_earthstar": {
-        "successes": 430,
+        "successes": 431,
         "failures": 0,
         "total": 431
       }
     },
     "summary": {
       "total_posts": 431,
-      "fully_syndicated": 413,
-      "partial": 18,
+      "fully_syndicated": 412,
+      "partial": 19,
       "pending": 0,
-      "retry_backlog_count": 18
+      "retry_backlog_count": 20
     }
   },
   "visuals": {
@@ -34290,6 +34300,7 @@
       }
     },
     "post_to_cluster": {
+      "energy-architecture-building-systems-that-protect-creative-reserves": "creator-automation",
       "alignment-isnt-peaceits-the-specific-feeling-of-your-life-matching-your-values": "building-life-that-fits",
       "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator": "ai-creator-tools",
       "original-art-on-a-real-budget-where-emerging-artists-price-honestly-and-sell-without-gatekeepers": "art-buying-online",
@@ -34666,7 +34677,7 @@
       "nervous-system-creativity": 38,
       "dopamine-attention": 22,
       "authentic-self-expression": 40,
-      "creator-automation": 8,
+      "creator-automation": 9,
       "spiritual-productivity": 20,
       "purpose-direction": 13,
       "building-life-that-fits": 10,
@@ -36136,11 +36147,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-22T19:35:14.090Z",
-    "next_estimated_window": "2026-10-23",
+    "as_of": "2026-10-23T00:26:02.920Z",
+    "next_estimated_window": "2026-10-24",
     "queue_runway_days": 4,
     "queue_runway_status": "healthy",
     "occupied_dates": [
+      "2026-10-23",
       "2026-10-22",
       "2026-10-21",
       "2026-10-20",
@@ -36290,13 +36302,18 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 18,
+    "retry_backlog_count": 20,
     "cadence_density": {
-      "posts_last_7_days": 17,
-      "posts_last_14_days": 17,
+      "posts_last_7_days": 18,
+      "posts_last_14_days": 18,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "energy-architecture-building-systems-that-protect-creative-reserves",
+        "lane": "boom",
+        "date": "2026-10-23T00:26:02.895Z"
+      },
       {
         "slug": "alignment-isnt-peaceits-the-specific-feeling-of-your-life-matching-your-values",
         "lane": "boom",
@@ -36341,18 +36358,13 @@
         "slug": "how-to-turn-a-digital-attention-audit-into-one-useful-change",
         "lane": "boom",
         "date": "2026-10-20T19:40:52.393Z"
-      },
-      {
-        "slug": "presence-in-an-always-on-world-what-it-actually-takes",
-        "lane": "boom",
-        "date": "2026-10-20T17:53:41.549Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-22T19:35:14.074Z",
+    "last_export_at": "2026-10-23T00:26:02.904Z",
     "source_event": "drip_publish",
-    "export_duration_ms": 16,
+    "export_duration_ms": 17,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
