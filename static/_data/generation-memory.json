@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-23T05:49:40.921Z",
+  "lastUpdated": "2026-10-23T17:50:14.625Z",
   "recentHooks": [
     {
       "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-10-23T17:50:03.330Z"
+    },
+    {
       "slug": "energy-architecture-building-systems-that-protect-creative-reserves",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,18 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-10-18T16:26:51.911Z"
-    },
-    {
-      "slug": "committing-to-a-path-before-you-know-where-it-leads-6",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-18T05:32:12.372Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-10-23T17:50:14.625Z"
+    },
     {
       "slug": "energy-architecture-building-systems-that-protect-creative-reserves",
       "archetype": "sacred-tech",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "atmospheric",
       "family": "art",
       "timestamp": "2026-08-25T22:29:44.167Z"
-    },
-    {
-      "slug": "what-inner-noise-feels-like",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-08-25T13:56:10.121Z"
     }
   ]
 }
