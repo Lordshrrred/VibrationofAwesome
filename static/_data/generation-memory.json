@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-23T17:50:14.625Z",
+  "lastUpdated": "2026-10-23T19:37:24.001Z",
   "recentHooks": [
     {
       "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-10-23T19:37:24.001Z"
+    },
+    {
+      "slug": "building-sensory-environments-that-let-your-best-work-emerge",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-10-23T19:36:33.051Z"
+    },
+    {
+      "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
       "density": "light",
@@ -1138,24 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-10-18T23:58:18.474Z"
-    },
-    {
-      "slug": "build-a-focus-card-with-a-finish-line-you-can-recognize",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-18T18:20:15.460Z"
-    },
-    {
-      "slug": "the-difference-between-processing-emotion-and-just-pushing-it-down-7",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-18T16:26:51.911Z"
     }
   ],
   "recentInstagramArchetypes": [
