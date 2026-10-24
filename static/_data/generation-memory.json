@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-24T00:20:57.445Z",
+  "lastUpdated": "2026-10-24T05:30:25.492Z",
   "recentHooks": [
     {
       "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-10-24T05:30:25.492Z"
+    },
+    {
+      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-24T05:29:38.519Z"
+    },
+    {
+      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
       "density": "light-medium",
@@ -1138,24 +1156,6 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-10-19T05:51:32.489Z"
-    },
-    {
-      "slug": "emotional-regulation-without-the-generic-app-techniques-that-actually-move-emotion",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-19T05:50:47.180Z"
-    },
-    {
-      "slug": "turn-your-compass-point-result-into-a-small-life-experiment",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-18T23:59:21.004Z"
     }
   ],
   "recentInstagramArchetypes": [
