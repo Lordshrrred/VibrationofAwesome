@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-24T14:08:04.128Z",
+  "lastUpdated": "2026-10-24T16:32:46.468Z",
   "recentHooks": [
     {
       "slug": "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "why-finding-your-purpose-keeps-you-stuck",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-10-24T16:32:35.111Z"
+    },
+    {
       "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,18 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-10-19T19:12:28.348Z"
-    },
-    {
-      "slug": "turn-your-compass-point-result-into-a-small-life-experiment",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-10-19T05:51:32.489Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "why-finding-your-purpose-keeps-you-stuck",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-10-24T16:32:46.468Z"
+    },
     {
       "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
       "archetype": "symbolic-consciousness",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "somatic",
       "family": "art",
       "timestamp": "2026-08-27T03:00:15.996Z"
-    },
-    {
-      "slug": "how-numbing-habits-drain-energy",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-08-26T14:03:58.954Z"
     }
   ]
 }
