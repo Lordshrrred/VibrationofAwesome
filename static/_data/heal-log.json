@@ -1,27 +1,5 @@
 [
   {
-    "healedAt": "2026-06-06T09:32:59.847Z",
-    "trigger": "scheduled",
-    "failedRunUrl": null,
-    "tier1": {
-      "healed": false,
-      "detail": "No em dashes found."
-    },
-    "tier2": [
-      {
-        "checkName": "Blogger token refresh",
-        "diagnosis": "OAuth token for Blogger has expired or been revoked and requires manual re-authentication.",
-        "fix_type": "token_expired",
-        "confidence": "high",
-        "action": {
-          "token_name": "BLOGGER_REFRESH_TOKEN",
-          "renewal_command": "npm run blogger-token"
-        }
-      }
-    ],
-    "retriggered": false
-  },
-  {
     "healedAt": "2026-06-07T10:11:58.607Z",
     "trigger": "scheduled",
     "failedRunUrl": null,
@@ -1279,5 +1257,19 @@
     },
     "tier2": [],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-10-24T16:30:42.110Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/40111814493",
+    "tier1": {
+      "healed": true,
+      "detail": "Replaced em dashes with ~ in 1 file(s): static/blog/boom/drafts/deciding-when-everyone-else-has-an-opinion-separating-your-signal-from-their-worry.html",
+      "files": [
+        "static/blog/boom/drafts/deciding-when-everyone-else-has-an-opinion-separating-your-signal-from-their-worry.html"
+      ]
+    },
+    "tier2": [],
+    "retriggered": true
   }
 ]
