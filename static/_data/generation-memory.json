@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-24T18:25:22.325Z",
+  "lastUpdated": "2026-10-25T00:04:11.623Z",
   "recentHooks": [
     {
       "slug": "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-25T00:03:51.027Z"
+    },
+    {
       "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,18 +1156,19 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-10-19T20:47:05.485Z"
-    },
-    {
-      "slug": "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-19T19:13:31.922Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-10-25T00:04:11.623Z"
+    },
     {
       "slug": "why-finding-your-purpose-keeps-you-stuck",
       "archetype": "premium-quote-card",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "mystical",
       "family": "art",
       "timestamp": "2026-08-27T22:56:55.648Z"
-    },
-    {
-      "slug": "i-cannot-think-clearly-when-overwhelmed",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "family": "art",
-      "timestamp": "2026-08-27T03:00:15.996Z"
     }
   ]
 }
