@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-25T17:03:38.217Z",
+  "lastUpdated": "2026-10-25T18:36:19.189Z",
   "recentHooks": [
     {
       "slug": "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "sorting-your-content-tasks-which-to-automate-and-which-need-your-hands",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-25T18:36:19.189Z"
+    },
+    {
       "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,15 +1156,6 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-10-20T17:54:56.227Z"
-    },
-    {
-      "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-20T05:45:14.923Z"
     }
   ],
   "recentInstagramArchetypes": [
