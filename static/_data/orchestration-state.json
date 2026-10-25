@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-25T05:48:48.913Z",
+  "generated_at": "2026-10-25T17:01:11.651Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
         "batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
         "deciding-when-everyone-else-has-an-opinion-separating-your-signal-from-their-worry",
@@ -13,7 +13,6 @@
         "emotional-intelligence-starts-in-your-body-not-your-head",
         "flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
         "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart",
-        "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
         "presence-with-a-device-in-your-pocket-three-boundaries-that-hold",
         "questions-worth-asking-an-artist-before-you-buy-original-work-online",
         "sorting-your-content-tasks-which-to-automate-and-which-need-your-hands",
@@ -24,7 +23,7 @@
         "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
         "where-your-switching-tax-actually-comes-from"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
+        "title": "Noticing the Misfit Early: Signs Your Work No longer Matches Who You Are",
+        "lane": "boom",
+        "date": "2026-10-25T17:01:11.633Z",
+        "url": "/blog/boom/posts/noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
+        "tags": [
+          "misalignment-wrong-life"
+        ],
+        "cluster": "building-life-that-fits",
+        "content_type": null
+      },
       {
         "slug": "keeping-your-sound-when-software-starts-making-suggestions",
         "title": "Keeping Your Sound When Software Starts Making Suggestions",
@@ -263,18 +274,6 @@
         ],
         "cluster": "dopamine-attention",
         "content_type": null
-      },
-      {
-        "slug": "presence-in-an-always-on-world-what-it-actually-takes",
-        "title": "Presence in an Always-On World: What It Actually Takes",
-        "lane": "boom",
-        "date": "2026-10-20T17:53:41.549Z",
-        "url": "/blog/boom/posts/presence-in-an-always-on-world-what-it-actually-takes",
-        "tags": [
-          "ai-creator-tools"
-        ],
-        "cluster": "consciousness-technology",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -432,9 +431,9 @@
     ],
     "next_estimated_window": "2026-10-26",
     "published_counts": {
-      "boom": 374,
+      "boom": 375,
       "matt": 18,
-      "total": 392
+      "total": 393
     }
   },
   "syndication": {
@@ -34911,6 +34910,7 @@
       }
     },
     "post_to_cluster": {
+      "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are": "building-life-that-fits",
       "keeping-your-sound-when-software-starts-making-suggestions": "ai-creator-tools",
       "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags": "art-buying-online",
       "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships": "emotional-regulation",
@@ -35300,7 +35300,7 @@
       "creator-automation": 9,
       "spiritual-productivity": 21,
       "purpose-direction": 14,
-      "building-life-that-fits": 10,
+      "building-life-that-fits": 11,
       "emotional-regulation": 9,
       "art-buying-online": 19,
       "consciousness-technology": 9
@@ -36767,9 +36767,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-25T05:48:48.913Z",
+    "as_of": "2026-10-25T17:01:11.651Z",
     "next_estimated_window": "2026-10-26",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-10-25",
@@ -36932,6 +36932,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
+        "lane": "boom",
+        "date": "2026-10-25T17:01:11.633Z"
+      },
+      {
         "slug": "keeping-your-sound-when-software-starts-making-suggestions",
         "lane": "boom",
         "date": "2026-10-25T05:47:09.159Z"
@@ -36975,18 +36980,13 @@
         "slug": "the-grounded-cosmic-view-navigating-technology-with-your-feet-on-earth",
         "lane": "boom",
         "date": "2026-10-23T05:48:09.750Z"
-      },
-      {
-        "slug": "energy-architecture-building-systems-that-protect-creative-reserves",
-        "lane": "boom",
-        "date": "2026-10-23T00:26:02.895Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-25T05:48:48.892Z",
-    "source_event": "retry",
-    "export_duration_ms": 21,
+    "last_export_at": "2026-10-25T17:01:11.640Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
