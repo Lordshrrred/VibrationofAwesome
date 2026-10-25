@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-25T00:04:11.623Z",
+  "lastUpdated": "2026-10-25T05:48:48.165Z",
   "recentHooks": [
     {
       "slug": "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-25T05:48:48.165Z"
+    },
+    {
+      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-10-25T05:48:02.089Z"
+    },
+    {
+      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
@@ -1138,24 +1156,6 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-10-20T00:56:42.746Z"
-    },
-    {
-      "slug": "choosing-art-by-resonance-not-trend-building-walls-that-actually-reflect-you",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-19T20:47:50.589Z"
-    },
-    {
-      "slug": "cutting-through-the-noise-which-ai-tools-actually-change-your-day",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-19T20:47:05.485Z"
     }
   ],
   "recentInstagramArchetypes": [
