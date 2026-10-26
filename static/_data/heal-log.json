@@ -1,28 +1,5 @@
 [
   {
-    "healedAt": "2026-06-07T10:11:58.607Z",
-    "trigger": "scheduled",
-    "failedRunUrl": null,
-    "tier1": {
-      "healed": false,
-      "detail": "No em dashes found."
-    },
-    "tier2": [
-      {
-        "checkName": "Blogger token refresh",
-        "diagnosis": "Blogger OAuth token has expired or been revoked and must be refreshed through Google's OAuth flow.",
-        "fix_type": "token_expired",
-        "confidence": "high",
-        "action": {
-          "token_name": "BLOGGER_REFRESH_TOKEN",
-          "renewal_command": "npm run blogger-token",
-          "details": "This will prompt you to authenticate with Google and obtain a fresh access token. The invalid_grant error indicates the stored refresh token is no longer valid."
-        }
-      }
-    ],
-    "retriggered": false
-  },
-  {
     "healedAt": "2026-06-08T12:13:39.364Z",
     "trigger": "scheduled",
     "failedRunUrl": null,
@@ -1267,6 +1244,20 @@
       "detail": "Replaced em dashes with ~ in 1 file(s): static/blog/boom/drafts/deciding-when-everyone-else-has-an-opinion-separating-your-signal-from-their-worry.html",
       "files": [
         "static/blog/boom/drafts/deciding-when-everyone-else-has-an-opinion-separating-your-signal-from-their-worry.html"
+      ]
+    },
+    "tier2": [],
+    "retriggered": true
+  },
+  {
+    "healedAt": "2026-10-26T19:07:26.618Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/40383691965",
+    "tier1": {
+      "healed": true,
+      "detail": "Replaced em dashes with ~ in 1 file(s): static/blog/boom/drafts/grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new.html",
+      "files": [
+        "static/blog/boom/drafts/grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new.html"
       ]
     },
     "tier2": [],
