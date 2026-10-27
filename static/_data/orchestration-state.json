@@ -1,16 +1,15 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-27T06:04:48.548Z",
+  "generated_at": "2026-10-27T18:39:39.253Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
         "batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
         "building-a-lean-ai-stack-for-a-one-person-creative-studio",
         "deciding-when-everyone-else-has-an-opinion-separating-your-signal-from-their-worry",
-        "emotional-intelligence-starts-in-your-body-not-your-head",
         "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart",
         "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
         "hanging-original-art-in-a-rental-without-damaging-the-walls",
@@ -24,7 +23,7 @@
         "where-your-switching-tax-actually-comes-from",
         "work-that-doesnt-cost-your-soul-checking-your-days-for-inner-erosion"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
+        "title": "Emotional Intelligence Starts in Your Body, Not Your Head",
+        "lane": "boom",
+        "date": "2026-10-27T18:39:39.233Z",
+        "url": "/blog/boom/posts/emotional-intelligence-starts-in-your-body-not-your-head",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "emotional-regulation",
+        "content_type": null
+      },
       {
         "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
         "title": "Doubt After the Commitment: Staying Put or Quitting Well",
@@ -263,18 +274,6 @@
         ],
         "cluster": "building-life-that-fits",
         "content_type": null
-      },
-      {
-        "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
-        "title": "The Competitive Disadvantage: What You're Actually Losing by Not Using AI as a Creator",
-        "lane": "boom",
-        "date": "2026-10-22T17:54:51.454Z",
-        "url": "/blog/boom/posts/the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
-        "tags": [
-          "ai-creator-tools"
-        ],
-        "cluster": "ai-creator-tools",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -434,9 +433,9 @@
     ],
     "next_estimated_window": "2026-10-28",
     "published_counts": {
-      "boom": 382,
+      "boom": 383,
       "matt": 18,
-      "total": 400
+      "total": 401
     }
   },
   "syndication": {
@@ -35399,6 +35398,7 @@
       }
     },
     "post_to_cluster": {
+      "emotional-intelligence-starts-in-your-body-not-your-head": "emotional-regulation",
       "doubt-after-the-commitment-staying-put-or-quitting-well": "purpose-direction",
       "the-slow-spiritual-damage-of-work-that-doesnt-fit-you": "spiritual-productivity",
       "the-perfectionism-trap-when-excellence-becomes-a-hiding-place-for-self-doubt": "authentic-self-expression",
@@ -35797,7 +35797,7 @@
       "spiritual-productivity": 22,
       "purpose-direction": 15,
       "building-life-that-fits": 11,
-      "emotional-regulation": 9,
+      "emotional-regulation": 10,
       "art-buying-online": 19,
       "consciousness-technology": 10
     },
@@ -37263,9 +37263,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-27T06:04:48.548Z",
+    "as_of": "2026-10-27T18:39:39.253Z",
     "next_estimated_window": "2026-10-28",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-10-27",
@@ -37430,6 +37430,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
+        "lane": "boom",
+        "date": "2026-10-27T18:39:39.233Z"
+      },
+      {
         "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
         "lane": "boom",
         "date": "2026-10-27T06:02:36.807Z"
@@ -37473,18 +37478,13 @@
         "slug": "keeping-your-sound-when-software-starts-making-suggestions",
         "lane": "boom",
         "date": "2026-10-25T05:47:09.159Z"
-      },
-      {
-        "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-        "lane": "boom",
-        "date": "2026-10-25T00:02:53.135Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-27T06:04:48.534Z",
-    "source_event": "retry",
-    "export_duration_ms": 14,
+    "last_export_at": "2026-10-27T18:39:39.240Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 13,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
