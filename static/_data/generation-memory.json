@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-27T06:04:47.538Z",
+  "lastUpdated": "2026-10-27T18:41:08.669Z",
   "recentHooks": [
     {
       "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-10-27T18:40:53.477Z"
+    },
+    {
       "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,19 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-10-22T05:50:54.897Z"
-    },
-    {
-      "slug": "original-art-on-a-real-budget-where-emerging-artists-price-honestly-and-sell-without-gatekeepers",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-22T05:50:13.954Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-10-27T18:41:08.669Z"
+    },
     {
       "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
       "archetype": "field-guide-aesthetic",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "somatic",
       "family": "art",
       "timestamp": "2026-08-29T23:57:13.589Z"
-    },
-    {
-      "slug": "why-porn-and-scrolling-create-shame-loops",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-08-29T17:04:33.979Z"
     }
   ]
 }
