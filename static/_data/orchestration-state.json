@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-27T18:42:18.172Z",
+  "generated_at": "2026-10-27T20:16:52.311Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 15,
+      "draft_count": 14,
       "draft_slugs": [
         "batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
         "building-a-lean-ai-stack-for-a-one-person-creative-studio",
@@ -15,7 +15,6 @@
         "hanging-original-art-in-a-rental-without-damaging-the-walls",
         "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
         "presence-with-a-device-in-your-pocket-three-boundaries-that-hold",
-        "questions-worth-asking-an-artist-before-you-buy-original-work-online",
         "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
         "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
         "the-pause-between-feeling-and-deciding-a-practical-window-for-better-choices",
@@ -24,7 +23,7 @@
         "work-that-doesnt-cost-your-soul-checking-your-days-for-inner-erosion"
       ],
       "runway_days": 3,
-      "runway_status": "healthy",
+      "runway_status": "warning",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
       "schedule_windows": [
@@ -35,6 +34,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "questions-worth-asking-an-artist-before-you-buy-original-work-online",
+        "title": "Questions Worth Asking an Artist Before You Buy Original Work Online",
+        "lane": "boom",
+        "date": "2026-10-27T20:16:52.285Z",
+        "url": "/blog/boom/posts/questions-worth-asking-an-artist-before-you-buy-original-work-online",
+        "tags": [
+          "art-buyer-intent"
+        ],
+        "cluster": "art-buying-online",
+        "content_type": null
+      },
       {
         "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
         "title": "Emotional Intelligence Starts in Your Body, Not Your Head",
@@ -262,18 +273,6 @@
         ],
         "cluster": "creator-automation",
         "content_type": null
-      },
-      {
-        "slug": "alignment-isnt-peaceits-the-specific-feeling-of-your-life-matching-your-values",
-        "title": "Alignment Isn't Peace—It's the Specific Feeling of Your Life Matching Your Values",
-        "lane": "boom",
-        "date": "2026-10-22T19:35:14.065Z",
-        "url": "/blog/boom/posts/alignment-isnt-peaceits-the-specific-feeling-of-your-life-matching-your-values",
-        "tags": [
-          "misalignment-wrong-life"
-        ],
-        "cluster": "building-life-that-fits",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -433,9 +432,9 @@
     ],
     "next_estimated_window": "2026-10-28",
     "published_counts": {
-      "boom": 383,
+      "boom": 384,
       "matt": 18,
-      "total": 401
+      "total": 402
     }
   },
   "syndication": {
@@ -460,57 +459,57 @@
         "publish_status": "complete",
         "platform_statuses": {
           "feeder": {
+            "status": "success",
+            "timestamp": "2026-10-27T18:41:24.558Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/emotional-intelligence-starts-in-your-body-not-your-head-guide.html"
+          },
+          "bluesky_voa": {
             "status": "not_attempted",
             "timestamp": null,
             "url": null
           },
-          "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-10-27T18:42:18.155Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3myuv763ciu2h"
-          },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-10-27T18:42:18.155Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/117514336434198334"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "facebook_voa": {
-            "status": "success",
-            "timestamp": "2026-10-27T18:42:18.155Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "pinterest": {
-            "status": "success",
-            "timestamp": "2026-10-27T18:42:18.155Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "threads": {
-            "status": "success",
-            "timestamp": "2026-10-27T18:42:18.155Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "instagram": {
-            "status": "success",
-            "timestamp": "2026-10-27T18:42:18.155Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "tumblr_voa": {
-            "status": "success",
-            "timestamp": "2026-10-27T18:42:18.155Z",
-            "url": "https://vibrationofawesome.tumblr.com/post/831653409570635776"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "blogger": {
-            "status": "success",
-            "timestamp": "2026-10-27T18:42:18.155Z",
-            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/10/the-pocket-full-of-feelings-what-your.html"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           },
           "wordpress_earthstar": {
-            "status": "success",
-            "timestamp": "2026-10-27T18:42:18.155Z",
-            "url": "https://earthstarrisingsun.wordpress.com/2026/10/27/emotional-intelligence-starts-in-your-body-not-your-head-earthstar/"
+            "status": "not_attempted",
+            "timestamp": null,
+            "url": null
           }
         },
-        "success_count": 9,
+        "success_count": 1,
         "failed_count": 0
       },
       {
@@ -27997,52 +27996,52 @@
     ],
     "platform_coverage": {
       "feeder": {
-        "successes": 299,
+        "successes": 300,
         "failures": 0,
         "total": 450
       },
       "bluesky_voa": {
-        "successes": 334,
+        "successes": 333,
         "failures": 0,
         "total": 450
       },
       "mastodon_voa": {
-        "successes": 329,
+        "successes": 328,
         "failures": 5,
         "total": 450
       },
       "facebook_voa": {
-        "successes": 184,
+        "successes": 183,
         "failures": 13,
         "total": 450
       },
       "pinterest": {
-        "successes": 197,
-        "failures": 0,
-        "total": 450
-      },
-      "threads": {
         "successes": 196,
         "failures": 0,
         "total": 450
       },
+      "threads": {
+        "successes": 195,
+        "failures": 0,
+        "total": 450
+      },
       "instagram": {
-        "successes": 194,
+        "successes": 193,
         "failures": 0,
         "total": 450
       },
       "tumblr_voa": {
-        "successes": 450,
+        "successes": 449,
         "failures": 0,
         "total": 450
       },
       "blogger": {
-        "successes": 450,
+        "successes": 449,
         "failures": 0,
         "total": 450
       },
       "wordpress_earthstar": {
-        "successes": 450,
+        "successes": 449,
         "failures": 0,
         "total": 450
       }
@@ -35459,6 +35458,7 @@
       }
     },
     "post_to_cluster": {
+      "questions-worth-asking-an-artist-before-you-buy-original-work-online": "art-buying-online",
       "emotional-intelligence-starts-in-your-body-not-your-head": "emotional-regulation",
       "doubt-after-the-commitment-staying-put-or-quitting-well": "purpose-direction",
       "the-slow-spiritual-damage-of-work-that-doesnt-fit-you": "spiritual-productivity",
@@ -35859,7 +35859,7 @@
       "purpose-direction": 15,
       "building-life-that-fits": 11,
       "emotional-regulation": 10,
-      "art-buying-online": 19,
+      "art-buying-online": 20,
       "consciousness-technology": 10
     },
     "unassigned_post_count": 12
@@ -37324,10 +37324,10 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-27T18:42:18.172Z",
+    "as_of": "2026-10-27T20:16:52.311Z",
     "next_estimated_window": "2026-10-28",
     "queue_runway_days": 3,
-    "queue_runway_status": "healthy",
+    "queue_runway_status": "warning",
     "occupied_dates": [
       "2026-10-27",
       "2026-10-26",
@@ -37491,6 +37491,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "questions-worth-asking-an-artist-before-you-buy-original-work-online",
+        "lane": "boom",
+        "date": "2026-10-27T20:16:52.285Z"
+      },
+      {
         "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
         "lane": "boom",
         "date": "2026-10-27T18:39:39.233Z"
@@ -37534,18 +37539,13 @@
         "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
         "lane": "boom",
         "date": "2026-10-25T17:01:11.633Z"
-      },
-      {
-        "slug": "keeping-your-sound-when-software-starts-making-suggestions",
-        "lane": "boom",
-        "date": "2026-10-25T05:47:09.159Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-27T18:42:18.158Z",
-    "source_event": "syndication",
-    "export_duration_ms": 14,
+    "last_export_at": "2026-10-27T20:16:52.294Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 17,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
