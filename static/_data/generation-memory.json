@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-26T20:48:27.244Z",
+  "lastUpdated": "2026-10-27T01:15:13.597Z",
   "recentHooks": [
     {
       "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-10-27T01:15:00.484Z"
+    },
+    {
       "slug": "the-perfectionism-trap-when-excellence-becomes-a-hiding-place-for-self-doubt",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,18 +1156,19 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-10-21T19:44:45.423Z"
-    },
-    {
-      "slug": "the-moment-drift-begins-and-how-to-interrupt-it-before-its-too-late",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-21T19:43:58.205Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-10-27T01:15:13.597Z"
+    },
     {
       "slug": "flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
       "archetype": "cinematic-ideogram",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-08-29T17:04:33.979Z"
-    },
-    {
-      "slug": "why-do-i-avoid-the-thing-that-would-help-me",
-      "archetype": "cinematic-ideogram",
-      "archetypeLabel": "Cinematic Artwork",
-      "palette": "painterly-dark",
-      "emotionalTone": "liminal",
-      "emotionalCluster": "atmospheric",
-      "family": "art",
-      "timestamp": "2026-08-29T03:34:27.826Z"
     }
   ]
 }
