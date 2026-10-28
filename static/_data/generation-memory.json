@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-28T01:01:57.279Z",
+  "lastUpdated": "2026-10-28T06:42:46.496Z",
   "recentHooks": [
     {
       "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-28T06:42:46.496Z"
+    },
+    {
+      "slug": "deciding-when-everyone-else-has-an-opinion-separating-your-signal-from-their-worry",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-10-28T06:42:00.777Z"
+    },
+    {
+      "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1138,24 +1156,6 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-10-23T05:49:03.285Z"
-    },
-    {
-      "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-23T00:28:58.885Z"
-    },
-    {
-      "slug": "energy-architecture-building-systems-that-protect-creative-reserves",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-23T00:27:02.184Z"
     }
   ],
   "recentInstagramArchetypes": [
