@@ -4,8 +4,64 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-28T06:42:46.496Z",
+  "lastUpdated": "2026-10-28T16:49:57.330Z",
   "recentHooks": [
+    {
+      "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "hook": "\"I want something... calm? But not boring. Like the feeling right before a storm, maybe, but warm?\"",
+      "timestamp": "2026-10-28T16:49:57.330Z"
+    },
+    {
+      "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "emotional-regulation",
+      "hook": "Someone you know posts the news. The gallery show, the signing, the viral clip, the sold-out run. You type \"so proud of you!\" with a hot face and a tight stomach, then close the app and feel like a fr",
+      "timestamp": "2026-10-28T16:49:26.419Z"
+    },
+    {
+      "slug": "setting-a-decision-date-that-protects-your-calm",
+      "niche": "direction-purpose-drift",
+      "cluster": "purpose-direction",
+      "hook": "Blunt version: \"Should I change careers?\" is not a question. It's a weather system. It follows you into the shower, the grocery store, and the 3am ceiling stare, and it never once produces an answer, ",
+      "timestamp": "2026-10-28T16:48:55.883Z"
+    },
+    {
+      "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "hook": "Ever sit down at 9am with a song, a painting, or a half-built project, and stand up at 5pm with nothing you can point to?",
+      "timestamp": "2026-10-28T16:48:25.171Z"
+    },
+    {
+      "slug": "evolution-vs-erasure-learning-when-youre-growing-your-voice-versus-selling-it",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "hook": "Someone said your work was \"a little too much,\" so you sanded it down. It got better reactions. And now you can't tell if you improved or just got easier to swallow.",
+      "timestamp": "2026-10-28T16:47:50.978Z"
+    },
+    {
+      "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "hook": "Picture the setup: the studio is clean, the coffee is hot, and your shoulders are somewhere up around your ears. Your jaw is locked. There is a knot in your stomach that wasn't there yesterday. You te",
+      "timestamp": "2026-10-28T16:47:20.882Z"
+    },
+    {
+      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "hook": "Counter-intuitive claim: the problem with your screen time is not the screen. It is that most of it happens without anyone deciding to be there.",
+      "timestamp": "2026-10-28T16:46:42.932Z"
+    },
+    {
+      "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
+      "niche": "dopamine-addiction-numbing",
+      "cluster": "dopamine-attention",
+      "hook": "Counter-intuitive claim: the apps are not the problem you need to solve. The distance between your thumb and the app is.",
+      "timestamp": "2026-10-28T16:46:12.758Z"
+    },
     {
       "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
       "niche": "ai-creator-tools",
@@ -159,65 +215,65 @@
       "cluster": "dopamine-attention",
       "hook": "Nobody warns you about the exit. You put the phone down, the room is the same, and you feel worse than when you picked it up. Flat. A little irritable. Slightly ashamed of something you can't quite na",
       "timestamp": "2026-10-22T15:27:03.598Z"
-    },
-    {
-      "slug": "sorting-your-content-tasks-which-to-automate-and-which-need-your-hands",
-      "niche": "ai-creator-tools",
-      "cluster": "creator-automation",
-      "hook": "Picture a Tuesday where your schedule is full, your inbox is quiet, and your newest track has been sitting at 80 percent for nine days. You automated the posting. You automated the captions. Somehow y",
-      "timestamp": "2026-10-22T15:26:15.192Z"
-    },
-    {
-      "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
-      "niche": "misalignment-wrong-life",
-      "cluster": "building-life-that-fits",
-      "hook": "Is it the job, or is it just a bad month? That question can eat you alive on a Sunday night when nothing is technically wrong. The paycheck lands. Your boss is fine. And something in you keeps mutteri",
-      "timestamp": "2026-10-22T15:25:39.830Z"
-    },
-    {
-      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
-      "niche": "ai-creator-tools",
-      "cluster": "ai-creator-tools",
-      "hook": "Open a session, accept the first chord the plugin suggests, and the track sounds fine. Weeks later, three of your songs share the same drum feel, and you can't remember choosing it.",
-      "timestamp": "2026-10-21T15:31:30.524Z"
-    },
-    {
-      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-      "niche": "art-buyer-intent",
-      "cluster": "art-buying-online",
-      "hook": "Blunt truth first: a listing can use the words \"original,\" \"hand-painted,\" and \"one of a kind\" and still be a printed reproduction with a little gloss brushed on top.",
-      "timestamp": "2026-10-21T15:30:59.287Z"
-    },
-    {
-      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "hook": "Quick test: think of the last time someone gave you feedback on something you made. Not the words they used. The first three seconds in your body.",
-      "timestamp": "2026-10-21T15:29:15.410Z"
-    },
-    {
-      "slug": "why-finding-your-purpose-keeps-you-stuck",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "hook": "Quick question: what exactly are you waiting for?",
-      "timestamp": "2026-10-21T15:28:44.411Z"
-    },
-    {
-      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "hook": "Your calendar is perfect, color-coded, and blocked out to the quarter hour. And somehow you still wake up Wednesday with no idea why you are doing any of it.",
-      "timestamp": "2026-10-21T15:27:26.349Z"
-    },
-    {
-      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
-      "niche": "self-betrayal-avoidance",
-      "cluster": "authentic-self-expression",
-      "hook": "You've got a draft sitting in a folder somewhere, and you know exactly which version is the real one. It's the weird one. The one with your actual opinion in it, your actual taste, the strange detail ",
-      "timestamp": "2026-10-21T15:26:44.745Z"
     }
   ],
   "recentTitles": [
+    {
+      "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "title": "Your First Commission: How to Brief an Independent Artist Without Friction",
+      "timestamp": "2026-10-28T16:49:57.330Z"
+    },
+    {
+      "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "emotional-regulation",
+      "title": "Jealousy as Information: Reading the Envy That Shows Up When Peers Succeed",
+      "timestamp": "2026-10-28T16:49:26.419Z"
+    },
+    {
+      "slug": "setting-a-decision-date-that-protects-your-calm",
+      "niche": "direction-purpose-drift",
+      "cluster": "purpose-direction",
+      "title": "Setting a Decision Date That Protects Your Calm",
+      "timestamp": "2026-10-28T16:48:55.883Z"
+    },
+    {
+      "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "title": "Defining a Finish Line for Each Work Session Before You Start",
+      "timestamp": "2026-10-28T16:48:25.171Z"
+    },
+    {
+      "slug": "evolution-vs-erasure-learning-when-youre-growing-your-voice-versus-selling-it",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "title": "Evolution vs. Erasure: Learning When You're Growing Your Voice Versus Selling It",
+      "timestamp": "2026-10-28T16:47:50.978Z"
+    },
+    {
+      "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "title": "Starting From the Floor: A Low-Stakes Entry Ritual for Tense Bodies",
+      "timestamp": "2026-10-28T16:47:20.882Z"
+    },
+    {
+      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "title": "Technology as a Tool for Consciousness (Not Unconsciousness)",
+      "timestamp": "2026-10-28T16:46:42.932Z"
+    },
+    {
+      "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
+      "niche": "dopamine-addiction-numbing",
+      "cluster": "dopamine-attention",
+      "title": "Friction Design: Making the Pull Cost You a Few Seconds",
+      "timestamp": "2026-10-28T16:46:12.758Z"
+    },
     {
       "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
       "niche": "ai-creator-tools",
@@ -371,66 +427,50 @@
       "cluster": "dopamine-attention",
       "title": "The Hour You Lose and the Mood You Carry Out of It",
       "timestamp": "2026-10-22T15:27:03.598Z"
-    },
-    {
-      "slug": "sorting-your-content-tasks-which-to-automate-and-which-need-your-hands",
-      "niche": "ai-creator-tools",
-      "cluster": "creator-automation",
-      "title": "Sorting Your Content Tasks: Which to Automate and Which Need Your Hands",
-      "timestamp": "2026-10-22T15:26:15.192Z"
-    },
-    {
-      "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
-      "niche": "misalignment-wrong-life",
-      "cluster": "building-life-that-fits",
-      "title": "Noticing the Misfit Early: Signs Your Work No longer Matches Who You Are",
-      "timestamp": "2026-10-22T15:25:39.830Z"
-    },
-    {
-      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
-      "niche": "ai-creator-tools",
-      "cluster": "ai-creator-tools",
-      "title": "Keeping Your Sound When Software Starts Making Suggestions",
-      "timestamp": "2026-10-21T15:31:30.524Z"
-    },
-    {
-      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-      "niche": "art-buyer-intent",
-      "cluster": "art-buying-online",
-      "title": "Checking an Original Art Listing Before You Pay: Signs of Authenticity and Red Flags",
-      "timestamp": "2026-10-21T15:30:59.287Z"
-    },
-    {
-      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "title": "How Regulating Your Emotions Actually Improves Your Work and Your Relationships",
-      "timestamp": "2026-10-21T15:29:15.410Z"
-    },
-    {
-      "slug": "why-finding-your-purpose-keeps-you-stuck",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "title": "Why 'Finding Your Purpose' Keeps You Stuck",
-      "timestamp": "2026-10-21T15:28:44.411Z"
-    },
-    {
-      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "title": "The Rhythms That Sustain You: Beyond the Optimized Schedule",
-      "timestamp": "2026-10-21T15:27:26.349Z"
-    },
-    {
-      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
-      "niche": "self-betrayal-avoidance",
-      "cluster": "authentic-self-expression",
-      "title": "The Specificity Paradox: Why Your Most Honest Work Feels More Exposed Than Your Generic Stuff",
-      "timestamp": "2026-10-21T15:26:44.745Z"
     }
   ],
   "recentNarrativeStructures": [
     {
+      "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-28T16:49:57.330Z"
+    },
+    {
+      "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
+      "structure": "numbered-list with subheadings",
+      "timestamp": "2026-10-28T16:49:26.419Z"
+    },
+    {
+      "slug": "setting-a-decision-date-that-protects-your-calm",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-28T16:48:55.883Z"
+    },
+    {
+      "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-28T16:48:25.171Z"
+    },
+    {
+      "slug": "evolution-vs-erasure-learning-when-youre-growing-your-voice-versus-selling-it",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-10-28T16:47:50.978Z"
+    },
+    {
+      "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-28T16:47:20.882Z"
+    },
+    {
+      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-28T16:46:42.932Z"
+    },
+    {
+      "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-10-28T16:46:12.758Z"
+    },
+    {
       "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
       "structure": "numbered-list with subheadings",
       "timestamp": "2026-10-26T16:57:49.530Z"
@@ -539,50 +579,50 @@
       "slug": "the-hour-you-lose-and-the-mood-you-carry-out-of-it",
       "structure": "heavily-sectioned (6+ H2s)",
       "timestamp": "2026-10-22T15:27:03.598Z"
-    },
-    {
-      "slug": "sorting-your-content-tasks-which-to-automate-and-which-need-your-hands",
-      "structure": "numbered-list with subheadings",
-      "timestamp": "2026-10-22T15:26:15.192Z"
-    },
-    {
-      "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-22T15:25:39.830Z"
-    },
-    {
-      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
-      "structure": "numbered-list with subheadings",
-      "timestamp": "2026-10-21T15:31:30.524Z"
-    },
-    {
-      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-      "structure": "numbered-list with subheadings",
-      "timestamp": "2026-10-21T15:30:59.287Z"
-    },
-    {
-      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-10-21T15:29:15.410Z"
-    },
-    {
-      "slug": "why-finding-your-purpose-keeps-you-stuck",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-10-21T15:28:44.411Z"
-    },
-    {
-      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-21T15:27:26.349Z"
-    },
-    {
-      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-21T15:26:44.745Z"
     }
   ],
   "recentEmotionalArcs": [
     {
+      "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-28T16:49:57.330Z"
+    },
+    {
+      "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-28T16:49:26.419Z"
+    },
+    {
+      "slug": "setting-a-decision-date-that-protects-your-calm",
+      "arc": "pain-open → reframe → action close",
+      "timestamp": "2026-10-28T16:48:55.883Z"
+    },
+    {
+      "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-28T16:48:25.171Z"
+    },
+    {
+      "slug": "evolution-vs-erasure-learning-when-youre-growing-your-voice-versus-selling-it",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-28T16:47:50.978Z"
+    },
+    {
+      "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-28T16:47:20.882Z"
+    },
+    {
+      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-28T16:46:42.932Z"
+    },
+    {
+      "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-28T16:46:12.758Z"
+    },
+    {
       "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
       "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-10-26T16:57:49.530Z"
@@ -691,50 +731,50 @@
       "slug": "the-hour-you-lose-and-the-mood-you-carry-out-of-it",
       "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-10-22T15:27:03.598Z"
-    },
-    {
-      "slug": "sorting-your-content-tasks-which-to-automate-and-which-need-your-hands",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-22T15:26:15.192Z"
-    },
-    {
-      "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-22T15:25:39.830Z"
-    },
-    {
-      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-21T15:31:30.524Z"
-    },
-    {
-      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-21T15:30:59.287Z"
-    },
-    {
-      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-21T15:29:15.410Z"
-    },
-    {
-      "slug": "why-finding-your-purpose-keeps-you-stuck",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-21T15:28:44.411Z"
-    },
-    {
-      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-21T15:27:26.349Z"
-    },
-    {
-      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-21T15:26:44.745Z"
     }
   ],
   "recentOpeningStyles": [
     {
+      "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
+      "style": "quote opening",
+      "timestamp": "2026-10-28T16:49:57.330Z"
+    },
+    {
+      "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
+      "style": "statement opening",
+      "timestamp": "2026-10-28T16:49:26.419Z"
+    },
+    {
+      "slug": "setting-a-decision-date-that-protects-your-calm",
+      "style": "statement opening",
+      "timestamp": "2026-10-28T16:48:55.883Z"
+    },
+    {
+      "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
+      "style": "question opening",
+      "timestamp": "2026-10-28T16:48:25.171Z"
+    },
+    {
+      "slug": "evolution-vs-erasure-learning-when-youre-growing-your-voice-versus-selling-it",
+      "style": "statement opening",
+      "timestamp": "2026-10-28T16:47:50.978Z"
+    },
+    {
+      "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
+      "style": "statement opening",
+      "timestamp": "2026-10-28T16:47:20.882Z"
+    },
+    {
+      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
+      "style": "statement opening",
+      "timestamp": "2026-10-28T16:46:42.932Z"
+    },
+    {
+      "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
+      "style": "statement opening",
+      "timestamp": "2026-10-28T16:46:12.758Z"
+    },
+    {
       "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
       "style": "statement opening",
       "timestamp": "2026-10-26T16:57:49.530Z"
@@ -843,46 +883,6 @@
       "slug": "the-hour-you-lose-and-the-mood-you-carry-out-of-it",
       "style": "social proof / counter-claim opening",
       "timestamp": "2026-10-22T15:27:03.598Z"
-    },
-    {
-      "slug": "sorting-your-content-tasks-which-to-automate-and-which-need-your-hands",
-      "style": "statement opening",
-      "timestamp": "2026-10-22T15:26:15.192Z"
-    },
-    {
-      "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
-      "style": "statement opening",
-      "timestamp": "2026-10-22T15:25:39.830Z"
-    },
-    {
-      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
-      "style": "statement opening",
-      "timestamp": "2026-10-21T15:31:30.524Z"
-    },
-    {
-      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-      "style": "statement opening",
-      "timestamp": "2026-10-21T15:30:59.287Z"
-    },
-    {
-      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
-      "style": "statement opening",
-      "timestamp": "2026-10-21T15:29:15.410Z"
-    },
-    {
-      "slug": "why-finding-your-purpose-keeps-you-stuck",
-      "style": "question opening",
-      "timestamp": "2026-10-21T15:28:44.411Z"
-    },
-    {
-      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
-      "style": "statement opening",
-      "timestamp": "2026-10-21T15:27:26.349Z"
-    },
-    {
-      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
-      "style": "statement opening",
-      "timestamp": "2026-10-21T15:26:44.745Z"
     }
   ],
   "recentCTAPatterns": [],
