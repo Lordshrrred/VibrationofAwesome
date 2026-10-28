@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-27T20:17:41.528Z",
+  "lastUpdated": "2026-10-28T01:01:57.279Z",
   "recentHooks": [
     {
       "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-28T01:01:46.138Z"
+    },
+    {
       "slug": "questions-worth-asking-an-artist-before-you-buy-original-work-online",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,18 +1156,19 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-10-23T00:27:02.184Z"
-    },
-    {
-      "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-22T17:55:44.993Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-10-28T01:01:57.279Z"
+    },
     {
       "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
       "archetype": "minimalist-philosophy",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "mystical",
       "family": "art",
       "timestamp": "2026-08-30T17:18:47.383Z"
-    },
-    {
-      "slug": "i-am-overstimulated-and-exhausted",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "family": "art",
-      "timestamp": "2026-08-29T23:57:13.589Z"
     }
   ]
 }
