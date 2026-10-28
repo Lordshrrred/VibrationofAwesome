@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-28T18:47:54.105Z",
+  "lastUpdated": "2026-10-28T20:39:32.013Z",
   "recentHooks": [
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "presence-with-a-device-in-your-pocket-three-boundaries-that-hold",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-28T20:39:32.013Z"
+    },
+    {
       "slug": "batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,15 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-10-23T17:50:03.330Z"
-    },
-    {
-      "slug": "energy-architecture-building-systems-that-protect-creative-reserves",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-23T05:49:40.921Z"
     }
   ],
   "recentInstagramArchetypes": [
