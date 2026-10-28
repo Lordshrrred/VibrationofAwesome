@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-28T16:49:57.330Z",
+  "lastUpdated": "2026-10-28T18:47:54.105Z",
   "recentHooks": [
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-10-28T18:47:39.775Z"
+    },
+    {
       "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,18 +1156,19 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-10-23T05:49:40.921Z"
-    },
-    {
-      "slug": "the-grounded-cosmic-view-navigating-technology-with-your-feet-on-earth",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-23T05:49:03.285Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-10-28T18:47:54.105Z"
+    },
     {
       "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
       "archetype": "symbolic-consciousness",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "grounded",
       "family": "art",
       "timestamp": "2026-08-31T00:16:27.194Z"
-    },
-    {
-      "slug": "i-feel-like-i-am-living-someone-elses-life",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-08-30T17:18:47.383Z"
     }
   ]
 }
