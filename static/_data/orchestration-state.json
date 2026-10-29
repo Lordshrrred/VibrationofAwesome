@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-29T06:50:38.996Z",
+  "generated_at": "2026-10-29T18:54:13.993Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
         "building-a-lean-ai-stack-for-a-one-person-creative-studio",
         "defining-a-finish-line-for-each-work-session-before-you-start",
@@ -18,13 +18,12 @@
         "setting-a-decision-date-that-protects-your-calm",
         "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
         "technology-as-a-tool-for-consciousness-not-unconsciousness",
-        "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
         "the-pause-between-feeling-and-deciding-a-practical-window-for-better-choices",
         "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
         "work-that-doesnt-cost-your-soul-checking-your-days-for-inner-erosion",
         "your-first-commission-how-to-brief-an-independent-artist-without-friction"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
+        "title": "The Algorithm Optimization Trap: How Chasing Metrics Slowly Erases Your Creative Signature",
+        "lane": "boom",
+        "date": "2026-10-29T18:54:13.965Z",
+        "url": "/blog/boom/posts/the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
+        "tags": [
+          "self-betrayal-avoidance"
+        ],
+        "cluster": "authentic-self-expression",
+        "content_type": null
+      },
       {
         "slug": "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart",
         "title": "Frozen at the Blank Page: Telling Fear, Fatigue, and Unclear Next Steps Apart",
@@ -263,18 +274,6 @@
         ],
         "cluster": "emotional-regulation",
         "content_type": null
-      },
-      {
-        "slug": "why-finding-your-purpose-keeps-you-stuck",
-        "title": "Why 'Finding Your Purpose' Keeps You Stuck",
-        "lane": "boom",
-        "date": "2026-10-24T16:31:18.543Z",
-        "url": "/blog/boom/posts/why-finding-your-purpose-keeps-you-stuck",
-        "tags": [
-          "direction-purpose-drift"
-        ],
-        "cluster": "purpose-direction",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -436,9 +435,9 @@
     ],
     "next_estimated_window": "2026-10-30",
     "published_counts": {
-      "boom": 390,
+      "boom": 391,
       "matt": 18,
-      "total": 408
+      "total": 409
     }
   },
   "syndication": {
@@ -35889,6 +35888,7 @@
       }
     },
     "post_to_cluster": {
+      "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature": "authentic-self-expression",
       "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart": "nervous-system-creativity",
       "where-your-switching-tax-actually-comes-from": "dopamine-attention",
       "presence-with-a-device-in-your-pocket-three-boundaries-that-hold": "consciousness-technology",
@@ -36290,7 +36290,7 @@
       "ai-creator-tools": 187,
       "nervous-system-creativity": 41,
       "dopamine-attention": 25,
-      "authentic-self-expression": 42,
+      "authentic-self-expression": 43,
       "creator-automation": 11,
       "spiritual-productivity": 22,
       "purpose-direction": 15,
@@ -37761,9 +37761,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-29T06:50:38.996Z",
+    "as_of": "2026-10-29T18:54:13.993Z",
     "next_estimated_window": "2026-10-30",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-10-29",
@@ -37930,6 +37930,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
+        "lane": "boom",
+        "date": "2026-10-29T18:54:13.965Z"
+      },
+      {
         "slug": "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart",
         "lane": "boom",
         "date": "2026-10-29T06:48:58.645Z"
@@ -37973,18 +37978,13 @@
         "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
         "lane": "boom",
         "date": "2026-10-27T06:02:36.807Z"
-      },
-      {
-        "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
-        "lane": "boom",
-        "date": "2026-10-27T01:14:09.663Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-29T06:50:38.978Z",
-    "source_event": "retry",
-    "export_duration_ms": 18,
+    "last_export_at": "2026-10-29T18:54:13.973Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 20,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
