@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-29T18:55:18.857Z",
+  "lastUpdated": "2026-10-29T20:44:18.867Z",
   "recentHooks": [
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-10-29T20:44:18.867Z"
+    },
+    {
+      "slug": "work-that-doesnt-cost-your-soul-checking-your-days-for-inner-erosion",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-29T20:43:40.083Z"
+    },
+    {
+      "slug": "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
       "density": "dense",
@@ -1138,24 +1156,6 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-10-24T16:32:35.111Z"
-    },
-    {
-      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-24T05:30:25.492Z"
-    },
-    {
-      "slug": "the-rhythms-that-sustain-you-beyond-the-optimized-schedule",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-24T05:29:38.519Z"
     }
   ],
   "recentInstagramArchetypes": [
