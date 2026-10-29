@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-28T20:39:32.013Z",
+  "lastUpdated": "2026-10-29T01:37:50.130Z",
   "recentHooks": [
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "where-your-switching-tax-actually-comes-from",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-10-29T01:37:35.002Z"
+    },
+    {
       "slug": "presence-with-a-device-in-your-pocket-three-boundaries-that-hold",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1147,18 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-10-23T19:36:33.051Z"
-    },
-    {
-      "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-23T17:50:03.330Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "where-your-switching-tax-actually-comes-from",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "family": "art",
+      "timestamp": "2026-10-29T01:37:50.130Z"
+    },
     {
       "slug": "batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
       "archetype": "premium-quote-card",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "mystical",
       "family": "art",
       "timestamp": "2026-08-31T19:29:52.042Z"
-    },
-    {
-      "slug": "i-keep-spinning-my-wheels-in-life",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-08-31T00:16:27.194Z"
     }
   ]
 }
