@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-30T01:39:09.469Z",
+  "lastUpdated": "2026-10-30T06:53:33.351Z",
   "recentHooks": [
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-10-30T06:53:33.351Z"
+    },
+    {
+      "slug": "the-pause-between-feeling-and-deciding-a-practical-window-for-better-choices",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-30T06:52:40.717Z"
+    },
+    {
+      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
       "density": "medium-dense",
@@ -1138,24 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-10-25T05:48:02.089Z"
-    },
-    {
-      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-25T00:03:51.027Z"
-    },
-    {
-      "slug": "how-regulating-your-emotions-actually-improves-your-work-and-your-relationships",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-10-24T18:25:22.325Z"
     }
   ],
   "recentInstagramArchetypes": [
