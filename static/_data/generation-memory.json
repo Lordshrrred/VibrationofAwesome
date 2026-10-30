@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-30T16:49:21.311Z",
+  "lastUpdated": "2026-10-30T18:33:12.491Z",
   "recentHooks": [
     {
       "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-10-30T18:33:01.791Z"
+    },
+    {
       "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,18 +1156,19 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-10-25T05:48:48.165Z"
-    },
-    {
-      "slug": "keeping-your-sound-when-software-starts-making-suggestions",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-25T05:48:02.089Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-10-30T18:33:12.491Z"
+    },
     {
       "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
       "archetype": "cinematic-ideogram",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-09-01T23:51:56.315Z"
-    },
-    {
-      "slug": "i-keep-scrolling-at-night-even-when-i-am-tired",
-      "archetype": "cinematic-ideogram",
-      "archetypeLabel": "Cinematic Artwork",
-      "palette": "painterly-dark",
-      "emotionalTone": "liminal",
-      "emotionalCluster": "atmospheric",
-      "family": "art",
-      "timestamp": "2026-09-01T17:17:38.181Z"
     }
   ]
 }
