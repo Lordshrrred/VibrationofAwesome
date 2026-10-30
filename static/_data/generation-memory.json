@@ -4,8 +4,64 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-30T06:53:33.351Z",
+  "lastUpdated": "2026-10-30T16:49:21.311Z",
   "recentHooks": [
+    {
+      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "hook": "\"What if I stopped and nobody noticed?\"",
+      "timestamp": "2026-10-30T16:49:21.311Z"
+    },
+    {
+      "slug": "when-pleasing-the-room-flattens-your-work",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "hook": "Picture the last thing you finished. Nobody hated it. Nobody loved it either. You hit publish, the small polite reactions came in, and something in your chest stayed quiet.",
+      "timestamp": "2026-10-30T16:48:48.527Z"
+    },
+    {
+      "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "hook": "Does overstimulation make it hard to make art? For many creators it does, and the pattern is easy to spot once you look at behavior instead of theory. Heavy input before the work often shows up as fla",
+      "timestamp": "2026-10-30T16:48:20.875Z"
+    },
+    {
+      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "hook": "You posted a track you actually love, and the numbers came back thin. Now the song feels smaller than it did that morning. Nothing about the music changed ~ only the scoreboard did.",
+      "timestamp": "2026-10-30T16:47:40.742Z"
+    },
+    {
+      "slug": "the-creative-blank-after-a-long-stimulation-streak",
+      "niche": "dopamine-addiction-numbing",
+      "cluster": "dopamine-attention",
+      "hook": "You open the doc, the canvas, or the session file. Nothing. Not even a bad idea. Just static, and a quiet voice asking why this used to feel easier.",
+      "timestamp": "2026-10-30T16:47:12.614Z"
+    },
+    {
+      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
+      "niche": "ai-creator-tools",
+      "cluster": "creator-automation",
+      "hook": "Does your reply to a fan's heartfelt message read like it came from a parking-garage intercom? Warm words, correct grammar, zero person behind them. And they can tell.",
+      "timestamp": "2026-10-30T16:46:45.352Z"
+    },
+    {
+      "slug": "rebuilding-your-social-life-after-your-priorities-shift",
+      "niche": "misalignment-wrong-life",
+      "cluster": "building-life-that-fits",
+      "hook": "Your phone has plenty of names in it and nobody to call. That's the strange math of outgrowing a friend group: the contacts are all still there, but the connection has thinned out to birthday texts an",
+      "timestamp": "2026-10-30T16:46:16.701Z"
+    },
+    {
+      "slug": "a-boundary-map-for-ai-in-your-music-process",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "Three weeks after you started using AI on your mixes, you play an old track next to a new one and something is off. The new one is cleaner. It is also somehow less yours.",
+      "timestamp": "2026-10-30T16:45:47.731Z"
+    },
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
       "niche": "art-buyer-intent",
@@ -159,65 +215,65 @@
       "cluster": "ai-creator-tools",
       "hook": "What do you do with a verse that rhymes, scans, and says nothing?",
       "timestamp": "2026-10-24T14:05:27.686Z"
-    },
-    {
-      "slug": "questions-worth-asking-an-artist-before-you-buy-original-work-online",
-      "niche": "art-buyer-intent",
-      "cluster": "art-buying-online",
-      "hook": "You found a painting that stopped you mid-scroll. Your thumb hovers over \"Buy.\" Then the little voice shows up: what if I ask something dumb, and they think I'm a pain?",
-      "timestamp": "2026-10-24T14:04:59.812Z"
-    },
-    {
-      "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "hook": "You said \"I'm fine\" in the meeting. Then you drove home with a clenched jaw, shallow breath, and a hum under your ribs you could not name. Your mind had a tidy story. Your body was still running the w",
-      "timestamp": "2026-10-24T14:04:27.935Z"
-    },
-    {
-      "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "hook": "You said yes. You signed up, announced it, bought the thing, or told someone you were in. Then, somewhere around day four, your head reopened the whole question like a browser tab you swore you closed",
-      "timestamp": "2026-10-22T15:29:56.773Z"
-    },
-    {
-      "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "hook": "Picture a Sunday night at 9:40pm. Nothing is wrong, exactly. The bills are paid. The job is fine. But there's a low hum in your chest, and you already know Monday will feel like putting on a coat two ",
-      "timestamp": "2026-10-22T15:29:07.493Z"
-    },
-    {
-      "slug": "the-perfectionism-trap-when-excellence-becomes-a-hiding-place-for-self-doubt",
-      "niche": "self-betrayal-avoidance",
-      "cluster": "authentic-self-expression",
-      "hook": "Picture the third mix of the same track, the fourteenth font swap on the same cover, a Tuesday night spent nudging a kick drum two milliseconds left while the song's real question sits untouched in th",
-      "timestamp": "2026-10-22T15:28:28.082Z"
-    },
-    {
-      "slug": "flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "hook": "What if the reason you can't get into flow has nothing to do with discipline?",
-      "timestamp": "2026-10-22T15:27:57.954Z"
-    },
-    {
-      "slug": "the-decisions-ai-cannot-make-for-you-as-a-creator",
-      "niche": "ai-creator-tools",
-      "cluster": "consciousness-technology",
-      "hook": "A chorus you can't explain. A caption that sounds like a stranger wearing your name. A draft that is clean, finished, and somehow not yours.",
-      "timestamp": "2026-10-22T15:27:33.740Z"
-    },
-    {
-      "slug": "the-hour-you-lose-and-the-mood-you-carry-out-of-it",
-      "niche": "dopamine-addiction-numbing",
-      "cluster": "dopamine-attention",
-      "hook": "Nobody warns you about the exit. You put the phone down, the room is the same, and you feel worse than when you picked it up. Flat. A little irritable. Slightly ashamed of something you can't quite na",
-      "timestamp": "2026-10-22T15:27:03.598Z"
     }
   ],
   "recentTitles": [
+    {
+      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "title": "Worth-Driven Work vs. Caring Work: A Test You Can Run This Week",
+      "timestamp": "2026-10-30T16:49:21.311Z"
+    },
+    {
+      "slug": "when-pleasing-the-room-flattens-your-work",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "title": "When Pleasing the Room Flattens Your Work",
+      "timestamp": "2026-10-30T16:48:48.527Z"
+    },
+    {
+      "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "title": "The Input Budget: How Much Stimulation a Creative Day Can Actually Hold",
+      "timestamp": "2026-10-30T16:48:20.875Z"
+    },
+    {
+      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "title": "Tools That Serve Your Work Versus Tools That Reshape Your Self-Image",
+      "timestamp": "2026-10-30T16:47:40.742Z"
+    },
+    {
+      "slug": "the-creative-blank-after-a-long-stimulation-streak",
+      "niche": "dopamine-addiction-numbing",
+      "cluster": "dopamine-attention",
+      "title": "The Creative Blank After a Long Stimulation Streak",
+      "timestamp": "2026-10-30T16:47:12.614Z"
+    },
+    {
+      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
+      "niche": "ai-creator-tools",
+      "cluster": "creator-automation",
+      "title": "Templates That Still Sound Like a Person: Automated Replies Without the Cold Feel",
+      "timestamp": "2026-10-30T16:46:45.352Z"
+    },
+    {
+      "slug": "rebuilding-your-social-life-after-your-priorities-shift",
+      "niche": "misalignment-wrong-life",
+      "cluster": "building-life-that-fits",
+      "title": "Rebuilding Your Social Life After Your Priorities Shift",
+      "timestamp": "2026-10-30T16:46:16.701Z"
+    },
+    {
+      "slug": "a-boundary-map-for-ai-in-your-music-process",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "A Boundary Map for AI in Your Music Process",
+      "timestamp": "2026-10-30T16:45:47.731Z"
+    },
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
       "niche": "art-buyer-intent",
@@ -371,65 +427,49 @@
       "cluster": "ai-creator-tools",
       "title": "The Lifeless Draft Problem: Diagnosing Why AI Output Feels Flat",
       "timestamp": "2026-10-24T14:05:27.686Z"
-    },
-    {
-      "slug": "questions-worth-asking-an-artist-before-you-buy-original-work-online",
-      "niche": "art-buyer-intent",
-      "cluster": "art-buying-online",
-      "title": "Questions Worth Asking an Artist Before You Buy Original Work Online",
-      "timestamp": "2026-10-24T14:04:59.812Z"
-    },
-    {
-      "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "title": "Emotional Intelligence Starts in Your Body, Not Your Head",
-      "timestamp": "2026-10-24T14:04:27.935Z"
-    },
-    {
-      "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "title": "Doubt After the Commitment: Staying Put or Quitting Well",
-      "timestamp": "2026-10-22T15:29:56.773Z"
-    },
-    {
-      "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "title": "The Slow Spiritual Damage of Work That Doesn't Fit You",
-      "timestamp": "2026-10-22T15:29:07.493Z"
-    },
-    {
-      "slug": "the-perfectionism-trap-when-excellence-becomes-a-hiding-place-for-self-doubt",
-      "niche": "self-betrayal-avoidance",
-      "cluster": "authentic-self-expression",
-      "title": "The Perfectionism Trap: When Excellence Becomes a Hiding Place for Self-Doubt",
-      "timestamp": "2026-10-22T15:28:28.082Z"
-    },
-    {
-      "slug": "flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "title": "Flow Requires Safety First: Why Anxious People Can't Access Their Best Ideas",
-      "timestamp": "2026-10-22T15:27:57.954Z"
-    },
-    {
-      "slug": "the-decisions-ai-cannot-make-for-you-as-a-creator",
-      "niche": "ai-creator-tools",
-      "cluster": "consciousness-technology",
-      "title": "The Decisions AI Cannot Make For You as a Creator",
-      "timestamp": "2026-10-22T15:27:33.740Z"
-    },
-    {
-      "slug": "the-hour-you-lose-and-the-mood-you-carry-out-of-it",
-      "niche": "dopamine-addiction-numbing",
-      "cluster": "dopamine-attention",
-      "title": "The Hour You Lose and the Mood You Carry Out of It",
-      "timestamp": "2026-10-22T15:27:03.598Z"
     }
   ],
   "recentNarrativeStructures": [
+    {
+      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-30T16:49:21.311Z"
+    },
+    {
+      "slug": "when-pleasing-the-room-flattens-your-work",
+      "structure": "numbered-list with subheadings",
+      "timestamp": "2026-10-30T16:48:48.527Z"
+    },
+    {
+      "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
+      "structure": "numbered-list with subheadings",
+      "timestamp": "2026-10-30T16:48:20.875Z"
+    },
+    {
+      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-30T16:47:40.742Z"
+    },
+    {
+      "slug": "the-creative-blank-after-a-long-stimulation-streak",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-30T16:47:12.614Z"
+    },
+    {
+      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-30T16:46:45.352Z"
+    },
+    {
+      "slug": "rebuilding-your-social-life-after-your-priorities-shift",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-10-30T16:46:16.701Z"
+    },
+    {
+      "slug": "a-boundary-map-for-ai-in-your-music-process",
+      "structure": "numbered-list with subheadings",
+      "timestamp": "2026-10-30T16:45:47.731Z"
+    },
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
       "structure": "bullet-list driven with multiple sections",
@@ -539,49 +579,49 @@
       "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
       "structure": "numbered-list with subheadings",
       "timestamp": "2026-10-24T14:05:27.686Z"
-    },
-    {
-      "slug": "questions-worth-asking-an-artist-before-you-buy-original-work-online",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-24T14:04:59.812Z"
-    },
-    {
-      "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-10-24T14:04:27.935Z"
-    },
-    {
-      "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-22T15:29:56.773Z"
-    },
-    {
-      "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
-      "structure": "numbered-list with subheadings",
-      "timestamp": "2026-10-22T15:29:07.493Z"
-    },
-    {
-      "slug": "the-perfectionism-trap-when-excellence-becomes-a-hiding-place-for-self-doubt",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-22T15:28:28.082Z"
-    },
-    {
-      "slug": "flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
-      "structure": "numbered-list with subheadings",
-      "timestamp": "2026-10-22T15:27:57.954Z"
-    },
-    {
-      "slug": "the-decisions-ai-cannot-make-for-you-as-a-creator",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-22T15:27:33.740Z"
-    },
-    {
-      "slug": "the-hour-you-lose-and-the-mood-you-carry-out-of-it",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-10-22T15:27:03.598Z"
     }
   ],
   "recentEmotionalArcs": [
+    {
+      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-30T16:49:21.311Z"
+    },
+    {
+      "slug": "when-pleasing-the-room-flattens-your-work",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-30T16:48:48.527Z"
+    },
+    {
+      "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-30T16:48:20.875Z"
+    },
+    {
+      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-30T16:47:40.742Z"
+    },
+    {
+      "slug": "the-creative-blank-after-a-long-stimulation-streak",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-30T16:47:12.614Z"
+    },
+    {
+      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-30T16:46:45.352Z"
+    },
+    {
+      "slug": "rebuilding-your-social-life-after-your-priorities-shift",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-10-30T16:46:16.701Z"
+    },
+    {
+      "slug": "a-boundary-map-for-ai-in-your-music-process",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-10-30T16:45:47.731Z"
+    },
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
       "arc": "pain-open → insight → hope + action close",
@@ -691,49 +731,49 @@
       "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
       "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-10-24T14:05:27.686Z"
-    },
-    {
-      "slug": "questions-worth-asking-an-artist-before-you-buy-original-work-online",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-24T14:04:59.812Z"
-    },
-    {
-      "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-24T14:04:27.935Z"
-    },
-    {
-      "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-22T15:29:56.773Z"
-    },
-    {
-      "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-22T15:29:07.493Z"
-    },
-    {
-      "slug": "the-perfectionism-trap-when-excellence-becomes-a-hiding-place-for-self-doubt",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-22T15:28:28.082Z"
-    },
-    {
-      "slug": "flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-22T15:27:57.954Z"
-    },
-    {
-      "slug": "the-decisions-ai-cannot-make-for-you-as-a-creator",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-22T15:27:33.740Z"
-    },
-    {
-      "slug": "the-hour-you-lose-and-the-mood-you-carry-out-of-it",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-22T15:27:03.598Z"
     }
   ],
   "recentOpeningStyles": [
+    {
+      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
+      "style": "quote opening",
+      "timestamp": "2026-10-30T16:49:21.311Z"
+    },
+    {
+      "slug": "when-pleasing-the-room-flattens-your-work",
+      "style": "social proof / counter-claim opening",
+      "timestamp": "2026-10-30T16:48:48.527Z"
+    },
+    {
+      "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
+      "style": "statement opening",
+      "timestamp": "2026-10-30T16:48:20.875Z"
+    },
+    {
+      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
+      "style": "statement opening",
+      "timestamp": "2026-10-30T16:47:40.742Z"
+    },
+    {
+      "slug": "the-creative-blank-after-a-long-stimulation-streak",
+      "style": "statement opening",
+      "timestamp": "2026-10-30T16:47:12.614Z"
+    },
+    {
+      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
+      "style": "statement opening",
+      "timestamp": "2026-10-30T16:46:45.352Z"
+    },
+    {
+      "slug": "rebuilding-your-social-life-after-your-priorities-shift",
+      "style": "social proof / counter-claim opening",
+      "timestamp": "2026-10-30T16:46:16.701Z"
+    },
+    {
+      "slug": "a-boundary-map-for-ai-in-your-music-process",
+      "style": "statement opening",
+      "timestamp": "2026-10-30T16:45:47.731Z"
+    },
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
       "style": "quote opening",
@@ -843,46 +883,6 @@
       "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
       "style": "question opening",
       "timestamp": "2026-10-24T14:05:27.686Z"
-    },
-    {
-      "slug": "questions-worth-asking-an-artist-before-you-buy-original-work-online",
-      "style": "question opening",
-      "timestamp": "2026-10-24T14:04:59.812Z"
-    },
-    {
-      "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
-      "style": "statement opening",
-      "timestamp": "2026-10-24T14:04:27.935Z"
-    },
-    {
-      "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
-      "style": "statement opening",
-      "timestamp": "2026-10-22T15:29:56.773Z"
-    },
-    {
-      "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
-      "style": "statement opening",
-      "timestamp": "2026-10-22T15:29:07.493Z"
-    },
-    {
-      "slug": "the-perfectionism-trap-when-excellence-becomes-a-hiding-place-for-self-doubt",
-      "style": "statement opening",
-      "timestamp": "2026-10-22T15:28:28.082Z"
-    },
-    {
-      "slug": "flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
-      "style": "question opening",
-      "timestamp": "2026-10-22T15:27:57.954Z"
-    },
-    {
-      "slug": "the-decisions-ai-cannot-make-for-you-as-a-creator",
-      "style": "statement opening",
-      "timestamp": "2026-10-22T15:27:33.740Z"
-    },
-    {
-      "slug": "the-hour-you-lose-and-the-mood-you-carry-out-of-it",
-      "style": "social proof / counter-claim opening",
-      "timestamp": "2026-10-22T15:27:03.598Z"
     }
   ],
   "recentCTAPatterns": [],
