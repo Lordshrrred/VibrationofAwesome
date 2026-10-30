@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-29T20:44:18.867Z",
+  "lastUpdated": "2026-10-30T01:39:09.469Z",
   "recentHooks": [
     {
       "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-10-30T01:38:58.936Z"
+    },
+    {
       "slug": "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,18 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-10-24T18:25:22.325Z"
-    },
-    {
-      "slug": "why-finding-your-purpose-keeps-you-stuck",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-24T16:32:35.111Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "family": "art",
+      "timestamp": "2026-10-30T01:39:09.469Z"
+    },
     {
       "slug": "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
       "archetype": "abstract-creator-life",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "atmospheric",
       "family": "art",
       "timestamp": "2026-09-01T17:17:38.181Z"
-    },
-    {
-      "slug": "i-keep-choosing-comfort-and-regret-it-later",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-09-01T01:02:52.951Z"
     }
   ]
 }
