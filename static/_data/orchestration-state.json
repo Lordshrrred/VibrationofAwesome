@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-29T20:44:20.199Z",
+  "generated_at": "2026-10-30T01:38:08.015Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 14,
+      "draft_count": 13,
       "draft_slugs": [
         "building-a-lean-ai-stack-for-a-one-person-creative-studio",
         "defining-a-finish-line-for-each-work-session-before-you-start",
@@ -19,7 +19,6 @@
         "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
         "technology-as-a-tool-for-consciousness-not-unconsciousness",
         "the-pause-between-feeling-and-deciding-a-practical-window-for-better-choices",
-        "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
         "your-first-commission-how-to-brief-an-independent-artist-without-friction"
       ],
       "runway_days": 3,
@@ -34,6 +33,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
+        "title": "The Slow Leak: Noticing Work That Costs More Than It Gives",
+        "lane": "boom",
+        "date": "2026-10-30T01:38:07.988Z",
+        "url": "/blog/boom/posts/the-slow-leak-noticing-work-that-costs-more-than-it-gives",
+        "tags": [
+          "direction-purpose-drift"
+        ],
+        "cluster": "purpose-direction",
+        "content_type": null
+      },
       {
         "slug": "work-that-doesnt-cost-your-soul-checking-your-days-for-inner-erosion",
         "title": "Work That Doesn't Cost Your Soul: Checking Your Days for Inner Erosion",
@@ -261,21 +272,10 @@
         ],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-        "title": "Checking an Original Art Listing Before You Pay: Signs of Authenticity and Red Flags",
-        "lane": "boom",
-        "date": "2026-10-25T00:02:53.135Z",
-        "url": "/blog/boom/posts/checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-        "tags": [
-          "art-buyer-intent"
-        ],
-        "cluster": "art-buying-online",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-30",
       "2026-10-29",
       "2026-10-28",
       "2026-10-27",
@@ -432,11 +432,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-30",
+    "next_estimated_window": "2026-10-31",
     "published_counts": {
-      "boom": 392,
+      "boom": 393,
       "matt": 18,
-      "total": 410
+      "total": 411
     }
   },
   "syndication": {
@@ -36008,6 +36008,7 @@
       }
     },
     "post_to_cluster": {
+      "the-slow-leak-noticing-work-that-costs-more-than-it-gives": "purpose-direction",
       "work-that-doesnt-cost-your-soul-checking-your-days-for-inner-erosion": "spiritual-productivity",
       "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature": "authentic-self-expression",
       "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart": "nervous-system-creativity",
@@ -36414,7 +36415,7 @@
       "authentic-self-expression": 43,
       "creator-automation": 11,
       "spiritual-productivity": 23,
-      "purpose-direction": 15,
+      "purpose-direction": 16,
       "building-life-that-fits": 12,
       "emotional-regulation": 10,
       "art-buying-online": 20,
@@ -37882,11 +37883,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-29T20:44:20.199Z",
-    "next_estimated_window": "2026-10-30",
+    "as_of": "2026-10-30T01:38:08.015Z",
+    "next_estimated_window": "2026-10-31",
     "queue_runway_days": 3,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-10-30",
       "2026-10-29",
       "2026-10-28",
       "2026-10-27",
@@ -38051,6 +38053,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
+        "lane": "boom",
+        "date": "2026-10-30T01:38:07.988Z"
+      },
+      {
         "slug": "work-that-doesnt-cost-your-soul-checking-your-days-for-inner-erosion",
         "lane": "boom",
         "date": "2026-10-29T20:42:48.184Z"
@@ -38094,18 +38101,13 @@
         "slug": "questions-worth-asking-an-artist-before-you-buy-original-work-online",
         "lane": "boom",
         "date": "2026-10-27T20:16:52.285Z"
-      },
-      {
-        "slug": "emotional-intelligence-starts-in-your-body-not-your-head",
-        "lane": "boom",
-        "date": "2026-10-27T18:39:39.233Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-29T20:44:20.183Z",
-    "source_event": "retry",
-    "export_duration_ms": 16,
+    "last_export_at": "2026-10-30T01:38:07.997Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 18,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
