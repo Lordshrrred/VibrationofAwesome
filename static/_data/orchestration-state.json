@@ -1,17 +1,16 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-30T20:15:48.997Z",
+  "generated_at": "2026-10-31T01:26:35.686Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 18,
+      "draft_count": 17,
       "draft_slugs": [
         "a-boundary-map-for-ai-in-your-music-process",
         "defining-a-finish-line-for-each-work-session-before-you-start",
         "evolution-vs-erasure-learning-when-youre-growing-your-voice-versus-selling-it",
         "friction-design-making-the-pull-cost-you-a-few-seconds",
-        "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
         "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
         "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
         "rebuilding-your-social-life-after-your-priorities-shift",
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
+        "title": "Grieving the Path You're Leaving: What to Do With Loss When You Are Choosing Something New",
+        "lane": "boom",
+        "date": "2026-10-31T01:26:35.670Z",
+        "url": "/blog/boom/posts/grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
+        "tags": [
+          "misalignment-wrong-life"
+        ],
+        "cluster": "building-life-that-fits",
+        "content_type": null
+      },
       {
         "slug": "building-a-lean-ai-stack-for-a-one-person-creative-studio",
         "title": "Building a Lean AI Stack for a One-Person Creative Studio",
@@ -265,21 +276,10 @@
         ],
         "cluster": "dopamine-attention",
         "content_type": null
-      },
-      {
-        "slug": "the-decisions-ai-cannot-make-for-you-as-a-creator",
-        "title": "The Decisions AI Cannot Make For You as a Creator",
-        "lane": "boom",
-        "date": "2026-10-25T23:53:37.726Z",
-        "url": "/blog/boom/posts/the-decisions-ai-cannot-make-for-you-as-a-creator",
-        "tags": [
-          "ai-creator-tools"
-        ],
-        "cluster": "consciousness-technology",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-10-31",
       "2026-10-30",
       "2026-10-29",
       "2026-10-28",
@@ -437,11 +437,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-10-31",
+    "next_estimated_window": "2026-11-01",
     "published_counts": {
-      "boom": 396,
+      "boom": 397,
       "matt": 18,
-      "total": 414
+      "total": 415
     }
   },
   "syndication": {
@@ -36256,6 +36256,7 @@
       }
     },
     "post_to_cluster": {
+      "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new": "building-life-that-fits",
       "building-a-lean-ai-stack-for-a-one-person-creative-studio": "ai-creator-tools",
       "hanging-original-art-in-a-rental-without-damaging-the-walls": "art-buying-online",
       "the-pause-between-feeling-and-deciding-a-practical-window-for-better-choices": "emotional-regulation",
@@ -36667,7 +36668,7 @@
       "creator-automation": 11,
       "spiritual-productivity": 23,
       "purpose-direction": 16,
-      "building-life-that-fits": 12,
+      "building-life-that-fits": 13,
       "emotional-regulation": 11,
       "art-buying-online": 21,
       "consciousness-technology": 11
@@ -38134,11 +38135,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-30T20:15:48.997Z",
-    "next_estimated_window": "2026-10-31",
+    "as_of": "2026-10-31T01:26:35.686Z",
+    "next_estimated_window": "2026-11-01",
     "queue_runway_days": 4,
     "queue_runway_status": "healthy",
     "occupied_dates": [
+      "2026-10-31",
       "2026-10-30",
       "2026-10-29",
       "2026-10-28",
@@ -38304,6 +38306,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
+        "lane": "boom",
+        "date": "2026-10-31T01:26:35.670Z"
+      },
+      {
         "slug": "building-a-lean-ai-stack-for-a-one-person-creative-studio",
         "lane": "boom",
         "date": "2026-10-30T20:14:14.443Z"
@@ -38347,17 +38354,12 @@
         "slug": "presence-with-a-device-in-your-pocket-three-boundaries-that-hold",
         "lane": "boom",
         "date": "2026-10-28T20:37:51.171Z"
-      },
-      {
-        "slug": "batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
-        "lane": "boom",
-        "date": "2026-10-28T18:46:01.978Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-30T20:15:48.986Z",
-    "source_event": "retry",
+    "last_export_at": "2026-10-31T01:26:35.675Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 11,
     "schema_version": "1.0",
     "stale_after_minutes": 60
