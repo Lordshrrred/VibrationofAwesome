@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T06:11:39.790Z",
+  "generatedAt": "2026-10-31T12:58:55.114Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,21 +14,21 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 378,
-    "totalLivePosts": 415,
+    "totalTrackedPosts": 379,
+    "totalLivePosts": 416,
     "untrackedLivePosts": 37,
     "backlogPosts": 0,
     "backlinkCapableMissingUnits": 0,
-    "backlinkVerificationGaps": 17,
+    "backlinkVerificationGaps": 16,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 19,
+    "distributionIncompleteUnits": 17,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 147,
-    "completedBacklinkUnitsPerDay": 10.5,
+    "completedBacklinkUnitsInWindow": 150,
+    "completedBacklinkUnitsPerDay": 10.7,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 1.5,
+    "netBacklogChangePerDay": 1.3,
     "estimatedCatchUpDays": 0,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -38,37 +38,37 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 378,
-        "complete": 378,
+        "eligiblePosts": 379,
+        "complete": 379,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.5,
+        "averagePerDay": 3.6,
         "confirmed": 365,
-        "verificationGaps": 13,
+        "verificationGaps": 14,
         "mainBlocker": ""
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 378,
-        "complete": 378,
+        "eligiblePosts": 379,
+        "complete": 379,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.5,
-        "confirmed": 376,
-        "verificationGaps": 2,
+        "averagePerDay": 3.6,
+        "confirmed": 378,
+        "verificationGaps": 1,
         "mainBlocker": ""
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 378,
-        "complete": 378,
+        "eligiblePosts": 379,
+        "complete": 379,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 3.5,
-        "confirmed": 376,
-        "verificationGaps": 2,
+        "averagePerDay": 3.6,
+        "confirmed": 378,
+        "verificationGaps": 1,
         "mainBlocker": ""
       }
     ],
@@ -91,24 +91,24 @@
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
         "eligiblePosts": 295,
-        "complete": 294,
-        "missing": 1,
-        "successRate": 99.7,
-        "averagePerDay": 1.7,
+        "complete": 295,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 1.8,
         "confirmed": 142,
-        "verificationGaps": 152,
-        "mainBlocker": "env vars not set"
+        "verificationGaps": 153,
+        "mainBlocker": ""
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
         "eligiblePosts": 295,
-        "complete": 290,
-        "missing": 5,
-        "successRate": 98.3,
-        "averagePerDay": 1.7,
+        "complete": 291,
+        "missing": 4,
+        "successRate": 98.6,
+        "averagePerDay": 1.8,
         "confirmed": 142,
-        "verificationGaps": 148,
+        "verificationGaps": 149,
         "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
       },
       {
@@ -169,14 +169,6 @@
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
       "count": 4
-    },
-    {
-      "reason": "bluesky_voa: env vars not set",
-      "count": 1
-    },
-    {
-      "reason": "mastodon_voa: env vars not set",
-      "count": 1
     }
   ],
   "untrackedPosts": [

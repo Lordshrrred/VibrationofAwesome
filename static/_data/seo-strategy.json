@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-10-31T06:11:39.825Z",
+  "generatedAt": "2026-10-31T12:58:55.157Z",
   "keywordGeneration": {
-    "currentInventory": 17,
-    "publishedInventory": 474,
-    "estimatedDaysRemaining": 4.3,
+    "currentInventory": 16,
+    "publishedInventory": 475,
+    "estimatedDaysRemaining": 4,
     "publishingCadencePerDay": 4,
     "pauseThresholdDays": 60,
     "resumeThresholdDays": 21,
     "status": "running",
-    "reason": "4.3 publishing days of queue inventory remain. Curated expansion should continue."
+    "reason": "4 publishing days of queue inventory remain. Curated expansion should continue."
   },
   "backlinks": {
     "mode": "maintenance",
     "backlogPosts": 0,
     "backlogUnits": 0,
-    "completedPerDay": 10.5,
+    "completedPerDay": 10.7,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklinkUnitsPerDay": 1.5,
+    "netBacklinkUnitsPerDay": 1.3,
     "estimatedCatchUpDays": 0,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 19,
-    "verificationGaps": 17,
+    "distributionIncompleteUnits": 17,
+    "verificationGaps": 16,
     "freshPostsAwaitingBacklinks": 0,
     "freshMissingBacklinkUnits": 0,
     "largestDelayPlatform": "Facebook VOA",
@@ -31,37 +31,37 @@
         {
           "key": "blogger",
           "platform": "Blogger",
-          "eligiblePosts": 378,
-          "complete": 378,
+          "eligiblePosts": 379,
+          "complete": 379,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 3.5,
+          "averagePerDay": 3.6,
           "confirmed": 365,
-          "verificationGaps": 13,
+          "verificationGaps": 14,
           "mainBlocker": ""
         },
         {
           "key": "wordpress_earthstar",
           "platform": "WordPress",
-          "eligiblePosts": 378,
-          "complete": 378,
+          "eligiblePosts": 379,
+          "complete": 379,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 3.5,
-          "confirmed": 376,
-          "verificationGaps": 2,
+          "averagePerDay": 3.6,
+          "confirmed": 378,
+          "verificationGaps": 1,
           "mainBlocker": ""
         },
         {
           "key": "tumblr_voa",
           "platform": "Tumblr",
-          "eligiblePosts": 378,
-          "complete": 378,
+          "eligiblePosts": 379,
+          "complete": 379,
           "missing": 0,
           "successRate": 100,
-          "averagePerDay": 3.5,
-          "confirmed": 376,
-          "verificationGaps": 2,
+          "averagePerDay": 3.6,
+          "confirmed": 378,
+          "verificationGaps": 1,
           "mainBlocker": ""
         }
       ],
@@ -84,24 +84,24 @@
           "key": "bluesky_voa",
           "platform": "Bluesky VOA",
           "eligiblePosts": 295,
-          "complete": 294,
-          "missing": 1,
-          "successRate": 99.7,
-          "averagePerDay": 1.7,
+          "complete": 295,
+          "missing": 0,
+          "successRate": 100,
+          "averagePerDay": 1.8,
           "confirmed": 142,
-          "verificationGaps": 152,
-          "mainBlocker": "env vars not set"
+          "verificationGaps": 153,
+          "mainBlocker": ""
         },
         {
           "key": "mastodon_voa",
           "platform": "Mastodon VOA",
           "eligiblePosts": 295,
-          "complete": 290,
-          "missing": 5,
-          "successRate": 98.3,
-          "averagePerDay": 1.7,
+          "complete": 291,
+          "missing": 4,
+          "successRate": 98.6,
+          "averagePerDay": 1.8,
           "confirmed": 142,
-          "verificationGaps": 148,
+          "verificationGaps": 149,
           "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
         },
         {
@@ -162,14 +162,6 @@
       {
         "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
         "count": 4
-      },
-      {
-        "reason": "bluesky_voa: env vars not set",
-        "count": 1
-      },
-      {
-        "reason": "mastodon_voa: env vars not set",
-        "count": 1
       }
     ],
     "definitions": {
