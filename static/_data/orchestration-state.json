@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-31T06:45:11.670Z",
+  "generated_at": "2026-10-31T17:35:53.059Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
         "a-boundary-map-for-ai-in-your-music-process",
         "defining-a-finish-line-for-each-work-session-before-you-start",
@@ -15,7 +15,6 @@
         "rebuilding-your-social-life-after-your-priorities-shift",
         "setting-a-decision-date-that-protects-your-calm",
         "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
-        "technology-as-a-tool-for-consciousness-not-unconsciousness",
         "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
         "the-creative-blank-after-a-long-stimulation-streak",
         "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
@@ -24,7 +23,7 @@
         "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
         "your-first-commission-how-to-brief-an-independent-artist-without-friction"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
+        "title": "Technology as a Tool for Consciousness (Not Unconsciousness)",
+        "lane": "boom",
+        "date": "2026-10-31T17:35:53.032Z",
+        "url": "/blog/boom/posts/technology-as-a-tool-for-consciousness-not-unconsciousness",
+        "tags": [
+          "ai-creator-tools"
+        ],
+        "cluster": "consciousness-technology",
+        "content_type": null
+      },
       {
         "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
         "title": "Leverage or Abdication: How to Tell When Automation Is Replacing You",
@@ -263,18 +274,6 @@
         ],
         "cluster": "authentic-self-expression",
         "content_type": null
-      },
-      {
-        "slug": "flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
-        "title": "Flow Requires Safety First: Why Anxious People Can't Access Their Best Ideas",
-        "lane": "boom",
-        "date": "2026-10-26T19:08:05.837Z",
-        "url": "/blog/boom/posts/flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
-        "tags": [
-          "nervous-system-dysregulation"
-        ],
-        "cluster": "nervous-system-creativity",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -438,9 +437,9 @@
     ],
     "next_estimated_window": "2026-11-01",
     "published_counts": {
-      "boom": 398,
+      "boom": 399,
       "matt": 18,
-      "total": 416
+      "total": 417
     }
   },
   "syndication": {
@@ -36376,6 +36375,7 @@
       }
     },
     "post_to_cluster": {
+      "technology-as-a-tool-for-consciousness-not-unconsciousness": "consciousness-technology",
       "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you": "creator-automation",
       "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new": "building-life-that-fits",
       "building-a-lean-ai-stack-for-a-one-person-creative-studio": "ai-creator-tools",
@@ -36792,7 +36792,7 @@
       "building-life-that-fits": 13,
       "emotional-regulation": 11,
       "art-buying-online": 21,
-      "consciousness-technology": 11
+      "consciousness-technology": 12
     },
     "unassigned_post_count": 12
   },
@@ -38256,9 +38256,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-31T06:45:11.670Z",
+    "as_of": "2026-10-31T17:35:53.059Z",
     "next_estimated_window": "2026-11-01",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-10-31",
@@ -38427,6 +38427,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
+        "lane": "boom",
+        "date": "2026-10-31T17:35:53.032Z"
+      },
+      {
         "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
         "lane": "boom",
         "date": "2026-10-31T06:43:35.694Z"
@@ -38470,18 +38475,13 @@
         "slug": "frozen-at-the-blank-page-telling-fear-fatigue-and-unclear-next-steps-apart",
         "lane": "boom",
         "date": "2026-10-29T06:48:58.645Z"
-      },
-      {
-        "slug": "where-your-switching-tax-actually-comes-from",
-        "lane": "boom",
-        "date": "2026-10-29T01:36:44.993Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-31T06:45:11.649Z",
-    "source_event": "retry",
-    "export_duration_ms": 21,
+    "last_export_at": "2026-10-31T17:35:53.041Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 18,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
