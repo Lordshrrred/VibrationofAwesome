@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-31T01:27:37.028Z",
+  "lastUpdated": "2026-10-31T06:45:10.914Z",
   "recentHooks": [
     {
       "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-10-31T06:45:10.914Z"
+    },
+    {
+      "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-10-31T06:44:28.706Z"
+    },
+    {
+      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
@@ -1138,24 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-10-25T23:56:19.117Z"
-    },
-    {
-      "slug": "the-decisions-ai-cannot-make-for-you-as-a-creator",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-25T23:54:32.580Z"
-    },
-    {
-      "slug": "sorting-your-content-tasks-which-to-automate-and-which-need-your-hands",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-25T18:36:19.189Z"
     }
   ],
   "recentInstagramArchetypes": [
