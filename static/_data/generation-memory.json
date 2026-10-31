@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-30T20:15:48.170Z",
+  "lastUpdated": "2026-10-31T01:27:37.028Z",
   "recentHooks": [
     {
       "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-10-31T01:27:26.273Z"
+    },
+    {
       "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-10-25T18:36:19.189Z"
-    },
-    {
-      "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-25T17:03:38.217Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-10-31T01:27:37.028Z"
+    },
     {
       "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
       "archetype": "sacred-tech",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "mystical",
       "family": "art",
       "timestamp": "2026-09-02T17:08:01.417Z"
-    },
-    {
-      "slug": "how-to-calm-an-overstimulated-body",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-09-01T23:51:56.315Z"
     }
   ]
 }
