@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-10-31T06:45:10.914Z",
+  "lastUpdated": "2026-10-31T17:41:06.157Z",
   "recentHooks": [
     {
       "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
@@ -888,6 +888,24 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-10-31T17:41:06.157Z"
+    },
+    {
+      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-10-31T17:36:44.076Z"
+    },
+    {
       "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1138,27 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-10-26T05:51:36.490Z"
-    },
-    {
-      "slug": "the-hour-you-lose-and-the-mood-you-carry-out-of-it",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-26T05:50:51.458Z"
-    },
-    {
-      "slug": "noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-25T23:56:19.117Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-10-31T17:37:07.126Z"
+    },
     {
       "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
       "archetype": "minimalist-philosophy",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-09-02T23:54:46.112Z"
-    },
-    {
-      "slug": "what-it-means-to-outgrow-an-identity",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-09-02T17:08:01.417Z"
     }
   ]
 }
