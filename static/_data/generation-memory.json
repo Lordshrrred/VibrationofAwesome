@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-01T00:46:46.020Z",
+  "lastUpdated": "2026-11-01T07:13:32.313Z",
   "recentHooks": [
     {
       "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-11-01T07:13:32.313Z"
+    },
+    {
+      "slug": "evolution-vs-erasure-learning-when-youre-growing-your-voice-versus-selling-it",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-11-01T07:12:48.596Z"
+    },
+    {
+      "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
       "density": "medium-dense",
@@ -1138,24 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-10-27T06:04:47.538Z"
-    },
-    {
-      "slug": "doubt-after-the-commitment-staying-put-or-quitting-well",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-27T06:03:53.922Z"
-    },
-    {
-      "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-27T01:15:00.484Z"
     }
   ],
   "recentInstagramArchetypes": [
