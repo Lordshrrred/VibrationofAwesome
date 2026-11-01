@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-31T19:38:01.211Z",
+  "generated_at": "2026-11-01T00:44:42.353Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 14,
+      "draft_count": 13,
       "draft_slugs": [
         "a-boundary-map-for-ai-in-your-music-process",
         "defining-a-finish-line-for-each-work-session-before-you-start",
@@ -13,7 +13,6 @@
         "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
         "rebuilding-your-social-life-after-your-priorities-shift",
         "setting-a-decision-date-that-protects-your-calm",
-        "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
         "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
         "the-creative-blank-after-a-long-stimulation-streak",
         "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
@@ -34,6 +33,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
+        "title": "Starting From the Floor: A Low-Stakes Entry Ritual for Tense Bodies",
+        "lane": "boom",
+        "date": "2026-11-01T00:44:42.326Z",
+        "url": "/blog/boom/posts/starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "nervous-system-creativity",
+        "content_type": null
+      },
       {
         "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
         "title": "Friction Design: Making the Pull Cost You a Few Seconds",
@@ -261,21 +272,10 @@
         ],
         "cluster": "purpose-direction",
         "content_type": null
-      },
-      {
-        "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
-        "title": "The Slow Spiritual Damage of Work That Doesn't Fit You",
-        "lane": "boom",
-        "date": "2026-10-27T01:14:09.663Z",
-        "url": "/blog/boom/posts/the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
-        "tags": [
-          "direction-purpose-drift"
-        ],
-        "cluster": "spiritual-productivity",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-11-01",
       "2026-10-31",
       "2026-10-30",
       "2026-10-29",
@@ -434,11 +434,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-11-01",
+    "next_estimated_window": "2026-11-02",
     "published_counts": {
-      "boom": 400,
+      "boom": 401,
       "matt": 18,
-      "total": 418
+      "total": 419
     }
   },
   "syndication": {
@@ -36496,6 +36496,7 @@
       }
     },
     "post_to_cluster": {
+      "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies": "nervous-system-creativity",
       "friction-design-making-the-pull-cost-you-a-few-seconds": "dopamine-attention",
       "technology-as-a-tool-for-consciousness-not-unconsciousness": "consciousness-technology",
       "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you": "creator-automation",
@@ -36905,7 +36906,7 @@
     },
     "saturation": {
       "ai-creator-tools": 188,
-      "nervous-system-creativity": 41,
+      "nervous-system-creativity": 42,
       "dopamine-attention": 26,
       "authentic-self-expression": 43,
       "creator-automation": 12,
@@ -38378,11 +38379,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-10-31T19:38:01.211Z",
-    "next_estimated_window": "2026-11-01",
+    "as_of": "2026-11-01T00:44:42.353Z",
+    "next_estimated_window": "2026-11-02",
     "queue_runway_days": 3,
     "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-11-01",
       "2026-10-31",
       "2026-10-30",
       "2026-10-29",
@@ -38549,6 +38551,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
+        "lane": "boom",
+        "date": "2026-11-01T00:44:42.326Z"
+      },
+      {
         "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
         "lane": "boom",
         "date": "2026-10-31T19:36:23.933Z"
@@ -38592,17 +38599,12 @@
         "slug": "work-that-doesnt-cost-your-soul-checking-your-days-for-inner-erosion",
         "lane": "boom",
         "date": "2026-10-29T20:42:48.184Z"
-      },
-      {
-        "slug": "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
-        "lane": "boom",
-        "date": "2026-10-29T18:54:13.965Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-10-31T19:38:01.192Z",
-    "source_event": "retry",
+    "last_export_at": "2026-11-01T00:44:42.334Z",
+    "source_event": "drip_publish",
     "export_duration_ms": 19,
     "schema_version": "1.0",
     "stale_after_minutes": 60
