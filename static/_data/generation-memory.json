@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-01T16:58:57.548Z",
+  "lastUpdated": "2026-11-01T18:21:43.792Z",
   "recentHooks": [
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-11-01T18:21:32.444Z"
+    },
+    {
       "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,18 +1156,19 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-10-27T18:40:53.477Z"
-    },
-    {
-      "slug": "the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-27T06:04:47.538Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-11-01T18:21:43.792Z"
+    },
     {
       "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
       "archetype": "nervous-system-atmospheric",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "grounded",
       "family": "art",
       "timestamp": "2026-09-03T23:52:54.318Z"
-    },
-    {
-      "slug": "i-feel-disconnected-from-myself",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "family": "art",
-      "timestamp": "2026-09-03T17:00:53.787Z"
     }
   ]
 }
