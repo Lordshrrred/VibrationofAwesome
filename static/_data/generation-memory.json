@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-02T01:20:24.472Z",
+  "lastUpdated": "2026-11-02T07:24:37.324Z",
   "recentHooks": [
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-11-02T07:24:37.324Z"
+    },
+    {
+      "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-11-02T07:23:54.938Z"
+    },
+    {
+      "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1138,24 +1156,6 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-10-28T06:42:46.496Z"
-    },
-    {
-      "slug": "deciding-when-everyone-else-has-an-opinion-separating-your-signal-from-their-worry",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-28T06:42:00.777Z"
-    },
-    {
-      "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-28T01:01:46.138Z"
     }
   ],
   "recentInstagramArchetypes": [
