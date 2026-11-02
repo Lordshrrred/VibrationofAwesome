@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-02T22:16:20.767Z",
+  "lastUpdated": "2026-11-02T23:18:02.821Z",
   "recentHooks": [
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "rebuilding-your-social-life-after-your-priorities-shift",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-11-02T23:18:02.821Z"
+    },
+    {
       "slug": "a-boundary-map-for-ai-in-your-music-process",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,15 +1156,6 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-10-28T20:39:32.013Z"
-    },
-    {
-      "slug": "batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-28T18:47:39.775Z"
     }
   ],
   "recentInstagramArchetypes": [
