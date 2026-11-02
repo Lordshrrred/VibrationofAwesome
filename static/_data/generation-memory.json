@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-02T07:24:37.324Z",
+  "lastUpdated": "2026-11-02T22:16:20.767Z",
   "recentHooks": [
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "a-boundary-map-for-ai-in-your-music-process",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-11-02T22:16:02.597Z"
+    },
+    {
       "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1147,18 +1156,19 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-10-28T18:47:39.775Z"
-    },
-    {
-      "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-28T06:42:46.496Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "a-boundary-map-for-ai-in-your-music-process",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-11-02T22:16:20.767Z"
+    },
     {
       "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
       "archetype": "cinematic-ideogram",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-09-04T23:48:35.868Z"
-    },
-    {
-      "slug": "porn-is-ruining-my-motivation",
-      "archetype": "cinematic-ideogram",
-      "archetypeLabel": "Cinematic Artwork",
-      "palette": "painterly-dark",
-      "emotionalTone": "liminal",
-      "emotionalCluster": "atmospheric",
-      "family": "art",
-      "timestamp": "2026-09-04T16:49:34.200Z"
     }
   ]
 }
