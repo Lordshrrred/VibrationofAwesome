@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-01T19:56:58.150Z",
+  "lastUpdated": "2026-11-02T01:20:24.472Z",
   "recentHooks": [
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-11-02T01:20:11.455Z"
+    },
+    {
       "slug": "setting-a-decision-date-that-protects-your-calm",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-10-28T01:01:46.138Z"
-    },
-    {
-      "slug": "questions-worth-asking-an-artist-before-you-buy-original-work-online",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-10-27T20:17:41.528Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "family": "art",
+      "timestamp": "2026-11-02T01:20:24.472Z"
+    },
     {
       "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
       "archetype": "symbolic-consciousness",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "atmospheric",
       "family": "art",
       "timestamp": "2026-09-04T16:49:34.200Z"
-    },
-    {
-      "slug": "self-trust-exercises-that-are-not-cheesy",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-09-03T23:52:54.318Z"
     }
   ]
 }
