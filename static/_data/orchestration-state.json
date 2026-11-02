@@ -1,13 +1,12 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-02T07:24:38.275Z",
+  "generated_at": "2026-11-02T22:15:12.334Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
-        "a-boundary-map-for-ai-in-your-music-process",
         "choosing-art-by-room-how-bedrooms-and-living-rooms-ask-for-different-work",
         "comparison-is-not-information-reading-your-feed-without-losing-your-lane",
         "human-meaning-in-a-world-of-capable-machines-a-working-answer",
@@ -24,7 +23,7 @@
         "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
         "writing-your-own-measure-of-a-good-year-when-you-inherited-someone-elses"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "a-boundary-map-for-ai-in-your-music-process",
+        "title": "A Boundary Map for AI in Your Music Process",
+        "lane": "boom",
+        "date": "2026-11-02T22:15:12.307Z",
+        "url": "/blog/boom/posts/a-boundary-map-for-ai-in-your-music-process",
+        "tags": [
+          "ai-creator-tools"
+        ],
+        "cluster": "ai-creator-tools",
+        "content_type": null
+      },
       {
         "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
         "title": "Your First Commission: How to Brief an Independent Artist Without Friction",
@@ -263,18 +274,6 @@
         ],
         "cluster": "consciousness-technology",
         "content_type": null
-      },
-      {
-        "slug": "batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
-        "title": "Batching Admin So It Stops Eating the Hours You Need for Making",
-        "lane": "boom",
-        "date": "2026-10-28T18:46:01.978Z",
-        "url": "/blog/boom/posts/batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
-        "tags": [
-          "ai-creator-tools"
-        ],
-        "cluster": "creator-automation",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -440,9 +439,9 @@
     ],
     "next_estimated_window": "2026-11-03",
     "published_counts": {
-      "boom": 406,
+      "boom": 407,
       "matt": 18,
-      "total": 424
+      "total": 425
     }
   },
   "syndication": {
@@ -36865,6 +36864,7 @@
       }
     },
     "post_to_cluster": {
+      "a-boundary-map-for-ai-in-your-music-process": "ai-creator-tools",
       "your-first-commission-how-to-brief-an-independent-artist-without-friction": "art-buying-online",
       "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed": "emotional-regulation",
       "setting-a-decision-date-that-protects-your-calm": "purpose-direction",
@@ -37279,7 +37279,7 @@
       "indigo-children-abilities": "purpose-direction"
     },
     "saturation": {
-      "ai-creator-tools": 188,
+      "ai-creator-tools": 189,
       "nervous-system-creativity": 42,
       "dopamine-attention": 26,
       "authentic-self-expression": 44,
@@ -38753,9 +38753,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-11-02T07:24:38.275Z",
+    "as_of": "2026-11-02T22:15:12.334Z",
     "next_estimated_window": "2026-11-03",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-11-02",
@@ -38926,6 +38926,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "a-boundary-map-for-ai-in-your-music-process",
+        "lane": "boom",
+        "date": "2026-11-02T22:15:12.307Z"
+      },
+      {
         "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
         "lane": "boom",
         "date": "2026-11-02T07:22:59.536Z"
@@ -38969,18 +38974,13 @@
         "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
         "lane": "boom",
         "date": "2026-10-31T06:43:35.694Z"
-      },
-      {
-        "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
-        "lane": "boom",
-        "date": "2026-10-31T01:26:35.670Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-11-02T07:24:38.256Z",
-    "source_event": "retry",
-    "export_duration_ms": 19,
+    "last_export_at": "2026-11-02T22:15:12.316Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 18,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
