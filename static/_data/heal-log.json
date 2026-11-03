@@ -1,27 +1,5 @@
 [
   {
-    "healedAt": "2026-06-09T10:45:00.212Z",
-    "trigger": "scheduled",
-    "failedRunUrl": null,
-    "tier1": {
-      "healed": false,
-      "detail": "No em dashes found."
-    },
-    "tier2": [
-      {
-        "checkName": "Blogger token refresh",
-        "diagnosis": "OAuth2 refresh token has expired or been revoked by Google, preventing new access token generation.",
-        "fix_type": "token_expired",
-        "confidence": "high",
-        "action": {
-          "token_name": "BLOGGER_REFRESH_TOKEN",
-          "renewal_command": "npm run blogger-token"
-        }
-      }
-    ],
-    "retriggered": false
-  },
-  {
     "healedAt": "2026-06-10T11:07:31.953Z",
     "trigger": "scheduled",
     "failedRunUrl": null,
@@ -1250,6 +1228,20 @@
       "detail": "Replaced em dashes with ~ in 1 file(s): static/blog/boom/drafts/rebuilding-your-social-life-after-your-priorities-shift.html",
       "files": [
         "static/blog/boom/drafts/rebuilding-your-social-life-after-your-priorities-shift.html"
+      ]
+    },
+    "tier2": [],
+    "retriggered": true
+  },
+  {
+    "healedAt": "2026-11-03T20:06:12.163Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/41708489413",
+    "tier1": {
+      "healed": true,
+      "detail": "Replaced em dashes with ~ in 1 file(s): static/blog/boom/drafts/burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit.html",
+      "files": [
+        "static/blog/boom/drafts/burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit.html"
       ]
     },
     "tier2": [],
