@@ -4,8 +4,64 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-03T07:40:52.036Z",
+  "lastUpdated": "2026-11-03T18:03:12.123Z",
   "recentHooks": [
+    {
+      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "niche": "misalignment-wrong-life",
+      "cluster": "building-life-that-fits",
+      "hook": "Sunday night, your chest tightens. By Wednesday you are counting hours. You took a long weekend last month, slept ten hours, even did the nature walk thing, and on Monday morning the heaviness walked ",
+      "timestamp": "2026-11-03T18:03:12.123Z"
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "Picture a song on your hard drive that sounds finished, was finished in eleven minutes, and has nothing of you in it. You can hear it. You just can't point to a single moment where you decided anythin",
+      "timestamp": "2026-11-03T18:02:02.361Z"
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "hook": "The print looked stunning on your screen. The colors had depth, the image pulled you in, and you paid for it because it actually moved you. Then it came out of the tube, went into a store-bought frame",
+      "timestamp": "2026-11-03T18:01:07.632Z"
+    },
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "emotional-regulation",
+      "hook": "Blunt claim: \"calm down\" is terrible decision advice.",
+      "timestamp": "2026-11-03T18:00:29.352Z"
+    },
+    {
+      "slug": "finding-your-own-values-after-years-of-borrowed-goals",
+      "niche": "direction-purpose-drift",
+      "cluster": "purpose-direction",
+      "hook": "You got the degree, the job, the apartment, maybe the relationship, and every box was checked by someone else's pencil. Now someone asks what you want, and you hear nothing. Not a wrong answer. Nothin",
+      "timestamp": "2026-11-03T17:59:54.794Z"
+    },
+    {
+      "slug": "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "hook": "Picture a Tuesday morning. The alarm goes off, your body feels like wet cement, and the routine you copied last month is sitting on your phone asking for a cold plunge, ten minutes of journaling, a gr",
+      "timestamp": "2026-11-03T17:59:21.449Z"
+    },
+    {
+      "slug": "finding-a-specific-voice-through-refusal",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "hook": "Quick question: what would you never put your name on?",
+      "timestamp": "2026-11-03T17:58:25.300Z"
+    },
+    {
+      "slug": "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "hook": "You sit at the desk for two hours, forcing it, and get nothing. Then you step into the shower, or wait in line for coffee, or walk to the mailbox, and the idea you needed shows up fully formed. By the",
+      "timestamp": "2026-11-03T17:57:51.910Z"
+    },
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
       "niche": "ai-creator-tools",
@@ -159,65 +215,65 @@
       "cluster": "nervous-system-creativity",
       "hook": "Picture the setup: the studio is clean, the coffee is hot, and your shoulders are somewhere up around your ears. Your jaw is locked. There is a knot in your stomach that wasn't there yesterday. You te",
       "timestamp": "2026-10-28T16:47:20.882Z"
-    },
-    {
-      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
-      "niche": "ai-creator-tools",
-      "cluster": "consciousness-technology",
-      "hook": "Counter-intuitive claim: the problem with your screen time is not the screen. It is that most of it happens without anyone deciding to be there.",
-      "timestamp": "2026-10-28T16:46:42.932Z"
-    },
-    {
-      "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
-      "niche": "dopamine-addiction-numbing",
-      "cluster": "dopamine-attention",
-      "hook": "Counter-intuitive claim: the apps are not the problem you need to solve. The distance between your thumb and the app is.",
-      "timestamp": "2026-10-28T16:46:12.758Z"
-    },
-    {
-      "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
-      "niche": "ai-creator-tools",
-      "cluster": "creator-automation",
-      "hook": "A fan replies to your scheduled post with something real, and the answer that comes back is warm, polite, and empty. You didn't write it. You didn't see it. Three weeks later you notice the person nev",
-      "timestamp": "2026-10-26T16:57:49.530Z"
-    },
-    {
-      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
-      "niche": "misalignment-wrong-life",
-      "cluster": "building-life-that-fits",
-      "hook": "It is a strange kind of sad. You made the call. You wanted the change. And still, you are standing in your kitchen at 7am, missing the commute, the title, the badge on your lanyard, the version of you",
-      "timestamp": "2026-10-26T16:56:43.701Z"
-    },
-    {
-      "slug": "building-a-lean-ai-stack-for-a-one-person-creative-studio",
-      "niche": "ai-creator-tools",
-      "cluster": "ai-creator-tools",
-      "hook": "Check your card statement right now. If you find three tools that all promise to \"enhance your workflow,\" and you can't say what any of them did for you last week, that's your first clue. The problem ",
-      "timestamp": "2026-10-26T16:55:29.475Z"
-    },
-    {
-      "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
-      "niche": "art-buyer-intent",
-      "cluster": "art-buying-online",
-      "hook": "A blank wall in a rental is a quiet kind of loneliness. You love the painting you found. Your lease says no nails, no screws, no holes, and the landlord's inspection photos are already in a folder som",
-      "timestamp": "2026-10-26T16:54:17.465Z"
-    },
-    {
-      "slug": "the-pause-between-feeling-and-deciding-a-practical-window-for-better-choices",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "hook": "You know the exact second it happens. Your thumb is hovering over \"send\" on a message that is half truth and half heat. Or the cart is full at 11:40pm. Or the project you loved on Monday suddenly look",
-      "timestamp": "2026-10-26T16:53:37.093Z"
-    },
-    {
-      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "hook": "Nothing is on fire. Nobody yelled at you. The paycheck clears. And still, somewhere around Tuesday, you start doing math on how many days are left until the weekend.",
-      "timestamp": "2026-10-26T16:52:49.556Z"
     }
   ],
   "recentTitles": [
+    {
+      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "niche": "misalignment-wrong-life",
+      "cluster": "building-life-that-fits",
+      "title": "Burnout or Wrong Role? Practical Ways to Tell the Difference Before You Quit",
+      "timestamp": "2026-11-03T18:03:12.123Z"
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "Using AI as a Sketchpad, Not a Final Draft",
+      "timestamp": "2026-11-03T18:02:02.361Z"
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "title": "Framing a Digital Print So It Reads as Deliberate Art Rather Than a Poster",
+      "timestamp": "2026-11-03T18:01:07.632Z"
+    },
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "emotional-regulation",
+      "title": "Name It to Tame It? Testing the Labeling Habit on a Real Decision",
+      "timestamp": "2026-11-03T18:00:29.352Z"
+    },
+    {
+      "slug": "finding-your-own-values-after-years-of-borrowed-goals",
+      "niche": "direction-purpose-drift",
+      "cluster": "purpose-direction",
+      "title": "Finding Your Own Values After Years of Borrowed Goals",
+      "timestamp": "2026-11-03T17:59:54.794Z"
+    },
+    {
+      "slug": "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
+      "niche": "direction-purpose-drift",
+      "cluster": "spiritual-productivity",
+      "title": "A Morning Check-In That Shapes the Day Without a Rigid Routine",
+      "timestamp": "2026-11-03T17:59:21.449Z"
+    },
+    {
+      "slug": "finding-a-specific-voice-through-refusal",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "title": "Finding a Specific Voice Through Refusal",
+      "timestamp": "2026-11-03T17:58:25.300Z"
+    },
+    {
+      "slug": "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "title": "Engineering Idle Time: Designing Low-Demand Moments That Feed Your Ideas",
+      "timestamp": "2026-11-03T17:57:51.910Z"
+    },
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
       "niche": "ai-creator-tools",
@@ -371,65 +427,49 @@
       "cluster": "nervous-system-creativity",
       "title": "Starting From the Floor: A Low-Stakes Entry Ritual for Tense Bodies",
       "timestamp": "2026-10-28T16:47:20.882Z"
-    },
-    {
-      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
-      "niche": "ai-creator-tools",
-      "cluster": "consciousness-technology",
-      "title": "Technology as a Tool for Consciousness (Not Unconsciousness)",
-      "timestamp": "2026-10-28T16:46:42.932Z"
-    },
-    {
-      "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
-      "niche": "dopamine-addiction-numbing",
-      "cluster": "dopamine-attention",
-      "title": "Friction Design: Making the Pull Cost You a Few Seconds",
-      "timestamp": "2026-10-28T16:46:12.758Z"
-    },
-    {
-      "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
-      "niche": "ai-creator-tools",
-      "cluster": "creator-automation",
-      "title": "Leverage or Abdication: How to Tell When Automation Is Replacing You",
-      "timestamp": "2026-10-26T16:57:49.530Z"
-    },
-    {
-      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
-      "niche": "misalignment-wrong-life",
-      "cluster": "building-life-that-fits",
-      "title": "Grieving the Path You're Leaving: What to Do With Loss When You Are Choosing Something New",
-      "timestamp": "2026-10-26T16:56:43.701Z"
-    },
-    {
-      "slug": "building-a-lean-ai-stack-for-a-one-person-creative-studio",
-      "niche": "ai-creator-tools",
-      "cluster": "ai-creator-tools",
-      "title": "Building a Lean AI Stack for a One-Person Creative Studio",
-      "timestamp": "2026-10-26T16:55:29.475Z"
-    },
-    {
-      "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
-      "niche": "art-buyer-intent",
-      "cluster": "art-buying-online",
-      "title": "Hanging Original Art in a Rental Without Damaging the Walls",
-      "timestamp": "2026-10-26T16:54:17.465Z"
-    },
-    {
-      "slug": "the-pause-between-feeling-and-deciding-a-practical-window-for-better-choices",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "title": "The Pause Between Feeling and Deciding: A Practical Window for Better Choices",
-      "timestamp": "2026-10-26T16:53:37.093Z"
-    },
-    {
-      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "title": "The Slow Leak: Noticing Work That Costs More Than It Gives",
-      "timestamp": "2026-10-26T16:52:49.556Z"
     }
   ],
   "recentNarrativeStructures": [
+    {
+      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-03T18:03:12.123Z"
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-03T18:02:02.361Z"
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-03T18:01:07.632Z"
+    },
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-03T18:00:29.352Z"
+    },
+    {
+      "slug": "finding-your-own-values-after-years-of-borrowed-goals",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-03T17:59:54.794Z"
+    },
+    {
+      "slug": "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-03T17:59:21.449Z"
+    },
+    {
+      "slug": "finding-a-specific-voice-through-refusal",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-03T17:58:25.300Z"
+    },
+    {
+      "slug": "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-03T17:57:51.910Z"
+    },
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
       "structure": "numbered-list with subheadings",
@@ -539,49 +579,49 @@
       "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
       "structure": "bullet-list driven with multiple sections",
       "timestamp": "2026-10-28T16:47:20.882Z"
-    },
-    {
-      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-28T16:46:42.932Z"
-    },
-    {
-      "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-10-28T16:46:12.758Z"
-    },
-    {
-      "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
-      "structure": "numbered-list with subheadings",
-      "timestamp": "2026-10-26T16:57:49.530Z"
-    },
-    {
-      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-10-26T16:56:43.701Z"
-    },
-    {
-      "slug": "building-a-lean-ai-stack-for-a-one-person-creative-studio",
-      "structure": "numbered-list with subheadings",
-      "timestamp": "2026-10-26T16:55:29.475Z"
-    },
-    {
-      "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-26T16:54:17.465Z"
-    },
-    {
-      "slug": "the-pause-between-feeling-and-deciding-a-practical-window-for-better-choices",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-26T16:53:37.093Z"
-    },
-    {
-      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-26T16:52:49.556Z"
     }
   ],
   "recentEmotionalArcs": [
+    {
+      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-11-03T18:03:12.123Z"
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-11-03T18:02:02.361Z"
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-11-03T18:01:07.632Z"
+    },
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-11-03T18:00:29.352Z"
+    },
+    {
+      "slug": "finding-your-own-values-after-years-of-borrowed-goals",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-11-03T17:59:54.794Z"
+    },
+    {
+      "slug": "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-11-03T17:59:21.449Z"
+    },
+    {
+      "slug": "finding-a-specific-voice-through-refusal",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-11-03T17:58:25.300Z"
+    },
+    {
+      "slug": "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-11-03T17:57:51.910Z"
+    },
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
       "arc": "neutral-open → action close",
@@ -691,49 +731,49 @@
       "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
       "arc": "neutral-open → action close",
       "timestamp": "2026-10-28T16:47:20.882Z"
-    },
-    {
-      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-28T16:46:42.932Z"
-    },
-    {
-      "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-28T16:46:12.758Z"
-    },
-    {
-      "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-26T16:57:49.530Z"
-    },
-    {
-      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-10-26T16:56:43.701Z"
-    },
-    {
-      "slug": "building-a-lean-ai-stack-for-a-one-person-creative-studio",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-26T16:55:29.475Z"
-    },
-    {
-      "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-26T16:54:17.465Z"
-    },
-    {
-      "slug": "the-pause-between-feeling-and-deciding-a-practical-window-for-better-choices",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-26T16:53:37.093Z"
-    },
-    {
-      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-26T16:52:49.556Z"
     }
   ],
   "recentOpeningStyles": [
+    {
+      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "style": "statement opening",
+      "timestamp": "2026-11-03T18:03:12.123Z"
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "style": "statement opening",
+      "timestamp": "2026-11-03T18:02:02.361Z"
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "style": "statement opening",
+      "timestamp": "2026-11-03T18:01:07.632Z"
+    },
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "style": "statement opening",
+      "timestamp": "2026-11-03T18:00:29.352Z"
+    },
+    {
+      "slug": "finding-your-own-values-after-years-of-borrowed-goals",
+      "style": "statement opening",
+      "timestamp": "2026-11-03T17:59:54.794Z"
+    },
+    {
+      "slug": "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
+      "style": "statement opening",
+      "timestamp": "2026-11-03T17:59:21.449Z"
+    },
+    {
+      "slug": "finding-a-specific-voice-through-refusal",
+      "style": "question opening",
+      "timestamp": "2026-11-03T17:58:25.300Z"
+    },
+    {
+      "slug": "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
+      "style": "statement opening",
+      "timestamp": "2026-11-03T17:57:51.910Z"
+    },
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
       "style": "statement opening",
@@ -843,46 +883,6 @@
       "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
       "style": "statement opening",
       "timestamp": "2026-10-28T16:47:20.882Z"
-    },
-    {
-      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
-      "style": "statement opening",
-      "timestamp": "2026-10-28T16:46:42.932Z"
-    },
-    {
-      "slug": "friction-design-making-the-pull-cost-you-a-few-seconds",
-      "style": "statement opening",
-      "timestamp": "2026-10-28T16:46:12.758Z"
-    },
-    {
-      "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
-      "style": "statement opening",
-      "timestamp": "2026-10-26T16:57:49.530Z"
-    },
-    {
-      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
-      "style": "statement opening",
-      "timestamp": "2026-10-26T16:56:43.701Z"
-    },
-    {
-      "slug": "building-a-lean-ai-stack-for-a-one-person-creative-studio",
-      "style": "statement opening",
-      "timestamp": "2026-10-26T16:55:29.475Z"
-    },
-    {
-      "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
-      "style": "statement opening",
-      "timestamp": "2026-10-26T16:54:17.465Z"
-    },
-    {
-      "slug": "the-pause-between-feeling-and-deciding-a-practical-window-for-better-choices",
-      "style": "statement opening",
-      "timestamp": "2026-10-26T16:53:37.093Z"
-    },
-    {
-      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
-      "style": "social proof / counter-claim opening",
-      "timestamp": "2026-10-26T16:52:49.556Z"
     }
   ],
   "recentCTAPatterns": [],
