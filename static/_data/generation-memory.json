@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-04T07:19:40.100Z",
+  "lastUpdated": "2026-11-04T20:22:56.701Z",
   "recentHooks": [
     {
       "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-11-04T20:22:44.951Z"
+    },
+    {
       "slug": "when-pleasing-the-room-flattens-your-work",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,18 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-10-30T06:52:40.717Z"
-    },
-    {
-      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-30T01:38:58.936Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-11-04T20:22:56.701Z"
+    },
     {
       "slug": "when-pleasing-the-room-flattens-your-work",
       "archetype": "field-guide-aesthetic",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "somatic",
       "family": "art",
       "timestamp": "2026-10-21T00:25:23.028Z"
-    },
-    {
-      "slug": "presence-in-an-always-on-world-what-it-actually-takes",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-10-20T17:55:07.711Z"
     }
   ]
 }
