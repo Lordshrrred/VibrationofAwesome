@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-04T02:00:17.445Z",
+  "lastUpdated": "2026-11-04T07:19:40.100Z",
   "recentHooks": [
     {
       "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
@@ -888,6 +888,24 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "when-pleasing-the-room-flattens-your-work",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-11-04T07:19:40.100Z"
+    },
+    {
+      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-11-04T07:18:55.918Z"
+    },
+    {
       "slug": "the-creative-blank-after-a-long-stimulation-streak",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
@@ -1138,24 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-10-30T01:38:58.936Z"
-    },
-    {
-      "slug": "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-29T20:44:18.867Z"
-    },
-    {
-      "slug": "work-that-doesnt-cost-your-soul-checking-your-days-for-inner-erosion",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-29T20:43:40.083Z"
     }
   ],
   "recentInstagramArchetypes": [
