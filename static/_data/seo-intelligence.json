@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-28T15:45:53.680Z",
+  "generatedAt": "2026-11-04T16:51:59.082Z",
   "period": {
     "current": {
-      "startDate": "2026-09-28",
-      "endDate": "2026-10-25"
+      "startDate": "2026-10-05",
+      "endDate": "2026-11-01"
     },
     "previous": {
-      "startDate": "2026-08-31",
-      "endDate": "2026-09-27"
+      "startDate": "2026-09-07",
+      "endDate": "2026-10-04"
     }
   },
   "status": {
@@ -17,7 +17,7 @@
     },
     "ga": {
       "ok": true,
-      "message": "8 current organic landing-page rows"
+      "message": "9 current organic landing-page rows"
     }
   },
   "apiRequests": {
@@ -30,29 +30,29 @@
       "clicks": 0,
       "impressions": 16,
       "ctr": 0,
-      "averagePosition": 16.5,
+      "averagePosition": 14.3125,
       "observedQueryPageRows": 1,
       "source": "property aggregate (includes anonymized queries)"
     },
     "ga4": {
-      "organicSessions": 21,
+      "organicSessions": 24,
       "activeUsers": 21,
-      "engagedSessions": 12,
-      "engagementRate": 0.5714285714285714,
-      "rowCount": 8,
+      "engagedSessions": 14,
+      "engagementRate": 0.5833333333333334,
+      "rowCount": 9,
       "source": "Organic Search property aggregate; not a sum of shortlisted pages"
     }
   },
   "resourcePerformance": [
     {
       "pagePath": "/ai-engine/",
-      "screenPageViews": "7",
-      "totalUsers": "8"
+      "screenPageViews": "5",
+      "totalUsers": "6"
     },
     {
       "pagePath": "/field-guide/",
-      "screenPageViews": "6",
-      "totalUsers": "5"
+      "screenPageViews": "4",
+      "totalUsers": "3"
     },
     {
       "pagePath": "/hubs/",
@@ -77,22 +77,16 @@
   ],
   "organicLandingPages": [
     {
-      "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
-      "sessions": 6,
-      "engagedSessions": 2,
-      "engagementRate": 0.3333333333333333
-    },
-    {
       "path": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
-      "sessions": 6,
+      "sessions": 9,
       "engagedSessions": 6,
-      "engagementRate": 1
+      "engagementRate": 0.6666666666666666
     },
     {
-      "path": "/",
-      "sessions": 3,
-      "engagedSessions": 0,
-      "engagementRate": 0
+      "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
+      "sessions": 7,
+      "engagedSessions": 3,
+      "engagementRate": 0.42857142857142855
     },
     {
       "path": "/blog/boom/posts/tony-robbins-scam-accusations-in-2026-whats-actually-being-said",
@@ -101,13 +95,19 @@
       "engagementRate": 0.5
     },
     {
+      "path": "/blog/boom/posts/contentment-vs-settling",
+      "sessions": 1,
+      "engagedSessions": 0,
+      "engagementRate": 0
+    },
+    {
       "path": "/blog/boom/posts/dean-graziosi-review-is-his-ai-course-better-than-his-other-programs",
       "sessions": 1,
       "engagedSessions": 1,
       "engagementRate": 1
     },
     {
-      "path": "/blog/boom/posts/how-to-cancel-ai-advantage-current-refund-and-subscription-terms",
+      "path": "/blog/boom/posts/how-overstimulation-affects-focus",
       "sessions": 1,
       "engagedSessions": 1,
       "engagementRate": 1
@@ -119,6 +119,12 @@
       "engagementRate": 0
     },
     {
+      "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
+      "sessions": 1,
+      "engagedSessions": 1,
+      "engagementRate": 1
+    },
+    {
       "path": "/blog/boom/posts/tony-robbins-and-dean-graziosi-a-history-of-expensive-courses-together",
       "sessions": 1,
       "engagedSessions": 1,
@@ -128,27 +134,32 @@
   "conversionEvents": [
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
+      "eventCount": "8"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
+      "eventCount": "8"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-write-ai-prompts-for-creative-projects",
+      "eventCount": "6"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
       "eventCount": "5"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/how-to-write-ai-prompts-for-creative-projects",
-      "eventCount": "5"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
-      "eventCount": "5"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
+      "pagePath": "/blog/boom/posts/the-difference-between-processing-emotion-and-just-pushing-it-down",
       "eventCount": "4"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-difference-between-processing-emotion-and-just-pushing-it-down",
+      "pagePath": "/blog/boom/posts/the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
       "eventCount": "4"
     },
     {
@@ -159,11 +170,111 @@
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-      "eventCount": "2"
+      "eventCount": "3"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/cutting-through-the-noise-which-ai-tools-actually-change-your-day",
+      "eventCount": "3"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-make-presentations-faster-with-chatgpt",
+      "eventCount": "3"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
+      "eventCount": "3"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/why-ai-music-tools-make-everything-sound-the-same",
+      "eventCount": "3"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-bootcamp-negative-reviews-reading-between-the-lines",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-bootcamp-scam-reddit-what-the-no-filter-crowd-actually-thinks",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-club-review-is-the-monthly-community-worth-staying-in",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/batching-admin-so-it-stops-eating-the-hours-you-need-for-making",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/best-free-ai-image-generator-for-musicians-and-artists-2026",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/breaking-late-night-dopamine-loops",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/defining-a-finish-line-for-each-work-session-before-you-start",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/emotional-intelligence-starts-in-your-body-not-your-head",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/hanging-original-art-in-a-rental-without-damaging-the-walls",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-create-a-freedom-lifestyle-from-scratch",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-create-your-first-claude-skill-with-a-unique-voice",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-turn-google-docs-into-a-website",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-use-claude-without-losing-creative-control",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/markdown-formatting-for-ai-prompts",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
       "eventCount": "2"
     },
     {
@@ -173,17 +284,67 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/technology-as-a-tool-for-consciousness-not-unconsciousness",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/the-best-ai-tools-for-musicians-in-2026-that-actually-work",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/the-clone-builder-system-explained-is-this-actually-a-new-idea",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
       "eventCount": "2"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/why-ai-music-tools-make-everything-sound-the-same",
+      "pagePath": "/blog/boom/posts/the-identity-shift-that-changes-everything",
       "eventCount": "2"
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/where-your-switching-tax-actually-comes-from",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/7-day-content-plan-for-small-creators",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-affiliate-program-how-it-works-and-what-youd-actually-earn",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-bootcamp-alternatives-five-ways-to-get-similar-results-for-free",
       "eventCount": "1"
     },
     {
@@ -193,12 +354,77 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/ai-advantage-club-review-is-the-monthly-community-worth-staying-in",
+      "pagePath": "/blog/boom/posts/ai-advantage-delegation-blueprint-what-are-the-37-tasks-actually-worth",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/best-free-ai-image-generator-for-musicians-and-artists-2026",
+      "pagePath": "/blog/boom/posts/ai-advantage-discount-and-coupon-codes-what-deals-actually-exist",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-ecosystem-summit-club-bootcamp-mastery-mastermind",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-for-authors-and-writers-what-the-bootcamp-teaches-thats-actually-useful",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-for-coaches-what-business-coaches-actually-get-from-the-bootcamp",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-for-freelancers-does-the-bootcamp-actually-help-you-get-more-clients",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-summit-vs-bootcamp-what-is-the-actual-difference",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-content-creation-tools-that-actually-save-time",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-music-production-tools-for-independent-artists-2026",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-tools-to-organize-scattered-creative-ideas",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/alignment-isnt-peaceits-the-specific-feeling-of-your-life-matching-your-values",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/automation-audit-for-small-creators",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/best-ai-video-tools-for-independent-musicians-2026",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/best-ai-workflow-for-solo-creators",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/build-a-15-hour-per-week-ai-time-savings-system-without-buying-a-course",
       "eventCount": "1"
     },
     {
@@ -208,12 +434,47 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/cutting-through-the-noise-which-ai-tools-actually-change-your-day",
+      "pagePath": "/blog/boom/posts/building-sensory-environments-that-let-your-best-work-emerge",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/burnout-isnt-the-problem-its-the-signal",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/choosing-discomfort-over-the-familiar-loop",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/claude-ai-paired-programming-for-independent-musicians",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/contentment-vs-settling",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/dean-graziosi-ai-bootcamp-who-is-this-actually-for",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/dean-graziosi-controversy-what-the-critics-actually-say-and-what-to-make-of-it",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/dean-graziosi-review-is-his-ai-course-better-than-his-other-programs",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/dopamine-detox-vs-digital-minimalism",
       "eventCount": "1"
     },
     {
@@ -233,12 +494,87 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/every-dean-graziosi-program-ranked-which-ones-are-actually-worth-the-money",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/flow-requires-safety-first-why-anxious-people-cant-access-their-best-ideas",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/grounding-practices-for-overwhelmed-people",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-avoidance-damages-self-trust",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-overstimulation-affects-focus",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-build-a-personal-reply-template-library",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/how-to-create-your-first-claude-skill-with-a-unique-voice",
+      "pagePath": "/blog/boom/posts/how-to-build-your-first-gemini-chatbot-for-creators",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-change-your-life-completely-when-you-dont-know-where-to-begin",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-check-if-an-email-is-a-scam-using-ai",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-choose-discomfort-on-purpose",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-escape-the-9-to-5-mindset-even-if-you-still-have-a-job",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-export-chat-history-from-claude-to-other-platforms",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-feel-safe-in-your-body-again",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-grow-as-an-independent-artist-in-a-noisy-world",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-heal-emotionally-when-you-dont-know-where-to-start",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-keep-small-promises-to-yourself",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-make-money-doing-what-you-love-the-real-version",
       "eventCount": "1"
     },
     {
@@ -248,27 +584,137 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-promote-the-ai-advantage-bootcamp-as-an-affiliate-and-whether-you-should",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-regulate-your-nervous-system-when-life-feels-like-too-much",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-restyle-product-images-with-chatgpt",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-set-up-chatgpt-memory-for-creative-projects",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-set-up-chatgpt-projects-workspace-for-creators",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-stop-drifting",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-stop-feeling-lost-and-start-moving-forward",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-tell-when-something-is-not-for-you-anymore",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-turn-a-digital-attention-audit-into-one-useful-change",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-turn-my-creative-process-into-an-sop-using-ai",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-use-ai-to-make-music-without-losing-your-sound",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-use-ai-to-reclaim-your-time-without-spending-a-thousand-dollars-on-a-bootcamp",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-use-notebooklm-for-music-production-notes",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-use-openai-deep-research-for-content-creation",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/markdown-formatting-for-ai-prompts",
+      "pagePath": "/blog/boom/posts/inner-signal-vs-outside-advice",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
+      "pagePath": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-best-ai-tools-for-musicians-in-2026-that-actually-work",
+      "pagePath": "/blog/boom/posts/meditation-vs-grounding-for-anxiety",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-clone-builder-system-explained-is-this-actually-a-new-idea",
+      "pagePath": "/blog/boom/posts/multiple-streams-of-income-for-beginners-where-to-actually-start",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/music-production-for-beginners-where-to-start-without-getting-lost",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/one-habit-per-month-system-for-creatives",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/passive-income-ideas-for-beginners-that-dont-require-being-fake",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/presence-in-an-always-on-world-what-it-actually-takes",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/self-respect-through-action",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/shadow-work-for-beginners-what-it-actually-is-and-why-it-matters",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/structuring-your-life-around-energy-not-just-money",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/the-ai-advantage-webinar-formula-how-they-move-you-from-free-summit-to-995-page",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
       "eventCount": "1"
     },
     {
@@ -278,7 +724,17 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
+      "pagePath": "/blog/boom/posts/the-real-cost-of-ignoring-ai-as-an-independent-creator",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/the-slow-leak-noticing-work-that-costs-more-than-it-gives",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/the-slow-spiritual-damage-of-work-that-doesnt-fit-you",
       "eventCount": "1"
     },
     {
@@ -293,12 +749,42 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/too-many-ai-tools-and-no-clear-workflow",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/using-ai-without-losing-what-makes-you-human-a-creators-field-manual",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/waiting-for-clarity-is-the-choice-to-keep-drifting",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/what-ai-advantage-does-not-teach-you-the-honest-gaps-in-the-curriculum",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/what-attention-really-means-in-an-attention-economy-and-why-yours-is-worth-more-than-you-think",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/what-inner-noise-feels-like",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/what-is-the-ai-advantage-bootcamp-really-teaching-a-six-week-breakdown",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/when-you-wake-up-and-realize-youve-optimized-for-the-wrong-things",
       "eventCount": "1"
     },
     {
@@ -313,6 +799,11 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/why-i-feel-stuck-in-life-the-truth-nobody-tells-you-about-being-lost",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/why-is-everyone-promoting-ai-advantage-the-affiliate-machine-explained",
       "eventCount": "1"
     },
@@ -323,34 +814,44 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/matt/posts/light-workers-communication-impacting-the-masses",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/matt/posts/qi-gong-understanding-chi-energy",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/matt/posts/qi-gong-understanding-chi-energy/",
       "eventCount": "1"
     }
   ],
   "topQueries": [
     {
-      "query": "mastermind v2",
+      "query": "igor pogany age",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 97
+      "position": 7
     }
   ],
   "topLandingPages": [
     {
-      "title": "Mastermind.com vs AI Advantage: Are Tony and Dean Selling the Same Promise Twice",
-      "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
+      "title": "Who Is Igor Pogany: The AI Instructor Behind the AI Advantage System",
+      "path": "/blog/boom/posts/who-is-igor-pogany-the-ai-instructor-behind-the-ai-advantage-system",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 97,
+      "position": 7,
       "topQueries": [
         {
-          "query": "mastermind v2",
+          "query": "igor pogany age",
           "clicks": 0,
           "impressions": 1,
           "ctr": 0,
-          "position": 97
+          "position": 7
         }
       ]
     }
@@ -360,41 +861,29 @@
     {
       "path": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
       "title": "Tony Robbins AI Training 2026: Is This One Actually Worth It",
-      "sessions": 6,
-      "activeUsers": 6,
+      "sessions": 9,
+      "activeUsers": 8,
       "engagedSessions": 6,
-      "engagementRate": 1,
-      "avgEngagementTime": 242.32493816666667,
-      "views": 14,
+      "engagementRate": 0.6666666666666666,
+      "avgEngagementTime": 163.14498833333334,
+      "views": 17,
       "action": "Strengthen internal linking toward this page and expand the surrounding topic cluster."
     }
   ],
-  "weakEngagement": [
-    {
-      "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
-      "title": "How To Copy Ai Responses Without Losing Formatting",
-      "sessions": 6,
-      "activeUsers": 6,
-      "engagedSessions": 2,
-      "engagementRate": 0.3333333333333333,
-      "avgEngagementTime": 57.5391745,
-      "views": 7,
-      "action": "Check intent mismatch, improve the opening answer, and reduce filler before the useful answer."
-    }
-  ],
+  "weakEngagement": [],
   "topOpportunities": [
     {
       "type": "engagement_winner",
       "label": "Tony Robbins AI Training 2026: Is This One Actually Worth It",
       "page": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
-      "metric": "6 organic sessions"
+      "metric": "9 organic sessions"
     }
   ],
   "counts": {
     "nearPageOne": 0,
     "ctr": 0,
     "engagementWinners": 1,
-    "weakEngagement": 1,
+    "weakEngagement": 0,
     "hiddenQueries": 0,
     "cannibalization": 0
   }
