@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-03T21:22:06.888Z",
+  "generated_at": "2026-11-04T01:57:41.768Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 18,
+      "draft_count": 17,
       "draft_slugs": [
         "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
         "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
@@ -22,7 +22,6 @@
         "the-quarterly-automation-audit-retiring-the-systems-that-quietly-stopped-working",
         "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
         "using-ai-as-a-sketchpad-not-a-final-draft",
-        "when-pleasing-the-room-flattens-your-work",
         "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
         "writing-your-own-measure-of-a-good-year-when-you-inherited-someone-elses"
       ],
@@ -38,6 +37,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "when-pleasing-the-room-flattens-your-work",
+        "title": "When Pleasing the Room Flattens Your Work",
+        "lane": "boom",
+        "date": "2026-11-04T01:57:41.747Z",
+        "url": "/blog/boom/posts/when-pleasing-the-room-flattens-your-work",
+        "tags": [
+          "self-betrayal-avoidance"
+        ],
+        "cluster": "authentic-self-expression",
+        "content_type": null
+      },
       {
         "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
         "title": "The Input Budget: How Much Stimulation a Creative Day Can Actually Hold",
@@ -265,21 +276,10 @@
         ],
         "cluster": "emotional-regulation",
         "content_type": null
-      },
-      {
-        "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
-        "title": "The Slow Leak: Noticing Work That Costs More Than It Gives",
-        "lane": "boom",
-        "date": "2026-10-30T01:38:07.988Z",
-        "url": "/blog/boom/posts/the-slow-leak-noticing-work-that-costs-more-than-it-gives",
-        "tags": [
-          "direction-purpose-drift"
-        ],
-        "cluster": "purpose-direction",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-11-04",
       "2026-11-03",
       "2026-11-02",
       "2026-11-01",
@@ -441,11 +441,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-11-04",
+    "next_estimated_window": "2026-11-05",
     "published_counts": {
-      "boom": 412,
+      "boom": 413,
       "matt": 18,
-      "total": 430
+      "total": 431
     }
   },
   "syndication": {
@@ -467,7 +467,7 @@
         "title": "The Creative Blank After a Long Stimulation Streak",
         "lane": "boom",
         "date": "2026-11-03",
-        "publish_status": "complete",
+        "publish_status": "partial",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -475,13 +475,13 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/the-creative-blank-after-a-long-stimulation-streak-insight.html"
           },
           "bluesky_voa": {
-            "status": "not_attempted",
-            "timestamp": null,
+            "status": "failed",
+            "timestamp": "2026-11-03T23:36:30.758Z",
             "url": null
           },
           "mastodon_voa": {
-            "status": "not_attempted",
-            "timestamp": null,
+            "status": "failed",
+            "timestamp": "2026-11-03T23:36:30.758Z",
             "url": null
           },
           "facebook_voa": {
@@ -505,23 +505,23 @@
             "url": null
           },
           "tumblr_voa": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-11-03T23:36:30.758Z",
+            "url": "https://vibrationofawesome.tumblr.com/post/832306139491418112"
           },
           "blogger": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-11-03T23:36:30.758Z",
+            "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/11/what-silence-taught-me-about-creative_01043799037.html"
           },
           "wordpress_earthstar": {
-            "status": "not_attempted",
-            "timestamp": null,
-            "url": null
+            "status": "success",
+            "timestamp": "2026-11-03T23:36:30.758Z",
+            "url": "https://earthstarrisingsun.wordpress.com/2026/11/03/the-creative-blank-after-a-long-stimulation-streak-earthstar-2/"
           }
         },
-        "success_count": 1,
-        "failed_count": 0
+        "success_count": 4,
+        "failed_count": 2
       },
       {
         "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
@@ -29623,6 +29623,16 @@
     ],
     "retry_backlog": [
       {
+        "slug": "the-creative-blank-after-a-long-stimulation-streak",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-11-03T23:36:30.758Z"
+      },
+      {
+        "slug": "the-creative-blank-after-a-long-stimulation-streak",
+        "platform": "mastodon_voa",
+        "timestamp": "2026-11-03T23:36:30.758Z"
+      },
+      {
         "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-5",
         "platform": "mastodon_voa",
         "timestamp": "2026-10-16T17:20:29.180Z"
@@ -29721,12 +29731,12 @@
       },
       "bluesky_voa": {
         "successes": 347,
-        "failures": 0,
+        "failures": 1,
         "total": 478
       },
       "mastodon_voa": {
         "successes": 342,
-        "failures": 5,
+        "failures": 6,
         "total": 478
       },
       "facebook_voa": {
@@ -29750,27 +29760,27 @@
         "total": 478
       },
       "tumblr_voa": {
-        "successes": 477,
+        "successes": 478,
         "failures": 0,
         "total": 478
       },
       "blogger": {
-        "successes": 477,
+        "successes": 478,
         "failures": 0,
         "total": 478
       },
       "wordpress_earthstar": {
-        "successes": 477,
+        "successes": 478,
         "failures": 0,
         "total": 478
       }
     },
     "summary": {
       "total_posts": 478,
-      "fully_syndicated": 460,
-      "partial": 18,
+      "fully_syndicated": 459,
+      "partial": 19,
       "pending": 0,
-      "retry_backlog_count": 18
+      "retry_backlog_count": 20
     }
   },
   "visuals": {
@@ -37173,6 +37183,7 @@
       }
     },
     "post_to_cluster": {
+      "when-pleasing-the-room-flattens-your-work": "authentic-self-expression",
       "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold": "nervous-system-creativity",
       "the-creative-blank-after-a-long-stimulation-streak": "dopamine-attention",
       "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image": "consciousness-technology",
@@ -37596,7 +37607,7 @@
       "ai-creator-tools": 189,
       "nervous-system-creativity": 43,
       "dopamine-attention": 27,
-      "authentic-self-expression": 44,
+      "authentic-self-expression": 45,
       "creator-automation": 13,
       "spiritual-productivity": 24,
       "purpose-direction": 17,
@@ -39067,11 +39078,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-11-03T21:22:06.888Z",
-    "next_estimated_window": "2026-11-04",
+    "as_of": "2026-11-04T01:57:41.768Z",
+    "next_estimated_window": "2026-11-05",
     "queue_runway_days": 4,
     "queue_runway_status": "healthy",
     "occupied_dates": [
+      "2026-11-04",
       "2026-11-03",
       "2026-11-02",
       "2026-11-01",
@@ -39233,13 +39245,18 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 18,
+    "retry_backlog_count": 20,
     "cadence_density": {
       "posts_last_7_days": 20,
       "posts_last_14_days": 20,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "when-pleasing-the-room-flattens-your-work",
+        "lane": "boom",
+        "date": "2026-11-04T01:57:41.747Z"
+      },
       {
         "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
         "lane": "boom",
@@ -39284,18 +39301,13 @@
         "slug": "setting-a-decision-date-that-protects-your-calm",
         "lane": "boom",
         "date": "2026-11-01T19:56:04.613Z"
-      },
-      {
-        "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
-        "lane": "boom",
-        "date": "2026-11-01T18:20:40.739Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-11-03T21:22:06.876Z",
+    "last_export_at": "2026-11-04T01:57:41.753Z",
     "source_event": "drip_publish",
-    "export_duration_ms": 12,
+    "export_duration_ms": 15,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
