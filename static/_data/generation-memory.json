@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-03T20:17:59.211Z",
+  "lastUpdated": "2026-11-04T02:00:17.445Z",
   "recentHooks": [
     {
       "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "the-creative-blank-after-a-long-stimulation-streak",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-11-04T02:00:17.445Z"
+    },
+    {
+      "slug": "when-pleasing-the-room-flattens-your-work",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-11-04T01:58:38.838Z"
+    },
+    {
+      "slug": "the-creative-blank-after-a-long-stimulation-streak",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1138,27 +1156,19 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-10-29T20:43:40.083Z"
-    },
-    {
-      "slug": "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-29T18:55:07.399Z"
-    },
-    {
-      "slug": "where-your-switching-tax-actually-comes-from",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-29T06:50:38.206Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "when-pleasing-the-room-flattens-your-work",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-11-04T01:58:49.760Z"
+    },
     {
       "slug": "the-creative-blank-after-a-long-stimulation-streak",
       "archetype": "premium-quote-card",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "mystical",
       "family": "art",
       "timestamp": "2026-10-20T17:55:07.711Z"
-    },
-    {
-      "slug": "the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-10-20T00:56:53.954Z"
     }
   ]
 }
