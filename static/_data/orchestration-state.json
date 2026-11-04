@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-04T07:19:41.144Z",
+  "generated_at": "2026-11-04T20:21:50.274Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
         "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
         "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
@@ -20,11 +20,10 @@
         "reading-your-own-output-for-drift-after-ai-use",
         "staying-present-through-conflict-a-body-level-guide-to-not-shutting-down",
         "the-quarterly-automation-audit-retiring-the-systems-that-quietly-stopped-working",
-        "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
         "using-ai-as-a-sketchpad-not-a-final-draft",
         "writing-your-own-measure-of-a-good-year-when-you-inherited-someone-elses"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
+        "title": "The Weekend Test: Trying a Direction Before Betting Your Income On It",
+        "lane": "boom",
+        "date": "2026-11-04T20:21:50.248Z",
+        "url": "/blog/boom/posts/the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
+        "tags": [
+          "direction-purpose-drift"
+        ],
+        "cluster": "purpose-direction",
+        "content_type": null
+      },
       {
         "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
         "title": "Worth-Driven Work vs. Caring Work: A Test You Can Run This Week",
@@ -263,18 +274,6 @@
         ],
         "cluster": "ai-creator-tools",
         "content_type": null
-      },
-      {
-        "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
-        "title": "Hanging Original Art in a Rental Without Damaging the Walls",
-        "lane": "boom",
-        "date": "2026-10-30T18:32:05.460Z",
-        "url": "/blog/boom/posts/hanging-original-art-in-a-rental-without-damaging-the-walls",
-        "tags": [
-          "art-buyer-intent"
-        ],
-        "cluster": "art-buying-online",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -442,9 +441,9 @@
     ],
     "next_estimated_window": "2026-11-05",
     "published_counts": {
-      "boom": 414,
+      "boom": 415,
       "matt": 18,
-      "total": 432
+      "total": 433
     }
   },
   "syndication": {
@@ -37296,6 +37295,7 @@
       }
     },
     "post_to_cluster": {
+      "the-weekend-test-trying-a-direction-before-betting-your-income-on-it": "purpose-direction",
       "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week": "spiritual-productivity",
       "when-pleasing-the-room-flattens-your-work": "authentic-self-expression",
       "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold": "nervous-system-creativity",
@@ -37724,7 +37724,7 @@
       "authentic-self-expression": 45,
       "creator-automation": 13,
       "spiritual-productivity": 25,
-      "purpose-direction": 17,
+      "purpose-direction": 18,
       "building-life-that-fits": 14,
       "emotional-regulation": 12,
       "art-buying-online": 22,
@@ -39192,9 +39192,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-11-04T07:19:41.144Z",
+    "as_of": "2026-11-04T20:21:50.274Z",
     "next_estimated_window": "2026-11-05",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-11-04",
@@ -39367,6 +39367,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
+        "lane": "boom",
+        "date": "2026-11-04T20:21:50.248Z"
+      },
+      {
         "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
         "lane": "boom",
         "date": "2026-11-04T07:18:04.073Z"
@@ -39410,18 +39415,13 @@
         "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
         "lane": "boom",
         "date": "2026-11-02T07:22:59.536Z"
-      },
-      {
-        "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
-        "lane": "boom",
-        "date": "2026-11-02T01:19:19.317Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-11-04T07:19:41.127Z",
-    "source_event": "retry",
-    "export_duration_ms": 17,
+    "last_export_at": "2026-11-04T20:21:50.256Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 18,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
