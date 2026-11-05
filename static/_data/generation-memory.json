@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-04T21:36:50.576Z",
+  "lastUpdated": "2026-11-05T02:02:32.623Z",
   "recentHooks": [
     {
       "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "choosing-art-by-room-how-bedrooms-and-living-rooms-ask-for-different-work",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-11-05T02:02:21.697Z"
+    },
+    {
       "slug": "staying-present-through-conflict-a-body-level-guide-to-not-shutting-down",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1147,18 +1156,19 @@
       "openerStyle": "mid-conversation",
       "closerStyle": "natural-landing",
       "timestamp": "2026-10-30T18:33:01.791Z"
-    },
-    {
-      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-10-30T06:53:33.351Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "choosing-art-by-room-how-bedrooms-and-living-rooms-ask-for-different-work",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "family": "art",
+      "timestamp": "2026-11-05T02:02:32.623Z"
+    },
     {
       "slug": "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
       "archetype": "minimalist-philosophy",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-10-21T17:59:10.191Z"
-    },
-    {
-      "slug": "where-your-creative-energy-actually-goes-when-anxiety-is-running-the-show",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "family": "art",
-      "timestamp": "2026-10-21T00:25:23.028Z"
     }
   ]
 }
