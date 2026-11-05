@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-05T18:13:45.118Z",
+  "lastUpdated": "2026-11-05T20:34:56.781Z",
   "recentHooks": [
     {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
@@ -888,6 +888,24 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "writing-your-own-measure-of-a-good-year-when-you-inherited-someone-elses",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-11-05T20:34:56.781Z"
+    },
+    {
+      "slug": "writing-your-own-measure-of-a-good-year-when-you-inherited-someone-elses",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-11-05T20:33:23.382Z"
+    },
+    {
       "slug": "choosing-art-by-room-how-bedrooms-and-living-rooms-ask-for-different-work",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1138,27 +1156,19 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-10-31T06:44:28.706Z"
-    },
-    {
-      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-10-31T01:27:26.273Z"
-    },
-    {
-      "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-10-30T20:15:48.170Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "writing-your-own-measure-of-a-good-year-when-you-inherited-someone-elses",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-11-05T20:33:35.305Z"
+    },
     {
       "slug": "choosing-art-by-room-how-bedrooms-and-living-rooms-ask-for-different-work",
       "archetype": "cinematic-ideogram",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "atmospheric",
       "family": "art",
       "timestamp": "2026-10-22T00:29:30.681Z"
-    },
-    {
-      "slug": "presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-10-21T17:59:10.191Z"
     }
   ]
 }
