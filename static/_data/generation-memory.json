@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-05T20:34:56.781Z",
+  "lastUpdated": "2026-11-05T21:38:46.762Z",
   "recentHooks": [
     {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "writing-your-own-measure-of-a-good-year-when-you-inherited-someone-elses",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-11-05T21:38:46.762Z"
+    },
+    {
+      "slug": "the-quarterly-automation-audit-retiring-the-systems-that-quietly-stopped-working",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-11-05T21:38:07.585Z"
+    },
+    {
+      "slug": "writing-your-own-measure-of-a-good-year-when-you-inherited-someone-elses",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
@@ -1138,24 +1156,6 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-10-31T17:36:44.076Z"
-    },
-    {
-      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-10-31T06:45:10.914Z"
-    },
-    {
-      "slug": "leverage-or-abdication-how-to-tell-when-automation-is-replacing-you",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-10-31T06:44:28.706Z"
     }
   ],
   "recentInstagramArchetypes": [
