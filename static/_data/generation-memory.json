@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-05T02:02:32.623Z",
+  "lastUpdated": "2026-11-05T07:46:52.860Z",
   "recentHooks": [
     {
       "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "choosing-art-by-room-how-bedrooms-and-living-rooms-ask-for-different-work",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-11-05T07:46:52.860Z"
+    },
+    {
+      "slug": "reading-your-own-output-for-drift-after-ai-use",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-11-05T07:46:07.222Z"
+    },
+    {
+      "slug": "choosing-art-by-room-how-bedrooms-and-living-rooms-ask-for-different-work",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1138,24 +1156,6 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-10-30T20:15:48.170Z"
-    },
-    {
-      "slug": "building-a-lean-ai-stack-for-a-one-person-creative-studio",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-10-30T20:15:10.425Z"
-    },
-    {
-      "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-30T18:33:01.791Z"
     }
   ],
   "recentInstagramArchetypes": [
