@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-05T21:38:46.762Z",
+  "lastUpdated": "2026-11-06T02:02:02.946Z",
   "recentHooks": [
     {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-11-06T02:01:50.498Z"
+    },
+    {
       "slug": "writing-your-own-measure-of-a-good-year-when-you-inherited-someone-elses",
       "format": "reflective-essay",
       "cadenceProfile": "slow-layered",
@@ -1147,18 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-10-31T17:41:06.157Z"
-    },
-    {
-      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-10-31T17:36:44.076Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-11-06T02:02:02.946Z"
+    },
     {
       "slug": "writing-your-own-measure-of-a-good-year-when-you-inherited-someone-elses",
       "archetype": "symbolic-consciousness",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "grounded",
       "family": "art",
       "timestamp": "2026-10-22T17:56:03.438Z"
-    },
-    {
-      "slug": "anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
-      "archetype": "cinematic-ideogram",
-      "archetypeLabel": "Cinematic Artwork",
-      "palette": "painterly-dark",
-      "emotionalTone": "liminal",
-      "emotionalCluster": "atmospheric",
-      "family": "art",
-      "timestamp": "2026-10-22T00:29:30.681Z"
     }
   ]
 }
