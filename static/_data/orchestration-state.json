@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-06T07:46:06.409Z",
+  "generated_at": "2026-11-06T19:54:40.723Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 16,
+      "draft_count": 15,
       "draft_slugs": [
         "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
         "anxious-making-working-with-worry-instead-of-waiting-for-it-to-leave",
@@ -13,7 +13,6 @@
         "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
         "breaks-that-restore-rather-than-punish-planning-pauses-with-intention",
         "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
-        "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
         "finding-a-specific-voice-through-refusal",
         "finding-your-own-values-after-years-of-borrowed-goals",
         "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
@@ -24,7 +23,7 @@
         "using-ai-as-a-sketchpad-not-a-final-draft",
         "when-two-directions-both-fit-a-tiebreaker-method-that-does-not-rely-on-feeling-sure"
       ],
-      "runway_days": 4,
+      "runway_days": 3,
       "runway_status": "healthy",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
@@ -36,6 +35,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
+        "title": "Engineering Idle Time: Designing Low-Demand Moments That Feed Your Ideas",
+        "lane": "boom",
+        "date": "2026-11-06T19:54:40.701Z",
+        "url": "/blog/boom/posts/engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
+        "tags": [
+          "nervous-system-dysregulation"
+        ],
+        "cluster": "nervous-system-creativity",
+        "content_type": null
+      },
       {
         "slug": "comparison-is-not-information-reading-your-feed-without-losing-your-lane",
         "title": "Comparison Is Not Information: Reading Your Feed Without Losing Your Lane",
@@ -263,18 +274,6 @@
         ],
         "cluster": "purpose-direction",
         "content_type": null
-      },
-      {
-        "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
-        "title": "Defining a Finish Line for Each Work Session Before You Start",
-        "lane": "boom",
-        "date": "2026-11-01T18:20:40.739Z",
-        "url": "/blog/boom/posts/defining-a-finish-line-for-each-work-session-before-you-start",
-        "tags": [
-          "direction-purpose-drift"
-        ],
-        "cluster": "spiritual-productivity",
-        "content_type": null
       }
     ],
     "occupied_dates": [
@@ -444,9 +443,9 @@
     ],
     "next_estimated_window": "2026-11-07",
     "published_counts": {
-      "boom": 422,
+      "boom": 423,
       "matt": 18,
-      "total": 440
+      "total": 441
     }
   },
   "syndication": {
@@ -37787,6 +37786,7 @@
       }
     },
     "post_to_cluster": {
+      "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas": "nervous-system-creativity",
       "comparison-is-not-information-reading-your-feed-without-losing-your-lane": "dopamine-attention",
       "human-meaning-in-a-world-of-capable-machines-a-working-answer": "consciousness-technology",
       "the-quarterly-automation-audit-retiring-the-systems-that-quietly-stopped-working": "creator-automation",
@@ -38218,7 +38218,7 @@
     },
     "saturation": {
       "ai-creator-tools": 190,
-      "nervous-system-creativity": 43,
+      "nervous-system-creativity": 44,
       "dopamine-attention": 28,
       "authentic-self-expression": 45,
       "creator-automation": 14,
@@ -39691,9 +39691,9 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-11-06T07:46:06.409Z",
+    "as_of": "2026-11-06T19:54:40.722Z",
     "next_estimated_window": "2026-11-07",
-    "queue_runway_days": 4,
+    "queue_runway_days": 3,
     "queue_runway_status": "healthy",
     "occupied_dates": [
       "2026-11-06",
@@ -39868,6 +39868,11 @@
     },
     "recent_publish_history": [
       {
+        "slug": "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
+        "lane": "boom",
+        "date": "2026-11-06T19:54:40.701Z"
+      },
+      {
         "slug": "comparison-is-not-information-reading-your-feed-without-losing-your-lane",
         "lane": "boom",
         "date": "2026-11-06T07:44:31.530Z"
@@ -39911,18 +39916,13 @@
         "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
         "lane": "boom",
         "date": "2026-11-04T07:18:04.073Z"
-      },
-      {
-        "slug": "when-pleasing-the-room-flattens-your-work",
-        "lane": "boom",
-        "date": "2026-11-04T01:57:41.747Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-11-06T07:46:06.385Z",
-    "source_event": "retry",
-    "export_duration_ms": 24,
+    "last_export_at": "2026-11-06T19:54:40.708Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 15,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
