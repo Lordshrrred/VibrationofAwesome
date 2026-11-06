@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-06T07:46:05.861Z",
+  "lastUpdated": "2026-11-06T19:55:45.270Z",
   "recentHooks": [
     {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-11-06T19:55:35.579Z"
+    },
+    {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,19 @@
       "openerStyle": "strong-declarative",
       "closerStyle": "worldview-shift",
       "timestamp": "2026-11-01T00:46:34.910Z"
-    },
-    {
-      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-10-31T19:38:00.040Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "family": "art",
+      "timestamp": "2026-11-06T19:55:45.270Z"
+    },
     {
       "slug": "human-meaning-in-a-world-of-capable-machines-a-working-answer",
       "archetype": "abstract-creator-life",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "mystical",
       "family": "art",
       "timestamp": "2026-10-23T00:27:13.170Z"
-    },
-    {
-      "slug": "the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-10-22T17:56:03.438Z"
     }
   ]
 }
