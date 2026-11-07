@@ -206,7 +206,9 @@ async function main() {
     };
     const remaining = eligible.length;
     if (held.length) throw new Error(`${held.length} queued drafts repeat published titles/keywords; only ${remaining} drafts are eligible`);
-    const minimum = 14; // balanced reserve triggers at 14, targets 22
+    // 14 is the daily refill trigger, so dipping to 13 before the 10:30 UTC
+    // refill is normal. Alarm only below two days of publishing (4 slots/day).
+    const minimum = 8;
     if (queue.status === "active" && remaining < minimum) {
       throw new Error(`publishing inventory low: ${remaining} posts remain; minimum healthy runway is ${minimum}`);
     }
