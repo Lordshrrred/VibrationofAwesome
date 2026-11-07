@@ -47,6 +47,7 @@ import { renderPin, pinHeadline }    from "./lib/pin-renderer.js";
 import { uploadPublerMediaBuffer }  from "./lib/publer-media-upload.js";
 import {
   BACKLINK_TIER,
+  BACKLINK_TIER_PAUSED,
   detectContentType,
   getSocialPlatforms,
   logPolicyDecision,
@@ -1531,6 +1532,14 @@ export async function syndicatePost(lane, slug, options = {}) {
   async function attempt(platform, fn, accountLabel = null) {
     if (options.bloggerOnly && platform !== "blogger") return;
     if (options.platforms && !options.platforms.includes(platform)) return;
+
+    // Backlink tier paused (see BACKLINK_TIER_PAUSED in lib/policy.js). Applies
+    // even with --force so a retry cannot quietly re-enable these channels.
+    if (BACKLINK_TIER_PAUSED && BACKLINK_TIER.includes(platform)) {
+      console.log(`  ~ ${platform}: backlink tier paused (BACKLINK_TIER_PAUSED)`);
+      results[platform] = { success: false, postId: null, postUrl: null, error: "backlink tier paused", skipped: true };
+      return;
+    }
 
     // Deduplication: skip if this platform already has a success for this slug.
     // Prevents Tumblr reposts, double FB posts, etc.

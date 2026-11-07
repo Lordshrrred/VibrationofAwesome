@@ -69,6 +69,16 @@ export const BACKLINK_TIER = [
 ];
 
 /**
+ * Backlink-tier pause (2026-11-07). The companion-article channels are
+ * paused for a 30-day trial while Google earns trust in the main site:
+ * Search Console showed no indexing benefit and mass AI companion articles
+ * with links back risk reading as link spam. Reversible: set the env var
+ * BACKLINK_TIER_PAUSED=false (or flip the default here) to resume.
+ * Social platforms are unaffected.
+ */
+export const BACKLINK_TIER_PAUSED = process.env.BACKLINK_TIER_PAUSED !== "false";
+
+/**
  * VOA-owned social platforms the blog engine may post to.
  * ESR (EarthStar Rising) accounts are NOT listed here ~
  * they belong to the EarthStar Command engine.
