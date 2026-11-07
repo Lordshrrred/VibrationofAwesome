@@ -4,8 +4,64 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-07T06:54:03.273Z",
+  "lastUpdated": "2026-11-07T16:37:32.651Z",
   "recentHooks": [
+    {
+      "slug": "the-editing-pass-that-sands-off-your-edges",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "hook": "Picture the draft at 9pm. It was a little strange when you wrote it. Now it's 11:40, you've changed \"hate\" to \"dislike,\" added \"kind of\" three times, and the sentence that made you laugh out loud is g",
+      "timestamp": "2026-11-07T16:37:32.651Z"
+    },
+    {
+      "slug": "flow-you-can-recognize-describing-the-physical-signs-before-you-chase-them",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "hook": "Have you ever finished a stretch of really good work, looked up, and realized you had no idea how it happened? No lightning bolt. No glowing moment. Just a cold coffee and a finished verse, and the na",
+      "timestamp": "2026-11-07T16:37:01.340Z"
+    },
+    {
+      "slug": "keeping-the-thought-that-belongs-to-you-a-working-rule-for-ai-assisted-thinking",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "hook": "You asked the AI a question you could have answered yourself, and it answered well. That's the problem.",
+      "timestamp": "2026-11-07T16:36:33.826Z"
+    },
+    {
+      "slug": "the-relief-that-turns-into-regret-why-scrolling-feels-good-then-drains-you",
+      "niche": "dopamine-addiction-numbing",
+      "cluster": "dopamine-attention",
+      "hook": "It's 9:40 pm. You told yourself ten minutes. You were tired, you wanted to turn your brain down, and a thumb swipe felt like the easiest form of rest available.",
+      "timestamp": "2026-11-07T16:36:00.703Z"
+    },
+    {
+      "slug": "the-first-three-things-to-automate-and-the-order-that-keeps-your-work-yours",
+      "niche": "ai-creator-tools",
+      "cluster": "creator-automation",
+      "hook": "Which of your automations would you be embarrassed to explain to a fan who asked how it works?",
+      "timestamp": "2026-11-07T16:35:31.808Z"
+    },
+    {
+      "slug": "draining-or-boring-reading-the-difference-in-your-own-week",
+      "niche": "misalignment-wrong-life",
+      "cluster": "building-life-that-fits",
+      "hook": "It's 2:40 on a Tuesday afternoon, you've stared at the same spreadsheet for an hour, and you're asking yourself the question that sounds simple and isn't: is this job boring me, or is it quietly takin",
+      "timestamp": "2026-11-07T16:35:00.834Z"
+    },
+    {
+      "slug": "telling-your-audience-how-you-use-ai",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "hook": "Most creators who go quiet about AI aren't lying. They're dodging a conversation they don't know how to start. The cost shows up later, when a fan finds out sideways and wonders what else got left out",
+      "timestamp": "2026-11-07T16:34:29.476Z"
+    },
+    {
+      "slug": "buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "hook": "Three weeks after the box arrives, you walk past the print without looking at it. It used to stop you in the hallway. Now it is just a rectangle on a wall, and you are quietly wondering if you paid fo",
+      "timestamp": "2026-11-07T16:33:58.769Z"
+    },
     {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
       "niche": "nervous-system-dysregulation",
@@ -159,65 +215,65 @@
       "cluster": "art-buying-online",
       "hook": "The painting looked perfect on the artist's page. Then it arrived, you hung it above the couch, and something felt off. Not ugly. Just wrong, like a song in the right key at the wrong tempo.",
       "timestamp": "2026-11-01T16:55:19.587Z"
-    },
-    {
-      "slug": "staying-present-through-conflict-a-body-level-guide-to-not-shutting-down",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "hook": "Your partner says one sentence, and suddenly your jaw is a locked door, your breath is a thin little sip, and your face is hot. You go quiet. Or you get loud. Either way, the conversation you needed j",
-      "timestamp": "2026-11-01T16:54:17.619Z"
-    },
-    {
-      "slug": "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "hook": "Counter-intuitive claim first: you do not need more clarity before you move. You need a smaller move.",
-      "timestamp": "2026-11-01T16:53:36.590Z"
-    },
-    {
-      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "hook": "\"What if I stopped and nobody noticed?\"",
-      "timestamp": "2026-10-30T16:49:21.311Z"
-    },
-    {
-      "slug": "when-pleasing-the-room-flattens-your-work",
-      "niche": "self-betrayal-avoidance",
-      "cluster": "authentic-self-expression",
-      "hook": "Picture the last thing you finished. Nobody hated it. Nobody loved it either. You hit publish, the small polite reactions came in, and something in your chest stayed quiet.",
-      "timestamp": "2026-10-30T16:48:48.527Z"
-    },
-    {
-      "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "hook": "Does overstimulation make it hard to make art? For many creators it does, and the pattern is easy to spot once you look at behavior instead of theory. Heavy input before the work often shows up as fla",
-      "timestamp": "2026-10-30T16:48:20.875Z"
-    },
-    {
-      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
-      "niche": "ai-creator-tools",
-      "cluster": "consciousness-technology",
-      "hook": "You posted a track you actually love, and the numbers came back thin. Now the song feels smaller than it did that morning. Nothing about the music changed ~ only the scoreboard did.",
-      "timestamp": "2026-10-30T16:47:40.742Z"
-    },
-    {
-      "slug": "the-creative-blank-after-a-long-stimulation-streak",
-      "niche": "dopamine-addiction-numbing",
-      "cluster": "dopamine-attention",
-      "hook": "You open the doc, the canvas, or the session file. Nothing. Not even a bad idea. Just static, and a quiet voice asking why this used to feel easier.",
-      "timestamp": "2026-10-30T16:47:12.614Z"
-    },
-    {
-      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
-      "niche": "ai-creator-tools",
-      "cluster": "creator-automation",
-      "hook": "Does your reply to a fan's heartfelt message read like it came from a parking-garage intercom? Warm words, correct grammar, zero person behind them. And they can tell.",
-      "timestamp": "2026-10-30T16:46:45.352Z"
     }
   ],
   "recentTitles": [
+    {
+      "slug": "the-editing-pass-that-sands-off-your-edges",
+      "niche": "self-betrayal-avoidance",
+      "cluster": "authentic-self-expression",
+      "title": "The Editing Pass That Sands Off Your Edges",
+      "timestamp": "2026-11-07T16:37:32.651Z"
+    },
+    {
+      "slug": "flow-you-can-recognize-describing-the-physical-signs-before-you-chase-them",
+      "niche": "nervous-system-dysregulation",
+      "cluster": "nervous-system-creativity",
+      "title": "Flow You Can Recognize: Describing the Physical Signs Before You Chase Them",
+      "timestamp": "2026-11-07T16:37:01.340Z"
+    },
+    {
+      "slug": "keeping-the-thought-that-belongs-to-you-a-working-rule-for-ai-assisted-thinking",
+      "niche": "ai-creator-tools",
+      "cluster": "consciousness-technology",
+      "title": "Keeping the Thought That Belongs to You: A Working Rule for AI-Assisted Thinking",
+      "timestamp": "2026-11-07T16:36:33.826Z"
+    },
+    {
+      "slug": "the-relief-that-turns-into-regret-why-scrolling-feels-good-then-drains-you",
+      "niche": "dopamine-addiction-numbing",
+      "cluster": "dopamine-attention",
+      "title": "The Relief That Turns Into Regret: Why Scrolling Feels Good Then Drains You",
+      "timestamp": "2026-11-07T16:36:00.703Z"
+    },
+    {
+      "slug": "the-first-three-things-to-automate-and-the-order-that-keeps-your-work-yours",
+      "niche": "ai-creator-tools",
+      "cluster": "creator-automation",
+      "title": "The First Three Things to Automate (and the Order That Keeps Your Work Yours)",
+      "timestamp": "2026-11-07T16:35:31.808Z"
+    },
+    {
+      "slug": "draining-or-boring-reading-the-difference-in-your-own-week",
+      "niche": "misalignment-wrong-life",
+      "cluster": "building-life-that-fits",
+      "title": "Draining or Boring? Reading the Difference in Your Own Week",
+      "timestamp": "2026-11-07T16:35:00.834Z"
+    },
+    {
+      "slug": "telling-your-audience-how-you-use-ai",
+      "niche": "ai-creator-tools",
+      "cluster": "ai-creator-tools",
+      "title": "Telling Your Audience How You Use AI",
+      "timestamp": "2026-11-07T16:34:29.476Z"
+    },
+    {
+      "slug": "buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
+      "niche": "art-buyer-intent",
+      "cluster": "art-buying-online",
+      "title": "Buying Art You Will Still Love in Five Years: A Plain Test for Keepers",
+      "timestamp": "2026-11-07T16:33:58.769Z"
+    },
     {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
       "niche": "nervous-system-dysregulation",
@@ -371,66 +427,50 @@
       "cluster": "art-buying-online",
       "title": "Choosing Art by Room: How Bedrooms and Living Rooms Ask for Different Work",
       "timestamp": "2026-11-01T16:55:19.587Z"
-    },
-    {
-      "slug": "staying-present-through-conflict-a-body-level-guide-to-not-shutting-down",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "emotional-regulation",
-      "title": "Staying Present Through Conflict: A Body-Level Guide to Not Shutting Down",
-      "timestamp": "2026-11-01T16:54:17.619Z"
-    },
-    {
-      "slug": "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
-      "niche": "direction-purpose-drift",
-      "cluster": "purpose-direction",
-      "title": "The Weekend Test: Trying a Direction Before Betting Your Income On It",
-      "timestamp": "2026-11-01T16:53:36.590Z"
-    },
-    {
-      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
-      "niche": "direction-purpose-drift",
-      "cluster": "spiritual-productivity",
-      "title": "Worth-Driven Work vs. Caring Work: A Test You Can Run This Week",
-      "timestamp": "2026-10-30T16:49:21.311Z"
-    },
-    {
-      "slug": "when-pleasing-the-room-flattens-your-work",
-      "niche": "self-betrayal-avoidance",
-      "cluster": "authentic-self-expression",
-      "title": "When Pleasing the Room Flattens Your Work",
-      "timestamp": "2026-10-30T16:48:48.527Z"
-    },
-    {
-      "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
-      "niche": "nervous-system-dysregulation",
-      "cluster": "nervous-system-creativity",
-      "title": "The Input Budget: How Much Stimulation a Creative Day Can Actually Hold",
-      "timestamp": "2026-10-30T16:48:20.875Z"
-    },
-    {
-      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
-      "niche": "ai-creator-tools",
-      "cluster": "consciousness-technology",
-      "title": "Tools That Serve Your Work Versus Tools That Reshape Your Self-Image",
-      "timestamp": "2026-10-30T16:47:40.742Z"
-    },
-    {
-      "slug": "the-creative-blank-after-a-long-stimulation-streak",
-      "niche": "dopamine-addiction-numbing",
-      "cluster": "dopamine-attention",
-      "title": "The Creative Blank After a Long Stimulation Streak",
-      "timestamp": "2026-10-30T16:47:12.614Z"
-    },
-    {
-      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
-      "niche": "ai-creator-tools",
-      "cluster": "creator-automation",
-      "title": "Templates That Still Sound Like a Person: Automated Replies Without the Cold Feel",
-      "timestamp": "2026-10-30T16:46:45.352Z"
     }
   ],
   "recentNarrativeStructures": [
     {
+      "slug": "the-editing-pass-that-sands-off-your-edges",
+      "structure": "heavily-sectioned (6+ H2s)",
+      "timestamp": "2026-11-07T16:37:32.651Z"
+    },
+    {
+      "slug": "flow-you-can-recognize-describing-the-physical-signs-before-you-chase-them",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-07T16:37:01.340Z"
+    },
+    {
+      "slug": "keeping-the-thought-that-belongs-to-you-a-working-rule-for-ai-assisted-thinking",
+      "structure": "numbered-list with subheadings",
+      "timestamp": "2026-11-07T16:36:33.826Z"
+    },
+    {
+      "slug": "the-relief-that-turns-into-regret-why-scrolling-feels-good-then-drains-you",
+      "structure": "numbered-list with subheadings",
+      "timestamp": "2026-11-07T16:36:00.703Z"
+    },
+    {
+      "slug": "the-first-three-things-to-automate-and-the-order-that-keeps-your-work-yours",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-07T16:35:31.808Z"
+    },
+    {
+      "slug": "draining-or-boring-reading-the-difference-in-your-own-week",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-07T16:35:00.834Z"
+    },
+    {
+      "slug": "telling-your-audience-how-you-use-ai",
+      "structure": "numbered-list with subheadings",
+      "timestamp": "2026-11-07T16:34:29.476Z"
+    },
+    {
+      "slug": "buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
+      "structure": "bullet-list driven with multiple sections",
+      "timestamp": "2026-11-07T16:33:58.769Z"
+    },
+    {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
       "structure": "heavily-sectioned (6+ H2s)",
       "timestamp": "2026-11-05T18:13:45.118Z"
@@ -539,50 +579,50 @@
       "slug": "choosing-art-by-room-how-bedrooms-and-living-rooms-ask-for-different-work",
       "structure": "numbered-list with subheadings",
       "timestamp": "2026-11-01T16:55:19.587Z"
-    },
-    {
-      "slug": "staying-present-through-conflict-a-body-level-guide-to-not-shutting-down",
-      "structure": "heavily-sectioned (6+ H2s)",
-      "timestamp": "2026-11-01T16:54:17.619Z"
-    },
-    {
-      "slug": "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
-      "structure": "numbered-list with subheadings",
-      "timestamp": "2026-11-01T16:53:36.590Z"
-    },
-    {
-      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-30T16:49:21.311Z"
-    },
-    {
-      "slug": "when-pleasing-the-room-flattens-your-work",
-      "structure": "numbered-list with subheadings",
-      "timestamp": "2026-10-30T16:48:48.527Z"
-    },
-    {
-      "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
-      "structure": "numbered-list with subheadings",
-      "timestamp": "2026-10-30T16:48:20.875Z"
-    },
-    {
-      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-30T16:47:40.742Z"
-    },
-    {
-      "slug": "the-creative-blank-after-a-long-stimulation-streak",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-30T16:47:12.614Z"
-    },
-    {
-      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
-      "structure": "bullet-list driven with multiple sections",
-      "timestamp": "2026-10-30T16:46:45.352Z"
     }
   ],
   "recentEmotionalArcs": [
     {
+      "slug": "the-editing-pass-that-sands-off-your-edges",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-11-07T16:37:32.651Z"
+    },
+    {
+      "slug": "flow-you-can-recognize-describing-the-physical-signs-before-you-chase-them",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-11-07T16:37:01.340Z"
+    },
+    {
+      "slug": "keeping-the-thought-that-belongs-to-you-a-working-rule-for-ai-assisted-thinking",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-11-07T16:36:33.826Z"
+    },
+    {
+      "slug": "the-relief-that-turns-into-regret-why-scrolling-feels-good-then-drains-you",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-11-07T16:36:00.703Z"
+    },
+    {
+      "slug": "the-first-three-things-to-automate-and-the-order-that-keeps-your-work-yours",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-11-07T16:35:31.808Z"
+    },
+    {
+      "slug": "draining-or-boring-reading-the-difference-in-your-own-week",
+      "arc": "neutral-open → action close",
+      "timestamp": "2026-11-07T16:35:00.834Z"
+    },
+    {
+      "slug": "telling-your-audience-how-you-use-ai",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-11-07T16:34:29.476Z"
+    },
+    {
+      "slug": "buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
+      "arc": "pain-open → insight → hope + action close",
+      "timestamp": "2026-11-07T16:33:58.769Z"
+    },
+    {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
       "arc": "pain-open → reframe → action close",
       "timestamp": "2026-11-05T18:13:45.118Z"
@@ -691,50 +731,50 @@
       "slug": "choosing-art-by-room-how-bedrooms-and-living-rooms-ask-for-different-work",
       "arc": "pain-open → insight → hope + action close",
       "timestamp": "2026-11-01T16:55:19.587Z"
-    },
-    {
-      "slug": "staying-present-through-conflict-a-body-level-guide-to-not-shutting-down",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-11-01T16:54:17.619Z"
-    },
-    {
-      "slug": "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
-      "arc": "pain-open → insight → hope + action close",
-      "timestamp": "2026-11-01T16:53:36.590Z"
-    },
-    {
-      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-30T16:49:21.311Z"
-    },
-    {
-      "slug": "when-pleasing-the-room-flattens-your-work",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-30T16:48:48.527Z"
-    },
-    {
-      "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-30T16:48:20.875Z"
-    },
-    {
-      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-30T16:47:40.742Z"
-    },
-    {
-      "slug": "the-creative-blank-after-a-long-stimulation-streak",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-30T16:47:12.614Z"
-    },
-    {
-      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
-      "arc": "neutral-open → action close",
-      "timestamp": "2026-10-30T16:46:45.352Z"
     }
   ],
   "recentOpeningStyles": [
     {
+      "slug": "the-editing-pass-that-sands-off-your-edges",
+      "style": "statement opening",
+      "timestamp": "2026-11-07T16:37:32.651Z"
+    },
+    {
+      "slug": "flow-you-can-recognize-describing-the-physical-signs-before-you-chase-them",
+      "style": "statement opening",
+      "timestamp": "2026-11-07T16:37:01.340Z"
+    },
+    {
+      "slug": "keeping-the-thought-that-belongs-to-you-a-working-rule-for-ai-assisted-thinking",
+      "style": "statement opening",
+      "timestamp": "2026-11-07T16:36:33.826Z"
+    },
+    {
+      "slug": "the-relief-that-turns-into-regret-why-scrolling-feels-good-then-drains-you",
+      "style": "statement opening",
+      "timestamp": "2026-11-07T16:36:00.703Z"
+    },
+    {
+      "slug": "the-first-three-things-to-automate-and-the-order-that-keeps-your-work-yours",
+      "style": "question opening",
+      "timestamp": "2026-11-07T16:35:31.808Z"
+    },
+    {
+      "slug": "draining-or-boring-reading-the-difference-in-your-own-week",
+      "style": "statement opening",
+      "timestamp": "2026-11-07T16:35:00.834Z"
+    },
+    {
+      "slug": "telling-your-audience-how-you-use-ai",
+      "style": "statement opening",
+      "timestamp": "2026-11-07T16:34:29.476Z"
+    },
+    {
+      "slug": "buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
+      "style": "statement opening",
+      "timestamp": "2026-11-07T16:33:58.769Z"
+    },
+    {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
       "style": "statement opening",
       "timestamp": "2026-11-05T18:13:45.118Z"
@@ -843,46 +883,6 @@
       "slug": "choosing-art-by-room-how-bedrooms-and-living-rooms-ask-for-different-work",
       "style": "statement opening",
       "timestamp": "2026-11-01T16:55:19.587Z"
-    },
-    {
-      "slug": "staying-present-through-conflict-a-body-level-guide-to-not-shutting-down",
-      "style": "statement opening",
-      "timestamp": "2026-11-01T16:54:17.619Z"
-    },
-    {
-      "slug": "the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
-      "style": "statement opening",
-      "timestamp": "2026-11-01T16:53:36.590Z"
-    },
-    {
-      "slug": "worth-driven-work-vs-caring-work-a-test-you-can-run-this-week",
-      "style": "quote opening",
-      "timestamp": "2026-10-30T16:49:21.311Z"
-    },
-    {
-      "slug": "when-pleasing-the-room-flattens-your-work",
-      "style": "social proof / counter-claim opening",
-      "timestamp": "2026-10-30T16:48:48.527Z"
-    },
-    {
-      "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
-      "style": "statement opening",
-      "timestamp": "2026-10-30T16:48:20.875Z"
-    },
-    {
-      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
-      "style": "statement opening",
-      "timestamp": "2026-10-30T16:47:40.742Z"
-    },
-    {
-      "slug": "the-creative-blank-after-a-long-stimulation-streak",
-      "style": "statement opening",
-      "timestamp": "2026-10-30T16:47:12.614Z"
-    },
-    {
-      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
-      "style": "statement opening",
-      "timestamp": "2026-10-30T16:46:45.352Z"
     }
   ],
   "recentCTAPatterns": [],
