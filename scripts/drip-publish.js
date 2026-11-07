@@ -126,7 +126,7 @@ async function main() {
 
   // ── Startup visibility log ───────────────────────────────────────────────
   const queueRemaining = queue.queue.length;
-  const dripsPerDay = 4; // every slot rotates across all canonical clusters
+  const dripsPerDay = 1; // one daily slot (reduced from 4 on 2026-11-07); rotates across all canonical clusters
   const daysRemaining = Math.floor(queueRemaining / dripsPerDay);
 
   console.log("\n╔═ [drip] Drip Publish ~ Phase One ══════════════════");
