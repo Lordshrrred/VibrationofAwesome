@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T13:28:04.905Z",
+  "generatedAt": "2026-11-07T18:59:44.709Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,22 +14,22 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 406,
-    "totalLivePosts": 444,
+    "totalTrackedPosts": 407,
+    "totalLivePosts": 445,
     "untrackedLivePosts": 38,
-    "backlogPosts": 0,
-    "backlinkCapableMissingUnits": 0,
-    "backlinkVerificationGaps": 14,
+    "backlogPosts": 1,
+    "backlinkCapableMissingUnits": 3,
+    "backlinkVerificationGaps": 17,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 17,
-    "freshPostsAwaitingBacklinks": 0,
-    "freshMissingBacklinkUnits": 0,
-    "completedBacklinkUnitsInWindow": 165,
-    "completedBacklinkUnitsPerDay": 11.8,
+    "distributionIncompleteUnits": 19,
+    "freshPostsAwaitingBacklinks": 1,
+    "freshMissingBacklinkUnits": 3,
+    "completedBacklinkUnitsInWindow": 159,
+    "completedBacklinkUnitsPerDay": 11.4,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 0.2,
-    "estimatedCatchUpDays": 0,
+    "netBacklogChangePerDay": 0.6,
+    "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
   },
@@ -38,50 +38,50 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 406,
+        "eligiblePosts": 407,
         "complete": 406,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 3.9,
-        "confirmed": 394,
-        "verificationGaps": 12,
-        "mainBlocker": ""
+        "missing": 1,
+        "successRate": 99.8,
+        "averagePerDay": 3.8,
+        "confirmed": 391,
+        "verificationGaps": 15,
+        "mainBlocker": "backlink tier paused"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 406,
+        "eligiblePosts": 407,
         "complete": 406,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 3.9,
+        "missing": 1,
+        "successRate": 99.8,
+        "averagePerDay": 3.8,
         "confirmed": 405,
         "verificationGaps": 1,
-        "mainBlocker": ""
+        "mainBlocker": "backlink tier paused"
       },
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 406,
+        "eligiblePosts": 407,
         "complete": 406,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 3.9,
+        "missing": 1,
+        "successRate": 99.8,
+        "averagePerDay": 3.8,
         "confirmed": 405,
         "verificationGaps": 1,
-        "mainBlocker": ""
+        "mainBlocker": "backlink tier paused"
       }
     ],
     "feeder": [
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 274,
-        "complete": 274,
+        "eligiblePosts": 275,
+        "complete": 275,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.8,
-        "confirmed": 274,
+        "confirmed": 275,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -90,23 +90,23 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 309,
+        "eligiblePosts": 310,
         "complete": 309,
-        "missing": 0,
-        "successRate": 100,
-        "averagePerDay": 2,
+        "missing": 1,
+        "successRate": 99.7,
+        "averagePerDay": 1.9,
         "confirmed": 142,
         "verificationGaps": 167,
-        "mainBlocker": ""
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 309,
+        "eligiblePosts": 310,
         "complete": 305,
-        "missing": 4,
-        "successRate": 98.7,
-        "averagePerDay": 2,
+        "missing": 5,
+        "successRate": 98.4,
+        "averagePerDay": 1.9,
         "confirmed": 142,
         "verificationGaps": 163,
         "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
@@ -169,6 +169,14 @@
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
       "count": 4
+    },
+    {
+      "reason": "bluesky_voa: env vars not set",
+      "count": 1
+    },
+    {
+      "reason": "mastodon_voa: env vars not set",
+      "count": 1
     }
   ],
   "untrackedPosts": [
@@ -439,5 +447,17 @@
       "reason": "no_distribution_record"
     }
   ],
-  "prioritizedBacklog": []
+  "prioritizedBacklog": [
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "lane": "boom",
+      "title": "Name It to Tame It? Testing the Labeling Habit on a Real Decision",
+      "date": "2026-11-07",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    }
+  ]
 }
