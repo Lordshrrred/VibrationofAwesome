@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-07T01:42:18.822Z",
+  "lastUpdated": "2026-11-07T06:54:03.273Z",
   "recentHooks": [
     {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-11-07T06:54:03.273Z"
+    },
+    {
+      "slug": "finding-your-own-values-after-years-of-borrowed-goals",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-11-07T06:53:18.608Z"
+    },
+    {
+      "slug": "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
@@ -1138,24 +1156,6 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-11-01T19:56:58.150Z"
-    },
-    {
-      "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-11-01T18:21:32.444Z"
-    },
-    {
-      "slug": "starting-from-the-floor-a-low-stakes-entry-ritual-for-tense-bodies",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-11-01T07:13:32.313Z"
     }
   ],
   "recentInstagramArchetypes": [
