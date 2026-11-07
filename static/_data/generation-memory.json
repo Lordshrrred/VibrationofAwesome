@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-07T16:37:32.651Z",
+  "lastUpdated": "2026-11-07T18:00:01.584Z",
   "recentHooks": [
     {
       "slug": "the-editing-pass-that-sands-off-your-edges",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-11-07T17:59:48.547Z"
+    },
+    {
       "slug": "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,18 +1156,19 @@
       "openerStyle": "identity-confession",
       "closerStyle": "invitation",
       "timestamp": "2026-11-02T01:20:11.455Z"
-    },
-    {
-      "slug": "setting-a-decision-date-that-protects-your-calm",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-11-01T19:56:58.150Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-11-07T18:00:01.584Z"
+    },
     {
       "slug": "a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
       "archetype": "premium-quote-card",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "mystical",
       "family": "art",
       "timestamp": "2026-10-24T00:20:57.445Z"
-    },
-    {
-      "slug": "the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-10-23T17:50:14.625Z"
     }
   ]
 }
