@@ -38,6 +38,7 @@ import {
 } from "./lib/internal-linking.js";
 import { refreshOrchestration } from "./lib/refresh-orchestration.js";
 import { updateSitemap } from "./update-sitemap.js";
+import { bakeBoomIndex } from "./build-boom-index.js";
 
 import { pathToFileURL as __voaPathToFileURL } from "node:url";
 dotenv.config({ override: true });
@@ -125,7 +126,7 @@ async function main() {
 
   // ── Startup visibility log ───────────────────────────────────────────────
   const queueRemaining = queue.queue.length;
-  const dripsPerDay = 4; // every slot rotates across all canonical clusters
+  const dripsPerDay = 1; // one daily slot (reduced from 4 on 2026-11-07); rotates across all canonical clusters
   const daysRemaining = Math.floor(queueRemaining / dripsPerDay);
 
   console.log("\n╔═ [drip] Drip Publish ~ Phase One ══════════════════");
@@ -312,6 +313,14 @@ async function main() {
   fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
   fs.writeFileSync(DATA_FILE, JSON.stringify(boomPosts, null, 2), "utf8");
   console.log(`  ✓ boom-posts.json updated (${publishedSlugs.length} added)`);
+
+  // ── Bake crawlable post links into the Boom index ───────────────────────
+  // Non-fatal: a failed index bake must never block a published post.
+  try {
+    console.log(`  ✓ Boom index baked (${bakeBoomIndex()} posts)`);
+  } catch (err) {
+    console.warn(`  [warn] Boom index bake failed: ${err.message}`);
+  }
 
   // ── Regenerate sitemap ──────────────────────────────────────────────────
   updateSitemap();

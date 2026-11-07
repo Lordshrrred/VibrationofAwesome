@@ -996,7 +996,16 @@
           <p class="lane-byline">by Matt EarthStar ~ raw, unfiltered, human, fully expressed</p>
         </div>
         <div class="lane-posts" id="matt-feed">
-          <div class="feed-loading">Loading transmissions...</div>
+          {{- $matt := readFile "static/_data/matt-posts.json" | transform.Unmarshal -}}
+          {{- range first 3 $matt }}
+          <a href="{{ strings.TrimSuffix ".html" .url }}" class="feed-card">
+            <span class="feed-date">{{ (time.AsTime .date).Format "Jan 2, 2006" }}</span>
+            <h3 class="feed-title">{{ .title }}</h3>
+            <p class="feed-excerpt">{{ .excerpt }}</p>
+          </a>
+          {{- else }}
+          <div class="feed-empty">Posts coming soon...</div>
+          {{- end }}
         </div>
         <a href="/blog/matt/" class="lane-link">All Forest Temple Posts →</a>
       </div>
@@ -1008,7 +1017,16 @@
           <p class="lane-byline">by Matty BoomBoom ~ AI-powered, high-signal, built in public</p>
         </div>
         <div class="lane-posts" id="boom-feed">
-          <div class="feed-loading">Loading transmissions...</div>
+          {{- $boom := readFile "static/_data/boom-posts.json" | transform.Unmarshal -}}
+          {{- range first 3 $boom }}
+          <a href="{{ strings.TrimSuffix ".html" .url }}" class="feed-card">
+            <span class="feed-date">{{ (time.AsTime .date).Format "Jan 2, 2006" }}</span>
+            <h3 class="feed-title">{{ .title }}</h3>
+            <p class="feed-excerpt">{{ .excerpt }}</p>
+          </a>
+          {{- else }}
+          <div class="feed-empty">Posts coming soon...</div>
+          {{- end }}
         </div>
         <a href="/blog/boom/" class="lane-link">All Boom Frequency Posts →</a>
       </div>
@@ -1044,35 +1062,5 @@
 if (window.location.hash === '#seo') {
   history.replaceState(null, document.title, window.location.pathname + window.location.search);
 }
-
-(async function loadBlogFeeds() {
-  const lanes = [
-    { id: 'matt-feed', url: '/_data/matt-posts.json' },
-    { id: 'boom-feed', url: '/_data/boom-posts.json' }
-  ];
-  for (const lane of lanes) {
-    const el = document.getElementById(lane.id);
-    if (!el) continue;
-    try {
-      const res = await fetch(lane.url);
-      if (!res.ok) throw new Error('Not found');
-      const posts = await res.json();
-      const latest = posts.slice(0, 3);
-      if (!latest.length) {
-        el.innerHTML = '<div class="feed-empty">Posts coming soon...</div>';
-        continue;
-      }
-      el.innerHTML = latest.map(p => `
-        <a href="${p.url}" class="feed-card">
-          <span class="feed-date">${new Date(p.date).toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'})}</span>
-          <h3 class="feed-title">${p.title}</h3>
-          <p class="feed-excerpt">${p.excerpt}</p>
-        </a>
-      `).join('');
-    } catch(e) {
-      el.innerHTML = '<div class="feed-empty">Posts coming soon...</div>';
-    }
-  }
-})();
 </script>
 {{ end }}

@@ -4,17 +4,16 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 # ── PUBLISH RATE CONFIG ────────────────────────────────────────────────────────
-# Four articles/day, oldest-served cluster first across all 11 clusters.
-# 13:00/22:00 UTC: full social + backlinks.
-# 16:00/01:00 UTC: backlinks only, no social or feeder.
-# No niche owns a slot; all clusters get a turn when eligible drafts exist.
+# One article/day, oldest-served cluster first across all 11 clusters.
+# Reduced from 4/day on 2026-11-07 after the SEO deep dive: search impressions
+# fell ~99% while volume doubled, and 4/day AI posts matches the scaled-content
+# pattern Google's spam policies target. Quality and trust over volume.
+# The old 16:00 and 01:00 UTC backlinks-only slots were removed.
+# To restore a slot, add its cron back; the run step below still handles them.
 
 on:
   schedule:
-    - cron: '0 13 * * *'    # 9:00 AM ET  (UTC-4 EDT)  ~ slot A: normal, full social
-    - cron: '0 16 * * *'    # 12:00 PM ET (UTC-4 EDT)  ~ slot B: balanced cluster rotation
-    - cron: '0 22 * * *'    # 6:00 PM ET  (UTC-4 EDT)  ~ slot C: normal, full social
-    - cron: '0 1 * * *'     # 9:00 PM ET  (UTC-4 EDT)  ~ slot D: balanced cluster rotation, SEO backlinks only (no social, no feeder)
+    - cron: '0 13 * * *'    # 9:00 AM ET  (UTC-4 EDT)  ~ the one daily slot: full social + backlinks
   workflow_dispatch:          # Manual trigger for testing or emergency publish
 
 # Prevent any VOA publishing/syndication run from overlapping.
