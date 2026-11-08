@@ -12,8 +12,55 @@
         "timestamp": "2026-11-08T18:18:30.853Z",
         "backlink_confirmed": true,
         "backlink_source_url": "https://vibrationofawesome.com/blog/boom/posts/framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster"
+      },
+      "blogger": {
+        "backfill_attempted_at": "2026-11-08T19:00:40.142Z",
+        "status": "skipped",
+        "url": null,
+        "timestamp": "2026-11-08T19:00:40.168Z",
+        "error": "backlink tier paused",
+        "skipped": true
+      },
+      "bluesky_voa": {
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-11-08T19:00:40.168Z",
+        "error": "env vars not set"
+      },
+      "mastodon_voa": {
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-11-08T19:00:40.168Z",
+        "error": "env vars not set"
+      },
+      "bluesky_esr": {
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-11-08T19:00:40.168Z",
+        "error": "env vars not set"
+      },
+      "mastodon_esr": {
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-11-08T19:00:40.168Z",
+        "error": "env vars not set"
+      },
+      "tumblr_voa": {
+        "status": "skipped",
+        "url": null,
+        "timestamp": "2026-11-08T19:00:40.168Z",
+        "error": "backlink tier paused",
+        "skipped": true
+      },
+      "wordpress_earthstar": {
+        "status": "skipped",
+        "url": null,
+        "timestamp": "2026-11-08T19:00:40.168Z",
+        "error": "backlink tier paused",
+        "skipped": true
       }
-    }
+    },
+    "niche": "art-buyer-intent"
   },
   {
     "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
@@ -38,38 +85,40 @@
         "skipped": true
       },
       "bluesky_voa": {
-        "status": "success",
-        "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3mzszkphj2d2e",
-        "timestamp": "2026-11-08T18:19:04.390Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-11-08T19:00:32.131Z",
+        "error": "env vars not set"
       },
       "mastodon_voa": {
-        "status": "success",
-        "url": "https://mastodon.social/@Vibrationofawesome/117582197174909445",
-        "timestamp": "2026-11-08T18:19:04.390Z"
+        "status": "failed",
+        "url": null,
+        "timestamp": "2026-11-08T19:00:32.131Z",
+        "error": "env vars not set"
       },
       "bluesky_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-11-08T13:48:45.547Z",
+        "timestamp": "2026-11-08T19:00:32.131Z",
         "error": "env vars not set"
       },
       "mastodon_esr": {
         "status": "failed",
         "url": null,
-        "timestamp": "2026-11-08T13:48:45.547Z",
+        "timestamp": "2026-11-08T19:00:32.131Z",
         "error": "env vars not set"
       },
       "tumblr_voa": {
         "status": "skipped",
         "url": null,
-        "timestamp": "2026-11-08T13:48:45.547Z",
+        "timestamp": "2026-11-08T19:00:32.131Z",
         "error": "backlink tier paused",
         "skipped": true
       },
       "wordpress_earthstar": {
         "status": "skipped",
         "url": null,
-        "timestamp": "2026-11-08T13:48:45.547Z",
+        "timestamp": "2026-11-08T19:00:32.131Z",
         "error": "backlink tier paused",
         "skipped": true
       }
@@ -2634,31 +2683,32 @@
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/831605738559406080",
         "timestamp": "2026-10-27T06:04:36.952Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.237Z",
+        "backlink_checked_at": "2026-11-08T19:00:29.463Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.237Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:29.463Z"
       },
       "blogger": {
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/10/the-ledger-under-doubt-what-second.html",
         "timestamp": "2026-10-27T06:04:36.952Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.264Z",
-        "backlink_confirmed": true,
-        "backlink_status": "confirmed",
+        "backlink_checked_at": "2026-11-08T19:00:29.721Z",
+        "backlink_confirmed": false,
+        "backlink_status": "unknown",
         "backlink_method": "article_body",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.264Z"
+        "backlink_last_confirmed_at": "2026-10-27T08:18:28.264Z",
+        "backlink_error": "http_429"
       },
       "wordpress_earthstar": {
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/10/27/doubt-after-the-commitment-staying-put-or-quitting-well-earthstar/",
         "timestamp": "2026-10-27T06:04:36.952Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.276Z",
+        "backlink_checked_at": "2026-11-08T19:00:29.578Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.276Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:29.578Z"
       }
     }
   },
@@ -2681,11 +2731,11 @@
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/10/the-week-i-realized-i-was-negotiating_041015467.html",
         "timestamp": "2026-10-27T01:35:39.176Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.497Z",
+        "backlink_checked_at": "2026-11-08T19:00:29.917Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "article_body",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.497Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:29.917Z"
       },
       "bluesky_voa": {
         "status": "success",
@@ -2713,21 +2763,21 @@
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/831588859922071552",
         "timestamp": "2026-10-27T01:35:39.176Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.409Z",
+        "backlink_checked_at": "2026-11-08T19:00:29.582Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.409Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:29.582Z"
       },
       "wordpress_earthstar": {
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/10/26/the-slow-spiritual-damage-of-work-that-doesnt-fit-you-earthstar-2/",
         "timestamp": "2026-10-27T01:35:39.176Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.436Z",
+        "backlink_checked_at": "2026-11-08T19:00:29.875Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.436Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:29.875Z"
       }
     },
     "niche": "direction-purpose-drift"
@@ -2887,7 +2937,7 @@
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/10/the-ten-seconds-before-phone-catching.html",
         "timestamp": "2026-10-26T05:51:28.282Z",
-        "backlink_checked_at": "2026-11-07T18:59:42.745Z",
+        "backlink_checked_at": "2026-11-08T19:00:28.608Z",
         "backlink_confirmed": false,
         "backlink_status": "unknown",
         "backlink_method": "article_body",
@@ -33797,7 +33847,7 @@
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/the-musicians-toolkit-nobody-talks.html",
         "timestamp": "2026-07-05T03:37:44.369Z",
-        "backlink_checked_at": "2026-11-07T18:59:43.454Z",
+        "backlink_checked_at": "2026-11-08T19:00:28.681Z",
         "backlink_confirmed": false,
         "backlink_status": "unknown",
         "backlink_method": "article_body",
@@ -34161,7 +34211,7 @@
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/07/the-rooms-you-dont-enter-how-your.html",
         "timestamp": "2026-07-05T07:32:29.180Z",
-        "backlink_checked_at": "2026-11-07T18:59:44.126Z",
+        "backlink_checked_at": "2026-11-08T19:00:28.653Z",
         "backlink_confirmed": false,
         "backlink_status": "unknown",
         "backlink_method": "article_body",
@@ -37625,11 +37675,11 @@
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/06/02/how-to-find-your-purpose-when-you-have-no-idea-what-it-is-earthstar-2/",
         "timestamp": "2026-06-02T09:03:45.972Z",
-        "backlink_checked_at": "2026-10-27T01:35:36.336Z",
+        "backlink_checked_at": "2026-11-08T19:00:28.849Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T01:35:36.336Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:28.849Z"
       }
     }
   },
@@ -37733,31 +37783,32 @@
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/818022069156642816",
         "timestamp": "2026-05-30T07:38:28.227Z",
-        "backlink_checked_at": "2026-10-27T01:35:36.302Z",
+        "backlink_checked_at": "2026-11-08T19:00:29.061Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T01:35:36.302Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:29.061Z"
       },
       "blogger": {
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/05/the-empty-project-file-is-your-best.html",
         "timestamp": "2026-05-30T07:38:28.227Z",
-        "backlink_checked_at": "2026-10-27T01:35:36.364Z",
-        "backlink_confirmed": true,
-        "backlink_status": "confirmed",
+        "backlink_checked_at": "2026-11-08T19:00:29.130Z",
+        "backlink_confirmed": false,
+        "backlink_status": "unknown",
         "backlink_method": "article_body",
-        "backlink_last_confirmed_at": "2026-10-27T01:35:36.364Z"
+        "backlink_last_confirmed_at": "2026-10-27T01:35:36.364Z",
+        "backlink_error": "http_429"
       },
       "wordpress_earthstar": {
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/05/30/music-production-for-beginners-where-to-start-without-getting-lost-earthstar-2/",
         "timestamp": "2026-05-30T07:38:28.227Z",
-        "backlink_checked_at": "2026-10-27T01:35:36.503Z",
+        "backlink_checked_at": "2026-11-08T19:00:29.274Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T01:35:36.503Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:29.274Z"
       }
     }
   },
@@ -37861,11 +37912,11 @@
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/818114800520396800",
         "timestamp": "2026-05-31T08:12:22.856Z",
-        "backlink_checked_at": "2026-10-27T01:35:36.452Z",
+        "backlink_checked_at": "2026-11-08T19:00:29.251Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T01:35:36.452Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:29.251Z"
       },
       "blogger": {
         "status": "success",
@@ -37881,11 +37932,11 @@
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/05/31/the-identity-shift-that-changes-everything-earthstar-2/",
         "timestamp": "2026-05-31T08:12:22.856Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.652Z",
+        "backlink_checked_at": "2026-11-08T19:00:30.088Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.652Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:30.088Z"
       }
     }
   },
@@ -38115,31 +38166,32 @@
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/817935369831170048",
         "timestamp": "2026-05-29T08:40:24.745Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.626Z",
+        "backlink_checked_at": "2026-11-08T19:00:29.831Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.626Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:29.831Z"
       },
       "blogger": {
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/05/the-version-of-you-that-nobody-clapped.html",
         "timestamp": "2026-05-29T08:40:24.745Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.695Z",
-        "backlink_confirmed": true,
-        "backlink_status": "confirmed",
+        "backlink_checked_at": "2026-11-08T19:00:30.426Z",
+        "backlink_confirmed": false,
+        "backlink_status": "unknown",
         "backlink_method": "article_body",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.695Z"
+        "backlink_last_confirmed_at": "2026-10-27T08:18:28.695Z",
+        "backlink_error": "http_429"
       },
       "wordpress_earthstar": {
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/05/29/how-to-become-your-true-self-when-the-world-wants-you-generic-earthstar-4/",
         "timestamp": "2026-05-29T08:40:24.745Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.882Z",
+        "backlink_checked_at": "2026-11-08T19:00:30.592Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.882Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:30.592Z"
       }
     }
   },
@@ -38233,31 +38285,32 @@
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/817007171962322945",
         "timestamp": "2026-05-19T02:47:01.468Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.819Z",
+        "backlink_checked_at": "2026-11-08T19:00:30.031Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.819Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:30.031Z"
       },
       "blogger": {
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/05/the-guitar-doesnt-care-about-your.html",
         "timestamp": "2026-05-19T02:47:01.468Z",
-        "backlink_checked_at": "2026-10-27T08:18:28.908Z",
-        "backlink_confirmed": true,
-        "backlink_status": "confirmed",
+        "backlink_checked_at": "2026-11-08T19:00:30.779Z",
+        "backlink_confirmed": false,
+        "backlink_status": "unknown",
         "backlink_method": "article_body",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:28.908Z"
+        "backlink_last_confirmed_at": "2026-10-27T08:18:28.908Z",
+        "backlink_error": "http_429"
       },
       "wordpress_earthstar": {
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/05/18/the-best-ai-tools-for-musicians-in-2026-that-actually-work-earthstar/",
         "timestamp": "2026-05-19T02:47:01.468Z",
-        "backlink_checked_at": "2026-10-27T08:18:29.088Z",
+        "backlink_checked_at": "2026-11-08T19:00:30.951Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:29.088Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:30.951Z"
       },
       "feeder": {
         "status": "success",
@@ -38371,31 +38424,32 @@
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/817006954153181184",
         "timestamp": "2026-05-19T02:43:38.028Z",
-        "backlink_checked_at": "2026-10-27T08:18:29.039Z",
+        "backlink_checked_at": "2026-11-08T19:00:30.542Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:29.039Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:30.542Z"
       },
       "blogger": {
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/05/the-map-you-drew-when-you-were-seven_0403325661.html",
         "timestamp": "2026-05-19T02:43:38.028Z",
-        "backlink_checked_at": "2026-10-27T08:18:29.099Z",
-        "backlink_confirmed": true,
-        "backlink_status": "confirmed",
+        "backlink_checked_at": "2026-11-08T19:00:31.021Z",
+        "backlink_confirmed": false,
+        "backlink_status": "unknown",
         "backlink_method": "article_body",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:29.099Z"
+        "backlink_last_confirmed_at": "2026-10-27T08:18:29.099Z",
+        "backlink_error": "http_429"
       },
       "wordpress_earthstar": {
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/05/18/how-to-unlock-your-potential-when-nothing-seems-to-work-earthstar-2/",
         "timestamp": "2026-05-19T02:43:38.028Z",
-        "backlink_checked_at": "2026-10-27T08:18:29.243Z",
+        "backlink_checked_at": "2026-11-08T19:00:31.152Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:29.243Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:31.152Z"
       }
     }
   },
@@ -38498,31 +38552,31 @@
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/816788226266349568",
         "timestamp": "2026-05-16T16:45:53.671Z",
-        "backlink_checked_at": "2026-10-27T08:18:29.225Z",
+        "backlink_checked_at": "2026-11-08T19:00:30.902Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:29.225Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:30.902Z"
       },
       "blogger": {
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/05/the-ghost-version-of-you-is-running-show_0702693504.html",
         "timestamp": "2026-05-16T14:27:00.503Z",
-        "backlink_checked_at": "2026-10-27T08:18:29.382Z",
+        "backlink_checked_at": "2026-11-08T19:00:31.156Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "article_body",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:29.382Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:31.156Z"
       },
       "wordpress_earthstar": {
         "status": "success",
         "url": "https://earthstarrisingsun.wordpress.com/2026/05/16/why-you-feel-stuck-in-life-and-whats-actually-going-on-earthstar-2/",
         "timestamp": "2026-05-16T14:27:00.503Z",
-        "backlink_checked_at": "2026-10-27T08:18:29.519Z",
+        "backlink_checked_at": "2026-11-08T19:00:31.287Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:29.519Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:31.287Z"
       }
     }
   },
@@ -38537,13 +38591,14 @@
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/05/the-ghost-version-of-you-thats-still.html",
         "timestamp": "2026-05-15T03:38:59.568Z",
-        "backlink_checked_at": "2026-10-27T08:18:29.570Z",
-        "backlink_confirmed": true,
-        "backlink_status": "confirmed",
+        "backlink_checked_at": "2026-11-08T19:00:31.690Z",
+        "backlink_confirmed": false,
+        "backlink_status": "unknown",
         "backlink_method": "article_body",
         "error": "already syndicated",
         "skipped": true,
-        "backlink_last_confirmed_at": "2026-10-27T08:18:29.570Z"
+        "backlink_last_confirmed_at": "2026-10-27T08:18:29.570Z",
+        "backlink_error": "http_429"
       },
       "bluesky_voa": {
         "status": "success",
@@ -38617,11 +38672,11 @@
         "status": "success",
         "url": "https://vibrationofawesome.tumblr.com/post/816648080714825728",
         "timestamp": "2026-05-15T03:38:59.568Z",
-        "backlink_checked_at": "2026-10-27T08:18:29.508Z",
+        "backlink_checked_at": "2026-11-08T19:00:31.140Z",
         "backlink_confirmed": true,
         "backlink_status": "confirmed",
         "backlink_method": "published_article_api",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:29.508Z"
+        "backlink_last_confirmed_at": "2026-11-08T19:00:31.140Z"
       },
       "wordpress_earthstar": {
         "status": "success",
@@ -38743,11 +38798,12 @@
         "status": "success",
         "url": "https://vibrationofawesomeearthstar.blogspot.com/2026/05/the-moment-you-feel-hook-set.html",
         "timestamp": "2026-05-07T01:58:56.241Z",
-        "backlink_checked_at": "2026-10-27T08:18:29.722Z",
-        "backlink_confirmed": true,
-        "backlink_status": "confirmed",
+        "backlink_checked_at": "2026-11-08T19:00:31.497Z",
+        "backlink_confirmed": false,
+        "backlink_status": "unknown",
         "backlink_method": "article_body",
-        "backlink_last_confirmed_at": "2026-10-27T08:18:29.722Z"
+        "backlink_last_confirmed_at": "2026-10-27T08:18:29.722Z",
+        "backlink_error": "http_429"
       },
       "wordpress_earthstar": {
         "status": "success",

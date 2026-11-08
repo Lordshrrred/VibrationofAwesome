@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-08T13:48:45.597Z",
+  "generatedAt": "2026-11-08T19:00:40.223Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
     "completedPerDay": "Successful backlink-capable platform tasks completed in the last 14 days divided by 14.",
     "excludedFromBacklinkBacklog": "Feeder canonical/source pages, Pinterest/social distribution, Instagram non-clickable captions, skipped policy destinations, and verification-only gaps."
   },
-  "mode": "maintenance",
+  "mode": "catch-up",
   "thresholds": {
     "catchupUnitThreshold": 25,
     "catchupDaysThreshold": 7,
@@ -14,21 +14,21 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 407,
-    "totalLivePosts": 445,
+    "totalTrackedPosts": 408,
+    "totalLivePosts": 446,
     "untrackedLivePosts": 38,
-    "backlogPosts": 1,
-    "backlinkCapableMissingUnits": 3,
-    "backlinkVerificationGaps": 18,
+    "backlogPosts": 2,
+    "backlinkCapableMissingUnits": 6,
+    "backlinkVerificationGaps": 25,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 19,
-    "freshPostsAwaitingBacklinks": 1,
-    "freshMissingBacklinkUnits": 3,
-    "completedBacklinkUnitsInWindow": 153,
-    "completedBacklinkUnitsPerDay": 10.9,
+    "distributionIncompleteUnits": 21,
+    "freshPostsAwaitingBacklinks": 2,
+    "freshMissingBacklinkUnits": 6,
+    "completedBacklinkUnitsInWindow": 150,
+    "completedBacklinkUnitsPerDay": 10.7,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 1.1,
+    "netBacklogChangePerDay": 1.3,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -38,22 +38,22 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 407,
+        "eligiblePosts": 408,
         "complete": 406,
-        "missing": 1,
-        "successRate": 99.8,
+        "missing": 2,
+        "successRate": 99.5,
         "averagePerDay": 3.6,
-        "confirmed": 390,
-        "verificationGaps": 16,
+        "confirmed": 383,
+        "verificationGaps": 23,
         "mainBlocker": "backlink tier paused"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 407,
+        "eligiblePosts": 408,
         "complete": 406,
-        "missing": 1,
-        "successRate": 99.8,
+        "missing": 2,
+        "successRate": 99.5,
         "averagePerDay": 3.6,
         "confirmed": 405,
         "verificationGaps": 1,
@@ -62,10 +62,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 407,
+        "eligiblePosts": 408,
         "complete": 406,
-        "missing": 1,
-        "successRate": 99.8,
+        "missing": 2,
+        "successRate": 99.5,
         "averagePerDay": 3.6,
         "confirmed": 405,
         "verificationGaps": 1,
@@ -80,7 +80,7 @@
         "complete": 275,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.7,
         "confirmed": 275,
         "verificationGaps": 0,
         "mainBlocker": ""
@@ -90,10 +90,10 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 310,
+        "eligiblePosts": 311,
         "complete": 309,
-        "missing": 1,
-        "successRate": 99.7,
+        "missing": 2,
+        "successRate": 99.4,
         "averagePerDay": 1.9,
         "confirmed": 142,
         "verificationGaps": 167,
@@ -102,10 +102,10 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 310,
+        "eligiblePosts": 311,
         "complete": 305,
-        "missing": 5,
-        "successRate": 98.4,
+        "missing": 6,
+        "successRate": 98.1,
         "averagePerDay": 1.9,
         "confirmed": 142,
         "verificationGaps": 163,
@@ -172,11 +172,11 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 1
+      "count": 2
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 1
+      "count": 2
     }
   ],
   "untrackedPosts": [
@@ -453,6 +453,17 @@
       "lane": "boom",
       "title": "Name It to Tame It? Testing the Labeling Habit on a Real Decision",
       "date": "2026-11-07",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "lane": "boom",
+      "title": "Framing a Digital Print So It Reads as Deliberate Art Rather Than a Poster",
+      "date": "2026-11-08",
       "missing": [
         "tumblr_voa",
         "blogger",
