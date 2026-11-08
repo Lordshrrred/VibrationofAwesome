@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-07T18:00:01.584Z",
+  "lastUpdated": "2026-11-08T18:19:03.685Z",
   "recentHooks": [
     {
       "slug": "the-editing-pass-that-sands-off-your-edges",
@@ -889,6 +889,24 @@
   "recentThreadsFormats": [
     {
       "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-11-08T18:19:03.685Z"
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-11-08T18:18:00.437Z"
+    },
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1138,27 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-11-02T07:24:37.324Z"
-    },
-    {
-      "slug": "your-first-commission-how-to-brief-an-independent-artist-without-friction",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-11-02T07:23:54.938Z"
-    },
-    {
-      "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-11-02T01:20:11.455Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "family": "art",
+      "timestamp": "2026-11-08T18:18:15.612Z"
+    },
     {
       "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
       "archetype": "sacred-tech",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-10-24T16:32:46.468Z"
-    },
-    {
-      "slug": "the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-10-24T00:20:57.445Z"
     }
   ]
 }
