@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-11-07T17:44:51.262Z",
+  "generatedAt": "2026-11-08T05:59:27.702Z",
   "repo": {
     "branch": "main",
-    "head": "ccf37f43a03f055f9cc98f111cb19e8e5b9c017f",
-    "headShort": "ccf37f4",
-    "originMain": "ccf37f43a03f055f9cc98f111cb19e8e5b9c017f",
-    "originMainShort": "ccf37f4"
+    "head": "a3cfaa5a9db48f197b947eca7edca926996058f1",
+    "headShort": "a3cfaa5",
+    "originMain": "a3cfaa5a9db48f197b947eca7edca926996058f1",
+    "originMainShort": "a3cfaa5"
   },
   "deployments": {
     "main": {
       "target": "vibrationofawesome.com",
       "status": "ready",
-      "commit": "ccf37f43a03f055f9cc98f111cb19e8e5b9c017f",
-      "builtAt": "2026-11-07T17:23:04.859Z",
+      "commit": "8d90a3f6ae37c3a7b9f1ca973992a9134c68299b",
+      "builtAt": "2026-11-07T18:05:33.699Z",
       "url": "https://vibrationofawesome.com",
-      "checkedAt": "2026-11-07T17:44:50.720Z",
+      "checkedAt": "2026-11-08T05:59:27.491Z",
       "source": "build-info",
-      "commitShort": "ccf37f4",
+      "commitShort": "8d90a3f",
       "currentWithOrigin": true,
-      "freshness": "Serving origin/main."
+      "freshness": "Only non-deploying changes since this deploy."
     },
     "mailer": {
       "target": "vibrationofawesome-mailer.vercel.app",
@@ -26,11 +26,11 @@
       "commit": "b3387ef2636e26fd15f974f5d30829988abe908a",
       "builtAt": "2026-10-19T01:12:55.380Z",
       "url": "https://vibrationofawesome-mailer.vercel.app",
-      "checkedAt": "2026-11-07T17:44:51.256Z",
+      "checkedAt": "2026-11-08T05:59:27.692Z",
       "source": "build-info",
       "commitShort": "b3387ef",
-      "currentWithOrigin": true,
-      "freshness": "Only non-deploying changes since this deploy."
+      "currentWithOrigin": false,
+      "freshness": "Behind: Mailer/API impact detected: package.json"
     }
   },
   "policy": {
