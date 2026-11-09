@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-08T18:19:03.685Z",
+  "lastUpdated": "2026-11-09T22:58:20.610Z",
   "recentHooks": [
     {
       "slug": "the-editing-pass-that-sands-off-your-edges",
@@ -889,6 +889,33 @@
   "recentThreadsFormats": [
     {
       "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-11-09T22:58:20.610Z"
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-11-09T22:58:12.443Z"
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-11-09T22:57:16.216Z"
+    },
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
       "format": "single-native-post",
       "cadenceProfile": "standalone",
       "density": "medium",
@@ -1129,36 +1156,19 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-11-03T03:20:36.401Z"
-    },
-    {
-      "slug": "rebuilding-your-social-life-after-your-priorities-shift",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-11-02T23:18:02.821Z"
-    },
-    {
-      "slug": "a-boundary-map-for-ai-in-your-music-process",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-11-02T22:16:02.597Z"
-    },
-    {
-      "slug": "jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-11-02T07:24:37.324Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-11-09T22:57:26.478Z"
+    },
     {
       "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
       "archetype": "cinematic-ideogram",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "grounded",
       "family": "art",
       "timestamp": "2026-10-25T00:04:11.623Z"
-    },
-    {
-      "slug": "why-finding-your-purpose-keeps-you-stuck",
-      "archetype": "premium-quote-card",
-      "archetypeLabel": "Premium Quote Card",
-      "palette": "teal-on-dark",
-      "emotionalTone": "clarity",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-10-24T16:32:46.468Z"
     }
   ]
 }
