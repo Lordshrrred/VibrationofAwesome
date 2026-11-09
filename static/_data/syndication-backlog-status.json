@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T23:57:24.935Z",
+  "generatedAt": "2026-11-09T07:04:52.090Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -19,16 +19,16 @@
     "untrackedLivePosts": 38,
     "backlogPosts": 2,
     "backlinkCapableMissingUnits": 6,
-    "backlinkVerificationGaps": 25,
+    "backlinkVerificationGaps": 32,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 21,
     "freshPostsAwaitingBacklinks": 2,
     "freshMissingBacklinkUnits": 6,
-    "completedBacklinkUnitsInWindow": 147,
-    "completedBacklinkUnitsPerDay": 10.5,
+    "completedBacklinkUnitsInWindow": 141,
+    "completedBacklinkUnitsPerDay": 10.1,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 1.5,
+    "netBacklogChangePerDay": 1.9,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -42,9 +42,9 @@
         "complete": 406,
         "missing": 2,
         "successRate": 99.5,
-        "averagePerDay": 3.5,
-        "confirmed": 383,
-        "verificationGaps": 23,
+        "averagePerDay": 3.4,
+        "confirmed": 376,
+        "verificationGaps": 30,
         "mainBlocker": "backlink tier paused"
       },
       {
@@ -54,7 +54,7 @@
         "complete": 406,
         "missing": 2,
         "successRate": 99.5,
-        "averagePerDay": 3.5,
+        "averagePerDay": 3.4,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -66,7 +66,7 @@
         "complete": 406,
         "missing": 2,
         "successRate": 99.5,
-        "averagePerDay": 3.5,
+        "averagePerDay": 3.4,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -94,7 +94,7 @@
         "complete": 309,
         "missing": 2,
         "successRate": 99.4,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.7,
         "confirmed": 142,
         "verificationGaps": 167,
         "mainBlocker": "env vars not set"
@@ -106,7 +106,7 @@
         "complete": 305,
         "missing": 6,
         "successRate": 98.1,
-        "averagePerDay": 1.8,
+        "averagePerDay": 1.7,
         "confirmed": 142,
         "verificationGaps": 163,
         "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
