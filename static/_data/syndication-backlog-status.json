@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T19:03:41.316Z",
+  "generatedAt": "2026-11-10T02:52:55.862Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,21 +14,21 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 408,
-    "totalLivePosts": 446,
+    "totalTrackedPosts": 409,
+    "totalLivePosts": 447,
     "untrackedLivePosts": 38,
-    "backlogPosts": 2,
-    "backlinkCapableMissingUnits": 6,
-    "backlinkVerificationGaps": 23,
+    "backlogPosts": 3,
+    "backlinkCapableMissingUnits": 9,
+    "backlinkVerificationGaps": 24,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 21,
-    "freshPostsAwaitingBacklinks": 2,
-    "freshMissingBacklinkUnits": 6,
-    "completedBacklinkUnitsInWindow": 141,
-    "completedBacklinkUnitsPerDay": 10.1,
+    "distributionIncompleteUnits": 23,
+    "freshPostsAwaitingBacklinks": 3,
+    "freshMissingBacklinkUnits": 9,
+    "completedBacklinkUnitsInWindow": 132,
+    "completedBacklinkUnitsPerDay": 9.4,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 1.9,
+    "netBacklogChangePerDay": 2.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -38,23 +38,23 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 408,
+        "eligiblePosts": 409,
         "complete": 406,
-        "missing": 2,
-        "successRate": 99.5,
-        "averagePerDay": 3.4,
-        "confirmed": 385,
-        "verificationGaps": 21,
+        "missing": 3,
+        "successRate": 99.3,
+        "averagePerDay": 3.1,
+        "confirmed": 384,
+        "verificationGaps": 22,
         "mainBlocker": "backlink tier paused"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 408,
+        "eligiblePosts": 409,
         "complete": 406,
-        "missing": 2,
-        "successRate": 99.5,
-        "averagePerDay": 3.4,
+        "missing": 3,
+        "successRate": 99.3,
+        "averagePerDay": 3.1,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -62,11 +62,11 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 408,
+        "eligiblePosts": 409,
         "complete": 406,
-        "missing": 2,
-        "successRate": 99.5,
-        "averagePerDay": 3.4,
+        "missing": 3,
+        "successRate": 99.3,
+        "averagePerDay": 3.1,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -76,12 +76,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 275,
-        "complete": 275,
+        "eligiblePosts": 276,
+        "complete": 276,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 275,
+        "confirmed": 276,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -90,11 +90,11 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 311,
+        "eligiblePosts": 312,
         "complete": 309,
-        "missing": 2,
-        "successRate": 99.4,
-        "averagePerDay": 1.7,
+        "missing": 3,
+        "successRate": 99,
+        "averagePerDay": 1.6,
         "confirmed": 142,
         "verificationGaps": 167,
         "mainBlocker": "env vars not set"
@@ -102,11 +102,11 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 311,
+        "eligiblePosts": 312,
         "complete": 305,
-        "missing": 6,
-        "successRate": 98.1,
-        "averagePerDay": 1.7,
+        "missing": 7,
+        "successRate": 97.8,
+        "averagePerDay": 1.6,
         "confirmed": 142,
         "verificationGaps": 163,
         "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
@@ -118,7 +118,7 @@
         "complete": 177,
         "missing": 13,
         "successRate": 93.2,
-        "averagePerDay": 0.6,
+        "averagePerDay": 0.5,
         "confirmed": 30,
         "verificationGaps": 147,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
@@ -142,7 +142,7 @@
         "complete": 189,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.6,
+        "averagePerDay": 0.5,
         "confirmed": 72,
         "verificationGaps": 117,
         "mainBlocker": ""
@@ -154,7 +154,7 @@
         "complete": 187,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.6,
+        "averagePerDay": 0.5,
         "confirmed": 0,
         "verificationGaps": 187,
         "mainBlocker": ""
@@ -172,11 +172,11 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 2
+      "count": 3
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 2
+      "count": 3
     }
   ],
   "untrackedPosts": [
@@ -464,6 +464,17 @@
       "lane": "boom",
       "title": "Framing a Digital Print So It Reads as Deliberate Art Rather Than a Poster",
       "date": "2026-11-08",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "lane": "boom",
+      "title": "Using AI as a Sketchpad, Not a Final Draft",
+      "date": "2026-11-09",
       "missing": [
         "tumblr_voa",
         "blogger",
