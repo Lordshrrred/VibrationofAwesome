@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-09T22:58:20.610Z",
+  "lastUpdated": "2026-11-10T20:25:12.362Z",
   "recentHooks": [
     {
       "slug": "the-editing-pass-that-sands-off-your-edges",
@@ -889,6 +889,42 @@
   "recentThreadsFormats": [
     {
       "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-11-10T20:25:12.362Z"
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-11-10T20:25:04.869Z"
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-11-10T20:24:54.689Z"
+    },
+    {
+      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-11-10T20:24:03.188Z"
+    },
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
       "density": "medium-dense",
@@ -1120,45 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-11-04T02:00:17.445Z"
-    },
-    {
-      "slug": "when-pleasing-the-room-flattens-your-work",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-11-04T01:58:38.838Z"
-    },
-    {
-      "slug": "the-creative-blank-after-a-long-stimulation-streak",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-11-03T20:17:39.269Z"
-    },
-    {
-      "slug": "tools-that-serve-your-work-versus-tools-that-reshape-your-self-image",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-11-03T07:40:52.036Z"
-    },
-    {
-      "slug": "templates-that-still-sound-like-a-person-automated-replies-without-the-cold-feel",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-11-03T03:20:36.401Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-11-10T20:24:13.376Z"
+    },
     {
       "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
       "archetype": "field-guide-aesthetic",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "somatic",
       "family": "art",
       "timestamp": "2026-10-25T17:02:17.127Z"
-    },
-    {
-      "slug": "checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-10-25T00:04:11.623Z"
     }
   ]
 }
