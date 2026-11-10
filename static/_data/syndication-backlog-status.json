@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T12:55:10.567Z",
+  "generatedAt": "2026-11-10T20:58:38.613Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,21 +14,21 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 409,
-    "totalLivePosts": 447,
+    "totalTrackedPosts": 410,
+    "totalLivePosts": 448,
     "untrackedLivePosts": 38,
-    "backlogPosts": 3,
-    "backlinkCapableMissingUnits": 9,
-    "backlinkVerificationGaps": 14,
+    "backlogPosts": 4,
+    "backlinkCapableMissingUnits": 12,
+    "backlinkVerificationGaps": 22,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 23,
-    "freshPostsAwaitingBacklinks": 3,
-    "freshMissingBacklinkUnits": 9,
-    "completedBacklinkUnitsInWindow": 129,
-    "completedBacklinkUnitsPerDay": 9.2,
+    "distributionIncompleteUnits": 25,
+    "freshPostsAwaitingBacklinks": 4,
+    "freshMissingBacklinkUnits": 12,
+    "completedBacklinkUnitsInWindow": 123,
+    "completedBacklinkUnitsPerDay": 8.8,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 2.8,
+    "netBacklogChangePerDay": 3.2,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -38,23 +38,23 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 409,
+        "eligiblePosts": 410,
         "complete": 406,
-        "missing": 3,
-        "successRate": 99.3,
-        "averagePerDay": 3.1,
-        "confirmed": 394,
-        "verificationGaps": 12,
+        "missing": 4,
+        "successRate": 99,
+        "averagePerDay": 2.9,
+        "confirmed": 386,
+        "verificationGaps": 20,
         "mainBlocker": "backlink tier paused"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 409,
+        "eligiblePosts": 410,
         "complete": 406,
-        "missing": 3,
-        "successRate": 99.3,
-        "averagePerDay": 3.1,
+        "missing": 4,
+        "successRate": 99,
+        "averagePerDay": 2.9,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -62,11 +62,11 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 409,
+        "eligiblePosts": 410,
         "complete": 406,
-        "missing": 3,
-        "successRate": 99.3,
-        "averagePerDay": 3.1,
+        "missing": 4,
+        "successRate": 99,
+        "averagePerDay": 2.9,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -76,12 +76,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 276,
-        "complete": 276,
+        "eligiblePosts": 277,
+        "complete": 277,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.6,
-        "confirmed": 276,
+        "confirmed": 277,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -90,11 +90,11 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 312,
+        "eligiblePosts": 313,
         "complete": 309,
-        "missing": 3,
-        "successRate": 99,
-        "averagePerDay": 1.6,
+        "missing": 4,
+        "successRate": 98.7,
+        "averagePerDay": 1.5,
         "confirmed": 142,
         "verificationGaps": 167,
         "mainBlocker": "env vars not set"
@@ -102,14 +102,14 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 312,
+        "eligiblePosts": 313,
         "complete": 305,
-        "missing": 7,
-        "successRate": 97.8,
-        "averagePerDay": 1.6,
+        "missing": 8,
+        "successRate": 97.4,
+        "averagePerDay": 1.5,
         "confirmed": 142,
         "verificationGaps": 163,
-        "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
+        "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
@@ -118,7 +118,7 @@
         "complete": 177,
         "missing": 13,
         "successRate": 93.2,
-        "averagePerDay": 0.5,
+        "averagePerDay": 0.4,
         "confirmed": 30,
         "verificationGaps": 147,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
@@ -130,7 +130,7 @@
         "complete": 194,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.4,
+        "averagePerDay": 0.3,
         "confirmed": 0,
         "verificationGaps": 194,
         "mainBlocker": ""
@@ -142,7 +142,7 @@
         "complete": 189,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.5,
+        "averagePerDay": 0.4,
         "confirmed": 72,
         "verificationGaps": 117,
         "mainBlocker": ""
@@ -154,7 +154,7 @@
         "complete": 187,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.5,
+        "averagePerDay": 0.4,
         "confirmed": 0,
         "verificationGaps": 187,
         "mainBlocker": ""
@@ -167,16 +167,16 @@
       "count": 13
     },
     {
-      "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
+      "reason": "bluesky_voa: env vars not set",
       "count": 4
     },
     {
-      "reason": "bluesky_voa: env vars not set",
-      "count": 3
+      "reason": "mastodon_voa: env vars not set",
+      "count": 4
     },
     {
-      "reason": "mastodon_voa: env vars not set",
-      "count": 3
+      "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
+      "count": 4
     }
   ],
   "untrackedPosts": [
@@ -475,6 +475,17 @@
       "lane": "boom",
       "title": "Using AI as a Sketchpad, Not a Final Draft",
       "date": "2026-11-09",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "lane": "boom",
+      "title": "Burnout or Wrong Role? Practical Ways to Tell the Difference Before You Quit",
+      "date": "2026-11-10",
       "missing": [
         "tumblr_voa",
         "blogger",
