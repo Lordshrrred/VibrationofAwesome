@@ -1,11 +1,11 @@
-# SEO Intelligence Report ~ 2026-11-04
+# SEO Intelligence Report ~ 2026-11-11
 
 Default source: Google Search Console + GA4. No Anthropic, OpenAI, paid web-search, or rank-check API calls are made by this report.
 
 ## Data Freshness and Connections
 
-- Period: 2026-10-05 to 2026-11-01
-- Comparison: 2026-09-07 to 2026-10-04
+- Period: 2026-10-12 to 2026-11-08
+- Comparison: 2026-09-14 to 2026-10-11
 - Search Console: connected
 - GA4: connected
 - API requests attempted this run: 8
@@ -35,11 +35,14 @@ _None found in this run._
 
 | Page | Sessions | Engagement | Suggested action |
 | --- | --- | --- | --- |
-| /blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it | 9 | 66.7% | Strengthen internal linking toward this page and expand the surrounding topic cluster. |
+| /blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it | 11 | 72.7% | Strengthen internal linking toward this page and expand the surrounding topic cluster. |
+| /blog/boom/posts/tony-robbins-scam-accusations-in-2026-whats-actually-being-said | 5 | 80.0% | Strengthen internal linking toward this page and expand the surrounding topic cluster. |
 
 ## Traffic but Weak Engagement
 
-_None found in this run._
+| Page | Sessions | Engagement | Suggested action |
+| --- | --- | --- | --- |
+| /blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting | 11 | 36.4% | Check intent mismatch, improve the opening answer, and reduce filler before the useful answer. |
 
 ## Hidden-Query Discoveries
 
@@ -56,12 +59,13 @@ _None found in this run._
 ## Top Five Prioritized Actions
 
 1. Send more internal links to /blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it; organic engagement is strong.
+2. Review /blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting; organic sessions exist but engagement is weak.
 
 ## Existing Operational Context
 
-- Published posts indexed locally: 432
+- Published posts indexed locally: 448
 - Authority assets indexed locally: 16
-- Syndication result records available: 480
+- Syndication result records available: 496
 
 ## Data Limitations
 
@@ -73,12 +77,21 @@ _None found in this run._
 
 | Page | Views | Users |
 | --- | --- | --- |
-| /ai-engine/ | 5 | 6 |
-| /field-guide/ | 4 | 3 |
-| /hubs/ | 1 | 1 |
-| /hubs/adhd-focus/ | 1 | 1 |
+| /ai-engine/ | 6 | 5 |
+| /field-guide/ | 5 | 4 |
+| /hubs/adhd-focus/ | 2 | 2 |
+| /hubs/ai-advantage/ | 2 | 2 |
+| /hubs/ai-creator-workflows/ | 2 | 2 |
+| /hubs/voa-concepts/ | 2 | 2 |
+| /tools/creative-signal-finder/ | 2 | 2 |
+| /tools/nervous-system-reset/ | 2 | 2 |
+| /hubs/dopamine-attention/ | 1 | 1 |
+| /hubs/nervous-system-regulation/ | 1 | 1 |
+| /hubs/purpose/ | 1 | 1 |
 | /tools/ | 1 | 1 |
-| /tools/nervous-system-reset/ | 1 | 1 |
+| /tools/digital-attention-audit/ | 1 | 1 |
+| /tools/the-compass-point/ | 1 | 1 |
+| /tools/the-honest-mirror/ | 1 | 1 |
 
 
 Pages absent from GA4 have no recorded views in this period; blockers, consent and tagging limit coverage. Conversion events are observed only after correct event delivery.
