@@ -1,14 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-11T20:08:48.675Z",
+  "generated_at": "2026-11-12T20:44:01.539Z",
   "source": "vibrationofawesome.com",
   "publishing": {
     "queue": {
       "lane": "boom",
-      "draft_count": 15,
+      "draft_count": 14,
       "draft_slugs": [
         "anxious-making-working-with-worry-instead-of-waiting-for-it-to-leave",
-        "attention-as-a-resource-you-can-allocate-on-purpose",
         "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
         "breaks-that-restore-rather-than-punish-planning-pauses-with-intention",
         "buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
@@ -24,7 +23,7 @@
         "when-two-directions-both-fit-a-tiebreaker-method-that-does-not-rely-on-feeling-sure"
       ],
       "runway_days": 3,
-      "runway_status": "healthy",
+      "runway_status": "warning",
       "warning_threshold": 14,
       "cadence_posts_per_day": 4,
       "schedule_windows": [
@@ -35,6 +34,18 @@
       ]
     },
     "recent_publishes": [
+      {
+        "slug": "attention-as-a-resource-you-can-allocate-on-purpose",
+        "title": "Attention as a Resource You Can Allocate on Purpose",
+        "lane": "boom",
+        "date": "2026-11-12T20:44:01.513Z",
+        "url": "/blog/boom/posts/attention-as-a-resource-you-can-allocate-on-purpose",
+        "tags": [
+          "ai-creator-tools"
+        ],
+        "cluster": "consciousness-technology",
+        "content_type": null
+      },
       {
         "slug": "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
         "title": "One Editorial Calendar Across Music, Newsletter, and Social Without the Chaos",
@@ -262,21 +273,10 @@
         ],
         "cluster": "authentic-self-expression",
         "content_type": null
-      },
-      {
-        "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
-        "title": "The Input Budget: How Much Stimulation a Creative Day Can Actually Hold",
-        "lane": "boom",
-        "date": "2026-11-03T21:22:06.871Z",
-        "url": "/blog/boom/posts/the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
-        "tags": [
-          "nervous-system-dysregulation"
-        ],
-        "cluster": "nervous-system-creativity",
-        "content_type": null
       }
     ],
     "occupied_dates": [
+      "2026-11-12",
       "2026-11-11",
       "2026-11-10",
       "2026-11-09",
@@ -446,11 +446,11 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "next_estimated_window": "2026-11-12",
+    "next_estimated_window": "2026-11-13",
     "published_counts": {
-      "boom": 431,
+      "boom": 432,
       "matt": 18,
-      "total": 449
+      "total": 450
     }
   },
   "syndication": {
@@ -472,68 +472,68 @@
         "title": "One Editorial Calendar Across Music, Newsletter, and Social Without the Chaos",
         "lane": "boom",
         "date": "2026-11-11",
-        "publish_status": "complete",
+        "publish_status": "partial",
         "platform_statuses": {
           "feeder": {
+            "status": "success",
+            "timestamp": "2026-11-11T20:07:30.404Z",
+            "url": "https://lordshrrred.github.io/VOA_Feeder/blog/one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos-guide.html"
+          },
+          "bluesky_voa": {
+            "status": "failed",
+            "timestamp": "2026-11-12T18:33:01.839Z",
+            "url": null
+          },
+          "mastodon_voa": {
+            "status": "failed",
+            "timestamp": "2026-11-12T18:33:01.839Z",
+            "url": null
+          },
+          "facebook_voa": {
             "status": "not_attempted",
             "timestamp": null,
             "url": null
           },
-          "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:00.923Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3n22qyyasey2o"
-          },
-          "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:00.923Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/117599609811580046"
-          },
-          "facebook_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:00.923Z",
-            "url": null
-          },
           "pinterest": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:00.923Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "threads": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:00.923Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "instagram": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:00.923Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "tumblr_voa": {
             "status": "skipped",
-            "timestamp": "2026-11-11T20:08:00.923Z",
+            "timestamp": "2026-11-12T18:33:01.839Z",
             "url": null
           },
           "blogger": {
-            "status": "skipped",
-            "timestamp": "2026-11-11T20:08:00.923Z",
+            "status": "not_attempted",
+            "timestamp": null,
             "url": null
           },
           "wordpress_earthstar": {
             "status": "skipped",
-            "timestamp": "2026-11-11T20:08:00.923Z",
+            "timestamp": "2026-11-12T18:33:01.839Z",
             "url": null
           }
         },
-        "success_count": 6,
-        "failed_count": 0
+        "success_count": 1,
+        "failed_count": 2
       },
       {
         "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
         "title": "Burnout or Wrong Role? Practical Ways to Tell the Difference Before You Quit",
         "lane": "boom",
         "date": "2026-11-10",
-        "publish_status": "complete",
+        "publish_status": "partial",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -541,14 +541,14 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit-guide.html"
           },
           "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:12.442Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3n22r2mka4t2j"
+            "status": "failed",
+            "timestamp": "2026-11-12T18:32:53.810Z",
+            "url": null
           },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:12.442Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/117599613238586431"
+            "status": "failed",
+            "timestamp": "2026-11-12T18:32:53.810Z",
+            "url": null
           },
           "facebook_voa": {
             "status": "not_attempted",
@@ -572,29 +572,29 @@
           },
           "tumblr_voa": {
             "status": "skipped",
-            "timestamp": "2026-11-11T18:03:28.816Z",
+            "timestamp": "2026-11-12T18:32:53.810Z",
             "url": null
           },
           "blogger": {
             "status": "skipped",
-            "timestamp": "2026-11-11T02:10:16.613Z",
+            "timestamp": "2026-11-12T00:57:30.425Z",
             "url": null
           },
           "wordpress_earthstar": {
             "status": "skipped",
-            "timestamp": "2026-11-11T18:03:28.816Z",
+            "timestamp": "2026-11-12T18:32:53.810Z",
             "url": null
           }
         },
-        "success_count": 3,
-        "failed_count": 0
+        "success_count": 1,
+        "failed_count": 2
       },
       {
         "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
         "title": "Using AI as a Sketchpad, Not a Final Draft",
         "lane": "boom",
         "date": "2026-11-09",
-        "publish_status": "complete",
+        "publish_status": "partial",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -602,14 +602,14 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/using-ai-as-a-sketchpad-not-a-final-draft-signal.html"
           },
           "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:25.312Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3n22r2ya2232j"
+            "status": "failed",
+            "timestamp": "2026-11-12T18:32:45.782Z",
+            "url": null
           },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:25.312Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/117599614047406557"
+            "status": "failed",
+            "timestamp": "2026-11-12T18:32:45.782Z",
+            "url": null
           },
           "facebook_voa": {
             "status": "not_attempted",
@@ -633,29 +633,29 @@
           },
           "tumblr_voa": {
             "status": "skipped",
-            "timestamp": "2026-11-11T18:03:20.794Z",
+            "timestamp": "2026-11-12T18:32:45.782Z",
             "url": null
           },
           "blogger": {
             "status": "skipped",
-            "timestamp": "2026-11-11T02:10:08.565Z",
+            "timestamp": "2026-11-12T00:57:22.389Z",
             "url": null
           },
           "wordpress_earthstar": {
             "status": "skipped",
-            "timestamp": "2026-11-11T18:03:20.794Z",
+            "timestamp": "2026-11-12T18:32:45.782Z",
             "url": null
           }
         },
-        "success_count": 3,
-        "failed_count": 0
+        "success_count": 1,
+        "failed_count": 2
       },
       {
         "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
         "title": "Framing a Digital Print So It Reads as Deliberate Art Rather Than a Poster",
         "lane": "boom",
         "date": "2026-11-08",
-        "publish_status": "complete",
+        "publish_status": "partial",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -663,14 +663,14 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster-signal.html"
           },
           "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:39.157Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3n22r3g36r523"
+            "status": "failed",
+            "timestamp": "2026-11-12T18:32:37.753Z",
+            "url": null
           },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:39.157Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/117599614990791106"
+            "status": "failed",
+            "timestamp": "2026-11-12T18:32:37.753Z",
+            "url": null
           },
           "facebook_voa": {
             "status": "not_attempted",
@@ -694,29 +694,29 @@
           },
           "tumblr_voa": {
             "status": "skipped",
-            "timestamp": "2026-11-11T18:03:12.765Z",
+            "timestamp": "2026-11-12T18:32:37.753Z",
             "url": null
           },
           "blogger": {
             "status": "skipped",
-            "timestamp": "2026-11-11T02:10:00.525Z",
+            "timestamp": "2026-11-12T00:57:14.360Z",
             "url": null
           },
           "wordpress_earthstar": {
             "status": "skipped",
-            "timestamp": "2026-11-11T18:03:12.765Z",
+            "timestamp": "2026-11-12T18:32:37.753Z",
             "url": null
           }
         },
-        "success_count": 3,
-        "failed_count": 0
+        "success_count": 1,
+        "failed_count": 2
       },
       {
         "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
         "title": "Name It to Tame It? Testing the Labeling Habit on a Real Decision",
         "lane": "boom",
         "date": "2026-11-07",
-        "publish_status": "complete",
+        "publish_status": "partial",
         "platform_statuses": {
           "feeder": {
             "status": "success",
@@ -724,14 +724,14 @@
             "url": "https://lordshrrred.github.io/VOA_Feeder/blog/name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision-signal.html"
           },
           "bluesky_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:48.608Z",
-            "url": "https://bsky.app/profile/vibrationofawesome.bsky.social/post/3n22r3p3diq2e"
+            "status": "failed",
+            "timestamp": "2026-11-12T18:32:29.727Z",
+            "url": null
           },
           "mastodon_voa": {
-            "status": "success",
-            "timestamp": "2026-11-11T20:08:48.608Z",
-            "url": "https://mastodon.social/@Vibrationofawesome/117599615610435392"
+            "status": "failed",
+            "timestamp": "2026-11-12T18:32:29.727Z",
+            "url": null
           },
           "facebook_voa": {
             "status": "not_attempted",
@@ -755,22 +755,22 @@
           },
           "tumblr_voa": {
             "status": "skipped",
-            "timestamp": "2026-11-11T18:03:04.736Z",
+            "timestamp": "2026-11-12T18:32:29.727Z",
             "url": null
           },
           "blogger": {
             "status": "skipped",
-            "timestamp": "2026-11-11T02:09:52.483Z",
+            "timestamp": "2026-11-12T00:57:06.329Z",
             "url": null
           },
           "wordpress_earthstar": {
             "status": "skipped",
-            "timestamp": "2026-11-11T18:03:04.736Z",
+            "timestamp": "2026-11-12T18:32:29.727Z",
             "url": null
           }
         },
-        "success_count": 3,
-        "failed_count": 0
+        "success_count": 1,
+        "failed_count": 2
       },
       {
         "slug": "finding-your-own-values-after-years-of-borrowed-goals",
@@ -30787,6 +30787,56 @@
     ],
     "retry_backlog": [
       {
+        "slug": "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-11-12T18:33:01.839Z"
+      },
+      {
+        "slug": "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
+        "platform": "mastodon_voa",
+        "timestamp": "2026-11-12T18:33:01.839Z"
+      },
+      {
+        "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-11-12T18:32:53.810Z"
+      },
+      {
+        "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+        "platform": "mastodon_voa",
+        "timestamp": "2026-11-12T18:32:53.810Z"
+      },
+      {
+        "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-11-12T18:32:45.782Z"
+      },
+      {
+        "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+        "platform": "mastodon_voa",
+        "timestamp": "2026-11-12T18:32:45.782Z"
+      },
+      {
+        "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-11-12T18:32:37.753Z"
+      },
+      {
+        "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+        "platform": "mastodon_voa",
+        "timestamp": "2026-11-12T18:32:37.753Z"
+      },
+      {
+        "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+        "platform": "bluesky_voa",
+        "timestamp": "2026-11-12T18:32:29.727Z"
+      },
+      {
+        "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+        "platform": "mastodon_voa",
+        "timestamp": "2026-11-12T18:32:29.727Z"
+      },
+      {
         "slug": "machine-intelligence-and-the-question-of-soul-what-changes-for-us-5",
         "platform": "mastodon_voa",
         "timestamp": "2026-10-16T17:20:29.180Z"
@@ -30879,37 +30929,37 @@
     ],
     "platform_coverage": {
       "feeder": {
-        "successes": 325,
+        "successes": 326,
         "failures": 0,
         "total": 497
       },
       "bluesky_voa": {
-        "successes": 360,
-        "failures": 0,
-        "total": 497
-      },
-      "mastodon_voa": {
         "successes": 355,
         "failures": 5,
         "total": 497
       },
+      "mastodon_voa": {
+        "successes": 350,
+        "failures": 10,
+        "total": 497
+      },
       "facebook_voa": {
-        "successes": 191,
+        "successes": 190,
         "failures": 13,
         "total": 497
       },
       "pinterest": {
-        "successes": 202,
+        "successes": 201,
         "failures": 0,
         "total": 497
       },
       "threads": {
-        "successes": 203,
+        "successes": 202,
         "failures": 0,
         "total": 497
       },
       "instagram": {
-        "successes": 201,
+        "successes": 200,
         "failures": 0,
         "total": 497
       },
@@ -30931,10 +30981,10 @@
     },
     "summary": {
       "total_posts": 497,
-      "fully_syndicated": 479,
-      "partial": 18,
+      "fully_syndicated": 474,
+      "partial": 23,
       "pending": 0,
-      "retry_backlog_count": 18
+      "retry_backlog_count": 28
     }
   },
   "visuals": {
@@ -38338,6 +38388,7 @@
       }
     },
     "post_to_cluster": {
+      "attention-as-a-resource-you-can-allocate-on-purpose": "consciousness-technology",
       "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos": "creator-automation",
       "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit": "building-life-that-fits",
       "using-ai-as-a-sketchpad-not-a-final-draft": "ai-creator-tools",
@@ -38787,7 +38838,7 @@
       "building-life-that-fits": 16,
       "emotional-regulation": 14,
       "art-buying-online": 24,
-      "consciousness-technology": 14
+      "consciousness-technology": 15
     },
     "unassigned_post_count": 12
   },
@@ -40251,11 +40302,12 @@
     "window_size": 30
   },
   "timeline": {
-    "as_of": "2026-11-11T20:08:48.675Z",
-    "next_estimated_window": "2026-11-12",
+    "as_of": "2026-11-12T20:44:01.539Z",
+    "next_estimated_window": "2026-11-13",
     "queue_runway_days": 3,
-    "queue_runway_status": "healthy",
+    "queue_runway_status": "warning",
     "occupied_dates": [
+      "2026-11-12",
       "2026-11-11",
       "2026-11-10",
       "2026-11-09",
@@ -40425,13 +40477,18 @@
       "2015-04-08",
       "2015-03-27"
     ],
-    "retry_backlog_count": 18,
+    "retry_backlog_count": 28,
     "cadence_density": {
-      "posts_last_7_days": 17,
+      "posts_last_7_days": 13,
       "posts_last_14_days": 20,
       "posts_last_30_days": 20
     },
     "recent_publish_history": [
+      {
+        "slug": "attention-as-a-resource-you-can-allocate-on-purpose",
+        "lane": "boom",
+        "date": "2026-11-12T20:44:01.513Z"
+      },
       {
         "slug": "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
         "lane": "boom",
@@ -40476,18 +40533,13 @@
         "slug": "engineering-idle-time-designing-low-demand-moments-that-feed-your-ideas",
         "lane": "boom",
         "date": "2026-11-06T19:54:40.701Z"
-      },
-      {
-        "slug": "comparison-is-not-information-reading-your-feed-without-losing-your-lane",
-        "lane": "boom",
-        "date": "2026-11-06T07:44:31.530Z"
       }
     ]
   },
   "_freshness": {
-    "last_export_at": "2026-11-11T20:08:48.657Z",
-    "source_event": "retry",
-    "export_duration_ms": 18,
+    "last_export_at": "2026-11-12T20:44:01.524Z",
+    "source_event": "drip_publish",
+    "export_duration_ms": 15,
     "schema_version": "1.0",
     "stale_after_minutes": 60
   }
