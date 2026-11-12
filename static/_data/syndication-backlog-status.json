@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T18:03:28.862Z",
+  "generatedAt": "2026-11-12T00:57:38.504Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,21 +14,21 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 410,
-    "totalLivePosts": 448,
+    "totalTrackedPosts": 411,
+    "totalLivePosts": 449,
     "untrackedLivePosts": 38,
-    "backlogPosts": 4,
-    "backlinkCapableMissingUnits": 12,
-    "backlinkVerificationGaps": 35,
+    "backlogPosts": 5,
+    "backlinkCapableMissingUnits": 15,
+    "backlinkVerificationGaps": 29,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 25,
-    "freshPostsAwaitingBacklinks": 4,
-    "freshMissingBacklinkUnits": 12,
-    "completedBacklinkUnitsInWindow": 117,
-    "completedBacklinkUnitsPerDay": 8.4,
+    "distributionIncompleteUnits": 27,
+    "freshPostsAwaitingBacklinks": 5,
+    "freshMissingBacklinkUnits": 15,
+    "completedBacklinkUnitsInWindow": 111,
+    "completedBacklinkUnitsPerDay": 7.9,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 3.6,
+    "netBacklogChangePerDay": 4.1,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -38,23 +38,23 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 410,
+        "eligiblePosts": 411,
         "complete": 406,
-        "missing": 4,
-        "successRate": 99,
-        "averagePerDay": 2.8,
-        "confirmed": 373,
-        "verificationGaps": 33,
+        "missing": 5,
+        "successRate": 98.8,
+        "averagePerDay": 2.6,
+        "confirmed": 379,
+        "verificationGaps": 27,
         "mainBlocker": "backlink tier paused"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 410,
+        "eligiblePosts": 411,
         "complete": 406,
-        "missing": 4,
-        "successRate": 99,
-        "averagePerDay": 2.8,
+        "missing": 5,
+        "successRate": 98.8,
+        "averagePerDay": 2.6,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -62,11 +62,11 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 410,
+        "eligiblePosts": 411,
         "complete": 406,
-        "missing": 4,
-        "successRate": 99,
-        "averagePerDay": 2.8,
+        "missing": 5,
+        "successRate": 98.8,
+        "averagePerDay": 2.6,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -76,12 +76,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 277,
-        "complete": 277,
+        "eligiblePosts": 278,
+        "complete": 278,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.5,
-        "confirmed": 277,
+        "confirmed": 278,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -90,10 +90,10 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 313,
+        "eligiblePosts": 314,
         "complete": 309,
-        "missing": 4,
-        "successRate": 98.7,
+        "missing": 5,
+        "successRate": 98.4,
         "averagePerDay": 1.4,
         "confirmed": 142,
         "verificationGaps": 167,
@@ -102,10 +102,10 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 313,
+        "eligiblePosts": 314,
         "complete": 305,
-        "missing": 8,
-        "successRate": 97.4,
+        "missing": 9,
+        "successRate": 97.1,
         "averagePerDay": 1.4,
         "confirmed": 142,
         "verificationGaps": 163,
@@ -130,7 +130,7 @@
         "complete": 194,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.3,
+        "averagePerDay": 0.2,
         "confirmed": 0,
         "verificationGaps": 194,
         "mainBlocker": ""
@@ -168,11 +168,11 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 4
+      "count": 5
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 4
+      "count": 5
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -486,6 +486,17 @@
       "lane": "boom",
       "title": "Burnout or Wrong Role? Practical Ways to Tell the Difference Before You Quit",
       "date": "2026-11-10",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
+      "lane": "boom",
+      "title": "One Editorial Calendar Across Music, Newsletter, and Social Without the Chaos",
+      "date": "2026-11-11",
       "missing": [
         "tumblr_voa",
         "blogger",
