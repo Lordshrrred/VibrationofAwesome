@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T16:42:23.926Z",
+  "generatedAt": "2026-11-13T23:49:07.401Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,21 +14,21 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 412,
-    "totalLivePosts": 450,
+    "totalTrackedPosts": 413,
+    "totalLivePosts": 451,
     "untrackedLivePosts": 38,
-    "backlogPosts": 6,
-    "backlinkCapableMissingUnits": 18,
-    "backlinkVerificationGaps": 12,
+    "backlogPosts": 7,
+    "backlinkCapableMissingUnits": 21,
+    "backlinkVerificationGaps": 14,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 29,
-    "freshPostsAwaitingBacklinks": 6,
-    "freshMissingBacklinkUnits": 18,
-    "completedBacklinkUnitsInWindow": 93,
-    "completedBacklinkUnitsPerDay": 6.6,
+    "distributionIncompleteUnits": 31,
+    "freshPostsAwaitingBacklinks": 7,
+    "freshMissingBacklinkUnits": 21,
+    "completedBacklinkUnitsInWindow": 87,
+    "completedBacklinkUnitsPerDay": 6.2,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 5.4,
+    "netBacklogChangePerDay": 5.8,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -38,23 +38,23 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 412,
+        "eligiblePosts": 413,
         "complete": 406,
-        "missing": 6,
-        "successRate": 98.5,
-        "averagePerDay": 2.2,
-        "confirmed": 396,
-        "verificationGaps": 10,
+        "missing": 7,
+        "successRate": 98.3,
+        "averagePerDay": 2.1,
+        "confirmed": 394,
+        "verificationGaps": 12,
         "mainBlocker": "backlink tier paused"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 412,
+        "eligiblePosts": 413,
         "complete": 406,
-        "missing": 6,
-        "successRate": 98.5,
-        "averagePerDay": 2.2,
+        "missing": 7,
+        "successRate": 98.3,
+        "averagePerDay": 2.1,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -62,11 +62,11 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 412,
+        "eligiblePosts": 413,
         "complete": 406,
-        "missing": 6,
-        "successRate": 98.5,
-        "averagePerDay": 2.2,
+        "missing": 7,
+        "successRate": 98.3,
+        "averagePerDay": 2.1,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -76,12 +76,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 279,
-        "complete": 279,
+        "eligiblePosts": 280,
+        "complete": 280,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.4,
-        "confirmed": 279,
+        "confirmed": 280,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -90,10 +90,10 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 315,
+        "eligiblePosts": 316,
         "complete": 309,
-        "missing": 6,
-        "successRate": 98.1,
+        "missing": 7,
+        "successRate": 97.8,
         "averagePerDay": 1.1,
         "confirmed": 142,
         "verificationGaps": 167,
@@ -102,10 +102,10 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 315,
+        "eligiblePosts": 316,
         "complete": 305,
-        "missing": 10,
-        "successRate": 96.8,
+        "missing": 11,
+        "successRate": 96.5,
         "averagePerDay": 1.1,
         "confirmed": 142,
         "verificationGaps": 163,
@@ -168,11 +168,11 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 6
+      "count": 7
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 6
+      "count": 7
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -508,6 +508,17 @@
       "lane": "boom",
       "title": "Attention as a Resource You Can Allocate on Purpose",
       "date": "2026-11-12",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "the-re-entry-problem-returning-to-serious-work-after-a-distracted-stretch",
+      "lane": "boom",
+      "title": "The Re-Entry Problem: Returning to Serious Work After a Distracted Stretch",
+      "date": "2026-11-13",
       "missing": [
         "tumblr_voa",
         "blogger",
