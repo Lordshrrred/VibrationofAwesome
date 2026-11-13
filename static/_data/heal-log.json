@@ -1,16 +1,5 @@
 [
   {
-    "healedAt": "2026-06-11T11:53:52.179Z",
-    "trigger": "scheduled",
-    "failedRunUrl": null,
-    "tier1": {
-      "healed": false,
-      "detail": "No em dashes found."
-    },
-    "tier2": [],
-    "retriggered": false
-  },
-  {
     "healedAt": "2026-06-12T11:12:27.656Z",
     "trigger": "scheduled",
     "failedRunUrl": null,
@@ -1246,5 +1235,19 @@
     },
     "tier2": [],
     "retriggered": false
+  },
+  {
+    "healedAt": "2026-11-13T20:25:48.730Z",
+    "trigger": "Drip Publish ~ Boom Frequency",
+    "failedRunUrl": "https://github.com/Lordshrrred/VibrationofAwesome/actions/runs/43501307657",
+    "tier1": {
+      "healed": true,
+      "detail": "Replaced em dashes with ~ in 1 file(s): static/blog/boom/drafts/renegotiating-roles-at-home-when-you-are-becoming-a-different-person.html",
+      "files": [
+        "static/blog/boom/drafts/renegotiating-roles-at-home-when-you-are-becoming-a-different-person.html"
+      ]
+    },
+    "tier2": [],
+    "retriggered": true
   }
 ]
