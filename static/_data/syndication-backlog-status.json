@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T23:49:07.401Z",
+  "generatedAt": "2026-11-14T06:57:00.507Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -19,16 +19,16 @@
     "untrackedLivePosts": 38,
     "backlogPosts": 7,
     "backlinkCapableMissingUnits": 21,
-    "backlinkVerificationGaps": 14,
+    "backlinkVerificationGaps": 19,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 31,
     "freshPostsAwaitingBacklinks": 7,
     "freshMissingBacklinkUnits": 21,
-    "completedBacklinkUnitsInWindow": 87,
-    "completedBacklinkUnitsPerDay": 6.2,
+    "completedBacklinkUnitsInWindow": 81,
+    "completedBacklinkUnitsPerDay": 5.8,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 5.8,
+    "netBacklogChangePerDay": 6.2,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -42,9 +42,9 @@
         "complete": 406,
         "missing": 7,
         "successRate": 98.3,
-        "averagePerDay": 2.1,
-        "confirmed": 394,
-        "verificationGaps": 12,
+        "averagePerDay": 1.9,
+        "confirmed": 389,
+        "verificationGaps": 17,
         "mainBlocker": "backlink tier paused"
       },
       {
@@ -54,7 +54,7 @@
         "complete": 406,
         "missing": 7,
         "successRate": 98.3,
-        "averagePerDay": 2.1,
+        "averagePerDay": 1.9,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -66,7 +66,7 @@
         "complete": 406,
         "missing": 7,
         "successRate": 98.3,
-        "averagePerDay": 2.1,
+        "averagePerDay": 1.9,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -94,7 +94,7 @@
         "complete": 309,
         "missing": 7,
         "successRate": 97.8,
-        "averagePerDay": 1.1,
+        "averagePerDay": 1,
         "confirmed": 142,
         "verificationGaps": 167,
         "mainBlocker": "env vars not set"
@@ -106,7 +106,7 @@
         "complete": 305,
         "missing": 11,
         "successRate": 96.5,
-        "averagePerDay": 1.1,
+        "averagePerDay": 1,
         "confirmed": 142,
         "verificationGaps": 163,
         "mainBlocker": "env vars not set"
