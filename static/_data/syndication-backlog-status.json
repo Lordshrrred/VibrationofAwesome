@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T15:18:43.596Z",
+  "generatedAt": "2026-11-14T20:54:16.247Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,21 +14,21 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 413,
-    "totalLivePosts": 451,
+    "totalTrackedPosts": 414,
+    "totalLivePosts": 452,
     "untrackedLivePosts": 38,
-    "backlogPosts": 7,
-    "backlinkCapableMissingUnits": 21,
-    "backlinkVerificationGaps": 19,
+    "backlogPosts": 8,
+    "backlinkCapableMissingUnits": 24,
+    "backlinkVerificationGaps": 17,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 31,
-    "freshPostsAwaitingBacklinks": 7,
-    "freshMissingBacklinkUnits": 21,
-    "completedBacklinkUnitsInWindow": 81,
-    "completedBacklinkUnitsPerDay": 5.8,
+    "distributionIncompleteUnits": 33,
+    "freshPostsAwaitingBacklinks": 8,
+    "freshMissingBacklinkUnits": 24,
+    "completedBacklinkUnitsInWindow": 75,
+    "completedBacklinkUnitsPerDay": 5.4,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 6.2,
+    "netBacklogChangePerDay": 6.6,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -38,23 +38,23 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 413,
+        "eligiblePosts": 414,
         "complete": 406,
-        "missing": 7,
-        "successRate": 98.3,
-        "averagePerDay": 1.9,
-        "confirmed": 389,
-        "verificationGaps": 17,
-        "mainBlocker": "backlink tier paused"
+        "missing": 8,
+        "successRate": 98.1,
+        "averagePerDay": 1.8,
+        "confirmed": 391,
+        "verificationGaps": 15,
+        "mainBlocker": "missing local success record"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 413,
+        "eligiblePosts": 414,
         "complete": 406,
-        "missing": 7,
-        "successRate": 98.3,
-        "averagePerDay": 1.9,
+        "missing": 8,
+        "successRate": 98.1,
+        "averagePerDay": 1.8,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -62,11 +62,11 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 413,
+        "eligiblePosts": 414,
         "complete": 406,
-        "missing": 7,
-        "successRate": 98.3,
-        "averagePerDay": 1.9,
+        "missing": 8,
+        "successRate": 98.1,
+        "averagePerDay": 1.8,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -76,12 +76,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 280,
-        "complete": 280,
+        "eligiblePosts": 281,
+        "complete": 281,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.4,
-        "confirmed": 280,
+        "confirmed": 281,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -90,11 +90,11 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 316,
+        "eligiblePosts": 317,
         "complete": 309,
-        "missing": 7,
-        "successRate": 97.8,
-        "averagePerDay": 1,
+        "missing": 8,
+        "successRate": 97.5,
+        "averagePerDay": 0.9,
         "confirmed": 142,
         "verificationGaps": 167,
         "mainBlocker": "env vars not set"
@@ -102,11 +102,11 @@
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 316,
+        "eligiblePosts": 317,
         "complete": 305,
-        "missing": 11,
-        "successRate": 96.5,
-        "averagePerDay": 1,
+        "missing": 12,
+        "successRate": 96.2,
+        "averagePerDay": 0.9,
         "confirmed": 142,
         "verificationGaps": 163,
         "mainBlocker": "env vars not set"
@@ -168,11 +168,11 @@
     },
     {
       "reason": "bluesky_voa: env vars not set",
-      "count": 7
+      "count": 8
     },
     {
       "reason": "mastodon_voa: env vars not set",
-      "count": 7
+      "count": 8
     },
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
@@ -519,6 +519,17 @@
       "lane": "boom",
       "title": "The Re-Entry Problem: Returning to Serious Work After a Distracted Stretch",
       "date": "2026-11-13",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "anxious-making-working-with-worry-instead-of-waiting-for-it-to-leave",
+      "lane": "boom",
+      "title": "Anxious Making: Working With Worry Instead of Waiting for It to Leave",
+      "date": "2026-11-14",
       "missing": [
         "tumblr_voa",
         "blogger",
