@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T17:23:05.620Z",
+  "generatedAt": "2026-11-15T23:06:54.926Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,21 +14,21 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 414,
-    "totalLivePosts": 452,
+    "totalTrackedPosts": 415,
+    "totalLivePosts": 453,
     "untrackedLivePosts": 38,
-    "backlogPosts": 8,
-    "backlinkCapableMissingUnits": 24,
+    "backlogPosts": 9,
+    "backlinkCapableMissingUnits": 27,
     "backlinkVerificationGaps": 36,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 33,
-    "freshPostsAwaitingBacklinks": 8,
-    "freshMissingBacklinkUnits": 24,
-    "completedBacklinkUnitsInWindow": 69,
-    "completedBacklinkUnitsPerDay": 4.9,
+    "freshPostsAwaitingBacklinks": 9,
+    "freshMissingBacklinkUnits": 27,
+    "completedBacklinkUnitsInWindow": 63,
+    "completedBacklinkUnitsPerDay": 4.5,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 7.1,
+    "netBacklogChangePerDay": 7.5,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -38,11 +38,11 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 414,
+        "eligiblePosts": 415,
         "complete": 406,
-        "missing": 8,
-        "successRate": 98.1,
-        "averagePerDay": 1.6,
+        "missing": 9,
+        "successRate": 97.8,
+        "averagePerDay": 1.5,
         "confirmed": 372,
         "verificationGaps": 34,
         "mainBlocker": "missing local success record"
@@ -50,11 +50,11 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 414,
+        "eligiblePosts": 415,
         "complete": 406,
-        "missing": 8,
-        "successRate": 98.1,
-        "averagePerDay": 1.6,
+        "missing": 9,
+        "successRate": 97.8,
+        "averagePerDay": 1.5,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -62,11 +62,11 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 414,
+        "eligiblePosts": 415,
         "complete": 406,
-        "missing": 8,
-        "successRate": 98.1,
-        "averagePerDay": 1.6,
+        "missing": 9,
+        "successRate": 97.8,
+        "averagePerDay": 1.5,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -76,12 +76,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 281,
-        "complete": 281,
+        "eligiblePosts": 282,
+        "complete": 282,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.3,
-        "confirmed": 281,
+        "confirmed": 282,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -94,7 +94,7 @@
         "complete": 309,
         "missing": 8,
         "successRate": 97.5,
-        "averagePerDay": 0.9,
+        "averagePerDay": 0.8,
         "confirmed": 142,
         "verificationGaps": 167,
         "mainBlocker": "env vars not set"
@@ -106,7 +106,7 @@
         "complete": 305,
         "missing": 12,
         "successRate": 96.2,
-        "averagePerDay": 0.9,
+        "averagePerDay": 0.8,
         "confirmed": 142,
         "verificationGaps": 163,
         "mainBlocker": "env vars not set"
@@ -118,7 +118,7 @@
         "complete": 177,
         "missing": 13,
         "successRate": 93.2,
-        "averagePerDay": 0.4,
+        "averagePerDay": 0.3,
         "confirmed": 30,
         "verificationGaps": 147,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
@@ -142,7 +142,7 @@
         "complete": 189,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.4,
+        "averagePerDay": 0.3,
         "confirmed": 72,
         "verificationGaps": 117,
         "mainBlocker": ""
@@ -154,7 +154,7 @@
         "complete": 187,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.4,
+        "averagePerDay": 0.3,
         "confirmed": 0,
         "verificationGaps": 187,
         "mainBlocker": ""
@@ -530,6 +530,17 @@
       "lane": "boom",
       "title": "Anxious Making: Working With Worry Instead of Waiting for It to Leave",
       "date": "2026-11-14",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "specificity-without-confession-vulnerable-work-done-well",
+      "lane": "boom",
+      "title": "Specificity Without Confession: Vulnerable Work Done Well",
+      "date": "2026-11-15",
       "missing": [
         "tumblr_voa",
         "blogger",
