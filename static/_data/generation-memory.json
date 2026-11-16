@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-15T19:21:21.555Z",
+  "lastUpdated": "2026-11-16T22:51:35.950Z",
   "recentHooks": [
     {
       "slug": "conscious-use-is-a-practice-of-small-decisions-not-a-lifestyle-brand",
@@ -889,6 +889,60 @@
   "recentThreadsFormats": [
     {
       "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-11-16T22:51:35.950Z"
+    },
+    {
+      "slug": "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-11-16T22:51:25.928Z"
+    },
+    {
+      "slug": "attention-as-a-resource-you-can-allocate-on-purpose",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-11-16T22:51:18.248Z"
+    },
+    {
+      "slug": "the-re-entry-problem-returning-to-serious-work-after-a-distracted-stretch",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-11-16T22:51:10.716Z"
+    },
+    {
+      "slug": "anxious-making-working-with-worry-instead-of-waiting-for-it-to-leave",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-11-16T22:51:02.955Z"
+    },
+    {
+      "slug": "breaks-that-restore-rather-than-punish-planning-pauses-with-intention",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-11-16T22:49:57.716Z"
+    },
+    {
+      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
       "density": "medium-dense",
@@ -1102,63 +1156,19 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-11-12T20:44:58.976Z"
-    },
-    {
-      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-11-11T20:08:47.866Z"
-    },
-    {
-      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-11-11T20:08:38.189Z"
-    },
-    {
-      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-11-11T20:08:23.897Z"
-    },
-    {
-      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-11-11T20:08:11.497Z"
-    },
-    {
-      "slug": "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-11-11T20:06:59.344Z"
-    },
-    {
-      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-11-10T20:25:12.362Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "breaks-that-restore-rather-than-punish-planning-pauses-with-intention",
+      "archetype": "cinematic-ideogram",
+      "archetypeLabel": "Cinematic Artwork",
+      "palette": "painterly-dark",
+      "emotionalTone": "liminal",
+      "emotionalCluster": "atmospheric",
+      "family": "art",
+      "timestamp": "2026-11-16T22:50:08.209Z"
+    },
     {
       "slug": "specificity-without-confession-vulnerable-work-done-well",
       "archetype": "premium-quote-card",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-10-28T18:47:54.105Z"
-    },
-    {
-      "slug": "the-lifeless-draft-problem-diagnosing-why-ai-output-feels-flat",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-10-28T01:01:57.279Z"
     }
   ]
 }
