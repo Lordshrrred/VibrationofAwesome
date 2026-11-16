@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T07:11:20.158Z",
+  "generatedAt": "2026-11-16T18:51:04.489Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -19,16 +19,16 @@
     "untrackedLivePosts": 38,
     "backlogPosts": 9,
     "backlinkCapableMissingUnits": 27,
-    "backlinkVerificationGaps": 39,
+    "backlinkVerificationGaps": 35,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 33,
     "freshPostsAwaitingBacklinks": 9,
     "freshMissingBacklinkUnits": 27,
-    "completedBacklinkUnitsInWindow": 60,
-    "completedBacklinkUnitsPerDay": 4.3,
+    "completedBacklinkUnitsInWindow": 57,
+    "completedBacklinkUnitsPerDay": 4.1,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 7.7,
+    "netBacklogChangePerDay": 7.9,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -43,8 +43,8 @@
         "missing": 9,
         "successRate": 97.8,
         "averagePerDay": 1.4,
-        "confirmed": 369,
-        "verificationGaps": 37,
+        "confirmed": 373,
+        "verificationGaps": 33,
         "mainBlocker": "missing local success record"
       },
       {
@@ -94,7 +94,7 @@
         "complete": 309,
         "missing": 8,
         "successRate": 97.5,
-        "averagePerDay": 0.8,
+        "averagePerDay": 0.7,
         "confirmed": 142,
         "verificationGaps": 167,
         "mainBlocker": "env vars not set"
@@ -106,7 +106,7 @@
         "complete": 305,
         "missing": 12,
         "successRate": 96.2,
-        "averagePerDay": 0.8,
+        "averagePerDay": 0.7,
         "confirmed": 142,
         "verificationGaps": 163,
         "mainBlocker": "env vars not set"
