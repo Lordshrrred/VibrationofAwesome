@@ -21,6 +21,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import minimist from "minimist";
 import { syndicatePost } from "./syndicate.js";
+import { BACKLINK_TIER_PAUSED } from "./lib/policy.js";
 import { pathToFileURL as __voaPathToFileURL } from "node:url";
 import {
   buildSyndicationBacklogStatus,
@@ -76,6 +77,12 @@ function filterTargetPlatforms(platforms) {
 function sleep(s) { return new Promise(r => setTimeout(r, s * 1000)); }
 
 async function main() {
+  // The backlink tier is paused (see BACKLINK_TIER_PAUSED in lib/policy.js). Syndicate.js would
+  // skip every platform and report a failure, so exit cleanly before doing any work.
+  if (BACKLINK_TIER_PAUSED) {
+    console.log("Backlink tier paused (BACKLINK_TIER_PAUSED); nothing to backfill. Set BACKLINK_TIER_PAUSED=false to resume.");
+    process.exit(0);
+  }
   const results = loadResults();
   const logEntries = loadLog();
   const status = buildSyndicationBacklogStatus(results);
