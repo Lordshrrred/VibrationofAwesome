@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T18:51:04.489Z",
+  "generatedAt": "2026-11-17T03:06:23.241Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,21 +14,21 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 415,
-    "totalLivePosts": 453,
+    "totalTrackedPosts": 416,
+    "totalLivePosts": 454,
     "untrackedLivePosts": 38,
-    "backlogPosts": 9,
-    "backlinkCapableMissingUnits": 27,
+    "backlogPosts": 10,
+    "backlinkCapableMissingUnits": 30,
     "backlinkVerificationGaps": 35,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 33,
     "freshPostsAwaitingBacklinks": 9,
     "freshMissingBacklinkUnits": 27,
-    "completedBacklinkUnitsInWindow": 57,
-    "completedBacklinkUnitsPerDay": 4.1,
+    "completedBacklinkUnitsInWindow": 51,
+    "completedBacklinkUnitsPerDay": 3.6,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 7.9,
+    "netBacklogChangePerDay": 8.4,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -38,11 +38,11 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 415,
+        "eligiblePosts": 416,
         "complete": 406,
-        "missing": 9,
-        "successRate": 97.8,
-        "averagePerDay": 1.4,
+        "missing": 10,
+        "successRate": 97.6,
+        "averagePerDay": 1.2,
         "confirmed": 373,
         "verificationGaps": 33,
         "mainBlocker": "missing local success record"
@@ -50,11 +50,11 @@
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 415,
+        "eligiblePosts": 416,
         "complete": 406,
-        "missing": 9,
-        "successRate": 97.8,
-        "averagePerDay": 1.4,
+        "missing": 10,
+        "successRate": 97.6,
+        "averagePerDay": 1.2,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -62,11 +62,11 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 415,
+        "eligiblePosts": 416,
         "complete": 406,
-        "missing": 9,
-        "successRate": 97.8,
-        "averagePerDay": 1.4,
+        "missing": 10,
+        "successRate": 97.6,
+        "averagePerDay": 1.2,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -76,12 +76,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 282,
-        "complete": 282,
+        "eligiblePosts": 283,
+        "complete": 283,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 1.2,
-        "confirmed": 282,
+        "confirmed": 283,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -90,37 +90,37 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 317,
-        "complete": 309,
+        "eligiblePosts": 318,
+        "complete": 310,
         "missing": 8,
         "successRate": 97.5,
         "averagePerDay": 0.7,
         "confirmed": 142,
-        "verificationGaps": 167,
+        "verificationGaps": 168,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 317,
-        "complete": 305,
+        "eligiblePosts": 318,
+        "complete": 306,
         "missing": 12,
         "successRate": 96.2,
         "averagePerDay": 0.7,
         "confirmed": 142,
-        "verificationGaps": 163,
+        "verificationGaps": 164,
         "mainBlocker": "env vars not set"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 190,
-        "complete": 177,
+        "eligiblePosts": 191,
+        "complete": 178,
         "missing": 13,
         "successRate": 93.2,
         "averagePerDay": 0.3,
         "confirmed": 30,
-        "verificationGaps": 147,
+        "verificationGaps": 148,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
@@ -130,7 +130,7 @@
         "complete": 194,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.2,
+        "averagePerDay": 0.1,
         "confirmed": 0,
         "verificationGaps": 194,
         "mainBlocker": ""
@@ -138,25 +138,25 @@
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 189,
-        "complete": 189,
+        "eligiblePosts": 190,
+        "complete": 190,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.3,
         "confirmed": 72,
-        "verificationGaps": 117,
+        "verificationGaps": 118,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 187,
-        "complete": 187,
+        "eligiblePosts": 188,
+        "complete": 188,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.3,
         "confirmed": 0,
-        "verificationGaps": 187,
+        "verificationGaps": 188,
         "mainBlocker": ""
       }
     ]
@@ -530,6 +530,17 @@
       "lane": "boom",
       "title": "Anxious Making: Working With Worry Instead of Waiting for It to Leave",
       "date": "2026-11-14",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "breaks-that-restore-rather-than-punish-planning-pauses-with-intention",
+      "lane": "boom",
+      "title": "Breaks That Restore Rather Than Punish: Planning Pauses With Intention",
+      "date": "2026-11-16",
       "missing": [
         "tumblr_voa",
         "blogger",
