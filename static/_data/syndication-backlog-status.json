@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T03:06:23.241Z",
+  "generatedAt": "2026-11-17T13:47:28.579Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -19,16 +19,16 @@
     "untrackedLivePosts": 38,
     "backlogPosts": 10,
     "backlinkCapableMissingUnits": 30,
-    "backlinkVerificationGaps": 35,
+    "backlinkVerificationGaps": 27,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 33,
     "freshPostsAwaitingBacklinks": 9,
     "freshMissingBacklinkUnits": 27,
-    "completedBacklinkUnitsInWindow": 51,
-    "completedBacklinkUnitsPerDay": 3.6,
+    "completedBacklinkUnitsInWindow": 45,
+    "completedBacklinkUnitsPerDay": 3.2,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 8.4,
+    "netBacklogChangePerDay": 8.8,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -42,9 +42,9 @@
         "complete": 406,
         "missing": 10,
         "successRate": 97.6,
-        "averagePerDay": 1.2,
-        "confirmed": 373,
-        "verificationGaps": 33,
+        "averagePerDay": 1.1,
+        "confirmed": 381,
+        "verificationGaps": 25,
         "mainBlocker": "missing local success record"
       },
       {
@@ -54,7 +54,7 @@
         "complete": 406,
         "missing": 10,
         "successRate": 97.6,
-        "averagePerDay": 1.2,
+        "averagePerDay": 1.1,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -66,7 +66,7 @@
         "complete": 406,
         "missing": 10,
         "successRate": 97.6,
-        "averagePerDay": 1.2,
+        "averagePerDay": 1.1,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -80,7 +80,7 @@
         "complete": 283,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.2,
+        "averagePerDay": 1.1,
         "confirmed": 283,
         "verificationGaps": 0,
         "mainBlocker": ""
@@ -94,7 +94,7 @@
         "complete": 310,
         "missing": 8,
         "successRate": 97.5,
-        "averagePerDay": 0.7,
+        "averagePerDay": 0.6,
         "confirmed": 142,
         "verificationGaps": 168,
         "mainBlocker": "env vars not set"
@@ -106,7 +106,7 @@
         "complete": 306,
         "missing": 12,
         "successRate": 96.2,
-        "averagePerDay": 0.7,
+        "averagePerDay": 0.6,
         "confirmed": 142,
         "verificationGaps": 164,
         "mainBlocker": "env vars not set"
@@ -118,7 +118,7 @@
         "complete": 178,
         "missing": 13,
         "successRate": 93.2,
-        "averagePerDay": 0.3,
+        "averagePerDay": 0.2,
         "confirmed": 30,
         "verificationGaps": 148,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
@@ -142,7 +142,7 @@
         "complete": 190,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.3,
+        "averagePerDay": 0.2,
         "confirmed": 72,
         "verificationGaps": 118,
         "mainBlocker": ""
@@ -154,7 +154,7 @@
         "complete": 188,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.3,
+        "averagePerDay": 0.2,
         "confirmed": 0,
         "verificationGaps": 188,
         "mainBlocker": ""
