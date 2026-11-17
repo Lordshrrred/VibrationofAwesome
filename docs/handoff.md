@@ -2,9 +2,10 @@
 
 Status board, not a log. Overwrite blocks in place and delete what's resolved; git and `docs/decisions.md` keep the past. Keep it under ~60 lines. Rules live in `AGENTS.md` and `docs/modules/`. New machine? `docs/new-machine.md`.
 
-Last updated: 2026-10-19 (bounded refill verified; article-body backlink checks wired in).
+Last updated: 2026-11-17 (trust-building pause: 1 post/day, backlink tier paused).
 
 ## At a glance
+- **Trust-building mode (since 2026-11-07):** publishing cut to 1 post/day (13:00 UTC drip slot only); Blogger, WordPress and Tumblr companion articles paused for a 30-day trial via `BACKLINK_TIER_PAUSED` in `scripts/lib/policy.js` (resume by setting it `false`, around 2026-12-07). Social syndication continues. `backfill-backlinks.js` now exits 0 while paused (it was failing every 2h and emailing alerts; fixed 2026-11-17). Health `drip.time` text still lists four old slots, cosmetic.
 - **Most recent work:** full Sonnet refill produced complete drafts with cache reuse and zero thinking tokens; a rejected truncated response led to an explicit word budget, without raising caps. Conflicting personal-feeling instructions and overconfident claims in new health drafts corrected. Article-body backlink verification now runs before catch-up.
 - **Dev.to: DONE 2026-09-29.** Removed from code, health checks, dashboards, docs, workflows; GitHub secrets and Vercel env deleted (see `docs/decisions.md`). Current readiness separately flags inventory and research gaps.
 - **Waiting on Matt (approval to run):** rewrite public git history to remove old references to a private synced folder path (present in 4 commits: 13711827, 738fe46e, 5ce8f1db, faf5585a, plus messages). The sandbox blocked the force-push rewrite, so it has not been run. Plan: fresh mirror clone, `git filter-repo --replace-text/--replace-message`, verify zero matches, force-push `refs/heads/*`, reset local clones, then ask GitHub Support to purge cached views and `refs/pull/*` (PR 32/33 refs may still hold old text). Not yet checked: whether sibling repos (VOA_Feeder etc.) are private or contain the same strings.
