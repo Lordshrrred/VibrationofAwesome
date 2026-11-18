@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-17T21:40:55.191Z",
+  "lastUpdated": "2026-11-18T21:19:24.054Z",
   "recentHooks": [
     {
       "slug": "conscious-use-is-a-practice-of-small-decisions-not-a-lifestyle-brand",
@@ -889,6 +889,60 @@
   "recentThreadsFormats": [
     {
       "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-11-18T21:19:24.054Z"
+    },
+    {
+      "slug": "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-11-18T21:19:15.587Z"
+    },
+    {
+      "slug": "attention-as-a-resource-you-can-allocate-on-purpose",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-11-18T21:19:05.103Z"
+    },
+    {
+      "slug": "the-re-entry-problem-returning-to-serious-work-after-a-distracted-stretch",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-11-18T21:18:53.680Z"
+    },
+    {
+      "slug": "anxious-making-working-with-worry-instead-of-waiting-for-it-to-leave",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-11-18T21:18:45.030Z"
+    },
+    {
+      "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-11-18T21:17:27.135Z"
+    },
+    {
+      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
       "density": "medium",
@@ -1102,63 +1156,19 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-11-14T18:43:05.359Z"
-    },
-    {
-      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
-      "format": "philosophical-observation",
-      "cadenceProfile": "contemplative",
-      "density": "medium-dense",
-      "openerStyle": "conceptual-paradox",
-      "closerStyle": "open-question",
-      "timestamp": "2026-11-13T20:29:23.948Z"
-    },
-    {
-      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-11-13T20:29:16.330Z"
-    },
-    {
-      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-11-13T20:29:08.922Z"
-    },
-    {
-      "slug": "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-11-13T20:28:59.036Z"
-    },
-    {
-      "slug": "attention-as-a-resource-you-can-allocate-on-purpose",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-11-13T20:28:45.218Z"
-    },
-    {
-      "slug": "the-re-entry-problem-returning-to-serious-work-after-a-distracted-stretch",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-11-13T20:27:34.184Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
+      "archetype": "field-guide-aesthetic",
+      "archetypeLabel": "Field Guide Aesthetic",
+      "palette": "warm-archive",
+      "emotionalTone": "quiet-discovery",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-11-18T21:17:37.770Z"
+    },
     {
       "slug": "when-two-directions-both-fit-a-tiebreaker-method-that-does-not-rely-on-feeling-sure",
       "archetype": "minimalist-philosophy",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "grounded",
       "family": "art",
       "timestamp": "2026-10-29T18:55:18.857Z"
-    },
-    {
-      "slug": "where-your-switching-tax-actually-comes-from",
-      "archetype": "nervous-system-atmospheric",
-      "archetypeLabel": "Nervous System Atmospheric",
-      "palette": "soft-teal-mist",
-      "emotionalTone": "regulation",
-      "emotionalCluster": "somatic",
-      "family": "art",
-      "timestamp": "2026-10-29T01:37:50.130Z"
     }
   ]
 }
