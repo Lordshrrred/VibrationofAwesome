@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T22:36:40.430Z",
+  "generatedAt": "2026-11-18T03:50:04.408Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -19,16 +19,16 @@
     "untrackedLivePosts": 38,
     "backlogPosts": 11,
     "backlinkCapableMissingUnits": 33,
-    "backlinkVerificationGaps": 23,
+    "backlinkVerificationGaps": 40,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 33,
-    "freshPostsAwaitingBacklinks": 10,
-    "freshMissingBacklinkUnits": 30,
-    "completedBacklinkUnitsInWindow": 45,
-    "completedBacklinkUnitsPerDay": 3.2,
+    "freshPostsAwaitingBacklinks": 9,
+    "freshMissingBacklinkUnits": 27,
+    "completedBacklinkUnitsInWindow": 42,
+    "completedBacklinkUnitsPerDay": 3,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 8.8,
+    "netBacklogChangePerDay": 9,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -42,9 +42,9 @@
         "complete": 406,
         "missing": 11,
         "successRate": 97.4,
-        "averagePerDay": 1.1,
-        "confirmed": 385,
-        "verificationGaps": 21,
+        "averagePerDay": 1,
+        "confirmed": 368,
+        "verificationGaps": 38,
         "mainBlocker": "backlink tier paused"
       },
       {
@@ -54,7 +54,7 @@
         "complete": 406,
         "missing": 11,
         "successRate": 97.4,
-        "averagePerDay": 1.1,
+        "averagePerDay": 1,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -66,7 +66,7 @@
         "complete": 406,
         "missing": 11,
         "successRate": 97.4,
-        "averagePerDay": 1.1,
+        "averagePerDay": 1,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -94,7 +94,7 @@
         "complete": 311,
         "missing": 8,
         "successRate": 97.5,
-        "averagePerDay": 0.7,
+        "averagePerDay": 0.6,
         "confirmed": 142,
         "verificationGaps": 169,
         "mainBlocker": "env vars not set"
@@ -106,7 +106,7 @@
         "complete": 307,
         "missing": 12,
         "successRate": 96.2,
-        "averagePerDay": 0.7,
+        "averagePerDay": 0.6,
         "confirmed": 142,
         "verificationGaps": 165,
         "mainBlocker": "env vars not set"
@@ -537,17 +537,6 @@
       ]
     },
     {
-      "slug": "breaks-that-restore-rather-than-punish-planning-pauses-with-intention",
-      "lane": "boom",
-      "title": "Breaks That Restore Rather Than Punish: Planning Pauses With Intention",
-      "date": "2026-11-16",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
       "slug": "when-two-directions-both-fit-a-tiebreaker-method-that-does-not-rely-on-feeling-sure",
       "lane": "boom",
       "title": "When Two Directions Both Fit: A Tiebreaker Method That Does Not Rely on Feeling Sure",
@@ -563,6 +552,17 @@
       "lane": "boom",
       "title": "Specificity Without Confession: Vulnerable Work Done Well",
       "date": "2026-11-15",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "breaks-that-restore-rather-than-punish-planning-pauses-with-intention",
+      "lane": "boom",
+      "title": "Breaks That Restore Rather Than Punish: Planning Pauses With Intention",
+      "date": "2026-11-16",
       "missing": [
         "tumblr_voa",
         "blogger",
