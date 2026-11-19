@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T13:47:18.278Z",
+  "generatedAt": "2026-11-19T22:23:38.013Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,23 +14,23 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 418,
-    "totalLivePosts": 456,
+    "totalTrackedPosts": 419,
+    "totalLivePosts": 457,
     "untrackedLivePosts": 38,
-    "backlogPosts": 12,
-    "backlinkCapableMissingUnits": 36,
-    "backlinkVerificationGaps": 48,
+    "backlogPosts": 13,
+    "backlinkCapableMissingUnits": 39,
+    "backlinkVerificationGaps": 51,
     "feederMissingUnits": 0,
-    "distributionIncompleteUnits": 23,
-    "freshPostsAwaitingBacklinks": 6,
-    "freshMissingBacklinkUnits": 18,
-    "completedBacklinkUnitsInWindow": 24,
-    "completedBacklinkUnitsPerDay": 1.7,
+    "distributionIncompleteUnits": 17,
+    "freshPostsAwaitingBacklinks": 4,
+    "freshMissingBacklinkUnits": 12,
+    "completedBacklinkUnitsInWindow": 18,
+    "completedBacklinkUnitsPerDay": 1.3,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 10.3,
+    "netBacklogChangePerDay": 10.7,
     "estimatedCatchUpDays": null,
-    "largestDelayPlatform": "Facebook VOA",
+    "largestDelayPlatform": "Blogger",
     "largestDelayMissingUnits": 13
   },
   "platformTable": {
@@ -38,23 +38,23 @@
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 418,
+        "eligiblePosts": 419,
         "complete": 406,
-        "missing": 12,
-        "successRate": 97.1,
-        "averagePerDay": 0.6,
-        "confirmed": 360,
-        "verificationGaps": 46,
+        "missing": 13,
+        "successRate": 96.9,
+        "averagePerDay": 0.4,
+        "confirmed": 357,
+        "verificationGaps": 49,
         "mainBlocker": "backlink tier paused"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 418,
+        "eligiblePosts": 419,
         "complete": 406,
-        "missing": 12,
-        "successRate": 97.1,
-        "averagePerDay": 0.6,
+        "missing": 13,
+        "successRate": 96.9,
+        "averagePerDay": 0.4,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -62,11 +62,11 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 418,
+        "eligiblePosts": 419,
         "complete": 406,
-        "missing": 12,
-        "successRate": 97.1,
-        "averagePerDay": 0.6,
+        "missing": 13,
+        "successRate": 96.9,
+        "averagePerDay": 0.4,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -80,7 +80,7 @@
         "complete": 285,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.1,
+        "averagePerDay": 1,
         "confirmed": 285,
         "verificationGaps": 0,
         "mainBlocker": ""
@@ -90,73 +90,73 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 320,
-        "complete": 317,
-        "missing": 3,
-        "successRate": 99.1,
-        "averagePerDay": 0.9,
+        "eligiblePosts": 321,
+        "complete": 321,
+        "missing": 0,
+        "successRate": 100,
+        "averagePerDay": 1.1,
         "confirmed": 142,
-        "verificationGaps": 175,
-        "mainBlocker": "env vars not set"
+        "verificationGaps": 179,
+        "mainBlocker": ""
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 320,
-        "complete": 313,
-        "missing": 7,
-        "successRate": 97.8,
-        "averagePerDay": 0.9,
+        "eligiblePosts": 321,
+        "complete": 317,
+        "missing": 4,
+        "successRate": 98.8,
+        "averagePerDay": 1.1,
         "confirmed": 142,
-        "verificationGaps": 171,
+        "verificationGaps": 175,
         "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 193,
-        "complete": 180,
+        "eligiblePosts": 194,
+        "complete": 181,
         "missing": 13,
         "successRate": 93.3,
-        "averagePerDay": 0.3,
+        "averagePerDay": 0.4,
         "confirmed": 30,
-        "verificationGaps": 150,
+        "verificationGaps": 151,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 194,
-        "complete": 194,
+        "eligiblePosts": 195,
+        "complete": 195,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.1,
         "confirmed": 0,
-        "verificationGaps": 194,
+        "verificationGaps": 195,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 192,
-        "complete": 192,
+        "eligiblePosts": 193,
+        "complete": 193,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.3,
+        "averagePerDay": 0.4,
         "confirmed": 72,
-        "verificationGaps": 120,
+        "verificationGaps": 121,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 190,
-        "complete": 190,
+        "eligiblePosts": 191,
+        "complete": 191,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.3,
+        "averagePerDay": 0.4,
         "confirmed": 0,
-        "verificationGaps": 190,
+        "verificationGaps": 191,
         "mainBlocker": ""
       }
     ]
@@ -169,14 +169,6 @@
     {
       "reason": "mastodon_voa: Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON",
       "count": 4
-    },
-    {
-      "reason": "bluesky_voa: env vars not set",
-      "count": 3
-    },
-    {
-      "reason": "mastodon_voa: env vars not set",
-      "count": 3
     }
   ],
   "untrackedPosts": [
@@ -449,6 +441,50 @@
   ],
   "prioritizedBacklog": [
     {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "lane": "boom",
+      "title": "Name It to Tame It? Testing the Labeling Habit on a Real Decision",
+      "date": "2026-11-07",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "lane": "boom",
+      "title": "Framing a Digital Print So It Reads as Deliberate Art Rather Than a Poster",
+      "date": "2026-11-08",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "lane": "boom",
+      "title": "Using AI as a Sketchpad, Not a Final Draft",
+      "date": "2026-11-09",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
+      "lane": "boom",
+      "title": "Buying Art You Will Still Love in Five Years: A Plain Test for Keepers",
+      "date": "2026-11-19",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
       "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
       "lane": "boom",
       "title": "Burnout or Wrong Role? Practical Ways to Tell the Difference Before You Quit",
@@ -504,50 +540,6 @@
       ]
     },
     {
-      "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
-      "lane": "boom",
-      "title": "Between the Spike and the Sentence: Speaking From Anger Without Scorching the Room",
-      "date": "2026-11-18",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
-      "lane": "boom",
-      "title": "Name It to Tame It? Testing the Labeling Habit on a Real Decision",
-      "date": "2026-11-07",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
-      "lane": "boom",
-      "title": "Framing a Digital Print So It Reads as Deliberate Art Rather Than a Poster",
-      "date": "2026-11-08",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
-      "lane": "boom",
-      "title": "Using AI as a Sketchpad, Not a Final Draft",
-      "date": "2026-11-09",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
       "slug": "specificity-without-confession-vulnerable-work-done-well",
       "lane": "boom",
       "title": "Specificity Without Confession: Vulnerable Work Done Well",
@@ -574,6 +566,17 @@
       "lane": "boom",
       "title": "When Two Directions Both Fit: A Tiebreaker Method That Does Not Rely on Feeling Sure",
       "date": "2026-11-17",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
+      "lane": "boom",
+      "title": "Between the Spike and the Sentence: Speaking From Anger Without Scorching the Room",
+      "date": "2026-11-18",
       "missing": [
         "tumblr_voa",
         "blogger",
