@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-18T21:19:24.054Z",
+  "lastUpdated": "2026-11-19T21:20:30.740Z",
   "recentHooks": [
     {
       "slug": "conscious-use-is-a-practice-of-small-decisions-not-a-lifestyle-brand",
@@ -888,6 +888,42 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "format": "short-native-insight",
+      "cadenceProfile": "compact",
+      "density": "light",
+      "openerStyle": "direct",
+      "closerStyle": "resonant",
+      "timestamp": "2026-11-19T21:20:30.740Z"
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "format": "reflective-essay",
+      "cadenceProfile": "slow-layered",
+      "density": "dense",
+      "openerStyle": "grounded-observation",
+      "closerStyle": "quiet-wisdom",
+      "timestamp": "2026-11-19T21:20:20.247Z"
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-11-19T21:20:06.843Z"
+    },
+    {
+      "slug": "buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
+      "format": "creative-identity-reflection",
+      "cadenceProfile": "lyrical",
+      "density": "medium",
+      "openerStyle": "identity-confession",
+      "closerStyle": "invitation",
+      "timestamp": "2026-11-19T21:18:54.482Z"
+    },
+    {
       "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
       "format": "philosophical-observation",
       "cadenceProfile": "contemplative",
@@ -1120,45 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-11-14T18:44:31.958Z"
-    },
-    {
-      "slug": "one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
-      "format": "creative-identity-reflection",
-      "cadenceProfile": "lyrical",
-      "density": "medium",
-      "openerStyle": "identity-confession",
-      "closerStyle": "invitation",
-      "timestamp": "2026-11-14T18:44:24.367Z"
-    },
-    {
-      "slug": "attention-as-a-resource-you-can-allocate-on-purpose",
-      "format": "manifesto-conviction",
-      "cadenceProfile": "charged-decisive",
-      "density": "medium-dense",
-      "openerStyle": "strong-declarative",
-      "closerStyle": "worldview-shift",
-      "timestamp": "2026-11-14T18:44:14.679Z"
-    },
-    {
-      "slug": "the-re-entry-problem-returning-to-serious-work-after-a-distracted-stretch",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-11-14T18:44:04.794Z"
-    },
-    {
-      "slug": "anxious-making-working-with-worry-instead-of-waiting-for-it-to-leave",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-11-14T18:43:05.359Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
+      "archetype": "symbolic-consciousness",
+      "archetypeLabel": "Symbolic Consciousness",
+      "palette": "cosmic-teal",
+      "emotionalTone": "cosmic",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-11-19T21:19:11.920Z"
+    },
     {
       "slug": "between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
       "archetype": "field-guide-aesthetic",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "atmospheric",
       "family": "art",
       "timestamp": "2026-10-30T01:39:09.469Z"
-    },
-    {
-      "slug": "the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
-      "archetype": "abstract-creator-life",
-      "archetypeLabel": "Abstract Creator Life",
-      "palette": "studio-cyan",
-      "emotionalTone": "craft",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-10-29T18:55:18.857Z"
     }
   ]
 }
