@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T22:15:11.254Z",
+  "generatedAt": "2026-11-19T03:47:29.376Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -19,16 +19,16 @@
     "untrackedLivePosts": 38,
     "backlogPosts": 12,
     "backlinkCapableMissingUnits": 36,
-    "backlinkVerificationGaps": 46,
+    "backlinkVerificationGaps": 47,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 23,
-    "freshPostsAwaitingBacklinks": 9,
-    "freshMissingBacklinkUnits": 27,
-    "completedBacklinkUnitsInWindow": 30,
-    "completedBacklinkUnitsPerDay": 2.1,
+    "freshPostsAwaitingBacklinks": 6,
+    "freshMissingBacklinkUnits": 18,
+    "completedBacklinkUnitsInWindow": 27,
+    "completedBacklinkUnitsPerDay": 1.9,
     "newPostsPerDay": 4,
     "newBacklinkUnitsPerDay": 12,
-    "netBacklogChangePerDay": 9.9,
+    "netBacklogChangePerDay": 10.1,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Facebook VOA",
     "largestDelayMissingUnits": 13
@@ -42,9 +42,9 @@
         "complete": 406,
         "missing": 12,
         "successRate": 97.1,
-        "averagePerDay": 0.7,
-        "confirmed": 362,
-        "verificationGaps": 44,
+        "averagePerDay": 0.6,
+        "confirmed": 361,
+        "verificationGaps": 45,
         "mainBlocker": "backlink tier paused"
       },
       {
@@ -54,7 +54,7 @@
         "complete": 406,
         "missing": 12,
         "successRate": 97.1,
-        "averagePerDay": 0.7,
+        "averagePerDay": 0.6,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -66,7 +66,7 @@
         "complete": 406,
         "missing": 12,
         "successRate": 97.1,
-        "averagePerDay": 0.7,
+        "averagePerDay": 0.6,
         "confirmed": 405,
         "verificationGaps": 1,
         "mainBlocker": "backlink tier paused"
@@ -449,39 +449,6 @@
   ],
   "prioritizedBacklog": [
     {
-      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
-      "lane": "boom",
-      "title": "Name It to Tame It? Testing the Labeling Habit on a Real Decision",
-      "date": "2026-11-07",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
-      "lane": "boom",
-      "title": "Framing a Digital Print So It Reads as Deliberate Art Rather Than a Poster",
-      "date": "2026-11-08",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
-      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
-      "lane": "boom",
-      "title": "Using AI as a Sketchpad, Not a Final Draft",
-      "date": "2026-11-09",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
       "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
       "lane": "boom",
       "title": "Burnout or Wrong Role? Practical Ways to Tell the Difference Before You Quit",
@@ -541,6 +508,39 @@
       "lane": "boom",
       "title": "Between the Spike and the Sentence: Speaking From Anger Without Scorching the Room",
       "date": "2026-11-18",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
+      "lane": "boom",
+      "title": "Name It to Tame It? Testing the Labeling Habit on a Real Decision",
+      "date": "2026-11-07",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "framing-a-digital-print-so-it-reads-as-deliberate-art-rather-than-a-poster",
+      "lane": "boom",
+      "title": "Framing a Digital Print So It Reads as Deliberate Art Rather Than a Poster",
+      "date": "2026-11-08",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
+      "lane": "boom",
+      "title": "Using AI as a Sketchpad, Not a Final Draft",
+      "date": "2026-11-09",
       "missing": [
         "tumblr_voa",
         "blogger",
