@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-19T21:20:30.740Z",
+  "lastUpdated": "2026-11-20T21:00:32.224Z",
   "recentHooks": [
     {
       "slug": "conscious-use-is-a-practice-of-small-decisions-not-a-lifestyle-brand",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "telling-your-audience-how-you-use-ai",
+      "format": "manifesto-conviction",
+      "cadenceProfile": "charged-decisive",
+      "density": "medium-dense",
+      "openerStyle": "strong-declarative",
+      "closerStyle": "worldview-shift",
+      "timestamp": "2026-11-20T21:00:04.689Z"
+    },
+    {
       "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
       "format": "short-native-insight",
       "cadenceProfile": "compact",
@@ -1147,18 +1156,19 @@
       "openerStyle": "contradiction",
       "closerStyle": "earned-realization",
       "timestamp": "2026-11-14T18:44:41.961Z"
-    },
-    {
-      "slug": "burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
-      "format": "single-native-post",
-      "cadenceProfile": "standalone",
-      "density": "medium",
-      "openerStyle": "any",
-      "closerStyle": "complete",
-      "timestamp": "2026-11-14T18:44:31.958Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "telling-your-audience-how-you-use-ai",
+      "archetype": "abstract-creator-life",
+      "archetypeLabel": "Abstract Creator Life",
+      "palette": "studio-cyan",
+      "emotionalTone": "craft",
+      "emotionalCluster": "grounded",
+      "family": "art",
+      "timestamp": "2026-11-20T21:00:32.224Z"
+    },
     {
       "slug": "buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
       "archetype": "symbolic-consciousness",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "mystical",
       "family": "art",
       "timestamp": "2026-10-30T18:33:12.491Z"
-    },
-    {
-      "slug": "the-slow-leak-noticing-work-that-costs-more-than-it-gives",
-      "archetype": "cinematic-ideogram",
-      "archetypeLabel": "Cinematic Artwork",
-      "palette": "painterly-dark",
-      "emotionalTone": "liminal",
-      "emotionalCluster": "atmospheric",
-      "family": "art",
-      "timestamp": "2026-10-30T01:39:09.469Z"
     }
   ]
 }
