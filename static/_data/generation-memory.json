@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-21T17:44:40.716Z",
+  "lastUpdated": "2026-11-21T20:01:30.471Z",
   "recentHooks": [
     {
       "slug": "the-setup-cost-you-dont-see-in-ai-tool-reviews",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "draining-or-boring-reading-the-difference-in-your-own-week",
+      "format": "conversational-reflection",
+      "cadenceProfile": "casual-spoken",
+      "density": "light-medium",
+      "openerStyle": "mid-conversation",
+      "closerStyle": "natural-landing",
+      "timestamp": "2026-11-21T20:01:20.335Z"
+    },
+    {
       "slug": "telling-your-audience-how-you-use-ai",
       "format": "manifesto-conviction",
       "cadenceProfile": "charged-decisive",
@@ -1147,18 +1156,19 @@
       "openerStyle": "grounded-observation",
       "closerStyle": "quiet-wisdom",
       "timestamp": "2026-11-15T19:19:32.742Z"
-    },
-    {
-      "slug": "using-ai-as-a-sketchpad-not-a-final-draft",
-      "format": "tension-revelation",
-      "cadenceProfile": "tension-then-release",
-      "density": "medium-dense",
-      "openerStyle": "contradiction",
-      "closerStyle": "earned-realization",
-      "timestamp": "2026-11-14T18:44:41.961Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "draining-or-boring-reading-the-difference-in-your-own-week",
+      "archetype": "nervous-system-atmospheric",
+      "archetypeLabel": "Nervous System Atmospheric",
+      "palette": "soft-teal-mist",
+      "emotionalTone": "regulation",
+      "emotionalCluster": "somatic",
+      "family": "art",
+      "timestamp": "2026-11-21T20:01:30.471Z"
+    },
     {
       "slug": "telling-your-audience-how-you-use-ai",
       "archetype": "abstract-creator-life",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "intellectual",
       "family": "art",
       "timestamp": "2026-10-31T01:27:37.028Z"
-    },
-    {
-      "slug": "hanging-original-art-in-a-rental-without-damaging-the-walls",
-      "archetype": "sacred-tech",
-      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
-      "palette": "circuit-teal",
-      "emotionalTone": "emergence",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-10-30T18:33:12.491Z"
     }
   ]
 }
