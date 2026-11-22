@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T20:38:40.448Z",
+  "generatedAt": "2026-11-22T02:35:10.739Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -19,11 +19,11 @@
     "untrackedLivePosts": 38,
     "backlogPosts": 15,
     "backlinkCapableMissingUnits": 45,
-    "backlinkVerificationGaps": 26,
+    "backlinkVerificationGaps": 21,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 17,
-    "freshPostsAwaitingBacklinks": 2,
-    "freshMissingBacklinkUnits": 6,
+    "freshPostsAwaitingBacklinks": 1,
+    "freshMissingBacklinkUnits": 3,
     "completedBacklinkUnitsInWindow": 0,
     "completedBacklinkUnitsPerDay": 0,
     "newPostsPerDay": 4,
@@ -43,8 +43,8 @@
         "missing": 15,
         "successRate": 96.4,
         "averagePerDay": 0,
-        "confirmed": 382,
-        "verificationGaps": 24,
+        "confirmed": 387,
+        "verificationGaps": 19,
         "mainBlocker": "backlink tier paused"
       },
       {
@@ -441,17 +441,6 @@
   ],
   "prioritizedBacklog": [
     {
-      "slug": "telling-your-audience-how-you-use-ai",
-      "lane": "boom",
-      "title": "Telling Your Audience How You Use AI",
-      "date": "2026-11-20",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
       "slug": "draining-or-boring-reading-the-difference-in-your-own-week",
       "lane": "boom",
       "title": "Draining or Boring? Reading the Difference in Your Own Week",
@@ -599,6 +588,17 @@
       "lane": "boom",
       "title": "Buying Art You Will Still Love in Five Years: A Plain Test for Keepers",
       "date": "2026-11-19",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "telling-your-audience-how-you-use-ai",
+      "lane": "boom",
+      "title": "Telling Your Audience How You Use AI",
+      "date": "2026-11-20",
       "missing": [
         "tumblr_voa",
         "blogger",
