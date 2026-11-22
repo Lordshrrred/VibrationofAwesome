@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-21T20:01:30.471Z",
+  "lastUpdated": "2026-11-22T20:15:51.509Z",
   "recentHooks": [
     {
       "slug": "the-setup-cost-you-dont-see-in-ai-tool-reviews",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "the-first-three-things-to-automate-and-the-order-that-keeps-your-work-yours",
+      "format": "tension-revelation",
+      "cadenceProfile": "tension-then-release",
+      "density": "medium-dense",
+      "openerStyle": "contradiction",
+      "closerStyle": "earned-realization",
+      "timestamp": "2026-11-22T20:15:41.203Z"
+    },
+    {
       "slug": "draining-or-boring-reading-the-difference-in-your-own-week",
       "format": "conversational-reflection",
       "cadenceProfile": "casual-spoken",
@@ -1147,18 +1156,19 @@
       "openerStyle": "direct",
       "closerStyle": "resonant",
       "timestamp": "2026-11-15T19:20:44.659Z"
-    },
-    {
-      "slug": "specificity-without-confession-vulnerable-work-done-well",
-      "format": "reflective-essay",
-      "cadenceProfile": "slow-layered",
-      "density": "dense",
-      "openerStyle": "grounded-observation",
-      "closerStyle": "quiet-wisdom",
-      "timestamp": "2026-11-15T19:19:32.742Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "the-first-three-things-to-automate-and-the-order-that-keeps-your-work-yours",
+      "archetype": "sacred-tech",
+      "archetypeLabel": "Sacred Tech / Consciousness-Tech",
+      "palette": "circuit-teal",
+      "emotionalTone": "emergence",
+      "emotionalCluster": "mystical",
+      "family": "art",
+      "timestamp": "2026-11-22T20:15:51.509Z"
+    },
     {
       "slug": "draining-or-boring-reading-the-difference-in-your-own-week",
       "archetype": "nervous-system-atmospheric",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "grounded",
       "family": "art",
       "timestamp": "2026-10-31T17:37:07.126Z"
-    },
-    {
-      "slug": "grieving-the-path-youre-leaving-what-to-do-with-loss-when-you-are-choosing-something-new",
-      "archetype": "minimalist-philosophy",
-      "archetypeLabel": "Minimalist Philosophy",
-      "palette": "near-black-accent",
-      "emotionalTone": "stillness",
-      "emotionalCluster": "intellectual",
-      "family": "art",
-      "timestamp": "2026-10-31T01:27:37.028Z"
     }
   ]
 }
