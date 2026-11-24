@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-22T20:15:51.509Z",
+  "lastUpdated": "2026-11-24T00:41:48.080Z",
   "recentHooks": [
     {
       "slug": "the-setup-cost-you-dont-see-in-ai-tool-reviews",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "keeping-the-thought-that-belongs-to-you-a-working-rule-for-ai-assisted-thinking",
+      "format": "philosophical-observation",
+      "cadenceProfile": "contemplative",
+      "density": "medium-dense",
+      "openerStyle": "conceptual-paradox",
+      "closerStyle": "open-question",
+      "timestamp": "2026-11-24T00:41:37.301Z"
+    },
+    {
       "slug": "the-first-three-things-to-automate-and-the-order-that-keeps-your-work-yours",
       "format": "tension-revelation",
       "cadenceProfile": "tension-then-release",
@@ -1147,18 +1156,19 @@
       "openerStyle": "conceptual-paradox",
       "closerStyle": "open-question",
       "timestamp": "2026-11-15T19:20:53.146Z"
-    },
-    {
-      "slug": "anxious-making-working-with-worry-instead-of-waiting-for-it-to-leave",
-      "format": "short-native-insight",
-      "cadenceProfile": "compact",
-      "density": "light",
-      "openerStyle": "direct",
-      "closerStyle": "resonant",
-      "timestamp": "2026-11-15T19:20:44.659Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "keeping-the-thought-that-belongs-to-you-a-working-rule-for-ai-assisted-thinking",
+      "archetype": "premium-quote-card",
+      "archetypeLabel": "Premium Quote Card",
+      "palette": "teal-on-dark",
+      "emotionalTone": "clarity",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-11-24T00:41:48.080Z"
+    },
     {
       "slug": "the-first-three-things-to-automate-and-the-order-that-keeps-your-work-yours",
       "archetype": "sacred-tech",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "somatic",
       "family": "art",
       "timestamp": "2026-11-01T00:46:46.020Z"
-    },
-    {
-      "slug": "technology-as-a-tool-for-consciousness-not-unconsciousness",
-      "archetype": "field-guide-aesthetic",
-      "archetypeLabel": "Field Guide Aesthetic",
-      "palette": "warm-archive",
-      "emotionalTone": "quiet-discovery",
-      "emotionalCluster": "grounded",
-      "family": "art",
-      "timestamp": "2026-10-31T17:37:07.126Z"
     }
   ]
 }
