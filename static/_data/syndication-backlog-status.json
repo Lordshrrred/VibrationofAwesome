@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T18:10:22.423Z",
+  "generatedAt": "2026-11-25T02:44:20.240Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -15,15 +15,15 @@
   },
   "summary": {
     "totalTrackedPosts": 423,
-    "totalLivePosts": 461,
-    "untrackedLivePosts": 38,
+    "totalLivePosts": 462,
+    "untrackedLivePosts": 39,
     "backlogPosts": 17,
     "backlinkCapableMissingUnits": 51,
-    "backlinkVerificationGaps": 19,
+    "backlinkVerificationGaps": 16,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 17,
-    "freshPostsAwaitingBacklinks": 1,
-    "freshMissingBacklinkUnits": 3,
+    "freshPostsAwaitingBacklinks": 0,
+    "freshMissingBacklinkUnits": 0,
     "completedBacklinkUnitsInWindow": 0,
     "completedBacklinkUnitsPerDay": 0,
     "newPostsPerDay": 4,
@@ -43,8 +43,8 @@
         "missing": 17,
         "successRate": 96,
         "averagePerDay": 0,
-        "confirmed": 389,
-        "verificationGaps": 17,
+        "confirmed": 392,
+        "verificationGaps": 14,
         "mainBlocker": "backlink tier paused"
       },
       {
@@ -172,6 +172,13 @@
     }
   ],
   "untrackedPosts": [
+    {
+      "slug": "the-relief-that-turns-into-regret-why-scrolling-feels-good-then-drains-you",
+      "title": "The Relief That Turns Into Regret: Why Scrolling Feels Good Then Drains You",
+      "lane": "boom",
+      "date": "2026-11-24T22:58:07.247Z",
+      "reason": "no_distribution_record"
+    },
     {
       "slug": "the-input-budget-how-much-stimulation-a-creative-day-can-actually-hold",
       "title": "The Input Budget: How Much Stimulation a Creative Day Can Actually Hold",
@@ -441,17 +448,6 @@
   ],
   "prioritizedBacklog": [
     {
-      "slug": "keeping-the-thought-that-belongs-to-you-a-working-rule-for-ai-assisted-thinking",
-      "lane": "boom",
-      "title": "Keeping the Thought That Belongs to You: A Working Rule for AI-Assisted Thinking",
-      "date": "2026-11-24",
-      "missing": [
-        "tumblr_voa",
-        "blogger",
-        "wordpress_earthstar"
-      ]
-    },
-    {
       "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
       "lane": "boom",
       "title": "Name It to Tame It? Testing the Labeling Habit on a Real Decision",
@@ -621,6 +617,17 @@
       "lane": "boom",
       "title": "The First Three Things to Automate (and the Order That Keeps Your Work Yours)",
       "date": "2026-11-22",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
+    {
+      "slug": "keeping-the-thought-that-belongs-to-you-a-working-rule-for-ai-assisted-thinking",
+      "lane": "boom",
+      "title": "Keeping the Thought That Belongs to You: A Working Rule for AI-Assisted Thinking",
+      "date": "2026-11-24",
       "missing": [
         "tumblr_voa",
         "blogger",
