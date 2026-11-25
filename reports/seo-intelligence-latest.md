@@ -1,11 +1,11 @@
-# SEO Intelligence Report ~ 2026-11-18
+# SEO Intelligence Report ~ 2026-11-25
 
 Default source: Google Search Console + GA4. No Anthropic, OpenAI, paid web-search, or rank-check API calls are made by this report.
 
 ## Data Freshness and Connections
 
-- Period: 2026-10-19 to 2026-11-15
-- Comparison: 2026-09-21 to 2026-10-18
+- Period: 2026-10-26 to 2026-11-22
+- Comparison: 2026-09-28 to 2026-10-25
 - Search Console: connected
 - GA4: connected
 - API requests attempted this run: 8
@@ -15,6 +15,8 @@ Default source: Google Search Console + GA4. No Anthropic, OpenAI, paid web-sear
 
 | Page | Clicks | Impressions | CTR | Avg Pos |
 | --- | --- | --- | --- | --- |
+| /blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice | 0 | 2 | 0.0% | 96.0 |
+| /earthstar/ | 0 | 1 | 0.0% | 82.0 |
 | /blog/boom/posts/who-is-igor-pogany-the-ai-instructor-behind-the-ai-advantage-system | 0 | 1 | 0.0% | 7.0 |
 | /blog/boom/posts/dean-graziosi-and-tony-robbins-joint-programs-a-track-record-review | 0 | 1 | 0.0% | 88.0 |
 
@@ -22,6 +24,8 @@ Default source: Google Search Console + GA4. No Anthropic, OpenAI, paid web-sear
 
 | Query | Clicks | Impressions | CTR | Avg Pos |
 | --- | --- | --- | --- | --- |
+| who is the ceo of mastermind.com | 0 | 2 | 0.0% | 96.0 |
+| earth star academy | 0 | 1 | 0.0% | 82.0 |
 | igor pogany age | 0 | 1 | 0.0% | 7.0 |
 | tony robbins dean graziosi | 0 | 1 | 0.0% | 88.0 |
 
@@ -37,14 +41,14 @@ _None found in this run._
 
 | Page | Sessions | Engagement | Suggested action |
 | --- | --- | --- | --- |
-| /blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it | 11 | 72.7% | Strengthen internal linking toward this page and expand the surrounding topic cluster. |
+| /blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it | 8 | 62.5% | Strengthen internal linking toward this page and expand the surrounding topic cluster. |
 | /blog/boom/posts/tony-robbins-scam-accusations-in-2026-whats-actually-being-said | 4 | 100.0% | Strengthen internal linking toward this page and expand the surrounding topic cluster. |
 
 ## Traffic but Weak Engagement
 
 | Page | Sessions | Engagement | Suggested action |
 | --- | --- | --- | --- |
-| /blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting | 14 | 28.6% | Check intent mismatch, improve the opening answer, and reduce filler before the useful answer. |
+| /blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting | 13 | 30.8% | Check intent mismatch, improve the opening answer, and reduce filler before the useful answer. |
 
 ## Hidden-Query Discoveries
 
@@ -65,9 +69,9 @@ _None found in this run._
 
 ## Existing Operational Context
 
-- Published posts indexed locally: 455
+- Published posts indexed locally: 462
 - Authority assets indexed locally: 16
-- Syndication result records available: 503
+- Syndication result records available: 509
 
 ## Data Limitations
 
@@ -79,23 +83,33 @@ _None found in this run._
 
 | Page | Views | Users |
 | --- | --- | --- |
-| /ai-engine/ | 5 | 4 |
-| /field-guide/ | 4 | 3 |
-| /hubs/adhd-focus/ | 2 | 2 |
+| /ai-engine/ | 4 | 3 |
+| /field-guide/ | 4 | 4 |
 | /hubs/ai-advantage/ | 2 | 2 |
 | /hubs/ai-creator-workflows/ | 2 | 2 |
 | /hubs/voa-concepts/ | 2 | 2 |
 | /tools/creative-signal-finder/ | 2 | 2 |
-| /tools/nervous-system-reset/ | 2 | 2 |
+| /ai-engine | 1 | 1 |
 | /field-guide | 1 | 1 |
+| /hubs | 1 | 1 |
 | /hubs/adhd-focus | 1 | 1 |
+| /hubs/adhd-focus/ | 1 | 1 |
+| /hubs/ai-advantage | 1 | 1 |
+| /hubs/ai-creator-workflows | 1 | 1 |
+| /hubs/creativity | 1 | 1 |
+| /hubs/dopamine-attention | 1 | 1 |
 | /hubs/dopamine-attention/ | 1 | 1 |
 | /hubs/meditation | 1 | 1 |
+| /hubs/nervous-system-regulation | 1 | 1 |
 | /hubs/nervous-system-regulation/ | 1 | 1 |
+| /hubs/personal-growth | 1 | 1 |
+| /hubs/purpose | 1 | 1 |
 | /hubs/purpose/ | 1 | 1 |
+| /hubs/self-trust | 1 | 1 |
 | /hubs/voa-concepts | 1 | 1 |
-| /tools/ | 1 | 1 |
+| /tools | 1 | 1 |
 | /tools/digital-attention-audit/ | 1 | 1 |
+| /tools/nervous-system-reset/ | 1 | 1 |
 | /tools/the-compass-point/ | 1 | 1 |
 | /tools/the-honest-mirror/ | 1 | 1 |
 

@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-11-18T17:48:15.326Z",
+  "generatedAt": "2026-11-25T18:58:59.506Z",
   "period": {
     "current": {
-      "startDate": "2026-10-19",
-      "endDate": "2026-11-15"
+      "startDate": "2026-10-26",
+      "endDate": "2026-11-22"
     },
     "previous": {
-      "startDate": "2026-09-21",
-      "endDate": "2026-10-18"
+      "startDate": "2026-09-28",
+      "endDate": "2026-10-25"
     }
   },
   "status": {
     "gsc": {
       "ok": true,
-      "message": "2 current query-page rows"
+      "message": "4 current query-page rows"
     },
     "ga": {
       "ok": true,
-      "message": "9 current organic landing-page rows"
+      "message": "11 current organic landing-page rows"
     }
   },
   "apiRequests": {
@@ -28,36 +28,31 @@
   "summary": {
     "searchConsole": {
       "clicks": 0,
-      "impressions": 25,
+      "impressions": 23,
       "ctr": 0,
-      "averagePosition": 20.44,
-      "observedQueryPageRows": 2,
+      "averagePosition": 30.043478260869566,
+      "observedQueryPageRows": 4,
       "source": "property aggregate (includes anonymized queries)"
     },
     "ga4": {
-      "organicSessions": 35,
-      "activeUsers": 27,
-      "engagedSessions": 19,
-      "engagementRate": 0.5428571428571428,
-      "rowCount": 9,
+      "organicSessions": 33,
+      "activeUsers": 24,
+      "engagedSessions": 17,
+      "engagementRate": 0.5151515151515151,
+      "rowCount": 11,
       "source": "Organic Search property aggregate; not a sum of shortlisted pages"
     }
   },
   "resourcePerformance": [
     {
       "pagePath": "/ai-engine/",
-      "screenPageViews": "5",
-      "totalUsers": "4"
-    },
-    {
-      "pagePath": "/field-guide/",
       "screenPageViews": "4",
       "totalUsers": "3"
     },
     {
-      "pagePath": "/hubs/adhd-focus/",
-      "screenPageViews": "2",
-      "totalUsers": "2"
+      "pagePath": "/field-guide/",
+      "screenPageViews": "4",
+      "totalUsers": "4"
     },
     {
       "pagePath": "/hubs/ai-advantage/",
@@ -80,9 +75,9 @@
       "totalUsers": "2"
     },
     {
-      "pagePath": "/tools/nervous-system-reset/",
-      "screenPageViews": "2",
-      "totalUsers": "2"
+      "pagePath": "/ai-engine",
+      "screenPageViews": "1",
+      "totalUsers": "1"
     },
     {
       "pagePath": "/field-guide",
@@ -90,7 +85,37 @@
       "totalUsers": "1"
     },
     {
+      "pagePath": "/hubs",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
       "pagePath": "/hubs/adhd-focus",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
+      "pagePath": "/hubs/adhd-focus/",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
+      "pagePath": "/hubs/ai-advantage",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
+      "pagePath": "/hubs/ai-creator-workflows",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
+      "pagePath": "/hubs/creativity",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
+      "pagePath": "/hubs/dopamine-attention",
       "screenPageViews": "1",
       "totalUsers": "1"
     },
@@ -105,7 +130,22 @@
       "totalUsers": "1"
     },
     {
+      "pagePath": "/hubs/nervous-system-regulation",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
       "pagePath": "/hubs/nervous-system-regulation/",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
+      "pagePath": "/hubs/personal-growth",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
+      "pagePath": "/hubs/purpose",
       "screenPageViews": "1",
       "totalUsers": "1"
     },
@@ -115,17 +155,27 @@
       "totalUsers": "1"
     },
     {
+      "pagePath": "/hubs/self-trust",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
       "pagePath": "/hubs/voa-concepts",
       "screenPageViews": "1",
       "totalUsers": "1"
     },
     {
-      "pagePath": "/tools/",
+      "pagePath": "/tools",
       "screenPageViews": "1",
       "totalUsers": "1"
     },
     {
       "pagePath": "/tools/digital-attention-audit/",
+      "screenPageViews": "1",
+      "totalUsers": "1"
+    },
+    {
+      "pagePath": "/tools/nervous-system-reset/",
       "screenPageViews": "1",
       "totalUsers": "1"
     },
@@ -143,21 +193,27 @@
   "organicLandingPages": [
     {
       "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
-      "sessions": 14,
+      "sessions": 13,
       "engagedSessions": 4,
-      "engagementRate": 0.2857142857142857
+      "engagementRate": 0.3076923076923077
     },
     {
       "path": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
-      "sessions": 11,
-      "engagedSessions": 8,
-      "engagementRate": 0.7272727272727273
+      "sessions": 8,
+      "engagedSessions": 5,
+      "engagementRate": 0.625
     },
     {
       "path": "/blog/boom/posts/tony-robbins-scam-accusations-in-2026-whats-actually-being-said",
       "sessions": 4,
       "engagedSessions": 4,
       "engagementRate": 1
+    },
+    {
+      "path": "/(not%20set)",
+      "sessions": 1,
+      "engagedSessions": 0,
+      "engagementRate": 0
     },
     {
       "path": "/blog/boom/posts/ai-advantage-free-jumpstart-playbook-and-community-review",
@@ -190,6 +246,12 @@
       "engagementRate": 0
     },
     {
+      "path": "/blog/boom/posts/how-to-use-claude-api-for-musicians",
+      "sessions": 1,
+      "engagedSessions": 1,
+      "engagementRate": 1
+    },
+    {
       "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
       "sessions": 1,
       "engagedSessions": 1,
@@ -200,17 +262,12 @@
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
-      "eventCount": "16"
+      "eventCount": "15"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
-      "eventCount": "11"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/how-to-write-ai-prompts-for-creative-projects",
-      "eventCount": "9"
+      "eventCount": "8"
     },
     {
       "eventName": "ebook_cta_view",
@@ -219,28 +276,23 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/",
-      "eventCount": "5"
-    },
-    {
-      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/a-morning-check-in-that-shapes-the-day-without-a-rigid-routine",
       "eventCount": "5"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/anger-grief-and-shame-as-material-using-hard-emotions-in-your-work",
+      "pagePath": "/blog/boom/posts/the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
       "eventCount": "5"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/energy-architecture-building-systems-that-protect-creative-reserves",
+      "pagePath": "/blog/boom/posts/the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
       "eventCount": "5"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/how-to-create-your-first-claude-skill-with-a-unique-voice",
-      "eventCount": "5"
+      "pagePath": "/blog/boom/",
+      "eventCount": "4"
     },
     {
       "eventName": "ebook_cta_view",
@@ -249,7 +301,7 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/ai-advantage-club-review-is-the-monthly-community-worth-staying-in",
+      "pagePath": "/blog/boom/posts/ai-advantage-summit-review",
       "eventCount": "4"
     },
     {
@@ -259,17 +311,22 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/cutting-through-the-noise-which-ai-tools-actually-change-your-day",
+      "pagePath": "/blog/boom/posts/energy-architecture-building-systems-that-protect-creative-reserves",
       "eventCount": "4"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/how-to-make-presentations-faster-with-chatgpt",
+      "pagePath": "/blog/boom/posts/how-to-create-your-first-claude-skill-with-a-unique-voice",
       "eventCount": "4"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-rescue-a-dead-end-ai-conversation-with-a-handoff-prompt",
+      "eventCount": "4"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-write-ai-prompts-for-creative-projects",
       "eventCount": "4"
     },
     {
@@ -284,22 +341,17 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-specificity-paradox-why-your-most-honest-work-feels-more-exposed-than-your-generic-stuff",
-      "eventCount": "4"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-weekend-test-trying-a-direction-before-betting-your-income-on-it",
-      "eventCount": "4"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/why-ai-music-tools-make-everything-sound-the-same",
+      "pagePath": "/blog/boom/posts/tony-robbins-scam-accusations-in-2026-whats-actually-being-said",
       "eventCount": "4"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/a-boundary-map-for-ai-in-your-music-process",
+      "eventCount": "3"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-advantage-club-review-is-the-monthly-community-worth-staying-in",
       "eventCount": "3"
     },
     {
@@ -334,17 +386,12 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
+      "pagePath": "/blog/boom/posts/cutting-through-the-noise-which-ai-tools-actually-change-your-day",
       "eventCount": "3"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-clone-your-voice-with-elevenlabs-and-heygen",
-      "eventCount": "3"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/how-to-manage-multiple-chatgpt-projects-at-once",
       "eventCount": "3"
     },
     {
@@ -359,17 +406,17 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-train-chatgpt-or-claude-on-your-own-voice-and-style-for-free",
+      "eventCount": "3"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-use-ai-to-make-music-without-losing-your-sound",
       "eventCount": "3"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/jealousy-as-information-reading-the-envy-that-shows-up-when-peers-succeed",
-      "eventCount": "3"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/markdown-formatting-for-ai-prompts",
       "eventCount": "3"
     },
     {
@@ -394,12 +441,22 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/tony-robbins-scam-accusations-in-2026-whats-actually-being-said",
+      "pagePath": "/blog/boom/posts/why-ai-music-tools-make-everything-sound-the-same",
       "eventCount": "3"
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/7-day-content-plan-for-small-creators",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/ai-advantage-bootcamp-scam-reddit-what-the-no-filter-crowd-actually-thinks",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/ai-tools-to-organize-scattered-creative-ideas",
       "eventCount": "2"
     },
     {
@@ -419,12 +476,12 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/best-free-ai-image-generator-for-musicians-and-artists-2026",
+      "pagePath": "/blog/boom/posts/burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
       "eventCount": "2"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/burnout-or-wrong-role-practical-ways-to-tell-the-difference-before-you-quit",
+      "pagePath": "/blog/boom/posts/buying-art-you-will-still-love-in-five-years-a-plain-test-for-keepers",
       "eventCount": "2"
     },
     {
@@ -489,6 +546,16 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-make-presentations-faster-with-chatgpt",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-manage-multiple-chatgpt-projects-at-once",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-monetize-your-creativity-without-selling-your-soul",
       "eventCount": "2"
     },
@@ -539,6 +606,11 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/markdown-formatting-for-ai-prompts",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/music-production-for-beginners-where-to-start-without-getting-lost",
       "eventCount": "2"
     },
@@ -549,17 +621,7 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
-      "eventCount": "2"
-    },
-    {
-      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/passive-income-ideas-for-beginners-that-dont-require-being-fake",
-      "eventCount": "2"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/presence-as-a-creative-tool-how-showing-up-actually-changes-what-you-make",
       "eventCount": "2"
     },
     {
@@ -569,17 +631,12 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/specificity-without-confession-vulnerable-work-done-well",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/technology-as-a-tool-for-consciousness-not-unconsciousness",
-      "eventCount": "2"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-algorithm-optimization-trap-how-chasing-metrics-slowly-erases-your-creative-signature",
-      "eventCount": "2"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-clone-builder-system-explained-is-this-actually-a-new-idea",
       "eventCount": "2"
     },
     {
@@ -589,27 +646,17 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-competitive-disadvantage-what-youre-actually-losing-by-not-using-ai-as-a-creator",
-      "eventCount": "2"
-    },
-    {
-      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/the-creative-blank-after-a-long-stimulation-streak",
       "eventCount": "2"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-difference-between-processing-emotion-and-just-pushing-it-down",
+      "pagePath": "/blog/boom/posts/the-first-three-things-to-automate-and-the-order-that-keeps-your-work-yours",
       "eventCount": "2"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/the-overstimulation-trap-why-busy-input-makes-your-output-disappear",
-      "eventCount": "2"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
       "eventCount": "2"
     },
     {
@@ -620,6 +667,11 @@
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/when-pleasing-the-room-flattens-your-work",
+      "eventCount": "2"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/when-two-directions-both-fit-a-tiebreaker-method-that-does-not-rely-on-feeling-sure",
       "eventCount": "2"
     },
     {
@@ -649,11 +701,6 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/7-day-content-plan-for-small-creators",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/ai-advantage-affiliate-program-how-it-works-and-what-youd-actually-earn",
       "eventCount": "1"
     },
@@ -669,7 +716,7 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/ai-advantage-bootcamp-reddit-what-real-people-are-actually-saying",
+      "pagePath": "/blog/boom/posts/ai-advantage-bootcamp-results-what-real-students-are-reporting",
       "eventCount": "1"
     },
     {
@@ -714,22 +761,12 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/ai-advantage-summit-review",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/ai-advantage-summit-vs-bootcamp-what-is-the-actual-difference",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/ai-content-creation-tools-that-actually-save-time",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/ai-tools-to-organize-scattered-creative-ideas",
       "eventCount": "1"
     },
     {
@@ -759,17 +796,32 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/best-free-ai-image-generator-for-musicians-and-artists-2026",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/between-the-spike-and-the-sentence-speaking-from-anger-without-scorching-the-room",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/breaks-that-restore-rather-than-punish-planning-pauses-with-intention",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/build-a-15-hour-per-week-ai-time-savings-system-without-buying-a-course",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/build-a-focus-card-with-a-finish-line-you-can-recognize",
+      "pagePath": "/blog/boom/posts/burnout-isnt-the-problem-its-the-signal",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/burnout-isnt-the-problem-its-the-signal",
+      "pagePath": "/blog/boom/posts/checking-an-original-art-listing-before-you-pay-signs-of-authenticity-and-red-flags",
       "eventCount": "1"
     },
     {
@@ -799,11 +851,6 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/dean-graziosi-controversy-what-the-critics-actually-say-and-what-to-make-of-it",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/dean-graziosi-review-is-his-ai-course-better-than-his-other-programs",
       "eventCount": "1"
     },
@@ -814,17 +861,12 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/dopamine-detox-without-cringe",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/doubt-after-the-commitment-staying-put-or-quitting-well",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/emotional-regulation-without-the-generic-app-techniques-that-actually-move-emotion",
+      "pagePath": "/blog/boom/posts/draining-or-boring-reading-the-difference-in-your-own-week",
       "eventCount": "1"
     },
     {
@@ -864,7 +906,7 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/how-to-build-a-personal-reply-template-library",
+      "pagePath": "/blog/boom/posts/how-to-build-an-authentic-personal-brand-as-a-creator",
       "eventCount": "1"
     },
     {
@@ -949,6 +991,11 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-stop-betraying-yourself",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-stop-feeling-lost-and-start-moving-forward",
       "eventCount": "1"
     },
@@ -974,17 +1021,17 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/how-to-use-claude-api-for-musicians",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-use-elevenlabs-v3-for-podcast-voiceovers",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/how-to-use-notebooklm-for-music-production-notes",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/how-to-use-openai-deep-research-for-content-creation",
       "eventCount": "1"
     },
     {
@@ -1044,6 +1091,11 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/noticing-the-misfit-early-signs-your-work-no-longer-matches-who-you-are",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/one-editorial-calendar-across-music-newsletter-and-social-without-the-chaos",
       "eventCount": "1"
     },
@@ -1089,17 +1141,17 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/specificity-without-confession-vulnerable-work-done-well",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/staying-present-through-conflict-a-body-level-guide-to-not-shutting-down",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/structuring-your-life-around-energy-not-just-money",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/telling-your-audience-how-you-use-ai",
       "eventCount": "1"
     },
     {
@@ -1114,17 +1166,22 @@
     },
     {
       "eventName": "ebook_cta_view",
+      "pagePath": "/blog/boom/posts/the-clone-builder-system-explained-is-this-actually-a-new-idea",
+      "eventCount": "1"
+    },
+    {
+      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/the-creativity-collapse-how-your-hijacked-reward-system-makes-original-work-feel-impossible",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-decisions-ai-cannot-make-for-you-as-a-creator",
+      "pagePath": "/blog/boom/posts/the-grounded-cosmic-view-navigating-technology-with-your-feet-on-earth",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/the-grounded-cosmic-view-navigating-technology-with-your-feet-on-earth",
+      "pagePath": "/blog/boom/posts/the-quiet-realignment-making-small-moves-toward-a-life-that-fits",
       "eventCount": "1"
     },
     {
@@ -1169,11 +1226,6 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/what-attention-really-means-in-an-attention-economy-and-why-yours-is-worth-more-than-you-think",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/what-inner-noise-feels-like",
       "eventCount": "1"
     },
@@ -1189,22 +1241,7 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/where-your-creative-energy-actually-goes-when-anxiety-is-running-the-show",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/why-finding-your-purpose-keeps-you-stuck",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
       "pagePath": "/blog/boom/posts/why-i-feel-stuck-in-life-the-truth-nobody-tells-you-about-being-lost",
-      "eventCount": "1"
-    },
-    {
-      "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/why-is-everyone-promoting-ai-advantage-the-affiliate-machine-explained",
       "eventCount": "1"
     },
     {
@@ -1214,7 +1251,7 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/boom/posts/your-calling-vs-your-comfortable-fantasy-how-to-tell-the-difference",
+      "pagePath": "/blog/matt/posts/law-of-attraction-manifesting-abundance/",
       "eventCount": "1"
     },
     {
@@ -1224,12 +1261,12 @@
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/matt/posts/qi-gong-understanding-chi-energy",
+      "pagePath": "/blog/matt/posts/light-workers-communication-impacting-the-masses/",
       "eventCount": "1"
     },
     {
       "eventName": "ebook_cta_view",
-      "pagePath": "/blog/matt/posts/qi-gong-understanding-chi-energy/",
+      "pagePath": "/blog/matt/posts/qi-gong-understanding-chi-energy",
       "eventCount": "1"
     },
     {
@@ -1239,6 +1276,20 @@
     }
   ],
   "topQueries": [
+    {
+      "query": "who is the ceo of mastermind.com",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 96
+    },
+    {
+      "query": "earth star academy",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 82
+    },
     {
       "query": "igor pogany age",
       "clicks": 0,
@@ -1255,6 +1306,40 @@
     }
   ],
   "topLandingPages": [
+    {
+      "title": "Mastermind.com vs AI Advantage: Are Tony and Dean Selling the Same Promise Twice",
+      "path": "/blog/boom/posts/mastermindcom-vs-ai-advantage-are-tony-and-dean-selling-the-same-promise-twice",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 96,
+      "topQueries": [
+        {
+          "query": "who is the ceo of mastermind.com",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 96
+        }
+      ]
+    },
+    {
+      "title": "/earthstar/",
+      "path": "/earthstar/",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 82,
+      "topQueries": [
+        {
+          "query": "earth star academy",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 82
+        }
+      ]
+    },
     {
       "title": "Who Is Igor Pogany: The AI Instructor Behind the AI Advantage System",
       "path": "/blog/boom/posts/who-is-igor-pogany-the-ai-instructor-behind-the-ai-advantage-system",
@@ -1295,12 +1380,12 @@
     {
       "path": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
       "title": "Tony Robbins AI Training 2026: Is This One Actually Worth It",
-      "sessions": 11,
-      "activeUsers": 10,
-      "engagedSessions": 8,
-      "engagementRate": 0.7272727272727273,
-      "avgEngagementTime": 137.94737645454546,
-      "views": 16,
+      "sessions": 8,
+      "activeUsers": 7,
+      "engagedSessions": 5,
+      "engagementRate": 0.625,
+      "avgEngagementTime": 67.57720937500001,
+      "views": 8,
       "action": "Strengthen internal linking toward this page and expand the surrounding topic cluster."
     },
     {
@@ -1310,8 +1395,8 @@
       "activeUsers": 4,
       "engagedSessions": 4,
       "engagementRate": 1,
-      "avgEngagementTime": 152.00464825,
-      "views": 4,
+      "avgEngagementTime": 399.73154825,
+      "views": 5,
       "action": "Strengthen internal linking toward this page and expand the surrounding topic cluster."
     }
   ],
@@ -1319,12 +1404,12 @@
     {
       "path": "/blog/boom/posts/how-to-copy-ai-responses-without-losing-formatting",
       "title": "How To Copy Ai Responses Without Losing Formatting",
-      "sessions": 14,
-      "activeUsers": 7,
+      "sessions": 13,
+      "activeUsers": 6,
       "engagedSessions": 4,
-      "engagementRate": 0.2857142857142857,
-      "avgEngagementTime": 13.291794499999998,
-      "views": 14,
+      "engagementRate": 0.3076923076923077,
+      "avgEngagementTime": 15.737201076923078,
+      "views": 13,
       "action": "Check intent mismatch, improve the opening answer, and reduce filler before the useful answer."
     }
   ],
@@ -1333,7 +1418,7 @@
       "type": "engagement_winner",
       "label": "Tony Robbins AI Training 2026: Is This One Actually Worth It",
       "page": "/blog/boom/posts/tony-robbins-ai-training-2026-is-this-one-actually-worth-it",
-      "metric": "11 organic sessions"
+      "metric": "8 organic sessions"
     }
   ],
   "counts": {
