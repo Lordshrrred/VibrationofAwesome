@@ -21,10 +21,10 @@ Internally, this repo also contains a VOA blog syndication engine, dashboards, s
 | `/blog/` | Blog index. | Read Forest Temple or Boom Frequency. | No public social follow links found. | Static post indexes from JSON data. |
 | `/blog/matt/` | Forest Temple personal writing lane. | Read posts. | Legacy posts include occasional Facebook comment references and YouTube embeds. | Static blog content. |
 | `/blog/boom/` | Boom Frequency AI-assisted content lane. | Read posts. | Posts contain platform/topic references; no global social follow block found. | Static blog content generated from data. |
-| `/earthstar/` | EarthStar Initiative landing page. | Philosophy, Vision, Merch. | Links to VOA Art Store/Spring merch. | Static page. |
-| `/earthstar/vision/` | EarthStar vision page. | Merch/related EarthStar navigation. | Spring merch link. | Static page. |
-| `/earthstar/philosophy/` | EarthStar philosophy page. | Merch/related EarthStar navigation. | Spring merch link. | Static page. |
-| `/art-store/` | EarthStar Art Store. | Product buttons, full Spring store, portfolio. | Spring store and product URLs. | External Spring/CreatorSpring checkout links. |
+| `/earthstar/` | EarthStar Initiative landing page. | Philosophy, Vision, Merch. | Links to VOA Art Store. | Static page. |
+| `/earthstar/vision/` | EarthStar vision page. | Merch/related EarthStar navigation. | Art Store merch link. | Static page. |
+| `/earthstar/philosophy/` | EarthStar philosophy page. | Merch/related EarthStar navigation. | Art Store merch link. | Static page. |
+| `/art-store/` | EarthStar Art Store. | Product buttons, portfolio. | Back Soon popup with Field Guide signup. | Checkout paused: Spring shut down. |
 | `/portfolio/` | Portfolio archive. | Browse pieces/art. | No social follow links found in audited entry point. | Static data from portfolio JSON. |
 | `/aura/` | AURA AI companion product page. | Start free chat, premium checkout. | No social follow links found. | Calls `/api/chat`, `/api/create-checkout`, `/api/verify-subscription`; Stripe checkout. |
 | `/user-manual/` | Volume Two waitlist/sales page. | Email/waitlist, Field Guide. | No social follow links found. | Uses `https://vibrationofawesome-mailer.vercel.app/api/capture-email`. |
@@ -54,7 +54,6 @@ Additional legacy redirect/article routes exist for older posts such as `/vibrat
 | Tumblr | `https://vibrationofawesome.tumblr.com/...` in syndication data; `earthstarrising.tumblr.com` in legacy data. | VOA plus ESR legacy. | Dashboard/data/internal docs. | No public follow link found; internal data implies active VOA posting. |
 | Blogger | `https://vibrationofawesomeearthstar.blogspot.com/...` in data/API defaults. | VOA/EarthStar backlink site. | Dashboard/data/API defaults. | SEO/backlink destination, not public follow link. |
 | WordPress | `https://earthstarrisingsun.wordpress.com/...` in docs/data/dashboard. | EarthStar Rising. | Dashboard/data/internal docs. | Separate EarthStar Rising content destination. |
-| Spring/CreatorSpring | `https://earthstar.creator-spring.com` and product listing URLs. | EarthStar Art Store. | Art Store/EarthStar pages. | Active public shop destination. |
 
 ## 4. Privacy/Data Deletion Status
 
@@ -86,7 +85,7 @@ Potentially confusing:
 - AURA: free chat UI calls `/api/chat`; premium upgrade calls Stripe checkout through `/api/create-checkout` and verifies via `/api/verify-subscription`.
 - User Manual: waitlist/email capture points at `https://vibrationofawesome-mailer.vercel.app/api/capture-email`.
 - Contact: Netlify-style contact form posts to `/`; direct `mailto:matt@vibrationofawesome.com`.
-- Art Store: product CTA buttons open external Spring/CreatorSpring product pages; no local checkout for merch.
+- Art Store: buy buttons open an in-page Back Soon notice; merch checkout is paused.
 - Blog: Matt and Boom post indexes are static JSON-backed content destinations. Internal scripts can generate, drip publish, and syndicate posts.
 - Dashboard/Admin: operational routes expose syndication status and editor/admin controls; these could later feed EarthStar Command but are separate from the Meta read-only analytics story.
 
@@ -103,7 +102,6 @@ Unrelated to social orchestration:
 - Legal pages.
 - Static philosophy pages.
 - Legacy archive content except where it contains embeds or CTAs.
-- Spring checkout itself.
 
 ## 7. Gaps Between Public VOA Site And EarthStar Command Assumptions
 

@@ -793,21 +793,16 @@
   }
   .acquire-btn:hover { background: var(--gold-light); box-shadow: 0 0 35px rgba(0,229,204,0.35); }
 
-  /* Checkout iframe ~ scaled down so more of Spring fits in the popup */
-  .checkout-wrapper {
-    width: 100%;
-    height: calc(90vh - 58px);
-    overflow: hidden;
-    position: relative;
+  /* Back-soon notice shown in the popup while checkout is rebuilt */
+  .store-pause { max-width: 440px; margin: 0 auto; text-align: center; }
+  .store-pause h3 { color: var(--gold); margin-bottom: 0.8rem; letter-spacing: 0.12em; }
+  .store-pause p { line-height: 1.7; margin-bottom: 1rem; }
+  .store-pause input {
+    width: 100%; box-sizing: border-box; padding: 0.9rem; font-size: 1rem; text-align: center;
+    background: transparent; color: inherit; border: 1px solid var(--gold);
   }
-  .checkout-frame {
-    width: calc(100% / 0.72);
-    height: calc((90vh - 58px) / 0.72);
-    border: none;
-    display: block;
-    transform: scale(0.72);
-    transform-origin: top left;
-  }
+  .store-pause .acquire-btn { margin-top: 0.8rem; }
+  .store-pause a { color: var(--gold); }
 
   .voa-modal-body {
     overflow-y: auto;
@@ -1976,8 +1971,7 @@
 
   <!-- STORE FOOTER ROW -->
   <div class="store-footer-row reveal">
-    <p class="store-note">More collections dropping soon. All items printed on demand and shipped directly to you via Spring.</p>
-    <a href="https://earthstar.creator-spring.com" target="_blank" rel="noopener" class="btn-full-store">View Full Spring Store &rarr;</a>
+    <p class="store-note">The store is moving to a new print partner. Checkout returns soon, and more collections are on the way.</p>
   </div>
 
   <!-- PORTFOLIO ARCHIVE INVITE -->
@@ -2166,11 +2160,47 @@
     setTimeout(function() { voaModalBody.innerHTML = ''; _modalStack = []; }, 400);
   }
 
-  function acquireNow(url) {
+  // Spring shut down. Checkout stays inside this popup so buyers never leave the site;
+  // the next payment step mounts here too.
+  function acquireNow() {
     pushModalState();
-    voaModalTag.textContent = 'EarthStar Store · Checkout';
-    voaModalBody.style.padding = '0';
-    voaModalBody.innerHTML = '<div class="checkout-wrapper"><iframe class="checkout-frame" src="' + url + '" allow="payment *"></iframe></div>';
+    voaModalTag.textContent = 'EarthStar Store · Back Soon';
+    voaModalBody.style.padding = '2rem 1.2rem';
+    voaModalBody.innerHTML =
+      '<div class="store-pause">' +
+        '<h3>Checkout is being rebuilt</h3>' +
+        '<p>The store is moving to a new print partner, so orders are paused for now.</p>' +
+        '<p>Want to hear when it reopens? Join the Field Guide list. You get the free guide and our news.</p>' +
+        '<form onsubmit="return storeNotify(event)">' +
+          '<input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address">' +
+          '<button type="submit" class="acquire-btn">Keep Me Posted ✦</button>' +
+        '</form>' +
+        '<p class="store-pause-status" role="status"></p>' +
+      '</div>';
+  }
+
+  function storeNotify(event) {
+    event.preventDefault();
+    var form = event.target;
+    var button = form.querySelector('button');
+    var status = form.parentNode.querySelector('.store-pause-status');
+    button.disabled = true;
+    status.textContent = 'One moment…';
+    fetch(window.VOA_CAPTURE_EMAIL_URL || 'https://vibrationofawesome-mailer.vercel.app/api/capture-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: form.email.value.trim(), source_page: '/art-store/', cta_placement: 'art_store_back_soon', blog_slug: '', list: 'field_guide' })
+    })
+      .then(function(res) { return res.json().then(function(data) { if (!res.ok || !data.success) throw new Error(); return data; }); })
+      .then(function(data) {
+        form.style.display = 'none';
+        status.innerHTML = 'You are on the list. <a href="' + escapeHtml(data.download_url || '/field-guide/') + '">Get your Field Guide</a>';
+      })
+      .catch(function() {
+        button.disabled = false;
+        status.textContent = 'That did not go through. Please try again.';
+      });
+    return false;
   }
 
   function openImageZoom(src, label, url, title) {
@@ -2188,7 +2218,7 @@
         '</div>' +
         '<div class="image-zoom-actions">' +
           '<div class="image-zoom-title">' + escapeHtml(title || label || 'Product image') + '</div>' +
-          '<button class="acquire-btn" onclick=\'' + escapeHtml('acquireNow(' + JSON.stringify(url) + ')') + '\'>Acquire Now ✦</button>' +
+          '<button class="acquire-btn" onclick=\'' + escapeHtml('acquireNow(' + JSON.stringify(url) + ')') + '\'>Back Soon ✦</button>' +
         '</div>' +
       '</div>';
     requestAnimationFrame(initImageMagnifier);
@@ -2734,7 +2764,7 @@
         '<div class="shirt-option-info">' +
           '<div class="shirt-option-name">' + v.name + '</div>' +
           '<div class="shirt-option-sub">' + v.sub + '</div>' +
-          '<button class="acquire-btn" onclick="acquireNow(\'' + v.url + '\')">Acquire Now ✦</button>' +
+          '<button class="acquire-btn" onclick="acquireNow(\'' + v.url + '\')">Back Soon ✦</button>' +
         '</div></div>';
     }).join('');
     openVoaModal(d.label + ' · Shirts',
@@ -2754,7 +2784,7 @@
         '<div class="shirt-option-info">' +
           '<div class="shirt-option-name">' + v.name + '</div>' +
           '<div class="shirt-option-sub">' + v.sub + '</div>' +
-          '<button class="acquire-btn" onclick="acquireNow(\'' + v.url + '\')">Acquire Now ✦</button>' +
+          '<button class="acquire-btn" onclick="acquireNow(\'' + v.url + '\')">Back Soon ✦</button>' +
         '</div></div>';
     }).join('');
     openVoaModal(d.label + ' · Stickers',
@@ -2781,7 +2811,7 @@
           '<p class="product-detail-sub">' + p.sub + '</p>' +
           '<div class="product-detail-divider"></div>' +
           '<p class="product-detail-desc">' + p.desc + '</p>' +
-          '<button class="product-detail-btn acquire-btn" onclick="acquireNow(\'' + p.url + '\')">Acquire Now ✦</button>' +
+          '<button class="product-detail-btn acquire-btn" onclick="acquireNow(\'' + p.url + '\')">Back Soon ✦</button>' +
         '</div>' +
       '</div>'
     );
