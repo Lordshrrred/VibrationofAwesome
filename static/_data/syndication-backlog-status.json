@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T19:46:18.651Z",
+  "generatedAt": "2026-11-27T03:09:42.400Z",
   "definitions": {
     "backlogPosts": "Published VOA posts missing at least one expected backlink-capable platform success.",
     "platformLinkUnits": "One expected backlink-capable platform task for one post: Tumblr, Blogger, or WordPress.",
@@ -14,16 +14,16 @@
     "windowDays": 14
   },
   "summary": {
-    "totalTrackedPosts": 423,
-    "totalLivePosts": 463,
+    "totalTrackedPosts": 424,
+    "totalLivePosts": 464,
     "untrackedLivePosts": 40,
-    "backlogPosts": 17,
-    "backlinkCapableMissingUnits": 51,
-    "backlinkVerificationGaps": 20,
+    "backlogPosts": 18,
+    "backlinkCapableMissingUnits": 54,
+    "backlinkVerificationGaps": 23,
     "feederMissingUnits": 0,
     "distributionIncompleteUnits": 17,
-    "freshPostsAwaitingBacklinks": 0,
-    "freshMissingBacklinkUnits": 0,
+    "freshPostsAwaitingBacklinks": 1,
+    "freshMissingBacklinkUnits": 3,
     "completedBacklinkUnitsInWindow": 0,
     "completedBacklinkUnitsPerDay": 0,
     "newPostsPerDay": 4,
@@ -31,29 +31,29 @@
     "netBacklogChangePerDay": 12,
     "estimatedCatchUpDays": null,
     "largestDelayPlatform": "Blogger",
-    "largestDelayMissingUnits": 17
+    "largestDelayMissingUnits": 18
   },
   "platformTable": {
     "backlinkCapable": [
       {
         "key": "blogger",
         "platform": "Blogger",
-        "eligiblePosts": 423,
+        "eligiblePosts": 424,
         "complete": 406,
-        "missing": 17,
-        "successRate": 96,
+        "missing": 18,
+        "successRate": 95.8,
         "averagePerDay": 0,
-        "confirmed": 388,
-        "verificationGaps": 18,
+        "confirmed": 385,
+        "verificationGaps": 21,
         "mainBlocker": "backlink tier paused"
       },
       {
         "key": "wordpress_earthstar",
         "platform": "WordPress",
-        "eligiblePosts": 423,
+        "eligiblePosts": 424,
         "complete": 406,
-        "missing": 17,
-        "successRate": 96,
+        "missing": 18,
+        "successRate": 95.8,
         "averagePerDay": 0,
         "confirmed": 405,
         "verificationGaps": 1,
@@ -62,10 +62,10 @@
       {
         "key": "tumblr_voa",
         "platform": "Tumblr",
-        "eligiblePosts": 423,
+        "eligiblePosts": 424,
         "complete": 406,
-        "missing": 17,
-        "successRate": 96,
+        "missing": 18,
+        "successRate": 95.8,
         "averagePerDay": 0,
         "confirmed": 405,
         "verificationGaps": 1,
@@ -76,12 +76,12 @@
       {
         "key": "feeder",
         "platform": "VOA Feeder",
-        "eligiblePosts": 289,
-        "complete": 289,
+        "eligiblePosts": 290,
+        "complete": 290,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.8,
-        "confirmed": 289,
+        "confirmed": 290,
         "verificationGaps": 0,
         "mainBlocker": ""
       }
@@ -90,73 +90,73 @@
       {
         "key": "bluesky_voa",
         "platform": "Bluesky VOA",
-        "eligiblePosts": 325,
-        "complete": 325,
+        "eligiblePosts": 326,
+        "complete": 326,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 1.1,
+        "averagePerDay": 1.2,
         "confirmed": 142,
-        "verificationGaps": 183,
+        "verificationGaps": 184,
         "mainBlocker": ""
       },
       {
         "key": "mastodon_voa",
         "platform": "Mastodon VOA",
-        "eligiblePosts": 325,
-        "complete": 321,
+        "eligiblePosts": 326,
+        "complete": 322,
         "missing": 4,
         "successRate": 98.8,
-        "averagePerDay": 1.1,
+        "averagePerDay": 1.2,
         "confirmed": 142,
-        "verificationGaps": 179,
+        "verificationGaps": 180,
         "mainBlocker": "Unexpected token '<', \"\n      <!DOCTYPE \"... is not valid JSON"
       },
       {
         "key": "facebook_voa",
         "platform": "Facebook VOA",
-        "eligiblePosts": 198,
-        "complete": 185,
+        "eligiblePosts": 199,
+        "complete": 186,
         "missing": 13,
-        "successRate": 93.4,
+        "successRate": 93.5,
         "averagePerDay": 0.6,
         "confirmed": 30,
-        "verificationGaps": 155,
+        "verificationGaps": 156,
         "mainBlocker": "(#200) If posting to a group, requires app being installed in the group, and \\\n          either publish_to_groups permission with user token, or both pages_read_engagement \\\n          and pages_manage_posts permission with page token; If posting to a page, \\\n          requires both pages_read_engagement and pages_manage_posts as an admin with \\\n          sufficient administrative permission"
       },
       {
         "key": "pinterest",
         "platform": "Pinterest",
-        "eligiblePosts": 198,
-        "complete": 198,
+        "eligiblePosts": 199,
+        "complete": 199,
         "missing": 0,
         "successRate": 100,
-        "averagePerDay": 0.3,
+        "averagePerDay": 0.4,
         "confirmed": 0,
-        "verificationGaps": 198,
+        "verificationGaps": 199,
         "mainBlocker": ""
       },
       {
         "key": "threads",
         "platform": "Threads",
-        "eligiblePosts": 197,
-        "complete": 197,
+        "eligiblePosts": 198,
+        "complete": 198,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.6,
         "confirmed": 72,
-        "verificationGaps": 125,
+        "verificationGaps": 126,
         "mainBlocker": ""
       },
       {
         "key": "instagram",
         "platform": "Instagram",
-        "eligiblePosts": 195,
-        "complete": 195,
+        "eligiblePosts": 196,
+        "complete": 196,
         "missing": 0,
         "successRate": 100,
         "averagePerDay": 0.6,
         "confirmed": 0,
-        "verificationGaps": 195,
+        "verificationGaps": 196,
         "mainBlocker": ""
       }
     ]
@@ -454,6 +454,17 @@
     }
   ],
   "prioritizedBacklog": [
+    {
+      "slug": "the-editing-pass-that-sands-off-your-edges",
+      "lane": "boom",
+      "title": "The Editing Pass That Sands Off Your Edges",
+      "date": "2026-11-26",
+      "missing": [
+        "tumblr_voa",
+        "blogger",
+        "wordpress_earthstar"
+      ]
+    },
     {
       "slug": "name-it-to-tame-it-testing-the-labeling-habit-on-a-real-decision",
       "lane": "boom",
