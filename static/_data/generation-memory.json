@@ -4,7 +4,7 @@
     "description": "Rolling registry of recent post generation characteristics. Used to inject differentiation context into future generation prompts, preventing hook repetition, title cadence cloning, and emotional arc duplication. Capped at 30 recent entries per category.",
     "usage": "Read by scripts/lib/generation-memory.js before generation. Written after each successful post creation. Pass result to generate-post.js as differentiation context."
   },
-  "lastUpdated": "2026-11-26T22:13:29.689Z",
+  "lastUpdated": "2026-11-27T21:55:44.738Z",
   "recentHooks": [
     {
       "slug": "the-setup-cost-you-dont-see-in-ai-tool-reviews",
@@ -888,6 +888,15 @@
   "recentCTAPatterns": [],
   "recentThreadsFormats": [
     {
+      "slug": "working-with-low-energy-matching-your-tasks-to-the-capacity-you-have-today",
+      "format": "single-native-post",
+      "cadenceProfile": "standalone",
+      "density": "medium",
+      "openerStyle": "any",
+      "closerStyle": "complete",
+      "timestamp": "2026-11-27T21:55:33.433Z"
+    },
+    {
       "slug": "the-editing-pass-that-sands-off-your-edges",
       "format": "creative-identity-reflection",
       "cadenceProfile": "lyrical",
@@ -1147,18 +1156,19 @@
       "openerStyle": "any",
       "closerStyle": "complete",
       "timestamp": "2026-11-15T19:21:13.621Z"
-    },
-    {
-      "slug": "attention-as-a-resource-you-can-allocate-on-purpose",
-      "format": "conversational-reflection",
-      "cadenceProfile": "casual-spoken",
-      "density": "light-medium",
-      "openerStyle": "mid-conversation",
-      "closerStyle": "natural-landing",
-      "timestamp": "2026-11-15T19:21:05.984Z"
     }
   ],
   "recentInstagramArchetypes": [
+    {
+      "slug": "working-with-low-energy-matching-your-tasks-to-the-capacity-you-have-today",
+      "archetype": "minimalist-philosophy",
+      "archetypeLabel": "Minimalist Philosophy",
+      "palette": "near-black-accent",
+      "emotionalTone": "stillness",
+      "emotionalCluster": "intellectual",
+      "family": "art",
+      "timestamp": "2026-11-27T21:55:44.738Z"
+    },
     {
       "slug": "the-editing-pass-that-sands-off-your-edges",
       "archetype": "curiosity-hook-card",
@@ -1448,16 +1458,6 @@
       "emotionalCluster": "atmospheric",
       "family": "art",
       "timestamp": "2026-11-02T01:20:24.472Z"
-    },
-    {
-      "slug": "defining-a-finish-line-for-each-work-session-before-you-start",
-      "archetype": "symbolic-consciousness",
-      "archetypeLabel": "Symbolic Consciousness",
-      "palette": "cosmic-teal",
-      "emotionalTone": "cosmic",
-      "emotionalCluster": "mystical",
-      "family": "art",
-      "timestamp": "2026-11-01T18:21:43.792Z"
     }
   ]
 }
